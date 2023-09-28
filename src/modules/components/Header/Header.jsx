@@ -11,7 +11,7 @@ import menuItems from "./menuItems.json";
 import { Container, ContainerHeader, Link, Row, Wrap } from "./header.styled";
 import Menu from "./Menu/Menu";
 
-const Header = () => {
+export const Header = () => {
   return (
     <ContainerHeader>
       <Container>
@@ -36,4 +36,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+

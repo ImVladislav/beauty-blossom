@@ -1,27 +1,27 @@
 [
   {
     "id": "1",
-    "to": "/parfum",
-    "text": "Парфюмерiя"
+    "to": "/category",
+    "text": "Категорії"
   },
   {
     "id": "2",
-    "to": "/makeup",
-    "text": "Макіяж"
+    "to": "/brands",
+    "text": "Бренди"
   },
   {
     "id": "3",
-    "to": "/aroma",
-    "text": "Арома"
+    "to": "/news",
+    "text": "Новинки"
   },
   {
     "id": "4",
-    "to": "/accessories",
-    "text": "Аксесуари"
+    "to": "/discount",
+    "text": "Знижки"
   },
   {
     "id": "5",
-    "to": "/Sale",
-    "text": "Акції"
+    "to": "/wholesaleProgram",
+    "text": "Оптова програма"
   }
 ]

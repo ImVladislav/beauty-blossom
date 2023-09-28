@@ -1,12 +1,11 @@
 import React from "react";
 import { Link, LogoIcon } from "./logo.styled";
-
+import  IconLogo  from '../../Images/BeautyBlossom.svg';
 const Logo = () => {
   return (
     <>
-      <Link href="#">
-        <LogoIcon />
-        <p>Logo</p>
+      <Link href="/">
+        <img src={IconLogo} alt="React Logo" />
       </Link>
     </>
   );
