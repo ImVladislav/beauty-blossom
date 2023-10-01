@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrap = styled.div`
-  background: #e8dfd8;
+  background: ${(p) => p.theme.colors.menuBg};
   padding: 10px;
 `;
 export const List = styled.ul`
@@ -15,5 +15,8 @@ export const List = styled.ul`
 
 export const Link = styled.a`
   text-decoration: none;
-  color: #000;
+  color: ${(p) => p.theme.colors.black};
+  font-family: 'Inknut Antiqua';
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-weight: ${(p) => p.theme.fontWeights.body};
 `;

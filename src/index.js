@@ -1,17 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+
+import { GlobalStyle } from "./modules/components/GlobalStyle";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
     <BrowserRouter>
-    {/* <BrowserRouter basename="/beauty-blossom"> */}
-    <App />
+      {/* <BrowserRouter basename="/beauty-blossom"> */}
+      <App />
+      <GlobalStyle />
     </BrowserRouter>
-        {/* </Provider> */}
+    {/* </Provider> */}
   </React.StrictMode>
 );
