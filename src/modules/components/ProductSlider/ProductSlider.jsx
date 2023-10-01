@@ -165,12 +165,13 @@ const Button = styled.button`
     width: 30px;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 
 `
 
 const ButtonSvg = styled.img`
     width: 13px;
-    transform: rotate(180deg);
+    /* transform: rotate(180deg); */
     &:disabled{
         fill: brown;
     }
@@ -185,6 +186,7 @@ const SliderHeaderToggle = styled.button`
     background-color: transparent;
     font-size: 29px;
     font-weight: bold;
+    cursor: pointer;
 `
 
 export const ProductSlider = () => {
@@ -259,8 +261,8 @@ export const ProductSlider = () => {
                     onClick={handlePrevSlide}
                     disabled={currentSlide === 0}
                 >
-                <ButtonSvg src={NextPrevButtonSvg} alt="prev"/>
-                    -
+                    <ButtonSvg src={NextPrevButtonSvg} alt="prev"/>
+                   
                 </Button>
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id}>
@@ -276,7 +278,7 @@ export const ProductSlider = () => {
                     onClick={handleNextSlide}
                     disabled={currentSlide === 2 } //костиль
                 >
-                    <ButtonSvg src={NextPrevButtonSvg} alt="next"/>
+                    <ButtonSvg style={{ transform: 'rotate(180deg)' }} src={NextPrevButtonSvg} alt="next"/>
                 </Button>
             </SliderContainer>
         </div>
