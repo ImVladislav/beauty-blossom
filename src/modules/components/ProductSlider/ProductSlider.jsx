@@ -90,7 +90,7 @@ const SliderContainer = styled.div`
 
 const ProductCard = styled.div`
   /* flex: 0 0 calc(16% - 20px); */
-  width: 1440px;
+  width: 261px;
   margin-right: 10px; /* Відступ між карточками */
   scroll-snap-align: start;
   background-color: #fff;
@@ -172,72 +172,26 @@ const Button = styled.button`
     border: none;
     cursor: pointer;
 
-    /* transform: rotate(180deg); */
-    &:disabled{
-        fill: brown;
-    }
-  /* &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    filter: grayscale(1);
-    transition: filter 0.3s;
-  } */
-
   svg {
     width: 13px;
     height: 24px;
-      &.icon-enabled::after {
-    filter: grayscale(0);
-    fill: #ff0000;
-  }
-    
+    filter: grayscale(1); /* Застосувати чорно-білий колір за замовчуванням */
+    transition: filter 0.3s; /* Анімація при наведенні */
+
+    &:disabled {
+      fill: #5ba715;
+    }
+
     &:hover {
       filter: grayscale(0); /* Відмінити чорно-білий колір при наведенні */
-      fill: #ff0000; /* Червоний колір */
-    } 
-        &:disabled{
-        fill: brown;
+      fill: #FF49AB; 
     }
+
+
+
   }
+
 `
-
-// const ButtonSvg = styled.img`
-//     width: 13px;
-//     /* transform: rotate(180deg); */
-//     &:disabled{
-//         fill: brown;
-//     }
-//       &::after {
-//     content: url(${NextPrevButtonSvg}); /* Вставити SVG */
-
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 13px;
-//     height: 24px;
-
-//     filter: grayscale(1); /* Застосувати чорно-білий колір за замовчуванням */
-//     transition: filter 0.3s; /* Анімація при наведенні */
-
-//     /* Визначте кольори і анімацію для hover */
-//     &:hover {
-//       filter: grayscale(0); /* Відмінити чорно-білий колір при наведенні */
-//       fill: #ff0000; /* Червоний колір */
-//     }
-//     &::before{
-//             content: '';
-//     position: absolute;
-//     z-index: -1;
-//     left: -10px;
-//     top: -13px;
-//     width: 30px;
-//     height: 50px;
-//     }
-// }
-/* ` */
 
 const SliderHeaderToggle = styled.button`
     border: none;
@@ -320,9 +274,9 @@ export const ProductSlider = () => {
             </SliderContainer>
             <SliderContainer>
                 <Button
-                    onClick={handleNextSlide}
+                    onClick={handlePrevSlide}
                     disabled={currentSlide === 0}
-                    className={currentSlide === 0 ? "" : "icon-enabled"}
+                    className={currentSlide === 0 ? "icon-disabled" : ""}
                 >
                     {/* Use the imported SVG component */}
                     <NextPrevButtonSvg />
@@ -338,12 +292,17 @@ export const ProductSlider = () => {
                     </ProductCard>
                 ))}
                 <Button
+                    style={{ transform: 'rotate(180deg)' }}
                     onClick={handleNextSlide}
                     disabled={currentSlide === products.length - 5}
-                    className={currentSlide === Math.max(0, products.length - 5) ? "" : "icon-enabled"}
+                    className={currentSlide === Math.max(0, products.length - 5) ? "icon-disabled" : ""}
                 >
                     {/* Use the imported SVG component */}
-                    <NextPrevButtonSvg />
+                    <NextPrevButtonSvg
+                        style={{
+                            fill: currentSlide === Math.max(0, products.length - 5) ? "#070506" : "#FF49AB",
+                        }}
+                    />
                 </Button>
             </SliderContainer>
         </div>

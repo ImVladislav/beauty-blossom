@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import Header from "./modules/components/Header/Header";
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
-import { MainPage } from "./pages/MainPage/MainPage.jsx";
+import { MainPage } from "./Pages/MainPage/MainPage";
 
 import { theme } from "./modules/components/theme";
 
@@ -28,7 +28,7 @@ function App() {
             />
           </Route>
 
-          <Route path="*" element={<p>тут ніхуя нема скільки не дивись</p>} />
+          <Route path="*" element={<p>тут ні**я нема скільки не дивись</p>} />
         </Route>
       </Routes>
     </ThemeProvider>
