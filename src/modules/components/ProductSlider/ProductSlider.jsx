@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import NextPrevButtonSvg from "../Images/NextPrev.svg"
+// import NextPrevButtonSvg from "../Images/NextPrev.svg"
+import { ReactComponent as NextPrevButtonSvg } from "../Images/NextPrev.svg";
 
 // Дані з товарами (ваші дані)
 const products = [
@@ -99,6 +100,9 @@ const ProductCard = styled.div`
   text-align: center;
   display: inline-block; /* Вирівнювання в ряд */
   vertical-align: top; /* Вирівнювання вгору */
+
+ 
+
 `;
 
 const ProductImage = styled.img`
@@ -158,24 +162,82 @@ const TagText = styled.p`
 
 
 const Button = styled.button`
-
+    position: relative;
     display: block;
     margin-top: auto;
     margin-bottom: auto;
     width: 30px;
+    height: 50px;
     background-color: transparent;
     border: none;
     cursor: pointer;
 
-`
-
-const ButtonSvg = styled.img`
-    width: 13px;
     /* transform: rotate(180deg); */
     &:disabled{
         fill: brown;
     }
+  /* &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    filter: grayscale(1);
+    transition: filter 0.3s;
+  } */
+
+  svg {
+    width: 13px;
+    height: 24px;
+      &.icon-enabled::after {
+    filter: grayscale(0);
+    fill: #ff0000;
+  }
+    
+    &:hover {
+      filter: grayscale(0); /* Відмінити чорно-білий колір при наведенні */
+      fill: #ff0000; /* Червоний колір */
+    } 
+        &:disabled{
+        fill: brown;
+    }
+  }
 `
+
+// const ButtonSvg = styled.img`
+//     width: 13px;
+//     /* transform: rotate(180deg); */
+//     &:disabled{
+//         fill: brown;
+//     }
+//       &::after {
+//     content: url(${NextPrevButtonSvg}); /* Вставити SVG */
+
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 13px;
+//     height: 24px;
+
+//     filter: grayscale(1); /* Застосувати чорно-білий колір за замовчуванням */
+//     transition: filter 0.3s; /* Анімація при наведенні */
+
+//     /* Визначте кольори і анімацію для hover */
+//     &:hover {
+//       filter: grayscale(0); /* Відмінити чорно-білий колір при наведенні */
+//       fill: #ff0000; /* Червоний колір */
+//     }
+//     &::before{
+//             content: '';
+//     position: absolute;
+//     z-index: -1;
+//     left: -10px;
+//     top: -13px;
+//     width: 30px;
+//     height: 50px;
+//     }
+// }
+/* ` */
 
 const SliderHeaderToggle = styled.button`
     border: none;
@@ -201,7 +263,7 @@ export const ProductSlider = () => {
   };
 
   const handleNextSlide = () => {
-    if (currentSlide < Math.floor(products.length - 5)) {
+    if (currentSlide < products.length - 5) {
       setCurrentSlide(currentSlide + 1);
     } 
   };
@@ -258,11 +320,12 @@ export const ProductSlider = () => {
             </SliderContainer>
             <SliderContainer>
                 <Button
-                    onClick={handlePrevSlide}
+                    onClick={handleNextSlide}
                     disabled={currentSlide === 0}
+                    className={currentSlide === 0 ? "" : "icon-enabled"}
                 >
-                    <ButtonSvg src={NextPrevButtonSvg} alt="prev"/>
-                   
+                    {/* Use the imported SVG component */}
+                    <NextPrevButtonSvg />
                 </Button>
                 {filteredProducts.map((product) => (
                     <ProductCard key={product.id}>
@@ -276,9 +339,11 @@ export const ProductSlider = () => {
                 ))}
                 <Button
                     onClick={handleNextSlide}
-                    disabled={currentSlide === 2 } //костиль
+                    disabled={currentSlide === products.length - 5}
+                    className={currentSlide === Math.max(0, products.length - 5) ? "" : "icon-enabled"}
                 >
-                    <ButtonSvg style={{ transform: 'rotate(180deg)' }} src={NextPrevButtonSvg} alt="next"/>
+                    {/* Use the imported SVG component */}
+                    <NextPrevButtonSvg />
                 </Button>
             </SliderContainer>
         </div>
