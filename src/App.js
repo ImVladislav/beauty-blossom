@@ -1,7 +1,6 @@
-import { Route, Routes, Navigate } from "react-router";
+import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 
-import Header from "./modules/components/Header/Header";
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
 import { MainPage } from "./Pages/MainPage/MainPage";
 
