@@ -1,12 +1,32 @@
-import { Colums, FooterContainer, Wrapper,  } from "./FooterStyled";
-
+import { Colum, ColumWrapper, Colums, FooterContainer, LogoThumb, PaymentBlock, PaymentText, Wrapper,  } from "./FooterStyled";
+import Logo from "../Header/Logo/Logo";
+import PaymentLogo from "../Images/VisaMastercard.webp"
+import Menu from "../Header/Menu/Menu";
+import menuItems from "../Header/menuItems.json"
 export const Footer = () => {
-
+    console.log(menuItems);
     return (
         <FooterContainer>
             <Wrapper>
                 <Colums>
-                    
+                    <Colum>
+                        <ColumWrapper>
+                            <LogoThumb>
+                                <Logo />
+                                <PaymentBlock>
+                                    <PaymentText>Приймаємо до оплати</PaymentText>
+                                    <a href="https://www.liqpay.ua" target="_blank" rel="nofollow noreferrer">
+                                        <img alt="Приймаємо оплату Visa/Mastercard через Liqpay" src={PaymentLogo} />
+                                    </a>
+                                </PaymentBlock>
+                            </LogoThumb>
+                        </ColumWrapper>
+                    </Colum>
+                    <Colum>
+                        <ColumWrapper>
+                            <Menu menuItems={menuItems}/>
+                        </ColumWrapper>
+                    </Colum>
                 </Colums>
             </Wrapper>
         </FooterContainer>
@@ -15,26 +35,8 @@ export const Footer = () => {
 
 
 
-        
-        //         <div className="footer__wrapper wrapper">
-        //             <div className="footer__columns">
-        //                 <div className="footer__col footer__col--double">
-        //                     <div className="footer__col-wrap">
-        //                         <div className="footer__logo">
-        //                             <img alt="Интернет-магазин парфюмерии" className="footer__logo-img" width="200" height="46" src="/content/images/2/200x46l90nn0/31423077736718.webp" srcSet="/content/images/2/200x46l90nn0/31423077736718.webp 1x, /content/images/2/400x92l90nn0/31423077736718.webp 2x" />
-        //                         </div>
-        //                         <div className="footer__copyright">
-        //                             © 2014—2023<br />
-        //                             Демонстрационный интернет-магазин
-        //                         </div>
-        //                         <div className="footer__block">
-        //                             Принимаем к оплате
-        //                             <div className="footer__payment">
-        //                                 <a href="https://www.liqpay.ua" target="_blank" rel="nofollow" className="footer__payment-item">
-        //                                     <img alt="Принимаем оплату Visa/Mastercard через Liqpay" width="88" height="20" src="/content/images/50/88x20l80nn0/34905029336611.webp" />
-        //                                 </a>
-        //                             </div>
-        //                         </div>
+  
+ 
         //                         <div className="footer__mobile-version">
         //                             <a href="https://design101.horoshop.ua/.?v=mobile" className="footer__link" rel="nofollow">
         //                                 <svg className="icon icon--mobile"><use xlinkHref="#icon-mobile"></use></svg>
