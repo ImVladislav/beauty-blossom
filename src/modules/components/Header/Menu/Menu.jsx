@@ -2,7 +2,7 @@ import React from "react";
 
 import { Item, Link, List, Wrap } from "./menu.styled";
 
-const Menu = ({ menuItems }) => {
+const Menu = ({ menuItems, }) => {
   console.log(menuItems);
   const element = menuItems.map(({ id, to, text }) => (
     <li key={id}>
