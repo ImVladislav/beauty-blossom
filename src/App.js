@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 
 import Header from "./modules/components/Header/Header";
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
-import { MainPage } from "./Pages/MainPage/MainPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 
 import { theme } from "./modules/components/theme";
 

@@ -1,15 +1,15 @@
 import React from "react";
-import { LogInElips, LogInIcon } from "./login.styled";
+import { Link, LogInElips, LogInIcon } from "./login.styled";
 
 const LogIn = () => {
   return (
-    <div>
-      <a href="#">
+    <>
+      <Link href="#">
         <LogInElips>
           <LogInIcon />
         </LogInElips>
-      </a>
-    </div>
+      </Link>
+    </>
   );
 };
 

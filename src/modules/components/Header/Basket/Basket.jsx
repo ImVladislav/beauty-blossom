@@ -1,13 +1,13 @@
 import React from "react";
-import { BasketElips, BasketIcon } from "./basket.styled";
+import { Link, BasketIcon } from "./basket.styled";
 
 const Basket = () => {
   return (
-    <div>
-      <a href="#">
+    <>
+      <Link href="#">
         <BasketIcon />
-      </a>
-    </div>
+      </Link>
+    </>
   );
 };
 
