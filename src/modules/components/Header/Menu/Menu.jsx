@@ -1,18 +1,18 @@
 import React from "react";
 
-import { Item, Link, List, Wrap } from "./menu.styled";
+import MenuItem from "./MenuItem/MenuItem";
 
-const Menu = ({ menuItems, }) => {
-  console.log(menuItems);
-  const element = menuItems.map(({ id, to, text }) => (
-    <li key={id}>
-      <Link href={to}>{text}</Link>
-    </li>
-  ));
+import { MenuNav, List } from "./menu.styled";
+
+const Menu = ({ items }) => {
   return (
-    <Wrap>
-      <List>{element}</List>
-    </Wrap>
+    <MenuNav>
+      <List>
+        {items.map((item) => (
+          <MenuItem key={item.to} item={item} />
+        ))}
+      </List>
+    </MenuNav>
   );
 };
 

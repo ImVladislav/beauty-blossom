@@ -1,13 +1,18 @@
 import React from "react";
-import { SearchIcon, Wrap, WrapIcon } from "./Search.styled";
+import { Input, SearchIcon, Wrap, Button } from "./Search.styled";
 
 const Search = () => {
   return (
     <Wrap>
-      <input type="search" name="search" id="search" />
-      <WrapIcon>
+      <Input
+        type="search"
+        name="search"
+        id="search"
+        placeholder="Пошук товарів"
+      />
+      <Button>
         <SearchIcon />
-      </WrapIcon>
+      </Button>
     </Wrap>
   );
 };

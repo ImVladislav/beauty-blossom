@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsFillPersonFill } from "react-icons/bs";
 
+export const Link = styled.a``;
 export const LogInElips = styled.div`
   width: 30px;
   height: 30px;
@@ -10,6 +11,13 @@ export const LogInElips = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 20px;
+  &:hover,
+  &:focus {
+    border: 1px solid ${(p) => p.theme.colors.accentColor};
+    & svg {
+      color: ${(p) => p.theme.colors.accentColor};
+    }
+  }
 `;
 
 export const LogInIcon = styled(BsFillPersonFill)`

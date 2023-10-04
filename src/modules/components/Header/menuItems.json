@@ -1,27 +1,234 @@
 [
   {
-    "id": "1",
     "to": "/category",
-    "text": "Категорії"
+    "text": "Категорії",
+    "children": [
+      {
+        "to": "/facial",
+        "text": "Догляд за обличчям",
+        "children": [
+          {
+            "to": "/masks",
+            "text": "Маски",
+            "children": [
+              {
+                "to": "/alginateMasks",
+                "text": "Альгінатні маски",
+                "children": []
+              },
+              {
+                "to": "/fabricMask",
+                "text": "Тканинна маска",
+                "children": []
+              },
+              { "to": "/nightMask", "text": "Нічна маска", "children": [] }
+            ]
+          },
+          {
+            "to": "/moisturizing",
+            "text": "Зволоження",
+            "children": [
+              {
+                "to": "/cream",
+                "text": "Крем",
+                "children": []
+              },
+              {
+                "to": "/balm",
+                "text": "Бальзам",
+                "children": []
+              },
+              { "to": "/geel", "text": "Гель", "children": [] },
+              { "to": "/bridge", "text": "Міст", "children": [] },
+              { "to": "/serum", "text": "Сироватка", "children": [] },
+              { "to": "/toner", "text": "Тонер", "children": [] }
+            ]
+          },
+          {
+            "to": "/cleaning",
+            "text": "Очищення",
+            "children": [
+              {
+                "to": "/enzymePowder",
+                "text": "Ензимна пудра",
+                "children": []
+              },
+              {
+                "to": "/washingFoam",
+                "text": "Пінка для вмивання",
+                "children": []
+              },
+              { "to": "/scrub", "text": "Скраб", "children": [] }
+            ]
+          },
+          {
+            "to": "/lipCare",
+            "text": "Догляд за губами",
+            "children": [
+              {
+                "to": "/lipBalm",
+                "text": "Бальзам для губ",
+                "children": []
+              },
+              {
+                "to": "/lipMask",
+                "text": "Маска для губ",
+                "children": []
+              }
+            ]
+          },
+          {
+            "to": "/forSkinUnderTheEyes",
+            "text": "Для шкіри під очима",
+            "children": [
+              {
+                "to": "/creamUnderTheEyes",
+                "text": "Крем під очі",
+                "children": []
+              },
+              {
+                "to": "/patches",
+                "text": "Патчі",
+                "children": []
+              }
+            ]
+          },
+          {
+            "to": "/setForFaceCare",
+            "text": "Набір для догляду за обличчям",
+            "children": []
+          }
+        ]
+      },
+      {
+        "to": "/makeup",
+        "text": "Макіяж",
+        "children": [
+          {
+            "to": "/forFace",
+            "text": "Для обличчя",
+            "children": [
+              {
+                "to": "/bbCream",
+                "text": "ББ крем",
+                "children": []
+              },
+              {
+                "to": "/tint",
+                "text": "Тональний крем",
+                "children": []
+              },
+              {
+                "to": "/powder",
+                "text": "Пудра",
+                "children": []
+              },
+              {
+                "to": "/killed",
+                "text": "Кушон",
+                "children": []
+              }
+            ]
+          },
+          {
+            "to": "/forEyes",
+            "text": "Для очей",
+            "children": [
+              {
+                "to": "/inadvertently",
+                "text": "Туш",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "to": "/hairCare",
+        "text": "Догляд за волоссям",
+        "children": [
+          { "to": "/shampoos", "text": "Шампуні", "children": [] },
+          { "to": "/airConditioners", "text": "Кондиціонери", "children": [] },
+          {
+            "to": "/serumEmulsionsFillers",
+            "text": "Сироватки, емульсії,філери",
+            "children": []
+          },
+          {
+            "to": "/hairMasks",
+            "text": "Маски для волосся",
+            "children": []
+          },
+          {
+            "to": "/forTheScalp",
+            "text": "Для шкіри голови",
+            "children": []
+          },
+          {
+            "to": "/hairCareSets",
+            "text": "Набори для догляду за волоссям",
+            "children": []
+          }
+        ]
+      },
+      {
+        "to": "/bodyCare",
+        "text": "Догляд за тілом",
+        "children": [
+          {
+            "to": "/handCosmetics",
+            "text": "Косметика для рук",
+            "children": [
+              {
+                "to": "/handCream",
+                "text": "Крем для рук",
+                "children": []
+              }
+            ]
+          },
+          { "to": "/bodyFoam", "text": "Пінка для тіла", "children": [] }
+        ]
+      },
+      {
+        "to": "/demacia",
+        "text": "Демакіяж",
+        "children": []
+      },
+      {
+        "to": "/sunProtection",
+        "text": "Захист від сонця",
+        "children": []
+      }
+    ]
   },
   {
-    "id": "2",
     "to": "/brands",
-    "text": "Бренди"
+    "text": "Бренди",
+    "children": [
+      { "to": "/daengGiMeoRi", "text": "Daeng Gi Meo Ri", "children": [] },
+      { "to": "/lador", "text": "Lador", "children": [] },
+      { "to": "/drJart", "text": "Dr.Jart+", "children": [] },
+      { "to": "/beautyOfJoseon", "text": "Beauty Of Joseon", "children": [] },
+      { "to": "/missha", "text": "Missha", "children": [] },
+      { "to": "/mediPeel", "text": "Medi – peel", "children": [] },
+      { "to": "/estheticHouse", "text": "Esthetic House", "children": [] },
+      { "to": "/purito", "text": "Purito", "children": [] },
+      { "to": "/masil", "text": "Masil", "children": [] }
+    ]
   },
   {
-    "id": "3",
     "to": "/news",
-    "text": "Новинки"
+    "text": "Новинки",
+    "children": []
   },
   {
-    "id": "4",
     "to": "/discount",
-    "text": "Знижки"
+    "text": "Знижки",
+    "children": []
   },
   {
-    "id": "5",
     "to": "/wholesaleProgram",
-    "text": "Оптова програма"
+    "text": "Оптова програма",
+    "children": []
   }
 ]
