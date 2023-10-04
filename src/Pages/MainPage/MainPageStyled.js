@@ -32,3 +32,9 @@ color: #FF49AB;
 font-size: 70px;
 
 `
+
+export const Background = styled.div`
+background: #f9f8f6;
+
+
+`

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // import NextPrevButtonSvg from "../Images/NextPrev.svg"
 import { ReactComponent as NextPrevButtonSvg } from "../Images/NextPrev.svg";
@@ -178,13 +178,14 @@ const Button = styled.button`
     filter: grayscale(1); /* Застосувати чорно-білий колір за замовчуванням */
     transition: filter 0.3s; /* Анімація при наведенні */
 
-    &:disabled {
-      fill: #5ba715;
-    }
+.icon-disabled {
+  filter: grayscale(1); /* Приклад ефекту для вимкненого стану (чорно-біле зображення) */
+  cursor: not-allowed; /* Заборонити курсор при наведенні */
+}
 
     &:hover {
       filter: grayscale(0); /* Відмінити чорно-білий колір при наведенні */
-      fill: #FF49AB; 
+      /* fill: red;  */
     }
 
 
@@ -206,27 +207,33 @@ const SliderHeaderToggle = styled.button`
 `
 
 export const ProductSlider = () => {
+  const [filteredProduct, setFilteredProduct] = useState(products);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showSale, setShowSale] = useState(false);
   const [showNew, setShowNew] = useState(false);
 
-  const handlePrevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
+const itemsPerSlide = 5;
 
-  const handleNextSlide = () => {
-    if (currentSlide < products.length - 5) {
-      setCurrentSlide(currentSlide + 1);
-    } 
-  };
+const handlePrevSlide = () => {
+  if (currentSlide > 0) {
+    setCurrentSlide(currentSlide - 1);
+  }
+};
 
-  // Обчислення діапазону товарів, які відображаються на поточному слайді
-  const startIdx = currentSlide;
-  const endIdx = startIdx + 5;
-  const displayedProducts = products.slice(startIdx, endIdx);
+const handleNextSlide = () => {
+  const maxSlide = Math.ceil(products.length - itemsPerSlide);
+  if (currentSlide < maxSlide) {
+    setCurrentSlide(currentSlide + 1);
+  } else if (currentSlide === maxSlide && endIdx < filteredProduct.length) {
+    // Якщо досягнуто останній слайд, а ще є товари для показу, збільшити `startIdx` та `endIdx`
+    setCurrentSlide(currentSlide + 1);
+  }
+};
 
+const startIdx = currentSlide ;
+const endIdx = startIdx + itemsPerSlide;
+const displayedProducts = filteredProduct.slice(startIdx, endIdx);
+  
   const toggleSaleFilter = () => {
     setShowSale(!showSale);
     if (showNew) {
@@ -239,21 +246,27 @@ export const ProductSlider = () => {
     if (showSale) {
       setShowSale(false);
     }
+    
   };
 
-  // Фільтрація товарів за фільтрами
-  const filteredProducts = displayedProducts.filter((product) => {
+useEffect(() => {
+  const filteredProducts = products.filter((product) => {
     if (showSale && showNew) {
       return true; // Показати всі товари
     }
     if (showSale) {
+      setCurrentSlide(0)
       return product.isSale;
     }
     if (showNew) {
+      setCurrentSlide(0)
       return product.isNew;
     }
     return true; // Показати всі товари, якщо фільтри не активовані
   });
+
+  setFilteredProduct(filteredProducts);
+}, [showSale, showNew]);
 
 
     return (
@@ -278,16 +291,21 @@ export const ProductSlider = () => {
                     disabled={currentSlide === 0}
                     className={currentSlide === 0 ? "icon-disabled" : ""}
                 >
-                    {/* Use the imported SVG component */}
-                    <NextPrevButtonSvg />
+                    <NextPrevButtonSvg
+              style={{
+                            
+                            fill: currentSlide === 0 ? "#ffffff" : "#FF49AB",
+                        }}
+                    />
                 </Button>
-                {filteredProducts.map((product) => (
-                    <ProductCard key={product.id}>
-                        <ProductImage src={product.image} alt={product.name} />
-                        <ProductName>{product.name}</ProductName>
+
+                {displayedProducts.map((filtred) => (
+                    <ProductCard key={filtred.id}>
+                        <ProductImage src={filtred.image} alt={filtred.name} />
+                        <ProductName>{filtred.name}</ProductName>
                         <ProductTags>
-                            {product.isSale && <SaleTag><TagText>Розпродаж</TagText></SaleTag>}
-                            {product.isNew && <NewTag><TagText>Новинка</TagText></NewTag>}
+                            {filtred.isSale && <SaleTag><TagText>Розпродаж</TagText></SaleTag>}
+                            {filtred.isNew && <NewTag><TagText>Новинка</TagText></NewTag>}
                         </ProductTags>
                     </ProductCard>
                 ))}
@@ -297,14 +315,12 @@ export const ProductSlider = () => {
                     disabled={currentSlide === products.length - 5}
                     className={currentSlide === Math.max(0, products.length - 5) ? "icon-disabled" : ""}
                 >
-                    {/* Use the imported SVG component */}
                     <NextPrevButtonSvg
-                        style={{
-                            fill: currentSlide === Math.max(0, products.length - 5) ? "#070506" : "#FF49AB",
+              style={{
+                            fill: currentSlide === Math.max(0, products.length - 5) ? "#ffffff" : "#FF49AB",
                         }}
                     />
                 </Button>
             </SliderContainer>
         </div>
-    );
-};
+    );}
