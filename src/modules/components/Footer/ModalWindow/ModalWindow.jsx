@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 
-
 const ModuleStyle = {
   overlay: {
     position: "fixed",
@@ -19,9 +18,7 @@ const ModuleStyle = {
     position: "relative",
     background: "#fff",
     boxShadow: "0 5px 35px rgba(0, 0, 0, 0.75)",
-}
-
-  
+  },
 };
 
 export const ModalWindow = ({ isOpen, onRequestClose }) => {
@@ -46,7 +43,9 @@ export const ModalWindow = ({ isOpen, onRequestClose }) => {
     >
       <button onClick={onRequestClose}>Закрити (X)</button>
       <h2>Перетелефонувати вам?</h2>
-      <p>Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.</p>
+      <p>
+        Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.
+      </p>
       <form onSubmit={handleSubmit}>
         <label>
           Ім'я:

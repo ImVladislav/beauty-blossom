@@ -20,11 +20,18 @@ export const Link = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
+  &.active {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
 `;
 export const SubMenuWrap = styled.div`
   width: auto;
   top: 30px;
-  left: 0;
+  left: -15px;
   right: auto;
   border-radius: 0;
   position: absolute;
@@ -38,6 +45,14 @@ export const ListSub = styled.ul`
   padding: 20px 20px 0;
 `;
 
-export const RightIcon = styled(AiOutlineRight)``;
+export const RightIcon = styled(AiOutlineRight)`
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+`;
 
-export const DownIcon = styled(AiOutlineDown)``;
+export const DownIcon = styled(AiOutlineDown)`
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+`;
