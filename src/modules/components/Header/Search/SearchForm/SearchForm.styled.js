@@ -1,17 +1,23 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 
-export const Wrap = styled.div`
+export const SearchFormContainer = styled.div`
+  text-align: center;
   position: relative;
   &:hover,
   &:focus {
-    border: 1px solid ${(p) => p.theme.colors.accentColor};
+    border: 2px solid ${(p) => p.theme.colors.accentColor};
+    border-radius: 5px;
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
   }
 `;
-export const Input = styled.input`
+
+export const SearchInput = styled.input`
+  border-radius: 5px;
+  outline: none;
+
   box-sizing: border-box;
   width: 100%;
   height: 30px;
@@ -20,19 +26,29 @@ export const Input = styled.input`
   font-size: 14px;
   border: 1px solid rgb(212, 212, 212);
   color: rgb(0, 0, 0);
+  &:hover,
+  &:focus {
+    outline: 2px solid ${(p) => p.theme.colors.accentColor};
+  }
 `;
-export const Button = styled.button`
+
+export const SearchButton = styled.button`
+  border: none;
+
+  cursor: pointer;
+
   position: absolute;
   top: 0px;
   right: 0px;
   bottom: 0px;
   width: 32px;
-  border: 0px;
+
   padding: 0px;
   background-color: transparent;
   transition: all 0.15s ease 0s;
-  outline: none;
+  /* outline: ; */
 `;
+
 export const SearchIcon = styled(BsSearch)`
   width: 10px;
   height: 10px;

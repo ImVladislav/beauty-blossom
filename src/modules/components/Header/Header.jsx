@@ -1,6 +1,6 @@
 import React from "react";
 
-import Search from "./Search/Search";
+import SearchProduct from "./Search/SearchProduct";
 import Logo from "./Logo/Logo";
 import Contacts from "./Contacts/Contacts";
 import LogIn from "./LogIn/LogIn";
@@ -35,7 +35,7 @@ export const Header = () => {
           <HeaderWrap>
             <HeaderLayout>
               <WrapTop>
-                <Search />
+                <SearchProduct />
               </WrapTop>
               <WrapTop>
                 <Logo />

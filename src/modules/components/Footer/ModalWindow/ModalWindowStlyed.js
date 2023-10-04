@@ -1,8 +1,4 @@
 import Modal from "react-modal";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const ModalStyle = styled(Modal)`
-
-
-
-`;
+export const ModalStyle = styled(Modal)``;
