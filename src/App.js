@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
-import { MainPage } from "./pages/MainPage/MainPage";
+import { MainPage } from "./Pages/MainPage/MainPage";
 
 import { theme } from "./modules/components/theme";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
