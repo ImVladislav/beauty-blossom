@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Item, LinkItem, List, ListItem, Wrap } from "./FooterMenuStyled";
+import { LinkItem, List, ListItem, Wrap } from "./FooterMenuStyled";
 
 export const FooterMenu = ({ menuItems, }) => {
   console.log(menuItems);
