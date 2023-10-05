@@ -1,11 +1,11 @@
 import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
-
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
 import { MainPage } from "./Pages/MainPage/MainPage";
-
 import { theme } from "./modules/components/theme";
-import { SearchPage } from "./pages/SearchPage/SearchPage";
+// import { SearchPage } from "./pages/SearchPage/SearchPage";
+import { SaleProgramPage } from "./Pages/MainPage/DiscountPage/SaleProgramPage";
+
 
 function App() {
   return (
@@ -24,9 +24,9 @@ function App() {
             <Route path="/discount" element={<p>discount Page</p>} />
             <Route
               path="/wholesaleProgram"
-              element={<p>wholesaleProgram Page</p>}
+              element={<SaleProgramPage/>}
             />
-            <Route path="/search" element={<SearchPage />} />
+            {/* <Route path="/search" element={<SearchPage />} /> */}
           </Route>
 
           <Route path="*" element={<p>тут ні**я нема скільки не дивись</p>} />
