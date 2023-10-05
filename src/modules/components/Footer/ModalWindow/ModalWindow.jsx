@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import { FormInput, ModalClose, ModalForm, ModalSend, ModalText, ModalTitle } from "./ModalWindowStlyed";
+import { CgClose } from "react-icons/cg";
 
 
 const ModuleStyle = {
@@ -11,7 +13,9 @@ const ModuleStyle = {
   },
 
   content: {
-    width: "400px",
+    top: "100px",
+    width: "500px",
+    height: "329px",
     margin: "auto",
     padding: "30px",
     border: "1px solid #ccc",
@@ -31,11 +35,21 @@ export const ModalWindow = ({ isOpen, onRequestClose }) => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Ім'я:", name);
-    console.log("Телефон:", phone);
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const formData = {
+    name: name,
+    phone: phone
   };
+
+  console.log("Форма відправлена з наступними даними:", formData);
+
+  setName("");
+  setPhone("");
+
+  alert("Запит відправлено. Очікуйте дзвінка.");
+};
 
   return (
     <Modal
@@ -44,13 +58,15 @@ export const ModalWindow = ({ isOpen, onRequestClose }) => {
       contentLabel="Модальне вікно"
       style={ModuleStyle}
     >
-      <button onClick={onRequestClose}>Закрити (X)</button>
-      <h2>Перетелефонувати вам?</h2>
-      <p>Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.</p>
-      <form onSubmit={handleSubmit}>
+      <ModalClose onClick={onRequestClose}>
+        <CgClose style={{width: "24px", height: "24px"}} />
+      </ModalClose>
+      <ModalTitle>Перетелефонувати вам?</ModalTitle>
+      <ModalText>Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.</ModalText>
+      <ModalForm onSubmit={handleSubmit}>
         <label>
           Ім'я:
-          <input
+          <FormInput
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -59,15 +75,15 @@ export const ModalWindow = ({ isOpen, onRequestClose }) => {
         </label>
         <label>
           Телефон:
-          <input
+          <FormInput
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Відправити</button>
-      </form>
+        <ModalSend type="submit">Відправити</ModalSend>
+      </ModalForm>
     </Modal>
   );
 };
