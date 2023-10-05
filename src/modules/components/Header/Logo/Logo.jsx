@@ -5,7 +5,7 @@ import IconLogo from "../../Images/BeautyBlossom.svg";
 const Logo = () => {
   return (
     <>
-      <Link href="/">
+      <Link href="/beauty-blossom">
         <img src={IconLogo} alt="React Logo" />
       </Link>
     </>
