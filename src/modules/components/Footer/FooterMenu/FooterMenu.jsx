@@ -3,7 +3,7 @@ import React from "react";
 import { LinkItem, List, ListItem, Wrap } from "./FooterMenuStyled";
 
 export const FooterMenu = ({ menuItems, }) => {
-  console.log(menuItems);
+
   const element = menuItems.map(({ id, to, text }) => (
     <ListItem key={id}>
       <LinkItem href={to}>{text}</LinkItem>

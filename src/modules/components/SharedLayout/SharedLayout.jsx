@@ -5,11 +5,11 @@ import { Header } from "../Header/Header";
 import { ProductOfTheWeek } from "../ProductOfTheWeek/ProductOfTheWeek";
 
 export const SharedLayout = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const handleClickToggle = () => {
-    setIsOpen(!isOpen);
-  };
+  // const handleClickToggle = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <>
