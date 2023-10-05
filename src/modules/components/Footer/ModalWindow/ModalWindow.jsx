@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import { FormInput, ModalClose, ModalForm, ModalSend, ModalText, ModalTitle } from "./ModalWindowStlyed";
 import { CgClose } from "react-icons/cg";
 
-
 const ModuleStyle = {
   overlay: {
     position: "fixed",
@@ -23,9 +22,7 @@ const ModuleStyle = {
     position: "relative",
     background: "#fff",
     boxShadow: "0 5px 35px rgba(0, 0, 0, 0.75)",
-}
-
-  
+  },
 };
 
 export const ModalWindow = ({ isOpen, onRequestClose }) => {
@@ -58,12 +55,14 @@ const handleSubmit = (e) => {
       contentLabel="Модальне вікно"
       style={ModuleStyle}
     >
+
       <ModalClose onClick={onRequestClose}>
         <CgClose style={{width: "24px", height: "24px"}} />
       </ModalClose>
       <ModalTitle>Перетелефонувати вам?</ModalTitle>
       <ModalText>Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.</ModalText>
       <ModalForm onSubmit={handleSubmit}>
+
         <label>
           Ім'я:
           <FormInput

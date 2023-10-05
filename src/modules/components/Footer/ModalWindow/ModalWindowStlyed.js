@@ -1,3 +1,4 @@
+
 import styled from 'styled-components';
 import { CgClose } from "react-icons/cg";
 
@@ -51,3 +52,4 @@ export const ModalSend= styled.button`
   }
 
 `
+

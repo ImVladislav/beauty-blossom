@@ -1,4 +1,3 @@
-// import { NavLink } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineRight, AiOutlineDown } from "react-icons/ai";
@@ -20,7 +19,8 @@ export const Link = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
-  & .active {
+  &:hover,
+  &:focus {
     color: ${(p) => p.theme.colors.accentColor};
   }
 `;
@@ -38,6 +38,27 @@ export const ItemSub = styled.li`
   break-inside: avoid-column;
   padding-bottom: 20px;
 `;
-export const RightIcon = styled(AiOutlineRight)``;
 
-export const DownIcon = styled(AiOutlineDown)``;
+export const WrapItem = styled.div`
+  display: flex;
+  align-items: center;
+`;
+export const RightIcon = styled(AiOutlineRight)`
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+`;
+
+export const DownIcon = styled(AiOutlineDown)`
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+`;
