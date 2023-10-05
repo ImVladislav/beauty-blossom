@@ -5,6 +5,7 @@ export const theme = {
     accentColor: "#FF33AEBA",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
+    secondaryColor: "#FF49AB",
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
