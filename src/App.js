@@ -2,10 +2,11 @@ import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
-import { MainPage } from "./Pages/MainPage/MainPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 
 import { theme } from "./modules/components/theme";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           </Route>
           <Route path="/" element={<MainPage />} />
           <Route>
-            <Route path="/category" element={<p>category Page</p>} />
+            <Route path="/category" element={<CategoryPage />} />
             <Route path="/brands" element={<p>brands Page</p>} />
             <Route path="/news" element={<p>news Page</p>} />
             <Route path="/discount" element={<p>discount Page</p>} />
@@ -37,4 +38,3 @@ function App() {
 }
 export default App;
 // rafc
-
