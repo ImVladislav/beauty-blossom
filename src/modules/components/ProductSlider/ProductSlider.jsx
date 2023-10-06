@@ -86,6 +86,10 @@ const SliderContainer = styled.div`
   margin-right: auto;
   max-width: 1440px;
   white-space: nowrap; /* Забороняє перенесення на новий рядок */
+  margin-top: 40px;
+   margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const ProductCard = styled.div`
@@ -100,6 +104,13 @@ const ProductCard = styled.div`
   text-align: center;
   display: inline-block; /* Вирівнювання в ряд */
   vertical-align: top; /* Вирівнювання вгору */
+  &:hover{
+    box-shadow: 0 7px 15px rgba(59,55,43,0.25);
+    z-index: 3;
+    cursor: pointer;
+}
+
+
 
  
 
@@ -196,14 +207,15 @@ const Button = styled.button`
 
 const SliderHeaderToggle = styled.button`
     border: none;
-    margin-right: 20px;
-    margin-bottom: 40px;
     padding: 3px;
     color: #FF49AB;
     background-color: transparent;
     font-size: 29px;
     font-weight: bold;
     cursor: pointer;
+    &:last-child{
+      margin-left: 20px;
+    }
 `
 
 export const ProductSlider = () => {

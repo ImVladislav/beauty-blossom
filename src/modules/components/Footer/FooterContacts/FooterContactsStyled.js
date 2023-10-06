@@ -27,7 +27,7 @@ export const ContactItem = styled.a`
     margin-bottom: 8px;
     text-decoration: none;
     color: #000000;
-    font-family: 'Inknut Antiqua';
+
     font-size: 17px;
     font-weight: 400;
 

@@ -93,7 +93,15 @@ export const OpenModal= styled.button`
     margin-top: 50px;
     margin-bottom: 50px;
     cursor: pointer;
-    
+    font-weight: bold;
+    font-size: 20px;
+
+    background: linear-gradient(to top, #FF49AB, #FF49AB);
+    &:hover {
+  color: #cccccc ;
+  background: #f66d52;
+  background: linear-gradient(to top, #FF49AB, #FF49AB);
+    }
 
 `
 export const CloseModal= styled.button`
