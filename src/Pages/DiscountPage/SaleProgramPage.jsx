@@ -11,7 +11,7 @@ import {
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../modules/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 
-export const SaleProgramPage = () => {
+const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -40,8 +40,12 @@ export const SaleProgramPage = () => {
             <li>Мінімальна сума замовлення 2500 грн</li>
             <li>Безкоштовна доставка від 10 тис грн</li>
             <li>Доставка протягом 1-2 робочих днів з моменту оформлення</li>
-            <li>Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!</li>
-            <li>Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші</li>
+            <li>
+              Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!
+            </li>
+            <li>
+              Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші
+            </li>
           </ConditionsList>
         </section>
 
@@ -66,12 +70,12 @@ export const SaleProgramPage = () => {
         <section>
           <ConditionsTitle>Обмін та повернення</ConditionsTitle>
           <p>
-            Протягом 14-ти днів з моменту отримання замовлення ви можете повернути
-            або обміняти товар на інший, при умові якщо товар в належному
-            вигляді та не був у використанні. Рекомендуємо вам уважно
+            Протягом 14-ти днів з моменту отримання замовлення ви можете
+            повернути або обміняти товар на інший, при умові якщо товар в
+            належному вигляді та не був у використанні. Рекомендуємо вам уважно
             перевіряти замовлення перед оформленням для запобігання
-            непорозуміння. Якщо ви отримали товар в неналежному вигляді або не
-            в повному складі – обов’язково зв’яжіться з нашим менеджером для
+            непорозуміння. Якщо ви отримали товар в неналежному вигляді або не в
+            повному складі – обов’язково зв’яжіться з нашим менеджером для
             найшвидшого вирішення ситуації.
           </p>
         </section>
@@ -108,14 +112,17 @@ export const SaleProgramPage = () => {
             </li>
             <li>Ми переведемо ваш акаунт в статус оптового покупця</li>
           </ol>
-          <p>Готово! Тепер ви можете оформляти замовлення на сайті та бачити історію своїх покупок.</p>
+          <p>
+            Готово! Тепер ви можете оформляти замовлення на сайті та бачити
+            історію своїх покупок.
+          </p>
           <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
         </section>
       </div>
       {isModalOpen && (
         <ModalBackground>
-                  <ModalContent>
-                      <CloseButton close={() => setIsModalOpen(false)} />
+          <ModalContent>
+            <CloseButton close={() => setIsModalOpen(false)} />
             <h2>Стати оптовим покупцем</h2>
             <form>
               <label>
@@ -155,3 +162,5 @@ export const SaleProgramPage = () => {
     </Container>
   );
 };
+
+export default SaleProgramPage;

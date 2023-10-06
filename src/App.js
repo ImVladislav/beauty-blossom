@@ -1,21 +1,14 @@
 import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
-<<<<<<< Updated upstream
-=======
-import { MainPage } from "./Pages/MainPage/MainPage";
-import { theme } from "./modules/components/theme";
-// import { SearchPage } from "./pages/SearchPage/SearchPage";
-import { SaleProgramPage } from "./Pages/DiscountPage/SaleProgramPage";
-import NewPage from "./Pages/NewsPage/NewPage";
->>>>>>> Stashed changes
 
-import { MainPage } from "./pages/MainPage/MainPage";
 import { theme } from "./modules/components/theme";
 
-import { SaleProgramPage } from "./pages/MainPage/DiscountPage/SaleProgramPage";
-import { SearchPage } from "./pages/SearchPage/SearchPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import MainPage from "./pages/MainPage/MainPage";
+import NewPage from "./pages/NewPage/NewPage";
+import SaleProgramPage from "./pages/DiscountPage/SaleProgramPage";
 
 function App() {
   return (
@@ -30,7 +23,7 @@ function App() {
           <Route>
             <Route path="/category" element={<CategoryPage />} />
             <Route path="/brands" element={<p>brands Page</p>} />
-            <Route path="/news" element={<NewPage/>} />
+            <Route path="/news" element={<NewPage />} />
             <Route path="/discount" element={<p>discount Page</p>} />
             <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
             <Route path="/search" element={<SearchPage />} />
