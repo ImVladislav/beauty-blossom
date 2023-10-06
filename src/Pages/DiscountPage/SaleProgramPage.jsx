@@ -3,10 +3,12 @@ import { Container } from "../../modules/components/Container";
 import {
   ConditionsList,
   ConditionsTitle,
+  ListItems,
   ModalBackground,
   ModalContent,
   OpenModal,
   SubTitle,
+  Text,
   Title,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../modules/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
@@ -31,41 +33,41 @@ export const SaleProgramPage = () => {
 
         <section>
           <SubTitle>Компанія Beauty Blossom – запрошує до співпраці</SubTitle>
-          <p>
+          <Text>
             Компанія Beauty Blossom запрошує до співпраці великі та малі гуртові
             магазини, салони краси та інстаграм сторінки. З нами ви отримуєте
             найвигідніші умови для співпраці:
-          </p>
+          </Text>
           <ConditionsList>
-            <li>Мінімальна сума замовлення 2500 грн</li>
-            <li>Безкоштовна доставка від 10 тис грн</li>
-            <li>Доставка протягом 1-2 робочих днів з моменту оформлення</li>
-            <li>Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!</li>
-            <li>Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші</li>
+            <ListItems>Мінімальна сума замовлення 2500 грн</ListItems>
+            <ListItems>Безкоштовна доставка від 10 тис грн</ListItems>
+            <ListItems>Доставка протягом 1-2 робочих днів з моменту оформлення</ListItems>
+            <ListItems>Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!</ListItems>
+            <ListItems>Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші</ListItems>
           </ConditionsList>
         </section>
 
         <section>
           <ConditionsTitle>Відправка</ConditionsTitle>
-          <p>
+          <Text>
             Відправляємо Новою Поштою щоденно (крім неділі). При оплаті до 14:30
             замовлення відправляємо в день оплати. При оплаті після 14:30
             замовлення відправляється на наступний робочий день.
-          </p>
+          </Text>
         </section>
 
         <section>
           <ConditionsTitle>Оплата</ConditionsTitle>
-          <p>
+          <Text>
             Накладний платіж без передоплати або повна оплата на ФОП. При
             потребі, надаємо всі потрібні документи в друкованому або
             електронному вигляді.
-          </p>
+          </Text>
         </section>
 
         <section>
           <ConditionsTitle>Обмін та повернення</ConditionsTitle>
-          <p>
+          <Text>
             Протягом 14-ти днів з моменту отримання замовлення ви можете повернути
             або обміняти товар на інший, при умові якщо товар в належному
             вигляді та не був у використанні. Рекомендуємо вам уважно
@@ -73,42 +75,42 @@ export const SaleProgramPage = () => {
             непорозуміння. Якщо ви отримали товар в неналежному вигляді або не
             в повному складі – обов’язково зв’яжіться з нашим менеджером для
             найшвидшого вирішення ситуації.
-          </p>
+          </Text>
         </section>
 
         <section>
           <ConditionsTitle>Контакти</ConditionsTitle>
-          <p>З усіх питань ви можете зв’язатись з нами:</p>
-          <ul>
-            <li>Телефон: +38 (050) 052 91 00</li>
-            <li>
+          <Text>З усіх питань ви можете зв’язатись з нами:</Text>
+          <ConditionsList>
+            <ListItems style={{listStyle: "none"}}>Телефон: +38 (050) 052 91 00</ListItems>
+            <ListItems style={{listStyle: "none"}}>
               Електронна пошта:{" "}
               <a href="mailto:beautyblossom.opt@gmail.com">
                 beautyblossom.opt@gmail.com
               </a>
-            </li>
-          </ul>
+            </ListItems>
+          </ConditionsList>
         </section>
 
         <section>
           <ConditionsTitle>Графік роботи</ConditionsTitle>
-          <p>Понеділок – субота з 9:30 по 18:00</p>
+          <Text>Понеділок – субота з 9:30 по 18:00</Text>
         </section>
 
         <section>
           <ConditionsTitle>Бажаєте стати оптовим покупцем?</ConditionsTitle>
-          <p>
+          <Text>
             Щоб стати оптовим покупцем, вам потрібно виконати наступні кроки:
-          </p>
-          <ol>
-            <li>Заповніть анкету</li>
-            <li>
+          </Text>
+          <ConditionsList>
+            <ListItems> Заповніть анкету</ListItems>
+            <ListItems>
               Надішліть менеджеру в телеграмі свою електронну пошту, яку
               вказували при реєстрації
-            </li>
-            <li>Ми переведемо ваш акаунт в статус оптового покупця</li>
-          </ol>
-          <p>Готово! Тепер ви можете оформляти замовлення на сайті та бачити історію своїх покупок.</p>
+            </ListItems>
+            <ListItems> Ми переведемо ваш акаунт в статус оптового покупця</ListItems>
+          </ConditionsList>
+          <Text>Готово! Тепер ви можете оформляти замовлення на сайті та бачити історію своїх покупок.</Text>
           <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
         </section>
       </div>

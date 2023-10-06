@@ -1,6 +1,5 @@
 
 import { Container } from "../../modules/components/Container";
-import { Footer } from "../../modules/components/Footer/Footer";
 import Banner from "../../modules/components/Images/bannerPopularBrands.jpg"
 import { ProductSlider } from "../../modules/components/ProductSlider/ProductSlider";
 import { MainBanner, BannerTitle, StyledLink, Thumb, Background} from "./MainPageStyled";
@@ -17,7 +16,7 @@ export const MainPage = () => {
             </Thumb>
         </Container>
         <ProductSlider />
-        <Footer/>
+
         </Background>
     );
 }

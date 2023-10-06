@@ -4,9 +4,10 @@ export const Title= styled.h2`
 
     display: flex;
     justify-content: center;
-    font-size: 1.8em;
+    font-size: 2.2em;
     font-weight: bold;
-    padding: 12px;
+    margin-top: 40px;
+    color: #FF49AB;
 `
 export const Container= styled.div`
 
@@ -18,26 +19,41 @@ export const Container= styled.div`
 `
 
 export const SubTitle= styled.h3`
-
+    color: #FF49AB;
     display: flex;
     justify-content: center;
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
-    padding: 8px;
+    margin: 30px;
 `
 
 export const ConditionsTitle= styled.h4`
 
     display: flex;
-    font-size: 1.5em;
+    font-size: 1.8em;
     font-weight: bold;
-    padding: 8px;
+    padding: 20px 0px;
+
+    margin-left: 34px;
+    color: #FF49AB;
+`
+export const Text= styled.p`
+    font-weight: bold;
+    
 `
 
+export const ListItems= styled.li`
+    margin-left: 10px;
+     list-style-type: decimal;
+`
+
+
+
 export const ConditionsList= styled.ul`
-    margin-left: 25px;
+
     display: block;
-    margin-top: 5px;
+
+    margin: 15px 0px 15px 25px;
 `
 export const ModalBackground= styled.div`
   position: fixed;
@@ -75,6 +91,7 @@ export const OpenModal= styled.button`
     margin-right: auto;
     border: none;
     margin-top: 50px;
+    margin-bottom: 50px;
     cursor: pointer;
     
 
