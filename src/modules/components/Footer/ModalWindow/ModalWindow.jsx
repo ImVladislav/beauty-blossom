@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { FormInput, ModalClose, ModalForm, ModalSend, ModalText, ModalTitle } from "./ModalWindowStlyed";
 import { CgClose } from "react-icons/cg";
+import { CloseButton } from "../../ReusebleCompoments/ModalCloseBTN/CloseButton";
 
 const ModuleStyle = {
   overlay: {
@@ -56,9 +57,7 @@ const handleSubmit = (e) => {
       style={ModuleStyle}
     >
 
-      <ModalClose onClick={onRequestClose}>
-        <CgClose style={{width: "24px", height: "24px"}} />
-      </ModalClose>
+      <CloseButton close={onRequestClose } />
       <ModalTitle>Перетелефонувати вам?</ModalTitle>
       <ModalText>Вкажіть номер телефону та ім'я. Ми зв'яжемося з вами найближчим часом.</ModalText>
       <ModalForm onSubmit={handleSubmit}>
