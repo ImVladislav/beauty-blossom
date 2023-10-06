@@ -15,7 +15,14 @@ export const StyledLink = styled(Link)`
     align-items: center;
     color: white;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: auto; 
+    font-weight: bold;
+    text-decoration: none;
+        &:hover {
+  color: #cccccc ;
+  background: #f66d52;
+  background: linear-gradient(to top, #FF49AB, #FF49AB);
+    }
 `
 
 export const Thumb = styled.div`

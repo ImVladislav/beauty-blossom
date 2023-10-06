@@ -1,3 +1,4 @@
+import AboutUs from "../../modules/components/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/components/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../modules/components/Container";
 import Banner from "../../modules/components/Images/bannerPopularBrands.jpg";
@@ -21,7 +22,8 @@ import {
                 <StyledLink to="/terms_of_wholesale_cooperation">УМОВИ ОПТОВОЇ СПІВПРАЦІ</StyledLink>
             </Thumb>
         </Container>
-        <ProductSlider/>
+        <ProductSlider />
+        <AboutUs/>
         <BrandsWraper/>
         </Background>
     );
