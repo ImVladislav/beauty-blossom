@@ -26,7 +26,7 @@ export const BrandsList = styled.ul`
 
 export const BrandsItem = styled.li`
     position: relative;
-    padding: 12px 12px;
+    padding: 11px 15px;
     border: 1px solid none;
     border-radius: 0;
 
