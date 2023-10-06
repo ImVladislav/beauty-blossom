@@ -4,11 +4,11 @@ import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
 
 import { theme } from "./modules/components/theme";
 
-import MainPage from "./pages/MainPage/MainPage";
-import SaleProgramPage from "./pages/DiscountPage/SaleProgramPage";
-import NewPage from "./pages/NewPage/NewPage";
-import SearchPage from "./pages/SearchPage/SearchPage";
-import CategoryPage from "./pages/CategoryPage/CategoryPage";
+import MainPage from "./Pages/MainPage/MainPage"
+import SaleProgramPage from "./Pages/DiscountPage/SaleProgramPage";
+import NewPage from "./Pages/NewPage/NewPage";
+import SearchPage from "./Pages/SearchPage/SearchPage";
+import CategoryPage from "./Pages/CategoryPage/CategoryPage";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
             <Route path="/login" element={<p>login Page</p>} />
             <Route path="/registration" element={<p>registration Page</p>} />
           </Route>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<MainPage/>} />
           <Route>
             <Route path="/category" element={<CategoryPage />} />
             <Route path="/brands" element={<p>brands Page</p>} />

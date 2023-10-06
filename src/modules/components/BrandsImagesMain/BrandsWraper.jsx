@@ -1,48 +1,46 @@
 import { BrandImage, BrandLink, BrandsItem, BrandsList, FrontBrands, LayoutWarp } from "./BrandsWraperStyled"
-import Brand1 from "./BrandsImages/DAENG-GI-MEO-RI.svg"
-import Brand2 from "./BrandsImages/Dr_Jart-.svg"
-import Brand3 from "./BrandsImages/Esthetic-House.svg"
-import Brand4 from "./BrandsImages/La_dor.svg"
-import Brand5 from "./BrandsImages/Masil.svg"
-import Brand6 from "./BrandsImages/medi_peel_logo.svg"
+import { ReactComponent as Brand1 } from "./BrandsImages/Dr_Jart-.svg"
+import { ReactComponent as Brand2 } from "./BrandsImages/Esthetic-House.svg"
+import { ReactComponent as Brand3 } from "./BrandsImages/La_dor.svg"
+import { ReactComponent as Brand4 } from "./BrandsImages/Masil.svg"
+import { ReactComponent as Brand5 } from "./BrandsImages/medi_peel_logo.svg"
+import { ReactComponent as Brand6 } from "./BrandsImages/DAENG-GI-MEO-RI.svg"
 
 export const BrandsWraper = () => {
     return (
         <FrontBrands>
-            <LayoutWarp>
                 <BrandsList>
                     <BrandsItem>
                         <BrandLink to="*">
-                            <BrandImage src={Brand1} />
+                            <Brand1 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                     <BrandsItem>
                         <BrandLink to="*">
-                            <BrandImage src={Brand2} />
+                            <Brand2 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                     <BrandsItem>
                         <BrandLink to="*">
-                            <BrandImage src={Brand3} />
+                            <Brand3 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                     <BrandsItem>
                         <BrandLink to="*">
-                            <BrandImage src={Brand4} />
+                            <Brand4 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                     <BrandsItem>
                        <BrandLink to="*">
-                            <BrandImage src={Brand5} />
+                            <Brand5 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                     <BrandsItem>
                         <BrandLink to="*">
-                            <BrandImage src={Brand6} />
+                            <Brand6 className="BrandSVG"/>
                         </BrandLink>
                     </BrandsItem>
                 </BrandsList>
-            </LayoutWarp>
         </FrontBrands>
     );
 }

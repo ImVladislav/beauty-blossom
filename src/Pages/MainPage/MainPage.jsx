@@ -1,5 +1,3 @@
-
-
 import { BrandsWraper } from "../../modules/components/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../modules/components/Container";
 import Banner from "../../modules/components/Images/bannerPopularBrands.jpg";
@@ -11,9 +9,9 @@ import {
   StyledLink,
   Thumb,
   Background,
-} from "./MainPageStyled";
+} from "./MainPage.styled";
 
-const MainPage = () => {
+ const MainPage = () => {
 
     return (<Background>
         <Container>
@@ -28,6 +26,7 @@ const MainPage = () => {
         </Background>
     );
 };
+export default MainPage
 
-export default MainPage;
+
 

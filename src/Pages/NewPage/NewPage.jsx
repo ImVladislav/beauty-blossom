@@ -1,4 +1,3 @@
-import React from "react";
 
 const NewPage = () => {
   return <div></div>;
