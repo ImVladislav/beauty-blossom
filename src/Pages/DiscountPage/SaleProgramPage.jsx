@@ -13,7 +13,7 @@ import {
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../modules/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 
-export const SaleProgramPage = () => {
+const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -41,9 +41,15 @@ export const SaleProgramPage = () => {
           <ConditionsList>
             <ListItems>Мінімальна сума замовлення 2500 грн</ListItems>
             <ListItems>Безкоштовна доставка від 10 тис грн</ListItems>
-            <ListItems>Доставка протягом 1-2 робочих днів з моменту оформлення</ListItems>
-            <ListItems>Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!</ListItems>
-            <ListItems>Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші</ListItems>
+            <ListItems>
+              Доставка протягом 1-2 робочих днів з моменту оформлення
+            </ListItems>
+            <ListItems>
+              Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!
+            </ListItems>
+            <ListItems>
+              Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші
+            </ListItems>
           </ConditionsList>
         </section>
 
@@ -68,12 +74,12 @@ export const SaleProgramPage = () => {
         <section>
           <ConditionsTitle>Обмін та повернення</ConditionsTitle>
           <Text>
-            Протягом 14-ти днів з моменту отримання замовлення ви можете повернути
-            або обміняти товар на інший, при умові якщо товар в належному
-            вигляді та не був у використанні. Рекомендуємо вам уважно
+            Протягом 14-ти днів з моменту отримання замовлення ви можете
+            повернути або обміняти товар на інший, при умові якщо товар в
+            належному вигляді та не був у використанні. Рекомендуємо вам уважно
             перевіряти замовлення перед оформленням для запобігання
-            непорозуміння. Якщо ви отримали товар в неналежному вигляді або не
-            в повному складі – обов’язково зв’яжіться з нашим менеджером для
+            непорозуміння. Якщо ви отримали товар в неналежному вигляді або не в
+            повному складі – обов’язково зв’яжіться з нашим менеджером для
             найшвидшого вирішення ситуації.
           </Text>
         </section>
@@ -82,8 +88,10 @@ export const SaleProgramPage = () => {
           <ConditionsTitle>Контакти</ConditionsTitle>
           <Text>З усіх питань ви можете зв’язатись з нами:</Text>
           <ConditionsList>
-            <ListItems style={{listStyle: "none"}}>Телефон: +38 (050) 052 91 00</ListItems>
-            <ListItems style={{listStyle: "none"}}>
+            <ListItems style={{ listStyle: "none" }}>
+              Телефон: +38 (050) 052 91 00
+            </ListItems>
+            <ListItems style={{ listStyle: "none" }}>
               Електронна пошта:{" "}
               <a href="mailto:beautyblossom.opt@gmail.com">
                 beautyblossom.opt@gmail.com
@@ -108,16 +116,22 @@ export const SaleProgramPage = () => {
               Надішліть менеджеру в телеграмі свою електронну пошту, яку
               вказували при реєстрації
             </ListItems>
-            <ListItems> Ми переведемо ваш акаунт в статус оптового покупця</ListItems>
+            <ListItems>
+              {" "}
+              Ми переведемо ваш акаунт в статус оптового покупця
+            </ListItems>
           </ConditionsList>
-          <Text>Готово! Тепер ви можете оформляти замовлення на сайті та бачити історію своїх покупок.</Text>
+          <Text>
+            Готово! Тепер ви можете оформляти замовлення на сайті та бачити
+            історію своїх покупок.
+          </Text>
           <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
         </section>
       </div>
       {isModalOpen && (
         <ModalBackground>
-                  <ModalContent>
-                      <CloseButton close={() => setIsModalOpen(false)} />
+          <ModalContent>
+            <CloseButton close={() => setIsModalOpen(false)} />
             <h2>Стати оптовим покупцем</h2>
             <form>
               <label>
@@ -157,3 +171,5 @@ export const SaleProgramPage = () => {
     </Container>
   );
 };
+
+export default SaleProgramPage;

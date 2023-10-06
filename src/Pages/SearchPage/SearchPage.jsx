@@ -6,7 +6,7 @@ import { selectSearchQuery } from "../../redux/search/selectors.js";
 
 import { ProductListContainer, ProductItem } from "./SearchPage.styled";
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
 
   if (searchQuery.length === 0) {
@@ -25,3 +25,5 @@ export const SearchPage = () => {
     </ProductListContainer>
   );
 };
+
+export default SearchPage;
