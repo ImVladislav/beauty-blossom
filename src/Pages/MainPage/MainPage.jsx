@@ -1,12 +1,19 @@
 
+
 import { BrandsWraper } from "../../modules/components/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../modules/components/Container";
-import Banner from "../../modules/components/Images/bannerPopularBrands.jpg"
+import Banner from "../../modules/components/Images/bannerPopularBrands.jpg";
 import { ProductSlider } from "../../modules/components/ProductSlider/ProductSlider";
-import { MainBanner, BannerTitle, StyledLink, Thumb, Background} from "./MainPageStyled";
 
+import {
+  MainBanner,
+  BannerTitle,
+  StyledLink,
+  Thumb,
+  Background,
+} from "./MainPageStyled";
 
-export const MainPage = () => {
+const MainPage = () => {
 
     return (<Background>
         <Container>
@@ -20,4 +27,7 @@ export const MainPage = () => {
         <BrandsWraper/>
         </Background>
     );
-}
+};
+
+export default MainPage;
+
