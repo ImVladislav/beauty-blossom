@@ -2,10 +2,10 @@ import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
 
-import { MainPage } from "./Pages/MainPage/MainPage";
+import { MainPage } from "./pages/MainPage/MainPage";
 import { theme } from "./modules/components/theme";
 
-import { SaleProgramPage } from "./Pages/MainPage/DiscountPage/SaleProgramPage";
+import { SaleProgramPage } from "./pages/MainPage/DiscountPage/SaleProgramPage";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
@@ -25,7 +25,7 @@ function App() {
             <Route path="/news" element={<p>news Page</p>} />
             <Route path="/discount" element={<p>discount Page</p>} />
             <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
-            {/* <Route path="/search" element={<SearchPage />} /> */}
+            <Route path="/search" element={<SearchPage />} />
           </Route>
 
           <Route path="*" element={<p>тут ні**я нема скільки не дивись</p>} />
