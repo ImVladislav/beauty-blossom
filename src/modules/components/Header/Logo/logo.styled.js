@@ -6,4 +6,5 @@ export const Link = styled.a`
   align-items: center;
   text-decoration: none;
   color: #000;
+
 `;
