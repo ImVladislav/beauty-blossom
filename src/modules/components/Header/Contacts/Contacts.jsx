@@ -1,8 +1,8 @@
 import React from "react";
+
 import { ContactsElips, ContactsIcon, Link, Wrap } from "./contacts.styled";
 
 const Contacts = () => {
-  console.log();
   return (
     <Wrap>
       <ContactsElips>

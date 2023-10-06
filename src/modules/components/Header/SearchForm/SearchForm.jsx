@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
+import { setSearch } from "../../../../redux/search/slice";
+
 import {
   SearchFormContainer,
   SearchInput,
@@ -6,8 +12,10 @@ import {
   SearchIcon,
 } from "./SearchForm.styled";
 
-const SearchForm = ({ data, onSearch }) => {
+const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -16,10 +24,17 @@ const SearchForm = ({ data, onSearch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const results = data.filter((item) =>
-      item.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    onSearch(results);
+    if (searchTerm.trim() === "") {
+      toast.error("Будь ласка, введіть пошуковий запит!");
+      setSearchTerm("");
+      return;
+    }
+    setSearchTerm(e.target.value);
+
+    dispatch(setSearch(searchTerm));
+
+    navigate(`/search?query=${searchTerm}`);
+    setSearchTerm("");
   };
 
   return (
