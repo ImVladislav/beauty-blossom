@@ -4,11 +4,11 @@ import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
 
 import { theme } from "./modules/components/theme";
 
-import MainPage from "./Pages/MainPage/MainPage"
-import SaleProgramPage from "./Pages/DiscountPage/SaleProgramPage";
-import NewPage from "./Pages/NewPage/NewPage";
-import SearchPage from "./Pages/SearchPage/SearchPage";
-import CategoryPage from "./Pages/CategoryPage/CategoryPage";
+import MainPage from "./pages/MainPage/MainPage"
+import SaleProgramPage from "./pages/DiscountPage/SaleProgramPage";
+import NewPage from "./pages/NewPage/NewPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import CategoryPage from "./pages/CategoryPage/CategoryPage";
 
 function App() {
   return (
