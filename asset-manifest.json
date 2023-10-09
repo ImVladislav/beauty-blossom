@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/beauty-blossom/static/css/main.e349b130.css",
-    "main.js": "/beauty-blossom/static/js/main.fc965a41.js",
+    "main.js": "/beauty-blossom/static/js/main.2c80f197.js",
     "static/media/bannerPopularBrands.jpg": "/beauty-blossom/static/media/bannerPopularBrands.aa5f0d5c356ba16b78d2.jpg",
     "static/media/BeautyBlossom.svg": "/beauty-blossom/static/media/BeautyBlossom.35c0cca1a7e12d7bb22b01e07baf708c.svg",
     "static/media/DAENG-GI-MEO-RI.svg": "/beauty-blossom/static/media/DAENG-GI-MEO-RI.d7929203094c6c8a3af7899b4587c042.svg",
@@ -15,10 +15,10 @@
     "static/media/phone.svg": "/beauty-blossom/static/media/phone.733d0e9bf8e7f0bfc158255c49acf79a.svg",
     "static/media/NextPrev.svg": "/beauty-blossom/static/media/NextPrev.44749ddfef4592da8fb6a5be0bd5bc91.svg",
     "main.e349b130.css.map": "/beauty-blossom/static/css/main.e349b130.css.map",
-    "main.fc965a41.js.map": "/beauty-blossom/static/js/main.fc965a41.js.map"
+    "main.2c80f197.js.map": "/beauty-blossom/static/js/main.2c80f197.js.map"
   },
   "entrypoints": [
     "static/css/main.e349b130.css",
-    "static/js/main.fc965a41.js"
+    "static/js/main.2c80f197.js"
   ]
 }
