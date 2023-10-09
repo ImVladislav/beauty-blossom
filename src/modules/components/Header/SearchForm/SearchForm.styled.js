@@ -46,7 +46,6 @@ export const SearchButton = styled.button`
   padding: 0px;
   background-color: transparent;
   transition: all 0.15s ease 0s;
-  /* outline: ; */
 `;
 
 export const SearchIcon = styled(BsSearch)`

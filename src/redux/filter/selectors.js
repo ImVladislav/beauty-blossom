@@ -3,7 +3,7 @@ export const getFilter = (store) => {
   if (!filter) {
     return products;
   }
-  const result = products.filter((brand) => {
+  const result = products.filter(({ brand }) => {
     return brand.toLowerCase().includes(filter.toLowerCase());
   });
   return result;
