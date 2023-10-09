@@ -19,7 +19,7 @@ import {
             <MainBanner src={Banner} alt="banner"/>
             <Thumb>
                 <BannerTitle>Популярні <br /> корейські бренди</BannerTitle>
-                <StyledLink to="/terms_of_wholesale_cooperation">УМОВИ ОПТОВОЇ СПІВПРАЦІ</StyledLink>
+                <StyledLink to="/wholesaleProgram">УМОВИ ОПТОВОЇ СПІВПРАЦІ</StyledLink>
             </Thumb>
         </Container>
         <ProductSlider />

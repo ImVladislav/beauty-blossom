@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { FormInput, ModalClose, ModalForm, ModalSend, ModalText, ModalTitle } from "./ModalWindowStlyed";
-import { CgClose } from "react-icons/cg";
+
 import { CloseButton } from "../../ReusebleCompoments/ModalCloseBTN/CloseButton";
+import SubmitBtn from "../../ReusebleCompoments/SubmitBtn/SubmitBtn";
 
 const ModuleStyle = {
   overlay: {
@@ -80,7 +81,8 @@ const handleSubmit = (e) => {
             required
           />
         </label>
-        <ModalSend type="submit">Відправити</ModalSend>
+        <SubmitBtn text={ 'Відправити' } /> 
+        
       </ModalForm>
     </Modal>
   );
