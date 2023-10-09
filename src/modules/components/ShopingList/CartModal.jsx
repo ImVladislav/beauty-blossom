@@ -15,11 +15,11 @@ import {
   ModalShopingList,
   ModalTitle,
   PriceBlock,
+  ReturnBTN,
   Thumb,
 } from './ShopingListStyled';
 import SubmitBtn from '../ReusebleCompoments/SubmitBtn/SubmitBtn';
-
-import { CloseButton } from '../ReusebleCompoments/ModalCloseBTN/CloseButton';
+import { FaArrowLeft } from "react-icons/fa";
 
 
 const CartModal = ({ cartItems, closeModal }) => {
@@ -110,10 +110,13 @@ const CartModal = ({ cartItems, closeModal }) => {
                 </GoodsBlock>
             </table>
             <Amount>Итого {totalCost} грн</Amount>
-            <ButtonContainer style={{ marginLeft: "auto"}}>
-                <SubmitBtn onClick={closeModal} text="Повернутись до покупок" />
-                </ButtonContainer >
-                <ButtonContainer style={{ marginLeft: "auto"}}>
+            <ButtonContainer >
+                <ReturnBTN onClick={closeModal} >
+                    <FaArrowLeft style={{
+                        width: '23px',height: '14px'}}/>Повернутись до покупок</ReturnBTN>
+            </ButtonContainer >
+            
+                <ButtonContainer style={{ marginLeft: "210px"}}>
             <SubmitBtn
                 onClick={placeOrder}
                 text="Оформити замовлення"

@@ -3,7 +3,6 @@ import { BasketIcon, ModalBackground, OpenModal, Thumb } from "./ShopingListStyl
 import CartModal from './CartModal';
 
 
-
 const ShoppingCart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems = [
