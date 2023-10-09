@@ -4,7 +4,6 @@ import SearchForm from "./SearchForm/SearchForm";
 import Logo from "./Logo/Logo";
 import Contacts from "./Contacts/Contacts";
 import LogIn from "./LogIn/LogIn";
-import Basket from "./Basket/Basket";
 
 import menuItems from "./menuItems.json";
 
@@ -26,6 +25,7 @@ import {
   MenuProducts,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
+import ShoppingCart from "../ShopingList/ShopingList";
 
 export const Header = () => {
   return (
@@ -49,7 +49,7 @@ export const Header = () => {
 
                   <LogIn />
 
-                  <Basket />
+                  <ShoppingCart />
                 </Wrap>
               </WrapTop>
             </HeaderLayout>
