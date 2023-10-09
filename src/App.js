@@ -29,7 +29,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
           </Route>
 
-          <Route path="*" element={<p>тут ні**я нема скільки не дивись</p>} />
+          <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
         </Route>
       </Routes>
     </ThemeProvider>
