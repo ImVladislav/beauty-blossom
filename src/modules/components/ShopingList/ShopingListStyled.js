@@ -161,7 +161,8 @@ export const ModalTitle= styled.h2`
 
   export const DeleteBtn= styled.button`
   position: absolute;
-  left: 4px;
+  right: 730px;
+    top: 45px;
   border: none;
   background: transparent;
   `
@@ -218,4 +219,23 @@ display: inline;
     export const Amount= styled.p`
 text-align: end;
 
+  `
+  export const ReturnBTN= styled.button`
+  flex: 1 0 auto;
+    height: 100%;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    color: #000;
+    border: none;
+    padding: 0;
+    background: none;
+    font-size: 18px;
+    width: 258px;
+    height: 36px;
+      &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+    cursor: pointer;
+  }
   `
