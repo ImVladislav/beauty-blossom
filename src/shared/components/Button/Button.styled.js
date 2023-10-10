@@ -10,6 +10,6 @@ export const ButtonStyle = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: ${(p) => (p.disabled ? "#ccc" : "##ff358a")};
+    background-color: ${(p) => (p.disabled ? "#ccc" : "#ff358a")};
   }
 `;
