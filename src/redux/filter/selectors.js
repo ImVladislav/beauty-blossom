@@ -1,4 +1,4 @@
-export const getFilter = (store) => {
+export const selectFilterBrand = (store) => {
   const { filter, products } = store;
   if (!filter) {
     return products;

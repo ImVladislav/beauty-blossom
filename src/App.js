@@ -10,6 +10,7 @@ import NewPage from "./pages/NewPage/NewPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
+import BrandsPage from "./pages/BrandsPage/BrandsPage";
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route>
             <Route path="/category" element={<CategoryPage />} />
-            <Route path="/brands" element={<p>brands Page</p>} />
+            <Route path="/brands" element={<BrandsPage />}></Route>
+            <Route path="/brands/:brands" element={<BrandsPage />} />
+
             <Route path="/news" element={<NewPage />} />
             <Route path="/discount" element={<p>discount Page</p>} />
             <Route path="/wholesaleProgram" element={<SaleProgramPage />} />

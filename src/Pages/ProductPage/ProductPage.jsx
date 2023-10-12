@@ -21,12 +21,11 @@ const ProductPage = () => {
   const [inCart, setInCart] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
-
+  const dispatch = useDispatch();
   const products = useSelector(getProducts);
+  console.log(products);
 
   const product = products.find((item) => +item.id === +id);
-
-  const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));

@@ -4,138 +4,162 @@
     "text": "Категорії",
     "children": [
       {
-        "to": "/facial",
+        "to": "/category/facial",
         "text": "Догляд за обличчям",
         "children": [
           {
-            "to": "/masks",
+            "to": "/category/facial/masks",
             "text": "Маски",
             "children": [
               {
-                "to": "/alginateMasks",
+                "to": "/category/facial/masks/alginateMasks",
                 "text": "Альгінатні маски",
                 "children": []
               },
               {
-                "to": "/fabricMask",
+                "to": "/category/facial/masks/fabricMask",
                 "text": "Тканинна маска",
                 "children": []
               },
-              { "to": "/nightMask", "text": "Нічна маска", "children": [] }
+              {
+                "to": "/category/facial/masks/nightMask",
+                "text": "Нічна маска",
+                "children": []
+              }
             ]
           },
           {
-            "to": "/moisturizing",
+            "to": "/category/facial/moisturizing",
             "text": "Зволоження",
             "children": [
               {
-                "to": "/cream",
+                "to": "/category/facial/moisturizing/cream",
                 "text": "Крем",
                 "children": []
               },
               {
-                "to": "/balm",
+                "to": "/category/facial/moisturizing/balm",
                 "text": "Бальзам",
                 "children": []
               },
-              { "to": "/geel", "text": "Гель", "children": [] },
-              { "to": "/bridge", "text": "Міст", "children": [] },
-              { "to": "/serum", "text": "Сироватка", "children": [] },
-              { "to": "/toner", "text": "Тонер", "children": [] }
+              {
+                "to": "/category/facial/moisturizing/geel",
+                "text": "Гель",
+                "children": []
+              },
+              {
+                "to": "/category/facial/moisturizing/bridge",
+                "text": "Міст",
+                "children": []
+              },
+              {
+                "to": "/category/facial/moisturizing/serum",
+                "text": "Сироватка",
+                "children": []
+              },
+              {
+                "to": "/category/facial/moisturizing/toner",
+                "text": "Тонер",
+                "children": []
+              }
             ]
           },
           {
-            "to": "/cleaning",
+            "to": "/category/facial/cleaning",
             "text": "Очищення",
             "children": [
               {
-                "to": "/enzymePowder",
+                "to": "/category/facial/cleaning/enzymePowder",
                 "text": "Ензимна пудра",
                 "children": []
               },
               {
-                "to": "/washingFoam",
+                "to": "/category/facial/cleaning/washingFoam",
                 "text": "Пінка для вмивання",
                 "children": []
               },
-              { "to": "/scrub", "text": "Скраб", "children": [] }
+              {
+                "to": "/category/facial/cleaning/scrub",
+                "text": "Скраб",
+                "children": []
+              }
             ]
           },
           {
-            "to": "/lipCare",
+            "to": "/category/facial/lipCare",
             "text": "Догляд за губами",
             "children": [
               {
-                "to": "/lipBalm",
+                "to": "/category/facial/lipCare/lipBalm",
                 "text": "Бальзам для губ",
                 "children": []
               },
               {
-                "to": "/lipMask",
+                "to": "/category/facial/lipCare/lipMask",
                 "text": "Маска для губ",
                 "children": []
               }
             ]
           },
           {
-            "to": "/forSkinUnderTheEyes",
+            "to": "/category/facial/forSkinUnderTheEyes",
             "text": "Для шкіри під очима",
             "children": [
               {
-                "to": "/creamUnderTheEyes",
+                "to": "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
                 "text": "Крем під очі",
                 "children": []
               },
               {
-                "to": "/patches",
+                "to": "/category/facial/forSkinUnderTheEyes/patches",
                 "text": "Патчі",
                 "children": []
               }
             ]
           },
           {
-            "to": "/setForFaceCare",
+            "to": "/category/facial/setForFaceCare",
             "text": "Набір для догляду за обличчям",
             "children": []
           }
         ]
       },
       {
-        "to": "/makeup",
+        "to": "/category/makeup",
         "text": "Макіяж",
         "children": [
           {
-            "to": "/forFace",
+            "to": "/category/makeup/forFace",
             "text": "Для обличчя",
             "children": [
               {
-                "to": "/bbCream",
+                "to": "/category/makeup/forFace/bbCream",
                 "text": "ББ крем",
                 "children": []
               },
               {
-                "to": "/tint",
+                "to": "/category/makeup/forFace/tint",
                 "text": "Тональний крем",
                 "children": []
               },
               {
-                "to": "/powder",
+                "to": "/category/makeup/forFace/powder",
                 "text": "Пудра",
                 "children": []
               },
               {
-                "to": "/killed",
+                "to": "/category/makeup/forFace/killed",
                 "text": "Кушон",
                 "children": []
               }
             ]
           },
           {
-            "to": "/forEyes",
+            "to": "/category/makeup/forEyes",
             "text": "Для очей",
             "children": [
               {
-                "to": "/inadvertently",
+                "to": "/category/makeup/forEyes/inadvertently",
                 "text": "Туш",
                 "children": []
               }
@@ -144,58 +168,70 @@
         ]
       },
       {
-        "to": "/hairCare",
+        "to": "/category/hairCare",
         "text": "Догляд за волоссям",
         "children": [
-          { "to": "/shampoos", "text": "Шампуні", "children": [] },
-          { "to": "/airConditioners", "text": "Кондиціонери", "children": [] },
           {
-            "to": "/serumEmulsionsFillers",
+            "to": "/category/hairCare/shampoos",
+            "text": "Шампуні",
+            "children": []
+          },
+          {
+            "to": "/category/hairCare/airConditioners",
+            "text": "Кондиціонери",
+            "children": []
+          },
+          {
+            "to": "/category/hairCare/serumEmulsionsFillers",
             "text": "Сироватки, емульсії,філери",
             "children": []
           },
           {
-            "to": "/hairMasks",
+            "to": "/category/hairCare/hairMasks",
             "text": "Маски для волосся",
             "children": []
           },
           {
-            "to": "/forTheScalp",
+            "to": "/category/hairCare/forTheScalp",
             "text": "Для шкіри голови",
             "children": []
           },
           {
-            "to": "/hairCareSets",
+            "to": "/category/hairCare/hairCareSets",
             "text": "Набори для догляду за волоссям",
             "children": []
           }
         ]
       },
       {
-        "to": "/bodyCare",
+        "to": "/category/bodyCare",
         "text": "Догляд за тілом",
         "children": [
           {
-            "to": "/handCosmetics",
+            "to": "/category/bodyCare/handCosmetics",
             "text": "Косметика для рук",
             "children": [
               {
-                "to": "/handCream",
+                "to": "/category/bodyCare/handCosmetics/handCream",
                 "text": "Крем для рук",
                 "children": []
               }
             ]
           },
-          { "to": "/bodyFoam", "text": "Пінка для тіла", "children": [] }
+          {
+            "to": "/category/bodyCare/bodyFoam",
+            "text": "Пінка для тіла",
+            "children": []
+          }
         ]
       },
       {
-        "to": "/demacia",
+        "to": "/category/demacia",
         "text": "Демакіяж",
         "children": []
       },
       {
-        "to": "/sunProtection",
+        "to": "/category/sunProtection",
         "text": "Захист від сонця",
         "children": []
       }
@@ -205,15 +241,27 @@
     "to": "/brands",
     "text": "Бренди",
     "children": [
-      { "to": "/daengGiMeoRi", "text": "Daeng Gi Meo Ri", "children": [] },
-      { "to": "/lador", "text": "Lador", "children": [] },
-      { "to": "/drJart", "text": "Dr.Jart+", "children": [] },
-      { "to": "/beautyOfJoseon", "text": "Beauty Of Joseon", "children": [] },
-      { "to": "/missha", "text": "Missha", "children": [] },
-      { "to": "/mediPeel", "text": "Medi – peel", "children": [] },
-      { "to": "/estheticHouse", "text": "Esthetic House", "children": [] },
-      { "to": "/purito", "text": "Purito", "children": [] },
-      { "to": "/masil", "text": "Masil", "children": [] }
+      {
+        "to": "/brands/daengGiMeoRi",
+        "text": "Daeng Gi MeoRi",
+        "children": []
+      },
+      { "to": "/brands/lador", "text": "Lador", "children": [] },
+      { "to": "/brands/drJart", "text": "Dr. Jart+", "children": [] },
+      {
+        "to": "/brands/beautyOfJoseon",
+        "text": "Beauty Of Joseon",
+        "children": []
+      },
+      { "to": "/brands/missha", "text": "Missha", "children": [] },
+      { "to": "/brands/mediPeel", "text": "Medi-Peel", "children": [] },
+      {
+        "to": "/brands/estheticHouse",
+        "text": "Esthetic House",
+        "children": []
+      },
+      { "to": "/brands/purito", "text": "Purito", "children": [] },
+      { "to": "/brands/masil", "text": "Masil", "children": [] }
     ]
   },
   {
