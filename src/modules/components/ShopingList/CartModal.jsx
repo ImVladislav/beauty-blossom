@@ -96,9 +96,9 @@ const CartModal = ({ cartItems, closeModal }) => {
                             </DescriptionBlock>
                             <AmountBlock>
                                 <CounterBlock>
-                                    <DecIncBtn onClick={() => increaseQuantity(item.id)}>+</DecIncBtn>
-                                    {itemQuantities[item.id]}
                                     <DecIncBtn onClick={() => decreaseQuantity(item.id)}>-</DecIncBtn>
+                                    {itemQuantities[item.id]}
+                                    <DecIncBtn onClick={() => increaseQuantity(item.id)}>+</DecIncBtn>
                                 </CounterBlock>
                             </AmountBlock>
                             <PriceBlock>{item.price * itemQuantities[item.id]} грн</PriceBlock>

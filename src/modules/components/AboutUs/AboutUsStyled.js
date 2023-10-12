@@ -9,7 +9,7 @@ padding: 20px;
 
 export const Title = styled.h3`
  margin-bottom: 15px;
- color: #FF49AB;
+ color: ${(p) => p.theme.colors.accentColor};
  margin-left: 20px;
 
 
@@ -34,7 +34,7 @@ export const BenefitsItem= styled.li`
       content: '●'; /* Додаємо символ кружка */
   position: absolute;
   left: 0;
-  color: #FF49AB; /* Колір рожевого кружка */
+ color: ${(p) => p.theme.colors.accentColor};
   }
     
 `

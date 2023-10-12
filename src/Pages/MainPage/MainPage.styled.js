@@ -1,47 +1,87 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import bg from "../../modules/components/Images/bannerPopularBrands.jpg"
 
 export const MainBanner = styled.img`
- max-width: 1440px;
+  width: 100%;
+  /* max-width: 1440px; */
 `
 export const StyledLink = styled(Link)`
     width: 396px;
     height: 95px;
-    background: #FF49AB;
-    border-Radius: 25px;
+    background: transparent;
+    border: 8px solid ${(p) => p.theme.colors.accentColor};
+    border-Radius: 50px;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: white;
-    margin-left: auto;
-    margin-right: auto; 
+    /* margin-left: auto;
+    margin-right: auto;  */
     font-weight: bold;
     text-decoration: none;
+    font-size: 28px;
+    /* margin-bottom: 270px; */
+
+    margin-left: 145px;
+    
+      transition: color 1s ease; 
+     color: ${(p) => p.theme.colors.accentColor};
         &:hover {
-  color: #cccccc ;
-  background: #f66d52;
-  background: linear-gradient(to top, #FF49AB, #FF49AB);
+  color: white ;
+  background: ${(p) => p.theme.colors.accentColor};
+
+
     }
 `
 
+
+  export const TextBlock = styled.div`
+  display: block;
+  margin-left: 900px;
+  margin-bottom: 250px;
+
+`
+  
 export const Thumb = styled.div`
-  position: absolute;
-  bottom: 0px;
-  right: 130px;
-  max-width: 100%; 
-  top: 60px;
+
+    width: 100%; /* Розтягуємо на всю ширину */
+  height: 100%; /* Розтягуємо на всю висоту */
+
   text-align: center;
+  background-image: url(${bg});
+  margin-left: auto;
+  margin-right: auto;
+background-size: cover;
+display: flex;
+justify-content: center;
 `
 export const BannerTitle = styled.h3`
-margin-bottom: 70px;
-color: #FF49AB;
+margin-top: 100px;
+margin-bottom: 50px;
+ display: flex;
+/* padding-left: 55%;  */
+justify-content: center;
+color: ${(p) => p.theme.colors.accentColor};
 font-size: 70px;
 
 `
 
 export const Background = styled.div`
-background: #f9f8f6;
+/* background: #f9f8f6; */
+/* background-image: url(${bg});
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat; */
 
 
+`
+
+export const BannerSubTitle = styled.h4`
+margin-bottom: 60px;
+color: ${(p) => p.theme.colors.accentColor};
+font-size: 25px;
+display: flex;
+justify-content: center;
+/* padding-left: 58%; */
 `

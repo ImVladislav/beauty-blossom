@@ -1,11 +1,13 @@
+import bannerImg from"./Images/bannerPopularBrands.jpg"
 export const theme = {
   colors: {
     white: "#ffffff",
     black: "#000000",
-    accentColor: "#FF33AEBA",
+    accentColor: "#A03DA9",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
-    secondaryColor: "#FF49AB",
+    secondaryColor: "#A03DA9",
+    bgImage: bannerImg,
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

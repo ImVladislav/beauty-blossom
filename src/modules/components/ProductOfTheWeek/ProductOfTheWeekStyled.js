@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-background: #FF33AEBA;
+background: ${(p) => p.theme.colors.accentColor};
 display: flex;
 justify-content: center;
 `

@@ -7,7 +7,7 @@ export const Title= styled.h2`
     font-size: 2.2em;
     font-weight: bold;
     margin-top: 40px;
-    color: #FF49AB;
+    color: ${(p) => p.theme.colors.accentColor};
 `
 export const Container= styled.div`
 
@@ -19,7 +19,7 @@ export const Container= styled.div`
 `
 
 export const SubTitle= styled.h3`
-    color: #FF49AB;
+    color: ${(p) => p.theme.colors.accentColor};
     display: flex;
     justify-content: center;
     font-size: 1.8em;
@@ -35,7 +35,7 @@ export const ConditionsTitle= styled.h4`
     padding: 20px 0px;
 
     margin-left: 34px;
-    color: #FF49AB;
+    color: ${(p) => p.theme.colors.accentColor};
 `
 export const Text= styled.p`
     font-weight: bold;
@@ -65,14 +65,15 @@ export const ModalBackground= styled.div`
   display: flex;
   justify-content: center; /* Центруємо горизонтально */
   align-items: center; /* Центруємо вертикально */
+  z-index: 103;
 `
 export const ModalContent= styled.div`
   background: white;
-  padding: 20px;
+  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  max-width: 80%;
-  width: 400px;
+  max-width: 90%;
+
   text-align: center;
   position: relative;
 `
@@ -80,7 +81,7 @@ export const ModalContent= styled.div`
 export const OpenModal= styled.button`
     width: 340px;
     height: 70px;
-    background: #FF49AB;
+    background: ${(p) => p.theme.colors.accentColor};
     border-Radius: 25px;
     display: flex;
     text-align: center;
@@ -96,14 +97,60 @@ export const OpenModal= styled.button`
     font-weight: bold;
     font-size: 20px;
 
-    background: linear-gradient(to top, #FF49AB, #FF49AB);
+    background: ${(p) => p.theme.colors.accentColor};
     &:hover {
   color: #cccccc ;
   background: #f66d52;
-  background: linear-gradient(to top, #FF49AB, #FF49AB);
+  background: ${(p) => p.theme.colors.accentColor};;
     }
 
 `
 export const CloseModal= styled.button`
 
 `
+
+export const ModalForm= styled.form`
+
+`
+
+export const FormLavelBloks= styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+`
+export const Label = styled.label`
+      
+`
+
+export const ModalText= styled.p`
+    font-weight: bold;
+`
+
+export const ReqStar= styled.span`
+    color: red;
+    font-weight: bold;
+`
+
+export const Input = styled.input`
+      margin: 10px;
+        border-radius: 12px;
+        /* color: #b2b2b2; */
+        border-color: #b2b2b2;;
+        padding: 10px;
+        /* &:focus-visible{
+            border-color: ${(p) => p.theme.colors.accentColor} !important;
+        } */
+        
+`
+export const ModalShopTypeItem= styled.li`
+    display: flex;
+    margin: 8px;
+`
+
+export const ModalShopTypeText= styled.p`
+    margin-left: 8px;
+`
+
+export const CheckBox = styled.input`
+      width: 20px;
+      `

@@ -8,7 +8,7 @@ import { FooterContacts } from "./FooterContacts/FooterContacts";
 
 
 export const Footer = () => {
-    console.log(menuItems);
+
     return (
         <FooterContainer>
             <Wrapper>

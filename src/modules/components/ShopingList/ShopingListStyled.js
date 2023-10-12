@@ -33,36 +33,6 @@ export const OpenModal = styled.button`
   }
   
 `;
-export const Thumb = styled.tr`
-
-  position: relative; /* Для визначення позиції псевдоелемента */
-
-
-  /* Стилі для псевдоелемента ::before */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: -15px;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml;utf8,<BsFillTrash3Fill/>");
-    background-repeat: no-repeat;
-    background-size: cover;
-    transition: color 0.3s ease-in-out;
-    
-  }
-  
-  /* Змінюємо колір іконки при наведенні миші */
-  &:hover::before {
-    filter: brightness(1.2); /* Застосовуємо ефект зміни яскравості */
-  }
-`;
-
-
-
 
 export const ModalShopingList = styled.div`
   position: absolute;
@@ -116,7 +86,7 @@ export const ModalTitle= styled.h2`
 
 
   export const ImageBlock= styled.td`
-  padding-bottom: 8px;
+
     color: #898989;
     font-size: 11px;
     /* border: 1px solid red; */
@@ -126,7 +96,7 @@ export const ModalTitle= styled.h2`
     width: 106px;
   `
     export const DescriptionBlock= styled.td`
-  padding-bottom: 8px;
+
     color: #898989;
     font-size: 11px;
         border-bottom: 1px solid #f5f2ea;
@@ -140,7 +110,7 @@ export const ModalTitle= styled.h2`
     } */
   `
     export const AmountBlock= styled.td`
-  padding-bottom: 8px;
+
     color: #898989;
     font-size: 11px;
         border-bottom: 1px solid #f5f2ea;
@@ -149,7 +119,7 @@ export const ModalTitle= styled.h2`
 
   `
     export const PriceBlock= styled.td`
-  padding-bottom: 8px;
+
     color: #898989;
     font-size: 11px;
       border-bottom: 1px solid #f5f2ea;
@@ -166,6 +136,43 @@ export const ModalTitle= styled.h2`
   border: none;
   background: transparent;
   `
+
+export const Thumb = styled.tr`
+  position: relative;
+
+  /* Стилі для Thumb при наведенні */
+  &:hover {
+    /* Додайте бажані стилі для Thumb при наведенні тут */
+    /* Наприклад, змінюємо фон або кольори тексту */
+    background-color: #f0f0f0;
+    color: #333;
+    
+    /* Застосовуємо стилі до внутрішнього DeleteBtn */
+    ${DeleteIcon} {
+      fill: red; /* Змінюємо колір DeleteBtn на червоний */
+      
+    }
+  }
+
+  /* Стилі для псевдоелемента ::before */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<BsFillTrash3Fill/>");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: color 0.3s ease-in-out;
+    
+  }
+`;
+
+
 
 export const ItemNameLink = styled(Link)`
   color: black;
