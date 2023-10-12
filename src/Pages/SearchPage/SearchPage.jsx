@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 
 import { selectSearchQuery } from "../../redux/search/selectors.js";
 
-import { ProductListContainer, ProductItem } from "./SearchPage.styled";
+import ProductsList from "../../modules/components/ProductsList/ProductsList.jsx";
+import { Container } from "../../modules/components/Container.js";
 
 const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
@@ -15,14 +16,11 @@ const SearchPage = () => {
   }
 
   return (
-    <ProductListContainer>
-      <h1>Пошук</h1>
-      {searchQuery.map((product) => (
-        <ProductItem key={product.id}>
-          <h3>{product.name}</h3>
-        </ProductItem>
-      ))}
-    </ProductListContainer>
+    <main>
+      <Container>
+        <ProductsList items={searchQuery} />
+      </Container>
+    </main>
   );
 };
 
