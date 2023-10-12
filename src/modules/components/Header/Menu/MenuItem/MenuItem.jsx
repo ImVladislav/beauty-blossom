@@ -10,9 +10,12 @@ import {
   RightIcon,
   DownIcon,
 } from "./MenuItem.styled";
+// import { useLocation } from "react-router-dom";
 
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
+  // const { pathname } = useLocation();
+  // console.log(pathname);
 
   const handleMouseEnter = () => {
     setExpanded(true);
