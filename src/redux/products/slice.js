@@ -1,10 +1,11 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { getGoods } from "../operations";
 
-import data from "./../../tovary.json";
+const initialState = []; 
 
 const productsSlice = createSlice({
   name: "products",
-  initialState: data,
+  initialState, 
   reducers: {
     addProduct: {
       reducer: (state, { payload }) => {
@@ -22,6 +23,11 @@ const productsSlice = createSlice({
     deleteProduct: (state, { payload }) => {
       return state.filter(({ id }) => id !== payload);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getGoods.fulfilled, (state, action) => {
+      return action.payload; // Замініть стан даними з getGoods
+    });
   },
 });
 
