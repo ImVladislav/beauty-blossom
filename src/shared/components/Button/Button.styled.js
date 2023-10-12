@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ButtonStyle = styled.button`
-  background-color: ${(p) => (p.disabled ? "#ccc" : "#FF49AB")};
+  background-color: ${(p) => (p.disabled ? "#ccc" : "#A03DA9")};
   color: #f9f8f6;
   padding: 10px 20px;
   border: none;

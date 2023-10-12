@@ -208,7 +208,7 @@ const Button = styled.button`
 const SliderHeaderToggle = styled.button`
     border: none;
     padding: 3px;
-    color: #FF49AB;
+     color: ${(p) => p.theme.colors.accentColor};
     background-color: transparent;
     font-size: 29px;
     font-weight: bold;
@@ -285,13 +285,13 @@ useEffect(() => {
         <div>
             <SliderContainer>
                 <SliderHeaderToggle
-                    style={{ color: showSale ? "#e93f11" : "#FF49AB" }}
+                    style={{ color: showSale ? "#e93f11" : "#A03DA9" }}
                     onClick={toggleSaleFilter}
                 >
                     Розпродаж
                 </SliderHeaderToggle>
                 <SliderHeaderToggle
-                    style={{ color: showNew ? "#7baf35" : "#FF49AB" }}
+                    style={{ color: showNew ? "#7baf35" : "#A03DA9" }}
                     onClick={toggleNewFilter}
                 >
                     Новинка
@@ -306,7 +306,7 @@ useEffect(() => {
                     <NextPrevButtonSvg
               style={{
                             
-                            fill: currentSlide === 0 ? "#ffffff" : "#FF49AB",
+                            fill: currentSlide === 0 ? "#ffffff" : "#A03DA9",
                         }}
                     />
                 </Button>
@@ -329,7 +329,7 @@ useEffect(() => {
                 >
                     <NextPrevButtonSvg
               style={{
-                            fill: currentSlide === Math.max(0, products.length - 5) ? "#ffffff" : "#FF49AB",
+                            fill: currentSlide === Math.max(0, products.length - 5) ? "#ffffff" : "#A03DA9",
                         }}
                     />
                 </Button>

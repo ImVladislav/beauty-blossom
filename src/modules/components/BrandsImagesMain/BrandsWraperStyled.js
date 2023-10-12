@@ -49,7 +49,7 @@ export const BrandLink = styled(Link)`
         box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
         z-index: 3;
         cursor: pointer;
-        fill: #FF49AB;
+         fill: ${(p) => p.theme.colors.accentColor};
     }
     }
 `

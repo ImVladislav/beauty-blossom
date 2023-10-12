@@ -37,7 +37,7 @@ export const FormInput= styled.input`
 export const ModalSend= styled.button`
     color: #f9f8f6;
     border: 0;
-    background: #FF49AB;
+    background: ${(p) => p.theme.colors.accentColor};
     box-shadow: none;
     width: 135px;
     height: 40px;
