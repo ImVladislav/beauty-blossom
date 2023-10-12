@@ -31,17 +31,22 @@ export const ListSub = styled.ul`
 
   column-gap: 20px;
   padding: 20px 20px 0;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: ${(p) => p.theme.colors.menuBg};
 `;
 
 export const ItemSub = styled.li`
-  display: table;
-  break-inside: avoid-column;
+  /* display: table;
+  break-inside: avoid-column; */
   padding-bottom: 20px;
 `;
 
 export const WrapItem = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 export const RightIcon = styled(AiOutlineRight)`
   width: 25px;

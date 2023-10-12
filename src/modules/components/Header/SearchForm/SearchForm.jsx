@@ -14,6 +14,7 @@ import {
 
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
