@@ -3,11 +3,16 @@ export const theme = {
   colors: {
     white: "#ffffff",
     black: "#000000",
-    accentColor: "#A03DA9",
+    accentColor: "#833989",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
-    secondaryColor: "#A03DA9",
+    heroBtn: "#A03DA9",
     bgImage: bannerImg,
+    topHeaderLine: '#FFF2AB',
+    textColor:'#504056',
+    title: '#504056',
+    heroTitle: '#C14CAF',
+
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
