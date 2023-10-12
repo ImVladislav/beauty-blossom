@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getProducts } from "../../../redux/products/selectors";
@@ -13,8 +13,8 @@ import { getGoods } from "../../../redux/operations";
 
 const Category = () => {
   const items = useSelector(getProducts);
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getGoods()).then((resultAction) => {
       if (getGoods.fulfilled.match(resultAction)) {
