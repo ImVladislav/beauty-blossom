@@ -1,9 +1,10 @@
 export const selectFilterBrand = (store) => {
-  const { filter, products } = store;
+  const { filter, goods } = store;
   if (!filter) {
-    return products;
+    return goods;
   }
-  const result = products.filter(({ brand }) => {
+
+  const result = goods.items.filter(({ brand }) => {
     return brand.toLowerCase().includes(filter.toLowerCase());
   });
   return result;

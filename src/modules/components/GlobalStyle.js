@@ -4,7 +4,7 @@ import "modern-normalize";
 export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
-  font-family: "Montserrat",sans-serif;
+  font-family: 'Alegreya Sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
