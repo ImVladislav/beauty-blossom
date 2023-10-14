@@ -10,6 +10,18 @@ export const Item = styled.li`
   margin: 0;
   padding: 5px;
   position: relative;
+
+  &:hover{
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 0px;
+
+  transition: 0.3s;
+  box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1);
+ 
+
+}
+
 `;
 
 export const Link = styled(NavLink)`
@@ -34,19 +46,30 @@ export const ListSub = styled.ul`
   position: absolute;
   left: 100%;
   top: 0;
-  background: ${(p) => p.theme.colors.menuBg};
+  background: ${(p) => p.theme.colors.topHeaderLine};
+
 `;
 
 export const ItemSub = styled.li`
   /* display: table;
   break-inside: avoid-column; */
   padding-bottom: 20px;
+
+    &:hover{
+  color: #ffffff;
+  font-size: 18px;
+  border-radius: 0px;
+
+  transition: 0.3s;
+  box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1);
+    }
 `;
 
 export const WrapItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
 `;
 export const RightIcon = styled(AiOutlineRight)`
   width: 25px;
