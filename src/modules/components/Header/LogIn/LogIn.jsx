@@ -9,7 +9,7 @@ const LogIn = () => {
   };
 
   return (
-    <Link href="#" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+    <Link href="/beauty-blossom/cabinet/" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
       <LogInElips>
         <LogInIcon />
       </LogInElips>
@@ -17,16 +17,16 @@ const LogIn = () => {
         <DropDown >
           <ul>
             <ListItem>
-              <a href="#">Особисті дані</a>
+              <a href="/beauty-blossom/cabinet/">Особисті дані</a>
             </ListItem>
             <ListItem>
-              <a href="#">Замовлення</a>
+              <a href="/beauty-blossom/cabinet/history">Замовлення</a>
             </ListItem>
             <ListItem>
-              <a href="#">Список бажань</a>
+              <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
             </ListItem>
             <ListItem>
-              <a href="#">Вихід</a>
+              <a href="/">Вихід</a>
             </ListItem>
           </ul>
         </DropDown>
