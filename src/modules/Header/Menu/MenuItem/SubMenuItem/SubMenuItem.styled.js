@@ -11,16 +11,6 @@ export const Item = styled.li`
   padding: 5px;
   position: relative;
 
-  &:hover{
-  color: #ffffff;
-  font-size: 18px;
-  border-radius: 0px;
-
-  transition: 0.3s;
-  box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1);
- 
-
-}
 
 `;
 
@@ -55,14 +45,6 @@ export const ItemSub = styled.li`
   break-inside: avoid-column; */
   padding-bottom: 20px;
 
-    &:hover{
-  color: #ffffff;
-  font-size: 18px;
-  border-radius: 0px;
-
-  transition: 0.3s;
-  box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1);
-    }
 `;
 
 export const WrapItem = styled.div`
