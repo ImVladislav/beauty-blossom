@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "../../modules/components/Container";
+import { Container } from "../../shared/styles/Container";
 import {
   CheckBox,
   ConditionsList,
@@ -20,25 +20,24 @@ import {
   Text,
   Title,
 } from "./SaleProgramPageStyled";
-import { CloseButton } from "../../modules/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
+import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import Button from "../../shared/components/Button/Button";
-
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-const [userDetails, setUserDetails] = useState({
-  firstName: "",
-  lastName: "",
-  country: "",
-  city: "",
-  shopTypes: {
-    onlineShop: false,
-    offlineShop: false,
-    socialMedia: false,
-  },
-  link: "",
-});
+  const [userDetails, setUserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    country: "",
+    city: "",
+    shopTypes: {
+      onlineShop: false,
+      offlineShop: false,
+      socialMedia: false,
+    },
+    link: "",
+  });
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -159,7 +158,9 @@ const [userDetails, setUserDetails] = useState({
             <ModalForm>
               <FormLavelBloks>
                 <Label>
-                  <ModalText>Ваше ім'я<ReqStar>*</ReqStar></ModalText>
+                  <ModalText>
+                    Ваше ім'я<ReqStar>*</ReqStar>
+                  </ModalText>
                   <Input
                     type="text"
                     placeholder="Ваше ім'я"
@@ -172,12 +173,13 @@ const [userDetails, setUserDetails] = useState({
                     }
                     required
                   />
-                  
-
                 </Label>
                 <Label>
-                  <ModalText>Ваше прізвище<ReqStar>*</ReqStar></ModalText>
-                  <Input type="text"
+                  <ModalText>
+                    Ваше прізвище<ReqStar>*</ReqStar>
+                  </ModalText>
+                  <Input
+                    type="text"
                     placeholder="Ваше прізвище"
                     value={userDetails.lastName}
                     onChange={(e) =>
@@ -192,9 +194,12 @@ const [userDetails, setUserDetails] = useState({
               </FormLavelBloks>
               <FormLavelBloks>
                 <Label>
-                  <ModalText>Країна<ReqStar>*</ReqStar></ModalText>
-            
-                  <Input type="text"
+                  <ModalText>
+                    Країна<ReqStar>*</ReqStar>
+                  </ModalText>
+
+                  <Input
+                    type="text"
                     placeholder="Країна"
                     value={userDetails.country}
                     onChange={(e) =>
@@ -207,9 +212,12 @@ const [userDetails, setUserDetails] = useState({
                   />
                 </Label>
                 <Label>
-                  <ModalText>Місто<ReqStar>*</ReqStar></ModalText>
-    
-                  <Input type="text"
+                  <ModalText>
+                    Місто<ReqStar>*</ReqStar>
+                  </ModalText>
+
+                  <Input
+                    type="text"
                     placeholder="Країна"
                     value={userDetails.city}
                     onChange={(e) =>
@@ -225,61 +233,66 @@ const [userDetails, setUserDetails] = useState({
               <FormLavelBloks>
                 <Label>
                   <ModalText>Тип магазину</ModalText>
-            
-<ul>
-  <ModalShopTypeItem>
-    <CheckBox
-      type="checkbox"
-      checked={userDetails.shopTypes.onlineShop} // Оновлено
-      onChange={(e) =>
-        setUserDetails({
-          ...userDetails,
-          shopTypes: {
-            ...userDetails.shopTypes,
-            onlineShop: e.target.checked,
-          },
-        })
-      }
-    />
-    <ModalShopTypeText> Онлайн магазин</ModalShopTypeText>
-  </ModalShopTypeItem>
-  <ModalShopTypeItem>
-    <CheckBox
-      type="checkbox"
-      checked={userDetails.shopTypes.offlineShop} // Оновлено
-      onChange={(e) =>
-        setUserDetails({
-          ...userDetails,
-          shopTypes: {
-            ...userDetails.shopTypes,
-            offlineShop: e.target.checked,
-          },
-        })
-      }
-    />
-    <ModalShopTypeText>Офлайн точка продажу:</ModalShopTypeText>
-  </ModalShopTypeItem>
-  <ModalShopTypeItem>
-    <CheckBox
-      type="checkbox"
-      checked={userDetails.shopTypes.socialMedia} // Оновлено
-      onChange={(e) =>
-        setUserDetails({
-          ...userDetails,
-          shopTypes: {
-            ...userDetails.shopTypes,
-            socialMedia: e.target.checked,
-          },
-        })
-      }
-    />
-    <ModalShopTypeText>Сторінка у соцмережах:</ModalShopTypeText>
-  </ModalShopTypeItem>
-</ul>
+
+                  <ul>
+                    <ModalShopTypeItem>
+                      <CheckBox
+                        type="checkbox"
+                        checked={userDetails.shopTypes.onlineShop} // Оновлено
+                        onChange={(e) =>
+                          setUserDetails({
+                            ...userDetails,
+                            shopTypes: {
+                              ...userDetails.shopTypes,
+                              onlineShop: e.target.checked,
+                            },
+                          })
+                        }
+                      />
+                      <ModalShopTypeText> Онлайн магазин</ModalShopTypeText>
+                    </ModalShopTypeItem>
+                    <ModalShopTypeItem>
+                      <CheckBox
+                        type="checkbox"
+                        checked={userDetails.shopTypes.offlineShop} // Оновлено
+                        onChange={(e) =>
+                          setUserDetails({
+                            ...userDetails,
+                            shopTypes: {
+                              ...userDetails.shopTypes,
+                              offlineShop: e.target.checked,
+                            },
+                          })
+                        }
+                      />
+                      <ModalShopTypeText>
+                        Офлайн точка продажу:
+                      </ModalShopTypeText>
+                    </ModalShopTypeItem>
+                    <ModalShopTypeItem>
+                      <CheckBox
+                        type="checkbox"
+                        checked={userDetails.shopTypes.socialMedia} // Оновлено
+                        onChange={(e) =>
+                          setUserDetails({
+                            ...userDetails,
+                            shopTypes: {
+                              ...userDetails.shopTypes,
+                              socialMedia: e.target.checked,
+                            },
+                          })
+                        }
+                      />
+                      <ModalShopTypeText>
+                        Сторінка у соцмережах:
+                      </ModalShopTypeText>
+                    </ModalShopTypeItem>
+                  </ul>
                 </Label>
                 <Label>
                   <ModalText>Посилання:</ModalText>
-                  <Input type="text"
+                  <Input
+                    type="text"
                     placeholder="myshop.com"
                     value={userDetails.link}
                     onChange={(e) =>
@@ -288,20 +301,19 @@ const [userDetails, setUserDetails] = useState({
                         link: e.target.value,
                       })
                     }
-
                   />
-                 
                 </Label>
               </FormLavelBloks>
               <FormLavelBloks>
-              <Button  text={'Зареєструватись'}
-                onClick={() => {
-                  console.log("Дані з форми ModalForm:", userDetails);
-                }}
-              />
-              
-            <Button text={'Закрити'} onClick={closeModal} />
-            </FormLavelBloks>
+                <Button
+                  text={"Зареєструватись"}
+                  onClick={() => {
+                    console.log("Дані з форми ModalForm:", userDetails);
+                  }}
+                />
+
+                <Button text={"Закрити"} onClick={closeModal} />
+              </FormLavelBloks>
             </ModalForm>
           </ModalContent>
         </ModalBackground>

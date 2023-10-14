@@ -15,7 +15,7 @@ import {
   Info,
 } from "./ProductPage.styled";
 import Button from "../../shared/components/Button/Button";
-import QuickOrderModal from "../../modules/components/QuickOrderModal/QuickOrderModal";
+import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
 import { getGoods } from "../../redux/operations";
 
 const ProductPage = () => {

@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 
 import { selectSearchQuery } from "../../redux/search/selectors.js";
 
-import ProductsList from "../../modules/components/ProductsList/ProductsList.jsx";
-import { Container } from "../../modules/components/Container.js";
+import ProductsList from "../../shared/components/ProductsList/ProductsList.jsx";
+import { Container } from "../../shared/styles/Container";
 
 const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);

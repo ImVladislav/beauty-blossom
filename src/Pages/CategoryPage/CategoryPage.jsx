@@ -1,6 +1,6 @@
 import React from "react";
 
-import Category from "../../modules/components/Category/Category";
+import Category from "../../modules/Category/Category";
 
 const CategoryPage = () => {
   return (
