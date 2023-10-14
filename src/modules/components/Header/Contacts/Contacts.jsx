@@ -5,10 +5,10 @@ import { ContactsElips, ContactsIcon, Link, Wrap } from "./contacts.styled";
 const Contacts = () => {
   return (
     <Wrap>
-      <ContactsElips>
-        <ContactsIcon />
-      </ContactsElips>
-      <Link href="tel:+380440000000">044 000-00-00</Link>
+      <ContactsElips >
+        <ContactsIcon/>
+      </ContactsElips >
+      <Link href="tel:+380500529100">+380500529100</Link>
     </Wrap>
   );
 };

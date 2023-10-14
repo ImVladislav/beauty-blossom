@@ -4,29 +4,31 @@ import { BsSearch } from "react-icons/bs";
 export const SearchFormContainer = styled.div`
   text-align: center;
   position: relative;
-  width: 350px;
+  width: 410px;
+
   &:hover,
   &:focus {
     border: 2px solid ${(p) => p.theme.colors.accentColor};
-    border-radius: 5px;
+    border-radius: 50px;
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
+    
   }
 `;
 
 export const SearchInput = styled.input`
-  border-radius: 5px;
+  border-radius: 50px;
   outline: none;
 
   box-sizing: border-box;
   width: 100%;
   height: 50px;
-  padding: 0px 36px 0px 12px;
+  padding: 0px 16px 0px 42px;
   background: rgb(255, 255, 255);
   font-size: 18px;
   border: 1px solid rgb(212, 212, 212);
-  color: rgb(0, 0, 0);
+  color: ${(p) => p.theme.colors.color504056};
   &:hover,
   &:focus {
     outline: 2px solid ${(p) => p.theme.colors.accentColor};
@@ -40,7 +42,7 @@ export const SearchButton = styled.button`
 
   position: absolute;
   top: 0px;
-  right: 0px;
+  left: 0px;
   bottom: 0px;
   width: 50px;
 

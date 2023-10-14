@@ -18,7 +18,7 @@ import {
   ReturnBTN,
   Thumb,
 } from './ShopingListStyled';
-import SubmitBtn from '../ReusebleCompoments/SubmitBtn/SubmitBtn';
+import SubmitBtn from '../../ReusebleCompoments/SubmitBtn/SubmitBtn';
 import { FaArrowLeft } from "react-icons/fa";
 
 
