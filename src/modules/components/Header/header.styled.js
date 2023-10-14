@@ -7,7 +7,7 @@ export const ContainerHeader = styled.header`
 `;
 
 export const Container = styled.div`
-  background: #f9f8f6;
+  background: white;
 `;
 export const HeaderTop = styled.div`
   color: #000;
@@ -38,7 +38,13 @@ export const Wrap = styled.div`
 export const WrapContacts = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+
+
+`;
+
+export const LoginShipingThumb = styled.div`
+margin-left: 90px;
+display: flex;
 `;
 
 export const Link = styled.a`
@@ -53,7 +59,7 @@ export const MenuBottom = styled.div`
   position: relative;
   top: 20px;
   margin: -20px 0 20px;
-  background: #e8dfd8;
+  background: ${(p) => p.theme.colors.topHeaderLine};
   color: #000;
 `;
 export const MenuWrap = styled.div`

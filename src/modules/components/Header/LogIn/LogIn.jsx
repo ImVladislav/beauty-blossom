@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link, LogInElips, LogInIcon, DropDown, ListItem } from "./login.styled";
 
-const LogIn = () => {
+const
+   
+   
+  LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {
@@ -10,9 +13,9 @@ const LogIn = () => {
 
   return (
     <Link href="/beauty-blossom/cabinet/" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-      <LogInElips>
+
         <LogInIcon />
-      </LogInElips>
+
       {showDropdown && (
         <DropDown >
           <ul>

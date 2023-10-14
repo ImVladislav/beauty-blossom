@@ -2,6 +2,7 @@ import PhoneSVG from "../../Images/phone.svg";
 import { useState } from "react";
 import { ContactGroup, ContactItem, ContactTitle, ContactWraper, Phone } from "./FooterContactsStyled";
 import {ModalWindow} from "../ModalWindow/ModalWindow"
+import Contacts from "../../Header/Contacts/Contacts";
 
 export const FooterContacts = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,8 +20,8 @@ export const FooterContacts = () => {
         <ContactWraper>
                     
             <ContactGroup>
-                <Phone src={PhoneSVG} alt="Phone Icon" />
-                <ContactItem href="tel:+380440000000">044 000-00-00</ContactItem>
+                <Contacts />
+                
                 <ContactItem href="#" onClick={openModal}>
                     Перетелефонувати вам?
                 </ContactItem>

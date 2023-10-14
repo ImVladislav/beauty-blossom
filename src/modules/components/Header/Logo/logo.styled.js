@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 export const LogoImg = styled.img`
-  width: 235px;
-  transition: width 0.5s ease; /* Додали перехід для властивості width */
-  &:hover{
-    z-index: 9;
-    width: 280px;
-  }
+  width: 250px;
+
 `
 export const Link = styled.a`
   display: flex;

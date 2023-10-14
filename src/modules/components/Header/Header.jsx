@@ -10,7 +10,6 @@ import menuItems from "./menuItems.json";
 import {
   Container,
   ContainerHeader,
-  Link,
   MenuBottom,
   HeaderTop,
   Wrap,
@@ -23,9 +22,11 @@ import {
   MenuColumn,
   MenuSection,
   MenuProducts,
+  LoginShipingThumb,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
-import ShoppingCart from "../ShopingList/ShopingList";
+import ShoppingCart from "./ShopingList/ShopingList";
+import Email from "./Email/Email";
 
 export const Header = () => {
   return (
@@ -44,12 +45,13 @@ export const Header = () => {
                 <Wrap>
                   <WrapContacts>
                     <Contacts />
-                    <Link href="#">Перезвонити вам?</Link>
+                    <Email/>
                   </WrapContacts>
-
+                  <LoginShipingThumb>
                   <LogIn />
-
-                  <ShoppingCart />
+                    <ShoppingCart />
+                  </LoginShipingThumb>
+                    
                 </Wrap>
               </WrapTop>
             </HeaderLayout>

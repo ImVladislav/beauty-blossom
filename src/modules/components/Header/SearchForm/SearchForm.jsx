@@ -40,6 +40,7 @@ const SearchForm = () => {
 
   return (
     <SearchFormContainer>
+      
       <form onSubmit={handleSubmit}>
         <SearchInput
           type="text"

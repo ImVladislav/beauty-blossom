@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { BsFillPersonFill } from "react-icons/bs";
+import { ReactComponent as userIcon } from '../../Images/newUser.svg'
 
 export const Link = styled.a`
-padding: 10px;
+padding: 3px;
 `;
 
 export const LogInElips = styled.div`
@@ -24,10 +24,13 @@ export const LogInElips = styled.div`
   }
 `;
 
-export const LogInIcon = styled(BsFillPersonFill)`
-  width: 20px;
-  height: 20px;
-  color: #d2b9a6;
+export const LogInIcon = styled(userIcon)`
+  width: 28px;
+  height: 28px;
+  fill: ${(p) => p.theme.colors.color504056};
+    &:hover {
+ fill: ${(p) => p.theme.colors.accentColor};
+    }
 `;
 
 export const DropDown = styled.div`

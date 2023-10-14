@@ -6,4 +6,5 @@ export const List = styled.ul`
   justify-content: space-between;
   width: 100%;
   height: 100%;
+  color: red;
 `;

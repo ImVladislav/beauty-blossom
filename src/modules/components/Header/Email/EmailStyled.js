@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as PhoneIcon } from "../../Images/newPhone.svg";
+import { ReactComponent as EmailIcon } from "../../Images/newEmail.svg";
 
 
 
@@ -11,7 +11,7 @@ export const ContactsElips = styled.div`
 
 `;
 
-export const ContactsIcon = styled(PhoneIcon)`
+export const ContactsIcon = styled(EmailIcon)`
   width: 28px;
   height: 28px;
   fill: ${(p) => p.theme.colors.color504056};

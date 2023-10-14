@@ -8,11 +8,11 @@ export const theme = {
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
     bgImage: bannerImg,
-    topHeaderLine: '#FFF2AB',
+    topHeaderLine: '#FFF3B6',
     textColor:'#504056',
     title: '#504056',
     heroTitle: '#C14CAF',
-
+    color504056: "#504056"
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

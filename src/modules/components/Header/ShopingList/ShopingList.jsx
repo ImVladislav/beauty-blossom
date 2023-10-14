@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { BasketIcon, ModalBackground, OpenModal, Thumb } from "./ShopingListStyled"
+import { ModalBackground, OpenModal } from "./ShopingListStyled"
 import CartModal from './CartModal';
+import { CorzinaIcon } from '../../ReusebleCompoments/StyleSVGIcons';
 
 
 const ShoppingCart = () => {
@@ -34,7 +35,7 @@ const ShoppingCart = () => {
   return (
     <div>
       
-      <OpenModal onClick={openModal}><BasketIcon/></OpenModal>
+      <OpenModal onClick={openModal}><CorzinaIcon/></OpenModal>
       {isModalOpen && <ModalBackground>
         <CartModal cartItems={cartItems} closeModal={closeModal} />
         </ModalBackground>}
