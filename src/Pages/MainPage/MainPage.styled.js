@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import bg from "../../images/bannerPopularBrands.jpg";
+import bg from "../../images/banner.png";
+import product from "../../images/productsBaner.png";
+
 
 export const MainBanner = styled.img`
   width: 100%;
-  /* max-width: 1440px; */
+
 `;
 export const StyledLink = styled(Link)`
   width: 396px;
@@ -16,14 +18,13 @@ export const StyledLink = styled(Link)`
   text-align: center;
   justify-content: center;
   align-items: center;
-  /* margin-left: auto;
-    margin-right: auto;  */
+
   font-weight: bold;
   text-decoration: none;
   font-size: 28px;
-  /* margin-bottom: 270px; */
 
-  margin-left: 145px;
+
+
 
   transition: color 1s ease;
   color: ${(p) => p.theme.colors.accentColor};
@@ -34,9 +35,25 @@ export const StyledLink = styled(Link)`
 `;
 
 export const TextBlock = styled.div`
-  display: block;
-  margin-left: 900px;
-  margin-bottom: 250px;
+    display: flex;
+    margin-left: 760px;
+    /* margin-bottom: 150px; */
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 650px;
+`;
+
+export const Product = styled.img`
+width: 1200px;
+
+`;
+
+export const ProductImg = styled.div`
+/* right: 400px; */
+left: -200px;
+ position: absolute;
+
 `;
 
 export const Thumb = styled.div`
@@ -45,6 +62,7 @@ export const Thumb = styled.div`
 
   text-align: center;
   background-image: url(${bg});
+
   margin-left: auto;
   margin-right: auto;
   background-size: cover;
@@ -59,6 +77,7 @@ export const BannerTitle = styled.h3`
   justify-content: center;
   color: ${(p) => p.theme.colors.accentColor};
   font-size: 70px;
+  font-weight: 700;
 `;
 
 export const Background = styled.div`
@@ -76,4 +95,8 @@ export const BannerSubTitle = styled.h4`
   display: flex;
   justify-content: center;
   /* padding-left: 58%; */
+`;
+export const BottomBanerText = styled.p`
+    margin-top: 150px;
+    margin-left: auto;
 `;

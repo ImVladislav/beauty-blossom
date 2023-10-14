@@ -3,7 +3,7 @@ import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../shared/styles/Container";
 import Banner from "../../images/bannerPopularBrands.jpg";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-
+import product from "../../images/productsBaner.png";
 import {
   MainBanner,
   BannerTitle,
@@ -12,6 +12,9 @@ import {
   Background,
   BannerSubTitle,
   TextBlock,
+  ProductImg,
+  Product,
+  BottomBanerText,
 } from "./MainPage.styled";
 
 const MainPage = () => {
@@ -20,16 +23,24 @@ const MainPage = () => {
       <Container style={{ maxWidth: "100%" }}>
         {/* <MainBanner src={Banner} alt="banner" /> */}
         <Thumb>
+          <Container>
+          
+        <ProductImg >
+          <Product src={product} alt="product"/>
+          </ProductImg>
           <TextBlock>
             <BannerTitle>
-              Популярні <br /> корейські бренди
+              ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
             </BannerTitle>
             <BannerSubTitle>
               {" "}
-              Великий асортимент та оригінальні товари{" "}
+              ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
             </BannerSubTitle>
-            <StyledLink to="/wholesaleProgram">Оптова співпраця</StyledLink>
-          </TextBlock>
+            <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
+              <BottomBanerText> *ТИСНИ ЩОБ ДІЗНАТИСЬ УМОВИ</BottomBanerText>
+            </TextBlock>
+
+            </Container>
         </Thumb>
       </Container>
       <ProductSlider />

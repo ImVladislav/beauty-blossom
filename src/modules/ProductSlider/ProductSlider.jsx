@@ -1,87 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import NextPrevButtonSvg from "../Images/NextPrev.svg"
 import { ReactComponent as NextPrevButtonSvg } from "../../images/NextPrev.svg";
 import { useSelector } from "react-redux";
-import {
-  // selectNew,
-  // selectSale,
-  selectorGoods,
-} from "../../redux/products/selectors";
+import { selectorGoods } from "../../redux/products/selectors";
 
-// Дані з товарами (ваші дані)
-// const products = [
-//   {
-//     id: 1,
-//     name: "Скраб ким чен ин",
-//     image: "посилання на фото товару 1",
-//     isSale: true, // Розпродаж
-//     isNew: false, // Новинка
-//   },
-//   {
-//     id: 2,
-//     name: "Парфум комунізму",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-//   {
-//     id: 3,
-//     name: "Тоталітарний шампунь",
-//     image: "посилання на фото товару 2",
-//     isSale: true, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-//   {
-//     id: 4,
-//     name: "Крем з ядерним еффектом",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: false, // Новинка
-//   },
-//   {
-//     id: 5,
-//     name: "Гель сонце нації",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-//   {
-//     id: 6,
-//     name: "Тональна пудра Кімерсен",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-//   {
-//     id: 7,
-//     name: "ТУТ МОГЛА БУТИ ВАША РЕКЛАМА",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: false, // Новинка
-//   },
-//   {
-//     id: 8,
-//     name: "Зніму порчу не дорого",
-//     image: "посилання на фото товару 2",
-//     isSale: true, // Не розпродаж
-//     isNew: false, // Новинка
-//   },
-//   {
-//     id: 9,
-//     name: "назва товару",
-//     image: "посилання на фото товару 2",
-//     isSale: true, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-//   {
-//     id: 10,
-//     name: "крем від проблем",
-//     image: "посилання на фото товару 2",
-//     isSale: false, // Не розпродаж
-//     isNew: true, // Новинка
-//   },
-// ];
+
 
 const SliderContainer = styled.div`
   display: flex;
@@ -108,6 +31,9 @@ const ProductCard = styled.div`
   text-align: center;
   display: inline-block; /* Вирівнювання в ряд */
   vertical-align: top; /* Вирівнювання вгору */
+  overflow: hidden;
+  position: relative;
+
   &:hover {
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
     z-index: 3;
@@ -116,7 +42,8 @@ const ProductCard = styled.div`
 `;
 
 const ProductImage = styled.img`
-  max-width: 100%;
+  width: 240px;
+  height: 240px;
 `;
 
 const ProductName = styled.h3`
@@ -126,6 +53,8 @@ const ProductName = styled.h3`
 const ProductTags = styled.div`
   display: grid;
   justify-content: space-between;
+  position: absolute;
+  bottom: 60px;
 `;
 
 const SaleTag = styled.span`
@@ -235,6 +164,7 @@ export const ProductSlider = () => {
   };
 
   const handleNextSlide = () => {
+    console.log(displayedProducts);
     const maxSlide = Math.ceil(products.length - itemsPerSlide);
     if (currentSlide < maxSlide) {
       setCurrentSlide(currentSlide + 1);
@@ -253,6 +183,7 @@ export const ProductSlider = () => {
     if (showNew) {
       setShowNew(false);
     }
+
   };
 
   const toggleNewFilter = () => {
@@ -260,6 +191,7 @@ export const ProductSlider = () => {
     if (showSale) {
       setShowSale(false);
     }
+    
   };
 
   useEffect(() => {
@@ -269,17 +201,17 @@ export const ProductSlider = () => {
       }
       if (showSale) {
         setCurrentSlide(0);
-        return product.isSale;
+        return product.sale;
       }
       if (showNew) {
         setCurrentSlide(0);
-        return product.isNew;
+        return product.new;
       }
       return true; // Показати всі товари, якщо фільтри не активовані
     });
 
     setFilteredProduct(filteredProducts);
-  }, [showSale, showNew]);
+  }, [showSale, showNew, products]);
 
   return (
     <div>
@@ -312,15 +244,17 @@ export const ProductSlider = () => {
 
         {displayedProducts.map((filtred) => (
           <ProductCard key={filtred.id}>
-            <ProductImage src={filtred.image} alt={filtred.name} />
+            <ProductImage src={filtred.images} alt={filtred.name} >
+
+              </ProductImage>
             <ProductName>{filtred.name}</ProductName>
             <ProductTags>
-              {filtred.isSale && (
+              {filtred.sale && (
                 <SaleTag>
                   <TagText>Розпродаж</TagText>
                 </SaleTag>
               )}
-              {filtred.isNew && (
+              {filtred.new && (
                 <NewTag>
                   <TagText>Новинка</TagText>
                 </NewTag>
@@ -328,25 +262,24 @@ export const ProductSlider = () => {
             </ProductTags>
           </ProductCard>
         ))}
-        <Button
-          style={{ transform: "rotate(180deg)" }}
-          onClick={handleNextSlide}
-          disabled={currentSlide === products.length - 5}
-          className={
-            currentSlide === Math.max(0, products.length - 5)
-              ? "icon-disabled"
-              : ""
-          }
-        >
+<Button
+  style={{ transform: "rotate(180deg)" }}
+  onClick={handleNextSlide}
+  disabled={
+    currentSlide >= Math.max(0, products.length - 5) ||
+    displayedProducts.length < 5
+  }
+  className={currentSlide === products.length - 2 ? "icon-disabled" : ""}
+>
           <NextPrevButtonSvg
-            style={{
-              fill:
-                currentSlide === Math.max(0, products.length - 5)
-                  ? "#ffffff"
-                  : "#A03DA9",
-            }}
-          />
-        </Button>
+    style={{
+      fill:
+        displayedProducts.length < 5
+          ? "#ffffff"
+          : "#A03DA9",
+    }}
+  />
+</Button>
       </SliderContainer>
     </div>
   );
