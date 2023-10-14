@@ -1,10 +1,9 @@
-// export const selectSearchQuery = (store) => store.search;
 export const selectSearchQuery = (store) => {
-  const { search, products } = store;
+  const { search, goods } = store;
   if (!search) {
-    return products;
+    return goods;
   }
-  const result = products.filter(({ name }) => {
+  const result = goods.items.filter(({ name }) => {
     return name.toLowerCase().includes(search.toLowerCase());
   });
   return result;

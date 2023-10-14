@@ -1,36 +1,19 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { getGoods } from "../operations";
 
-const initialState = []; 
-
-const productsSlice = createSlice({
-  name: "products",
-  initialState, 
-  reducers: {
-    addProduct: {
-      reducer: (state, { payload }) => {
-        state.push(payload);
-      },
-      prepare: (data) => {
-        return {
-          payload: {
-            id: nanoid(),
-            ...data,
-          },
-        };
-      },
-    },
-    deleteProduct: (state, { payload }) => {
-      return state.filter(({ id }) => id !== payload);
-    },
-  },
+export const goodsSlice = createSlice({
+  name: "goods",
+  initialState: { items: [] }, // Змінено ініціалізацію початкового стану
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getGoods.fulfilled, (state, action) => {
-      return action.payload; // Замініть стан даними з getGoods
-    });
+    builder
+      .addCase(getGoods.fulfilled, (state, action) => {
+        state.items = action.payload; // Оновлюємо поле 'items' з отриманими товарами
+      })
+      .addCase(getGoods.rejected, (state, action) => {
+        // Обробка помилки
+      });
   },
 });
 
-export const { addProduct, deleteProduct } = productsSlice.actions;
-
-export default productsSlice.reducer;
+export const goodsReducer = goodsSlice.reducer;

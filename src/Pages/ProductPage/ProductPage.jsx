@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProducts } from "../../redux/products/selectors";
+// import { } from "../../redux/products/selectors";
 import { addToCart } from "../../redux/cart/slice";
 
 import {
@@ -16,13 +16,14 @@ import {
 } from "./ProductPage.styled";
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/components/QuickOrderModal/QuickOrderModal";
+import { getGoods } from "../../redux/operations";
 
 const ProductPage = () => {
   const [inCart, setInCart] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(getProducts);
+  const products = useSelector(getGoods);
   console.log(products);
 
   const product = products.find((item) => +item.id === +id);
