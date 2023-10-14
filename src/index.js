@@ -9,7 +9,7 @@ import store from "./redux/store";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-import { GlobalStyle } from "./modules/components/GlobalStyle";
+import { GlobalStyle } from "./shared/styles/GlobalStyle";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
-import { SharedLayout } from "./modules/components/SharedLayout/SharedLayout";
+import { SharedLayout } from "./modules/SharedLayout/SharedLayout";
 
-import { theme } from "./modules/components/theme";
+import { theme } from "./shared/styles/theme";
 
 import MainPage from "./pages/MainPage/MainPage";
 import SaleProgramPage from "./pages/SaleProgramPage/SaleProgramPage";
@@ -19,9 +19,6 @@ import DiscountPage from "./pages/DiscountPage/DiscountPage";
 import UserData from "./pages/UserPage/UserData";
 import UserPage from "./pages/UserPage/UserPage";
 import PaymentHistory from "./pages/UserPage/PaymentHistory";
-
-
-
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -41,21 +38,20 @@ function App() {
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/brands/:brands" element={<BrandsPage />} />
           <Route path="/news" element={<NewPage />} />
-          <Route path="/discount" element={<p>Discount Page</p>} />
+          <Route path="/discount" element={<DiscountPage />} />
           <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
 
-            <Route path="/news" element={<NewPage />} />
-            <Route path="/discount" element={<DiscountPage />} />
-            <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/news" element={<NewPage />} />
+          <Route path="/discount" element={<DiscountPage />} />
+          <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
 
-
-           <Route path="/cabinet" element={<UserData/>} />
-            <Route path="/cabinet/history" element={<PaymentHistory/>} />
-            <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
+          <Route path="/cabinet" element={<UserData />} />
+          <Route path="/cabinet/history" element={<PaymentHistory />} />
+          <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
         </Route>
         <Route>
           <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
@@ -66,9 +62,5 @@ function App() {
 }
 
 export default App;
-
-
-
-
 
 // rafc

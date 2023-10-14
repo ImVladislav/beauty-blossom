@@ -1,13 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
-import { selectSale } from "../../redux/products/selectors";
-
-import { Container } from "../../shared/styles/Container";
+import { selectorGoods } from "../../redux/products/selectors";
 import ProductsList from "../../shared/components/ProductsList/ProductsList";
+import { Container } from "../../shared/styles/Container";
 
-const DiscountPage = () => {
-  const items = useSelector(selectSale);
+const Category = () => {
+  const items = useSelector(selectorGoods);
+  // console.log(items);
 
   return (
     <main>
@@ -18,4 +17,4 @@ const DiscountPage = () => {
   );
 };
 
-export default DiscountPage;
+export default Category;
