@@ -140,7 +140,9 @@ export const Input = styled.input`
         /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
-        
+        &.error{
+            color: red
+        }
 `
 export const ModalShopTypeItem= styled.li`
     display: flex;

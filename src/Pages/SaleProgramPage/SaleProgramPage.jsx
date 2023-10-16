@@ -22,11 +22,16 @@ import {
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import Button from "../../shared/components/Button/Button";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operation";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
+  // const [formSubmitted, setFormSubmitted] = useState(false);
   const [userDetails, setUserDetails] = useState({
+    email: "",
+    password: "",
     firstName: "",
     lastName: "",
     country: "",
@@ -39,12 +44,34 @@ const SaleProgramPage = () => {
     link: "",
   });
 
+  const dispatch = useDispatch();
+  
+    const registerDispatch = () => {
+    dispatch(register({ userDetails }));
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const subForm = (e) => {
+    e.preventDefault();
+    console.log(userDetails);
+    registerDispatch();
+  };
+
+  const isPasswordValid = (password) => {
+    const trimmedPassword = password.trim();
+    return trimmedPassword.length >= 6;
+  };
+
+  const isEmailValid = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
   };
 
   return (
@@ -151,11 +178,53 @@ const SaleProgramPage = () => {
           <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
         </section>
       </div>
-      {isModalOpen && (
-        <ModalBackground>
-          <ModalContent>
-            <CloseButton close={() => setIsModalOpen(false)} />
-            <ModalForm>
+     {isModalOpen && (
+          <ModalBackground>
+            <ModalContent>
+              <CloseButton close={() => setIsModalOpen(false)} />
+              <ModalForm onSubmit={subForm}>
+                <FormLavelBloks>
+                  <Label>
+                    <ModalText>
+                      Пошта<ReqStar>*</ReqStar>
+                    </ModalText>
+<Input
+  type="text"
+  placeholder="Пошта"
+  className={ userDetails.email.trim() === "" ? "error" : ""}
+  onChange={(e) => {
+    const email = e.target.value;
+    if (isEmailValid(email)) {
+      setUserDetails({ ...userDetails, email });
+    }
+  }}
+  required
+/>
+                  </Label>
+                  <Label>
+                    <ModalText>
+                      Пароль<ReqStar>*</ReqStar>
+                    </ModalText>
+<Input
+  type="password" // Використовуйте type="password" для пароля
+  placeholder="Пароль"
+className={ userDetails.password.trim() === "" ? "error" : ""}
+  onChange={(e) => {
+    const password = e.target.value;
+    if (isPasswordValid(password)) {
+      setUserDetails({ ...userDetails, password });
+    }
+  }}
+  required
+/>
+                    <span
+                      onClick={() => setShowPassword(!showPassword)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {showPassword ? "🙈" : "👁️"}
+                    </span>
+                  </Label>
+                </FormLavelBloks>
               <FormLavelBloks>
                 <Label>
                   <ModalText>
