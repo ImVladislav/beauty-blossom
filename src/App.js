@@ -19,6 +19,7 @@ import DiscountPage from "./pages/DiscountPage/DiscountPage";
 import UserData from "./pages/UserPage/UserData";
 import UserPage from "./pages/UserPage/UserPage";
 import PaymentHistory from "./pages/UserPage/PaymentHistory";
+import SortCategory from "./modules/Category/SortCategory/SortCategory";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -35,6 +36,7 @@ function App() {
           <Route path="/login" element={<p>Login Page</p>} />
           <Route path="/registration" element={<p>Registration Page</p>} />
           <Route path="/category" element={<CategoryPage />} />
+          <Route path="/category/:category" element={<SortCategory />} />
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/brands/:brands" element={<BrandsPage />} />
           <Route path="/news" element={<NewPage />} />
@@ -52,10 +54,9 @@ function App() {
           <Route path="/cabinet" element={<UserData />} />
           <Route path="/cabinet/history" element={<PaymentHistory />} />
           <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
-        </Route>
-        <Route>
           <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
         </Route>
+        <Route></Route>
       </Routes>
     </ThemeProvider>
   );
