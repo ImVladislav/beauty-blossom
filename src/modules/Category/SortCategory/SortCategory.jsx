@@ -2,24 +2,33 @@ import React from "react";
 import {
   selectFilterCategory,
   selectFilterCategorySub,
+  selectFilterCategorySubSub,
 } from "../../../redux/filter/selectors";
-import { selectorGoods } from "../../../redux/products/selectors";
+
 import { useSelector } from "react-redux";
+
 import { Container } from "../../../shared/styles/Container";
 import ProductsList from "../../../shared/components/ProductsList/ProductsList";
 
 const SortCategory = () => {
-  const items = useSelector(selectFilterCategory);
-  const itemsSub = useSelector(selectFilterCategorySub);
+  const categoryItems = useSelector(selectFilterCategory);
+  const subCategoryItems = useSelector(selectFilterCategorySub);
+  const subSubCategoryItems = useSelector(selectFilterCategorySubSub);
 
-  if (items.length === 0) {
-    items = itemsSub;
+  let products = categoryItems;
+
+  if (products.length === 0) {
+    products = subCategoryItems;
   }
-  console.log(itemsSub);
+
+  if (products.length === 0) {
+    products = subSubCategoryItems;
+  }
+
   return (
     <main>
       <Container>
-        <ProductsList items={items} />
+        <ProductsList items={products} />
       </Container>
     </main>
   );

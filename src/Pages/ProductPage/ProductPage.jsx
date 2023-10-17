@@ -16,17 +16,16 @@ import {
 } from "./ProductPage.styled";
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
-import { getGoods } from "../../redux/operations";
+import { selectorGoods } from "../../redux/products/selectors";
 
 const ProductPage = () => {
   const [inCart, setInCart] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(getGoods);
-  console.log(products);
+  const products = useSelector(selectorGoods);
 
-  const product = products.find((item) => +item.id === +id);
+  const product = products?.find((item) => +item.id === +id);
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
@@ -40,7 +39,7 @@ const ProductPage = () => {
   return (
     <PageContainer>
       <div>
-        <ProductImage src={product.image} alt={product.name} />
+        <ProductImage src={product.images} alt={product.name} />
       </div>
       <Info>
         <WrapName>

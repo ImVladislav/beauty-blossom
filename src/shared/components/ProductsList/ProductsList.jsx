@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import ProductCard from "../ProductCard/ProductCard";
-import { Container } from "../../styles/Container";
+
 import Pagination from "../../../shared/components/Pagination/Pagination";
 
 import { ProductListContainer } from "./ProductsList.styled";
