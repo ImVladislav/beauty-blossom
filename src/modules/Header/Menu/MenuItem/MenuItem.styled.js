@@ -11,31 +11,25 @@ export const Item = styled.li`
   padding: 5px;
   position: relative;
 
+  background-color: ${(p) => p.theme.colors.topHeaderLine};
 
-background-color: ${(p) => p.theme.colors.topHeaderLine};
+  border: solid ${(p) => p.theme.colors.topHeaderLine} 0px;
 
-border: solid ${(p) => p.theme.colors.topHeaderLine} 0px;
+  border-radius: 1px;
+  transition: 556ms;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-border-radius: 1px;
-transition : 556ms;
-display: flex;
-flex-direction: row;
-align-items: center;
+  &:hover {
+    transition: 556ms;
+    transform: translateY(-3px);
 
-&:hover{
-
-transition : 556ms;
-transform : translateY(-3px);
-
-color: #0066cc;
-border: solid 0px #0066cc;
-transform: translateY(0);
-box-shadow: rgb(0, 0, 0) 1px 11px 10px -8px;
-
-
-}
-
-
+    color: #0066cc;
+    border: solid 0px #0066cc;
+    transform: translateY(0);
+    box-shadow: rgb(0, 0, 0) 1px 11px 10px -8px;
+  }
 `;
 
 export const Link = styled(NavLink)`
@@ -53,17 +47,15 @@ export const Link = styled(NavLink)`
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
   }
-  
 `;
 export const SubMenuWrap = styled.div`
   width: auto;
-  top: 30px;
-  left: -15px;
+  top: 100%;
+  left: 0;
   right: auto;
   border-radius: 0;
   position: absolute;
   background: ${(p) => p.theme.colors.topHeaderLine};
-  
 `;
 
 export const ListSub = styled.ul`
