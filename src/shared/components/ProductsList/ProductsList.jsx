@@ -36,12 +36,13 @@ const ProductsList = ({ items }) => {
           <p>NO PRODUCTS</p>
         )}
       </ProductListContainer>
-
-      <Pagination
-        currentPage={currentPage} //поточна сторінка
-        totalPages={totalPages} //загальна кількість сторінок
-        onPageChange={handlePageChange} //функцію для зміни сторінки
-      />
+      {items.length > itemsPerPage && (
+        <Pagination
+          currentPage={currentPage} //поточна сторінка
+          totalPages={totalPages} //загальна кількість сторінок
+          onPageChange={handlePageChange} //функцію для зміни сторінки
+        />
+      )}
     </main>
   );
 };
