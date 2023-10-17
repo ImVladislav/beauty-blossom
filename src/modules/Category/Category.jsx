@@ -6,7 +6,7 @@ import { Container } from "../../shared/styles/Container";
 
 const Category = () => {
   const items = useSelector(selectorGoods);
-  // console.log(items);
+ 
 
   return (
     <main>
