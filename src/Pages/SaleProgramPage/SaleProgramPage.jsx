@@ -28,26 +28,38 @@ import { register } from "../../redux/auth/operation";
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  // const [formSubmitted, setFormSubmitted] = useState(false);
-  const [userDetails, setUserDetails] = useState({
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    country: "",
-    city: "",
-    shopTypes: {
-      onlineShop: false,
-      offlineShop: false,
-      socialMedia: false,
-    },
-    link: "",
-  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  // const [userDetails, setUserDetails] = useState({
+  //   email: "",
+  //   password: "",
+  //   firstName: "",
+  //   lastName: "",
+  //   country: "",
+  //   city: "",
+  //   shopTypes: {
+  //     onlineShop: false,
+  //     oflineShop: false,
+  //     socialMedia: false,
+  //   },
+  //   link: "",
+  // });
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [onlineShop, setOnlineShop] = useState(false);
+  const [offlineShop, setOflineShop] = useState(false);
+  const [socialMedia, setSocialMedia] = useState(false);
+  const [link, setLink] = useState('');
 
   const dispatch = useDispatch();
   
     const registerDispatch = () => {
-    dispatch(register({ userDetails }));
+      dispatch(register({ email, password, firstName, lastName, country, 
+      city, onlineShop, offlineShop, socialMedia, link}));
   };
 
   const openModal = () => {
@@ -60,8 +72,7 @@ const SaleProgramPage = () => {
 
   const subForm = (e) => {
     e.preventDefault();
-    console.log(userDetails);
-    registerDispatch();
+    registerDispatch()
   };
 
   const isPasswordValid = (password) => {
@@ -191,11 +202,11 @@ const SaleProgramPage = () => {
 <Input
   type="text"
   placeholder="Пошта"
-  className={ userDetails.email.trim() === "" ? "error" : ""}
+  className={email.trim() === "" ? "error" : ""}
   onChange={(e) => {
-    const email = e.target.value;
-    if (isEmailValid(email)) {
-      setUserDetails({ ...userDetails, email });
+    const inputEmail = e.target.value;
+    if (isEmailValid(inputEmail)) {
+      setEmail(inputEmail);
     }
   }}
   required
@@ -206,13 +217,13 @@ const SaleProgramPage = () => {
                       Пароль<ReqStar>*</ReqStar>
                     </ModalText>
 <Input
-  type="password" // Використовуйте type="password" для пароля
+  type="password"
   placeholder="Пароль"
-className={ userDetails.password.trim() === "" ? "error" : ""}
+  className={password.trim() === "" ? "error" : ""}
   onChange={(e) => {
-    const password = e.target.value;
-    if (isPasswordValid(password)) {
-      setUserDetails({ ...userDetails, password });
+    const inputPassword = e.target.value;
+    if (isPasswordValid(inputPassword)) {
+      setPassword(inputPassword);
     }
   }}
   required
@@ -230,18 +241,15 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                   <ModalText>
                     Ваше ім'я<ReqStar>*</ReqStar>
                   </ModalText>
-                  <Input
-                    type="text"
-                    placeholder="Ваше ім'я"
-                    value={userDetails.firstName}
-                    onChange={(e) =>
-                      setUserDetails({
-                        ...userDetails,
-                        firstName: e.target.value,
-                      })
-                    }
-                    required
-                  />
+<Input
+  type="text"
+  placeholder="Ваше ім'я"
+  value={firstName}
+  onChange={(e) =>
+    setFirstName(e.target.value)
+  }
+  required
+/>
                 </Label>
                 <Label>
                   <ModalText>
@@ -250,12 +258,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                   <Input
                     type="text"
                     placeholder="Ваше прізвище"
-                    value={userDetails.lastName}
+                    value={lastName}
                     onChange={(e) =>
-                      setUserDetails({
-                        ...userDetails,
-                        lastName: e.target.value,
-                      })
+                      setLastName(e.target.value)
                     }
                     required
                   />
@@ -270,12 +275,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                   <Input
                     type="text"
                     placeholder="Країна"
-                    value={userDetails.country}
+
                     onChange={(e) =>
-                      setUserDetails({
-                        ...userDetails,
-                        country: e.target.value,
-                      })
+                      setCountry(e.target.value)
                     }
                     required
                   />
@@ -288,12 +290,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                   <Input
                     type="text"
                     placeholder="Країна"
-                    value={userDetails.city}
+
                     onChange={(e) =>
-                      setUserDetails({
-                        ...userDetails,
-                        city: e.target.value,
-                      })
+                      setCity(e.target.value)
                     }
                     required
                   />
@@ -307,15 +306,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                     <ModalShopTypeItem>
                       <CheckBox
                         type="checkbox"
-                        checked={userDetails.shopTypes.onlineShop} // Оновлено
+                        checked={onlineShop} // Оновлено
                         onChange={(e) =>
-                          setUserDetails({
-                            ...userDetails,
-                            shopTypes: {
-                              ...userDetails.shopTypes,
-                              onlineShop: e.target.checked,
-                            },
-                          })
+                          setOnlineShop(e.target.checked)
                         }
                       />
                       <ModalShopTypeText> Онлайн магазин</ModalShopTypeText>
@@ -323,15 +316,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                     <ModalShopTypeItem>
                       <CheckBox
                         type="checkbox"
-                        checked={userDetails.shopTypes.offlineShop} // Оновлено
+                        checked={offlineShop} // Оновлено
                         onChange={(e) =>
-                          setUserDetails({
-                            ...userDetails,
-                            shopTypes: {
-                              ...userDetails.shopTypes,
-                              offlineShop: e.target.checked,
-                            },
-                          })
+                          setOflineShop(e.target.checked)
                         }
                       />
                       <ModalShopTypeText>
@@ -341,15 +328,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                     <ModalShopTypeItem>
                       <CheckBox
                         type="checkbox"
-                        checked={userDetails.shopTypes.socialMedia} // Оновлено
+                        checked={socialMedia} // Оновлено
                         onChange={(e) =>
-                          setUserDetails({
-                            ...userDetails,
-                            shopTypes: {
-                              ...userDetails.shopTypes,
-                              socialMedia: e.target.checked,
-                            },
-                          })
+                          setSocialMedia(e.target.checked)
                         }
                       />
                       <ModalShopTypeText>
@@ -363,12 +344,9 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
                   <Input
                     type="text"
                     placeholder="myshop.com"
-                    value={userDetails.link}
+                    value={link}
                     onChange={(e) =>
-                      setUserDetails({
-                        ...userDetails,
-                        link: e.target.value,
-                      })
+                      setLink( e.target.value)
                     }
                   />
                 </Label>
@@ -376,9 +354,7 @@ className={ userDetails.password.trim() === "" ? "error" : ""}
               <FormLavelBloks>
                 <Button
                   text={"Зареєструватись"}
-                  onClick={() => {
-                    console.log("Дані з форми ModalForm:", userDetails);
-                  }}
+                  onClick={ subForm }
                 />
 
                 <Button text={"Закрити"} onClick={closeModal} />
