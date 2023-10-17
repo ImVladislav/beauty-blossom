@@ -1,15 +1,18 @@
 [
   {
+    "level": 1,
     "to": "/category",
     "text": "Категорії",
     "children": [
       {
+        "level": 2,
         "to": "/category/facial",
         "text": "Догляд за обличчям",
         "children": [
           {
+            "level": 3,
             "to": "/category/facial/masks",
-            "text": "Маски",
+            "text": "Маски для обличчя",
             "children": [
               {
                 "to": "/category/facial/masks/alginateMasks",
@@ -29,35 +32,42 @@
             ]
           },
           {
+            "level": 3,
             "to": "/category/facial/moisturizing",
             "text": "Зволоження",
             "children": [
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/cream",
                 "text": "Крем",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/balm",
                 "text": "Бальзам",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/geel",
                 "text": "Гель",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/bridge",
                 "text": "Міст",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/serum",
                 "text": "Сироватка",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/moisturizing/toner",
                 "text": "Тонер",
                 "children": []
@@ -65,20 +75,24 @@
             ]
           },
           {
+            "level": 3,
             "to": "/category/facial/cleaning",
             "text": "Очищення",
             "children": [
               {
+                "level": 4,
                 "to": "/category/facial/cleaning/enzymePowder",
                 "text": "Ензимна пудра",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/cleaning/washingFoam",
                 "text": "Пінка для вмивання",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/cleaning/scrub",
                 "text": "Скраб",
                 "children": []
@@ -86,15 +100,18 @@
             ]
           },
           {
+            "level": 3,
             "to": "/category/facial/lipCare",
             "text": "Догляд за губами",
             "children": [
               {
+                "level": 4,
                 "to": "/category/facial/lipCare/lipBalm",
                 "text": "Бальзам для губ",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/lipCare/lipMask",
                 "text": "Маска для губ",
                 "children": []
@@ -102,15 +119,18 @@
             ]
           },
           {
+            "level": 3,
             "to": "/category/facial/forSkinUnderTheEyes",
             "text": "Для шкіри під очима",
             "children": [
               {
+                "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
                 "text": "Крем під очі",
                 "children": []
               },
               {
+                "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/patches",
                 "text": "Патчі",
                 "children": []
@@ -118,6 +138,7 @@
             ]
           },
           {
+            "level": 3,
             "to": "/category/facial/setForFaceCare",
             "text": "Набір для догляду за обличчям",
             "children": []
@@ -125,6 +146,7 @@
         ]
       },
       {
+        "level": 2,
         "to": "/category/makeup",
         "text": "Макіяж",
         "children": [
@@ -168,6 +190,7 @@
         ]
       },
       {
+        "level": 2,
         "to": "/category/hairCare",
         "text": "Догляд за волоссям",
         "children": [
@@ -204,6 +227,7 @@
         ]
       },
       {
+        "level": 2,
         "to": "/category/bodyCare",
         "text": "Догляд за тілом",
         "children": [
@@ -226,11 +250,13 @@
         ]
       },
       {
+        "level": 2,
         "to": "/category/demacia",
         "text": "Демакіяж",
         "children": []
       },
       {
+        "level": 2,
         "to": "/category/sunProtection",
         "text": "Захист від сонця",
         "children": []
@@ -238,43 +264,50 @@
     ]
   },
   {
+    "level": 1,
     "to": "/brands",
     "text": "Бренди",
     "children": [
       {
+        "level": 2,
         "to": "/brands/daengGiMeoRi",
         "text": "Daeng Gi MeoRi",
         "children": []
       },
-      { "to": "/brands/lador", "text": "Lador", "children": [] },
-      { "to": "/brands/drJart", "text": "Dr. Jart+", "children": [] },
+      { "level": 2, "to": "/brands/lador", "text": "Lador", "children": [] },
       {
+        "level": 2,
+        "to": "/brands/drJart",
+        "text": "Dr. Jart+",
+        "children": []
+      },
+      {
+        "level": 2,
         "to": "/brands/beautyOfJoseon",
         "text": "Beauty Of Joseon",
         "children": []
       },
-      { "to": "/brands/missha", "text": "Missha", "children": [] },
-      { "to": "/brands/mediPeel", "text": "Medi-Peel", "children": [] },
+      { "level": 2, "to": "/brands/missha", "text": "Missha", "children": [] },
       {
+        "level": 2,
+        "to": "/brands/mediPeel",
+        "text": "Medi-Peel",
+        "children": []
+      },
+      {
+        "level": 2,
         "to": "/brands/estheticHouse",
         "text": "Esthetic House",
         "children": []
       },
-      { "to": "/brands/purito", "text": "Purito", "children": [] },
-      { "to": "/brands/masil", "text": "Masil", "children": [] }
+      { "level": 2, "to": "/brands/purito", "text": "Purito", "children": [] },
+      { "level": 2, "to": "/brands/masil", "text": "Masil", "children": [] }
     ]
   },
+  { "level": 1, "to": "/news", "text": "Новинки", "children": [] },
+  { "level": 1, "to": "/discount", "text": "Знижки", "children": [] },
   {
-    "to": "/news",
-    "text": "Новинки",
-    "children": []
-  },
-  {
-    "to": "/discount",
-    "text": "Знижки",
-    "children": []
-  },
-  {
+    "level": 1,
     "to": "/wholesaleProgram",
     "text": "Оптова програма",
     "children": []

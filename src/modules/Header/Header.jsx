@@ -45,13 +45,12 @@ export const Header = () => {
                 <Wrap>
                   <WrapContacts>
                     <Contacts />
-                    <Email/>
+                    <Email />
                   </WrapContacts>
                   <LoginShipingThumb>
-                  <LogIn />
+                    <LogIn />
                     <ShoppingCart />
                   </LoginShipingThumb>
-                    
                 </Wrap>
               </WrapTop>
             </HeaderLayout>
