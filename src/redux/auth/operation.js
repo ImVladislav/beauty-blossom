@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+import { toast } from "react-toastify";
 axios.defaults.baseURL = 'https://beauty-blossom-backend.onrender.com/api';
 
 const token = {
@@ -17,8 +17,16 @@ export const register = createAsyncThunk
 ('auth/register', async (credentials, { rejectWithValue }) => {
   try {
     const res = await axios.post('/auth/register', credentials);
-    return res.data;
+    
+    console.log(res);
+
+    console.log(res.data);
+    
+      return res.data;
   } catch (error) {
+    if (error.response.status === 409) {
+      toast.error("Ви вже зареєстровані!");
+    }
     return rejectWithValue('Server error');
   }
 });
