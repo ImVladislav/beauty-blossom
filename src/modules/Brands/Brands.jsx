@@ -9,7 +9,6 @@ import { Container } from "../../shared/styles/Container";
 const Brands = () => {
   const items = useSelector(selectFilterBrand);
 
-  console.log(items);
   return (
     <main>
       <Container>

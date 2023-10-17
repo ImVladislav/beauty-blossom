@@ -1,10 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = localStorage.getItem("filter") || "";
+
 const filterSlice = createSlice({
   name: "filter",
-  initialState: "",
+  initialState,
   reducers: {
-    setfilter: (state, { payload }) => payload,
+    setfilter: (state, { payload }) => {
+      localStorage.setItem("filter", payload);
+      return payload;
+    },
   },
 });
 
