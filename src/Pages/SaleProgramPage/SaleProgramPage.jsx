@@ -29,20 +29,7 @@ const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
-  // const [userDetails, setUserDetails] = useState({
-  //   email: "",
-  //   password: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   country: "",
-  //   city: "",
-  //   shopTypes: {
-  //     onlineShop: false,
-  //     oflineShop: false,
-  //     socialMedia: false,
-  //   },
-  //   link: "",
-  // });
+  const [isRegistered, setIsRegistered] = useState(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,18 +44,24 @@ const SaleProgramPage = () => {
 
   const dispatch = useDispatch();
   
-    const registerDispatch = () => {
-      dispatch(register({ email, password, firstName, lastName, country, 
-      city, onlineShop, offlineShop, socialMedia, link}));
-  };
+const registerDispatch = () => {
+  dispatch(register({ email, password, firstName, lastName, country, city, onlineShop, offlineShop, socialMedia, link }))
+    .then(() => {
+      setIsRegistered(true);
+    })
+    .catch(() => {
+      setIsRegistered(false); // Скидаємо isRegistered в разі помилки
+    });
+};
 
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+const closeModal = () => {
+  setIsModalOpen(false);
+  setIsRegistered(false); // Скидаємо стан isRegistered
+};
 
   const subForm = (e) => {
     e.preventDefault();
@@ -189,67 +182,72 @@ const SaleProgramPage = () => {
           <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
         </section>
       </div>
-     {isModalOpen && (
-          <ModalBackground>
-            <ModalContent>
-              <CloseButton close={() => setIsModalOpen(false)} />
-              <ModalForm onSubmit={subForm}>
-                <FormLavelBloks>
-                  <Label>
-                    <ModalText>
-                      Пошта<ReqStar>*</ReqStar>
-                    </ModalText>
-<Input
-  type="text"
-  placeholder="Пошта"
-  className={email.trim() === "" ? "error" : ""}
-  onChange={(e) => {
-    const inputEmail = e.target.value;
-    if (isEmailValid(inputEmail)) {
-      setEmail(inputEmail);
-    }
-  }}
-  required
-/>
-                  </Label>
-                  <Label>
-                    <ModalText>
-                      Пароль<ReqStar>*</ReqStar>
-                    </ModalText>
-<Input
-  type="password"
-  placeholder="Пароль"
-  className={password.trim() === "" ? "error" : ""}
-  onChange={(e) => {
-    const inputPassword = e.target.value;
-    if (isPasswordValid(inputPassword)) {
-      setPassword(inputPassword);
-    }
-  }}
-  required
-/>
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {showPassword ? "🙈" : "👁️"}
-                    </span>
-                  </Label>
-                </FormLavelBloks>
+      {isModalOpen && (
+        <ModalBackground>
+          <ModalContent>
+            <CloseButton close={() => setIsModalOpen(false)} />
+            <ModalForm onSubmit={subForm}>
+              <FormLavelBloks>
+                <Label>
+                  <ModalText>
+                    {isRegistered ? "Ви успішно зареєструвалися як оптовий клієнт" : "Пошта*"}
+                  </ModalText>
+                  <ModalText>
+                    Пошта<ReqStar>*</ReqStar>
+                  </ModalText>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Пошта"
+                 
+                    className={email.trim() === "" ? "error" : ""}
+                    onChange={(e) => {
+                      const inputEmail = e.target.value;
+                      if (isEmailValid(inputEmail)) {
+                        setEmail(inputEmail);
+                      }
+                    }}
+                    required
+                  />
+                </Label>
+                <Label>
+                  <ModalText>
+                    Пароль<ReqStar>*</ReqStar>
+                  </ModalText>
+                  <Input
+                    type="password"
+                    placeholder="Пароль"
+                    className={password.trim() === "" ? "error" : ""}
+                    onChange={(e) => {
+                      const inputPassword = e.target.value;
+                      if (isPasswordValid(inputPassword)) {
+                        setPassword(inputPassword);
+                      }
+                    }}
+                    required
+                  />
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {showPassword ? "🙈" : "👁️"}
+                  </span>
+                </Label>
+              </FormLavelBloks>
               <FormLavelBloks>
                 <Label>
                   <ModalText>
                     Ваше ім'я<ReqStar>*</ReqStar>
                   </ModalText>
-<Input
-  type="text"
-  placeholder="Ваше ім'я"
-  value={firstName}
-  onChange={(e) =>
-    setFirstName(e.target.value)
-  }
-  required
-/>
+                  <Input
+                    type="text"
+                    placeholder="Ваше ім'я"
+                    value={firstName}
+                    onChange={(e) =>
+                      setFirstName(e.target.value)
+                    }
+                    required
+                  />
                 </Label>
                 <Label>
                   <ModalText>
@@ -346,7 +344,7 @@ const SaleProgramPage = () => {
                     placeholder="myshop.com"
                     value={link}
                     onChange={(e) =>
-                      setLink( e.target.value)
+                      setLink(e.target.value)
                     }
                   />
                 </Label>
@@ -354,7 +352,7 @@ const SaleProgramPage = () => {
               <FormLavelBloks>
                 <Button
                   text={"Зареєструватись"}
-                  onClick={ subForm }
+                  onClick={subForm}
                 />
 
                 <Button text={"Закрити"} onClick={closeModal} />
