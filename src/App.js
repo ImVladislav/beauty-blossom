@@ -36,7 +36,12 @@ function App() {
           <Route path="/login" element={<p>Login Page</p>} />
           <Route path="/registration" element={<p>Registration Page</p>} />
           <Route path="/category" element={<CategoryPage />} />
-          <Route path="/category/:category" element={<SortCategory />} />
+          <Route path="/category/:category" element={<SortCategory />}></Route>
+          <Route
+            path="/category/:category/:category"
+            element={<SortCategory />}
+          />
+
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/brands/:brands" element={<BrandsPage />} />
           <Route path="/news" element={<NewPage />} />

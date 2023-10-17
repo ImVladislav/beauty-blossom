@@ -32,7 +32,7 @@ const SubMenuItem = ({ item, activeSubMenu, setActiveSubMenu }) => {
   const handleClick = (e) => {
     const name = e.target.innerText;
     dispatch(setfilter(name));
-    console.log(name);
+    // console.log(name);
   };
   return (
     <ItemSub
