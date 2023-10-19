@@ -27,7 +27,6 @@ const SearchPage = () => {
     toast.error("Нічого не знайдено за вашим запитом!");
   }
 
-  // console.log(search);
   return (
     <main>
       <Container>

@@ -14,8 +14,8 @@ export const ButtonStyle = styled.button`
   border-color: #ddd;
 
   &:hover {
-    background-color: ${(p) => (p.disabled ? "#ccc" : "#ff358a")};
-    color: #f9f8f6;
-    border: 1px solid transparent;
+    background-color: ${(p) => p.disabled || "#ff358a"};
+    color: ${(p) => p.disabled || "#f9f8f6"};
+    border: ${(p) => p.disabled || "1px solid transparent"};
   }
 `;

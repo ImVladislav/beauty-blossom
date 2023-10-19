@@ -12,7 +12,6 @@ import {
 import Sticker from "../Sticker/Sticker";
 
 const ProductCard = ({ products }) => {
-  console.log(products);
   return (
     <>
       <ItemStyle>
