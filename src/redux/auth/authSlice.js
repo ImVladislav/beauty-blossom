@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshCurrentUser } from './operations';
+import { register, login, logout, refreshCurrentUser } from './operation';
 
 
 const initialState = {
-  name: null,
+  firstName: null,
   email: null,
   token: null,
   isLoggedIn: false,
@@ -19,12 +19,12 @@ const authSlice = createSlice({
     builder
       .addCase(register.pending, (state, action) => state)
       .addCase(register.fulfilled, (state, action) => {
-        state.name = action.payload.name;
+        state.firstName = action.payload.firstName;
         state.email = action.payload.email;
         state.isRegister = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.name = action.payload.name;
+        state.firstName = action.payload.firstName;
         state.email = action.payload.email;
         state.isLoggedIn = true;
         state.isRegister = true;
@@ -33,7 +33,7 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => state)
       .addCase(login.pending, (state, action) => state)
       .addCase(logout.fulfilled, state => {
-        state.name = null;
+        state.firstName = null;
         state.email = null;
         state.token = null;
         state.isLoggedIn = false;
@@ -43,7 +43,7 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshCurrentUser.fulfilled, (state, action) => {
-        state.name = action.payload.name;
+        state.firstName = action.payload.firstName;
         state.email = action.payload.email;
         state.isLoggedIn = true;
         state.isRegister = true;
