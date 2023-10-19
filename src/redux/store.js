@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 
+
 import filterReducer from "./filter/slice";
 import searchReducer from "./search/slice";
 import cartReducer from "./cart/slice";

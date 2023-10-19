@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { FormikInput, LoginModalText } from './login.styled';
-import { FormLavelBloks } from '../../../pages/SaleProgramPage/SaleProgramPageStyled';
-import Button from '../../../shared/components/Button/Button';
+import { FormikInput, LoginModalText } from '../../modules/Header/LogIn/login.styled';
+
+import Button from '../../shared/components/Button/Button';
  import * as Yup from 'yup';
  import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-import { register } from '../../../redux/auth/operation';
+import { register } from '../../redux/auth/operation';
+import { ChekBoxThumb, FormLavelBloks } from './SaleProgramPageStyled';
  
-const RegisterForm = () => {
-      const initialValues = {
+const OPTSalesRegister = () => {
+
+    const initialValues = {
     email: '',
     password: '',
     firstName: '',
@@ -92,12 +94,41 @@ const RegisterForm = () => {
           <FormikInput type="text" name="lastName" />
           <ErrorMessage name="lastName" component="div" />
                   </div>
-                  </FormLavelBloks>
+                          </FormLavelBloks>
+                          <FormLavelBloks>
         <div>
           <LoginModalText htmlFor="number">Телефон</LoginModalText>
           <FormikInput type="tel" name="number" />
           <ErrorMessage name="number" component="div" />
-        </div>
+                              </div>
+                               <div>
+          <LoginModalText htmlFor="city">Місто</LoginModalText>
+          <FormikInput type="text" name="city" />
+          <ErrorMessage name="city" component="div" />
+                              </div>
+                          </FormLavelBloks>
+                          <FormLavelBloks>
+                          <ChekBoxThumb>
+                              <label>
+             <FormikInput type="checkbox" name="onlineShop" value="onlineShop" />
+             Онлайн магазин
+           </label>
+           <label>
+             <FormikInput type="checkbox" name="offlineShop" value="offlineShop" />
+             Офлайн магазин
+           </label>
+           <label>
+             <FormikInput type="checkbox" name="socialMedia" value="socialMedia" />
+             Сторінка у соц. Мережах
+           </label>
+                              </ChekBoxThumb>
+                                      <div>
+          <LoginModalText htmlFor="link">Посилання на сайт</LoginModalText>
+          <FormikInput type="text" name="link" />
+          <ErrorMessage name="link" component="div" />
+                  </div>
+                              
+                              </FormLavelBloks>
       
               
                       <FormLavelBloks>
@@ -111,7 +142,7 @@ const RegisterForm = () => {
 
  );
 
-
+  
 }
 
-export default RegisterForm
+export default OPTSalesRegister
