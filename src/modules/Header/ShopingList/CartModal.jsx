@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Amount,
   AmountBlock,
@@ -17,7 +18,9 @@ import {
   PriceBlock,
   ReturnBTN,
   Thumb,
+  TextNoProduckts,
 } from "./ShopingListStyled";
+import Button from "../../../shared/components/Button/Button";
 import SubmitBtn from "../../../shared/components/ReusebleCompoments/SubmitBtn/SubmitBtn";
 import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
@@ -99,47 +102,56 @@ const CartModal = ({ closeModal }) => {
     <ModalShopingList>
       <ModalTitle>Корзина</ModalTitle>
       {/* <CloseButton onClick={closeModal}/> */}
-      <table style={{ borderCollapse: "collapse", borderSpacing: "20px" }}>
-        <thead>
-          <tr>
-            <HeaderContent></HeaderContent>
-            <HeaderContent></HeaderContent>
-            <HeaderContent>Товар</HeaderContent>
-            <HeaderContent>Кількість</HeaderContent>
-            <HeaderContent>Вартість</HeaderContent>
-          </tr>
-        </thead>
-        <GoodsBlock>
-          {cartItems.map((item) => (
-            <Thumb key={item.id}>
-              <ImageBlock>
-                <img src={item.images} alt="itemImage" />
-              </ImageBlock>
-              <DescriptionBlock>
-                <ItemNameLink>{item.name}</ItemNameLink>
-              </DescriptionBlock>
-              <AmountBlock>
-                <CounterBlock>
-                  <DecIncBtn onClick={() => item && decreaseQuantity(item.id)}>
-                    -
-                  </DecIncBtn>
-                  {itemQuantities[item.id]}
-                  <DecIncBtn onClick={() => increaseQuantity(item.id)}>
-                    +
-                  </DecIncBtn>
-                </CounterBlock>
-              </AmountBlock>
-              <PriceBlock>
-                {item.price * itemQuantities[item.id]} грн
-              </PriceBlock>
-              <DeleteBtn onClick={() => removeItem(item.id)}>
-                <DeleteIcon />
-              </DeleteBtn>
-            </Thumb>
-          ))}
-        </GoodsBlock>
-      </table>
-      <Amount>Итого {totalCost} грн</Amount>
+      {cartItems.length !== 0 ? (
+        <>
+          <table style={{ borderCollapse: "collapse", borderSpacing: "20px" }}>
+            <thead>
+              <tr>
+                <HeaderContent></HeaderContent>
+                <HeaderContent></HeaderContent>
+                <HeaderContent>Товар</HeaderContent>
+                <HeaderContent>Кількість</HeaderContent>
+                <HeaderContent>Вартість</HeaderContent>
+              </tr>
+            </thead>
+            <GoodsBlock>
+              {cartItems.map((item) => (
+                <Thumb key={item.id}>
+                  <ImageBlock>
+                    <img src={item.images} alt="itemImage" />
+                  </ImageBlock>
+                  <DescriptionBlock>
+                    <ItemNameLink>{item.name}</ItemNameLink>
+                  </DescriptionBlock>
+                  <AmountBlock>
+                    <CounterBlock>
+                      <DecIncBtn
+                        onClick={() => item && decreaseQuantity(item.id)}
+                      >
+                        -
+                      </DecIncBtn>
+                      {itemQuantities[item.id]}
+                      <DecIncBtn onClick={() => increaseQuantity(item.id)}>
+                        +
+                      </DecIncBtn>
+                    </CounterBlock>
+                  </AmountBlock>
+                  <PriceBlock>
+                    {item.price * itemQuantities[item.id]} грн
+                  </PriceBlock>
+                  <DeleteBtn onClick={() => removeItem(item.id)}>
+                    <DeleteIcon />
+                  </DeleteBtn>
+                </Thumb>
+              ))}
+            </GoodsBlock>
+          </table>
+          <Amount>Всього: {totalCost} грн</Amount>
+        </>
+      ) : (
+        <TextNoProduckts>Ви ще нічого не вибрали!</TextNoProduckts>
+      )}
+
       <ButtonContainer>
         <ReturnBTN onClick={closeModal}>
           <FaArrowLeft
@@ -151,13 +163,17 @@ const CartModal = ({ closeModal }) => {
           Повернутись до покупок
         </ReturnBTN>
       </ButtonContainer>
-
       <ButtonContainer style={{ marginLeft: "210px" }}>
-        <SubmitBtn
+        <Button
+          onClick={placeOrder}
+          text="Оформити замовлення"
+          disabled={cartItems.length === 0}
+        />
+        {/* <SubmitBtn
           onClick={placeOrder}
           text="Оформити замовлення"
           style={{ width: "270px" }}
-        />
+        /> */}
       </ButtonContainer>
     </ModalShopingList>
   );
