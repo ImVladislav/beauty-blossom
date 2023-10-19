@@ -20,23 +20,35 @@ import {
 } from "./ShopingListStyled";
 import SubmitBtn from "../../../shared/components/ReusebleCompoments/SubmitBtn/SubmitBtn";
 import { FaArrowLeft } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeQuantityCart,
+  removeCart,
+} from "../../../redux/cart/slice";
+import { selectCart } from "../../../redux/cart/selectors";
 
-const CartModal = ({ cartItems, closeModal }) => {
-  const [cart, setCart] = useState(cartItems);
+const CartModal = ({ closeModal }) => {
+  const cartItems = useSelector(selectCart);
+  // const [cart, setCart] = useState(cartItems);
+  const dispatch = useDispatch();
 
-  // Створюємо об'єкт для зберігання кількості кожного товару
   const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
-      quantities[item.id] = 1; // Початкова кількість для кожного товару
+      quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
       return quantities;
     }, {})
   );
+  // Створюємо об'єкт для зберігання кількості кожного товару
 
   const increaseQuantity = (itemId) => {
-    setItemQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [itemId]: (prevQuantities[itemId] || 0) + 1,
-    }));
+    if (itemQuantities[itemId] > 0) {
+      setItemQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [itemId]: prevQuantities[itemId] + 1,
+      }));
+      dispatch(addToCart({ id: itemId, quantity: itemQuantities[itemId] + 1 }));
+    }
   };
 
   const decreaseQuantity = (itemId) => {
@@ -45,15 +57,25 @@ const CartModal = ({ cartItems, closeModal }) => {
         ...prevQuantities,
         [itemId]: prevQuantities[itemId] - 1,
       }));
+      dispatch(
+        removeQuantityCart({ id: itemId, quantity: itemQuantities[itemId] - 1 })
+      );
+    }
+    if (itemQuantities[itemId] === 1) {
+      removeItem(itemId);
     }
   };
 
   const removeItem = (itemId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== itemId));
+    setItemQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: 0, // Видалити кількість товару
+    }));
+    dispatch(removeCart({ itemId }));
   };
 
   // Розрахунок загальної вартості товарів в корзині
-  const totalCost = cart.reduce(
+  const totalCost = cartItems.reduce(
     (total, item) => total + item.price * itemQuantities[item.id],
     0
   );
@@ -61,7 +83,7 @@ const CartModal = ({ cartItems, closeModal }) => {
   // Функція для оформлення замовлення
   const placeOrder = () => {
     // Створюємо масив товарів у корзині з відповідними кількостями
-    const orderedItems = cart.map((item) => ({
+    const orderedItems = cartItems.map((item) => ({
       ...item,
       quantity: itemQuantities[item.id],
     }));
@@ -88,17 +110,17 @@ const CartModal = ({ cartItems, closeModal }) => {
           </tr>
         </thead>
         <GoodsBlock>
-          {cart.map((item) => (
+          {cartItems.map((item) => (
             <Thumb key={item.id}>
               <ImageBlock>
-                <img src={item.image} alt="itemImage" />
+                <img src={item.images} alt="itemImage" />
               </ImageBlock>
               <DescriptionBlock>
                 <ItemNameLink>{item.name}</ItemNameLink>
               </DescriptionBlock>
               <AmountBlock>
                 <CounterBlock>
-                  <DecIncBtn onClick={() => decreaseQuantity(item.id)}>
+                  <DecIncBtn onClick={() => item && decreaseQuantity(item.id)}>
                     -
                   </DecIncBtn>
                   {itemQuantities[item.id]}

@@ -7,17 +7,44 @@ const cartSlice = createSlice({
     : [],
   reducers: {
     addToCart: (state, action) => {
-      state.push(action.payload);
+      const { id, quantity } = action.payload;
+
+      const existingItem = state.find((item) => item.id === id);
+
+      if (existingItem) {
+        // Якщо товар вже є в корзині, збільшуємо кількість
+        existingItem.quantity = quantity;
+      } else {
+        // Інакше додаємо новий товар до корзини
+        state.push(action.payload);
+      }
+
       localStorage.setItem("cart", JSON.stringify(state));
     },
-    removeFromCart: (state, action) => {
-      const productIdToRemove = action.payload;
-      const updatedCart = state.filter((item) => item.id !== productIdToRemove);
-      state = updatedCart;
-      localStorage.setItem("cart", JSON.stringify(state));
+    removeQuantityCart: (state, action) => {
+      const { id, quantity } = action.payload;
+      const existingItemIndex = state.findIndex((item) => item.id === id);
+
+      if (existingItemIndex !== -1) {
+        const existingItem = state[existingItemIndex];
+
+        if (existingItem.quantity > 1) {
+          existingItem.quantity = quantity;
+        } else {
+          state.splice(existingItemIndex, 1);
+        }
+
+        localStorage.setItem("cart", JSON.stringify(state));
+      }
+    },
+    removeCart: (state, action) => {
+      const { itemId } = action.payload;
+      const updatedCart = state.filter((item) => item.id !== itemId);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return updatedCart;
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeQuantityCart, removeCart } = cartSlice.actions;
 export default cartSlice.reducer;
