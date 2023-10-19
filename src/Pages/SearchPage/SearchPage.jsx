@@ -2,23 +2,36 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
-import { selectSearchQuery } from "../../redux/search/selectors.js";
+import {
+  selectSearchQuery,
+  selectSearchQueryCode,
+} from "../../redux/search/selectors.js";
 
 import ProductsList from "../../shared/components/ProductsList/ProductsList.jsx";
 import { Container } from "../../shared/styles/Container";
 
 const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
+  const searchQueryCode = useSelector(selectSearchQueryCode);
 
+  let search = [...searchQuery];
   if (searchQuery.length === 0) {
-    toast.error("Нічого не знайшла за вашим запитом!");
-    return;
+    // Якщо результати пошуку за текстовим запитом відсутні, використовуємо результати пошуку за кодом
+    search = [...searchQueryCode];
+  } else {
+    // В іншому випадку використовуємо результати пошуку за текстовим запитом
+    search = [...searchQuery];
   }
 
+  if (search.length === 0) {
+    toast.error("Нічого не знайдено за вашим запитом!");
+  }
+
+  // console.log(search);
   return (
     <main>
       <Container>
-        <ProductsList items={searchQuery} />
+        <ProductsList items={search} />
       </Container>
     </main>
   );

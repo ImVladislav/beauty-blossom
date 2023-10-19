@@ -30,7 +30,7 @@ const ProductsList = ({ items }) => {
       <ProductListContainer>
         {getCurrentPageItems().length > 0 ? (
           getCurrentPageItems().map((item) => (
-            <ProductCard key={item.id} product={item} />
+            <ProductCard key={item.id} products={item} />
           ))
         ) : (
           <p>NO PRODUCTS</p>
