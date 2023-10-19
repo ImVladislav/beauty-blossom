@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { ReactComponent as userIcon } from "../../../images/newUser.svg";
 
-export const Link = styled.a`
+export const Link = styled.button`
   padding: 3px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 `;
 
 export const LogInElips = styled.div`
@@ -70,4 +73,51 @@ export const ListItem = styled.li`
       color: #fff;
     }
   }
+`;
+export const Modal = styled.div`
+  width: 500px;
+  height: 329px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: fixed; /* Замініть 'relative' на 'fixed' для розміщення модального вікна відносно вікна браузера */
+  top: 50%; /* Розміщення в вертикальному центрі сторінки */
+  left: 50%; /* Розміщення в горизонтальному центрі сторінки */
+  transform: translate(-50%, -50%); /* Вирівнювання вікна по центру */
+  background-color: #fff;
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+`;
+
+export const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Півпрозорий чорний фон */
+  display: flex;
+  justify-content: center; /* Центруємо горизонтально */
+  align-items: center; /* Центруємо вертикально */
+  z-index: 3;
+`;
+
+
+
+
+export const FormLogin = styled.form`
+  display: table-caption;
+  position: relative;
+
+`;
+export const LoginPasswordToggle = styled.h3`
+  font-weight: bold;
+
+`;
+
+export const LoginModalText = styled.h3`
+  font-weight: bold;
+  display: flex;
+  align-self: center;
+  
+
 `;

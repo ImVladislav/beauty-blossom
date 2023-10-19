@@ -1,40 +1,60 @@
 import React, { useState } from "react";
-import { Link, LogInElips, LogInIcon, DropDown, ListItem } from "./login.styled";
+import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswordToggle } from "./login.styled";
+import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
+import LoginForm from "./LoginForm";
 
-const
-   
-   
-  LogIn = () => {
+const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [loginOrRegister, setLoginOrRegister] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
 
+  const toggleModal = () => {
+    setShowModal(true);
+  };
+  
   return (
-    <Link href="/beauty-blossom/cabinet/" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
-
+    <>
+      <Link onClick={toggleModal}>
         <LogInIcon />
+      </Link>
 
-      {showDropdown && (
-        <DropDown >
-          <ul>
-            <ListItem>
-              <a href="/beauty-blossom/cabinet/">Особисті дані</a>
-            </ListItem>
-            <ListItem>
-              <a href="/beauty-blossom/cabinet/history">Замовлення</a>
-            </ListItem>
-            <ListItem>
-              <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
-            </ListItem>
-            <ListItem>
-              <a href="/">Вихід</a>
-            </ListItem>
-          </ul>
-        </DropDown>
+{showModal && (
+  <ModalBackdrop>
+    <Modal>
+      <CloseButton close={() => setShowModal(false)} />
+            <Link onClick={() => setLoginOrRegister(true)}>
+              <LoginPasswordToggle>Вхід</LoginPasswordToggle>
+            </Link>/<Link onClick={() => setLoginOrRegister(false)}>
+              
+                <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
+              </Link>
+      {loginOrRegister ? (
+        <div>
+          <LoginForm/>
+        </div>
+      ) : (
+        <div>
+          <form>
+            <input type="text" placeholder="Ім'я" />
+            <input type="text" placeholder="Фамілія" />
+            <input type="tel" placeholder="Номер телефону" />
+            <input type="email" placeholder="Емейл" />
+            <button>Зареєструватись</button>
+          </form>
+        </div>
       )}
-    </Link>
+    </Modal>
+  </ModalBackdrop>
+)}
+
+
+
+
+    </>
   );
 };
 

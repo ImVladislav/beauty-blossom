@@ -28,26 +28,28 @@ import { register } from "../../redux/auth/operation";
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
   const [number, setNumber] = useState('');
   const [onlineShop, setOnlineShop] = useState(false);
   const [offlineShop, setOfflineShop] = useState(false); // Поправлено назву змінної
   const [socialMedia, setSocialMedia] = useState(false);
-  const [link, setLink] = useState('');
+  const [link, setLink] = useState("myshop.com");
 
   const dispatch = useDispatch();
   
   const registerDispatch = () => {
-    dispatch(register({ email, password, firstName, lastName, country, number, onlineShop, offlineShop, socialMedia, link }))
+    dispatch(register({ email, password, firstName, lastName, city, number, onlineShop, offlineShop, socialMedia, link }))
       .then(response => {
-        if (response.status === 200) {
+        console.log(response);
+
+        if (response.type === "auth/register/fulfilled") {
+          
           setIsRegistered(true);
         } else {
           setIsRegistered(false);
@@ -59,7 +61,18 @@ const SaleProgramPage = () => {
   };
 
   const openModal = () => {
+    setIsRegistered(false)
     setIsModalOpen(true);
+    setEmail('');
+    setPassword('');
+    setFirstName('');
+    setLastName('');
+    setCity('');
+    setNumber('');
+    setOnlineShop(false);
+    setOfflineShop(false);
+    setSocialMedia(false);
+    setLink("myshop.com");
   };
 
   const closeModal = () => {
@@ -69,12 +82,13 @@ const SaleProgramPage = () => {
 
   const subForm = (e) => {
     e.preventDefault();
+
     registerDispatch();
   };
 
   const isPasswordValid = (password) => {
     const trimmedPassword = password.trim();
-    return trimmedPassword.length >= 6;
+    return trimmedPassword.length;
   };
 
   const isEmailValid = (email) => {
@@ -87,7 +101,7 @@ const SaleProgramPage = () => {
     const phoneRegex = /^\+380\d{9}$/;
     return phoneRegex.test(phoneNumber);
   };
-
+console.log(isRegistered);
   return (
     <Container>
       <div>
@@ -226,21 +240,22 @@ const SaleProgramPage = () => {
                     <Input
                       type="password"
                       placeholder="Пароль"
-                      className={password.trim() === "" ? "error" : ""}
+                      className={password.trim() === "" & password.trim().length > 6 ? "error" : ""}
                       onChange={(e) => {
                         const inputPassword = e.target.value;
-                        if (isPasswordValid(inputPassword)) {
+                        if (isPasswordValid(inputPassword) & inputPassword.length > 6) {
                           setPassword(inputPassword);
                         }
                       }}
                       required
                     />
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {showPassword ? "🙈" : "👁️"}
-                    </span>
+<span
+  onClick={() => setShowPassword(!showPassword)}
+  style={{ cursor: "pointer" }}
+>
+  {showPassword ? "🙈" : "👁️"}
+</span>
+
                   </Label>
                 </FormLavelBloks>
                 <FormLavelBloks>
@@ -277,31 +292,37 @@ const SaleProgramPage = () => {
                   <Label>
                     <ModalText>
                       Номер телефону<ReqStar>*</ReqStar>
-                    </ModalText>
+                      </ModalText>
+
+
+                      
 <Input
-  type="tel" // Змінив тип на "tel" для номеру телефону
-  placeholder="Номер телефону"
-  value={number}
-  onChange={(e) => {
-    const inputNumber = e.target.value;
-    setNumber(inputNumber); // Змінив тут, щоб зберігати всі зміни в змінну `number`
-  }}
-  required
-/>
+  type="tel"
+  placeholder="+38 099 000 00 00"
+  className={(!isValidPhoneNumber(number) || number.trim() === "") ? "error" : ""}
+ 
+                      onChange={(e) => {
+                        const inputNumber = e.target.value;
+                        if (isValidPhoneNumber(inputNumber)) {
+                          setNumber(inputNumber);
+                        }
+                        // &inputNumber.length === 13
+                      }}
+                      required
+                    />
                   </Label>
                   <Label>
                     <ModalText>
                       Місто<ReqStar>*</ReqStar>
                     </ModalText>
-                    <Input
-                      type="text"
-                      placeholder="Місто" // Змінив "Країна" на "Місто"
-                      value={country} // Змінив "city" на "country"
-                      onChange={(e) =>
-                        setCountry(e.target.value)
-                      }
-                      required
-                    />
+<Input
+  type="text"
+  placeholder="Місто"
+  className={city.trim() === "" ? "error" : ""}
+  value={city}
+  onChange={(e) => setCity(e.target.value)}
+  required
+/>
                   </Label>
                 </FormLavelBloks>
                 <FormLavelBloks>
@@ -346,14 +367,13 @@ const SaleProgramPage = () => {
                   </Label>
                   <Label>
                     <ModalText>Посилання:</ModalText>
-                    <Input
-                      type="text"
-                      placeholder="myshop.com"
-                      value={link}
-                      onChange={(e) =>
-                        setLink(e.target.value)
-                      }
-                    />
+<Input
+  type="text"
+  placeholder="myshop.com"
+  className={link.trim() === "" ? "error" : ""}
+  value={link}
+  onChange={(e) => setLink(e.target.value)}
+/>
                   </Label>
                 </FormLavelBloks>
                 <FormLavelBloks>

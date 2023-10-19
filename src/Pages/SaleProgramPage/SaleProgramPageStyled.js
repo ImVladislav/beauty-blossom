@@ -117,6 +117,7 @@ export const FormLavelBloks= styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 14px;
+  position: 'relative';
 `
 export const Label = styled.label`
       
@@ -141,7 +142,7 @@ export const Input = styled.input`
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
         &.error{
-            color: red
+            border: 2px solid red;
         }
 `
 export const ModalShopTypeItem= styled.li`
