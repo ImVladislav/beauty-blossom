@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswordToggle } from "./login.styled";
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,19 +34,13 @@ const LogIn = () => {
                 <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
               </Link>
       {loginOrRegister ? (
-        <div>
+
           <LoginForm/>
-        </div>
+
       ) : (
-        <div>
-          <form>
-            <input type="text" placeholder="Ім'я" />
-            <input type="text" placeholder="Фамілія" />
-            <input type="tel" placeholder="Номер телефону" />
-            <input type="email" placeholder="Емейл" />
-            <button>Зареєструватись</button>
-          </form>
-        </div>
+
+          <RegisterForm/>
+
       )}
     </Modal>
   </ModalBackdrop>

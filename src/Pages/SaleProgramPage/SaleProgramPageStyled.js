@@ -157,3 +157,8 @@ export const ModalShopTypeText= styled.p`
 export const CheckBox = styled.input`
       width: 20px;
       `
+      
+      export const ChekBoxThumb= styled.div`
+    display: grid;
+    justify-items: start;
+`

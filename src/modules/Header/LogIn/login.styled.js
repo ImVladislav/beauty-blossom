@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as userIcon } from "../../../images/newUser.svg";
+import { Field } from "formik";
 
 export const Link = styled.button`
   padding: 3px;
@@ -75,8 +76,8 @@ export const ListItem = styled.li`
   }
 `;
 export const Modal = styled.div`
-  width: 500px;
-  height: 329px;
+  /* width: 500px;
+  height: 329px; */
   padding: 30px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -111,13 +112,25 @@ export const FormLogin = styled.form`
 `;
 export const LoginPasswordToggle = styled.h3`
   font-weight: bold;
-
-`;
-
-export const LoginModalText = styled.h3`
-  font-weight: bold;
-  display: flex;
-  align-self: center;
   
 
 `;
+
+export const LoginModalText = styled.p`
+  font-weight: bold;
+  display: flex;
+  align-self: center;
+  font-size: 25px;
+  
+
+`;
+export const FormikInput = styled(Field)`
+      margin: 10px;
+        border-radius: 12px;
+        /* color: #b2b2b2; */
+        border-color: #b2b2b2;;
+        padding: 10px;
+        /* &:focus-visible{
+            border-color: ${(p) => p.theme.colors.accentColor} !important;
+        } */
+`
