@@ -3,6 +3,14 @@ import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswor
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import { loggedInSelector, userSelector } from "../../../redux/auth/selectors";
+import { useSelector } from "react-redux";
+<<<<<<< Updated upstream
+=======
+
+
+
+>>>>>>> Stashed changes
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -16,12 +24,79 @@ const LogIn = () => {
   const toggleModal = () => {
     setShowModal(true);
   };
+
+  const items = useSelector(userSelector);
+  console.log(items);
+  const isLogin = useSelector(loggedInSelector);
+  console.log(isLogin);
+
+  const handleLinkHover = () => {
+    if (isLogin) {
+      toggleDropdown();
+    }
+  };
+
+  const handleDropdownEnter = () => {
+    if (!isLogin) {
+      setShowModal(true);
+    }
+  };
+
+  const handleDropdownLeave = () => {
+    if (!isLogin) {
+      toggleDropdown();
+    }
+  };
+
   
+<<<<<<< Updated upstream
+
+=======
+  const items = useSelector(userSelector);
+console.log(items);
+  const isLogin = useSelector(loggedInSelector);
+  console.log(isLogin);
+>>>>>>> Stashed changes
   return (
     <>
-      <Link onClick={toggleModal}>
-        <LogInIcon />
-      </Link>
+<Link
+  onClick={isLogin ? toggleModal : null}
+<<<<<<< Updated upstream
+  onMouseEnter={isLogin ? null : handleLinkHover}
+=======
+  onMouseEnter={isLogin ? null : handleDropdownEnter}
+>>>>>>> Stashed changes
+  onMouseLeave={isLogin ? null : handleDropdownLeave}
+>
+  <LogInIcon />
+</Link>
+<<<<<<< Updated upstream
+          <DropDown >
+          <ul>
+            <ListItem>
+              <a href="/beauty-blossom/cabinet/">Особисті дані</a>
+            </ListItem>
+            <ListItem>
+              <a href="/beauty-blossom/cabinet/history">Замовлення</a>
+            </ListItem>
+            <ListItem>
+              <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
+            </ListItem>
+            <ListItem>
+              <a href="/">Вихід</a>
+            </ListItem>
+          </ul>
+        </DropDown>
+            {/* <p>{items}</p> */}
+
+=======
+
+            {/* <p>{items}</p> */}
+
+
+
+
+>>>>>>> Stashed changes
 
 {showModal && (
   <ModalBackdrop>
@@ -32,7 +107,7 @@ const LogIn = () => {
             </Link>/<Link onClick={() => setLoginOrRegister(false)}>
               
                 <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
-              </Link>
+            </Link>
       {loginOrRegister ? (
 
           <LoginForm/>

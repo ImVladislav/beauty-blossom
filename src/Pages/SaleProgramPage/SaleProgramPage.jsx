@@ -1,108 +1,26 @@
 import React, { useState } from "react";
 import { Container } from "../../shared/styles/Container";
 import {
-  CheckBox,
   ConditionsList,
   ConditionsTitle,
-  FormLavelBloks,
-  Input,
-  Label,
   ListItems,
   ModalBackground,
   ModalContent,
-  ModalForm,
-  ModalShopTypeItem,
-  ModalShopTypeText,
-  ModalText,
   OpenModal,
-  ReqStar,
   SubTitle,
   Text,
   Title,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
-import Button from "../../shared/components/Button/Button";
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operation";
 import OPTSalesRegister from "./OPTSalesRegister";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [city, setCity] = useState('');
-  const [number, setNumber] = useState('');
-  const [onlineShop, setOnlineShop] = useState(false);
-  const [offlineShop, setOfflineShop] = useState(false); // Поправлено назву змінної
-  const [socialMedia, setSocialMedia] = useState(false);
-  const [link, setLink] = useState("myshop.com");
-
-  const dispatch = useDispatch();
-  
-  const registerDispatch = () => {
-    dispatch(register({ email, password, firstName, lastName, city, number, onlineShop, offlineShop, socialMedia, link }))
-      .then(response => {
-        console.log(response);
-
-        if (response.type === "auth/register/fulfilled") {
-          
-          setIsRegistered(true);
-        } else {
-          setIsRegistered(false);
-        }
-      })
-      .catch(error => {
-        setIsRegistered(false);
-      });
-  };
 
   const openModal = () => {
-    setIsRegistered(false)
-    setIsModalOpen(true);
-    setEmail('');
-    setPassword('');
-    setFirstName('');
-    setLastName('');
-    setCity('');
-    setNumber('');
-    setOnlineShop(false);
-    setOfflineShop(false);
-    setSocialMedia(false);
-    setLink("myshop.com");
+    setIsModalOpen(true); 
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setIsRegistered(false);
-  };
-
-  const subForm = (e) => {
-    e.preventDefault();
-
-    registerDispatch();
-  };
-
-  const isPasswordValid = (password) => {
-    const trimmedPassword = password.trim();
-    return trimmedPassword.length;
-  };
-
-  const isEmailValid = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
-
-  const isValidPhoneNumber = (phoneNumber) => {
-    // Використовуємо регулярний вираз для перевірки номеру телефону
-    const phoneRegex = /^\+380\d{9}$/;
-    return phoneRegex.test(phoneNumber);
-  };
-console.log(isRegistered);
   return (
     <Container>
       <div>

@@ -8,8 +8,10 @@ import filterReducer from "./filter/slice";
 import searchReducer from "./search/slice";
 import cartReducer from "./cart/slice";
 import { goodsReducer } from "./products/slice";
+import { authReducer } from "./auth/authSlice";
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   filter: filterReducer,
   search: searchReducer,
   cart: cartReducer,

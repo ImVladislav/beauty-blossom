@@ -6,7 +6,7 @@ import Button from '../../shared/components/Button/Button';
  import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operation';
-import { ChekBoxThumb, FormLavelBloks } from './SaleProgramPageStyled';
+import { ChekBoxThumb, FormLavelBloks, FormikChekbox } from './SaleProgramPageStyled';
  
 const OPTSalesRegister = () => {
 
@@ -16,11 +16,12 @@ const OPTSalesRegister = () => {
     firstName: '',
     lastName: '',
     number: null,
-    city: 'місто',
+    city: '',
     link: 'myshop.com',
     onlineShop: false,
     offlineShop: false,
     socialMedia: false,
+    OPTUser: true,
   };
       const [IsRegistered, setIsRegistered] = useState(false);
 
@@ -55,7 +56,8 @@ const OPTSalesRegister = () => {
       city: Yup.string(),
       onlineShop: Yup.boolean(),
       offlineShop: Yup.boolean(),
-      socialMedia: Yup.boolean()
+      socialMedia: Yup.boolean(),
+      OPTUser: Yup.boolean(),
   });
 
     const onSubmit = (values) => {
@@ -64,83 +66,83 @@ const OPTSalesRegister = () => {
 
     }
 
-  return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-          <Form>
-              {IsRegistered ? (
-                  "Ви успішно зареєструвалися як оптовий клієнт"
-              ) : (
-                       <>
-              <FormLavelBloks>
-        <div>
-          <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
-          <FormikInput type="email" name="email" />
-          <ErrorMessage name="email" component="div" />
-        </div>
-        <div>
-          <LoginModalText htmlFor="password">Пароль</LoginModalText>
-          <FormikInput type="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-            </div>
-              </FormLavelBloks>
-              <FormLavelBloks>
-        <div>
-          <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
-          <FormikInput type="text" name="firstName" />
-          <ErrorMessage name="firstName" component="div" />
-        </div>
-        <div>
-          <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
-          <FormikInput type="text" name="lastName" />
-          <ErrorMessage name="lastName" component="div" />
-                  </div>
-                          </FormLavelBloks>
-                          <FormLavelBloks>
-        <div>
-          <LoginModalText htmlFor="number">Телефон</LoginModalText>
-          <FormikInput type="tel" name="number" />
-          <ErrorMessage name="number" component="div" />
-                              </div>
-                               <div>
-          <LoginModalText htmlFor="city">Місто</LoginModalText>
-          <FormikInput type="text" name="city" />
-          <ErrorMessage name="city" component="div" />
-                              </div>
-                          </FormLavelBloks>
-                          <FormLavelBloks>
-                          <ChekBoxThumb>
-                              <label>
-             <FormikInput type="checkbox" name="onlineShop" value="onlineShop" />
-             Онлайн магазин
-           </label>
-           <label>
-             <FormikInput type="checkbox" name="offlineShop" value="offlineShop" />
-             Офлайн магазин
-           </label>
-           <label>
-             <FormikInput type="checkbox" name="socialMedia" value="socialMedia" />
-             Сторінка у соц. Мережах
-           </label>
-                              </ChekBoxThumb>
-                                      <div>
-          <LoginModalText htmlFor="link">Посилання на сайт</LoginModalText>
-          <FormikInput type="text" name="link" />
-          <ErrorMessage name="link" component="div" />
-                  </div>
+    return (
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+            <Form>
+                {IsRegistered ? (
+                    "Ви успішно зареєструвалися як оптовий клієнт"
+                ) : (
+                    <>
+                        <FormLavelBloks>
+                            <div>
+                                <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
+                                <FormikInput type="email" name="email" />
+                                <ErrorMessage name="email" component="div" />
+                            </div>
+                            <div>
+                                <LoginModalText htmlFor="password">Пароль</LoginModalText>
+                                <FormikInput type="password" name="password" />
+                                <ErrorMessage name="password" component="div" />
+                            </div>
+                        </FormLavelBloks>
+                        <FormLavelBloks>
+                            <div>
+                                <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
+                                <FormikInput type="text" name="firstName" />
+                                <ErrorMessage name="firstName" component="div" />
+                            </div>
+                            <div>
+                                <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
+                                <FormikInput type="text" name="lastName" />
+                                <ErrorMessage name="lastName" component="div" />
+                            </div>
+                        </FormLavelBloks>
+                        <FormLavelBloks>
+                            <div>
+                                <LoginModalText htmlFor="number">Телефон</LoginModalText>
+                                <FormikInput type="tel" name="number" />
+                                <ErrorMessage name="number" component="div" />
+                            </div>
+                            <div>
+                                <LoginModalText htmlFor="city">Місто</LoginModalText>
+                                <FormikInput type="text" name="city" />
+                                <ErrorMessage name="city" component="div" />
+                            </div>
+                        </FormLavelBloks>
+                        <FormLavelBloks>
+                            <ChekBoxThumb>
+                                <label>
+                                    <FormikChekbox type="checkbox" name="onlineShop" />
+                                    Онлайн магазин
+                                </label>
+                                <label>
+                                    <FormikChekbox type="checkbox" name="offlineShop" />
+                                    Офлайн магазин
+                                </label>
+                                <label>
+                                    <FormikChekbox type="checkbox" name="socialMedia" />
+                                    Сторінка у соц. Мережах
+                                </label>
+                            </ChekBoxThumb>
+                            <div>
+                                <LoginModalText htmlFor="link">Посилання на сайт</LoginModalText>
+                                <FormikInput type="text" name="link" placeholder="myshop.com" />
+                                <ErrorMessage name="link" component="div" />
+                            </div>
                               
-                              </FormLavelBloks>
+                        </FormLavelBloks>
       
               
-                      <FormLavelBloks>
-            <Button text={"Зареєструватись"}type="submit" />
-                          </FormLavelBloks>
-                          </>
-              )}
-          </Form>
+                        <FormLavelBloks>
+                            <Button text={"Зареєструватись"} type="submit" />
+                        </FormLavelBloks>
+                    </>
+                )}
+            </Form>
 
-      </Formik>
+        </Formik>
 
- );
+    );
 
   
 }

@@ -1,3 +1,4 @@
+import { Field } from "formik";
 import styled from "styled-components";
 
 export const Title= styled.h2`
@@ -161,4 +162,9 @@ export const CheckBox = styled.input`
       export const ChekBoxThumb= styled.div`
     display: grid;
     justify-items: start;
+`
+export const FormikChekbox = styled(Field)`
+    width: 18px;
+    height: 18px;
+    margin: 8px;
 `

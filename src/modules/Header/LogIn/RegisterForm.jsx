@@ -19,6 +19,7 @@ const RegisterForm = () => {
     onlineShop: false,
     offlineShop: false,
     socialMedia: false,
+    OPTUser: false,
   };
       const [IsRegistered, setIsRegistered] = useState(false);
 
@@ -53,7 +54,8 @@ const RegisterForm = () => {
       city: Yup.string(),
       onlineShop: Yup.boolean(),
       offlineShop: Yup.boolean(),
-      socialMedia: Yup.boolean()
+      socialMedia: Yup.boolean(),
+      OPTUser: Yup.boolean()
   });
 
     const onSubmit = (values) => {
