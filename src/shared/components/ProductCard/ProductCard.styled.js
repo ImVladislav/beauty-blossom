@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const ItemStyle = styled.li`
   vertical-align: top;
+  min-width: 350px;
   width: 25%;
 `;
 export const LinkStyle = styled(Link)`
@@ -30,7 +31,10 @@ export const Container = styled.div`
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
   }
 `;
-
+export const ImageWrap = styled.div`
+  position: relative;
+  display: inline-block;
+`;
 export const Image = styled.img`
   max-height: 100%;
   max-width: 100%;

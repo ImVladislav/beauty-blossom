@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-// import { } from "../../redux/products/selectors";
+
 import { addToCart } from "../../redux/cart/slice";
+import { selectorGoods } from "../../redux/products/selectors";
+
+import Button from "../../shared/components/Button/Button";
+import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
+import { Container } from "../../shared/styles/Container";
 
 import {
   PageContainer,
+  ImageWrap,
   ProductImage,
   WrapName,
   ProductName,
   ProductArticle,
   ProductBrand,
   ProductPrice,
+  ProductDescription,
+  ProductTitleDescription,
   Info,
 } from "./ProductPage.styled";
-import Button from "../../shared/components/Button/Button";
-import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
-import { selectorGoods } from "../../redux/products/selectors";
+import SecondButton from "../../shared/components/SecondButton/SecondButton";
+import Sticker from "../../shared/components/Sticker/Sticker";
 
 const ProductPage = () => {
   const [inCart, setInCart] = useState(false);
@@ -25,7 +32,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectorGoods);
 
-  const product = products?.find((item) => +item.id === +id);
+  const product = products?.find((item) => +item.id === +id); // amount, article, brand, code, description, images, name,new,price,priceOPT,sale,category,subCategory,subSubCategory
 
   const handleAddToCart = () => {
     dispatch(addToCart(product));
@@ -37,29 +44,44 @@ const ProductPage = () => {
   };
 
   return (
-    <PageContainer>
-      <div>
-        <ProductImage src={product.images} alt={product.name} />
-      </div>
-      <Info>
-        <WrapName>
-          <ProductName>{product.name}</ProductName>
-          <ProductArticle>
-            <span>Артикул </span>
-            {product.article}
-          </ProductArticle>
-        </WrapName>
-        <ProductBrand>Бренд: {product.brand}</ProductBrand>
-        <ProductPrice>${product.price}</ProductPrice>
-        <Button
-          text={inCart ? "У кошику" : "Купити"}
-          onClick={handleAddToCart}
-          disabled={inCart}
-        />
-        <button onClick={toggleModal}>Швидке замовлення</button>
-        {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
-      </Info>
-    </PageContainer>
+    <Container>
+      <PageContainer>
+        <ImageWrap>
+          <ProductImage src={product.images} alt={product.name} />
+          {product.new && (
+            <Sticker text="Новинка" newproduct={product.new.toString()} />
+          )}
+          {product.sale && (
+            <Sticker text="Розпродаж" saleproduct={product.sale.toString()} />
+          )}
+        </ImageWrap>
+        <Info>
+          <WrapName>
+            <ProductName>{product.name}</ProductName>
+            <ProductArticle>
+              <span>Артикул </span>
+              {product.article}
+            </ProductArticle>
+          </WrapName>
+          <div>Штрих-код: {product.code}</div>
+          <ProductBrand> {product.brand}</ProductBrand>
+          <ProductPrice>{product.price} грн</ProductPrice>
+          <Button
+            text={inCart ? "У кошику" : "Купити"}
+            onClick={handleAddToCart}
+            disabled={inCart}
+          />
+          <SecondButton
+            text="Швидке замовлення"
+            onClick={toggleModal}
+          ></SecondButton>
+          <ProductTitleDescription>Опис</ProductTitleDescription>
+          <ProductDescription>{product.description}</ProductDescription>
+
+          {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
+        </Info>
+      </PageContainer>
+    </Container>
   );
 };
 

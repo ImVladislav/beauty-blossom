@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { ModalBackdrop, ModalContent } from "./QuickOrderModal.styled";
+import {
+  Input,
+  ModalBackdrop,
+  ModalContent,
+  Title,
+  Text,
+} from "./QuickOrderModal.styled";
 import Button from "../../shared/components/Button/Button";
 
 const QuickOrderModal = ({ onClose }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+  const handleOrder = () => {
+    onClose();
+  };
+
   return (
     <ModalBackdrop onClick={onClose}>
-      <ModalContent>
-        <h2>Швидке замовлення</h2>
-        <p>Введіть ім'я, електронну пошту та номер телефону:</p>
-        <input type="text" placeholder="ПІП" />
-        <input type="email" placeholder="Електронна пошта" />
-        <input type="tel" placeholder="Номер телефону" />
-        <Button onClick={onClose} text="Замовити" type="submit">
+      <ModalContent onClick={(e) => e.stopPropagation()}>
+        <Title>Швидке замовлення</Title>
+        <Text>Введіть ім'я, електронну пошту та номер телефону:</Text>
+        <Input
+          type="text"
+          placeholder="ПІП"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <Input
+          type="email"
+          placeholder="Електронна пошта"
+          value={email}
+          onChange={handleEmailChange}
+        />
+        <Input
+          type="tel"
+          placeholder="Номер телефону"
+          value={phone}
+          onChange={handlePhoneChange}
+        />
+        <Button onClick={handleOrder} text="Замовити" type="submit">
           Замовити
         </Button>
       </ModalContent>
