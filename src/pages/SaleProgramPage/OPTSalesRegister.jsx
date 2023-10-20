@@ -7,6 +7,7 @@ import Button from '../../shared/components/Button/Button';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operation';
 import { ChekBoxThumb, FormLavelBloks, FormikChekbox } from './SaleProgramPageStyled';
+import { toast } from 'react-toastify';
  
 const OPTSalesRegister = () => {
 
@@ -31,8 +32,10 @@ const OPTSalesRegister = () => {
   const registerDispatch = (data) => {
     dispatch(register(data))
       .then(response => {
-        console.log(response);
 
+        if (response.payload === "Server error") {
+           toast.error("Користувач з цим номером телефону вже зареєстрований!");
+          } 
         if (response.type === "auth/register/fulfilled") {
           
           setIsRegistered(true);

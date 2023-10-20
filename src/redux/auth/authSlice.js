@@ -10,6 +10,7 @@ const initialState = {
   isRefreshing: false,
   isRegister: false,
 };
+console.log(initialState);
 
 const authSlice = createSlice({
   name: 'auth',
@@ -29,6 +30,7 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRegister = true;
         state.token = action.payload.token;
+        
       })
       .addCase(register.rejected, (state, action) => state)
       .addCase(login.pending, (state, action) => state)

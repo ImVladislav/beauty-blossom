@@ -6,7 +6,8 @@ import Button from '../../../shared/components/Button/Button';
  import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../redux/auth/operation';
- 
+ import { toast } from "react-toastify";
+
 const LoginForm = () => {
       const initialValues = {
     email: '',
@@ -20,10 +21,13 @@ const LoginForm = () => {
   const registerDispatch = (data) => {
     dispatch(login(data))
       .then(response => {
-        console.log(response);
-
-        if (response.type === "auth/login/fulfilled") {
+          console.log(response.payload);
+        if (response.payload === "Email or password invalid") {
+          toast.error("Логін або пароль ваказано не вірно!");
+          } 
           
+        if (response.type === "auth/login/fulfilled") {
+
           setIsLogined(true);
         } else {
           setIsLogined(false);
@@ -69,7 +73,7 @@ const LoginForm = () => {
    
               
                       <FormLavelBloks>
-            <Button text={"Зареєструватись"}type="submit" />
+            <Button text={"Авторизуватись"}type="submit" />
                           </FormLavelBloks>
                           </>
               )}

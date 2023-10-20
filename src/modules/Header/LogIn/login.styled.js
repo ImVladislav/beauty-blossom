@@ -73,8 +73,22 @@ export const ListItem = styled.li`
       background-color: ${(p) => p.theme.colors.accentColor};
       color: #fff;
     }
-  }
-`;
+  }`
+
+
+export const LogOut = styled.button`
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border: none;
+    background: transparent;
+    &:hover {
+      background-color: ${(p) => p.theme.colors.accentColor};
+      color: #fff;
+    }
+`
+
 export const Modal = styled.div`
   /* width: 500px;
   height: 329px; */
