@@ -1,77 +1,54 @@
 import React, { useState } from "react";
-import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswordToggle } from "./login.styled";
+import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswordToggle, LogOut } from "./login.styled";
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { loggedInSelector, userSelector } from "../../../redux/auth/selectors";
-import { useSelector } from "react-redux";
-<<<<<<< Updated upstream
-=======
-
-
-
->>>>>>> Stashed changes
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../redux/auth/operation";
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loginOrRegister, setLoginOrRegister] = useState(false);
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
-
-  const toggleModal = () => {
-    setShowModal(true);
-  };
-
-  const items = useSelector(userSelector);
-  console.log(items);
+  const userName = useSelector(userSelector);
   const isLogin = useSelector(loggedInSelector);
-  console.log(isLogin);
+  const dispatch = useDispatch();
 
-  const handleLinkHover = () => {
-    if (isLogin) {
-      toggleDropdown();
-    }
-  };
-
-  const handleDropdownEnter = () => {
+  const handleModalEnter = () => {
     if (!isLogin) {
       setShowModal(true);
     }
   };
 
-  const handleDropdownLeave = () => {
-    if (!isLogin) {
-      toggleDropdown();
+  const handleDropdownEnter = () => {
+    if (isLogin) {
+        setShowDropdown(true);
     }
   };
 
+  const handleDropdownLeave = () => {
+      setShowDropdown(false);
+  };
   
-<<<<<<< Updated upstream
+  const logoutDispatch = () => {
+    dispatch(logout())
+  };
 
-=======
-  const items = useSelector(userSelector);
-console.log(items);
-  const isLogin = useSelector(loggedInSelector);
-  console.log(isLogin);
->>>>>>> Stashed changes
+
   return (
     <>
-<Link
-  onClick={isLogin ? toggleModal : null}
-<<<<<<< Updated upstream
-  onMouseEnter={isLogin ? null : handleLinkHover}
-=======
-  onMouseEnter={isLogin ? null : handleDropdownEnter}
->>>>>>> Stashed changes
-  onMouseLeave={isLogin ? null : handleDropdownLeave}
->
-  <LogInIcon />
-</Link>
-<<<<<<< Updated upstream
-          <DropDown >
+      <Link
+        onClick={!isLogin ? handleModalEnter : null}
+        onMouseEnter={isLogin ? handleDropdownEnter : null}
+        
+      >
+        <LogInIcon />
+      </Link>
+      {showDropdown && (
+        <DropDown
+        onMouseLeave={handleDropdownLeave}>
           <ul>
             <ListItem>
               <a href="/beauty-blossom/cabinet/">Особисті дані</a>
@@ -83,47 +60,31 @@ console.log(items);
               <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
             </ListItem>
             <ListItem>
-              <a href="/">Вихід</a>
+                   <LogOut onClick={logoutDispatch}>Вихід</LogOut>
             </ListItem>
           </ul>
+
+  
+
         </DropDown>
-            {/* <p>{items}</p> */}
+      )}
+      <p>{userName}</p>
 
-=======
-
-            {/* <p>{items}</p> */}
-
-
-
-
->>>>>>> Stashed changes
-
-{showModal && (
-  <ModalBackdrop>
-    <Modal>
-      <CloseButton close={() => setShowModal(false)} />
+      {showModal && (
+        <ModalBackdrop>
+          <Modal>
+            <CloseButton close={() => setShowModal(false)} />
             <Link onClick={() => setLoginOrRegister(true)}>
               <LoginPasswordToggle>Вхід</LoginPasswordToggle>
-            </Link>/<Link onClick={() => setLoginOrRegister(false)}>
-              
-                <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
             </Link>
-      {loginOrRegister ? (
-
-          <LoginForm/>
-
-      ) : (
-
-          <RegisterForm/>
-
+            /
+            <Link onClick={() => setLoginOrRegister(false)}>
+              <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
+            </Link>
+            {loginOrRegister ? <LoginForm /> : <RegisterForm />}
+          </Modal>
+        </ModalBackdrop>
       )}
-    </Modal>
-  </ModalBackdrop>
-)}
-
-
-
-
     </>
   );
 };

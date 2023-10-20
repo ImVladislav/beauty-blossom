@@ -1,15 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+
 import { toast } from "react-toastify";
 axios.defaults.baseURL = 'https://beauty-blossom-backend.onrender.com/api';
 
-const token = {
+export const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
   },
+  
 };
 
 export const register = createAsyncThunk
@@ -17,10 +20,6 @@ export const register = createAsyncThunk
 ('auth/register', async (credentials, { rejectWithValue }) => {
   try {
     const res = await axios.post('/auth/register', credentials);
-    
-    console.log(res);
-
-    console.log(res.data);
     
       return res.data;
   } catch (error) {
@@ -31,12 +30,12 @@ export const register = createAsyncThunk
   }
 });
 
-export const login = createAsyncThunk
-('auth/login', async (credentials, { rejectWithValue }) => {
+export const login = createAsyncThunk('auth/login', async (credentials, { rejectWithValue }) => {
   try {
     const { data } = await axios.post('/auth/login', credentials);
     token.set(data.token);
-
+    // Зберігаємо токен в Local Storage
+    localStorage.setItem('authToken', data.token);
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

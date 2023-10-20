@@ -6,6 +6,7 @@ import Button from '../../../shared/components/Button/Button';
  import { Formik, Form, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operation';
+import { toast } from 'react-toastify';
  
 const RegisterForm = () => {
       const initialValues = {
@@ -29,8 +30,10 @@ const RegisterForm = () => {
   const registerDispatch = (data) => {
     dispatch(register(data))
       .then(response => {
-        console.log(response);
 
+        if (response.payload === "Server error") {
+           toast.error("Користувач з цим номером телефону вже зареєстрований!");
+          } 
         if (response.type === "auth/register/fulfilled") {
           
           setIsRegistered(true);
