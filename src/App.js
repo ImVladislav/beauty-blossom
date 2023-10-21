@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
 import { SharedLayout } from "./modules/SharedLayout/SharedLayout";
-import { useNavigate } from "react-router-dom";
 import { theme } from "./shared/styles/theme";
 import MainPage from "./pages/MainPage/MainPage";
 import SaleProgramPage from "./pages/SaleProgramPage/SaleProgramPage";
@@ -21,7 +20,7 @@ import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
 import { PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
 
-import { token } from "./redux/auth/operation";
+
   
 function App() {
   // const [goodsData, setGoodsData] = useState(null);

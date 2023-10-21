@@ -1,7 +1,7 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
 // export const getProducts = (store) => store.products;
-export const selectorGoods = (store) => store.goods.items;
+export const selectGoods = (store) => store.goods.items;
 
 // export const goodsSelector = createSelector(
 //   (state) => state.products, // Це посилається на ваш редюсер для товарів

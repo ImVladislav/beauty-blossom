@@ -1,11 +1,9 @@
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../shared/styles/Container";
-import Banner from "../../images/bannerPopularBrands.jpg";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import product from "../../images/productsBaner.png";
 import {
-  MainBanner,
   BannerTitle,
   StyledLink,
   Thumb,

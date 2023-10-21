@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import bg from "../../images/banner.png";
-import product from "../../images/productsBaner.png";
+
 
 
 export const MainBanner = styled.img`

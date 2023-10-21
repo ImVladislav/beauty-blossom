@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as NextPrevButtonSvg } from "../../images/NextPrev.svg";
 import { useSelector } from "react-redux";
-import { selectorGoods } from "../../redux/products/selectors";
+import { selectGoods } from "../../redux/products/selectors";
 
 
 
@@ -147,7 +147,7 @@ const SliderHeaderToggle = styled.button`
 export const ProductSlider = () => {
   // const saleProducts = useSelector(selectSale);// всі sale
   // const newProducts = useSelector(selectNew);// всі new
-  const products = useSelector(selectorGoods); // всі продукти
+  const products = useSelector(selectGoods); // всі продукти
 
   const [filteredProduct, setFilteredProduct] = useState(products);
 
