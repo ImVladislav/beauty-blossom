@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { addToCart } from "../../redux/cart/slice";
-import { selectorGoods } from "../../redux/products/selectors";
+import { selectGoods } from "../../redux/products/selectors";
 
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
@@ -31,7 +31,7 @@ const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(selectorGoods);
+  const products = useSelector(selectGoods);
   const productCart = useSelector(selectCart);
 
   const product = products?.find((item) => +item.id === +id); // amount, article, brand, code, description, images, name,new,price,priceOPT,sale,category,subCategory,subSubCategory

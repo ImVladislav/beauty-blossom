@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectorGoods } from "../../redux/products/selectors";
+import { selectGoods } from "../../redux/products/selectors";
 import { setfilter } from "../../redux/filter/slice";
 
 import { Container } from "../../shared/styles/Container";
@@ -13,7 +13,7 @@ import {
 } from "./AllBrands.styled";
 
 const AllBrands = () => {
-  const items = useSelector(selectorGoods);
+  const items = useSelector(selectGoods);
   const dispatch = useDispatch();
 
   const handleClick = (e) => {
