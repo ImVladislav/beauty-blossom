@@ -6,7 +6,6 @@ export const ItemSub = styled.li`
   /* display: table;
   break-inside: avoid-column; */
   /* padding-bottom: 20px; */
-
   &:hover {
     background: ${(p) => p.theme.colors.menuHover};
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
@@ -64,15 +63,15 @@ export const DownIcon = styled(AiOutlineDown)`
 `;
 
 export const ListSub = styled.ul`
+  min-width: 220px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-width: 220px;
   min-height: 320px;
   border-radius: 10px;
-  /* columns: 240px auto; */
+  /* columns: 240px auto;
 
-  /* column-gap: 20px; */
+  column-gap: 20px; */
   /* padding: 20px 20px 0; */
   position: absolute;
   left: 100%;
@@ -82,13 +81,13 @@ export const ListSub = styled.ul`
 `;
 
 export const Item = styled.li`
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: space-between;
   list-style: none;
   margin: 0;
   padding: 5px;
-  position: relative;
+  position: relative; */
 
   &:hover {
     /* color: #ffffff;
