@@ -13,12 +13,13 @@ import {
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import OPTSalesRegister from "./OPTSalesRegister";
+import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true); 
+    setIsModalOpen(true);
   };
 
   return (
@@ -129,10 +130,11 @@ const SaleProgramPage = () => {
         <ModalBackground>
           <ModalContent>
             <CloseButton close={() => setIsModalOpen(false)} />
-            <OPTSalesRegister/>
+            <OPTSalesRegister />
           </ModalContent>
         </ModalBackground>
       )}
+      <ScrollToTop />
     </Container>
   );
 };

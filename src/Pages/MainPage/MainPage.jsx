@@ -3,6 +3,7 @@ import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../shared/styles/Container";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import product from "../../images/productsBaner.png";
+import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 import {
   BannerTitle,
   StyledLink,
@@ -22,28 +23,27 @@ const MainPage = () => {
         {/* <MainBanner src={Banner} alt="banner" /> */}
         <Thumb>
           <Container>
-          
-        <ProductImg >
-          <Product src={product} alt="product"/>
-          </ProductImg>
-          <TextBlock>
-            <BannerTitle>
-              ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
-            </BannerTitle>
-            <BannerSubTitle>
-              {" "}
-              ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
-            </BannerSubTitle>
-            <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
+            <ProductImg>
+              <Product src={product} alt="product" />
+            </ProductImg>
+            <TextBlock>
+              <BannerTitle>
+                ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
+              </BannerTitle>
+              <BannerSubTitle>
+                {" "}
+                ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
+              </BannerSubTitle>
+              <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
               <BottomBanerText> *ТИСНИ ЩОБ ДІЗНАТИСЬ УМОВИ</BottomBanerText>
             </TextBlock>
-
-            </Container>
+          </Container>
         </Thumb>
       </Container>
       <ProductSlider />
       <AboutUs />
       <BrandsWraper />
+      <ScrollToTop />
     </Background>
   );
 };

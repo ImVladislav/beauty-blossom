@@ -25,6 +25,7 @@ import {
 import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import Sticker from "../../shared/components/Sticker/Sticker";
 import { selectCart } from "../../redux/cart/selectors";
+import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const ProductPage = () => {
   const [inCart, setInCart] = useState(false);
@@ -92,6 +93,7 @@ const ProductPage = () => {
           {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
         </Info>
       </PageContainer>
+      <ScrollToTop />
     </Container>
   );
 };
