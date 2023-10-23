@@ -5,6 +5,7 @@ import { selectSale } from "../../redux/products/selectors";
 
 import { Container } from "../../shared/styles/Container";
 import ProductsList from "../../shared/components/ProductsList/ProductsList";
+import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const DiscountPage = () => {
   const items = useSelector(selectSale);

@@ -5,6 +5,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import Pagination from "../../../shared/components/Pagination/Pagination";
 
 import { ProductListContainer } from "./ProductsList.styled";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 const itemsPerPage = 12;
 
@@ -43,6 +44,7 @@ const ProductsList = ({ items }) => {
           onPageChange={handlePageChange} //функцію для зміни сторінки
         />
       )}
+      <ScrollToTop />
     </main>
   );
 };
