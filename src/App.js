@@ -19,6 +19,7 @@ import SortCategory from "./modules/Category/SortCategory/SortCategory";
 import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
 import { PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
+import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -51,7 +52,6 @@ function App() {
             path="/category/:category/:category/:category"
             element={<SortCategory />}
           />
-
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/brands/:brands" element={<BrandsPage />} />
           <Route path="/news" element={<NewPage />} />
@@ -59,13 +59,7 @@ function App() {
           <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
-
-          <Route path="/news" element={<NewPage />} />
-          <Route path="/discount" element={<DiscountPage />} />
-          <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-
+          <Route path="/order" element={<OrderPlacement />} />
           <Route
             path="/cabinet"
             element={<PrivateRoute component={UserData} to="/cabinet" />}
@@ -76,7 +70,6 @@ function App() {
               <PrivateRoute component={PaymentHistory} to="/cabinet/history" />
             }
           />
-
           <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
           <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
         </Route>
