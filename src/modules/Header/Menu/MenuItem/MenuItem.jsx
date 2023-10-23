@@ -12,7 +12,7 @@ import {
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
-
+  const [activeSubSubMenu, setActiveSubSubMenu] = useState(null);
   const handleMouseEnter = () => {
     setExpanded(true);
     setActiveSubMenu(item.to); // Встановлюємо активне субменю
@@ -36,7 +36,8 @@ const MenuItem = ({ item }) => {
                 key={childItem.to}
                 item={childItem}
                 activeSubMenu={activeSubMenu} // Передаємо активне субменю
-                setActiveSubMenu={setActiveSubMenu} // Передаємо функцію для оновлення активного субменю
+                setActiveSubMenu={setActiveSubMenu}
+                setActiveSubSubMenu={setActiveSubSubMenu} // Передаємо функцію для оновлення активного субменю
               />
             ))}
           </ListSub>

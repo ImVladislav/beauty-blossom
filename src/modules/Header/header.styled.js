@@ -38,13 +38,11 @@ export const Wrap = styled.div`
 export const WrapContacts = styled.div`
   display: flex;
   flex-direction: column;
-
-
 `;
 
 export const LoginShipingThumb = styled.div`
-margin-left: 90px;
-display: flex;
+  margin-left: 90px;
+  display: flex;
 `;
 
 export const Link = styled.a`
@@ -59,7 +57,8 @@ export const MenuBottom = styled.div`
   position: relative;
   top: 20px;
   margin: -20px 0 20px;
-  background: ${(p) => p.theme.colors.topHeaderLine};
+  background: #fff6e96e;
+  /* background: ${(p) => p.theme.colors.menuHover}; */
   color: #000;
 `;
 export const MenuWrap = styled.div`

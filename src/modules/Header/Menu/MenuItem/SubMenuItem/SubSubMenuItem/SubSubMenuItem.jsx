@@ -7,29 +7,23 @@ import {
   RightIcon,
   DownIcon,
   WrapItem,
-} from "./SubMenuItem.styled";
+} from "./SubSubMenuItem.styled";
 import { useDispatch } from "react-redux";
-import { setfilter } from "../../../../../redux/filter/slice";
-import { SubSubMenuItem } from "./SubSubMenuItem/SubSubMenuItem";
+import { setfilter } from "../../../../../../redux/filter/slice";
 
-const SubMenuItem = ({
-  item,
-  activeSubMenu,
-  setActiveSubMenu,
-  setActiveSubSubMenu,
-}) => {
+export const SubSubMenuItem = ({ item, activeSubMenu, setActiveSubMenu }) => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (activeSubMenu !== item.to) {
-      setExpanded(false); // Закриваємо субменю, якщо воно не активне
+      setExpanded(false); // Закриваємо субсубменю, якщо воно не активне
     }
   }, [activeSubMenu, item.to]);
 
   const handleMouseEnter = () => {
     setExpanded(true);
-    setActiveSubMenu(item.to); // Встановлюємо активне субменю
+    setActiveSubMenu(item.to); // Встановлюємо активне субсубменю, якщо це необхідно
   };
 
   const handleMouseLeave = () => {
@@ -58,17 +52,14 @@ const SubMenuItem = ({
       {expanded && item.children.length > 0 && (
         <ListSub>
           {item.children.map((childItem) => (
-            <SubSubMenuItem
-              key={childItem.to}
-              item={childItem}
-              activeSubMenu={activeSubMenu}
-              setActiveSubMenu={setActiveSubSubMenu} //{/* Змінимо setActiveSubMenu на setActiveSubSubMenu */}
-            />
+            <Item key={childItem.to}>
+              <Link to={childItem.to} onClick={handleClick}>
+                {childItem.text}
+              </Link>
+            </Item>
           ))}
         </ListSub>
       )}
     </ItemSub>
   );
 };
-
-export default SubMenuItem;

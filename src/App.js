@@ -20,20 +20,16 @@ import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
 import { PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
 
-
-  
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
   const isRefreshing = useSelector(refreshSelector);
-  
-
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGoods());
   }, []);
 
-    useEffect(() => {
+  useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
   console.log(isRefreshing);
@@ -51,6 +47,10 @@ function App() {
             path="/category/:category/:category"
             element={<SortCategory />}
           />
+          <Route
+            path="/category/:category/:category/:category"
+            element={<SortCategory />}
+          />
 
           <Route path="/brands" element={<BrandsPage />} />
           <Route path="/brands/:brands" element={<BrandsPage />} />
@@ -66,11 +66,17 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
 
-          <Route path="/cabinet"
-            element={<PrivateRoute component={UserData} to="/cabinet" />} />
-          <Route path="/cabinet/history"
-            element={<PrivateRoute component={PaymentHistory} to="/cabinet/history" />} />
-            
+          <Route
+            path="/cabinet"
+            element={<PrivateRoute component={UserData} to="/cabinet" />}
+          />
+          <Route
+            path="/cabinet/history"
+            element={
+              <PrivateRoute component={PaymentHistory} to="/cabinet/history" />
+            }
+          />
+
           <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
           <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
         </Route>
@@ -78,7 +84,7 @@ function App() {
       </Routes>
     </ThemeProvider>
   ) : null;
-};
+}
 export default App;
 
 // rafc
