@@ -41,7 +41,7 @@ export const Link = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
-
+  /* padding: 0 20px; */
   &.active {
     color: ${(p) => p.theme.colors.accentColor};
   }
@@ -53,7 +53,7 @@ export const Link = styled(NavLink)`
 export const SubMenuWrap = styled.div`
   min-height: 320px;
   width: auto;
-  top: 110%;
+  top: 105%;
   left: 0;
   right: auto;
   border-radius: 10px;

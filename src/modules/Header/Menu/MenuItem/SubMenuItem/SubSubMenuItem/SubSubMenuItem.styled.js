@@ -32,7 +32,7 @@ export const Link = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 5px 20px;
   &.active {
     color: ${(p) => p.theme.colors.accentColor};
   }
