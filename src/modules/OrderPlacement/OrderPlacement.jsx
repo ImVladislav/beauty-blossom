@@ -11,7 +11,7 @@ import { loggedInSelector } from '../../redux/auth/selectors';
 import RegisterForm from '../Header/LogIn/RegisterForm';
 import LoginForm from '../Header/LogIn/LoginForm';
 import WithOutRegForm from '../Header/LogIn/WithOutRegForm';
-import axios from 'axios';
+
 
 
 
@@ -26,10 +26,9 @@ const OrderPlacement = () => {
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
     const [formData, setFormData] = useState({
-        customerType: "registered",
-        deliveryMethod: "deliveryNP",
-        city: "",
-        selectedWarehouse: "choose",
+
+        city: '',
+        Warehouse: '',
         paymentMethod: "paymentDetails",
         comments: "",
     });
@@ -100,7 +99,7 @@ const handleCityChange = () => {
     });
 };
     const handleWarehousesChange = (e) => {
-        const allWarehouses = [];
+
         const requestData = {
             apiKey: apiKey,
             modelName: "Address",
@@ -115,10 +114,6 @@ const handleCityChange = () => {
         };
 
      
-        const ewq = {
-            Accept: "application/json, text/plain, */*",
-            // [Content-Type]: "application/json",
-        }
      
         fetch('https://api.novaposhta.ua/v2.0/json/', {
             method: 'POST',
@@ -141,9 +136,7 @@ const handleCityChange = () => {
                 }
                 console.log(data.data);
                 console.log(warehouses); // Тут він дорівнюватиме попередньому значенню warehouses
-                const allWarehouses = data.data.map(warehouse => warehouse);
-                setResponceWarehouses(allWarehouses);
-                console.log(responceWarehouses);
+
             })
             .catch(error => {
                 console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
@@ -155,19 +148,34 @@ useEffect(() => {
     console.log(responceCities);
     console.log(responceCities.map(responceCity => responceCity.Description));
     handleWarehousesChange()
+    console.log(responceWarehouses.Description);
+    console.log(selectedWarehouse);
 }, [searchText]);
 
 useEffect(() => {
     // Оновити стан warehouses після завантаження даних
     setResponceWarehouses(warehouses);
     console.log(responceWarehouses);
+    console.log(responceWarehouses.Description);
 }, [warehouses]);
+    
+    
+    
 
 
 
         const handleSearchTextChange = (e) => {
             const text = e.target.value;
-            setSearchText(text);
+            console.log(text);
+            // setSearchText(text);
+
+            setFormData({
+
+                city: searchText,
+                Warehouse: selectedWarehouse,
+                paymentMethod: "paymentDetails",
+                comments: "",
+            })
         }
 
     return (
@@ -227,7 +235,7 @@ useEffect(() => {
                         list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
                         placeholder="Введіть назву міста"
                     />
-                        {responceCities && responceCities.length  > 0 && searchText.length > 2 &&
+                        {responceCities &&
                             <>
                         <datalist id="citiesList">
                                 <label htmlFor="responceCities">Оберіть населений пункт (склад)</label>
@@ -241,7 +249,7 @@ useEffect(() => {
                     </>  }
                 </OrderDetails>
 
-                {responceWarehouses.length > 0 && (
+                {responceCities.length === 0 && (
     <OrderDetails>
         <label htmlFor="responceWarehouses">Оберіть відділення</label>
 <select
@@ -259,30 +267,27 @@ useEffect(() => {
 </select>
     </OrderDetails>
 )}
-                <div>
-                    <label htmlFor="paymentMethod">Способ оплаты</label>
-                    <select id="paymentMethod" name="paymentMethod">
-                        <option value="paymentDetails">Оплата по реквизитам</option>
-                        <option value="monobank">MONOBANK VISA/MasterCard</option>
-                        <option value="cashOnDelivery">Наложенный платеж (для заказов от 300 грн)</option>
-                    </select>
-                </div>
-                
-            </OrderDetails>
-            <OrderSummary>
-                <h3>Замовлення</h3>
-                <ul>
-                    
-                </ul>
-                <div className="order-total">
-                    <p>Итого: 235.00 грн</p>
-                    <p>Всего: 235.00 грн</p>
-                </div>
-                <label htmlFor="comments">Комментарий</label>
-                <textarea id="comments" name="comments" rows="4"></textarea>
-                <button onClick={handleFormSubmit}>Завершити замовлення</button>
-            </OrderSummary>
-        </OrderForm>
+                            <div>
+                <label htmlFor="paymentMethod">Способ оплаты</label>
+                <select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
+                    <option value="paymentDetails">Оплата по реквизитам</option>
+                    <option value="monobank">MONOBANK VISA/MasterCard</option>
+                    <option value="cashOnDelivery">Наложенный платеж (для заказов от 300 грн)</option>
+                </select>
+            </div>
+        </OrderDetails>
+        <OrderSummary>
+            <h3>Замовлення</h3>
+            <ul></ul>
+            <div className="order-total">
+                <p>Итого: 235.00 грн</p>
+                <p>Всего: 235.00 грн</p>
+            </div>
+            <label htmlFor="comments">Комментарий</label>
+            <textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></textarea>
+            <button onClick={handleFormSubmit}>Завершити замовлення</button>
+        </OrderSummary>
+    </OrderForm>
     );
     };
 
