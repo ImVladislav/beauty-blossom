@@ -25,8 +25,29 @@ const OrderPlacement = () => {
     const [responceWarehouses, setResponceWarehouses] = useState([]); // Обраний населений пункт (склад)
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
-
+    const [formData, setFormData] = useState({
+        customerType: "registered",
+        deliveryMethod: "deliveryNP",
+        city: "",
+        selectedWarehouse: "choose",
+        paymentMethod: "paymentDetails",
+        comments: "",
+    });
     
+    const handleFormSubmit = () => {
+        console.log("Форма була відправлена з наступними даними:", formData);
+    };
+
+        const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
+
+
+
 let firstWord = ''
     
 const words = searchText.split(" "); // Розділити рядок за пробілами
@@ -38,74 +59,95 @@ if (words.length > 1) {
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
     
-    const handleCityChange = (e) => {
-       const allCity = []
+const handleCityChange = () => {
+    const allCity = [];
+    const requestData = {
+        apiKey: apiKey,
+        modelName: "Address",
+        calledMethod: "getSettlements",
+        methodProperties: {
+            Page: "1",
+            FindByString: searchText,
+            Limit: "20"
+        }
+    };
+
+    fetch("https://api.novaposhta.ua/v2.0/json/", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then((data) => {
+        if (data.success) {
+            setSearchCities(data.data);
+            data.data.forEach((searchCity) => {
+                allCity.push(searchCity);
+            });
+            setResponceCities(allCity);
+        }
+    })
+    .catch((error) => {
+        console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
+    });
+};
+    const handleWarehousesChange = (e) => {
+        const allWarehouses = [];
         const requestData = {
             apiKey: apiKey,
             modelName: "Address",
-            calledMethod: "getSettlements",
+            calledMethod: "getWarehouses",
             methodProperties: {
+                CityName: firstWord,
                 Page: "1",
-                FindByString: searchText,
-                Limit: "20"
+                Limit: "30",
+                Language: "UA",
+                WarehouseId: searchWarehouses,
             }
         };
 
-
-        //         axios({
-        //     method: 'post',
-        //     url: "https://api.novaposhta.ua/v2.0/json/", requestData,
-        //     headers: null,
-        // })
-
-
-        axios.post("https://api.novaposhta.ua/v2.0/json/", requestData)
+     
+        const ewq = {
+            Accept: "application/json, text/plain, */*",
+            // [Content-Type]: "application/json",
+        }
+     
+        fetch('https://api.novaposhta.ua/v2.0/json/', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        })
             .then(response => {
-
-                if (response.data.success) {
-                    setSearchCities(response.data.data);
-                    for (const searchCity of searchCities) {
-                        allCity.push(searchCity); }
-                   setResponceCities(allCity)}
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Оновити стан warehouses з отриманими даними
+                    setWarehouses(data.data);
+                }
+                console.log(data.data);
+                console.log(warehouses); // Тут він дорівнюватиме попередньому значенню warehouses
+                const allWarehouses = data.data.map(warehouse => warehouse);
+                setResponceWarehouses(allWarehouses);
+                console.log(responceWarehouses);
             })
             .catch(error => {
                 console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
             });
-    }
-
-
- const handleWarehousesChange = (e) => {
-    const allWarehouses = [];
-    const requestData = {
-        apiKey: apiKey,
-        modelName: "Address",
-        calledMethod: "getWarehouses",
-        methodProperties: {
-            CityName: firstWord,
-            Page: "1",
-            Limit: "30",
-            Language: "UA",
-            WarehouseId: searchWarehouses,
-        }
-    };
-
-    axios.post("https://api.novaposhta.ua/v2.0/json/", requestData)
-        .then(response => {
-            if (response.data.success) {
-                // Оновити стан warehouses з отриманими даними
-                setWarehouses(response.data.data);
-            }
-            console.log(response.data.data);
-            console.log(warehouses); // Тут він дорівнюватиме попередньому значенню warehouses
-            for (const warehouse of response.data.data) {
-                allWarehouses.push(warehouse);
-            }
-            setResponceWarehouses(allWarehouses);
-            console.log(responceWarehouses);
-        })
-        .catch(error => {
-            console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
-        });
     }
     
 useEffect(() => {
@@ -131,7 +173,7 @@ useEffect(() => {
     return (
         <OrderForm>
             <OrderDetails>
-                <h2>Оформление заказа</h2>
+                <h2>Оформлення замовлення</h2>
                 {!isLogin &&
                     <CostumerStatus>
                         <CostumerStatusItem htmlFor="registered">
@@ -172,12 +214,8 @@ useEffect(() => {
                 {customerType === "registered" && !isLogin && <LoginForm />}
                 {customerType === "not-registered" && <RegisterForm />}
                 {customerType === "without-registered" && <WithOutRegForm />}
-                <label htmlFor="deliveryMethod">Способ доставки</label>
-                <label htmlFor="deliveryMethod">Способ доставки</label>
-                <select id="deliveryMethod" name="deliveryMethod">
-                    <option value="deliveryNP">Доставка в отделение Новой почты</option>
-                    <option value="courierNP">Доставка курьером Новой почты на адрес</option>
-                </select>
+                <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
+
                 <OrderDetails>
                     <label htmlFor="city">Оберіть місто</label>
                     <input
@@ -189,13 +227,6 @@ useEffect(() => {
                         list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
                         placeholder="Введіть назву міста"
                     />
-
-
-                    
-
-
-
-                {/* <select id="responceCities" name="responceCities" value={selectedWarehouse} onChange={(e) => setSelectedWarehouse(e.target.value)}></select> */}
                         {responceCities && responceCities.length  > 0 && searchText.length > 2 &&
                             <>
                         <datalist id="citiesList">
@@ -206,19 +237,9 @@ useEffect(() => {
                                         <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description} </option>
                                     ))}
                                     <label htmlFor="responceWarehouses"></label>
-                                
-                                    {/* <option value="">Оберіть відділення</option>
-                                    {responceWarehouses.map(responceWarehouse => (
-                                        <option key={responceWarehouse.WarehouseIndex} value={`${responceWarehouse.Description}`} >{responceWarehouse.Description}</option>
-                                    ))}
-                                 */}
-                                
                             </datalist>
-                    </>
-                        
-}
+                    </>  }
                 </OrderDetails>
-
 
                 {responceWarehouses.length > 0 && (
     <OrderDetails>
@@ -246,12 +267,12 @@ useEffect(() => {
                         <option value="cashOnDelivery">Наложенный платеж (для заказов от 300 грн)</option>
                     </select>
                 </div>
-                {/* Додайте інші поля, такі як товари, фото, інформацію про замовлення і т. д. */}
+                
             </OrderDetails>
             <OrderSummary>
                 <h3>Замовлення</h3>
                 <ul>
-                    {/* Список товарів та інша інформація про замовлення */}
+                    
                 </ul>
                 <div className="order-total">
                     <p>Итого: 235.00 грн</p>
@@ -259,7 +280,7 @@ useEffect(() => {
                 </div>
                 <label htmlFor="comments">Комментарий</label>
                 <textarea id="comments" name="comments" rows="4"></textarea>
-                <button>Завершити замовлення</button>
+                <button onClick={handleFormSubmit}>Завершити замовлення</button>
             </OrderSummary>
         </OrderForm>
     );
