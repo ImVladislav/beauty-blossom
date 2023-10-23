@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   PaginationContainer,
   PageButton,
@@ -14,12 +14,29 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const renderPageButton = (page, label, isActive) => (
     <PageButton
       key={page}
-      onClick={() => onPageChange(page)}
+      onClick={() => handlePageChange(page)}
       active={isActive ? "true" : "false"}
     >
       {label}
     </PageButton>
   );
+  const handlePageChange = (page) => {
+    // Перевірка на існування "URLSearchParams" для браузерів, які його не підтримують
+    if ("URLSearchParams" in window) {
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.set("page", page);
+      // Оновлення URL з новим параметром сторінки без перезавантаження сторінки
+      window.history.pushState(null, "", `?${searchParams.toString()}`);
+    }
+    onPageChange(page);
+  };
+
+  useEffect(() => {
+    // Отримання значення сторінки з URL і оновлення сторінки
+    const searchParams = new URLSearchParams(window.location.search);
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    onPageChange(page);
+  }, [onPageChange]);
 
   // Обчислюємо індекс початкової сторінки для відображення
   let startPage = Math.max(1, currentPage - Math.floor(maxDisplayedPages / 2));
@@ -27,10 +44,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   let endPage = Math.min(startPage + maxDisplayedPages - 1, totalPages);
   // Перераховуємо startPage знову для коректної кількості відображуваних сторінок
   startPage = Math.max(1, endPage - maxDisplayedPages + 1);
-
-  //   const handlePageClick = (page) => {
-  //     onPageChange(page);
-  //   };
 
   if (startPage > 1) {
     pageButtons.push(renderPageButton(1, "1", false));
