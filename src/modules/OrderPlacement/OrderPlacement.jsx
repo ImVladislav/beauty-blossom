@@ -20,11 +20,22 @@ const OrderPlacement = () => {
     const [selectedWarehouse, setSelectedWarehouse] = useState("");
     const [customerType, setCustomerType] = useState("registered");
     const [responceCities, setResponceCities] = useState([]); // Список міст для вибору
-    const [warehouses, setWarehouses] = useState(""); // Список відділень
+    const [warehouses, setWarehouses] = useState([]); // Список відділень
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
     const [responceWarehouses, setResponceWarehouses] = useState([]); // Обраний населений пункт (склад)
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
+
+    
+let firstWord = ''
+    
+const words = searchText.split(" "); // Розділити рядок за пробілами
+
+if (words.length > 1) {
+  firstWord = words[0]; // Перше слово
+  console.log(firstWord); // Вивести перше слово
+}
+
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
     
     const handleCityChange = (e) => {
@@ -39,6 +50,14 @@ const OrderPlacement = () => {
                 Limit: "20"
             }
         };
+
+
+        //         axios({
+        //     method: 'post',
+        //     url: "https://api.novaposhta.ua/v2.0/json/", requestData,
+        //     headers: null,
+        // })
+
 
         axios.post("https://api.novaposhta.ua/v2.0/json/", requestData)
             .then(response => {
@@ -55,47 +74,55 @@ const OrderPlacement = () => {
     }
 
 
-        const handleWarehousesChange = (e) => {
-       const allWarehouses = []
-        const requestData = {
-            apiKey: apiKey,
-            modelName: "Address",
-            calledMethod: "getWarehouses",
-            methodProperties: {
-                CityName : searchText,
-                Page: "1",
-                Limit: "30",
-                Language: "UA",
-                WarehouseId : searchWarehouses
+ const handleWarehousesChange = (e) => {
+    const allWarehouses = [];
+    const requestData = {
+        apiKey: apiKey,
+        modelName: "Address",
+        calledMethod: "getWarehouses",
+        methodProperties: {
+            CityName: firstWord,
+            Page: "1",
+            Limit: "30",
+            Language: "UA",
+            WarehouseId: searchWarehouses,
+        }
+    };
+
+    axios.post("https://api.novaposhta.ua/v2.0/json/", requestData)
+        .then(response => {
+            if (response.data.success) {
+                // Оновити стан warehouses з отриманими даними
+                setWarehouses(response.data.data);
             }
-        };
-
-        axios.post("https://api.novaposhta.ua/v2.0/json/", requestData)
-            .then(response => {
-  
-                if (response.data.success) {
-                    setWarehouses(response.data.data);
-                    console.log(searchText);
-                    console.log(response.data.data);
-                    for (const warehouse of warehouses) {
-                        allWarehouses.push(warehouse); }
-                   setResponceWarehouses(allWarehouses)}
-            })
-            .catch(error => {
-                console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
-            });
+            console.log(response.data.data);
+            console.log(warehouses); // Тут він дорівнюватиме попередньому значенню warehouses
+            for (const warehouse of response.data.data) {
+                allWarehouses.push(warehouse);
+            }
+            setResponceWarehouses(allWarehouses);
+            console.log(responceWarehouses);
+        })
+        .catch(error => {
+            console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
+        });
     }
+    
+useEffect(() => {
+    handleCityChange();
+    console.log(responceCities);
+    console.log(responceCities.map(responceCity => responceCity.Description));
+    handleWarehousesChange()
+}, [searchText]);
+
+useEffect(() => {
+    // Оновити стан warehouses після завантаження даних
+    setResponceWarehouses(warehouses);
+    console.log(responceWarehouses);
+}, [warehouses]);
 
 
 
-
-    useEffect(() => {
-        handleCityChange()
-        console.log(responceCities)
-        console.log(responceCities.map(responceCity=> responceCity.Description));
-        console.log(responceWarehouses);
-handleWarehousesChange()
-    }, [searchText]);
         const handleSearchTextChange = (e) => {
             const text = e.target.value;
             setSearchText(text);
@@ -169,14 +196,14 @@ handleWarehousesChange()
 
 
                 {/* <select id="responceCities" name="responceCities" value={selectedWarehouse} onChange={(e) => setSelectedWarehouse(e.target.value)}></select> */}
-                        {responceCities && responceCities.length > 0 &&
+                        {responceCities && responceCities.length  > 0 && searchText.length > 2 &&
                             <>
                         <datalist id="citiesList">
                                 <label htmlFor="responceCities">Оберіть населений пункт (склад)</label>
                                 
                                     <option value="">Оберіть населений пункт</option>
                                     {responceCities.map(responceCity => (
-                                        <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description}{responceCity.RegionsDescription}{responceCity.AreaDescription} </option>
+                                        <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description} </option>
                                     ))}
                                     <label htmlFor="responceWarehouses"></label>
                                 
@@ -193,16 +220,16 @@ handleWarehousesChange()
                 </OrderDetails>
 
 
-                {Array.isArray(responceWarehouses) && responceWarehouses.length > 0 && (
+                {responceWarehouses.length > 0 && (
     <OrderDetails>
         <label htmlFor="responceWarehouses">Оберіть відділення</label>
 <select
     id="responceWarehouses"
     name="responceWarehouses"
-    value={selectedWarehouse} // Використовуйте selectedWarehouse замість responceWarehouses
+    value={selectedWarehouse}
     onChange={(e) => setSelectedWarehouse(e.target.value)}
 >
-    <option value="">Оберіть відділення</option>
+    <option value="choose">Оберіть відділення</option>
     {responceWarehouses.map(warehouse => (
         <option key={warehouse.WarehouseIndex} value={warehouse.Description}>
             {warehouse.Description}
