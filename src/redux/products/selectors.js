@@ -2,6 +2,7 @@
 
 // export const getProducts = (store) => store.products;
 export const selectGoods = (store) => store.goods.items;
+export const selectNewPost = (store) => store.selectNewPost;
 
 // export const goodsSelector = createSelector(
 //   (state) => state.products, // Це посилається на ваш редюсер для товарів

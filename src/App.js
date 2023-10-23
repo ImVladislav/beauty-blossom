@@ -19,6 +19,7 @@ import SortCategory from "./modules/Category/SortCategory/SortCategory";
 import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
 import { PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
+import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
 
 
   
@@ -60,12 +61,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
 
-          <Route path="/news" element={<NewPage />} />
-          <Route path="/discount" element={<DiscountPage />} />
-          <Route path="/wholesaleProgram" element={<SaleProgramPage />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-
+           <Route path="/order" element={<OrderPlacement />} />
           <Route path="/cabinet"
             element={<PrivateRoute component={UserData} to="/cabinet" />} />
           <Route path="/cabinet/history"
