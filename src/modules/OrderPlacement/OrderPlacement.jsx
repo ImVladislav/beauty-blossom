@@ -25,7 +25,7 @@ const OrderPlacement = () => {
     const [responceWarehouses, setResponceWarehouses] = useState([]); // Обраний населений пункт (склад)
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
-    const [searchFirstWord, setSearchFirstWord] = useState("");
+
     
 let firstWord = ''
     
@@ -196,7 +196,7 @@ useEffect(() => {
 
 
                 {/* <select id="responceCities" name="responceCities" value={selectedWarehouse} onChange={(e) => setSelectedWarehouse(e.target.value)}></select> */}
-                        {responceCities && responceCities.length > 0 &&
+                        {responceCities && responceCities.length  > 0 && searchText.length > 2 &&
                             <>
                         <datalist id="citiesList">
                                 <label htmlFor="responceCities">Оберіть населений пункт (склад)</label>
