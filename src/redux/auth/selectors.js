@@ -1,3 +1,6 @@
-export const userSelector = (state) => state.auth.firstName;
+export const userSelectorfirstName = (state) => state.auth.firstName;
+export const userSelectorlastName = (state) => state.auth.lastName;
+export const userSelectorNumber = (state) => state.auth.number;
+export const userSelectorEmail = (state) => state.auth.email;
 export const loggedInSelector = (state) => state.auth.isLoggedIn;
 export const refreshSelector = (state) => state.auth.isRefreshing;

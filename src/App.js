@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
-  console.log(isRefreshing);
+
 
   return !isRefreshing ? (
     <ThemeProvider theme={theme}>

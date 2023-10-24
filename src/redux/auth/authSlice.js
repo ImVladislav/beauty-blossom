@@ -10,7 +10,7 @@ const initialState = {
   isRefreshing: false,
   isRegister: false,
 };
-console.log(initialState);
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -21,12 +21,16 @@ const authSlice = createSlice({
       .addCase(register.pending, (state, action) => state)
       .addCase(register.fulfilled, (state, action) => {
         state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
         state.email = action.payload.email;
+        state.number = action.payload.number;
         state.isRegister = true;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
         state.email = action.payload.email;
+        state.lastName = action.payload.lastName;
         state.isLoggedIn = true;
         state.isRegister = true;
         state.token = action.payload.token;
@@ -36,7 +40,9 @@ const authSlice = createSlice({
       .addCase(login.pending, (state, action) => state)
       .addCase(logout.fulfilled, state => {
         state.firstName = null;
+        state.lastName = null;
         state.email = null;
+        state.number = null;
         state.token = null;
         state.isLoggedIn = false;
         state.isRegister = false;
@@ -46,6 +52,8 @@ const authSlice = createSlice({
       })
       .addCase(refreshCurrentUser.fulfilled, (state, action) => {
         state.firstName = action.payload.firstName;
+        state.lastName = action.payload.lastName;
+        state.number = action.payload.number;
         state.email = action.payload.email;
         state.isLoggedIn = true;
         state.isRegister = true;

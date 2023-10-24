@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import {
     CostumerStatus,
     CostumerStatusItem,
+    DeliveryInfoBlock,
+    Form,
     OrderDetails,
     OrderForm,
     OrderSummary,
 } from './OrderPlacementStyled';
 import { useSelector } from 'react-redux';
-import { loggedInSelector } from '../../redux/auth/selectors';
-import RegisterForm from '../Header/LogIn/RegisterForm';
+import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
 import LoginForm from '../Header/LogIn/LoginForm';
-import WithOutRegForm from '../Header/LogIn/WithOutRegForm';
-import axios from 'axios';
-
+import RegisterForm from '../Header/LogIn/RegisterForm';
+import { selectCart } from '../../redux/cart/selectors';
+import { Amount, AmountBlock, CounterBlock, DecIncBtn, DeleteBtn, DeleteIcon, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
 
 
 const OrderPlacement = () => {
@@ -25,20 +26,29 @@ const OrderPlacement = () => {
     const [responceWarehouses, setResponceWarehouses] = useState([]); // Обраний населений пункт (склад)
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
+
+
+    const userFirstName = useSelector(userSelectorfirstName);
+    const userLastName = useSelector(userSelectorlastName);
+    const userNumber = useSelector(userSelectorNumber);
+    const userEmail = useSelector(userSelectorEmail);
+
     const [formData, setFormData] = useState({
-        customerType: "registered",
-        deliveryMethod: "deliveryNP",
-        city: "",
-        selectedWarehouse: "choose",
+        
+        email: userEmail || '',
+        firstName: userFirstName || '',
+        lastName: userLastName || '',
+        number: userNumber || null,
+        city: '',
+        Warehouse: '',
         paymentMethod: "paymentDetails",
         comments: "",
     });
-    
-    const handleFormSubmit = () => {
-        console.log("Форма була відправлена з наступними даними:", formData);
-    };
 
-        const handleInputChange = (e) => {
+    const cartItems = useSelector(selectCart);
+
+
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
@@ -46,61 +56,57 @@ const OrderPlacement = () => {
         });
     };
 
+    let firstWord = ''
+    const words = searchText.split(" ");
 
-
-let firstWord = ''
-    
-const words = searchText.split(" "); // Розділити рядок за пробілами
-
-if (words.length > 1) {
-  firstWord = words[0]; // Перше слово
-  console.log(firstWord); // Вивести перше слово
-}
+    if (words.length > 1) {
+        firstWord = words[0];
+    }
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
     
-const handleCityChange = () => {
-    const allCity = [];
-    const requestData = {
-        apiKey: apiKey,
-        modelName: "Address",
-        calledMethod: "getSettlements",
-        methodProperties: {
-            Page: "1",
-            FindByString: searchText,
-            Limit: "20"
-        }
-    };
+    const handleCityChange = () => {
+        const allCity = [];
+        const requestData = {
+            apiKey: apiKey,
+            modelName: "Address",
+            calledMethod: "getSettlements",
+            methodProperties: {
+                Page: "1",
+                FindByString: searchText,
+                Limit: "40"
+            }
+        };
 
-    fetch("https://api.novaposhta.ua/v2.0/json/", {
-        method: "POST",
-        headers: {
-            "Accept": "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-    })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then((data) => {
-        if (data.success) {
-            setSearchCities(data.data);
-            data.data.forEach((searchCity) => {
-                allCity.push(searchCity);
+        fetch("https://api.novaposhta.ua/v2.0/json/", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json, text/plain, */*",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(requestData),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.success) {
+                    setSearchCities(data.data);
+                    data.data.forEach((searchCity) => {
+                        allCity.push(searchCity);
+                    });
+                    setResponceCities(allCity);
+                }
+            })
+            .catch((error) => {
+                console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
             });
-            setResponceCities(allCity);
-        }
-    })
-    .catch((error) => {
-        console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
-    });
-};
+    };
     const handleWarehousesChange = (e) => {
-        const allWarehouses = [];
+
         const requestData = {
             apiKey: apiKey,
             modelName: "Address",
@@ -108,17 +114,11 @@ const handleCityChange = () => {
             methodProperties: {
                 CityName: firstWord,
                 Page: "1",
-                Limit: "30",
+                Limit: "900",
                 Language: "UA",
                 WarehouseId: searchWarehouses,
             }
         };
-
-     
-        const ewq = {
-            Accept: "application/json, text/plain, */*",
-            // [Content-Type]: "application/json",
-        }
      
         fetch('https://api.novaposhta.ua/v2.0/json/', {
             method: 'POST',
@@ -136,154 +136,273 @@ const handleCityChange = () => {
             })
             .then(data => {
                 if (data.success) {
-                    // Оновити стан warehouses з отриманими даними
                     setWarehouses(data.data);
+                    console.log(data.data);
                 }
-                console.log(data.data);
-                console.log(warehouses); // Тут він дорівнюватиме попередньому значенню warehouses
-                const allWarehouses = data.data.map(warehouse => warehouse);
-                setResponceWarehouses(allWarehouses);
-                console.log(responceWarehouses);
+
             })
             .catch(error => {
                 console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
             });
     }
     
-useEffect(() => {
-    handleCityChange();
-    console.log(responceCities);
-    console.log(responceCities.map(responceCity => responceCity.Description));
-    handleWarehousesChange()
-}, [searchText]);
+    useEffect(() => {
+        
+        handleCityChange();
+        handleWarehousesChange()
+        console.log(firstWord);
+    }, [searchText]);
 
-useEffect(() => {
-    // Оновити стан warehouses після завантаження даних
-    setResponceWarehouses(warehouses);
-    console.log(responceWarehouses);
-}, [warehouses]);
+    useEffect(() => {
+        setResponceWarehouses(warehouses);
+    }, [warehouses]);
+    
+    const handleSearchTextChange = (e) => {
+        const text = e.target.value;
+        console.log(text);
+
+        setSearchText(text);
+    }
 
 
 
-        const handleSearchTextChange = (e) => {
-            const text = e.target.value;
-            setSearchText(text);
-        }
+      const [itemQuantities, setItemQuantities] = useState(
+    cartItems.reduce((quantities, item) => {
+      quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
+      return quantities;
+    }, {})
+  );
+    
+     const totalCost = cartItems.reduce(
+    (total, item) => total + item.price * itemQuantities[item.id],
+    0
+  );
 
-    return (
-        <OrderForm>
-            <OrderDetails>
-                <h2>Оформлення замовлення</h2>
-                {!isLogin &&
-                    <CostumerStatus>
-                        <CostumerStatusItem htmlFor="registered">
-                            <input
-                                type="radio"
-                                id="registered"
-                                name="customer"
-                                value="registered"
-                                checked={customerType === "registered"}
-                                onChange={() => setCustomerType("registered")}
-                            />
-                            Я зареєстрований
-                        </CostumerStatusItem>
 
-                        <CostumerStatusItem htmlFor="not-registered">
-                            <input
-                                type="radio"
-                                id="not-registered"
-                                name="customer"
-                                value="not-registered"
-                                checked={customerType === "not-registered"}
-                                onChange={() => setCustomerType("not-registered")}
-                            />
-                            Зареєструватись?
-                        </CostumerStatusItem>
-                        <CostumerStatusItem htmlFor="without-registered">
-                            <input
-                                type="radio"
-                                id="without-registered"
-                                name="customer"
-                                value="without-registered"
-                                checked={customerType === "without-registered"}
-                                onChange={() => setCustomerType("without-registered")}
-                            />
-                            Продовжити без реєстрації
-                        </CostumerStatusItem>
-                    </CostumerStatus>}
-                {customerType === "registered" && !isLogin && <LoginForm />}
-                {customerType === "not-registered" && <RegisterForm />}
-                {customerType === "without-registered" && <WithOutRegForm />}
-                <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
+const handleFormSubmit = (e) => {
+  e.preventDefault();
 
+  const orderedItems = cartItems.reduce((acc, item) => {
+    acc[`product_${item.id}`] = {
+      name: item.name,
+      code: item.code,
+      quantity: itemQuantities[item.id],
+      amount: item.price * itemQuantities[item.id]
+    };
+    return acc;
+  }, {});
+
+  setFormData((prevData) => ({
+    ...prevData,
+    email: userEmail || prevData.email,
+    firstName: userFirstName || prevData.firstName,
+    lastName: userLastName || prevData.lastName,
+    number: userNumber || prevData.number,
+    city: searchText,
+    Warehouse: selectedWarehouse,
+    paymentMethod: prevData.paymentMethod,
+      comments: prevData.comments,
+      ...orderedItems,
+    amount: totalCost,
+  }));
+
+
+};
+console.log(formData);
+
+    
+    
+
+
+
+
+  // Функція для оформлення замовлення
+  const placeOrder = () => {
+    // Створюємо масив товарів у корзині з відповідними кількостями
+    const orderedItems = cartItems.map((item) => ({
+      ...item,
+      quantity: itemQuantities[item.id],
+    }));
+
+    
+  };
+
+        return (
+            <OrderForm>
                 <OrderDetails>
-                    <label htmlFor="city">Оберіть місто</label>
-                    <input
-                        type="text"
-                        id="city"
-                        name="city"
-                        value={searchText}
-                        onChange={handleSearchTextChange}
-                        list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
-                        placeholder="Введіть назву міста"
-                    />
-                        {responceCities && responceCities.length  > 0 && searchText.length > 2 &&
-                            <>
-                        <datalist id="citiesList">
+                    <h2>Оформлення замовлення</h2>
+                    {!isLogin &&
+                        <CostumerStatus>
+                            <CostumerStatusItem htmlFor="registered">
+                                <input
+                                    type="radio"
+                                    id="registered"
+                                    name="customer"
+                                    value="registered"
+                                    checked={customerType === "registered"}
+                                    onChange={() => setCustomerType("registered")}
+                                />
+                                Я зареєстрований
+                            </CostumerStatusItem>
+
+                            <CostumerStatusItem htmlFor="not-registered">
+                                <input
+                                    type="radio"
+                                    id="not-registered"
+                                    name="customer"
+                                    value="not-registered"
+                                    checked={customerType === "not-registered"}
+                                    onChange={() => setCustomerType("not-registered")}
+                                />
+                                Зареєструватись?
+                            </CostumerStatusItem>
+                            <CostumerStatusItem htmlFor="without-registered">
+                                <input
+                                    type="radio"
+                                    id="without-registered"
+                                    name="customer"
+                                    value="without-registered"
+                                    checked={customerType === "without-registered"}
+                                    onChange={() => setCustomerType("without-registered")}
+                                />
+                                Продовжити без реєстрації
+                            </CostumerStatusItem>
+                        </CostumerStatus>}
+                    
+                {customerType === "registered" && !isLogin && <LoginForm />}
+                {customerType === "not-registered" && !isLogin && <RegisterForm />}
+                {customerType === "without-registered" || isLogin ? (
+                        <Form onSubmit={handleFormSubmit}>
+                            <DeliveryInfoBlock>
+                            <label htmlFor="email">Ваш Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={formData.email || ''}
+                                onChange={handleInputChange}
+                            />
+
+                            <label htmlFor="firstName">Ім'я</label>
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                value={formData.firstName || ''}
+                                onChange={handleInputChange}
+                            />
+
+                            <label htmlFor="lastName">Прізвище</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                value={formData.lastName || ''}
+                                onChange={handleInputChange}
+                            />
+                            <label htmlFor="number">Номер телефону</label>
+                            <input
+                                type="text"
+                                id="number"
+                                name="number"
+                                value={formData.number || ''}
+                                onChange={handleInputChange}
+                            />
+
+                            <label htmlFor="city">Оберіть місто</label>
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value={searchText}
+                                onChange={handleSearchTextChange}
+                                list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
+                                placeholder="Введіть назву міста"
+                            />
+                            <datalist id="citiesList">
                                 <label htmlFor="responceCities">Оберіть населений пункт (склад)</label>
                                 
-                                    <option value="">Оберіть населений пункт</option>
-                                    {responceCities.map(responceCity => (
-                                        <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description} </option>
-                                    ))}
-                                    <label htmlFor="responceWarehouses"></label>
+                                <option value="">Оберіть населений пункт</option>
+                                {responceCities.map(responceCity => (
+                                    <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description} </option>
+                                ))}
+                                <label htmlFor="responceWarehouses"></label>
                             </datalist>
-                    </>  }
-                </OrderDetails>
+                                      
+                                
+                            {responceCities.length === 0 && (
+                                <OrderDetails>
+                                    <label htmlFor="responceWarehouses">Оберіть відділення</label>
+                                    <select
+                                        id="responceWarehouses"
+                                        name="responceWarehouses"
+                                        value={selectedWarehouse}
+                                        onChange={(e) => setSelectedWarehouse(e.target.value)}
+                                    >
+                                        <option value="choose">Оберіть відділення</option>
+                                        {responceWarehouses.map(warehouse => (
+                                            <option key={warehouse.WarehouseIndex} value={warehouse.Description}>
+                                                {warehouse.Description}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </OrderDetails>
+                                    
+                            )}
+                            <div>
+                                <label htmlFor="paymentMethod">Способ оплаты</label>
+                                <select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
+                                    <option value="paymentDetails">Оплата за реквізитами</option>
+                                    
+                                    <option value="cashOnDelivery">Післяплата</option>
+                                </select>
+                            </div>
 
-                {responceWarehouses.length > 0 && (
-    <OrderDetails>
-        <label htmlFor="responceWarehouses">Оберіть відділення</label>
-<select
-    id="responceWarehouses"
-    name="responceWarehouses"
-    value={selectedWarehouse}
-    onChange={(e) => setSelectedWarehouse(e.target.value)}
->
-    <option value="choose">Оберіть відділення</option>
-    {responceWarehouses.map(warehouse => (
-        <option key={warehouse.WarehouseIndex} value={warehouse.Description}>
-            {warehouse.Description}
-        </option>
-    ))}
-</select>
-    </OrderDetails>
-)}
-                <div>
-                    <label htmlFor="paymentMethod">Способ оплаты</label>
-                    <select id="paymentMethod" name="paymentMethod">
-                        <option value="paymentDetails">Оплата по реквизитам</option>
-                        <option value="monobank">MONOBANK VISA/MasterCard</option>
-                        <option value="cashOnDelivery">Наложенный платеж (для заказов от 300 грн)</option>
-                    </select>
-                </div>
+                            <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
+
+                            </DeliveryInfoBlock>
                 
-            </OrderDetails>
-            <OrderSummary>
-                <h3>Замовлення</h3>
-                <ul>
-                    
-                </ul>
-                <div className="order-total">
-                    <p>Итого: 235.00 грн</p>
-                    <p>Всего: 235.00 грн</p>
-                </div>
-                <label htmlFor="comments">Комментарий</label>
-                <textarea id="comments" name="comments" rows="4"></textarea>
-                <button onClick={handleFormSubmit}>Завершити замовлення</button>
-            </OrderSummary>
-        </OrderForm>
-    );
-    };
+                            <OrderSummary>
+                                <h3>Замовлення</h3>
+
+            <GoodsBlock>
+              {cartItems.map((item) => (
+                <Thumb key={item.id}>
+                  <ImageBlock>
+                    <img src={item.images} alt="itemImage" />
+                  </ImageBlock>
+                  <DescriptionBlock>
+                          <ItemNameLink>{item.name} </ItemNameLink>
+                          <ItemNameLink>{item.code}</ItemNameLink>
+                  </DescriptionBlock>
+                  <AmountBlock>
+                    <CounterBlock>
+
+                      {itemQuantities[item.id]}
+  
+                    </CounterBlock>
+                  </AmountBlock>
+                  <PriceBlock>
+                    {item.price * itemQuantities[item.id]} грн
+                  </PriceBlock>
+                </Thumb>
+              ))}
+            </GoodsBlock>
+          
+          <Amount>Всього: {totalCost} грн</Amount>
+
+                                 
+                                
+                                <label htmlFor="comments">Комментарий</label>
+                                <textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></textarea>
+                                <button type="submit">Відправити</button>
+                            </OrderSummary>
+                        </Form>) : (null)}
+      </OrderDetails>
+    </OrderForm>
+  );
+};
 
 export default OrderPlacement;
+
+//411

@@ -10,7 +10,7 @@ export const CustomerDetails = styled.div`
 
 export const CostumerStatus = styled.div`
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 `
 
 export const OrderForm = styled.div`
@@ -23,4 +23,15 @@ export const OrderDetails = styled.div`
 
 export const CostumerStatusItem = styled.label`
     padding: 5px;
+`
+
+export const Form = styled.form`
+    display: flex;
+    
+
+`
+export const DeliveryInfoBlock = styled.div`
+ display: flex;
+    flex-direction: column;
+
 `
