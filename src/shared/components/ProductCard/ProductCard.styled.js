@@ -6,6 +6,7 @@ export const ItemStyle = styled.li`
   min-width: 350px;
   width: 25%;
 `;
+
 export const LinkStyle = styled(Link)`
   text-decoration: none;
   color: #333;
@@ -14,8 +15,7 @@ export const LinkStyle = styled(Link)`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
+  justify-content: space between;
   transition: transform 0.2s;
   position: relative;
   height: 100%;
@@ -29,12 +29,18 @@ export const Container = styled.div`
     background-color: #fff;
     border: 1px solid #e8dfd8;
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
+
+    .buy-button {
+      visibility: visible;
+    }
   }
 `;
+
 export const ImageWrap = styled.div`
   position: relative;
   display: inline-block;
 `;
+
 export const Image = styled.img`
   max-height: 100%;
   max-width: 100%;
@@ -44,9 +50,11 @@ export const Image = styled.img`
   vertical-align: middle;
   aspect-ratio: auto 240 / 240;
 `;
+
 export const Content = styled.div`
   padding: 20px 24px;
 `;
+
 export const Name = styled.h2`
   background-color: transparent;
   margin: 0 0 6px;
@@ -55,7 +63,6 @@ export const Name = styled.h2`
   line-height: 1.2;
   font-weight: normal;
   text-align: center;
-
   overflow: hidden;
   text-overflow: ellipsis;
   height: 2.4em;
@@ -71,5 +78,12 @@ export const Price = styled.p`
   display: flex;
   align-items: center;
   margin-top: 9px;
+  justify-content: center;
+`;
+
+export const ButtonWrap = styled.div`
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
   justify-content: center;
 `;
