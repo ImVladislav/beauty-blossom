@@ -30,10 +30,11 @@ import {
   removeCart,
 } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
+import { useNavigate } from "react-router-dom";
 
 const CartModal = ({ closeModal }) => {
   const cartItems = useSelector(selectCart);
-  // const [cart, setCart] = useState(cartItems);
+const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [itemQuantities, setItemQuantities] = useState(
@@ -83,19 +84,10 @@ const CartModal = ({ closeModal }) => {
     0
   );
 
-  // Функція для оформлення замовлення
+
   const placeOrder = () => {
-    // Створюємо масив товарів у корзині з відповідними кількостями
-    const orderedItems = cartItems.map((item) => ({
-      ...item,
-      quantity: itemQuantities[item.id],
-    }));
-
-    // Виводимо масив товарів у консоль
-    console.log("Замовлення:", orderedItems);
-
-    // Додайте додатковий код тут, наприклад, відображення повідомлення про успішне замовлення
-    alert("Замовлення оформлено!");
+    navigate("/order");
+    closeModal()
   };
 
   return (
@@ -169,11 +161,6 @@ const CartModal = ({ closeModal }) => {
           text="Оформити замовлення"
           disabled={cartItems.length === 0}
         />
-        {/* <SubmitBtn
-          onClick={placeOrder}
-          text="Оформити замовлення"
-          style={{ width: "270px" }}
-        /> */}
       </ButtonContainer>
     </ModalShopingList>
   );
