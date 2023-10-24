@@ -11,6 +11,7 @@ export const token = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = '';
+    console.log(axios.defaults.headers);
   },
   
 };
