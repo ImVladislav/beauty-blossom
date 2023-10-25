@@ -8,14 +8,13 @@ export const ButtonStyle = styled.button`
   transition: background-color 0.3s ease color 0.3s ease;
   margin: 0 5px;
 
-  border: 1px solid #ddd;
-  background-color: #fff;
-  color: #333;
-  border-color: #ddd;
+  border: 1px solid ${(p) => p.theme.colors.black};
+  background-color: ${(p) => p.theme.colors.white};
+  color: ${(p) => p.theme.colors.black};
 
   &:hover {
-    background-color: ${(p) => p.disabled || "#ff358a"};
-    color: ${(p) => p.disabled || "#f9f8f6"};
+    background-color: ${(p) => p.disabled || p.theme.colors.hoverAccentColor};
+    color: ${(p) => p.disabled || p.theme.colors.white};
     border: ${(p) => p.disabled || "1px solid transparent"};
   }
 `;

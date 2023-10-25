@@ -21,6 +21,9 @@ import {
   ProductDescription,
   ProductTitleDescription,
   Info,
+  ButtonIncDec,
+  CounterBlock,
+  InputIncDec,
 } from "./ProductPage.styled";
 import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import Sticker from "../../shared/components/Sticker/Sticker";
@@ -28,8 +31,8 @@ import { selectCart } from "../../redux/cart/selectors";
 import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const ProductPage = () => {
-  const [inCart, setInCart] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(selectGoods);
@@ -39,15 +42,30 @@ const ProductPage = () => {
   const productCartFind = productCart?.find((item) => +item.id === +id);
 
   const handleAddToCart = () => {
-    // if (product.amount <= 0) {
-    //   setInCart(true);
-    // }
     if (!productCartFind) {
-      dispatch(addToCart({ ...product, quantity: 1 }));
+      dispatch(addToCart({ ...product, quantity }));
     }
     return;
   };
 
+  const handleQuantityChange = (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const incrementQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  // функція для відкриття модалки швидкого замовлення
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -75,7 +93,20 @@ const ProductPage = () => {
           <div>Штрих-код: {product.code}</div>
           <ProductBrand> {product.brand}</ProductBrand>
           <ProductPrice>{product.price} ₴</ProductPrice>
-          {product.amount <= 0 && <p>Немає на складі</p>}
+          {product.amount <= 0 ||
+            (!productCartFind && (
+              <CounterBlock>
+                <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
+                <InputIncDec
+                  type="number"
+                  min="1"
+                  max={product.amount}
+                  value={quantity}
+                  onChange={handleQuantityChange}
+                />
+                <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
+              </CounterBlock>
+            ))}
 
           <Button
             text={
@@ -88,11 +119,11 @@ const ProductPage = () => {
             onClick={handleAddToCart}
             disabled={productCartFind || product.amount <= 0}
           />
-          <SecondButton
+          {/* <SecondButton
             text="Швидке замовлення"
             onClick={toggleModal}
             disabled={product.amount <= 0}
-          ></SecondButton>
+          ></SecondButton> */}
           <ProductTitleDescription>Опис</ProductTitleDescription>
           <ProductDescription>{product.description}</ProductDescription>
 

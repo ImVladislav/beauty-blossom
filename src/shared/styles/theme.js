@@ -4,6 +4,7 @@ export const theme = {
     white: "#ffffff",
     black: "#000000",
     accentColor: "#833989",
+    hoverAccentColor: "#ff358a",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
