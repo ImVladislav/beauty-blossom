@@ -38,7 +38,7 @@ const OrderPlacement = () => {
         lastName: userLastName || '',
         number: userNumber || null,
         city: '',
-        Warehouse: '',
+        warehouse: '',
         paymentMethod: "paymentDetails",
         comments: "",
     });
@@ -191,31 +191,34 @@ const handleSearchTextChange = (e) => {
 const handleFormSubmit = (e) => {
   e.preventDefault();
 
-  const orderedItems = cartItems.reduce((acc, item) => {
-    acc[`product_${item.id}`] = {
-      name: item.name,
-      code: item.code,
-      quantity: itemQuantities[item.id],
-      amount: item.price * itemQuantities[item.id]
-    };
-    return acc;
-  }, {});
+ const orderedItems = [];
 
-  setFormData((prevData) => ({
-    ...prevData,
-    email: userEmail || prevData.email,
-    firstName: userFirstName || prevData.firstName,
-    lastName: userLastName || prevData.lastName,
-    number: userNumber || prevData.number,
-    city: searchText,
-    Warehouse: selectedWarehouse,
-    paymentMethod: prevData.paymentMethod,
-      comments: prevData.comments,
-      ...orderedItems,
+cartItems.forEach((item) => {
+  orderedItems.push({
+    ProductId: item.id,
+    name: item.name,
+    code: item.code,
+    quantity: itemQuantities[item.id],
+    amount: item.price * itemQuantities[item.id],
+  });
+});
+    
+    setFormData((prevData) => ({
+        ...prevData,
+        email: userEmail || prevData.email,
+        firstName: userFirstName || prevData.firstName,
+        lastName: userLastName || prevData.lastName,
+        number: userNumber || prevData.number,
+        city: searchText,
+        warehouse: selectedWarehouse,
+        paymentMethod: prevData.paymentMethod,
+        comments: prevData.comments,
+        orderedItems: orderedItems,
     amount: totalCost,
   }));
 
-
+    console.log(formData);
+    console.log(orderedItems);
 };
 
     
@@ -342,8 +345,8 @@ const handleFormSubmit = (e) => {
                                     <label htmlFor="searchWarehouses">Оберіть відділення</label>
                                         <input
                                             type="text"
-                                        id="city"
-                                        name="city"
+                                        id="warehouse"
+                                        name="warehouse"
                                             value={searchWarehouses}
                                             placeholder="Пошук відділення"
                                             list="warehousesList"

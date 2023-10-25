@@ -1,8 +1,9 @@
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, Route, useNavigate } from 'react-router-dom';
 
-import { loggedInSelector, refreshSelector } from '../../redux/auth/selectors';
+import { isAdminSelector, loggedInSelector, refreshSelector } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';
+
 
 
 export const PrivateRoute = ({
@@ -15,4 +16,17 @@ export const PrivateRoute = ({
   const shouldRedirect = !isRefreshing && !isLoggedIn;
 
   return shouldRedirect ? <Navigate {...routeProps} /> : <Component />;
+};
+
+export const PrivateAdminRoute = ({
+  component: Component,
+  ...routeProps
+}) => {
+  const admin = useSelector(isAdminSelector);
+  const isRefreshing = useSelector(refreshSelector)
+
+  const shouldRedirect = !isRefreshing && !admin;
+
+  return shouldRedirect ? <Navigate {...routeProps} /> : <Component />;    
+   
 };

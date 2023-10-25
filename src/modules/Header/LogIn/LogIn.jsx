@@ -3,7 +3,7 @@ import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswor
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { loggedInSelector, userSelectorlastName, userSelectorfirstName } from "../../../redux/auth/selectors";
+import { loggedInSelector, userSelectorfirstName, isAdminSelector } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
 
@@ -13,10 +13,11 @@ const LogIn = () => {
   const [loginOrRegister, setLoginOrRegister] = useState(false);
 
   const userName = useSelector(userSelectorfirstName);
-  const userLastName = useSelector(userSelectorlastName);
+  const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
-console.log(userLastName);
+  console.log(admin);
+  console.log(isLogin);
   const handleModalEnter = () => {
     if (!isLogin) {
       setShowModal(true);
@@ -51,6 +52,11 @@ console.log(userLastName);
         <DropDown
         onMouseLeave={handleDropdownLeave}>
           <ul>
+            {admin &&
+            <ListItem>
+              <a href="/beauty-blossom/cabinet/ordersbyclient/">Замовлення(Адмін права)</a>
+            </ListItem>
+            }
             <ListItem>
               <a href="/beauty-blossom/cabinet/">Особисті дані</a>
             </ListItem>
@@ -69,7 +75,7 @@ console.log(userLastName);
 
         </DropDown>
       )}
-      <p>{userName} {userLastName }</p>
+      <p>{userName} </p>
 
       {showModal && (
         <ModalBackdrop>

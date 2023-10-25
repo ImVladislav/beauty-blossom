@@ -9,6 +9,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   isRegister: false,
+  isAdmin: false,
 };
 
 
@@ -24,13 +25,16 @@ const authSlice = createSlice({
         state.lastName = action.payload.lastName;
         state.email = action.payload.email;
         state.number = action.payload.number;
+        state.isAdmin = action.payload.isAdmin;
         state.isRegister = true;
+
       })
       .addCase(login.fulfilled, (state, action) => {
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.email = action.payload.email;
         state.lastName = action.payload.lastName;
+        state.isAdmin = action.payload.isAdmin;
         state.isLoggedIn = true;
         state.isRegister = true;
         state.token = action.payload.token;
@@ -44,6 +48,7 @@ const authSlice = createSlice({
         state.email = null;
         state.number = null;
         state.token = null;
+        state.isAdmin = false;
         state.isLoggedIn = false;
         state.isRegister = false;
       })
@@ -55,6 +60,7 @@ const authSlice = createSlice({
         state.lastName = action.payload.lastName;
         state.number = action.payload.number;
         state.email = action.payload.email;
+        state.isAdmin = action.payload.isAdmin;
         state.isLoggedIn = true;
         state.isRegister = true;
         state.isRefreshing = false;

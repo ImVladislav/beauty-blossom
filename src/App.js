@@ -18,8 +18,9 @@ import PaymentHistory from "./pages/UserPage/PaymentHistory";
 import SortCategory from "./modules/Category/SortCategory/SortCategory";
 import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
-import { PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
+import { PrivateAdminRoute, PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
 import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
+import AdminPage from "./pages/AdminPage/AdminPage";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -39,6 +40,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
+          
           <Route index element={<MainPage />} />
           <Route path="/login" element={<p>Login Page</p>} />
           <Route path="/registration" element={<p>Registration Page</p>} />
@@ -60,20 +62,30 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/order" element={<OrderPlacement />} />
+          
+
+          
+
           <Route
             path="/cabinet"
-            element={<PrivateRoute component={UserData} to="/cabinet" />}
+            element={<PrivateRoute component={UserData} to="/" />}
           />
+          <Route
+            path="/cabinet/ordersbyclient"
+            element={<PrivateAdminRoute component={AdminPage} to="/" />}
+          />
+
           <Route
             path="/cabinet/history"
             element={
-              <PrivateRoute component={PaymentHistory} to="/cabinet/history" />
+              <PrivateRoute component={PaymentHistory} to="/" />
             }
           />
           <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
           <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
         </Route>
-        <Route></Route>
+
+        
       </Routes>
     </ThemeProvider>
   ) : null;
