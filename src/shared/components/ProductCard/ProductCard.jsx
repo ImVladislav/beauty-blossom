@@ -63,7 +63,7 @@ const ProductCard = ({ products }) => {
             </ImageWrap>
             <Content>
               <Name>{products.name}</Name>
-              <Price>${products.price}</Price>
+              <Price>{products.price} ₴</Price>
             </Content>
             {isHovered && (
               <ButtonWrap>

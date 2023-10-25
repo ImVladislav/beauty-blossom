@@ -7,7 +7,7 @@ const Email = () => {
       <ContactsElips>
         <ContactsIcon />
       </ContactsElips>
-      <Link href="beautyblossom.opt@gmail.com">
+      <Link href="mailto:beautyblossom.opt@gmail.com">
         beautyblossom.opt@gmail.com
       </Link>
     </Wrap>
