@@ -60,21 +60,27 @@ const ProductCard = ({ products }) => {
                   saleproduct={products.sale.toString()}
                 />
               )}
-              {isHovered && (
-                <ButtonWrap>
-                  <Button
-                    className="buy-button"
-                    text={isProductInCart ? "У кошику" : "Купити"}
-                    onClick={handleAddToCart}
-                    disabled={isProductInCart || products.amount <= 0}
-                  />
-                </ButtonWrap>
-              )}
             </ImageWrap>
             <Content>
               <Name>{products.name}</Name>
               <Price>${products.price}</Price>
             </Content>
+            {isHovered && (
+              <ButtonWrap>
+                <Button
+                  className="buy-button"
+                  text={
+                    products.amount <= 0
+                      ? "Немає в наявності"
+                      : isProductInCart
+                      ? "У кошику"
+                      : "Купити"
+                  }
+                  onClick={handleAddToCart}
+                  disabled={isProductInCart || products.amount <= 0}
+                />
+              </ButtonWrap>
+            )}
           </Container>
         </LinkStyle>
       </ItemStyle>
