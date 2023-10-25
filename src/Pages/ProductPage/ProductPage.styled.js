@@ -41,16 +41,16 @@ export const ProductArticle = styled.div`
   font-weight: 400;
 
   padding: 7px 14px;
-  background: #f7f5ee;
+  background: ${(p) => p.theme.colors.menuBg};
   border-radius: 0;
-  color: #000;
+  color: ${(p) => p.theme.colors.black};
 `;
 
 export const ProductArticleSpan = styled.span`
   display: block;
   margin-bottom: 1px;
   font-size: 12px;
-  color: #acacac;
+  color: ${(p) => p.theme.colors.black};
   white-space: nowrap;
 `;
 
@@ -70,7 +70,7 @@ export const ProductPrice = styled.p`
   font-weight: 700;
   line-height: normal;
   margin: 10px 0 10px 0;
-  color: #000;
+  color: ${(p) => p.theme.colors.black};
 `;
 
 export const ProductTitleDescription = styled.p`
@@ -97,4 +97,49 @@ export const ProductDescription = styled.p`
 export const Info = styled.div`
   width: 50%;
   padding-left: 20px;
+`;
+export const CounterBlock = styled.div`
+  width: 103px;
+  height: 38px;
+  display: flex;
+  border-radius: 4px;
+  border: 1px solid ${(p) => p.theme.colors.black};
+  position: relative;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+    cursor: pointer;
+  }
+`;
+export const ButtonIncDec = styled.button`
+  flex: 1 0 auto;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+
+  cursor: pointer;
+  color: ${(p) => p.theme.colors.black};
+  border: 0;
+  padding: 0;
+  background: none;
+  font-size: 20px;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+    cursor: pointer;
+  }
+`;
+
+export const InputIncDec = styled.input`
+  text-align: center;
+
+  outline: none;
+
+  color: ${(p) => p.theme.colors.black};
+  border: 0;
+  padding: 0;
+  background-color: none;
+  font-size: 20px;
 `;
