@@ -13,7 +13,7 @@ import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfi
 import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
 import { selectCart } from '../../redux/cart/selectors';
-import { Amount, AmountBlock, CounterBlock, DecIncBtn, DeleteBtn, DeleteIcon, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
+import { Amount, AmountBlock, CounterBlock, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
 
 
 const OrderPlacement = () => {
@@ -23,11 +23,9 @@ const OrderPlacement = () => {
     const [responceCities, setResponceCities] = useState([]); // Список міст для вибору
     const [warehouses, setWarehouses] = useState([]); // Список відділень
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
-    const [responceWarehouses, setResponceWarehouses] = useState([]); // Обраний населений пункт (склад)
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
-
-
+    const [filtredWarehouses, setFiltredWarehouses] = useState([]);
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
@@ -57,10 +55,20 @@ const OrderPlacement = () => {
     };
 
     let firstWord = ''
-    const words = searchText.split(" ");
+    const words = searchText.trim().split(" ");
 
     if (words.length > 1) {
         firstWord = words[0];
+
+    }
+
+    if (firstWord !== '') { 
+    //         const filtered = warehouses.filter(warehouse =>
+// warehouse.toLowerCase().includes(firstWord.toLowerCase())
+                    const filtered = warehouses.filter(warehouse =>
+    warehouse === firstWord )
+
+        //  setFiltredWarehouses(filtered)
     }
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
@@ -105,7 +113,7 @@ const OrderPlacement = () => {
                 console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
             });
     };
-    const handleWarehousesChange = (e) => {
+    const handleWarehousesChange = () => {
 
         const requestData = {
             apiKey: apiKey,
@@ -114,12 +122,13 @@ const OrderPlacement = () => {
             methodProperties: {
                 CityName: firstWord,
                 Page: "1",
-                Limit: "900",
-                Language: "UA",
+                Limit: "4105",
                 WarehouseId: searchWarehouses,
             }
         };
-     
+         if (searchWarehouses) {
+        requestData.methodProperties.WarehouseRef = searchWarehouses;
+    }
         fetch('https://api.novaposhta.ua/v2.0/json/', {
             method: 'POST',
             headers: {
@@ -146,23 +155,23 @@ const OrderPlacement = () => {
             });
     }
     
-    useEffect(() => {
-        
+useEffect(() => {
+    if (searchText) {
         handleCityChange();
-        handleWarehousesChange()
-        console.log(firstWord);
-    }, [searchText]);
-
-    useEffect(() => {
-        setResponceWarehouses(warehouses);
-    }, [warehouses]);
-    
-    const handleSearchTextChange = (e) => {
-        const text = e.target.value;
-        console.log(text);
-
-        setSearchText(text);
+       console.log(firstWord);
     }
+}, [searchText]);
+
+useEffect(() => {
+        
+        handleWarehousesChange();
+
+}, [ firstWord]);
+
+const handleSearchTextChange = (e) => {
+    const text = e.target.value;
+    setSearchText(text);
+}
 
 
 
@@ -208,9 +217,7 @@ const handleFormSubmit = (e) => {
 
 
 };
-console.log(formData);
 
-    
     
 
 
@@ -332,21 +339,28 @@ console.log(formData);
                                 
                             {responceCities.length === 0 && (
                                 <OrderDetails>
-                                    <label htmlFor="responceWarehouses">Оберіть відділення</label>
-                                    <select
-                                        id="responceWarehouses"
-                                        name="responceWarehouses"
-                                        value={selectedWarehouse}
-                                        onChange={(e) => setSelectedWarehouse(e.target.value)}
-                                    >
-                                        <option value="choose">Оберіть відділення</option>
-                                        {responceWarehouses.map(warehouse => (
+                                    <label htmlFor="searchWarehouses">Оберіть відділення</label>
+                                        <input
+                                            type="text"
+                                        id="city"
+                                        name="city"
+                                            value={searchWarehouses}
+                                            placeholder="Пошук відділення"
+                                            list="warehousesList"
+                                        onChange={(e) => setSearchWarehouses(e.target.value)}
+                                        />
+                                        <datalist id="warehousesList">
+                                        <option value="">Оберіть відділення</option>
+                                        {warehouses.filter((warehouse) =>
+                                        warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
                                             <option key={warehouse.WarehouseIndex} value={warehouse.Description}>
                                                 {warehouse.Description}
                                             </option>
-                                        ))}
-                                    </select>
-                                </OrderDetails>
+                    ))}
+                                        </datalist>
+                                    
+                                    </OrderDetails>
+                                    
                                     
                             )}
                             <div>

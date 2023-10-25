@@ -34,4 +34,10 @@ export const DeliveryInfoBlock = styled.div`
  display: flex;
     flex-direction: column;
 
-`
+// `
+// export const Input = styled.input`
+//       margin: 10px;
+//         border-radius: 12px;
+        
+//         border-color: #b2b2b2;
+//         padding: 10px;
