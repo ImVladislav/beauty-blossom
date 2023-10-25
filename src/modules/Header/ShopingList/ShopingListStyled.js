@@ -37,7 +37,7 @@ export const ModalShopingList = styled.div`
   /* top: 100px; */
 
   width: 80vw;
-  height: 80vh;
+  max-height: 80vh;
 
   overflow-y: auto;
 
