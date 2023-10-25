@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const DeleteIcon = styled(BsFillTrash3Fill)`
   width: 15px;
   height: 15px;
-  color: white;
+  color: #80808061;
   cursor: pointer;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
@@ -27,10 +27,20 @@ export const OpenModal = styled.button`
 
 export const ModalShopingList = styled.div`
   position: absolute;
-  width: 790px;
-  margin-left: auto;
-  margin-right: auto;
-  top: 100px;
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+
+  /* width: 800px; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  /* top: 100px; */
+
+  width: 80vw;
+  height: 80vh;
+
+  overflow-y: auto;
+
   background-color: white;
 
   padding: 30px;
@@ -195,12 +205,14 @@ export const CounterBlock = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  display: inline;
+  display: inline-block;
+  padding-bottom: 30px;
 `;
 
 export const Amount = styled.p`
   text-align: end;
   font-size: 24px;
+  margin: 10px;
 `;
 export const TextNoProduckts = styled.p`
   margin: 30px;
