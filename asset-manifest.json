@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/beauty-blossom/static/css/main.b04bdbd5.css",
-    "main.js": "/beauty-blossom/static/js/main.ca1a77d8.js",
+    "main.js": "/beauty-blossom/static/js/main.56aca8e4.js",
     "static/media/bannerPopularBrands.jpg": "/beauty-blossom/static/media/bannerPopularBrands.aa5f0d5c356ba16b78d2.jpg",
     "static/media/productsBaner.png": "/beauty-blossom/static/media/productsBaner.18b024626765c2c6f62a.png",
     "static/media/banner.png": "/beauty-blossom/static/media/banner.6420317f52af6db847fc.png",
@@ -21,10 +21,10 @@
     "static/media/newEmail.svg": "/beauty-blossom/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "static/media/NextPrev.svg": "/beauty-blossom/static/media/NextPrev.44749ddfef4592da8fb6a5be0bd5bc91.svg",
     "main.b04bdbd5.css.map": "/beauty-blossom/static/css/main.b04bdbd5.css.map",
-    "main.ca1a77d8.js.map": "/beauty-blossom/static/js/main.ca1a77d8.js.map"
+    "main.56aca8e4.js.map": "/beauty-blossom/static/js/main.56aca8e4.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.ca1a77d8.js"
+    "static/js/main.56aca8e4.js"
   ]
 }
