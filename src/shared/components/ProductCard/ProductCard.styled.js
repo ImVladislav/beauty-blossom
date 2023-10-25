@@ -15,7 +15,8 @@ export const LinkStyle = styled(Link)`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space between;
+  align-items: center;
+  justify-content: space-around;
   transition: transform 0.2s;
   position: relative;
   height: 100%;
@@ -82,6 +83,7 @@ export const Price = styled.p`
 `;
 
 export const ButtonWrap = styled.div`
+  position: absolute;
   margin-top: 10px;
   display: flex;
   align-items: center;

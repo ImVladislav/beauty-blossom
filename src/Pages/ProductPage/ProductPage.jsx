@@ -78,7 +78,13 @@ const ProductPage = () => {
           {product.amount <= 0 && <p>Немає на складі</p>}
 
           <Button
-            text={productCartFind ? "У кошику" : "Купити"}
+            text={
+              product.amount <= 0
+                ? "Немає в наявності"
+                : productCartFind
+                ? "У кошику"
+                : "Купити"
+            }
             onClick={handleAddToCart}
             disabled={productCartFind || product.amount <= 0}
           />
