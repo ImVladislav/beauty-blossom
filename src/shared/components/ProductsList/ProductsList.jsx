@@ -93,7 +93,7 @@ const ProductsList = ({ items }) => {
   };
 
   return (
-    <main>
+    <div style={{ width: "1440px", padding: "6px" }}>
       <FilterContainer>
         <FilterWrap>
           <FilterSelect
@@ -125,7 +125,7 @@ const ProductsList = ({ items }) => {
         />
       )}
       <ScrollToTop />
-    </main>
+    </div>
   );
 };
 
