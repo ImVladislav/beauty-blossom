@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import ProductCard from "../ProductCard/ProductCard";
 import Pagination from "../../../shared/components/Pagination/Pagination";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
@@ -11,6 +10,8 @@ import {
   FilterSelect,
   FilterWrap,
 } from "./ProductsList.styled";
+import { optUserSelector } from "../../../redux/auth/selectors";
+import { useSelector } from "react-redux";
 
 const itemsPerPage = 12;
 
@@ -19,7 +20,10 @@ const ProductsList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState("none");
   const [filteredItems, setFilteredItems] = useState(items);
   const { search } = useLocation();
+  const optUser = useSelector(optUserSelector);
+  const prevSelectedFilter = useRef(selectedFilter);
 
+  //
   useEffect(() => {
     setFilteredItems(items);
   }, [items]);
@@ -33,14 +37,20 @@ const ProductsList = ({ items }) => {
         a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
       );
     } else if (selectedFilter === "price") {
-      newFilteredItems = newFilteredItems.sort((a, b) => a.price - b.price);
+      if (!optUser) {
+        newFilteredItems = newFilteredItems.sort((a, b) => a.price - b.price);
+      } else {
+        newFilteredItems = newFilteredItems.sort(
+          (a, b) => a.priceOPT - b.priceOPT
+        );
+      }
     } else if (selectedFilter === "inStock") {
       newFilteredItems = newFilteredItems.filter((item) => item.amount >= 1);
     }
 
     setFilteredItems(newFilteredItems);
   };
-
+  //
   useEffect(() => {
     const searchParams = new URLSearchParams(search);
     const filterParam = searchParams.get("filter");
@@ -57,31 +67,31 @@ const ProductsList = ({ items }) => {
     }
   }, [search]);
 
+  //
   useEffect(() => {
-    if (selectedFilter !== "none") {
+    if (prevSelectedFilter.current !== selectedFilter) {
+      // setCurrentPage(1);
       applyFilters();
     }
-  }, [selectedFilter, filteredItems]);
+    prevSelectedFilter.current = selectedFilter;
+  }, [selectedFilter, prevSelectedFilter]);
 
+  //
   useEffect(() => {
     // Оновлення URL з новим фільтром і сторінкою без перезавантаження сторінки
     const searchParams = new URLSearchParams();
+
     if (selectedFilter !== "none") {
       searchParams.set("filter", selectedFilter);
     }
     if (currentPage > 1) {
       searchParams.set("page", currentPage);
     }
+
     const newSearch = searchParams.toString();
+
     window.history.pushState({}, "", `?${newSearch}`);
   }, [selectedFilter, currentPage]);
-
-  useEffect(() => {
-    // Додайте обробку для оновлення компонента при "Без фільтра"
-    if (selectedFilter === "none") {
-      applyFilters();
-    }
-  }, [search, selectedFilter]);
 
   // Розрахунок кількості сторінок на основі загальної кількості товарів
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);

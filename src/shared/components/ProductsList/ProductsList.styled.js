@@ -19,13 +19,16 @@ export const FilterContainer = styled.div`
 `;
 export const FilterWrap = styled.div`
   display: flex;
-  justify-content: space_between;
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
 `;
 
 export const FilterSelect = styled.select`
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 4px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  color: ${(p) => p.theme.colors.black};
+  font-weight: ${(p) => p.theme.fontWeights.body};
 `;

@@ -6,11 +6,12 @@ import { Container } from "../../shared/styles/Container";
 
 const Category = () => {
   const items = useSelector(selectGoods);
+  const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
 
   return (
     <main>
       <Container>
-        <ProductsList items={items} />
+        <ProductsList items={sortedItems} />
       </Container>
     </main>
   );
