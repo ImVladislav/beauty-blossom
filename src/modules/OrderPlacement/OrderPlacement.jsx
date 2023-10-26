@@ -14,7 +14,7 @@ import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
 import { selectCart } from '../../redux/cart/selectors';
 import { Amount, AmountBlock, CounterBlock, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
-
+import axios from 'axios';
 
 const OrderPlacement = () => {
     const isLogin = useSelector(loggedInSelector);
@@ -25,7 +25,7 @@ const OrderPlacement = () => {
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
-    const [filtredWarehouses, setFiltredWarehouses] = useState([]);
+     const [isSubmitting, setIsSubmitting] = useState(false);
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
@@ -74,7 +74,7 @@ const OrderPlacement = () => {
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
     
     const handleCityChange = () => {
-        const allCity = [];
+        
         const requestData = {
             apiKey: apiKey,
             modelName: "Address",
@@ -82,7 +82,7 @@ const OrderPlacement = () => {
             methodProperties: {
                 Page: "1",
                 FindByString: searchText,
-                Limit: "40"
+                Limit: "60"
             }
         };
 
@@ -103,10 +103,7 @@ const OrderPlacement = () => {
             .then((data) => {
                 if (data.success) {
                     setSearchCities(data.data);
-                    data.data.forEach((searchCity) => {
-                        allCity.push(searchCity);
-                    });
-                    setResponceCities(allCity);
+                    
                 }
             })
             .catch((error) => {
@@ -145,8 +142,13 @@ const OrderPlacement = () => {
             })
             .then(data => {
                 if (data.success) {
-                    setWarehouses(data.data);
+                    const dataWarehouses = data.data
+                    setWarehouses(dataWarehouses);
                     console.log(data.data);
+                    console.log(warehouses);
+                    console.log(warehouses.length);
+                    const fsw = warehouses.filter(warehouse => warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase()))
+                console.log(fsw);
                 }
 
             })
@@ -158,23 +160,26 @@ const OrderPlacement = () => {
 useEffect(() => {
     if (searchText) {
         handleCityChange();
-       console.log(firstWord);
+        console.log(firstWord);
+console.log(formData);
+        console.log(searchText);
     }
-}, [searchText]);
+    console.log(searchWarehouses);
+console.log(searchText);
+}, [ searchText, ]);
 
 useEffect(() => {
         
         handleWarehousesChange();
-
+        
 }, [ firstWord]);
 
-const handleSearchTextChange = (e) => {
-    const text = e.target.value;
+const handleSearchTextChange = async(e) => {
+     const text = await e.target.value;
+    console.log(text);
     setSearchText(text);
-}
-
-
-
+    }
+    
       const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
       quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
@@ -187,55 +192,74 @@ const handleSearchTextChange = (e) => {
     0
   );
 
-
-const handleFormSubmit = (e) => {
-  e.preventDefault();
-
- const orderedItems = [];
-
-cartItems.forEach((item) => {
-  orderedItems.push({
-    ProductId: item.id,
-    name: item.name,
-    code: item.code,
-    quantity: itemQuantities[item.id],
-    amount: item.price * itemQuantities[item.id],
-  });
-});
     
-    setFormData((prevData) => ({
-        ...prevData,
-        email: userEmail || prevData.email,
-        firstName: userFirstName || prevData.firstName,
-        lastName: userLastName || prevData.lastName,
-        number: userNumber || prevData.number,
-        city: searchText,
-        warehouse: selectedWarehouse,
-        paymentMethod: prevData.paymentMethod,
-        comments: prevData.comments,
-        orderedItems: orderedItems,
-    amount: totalCost,
-  }));
-
-    console.log(formData);
-    console.log(orderedItems);
-};
-
     
 
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
+        setIsSubmitting(true);
+        if (!searchText || !searchWarehouses) {
+            alert('Будь ласка, виберіть місто та відділення');
+            setIsSubmitting(false); // Зняти позначку відправки форми
+            return;
+        }
+     
+        // await Promise.all([handleCityChange(), handleWarehousesChange()]); // Очікуємо обидва запити
 
+        const orderedItems = [];
 
-  // Функція для оформлення замовлення
-  const placeOrder = () => {
-    // Створюємо масив товарів у корзині з відповідними кількостями
-    const orderedItems = cartItems.map((item) => ({
-      ...item,
-      quantity: itemQuantities[item.id],
-    }));
+        cartItems.forEach((item) => {
+            orderedItems.push({
+                productId: item.id,
+                name: item.name,
+                code: item.code.toString(),
+                quantity: itemQuantities[item.id],
+                amount: item.price * itemQuantities[item.id],
+            });
+        });
+    console.log(searchText); 
+        
+        setFormData((prevData) => ({
+            
+            email: userEmail || prevData.email,
+            firstName: userFirstName || prevData.firstName,
+            lastName: userLastName || prevData.lastName,
+            number: userNumber || prevData.number,
+            city: searchText,
+            warehouse: searchWarehouses,
+            paymentMethod: prevData.paymentMethod,
+            comments: prevData.comments,
+            orderedItems: orderedItems,
+            amount: totalCost,
+        }));
+            
 
+        const dataToSend = formData
+        const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
+
+        axios.post(ordersUrl, dataToSend)
+            .then(response => {
+                // Ви можете обробити відповідь від сервера тут
+                console.log('Відповідь від сервера:', response.data);
+                // Отже, всі операції, які виконуються при успішному запиті, повинні бути розміщені в цьому блоку then.
+            })
+            .catch(error => {
+                // Якщо сталася помилка, обробляємо її тут.
+                console.error('Сталася помилка:', error);
+            })
+            .finally(() => {
+                // Операції, які завжди виконуються незалежно від успіху або помилки запиту.
+                setIsSubmitting(false);
+            });
+
+        setIsSubmitting(false);
+        
     
-  };
+    
+    }
+
+
 
         return (
             <OrderForm>
@@ -324,7 +348,7 @@ cartItems.forEach((item) => {
                                 type="text"
                                 id="city"
                                 name="city"
-                                value={searchText}
+                                value={formData.city || searchText}
                                 onChange={handleSearchTextChange}
                                 list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
                                 placeholder="Введіть назву міста"
@@ -412,7 +436,10 @@ cartItems.forEach((item) => {
                                 
                                 <label htmlFor="comments">Комментарий</label>
                                 <textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></textarea>
-                                <button type="submit">Відправити</button>
+                                <button type="submit" disabled={isSubmitting}>
+                            {isSubmitting ? 'Відправляється...' : 'Відправити'}
+                        </button>
+
                             </OrderSummary>
                         </Form>) : (null)}
       </OrderDetails>
