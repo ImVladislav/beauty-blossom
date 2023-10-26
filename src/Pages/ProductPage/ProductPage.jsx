@@ -27,7 +27,7 @@ import {
   CounterBlock,
   InputIncDec,
 } from "./ProductPage.styled";
-import SecondButton from "../../shared/components/SecondButton/SecondButton";
+// import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import Sticker from "../../shared/components/Sticker/Sticker";
 import { selectCart } from "../../redux/cart/selectors";
 import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
