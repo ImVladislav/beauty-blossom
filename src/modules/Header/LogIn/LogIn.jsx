@@ -3,7 +3,7 @@ import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswor
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { loggedInSelector, userSelectorfirstName, isAdminSelector } from "../../../redux/auth/selectors";
+import { loggedInSelector, userSelectorfirstName, isAdminSelector, optUserSelector } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
 
@@ -15,6 +15,8 @@ const LogIn = () => {
   const userName = useSelector(userSelectorfirstName);
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
+const opt = useSelector(optUserSelector);
+
   const dispatch = useDispatch();
   console.log(admin);
   console.log(isLogin);
@@ -23,7 +25,7 @@ const LogIn = () => {
       setShowModal(true);
     }
   };
-
+console.log(opt);
   const handleDropdownEnter = () => {
     if (isLogin) {
         setShowDropdown(true);
