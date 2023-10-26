@@ -3,14 +3,16 @@ import styled from "styled-components";
 export const ProductListContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  /* margin: -6px; */
+  gap: 6px;
+  text-align: center;
+  /* justify-content: center; */
   /* max-width: 1440px; */
 `;
 
 export const FilterContainer = styled.div`
   display: flex;
   position: relative;
-  width: 1440px;
+
   margin-left: auto;
   margin-right: auto;
   justify-content: flex-end;
