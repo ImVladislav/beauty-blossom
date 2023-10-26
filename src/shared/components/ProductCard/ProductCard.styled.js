@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const ItemStyle = styled.li`
-  vertical-align: top;
-  min-width: 350px;
-  width: 25%;
+  /* vertical-align: top; */
+  width: 350px;
+  /* width: 25%; */
 `;
 
 export const LinkStyle = styled(Link)`
@@ -21,9 +21,9 @@ export const Container = styled.div`
   position: relative;
   height: 100%;
   border-radius: 0;
-  margin: 6px;
+  /* margin: 6px; */
   border: 1px solid #f5f2ea;
-  height: calc(100% - calc(12px + 1 * 2px));
+  /* height: calc(100% - calc(12px + 1 * 2px)); */
   background: #fff;
   &:hover {
     transform: translateY(-4px);
@@ -39,7 +39,9 @@ export const Container = styled.div`
 
 export const ImageWrap = styled.div`
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
+  max-width: 240px;
+  max-height: 240px;
 `;
 
 export const Image = styled.img`
@@ -48,8 +50,6 @@ export const Image = styled.img`
   height: auto;
   width: auto;
   font-size: 14px;
-  vertical-align: middle;
-  aspect-ratio: auto 240 / 240;
 `;
 
 export const Content = styled.div`

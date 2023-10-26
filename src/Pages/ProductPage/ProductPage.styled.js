@@ -3,13 +3,15 @@ import styled from "styled-components";
 export const PageContainer = styled.div`
   margin-bottom: 40px;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: center; */
 `;
 
 export const ImageWrap = styled.div`
   position: relative;
   display: inline-block;
+  max-width: 500px;
+  max-height: 500px;
 `;
 
 export const ProductImage = styled.img`
@@ -134,7 +136,7 @@ export const ButtonIncDec = styled.button`
 
 export const InputIncDec = styled.input`
   text-align: center;
-
+  appearance: none;
   outline: none;
 
   color: ${(p) => p.theme.colors.black};
@@ -142,4 +144,15 @@ export const InputIncDec = styled.input`
   padding: 0;
   background-color: none;
   font-size: 20px;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
 `;

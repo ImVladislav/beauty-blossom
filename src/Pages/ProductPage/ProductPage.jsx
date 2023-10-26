@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { addToCart } from "../../redux/cart/slice";
 import { selectGoods } from "../../redux/products/selectors";
 
+import { toast } from "react-toastify";
+
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
 import { Container } from "../../shared/styles/Container";
@@ -56,7 +58,11 @@ const ProductPage = () => {
   };
 
   const incrementQuantity = () => {
-    setQuantity(quantity + 1);
+    if (product.amount > quantity) {
+      setQuantity(quantity + 1);
+    } else {
+      toast.error("Обмежена кількість товару на складі!");
+    }
   };
 
   const decrementQuantity = () => {
@@ -103,6 +109,7 @@ const ProductPage = () => {
                   max={product.amount}
                   value={quantity}
                   onChange={handleQuantityChange}
+                  readOnly={true}
                 />
                 <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
               </CounterBlock>
