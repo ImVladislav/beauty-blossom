@@ -73,13 +73,14 @@ export const Price = styled.p`
   align-self: center;
   color: #000;
   font-size: 15px;
-  font-weight: normal;
+  font-weight: ${(p) => p.theme.fontWeights.title};
   line-height: 1.2;
   text-align: center;
   display: flex;
   align-items: center;
   margin-top: 9px;
   justify-content: center;
+  /*  */
 `;
 
 export const ButtonWrap = styled.div`
