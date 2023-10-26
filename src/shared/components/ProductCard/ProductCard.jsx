@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addToCart } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
+import { optUserSelector } from "../../../redux/auth/selectors";
+
 import Sticker from "../Sticker/Sticker";
+import Button from "../Button/Button";
 
 import {
   ItemStyle,
@@ -16,12 +19,12 @@ import {
   Price,
   ButtonWrap,
 } from "./ProductCard.styled";
-import Button from "../Button/Button";
 
 const ProductCard = ({ products }) => {
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const productCart = useSelector(selectCart);
+  const optUser = useSelector(optUserSelector);
 
   const handleAddToCart = (event) => {
     event.preventDefault();
@@ -63,7 +66,11 @@ const ProductCard = ({ products }) => {
             </ImageWrap>
             <Content>
               <Name>{products.name}</Name>
-              <Price>{products.price} ₴</Price>
+              {optUser ? (
+                <Price>{products.priceOPT} ₴</Price>
+              ) : (
+                <Price>{products.price} ₴</Price>
+              )}
             </Content>
             {isHovered && (
               <ButtonWrap>
