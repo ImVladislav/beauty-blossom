@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { addToCart } from "../../redux/cart/slice";
-import { selectGoods } from "../../redux/products/selectors";
-
 import { toast } from "react-toastify";
 
+import { addToCart } from "../../redux/cart/slice";
+import { selectGoods } from "../../redux/products/selectors";
+import { optUserSelector } from "../../redux/auth/selectors";
+import { selectCart } from "../../redux/cart/selectors";
+
 import Button from "../../shared/components/Button/Button";
+// import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
+import Sticker from "../../shared/components/Sticker/Sticker";
+import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 import { Container } from "../../shared/styles/Container";
 
 import {
@@ -27,10 +32,6 @@ import {
   CounterBlock,
   InputIncDec,
 } from "./ProductPage.styled";
-// import SecondButton from "../../shared/components/SecondButton/SecondButton";
-import Sticker from "../../shared/components/Sticker/Sticker";
-import { selectCart } from "../../redux/cart/selectors";
-import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -39,6 +40,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectGoods);
   const productCart = useSelector(selectCart);
+  const optUser = useSelector(optUserSelector);
 
   const product = products?.find((item) => +item.id === +id); // amount, article, brand, code, description, images, name,new,price,priceOPT,sale,category,subCategory,subSubCategory
   const productCartFind = productCart?.find((item) => +item.id === +id);
@@ -98,7 +100,11 @@ const ProductPage = () => {
           </WrapName>
           <div>Штрих-код: {product.code}</div>
           <ProductBrand> {product.brand}</ProductBrand>
-          <ProductPrice>{product.price} ₴</ProductPrice>
+          {optUser ? (
+            <ProductPrice>{product.priceOPT} ₴</ProductPrice>
+          ) : (
+            <ProductPrice>{product.price} ₴</ProductPrice>
+          )}
           {product.amount <= 0 ||
             (!productCartFind && (
               <CounterBlock>
