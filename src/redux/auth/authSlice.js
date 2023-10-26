@@ -10,6 +10,7 @@ const initialState = {
   isRefreshing: false,
   isRegister: false,
   isAdmin: false,
+  optUser: false,
 };
 
 
@@ -26,6 +27,7 @@ const authSlice = createSlice({
         state.email = action.payload.email;
         state.number = action.payload.number;
         state.isAdmin = action.payload.isAdmin;
+        state.optUser = action.payload.optUser;
         state.isRegister = true;
 
       })
@@ -35,6 +37,7 @@ const authSlice = createSlice({
         state.email = action.payload.email;
         state.lastName = action.payload.lastName;
         state.isAdmin = action.payload.isAdmin;
+        state.optUser = action.payload.optUser;
         state.isLoggedIn = true;
         state.isRegister = true;
         state.token = action.payload.token;
@@ -51,6 +54,7 @@ const authSlice = createSlice({
         state.isAdmin = false;
         state.isLoggedIn = false;
         state.isRegister = false;
+        state.optUser = false;
       })
       .addCase(refreshCurrentUser.pending, (state, action) => {
         state.isRefreshing = true;
@@ -61,6 +65,7 @@ const authSlice = createSlice({
         state.number = action.payload.number;
         state.email = action.payload.email;
         state.isAdmin = action.payload.isAdmin;
+        state.optUser = action.payload.optUser;
         state.isLoggedIn = true;
         state.isRegister = true;
         state.isRefreshing = false;

@@ -62,14 +62,14 @@ const OrderPlacement = () => {
 
     }
 
-    if (firstWord !== '') { 
+    // if (firstWord !== '') { 
     //         const filtered = warehouses.filter(warehouse =>
 // warehouse.toLowerCase().includes(firstWord.toLowerCase())
-                    const filtered = warehouses.filter(warehouse =>
-    warehouse === firstWord )
+    //                 const filtered = warehouses.filter(warehouse =>
+    // warehouse === firstWord )
 
-        //  setFiltredWarehouses(filtered)
-    }
+    //     //  setFiltredWarehouses(filtered)
+    // }
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
     
@@ -194,70 +194,51 @@ const handleSearchTextChange = async(e) => {
 
     
     
+const handleFormSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
+    setIsSubmitting(true);
 
-        setIsSubmitting(true);
-        if (!searchText || !searchWarehouses) {
-            alert('Будь ласка, виберіть місто та відділення');
-            setIsSubmitting(false); // Зняти позначку відправки форми
-            return;
-        }
-     
-        // await Promise.all([handleCityChange(), handleWarehousesChange()]); // Очікуємо обидва запити
-
-        const orderedItems = [];
-
-        cartItems.forEach((item) => {
-            orderedItems.push({
-                productId: item.id,
-                name: item.name,
-                code: item.code.toString(),
-                quantity: itemQuantities[item.id],
-                amount: item.price * itemQuantities[item.id],
-            });
-        });
-    console.log(searchText); 
-        
-        setFormData((prevData) => ({
-            
-            email: userEmail || prevData.email,
-            firstName: userFirstName || prevData.firstName,
-            lastName: userLastName || prevData.lastName,
-            number: userNumber || prevData.number,
-            city: searchText,
-            warehouse: searchWarehouses,
-            paymentMethod: prevData.paymentMethod,
-            comments: prevData.comments,
-            orderedItems: orderedItems,
-            amount: totalCost,
-        }));
-            
-
-        const dataToSend = formData
-        const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
-
-        axios.post(ordersUrl, dataToSend)
-            .then(response => {
-                // Ви можете обробити відповідь від сервера тут
-                console.log('Відповідь від сервера:', response.data);
-                // Отже, всі операції, які виконуються при успішному запиті, повинні бути розміщені в цьому блоку then.
-            })
-            .catch(error => {
-                // Якщо сталася помилка, обробляємо її тут.
-                console.error('Сталася помилка:', error);
-            })
-            .finally(() => {
-                // Операції, які завжди виконуються незалежно від успіху або помилки запиту.
-                setIsSubmitting(false);
-            });
-
+    if (!searchText || !searchWarehouses) {
+        alert('Будь ласка, виберіть місто та відділення');
         setIsSubmitting(false);
-        
-    
-    
+        return;
     }
+
+    const orderedItems = cartItems.map((item) => ({
+        productId: item.id,
+        name: item.name,
+        code: item.code.toString(),
+        quantity: itemQuantities[item.id],
+        amount: item.price * itemQuantities[item.id],
+    }));
+
+    const dataToSend = {
+        ...formData,
+        email: userEmail || formData.email,
+        firstName: userFirstName || formData.firstName,
+        lastName: userLastName || formData.lastName,
+        number: userNumber || formData.number,
+        city: searchText,
+        warehouse: searchWarehouses,
+        orderedItems: orderedItems,
+        amount: totalCost,
+    };
+
+    const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
+
+    axios.post(ordersUrl, dataToSend)
+        .then(response => {
+            console.log('Відповідь від сервера:', response.data);
+        })
+        .catch(error => {
+            console.error('Сталася помилка:', error);
+        })
+        .finally(() => {
+            setIsSubmitting(false);
+        });
+};
+
 
 
 

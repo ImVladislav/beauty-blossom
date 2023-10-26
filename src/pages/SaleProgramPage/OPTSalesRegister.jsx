@@ -22,7 +22,7 @@ const OPTSalesRegister = () => {
     onlineShop: false,
     offlineShop: false,
     socialMedia: false,
-    OPTUser: true,
+    optUser: true,
   };
       const [IsRegistered, setIsRegistered] = useState(false);
 
@@ -60,7 +60,7 @@ const OPTSalesRegister = () => {
       onlineShop: Yup.boolean(),
       offlineShop: Yup.boolean(),
       socialMedia: Yup.boolean(),
-      OPTUser: Yup.boolean(),
+      optUser: Yup.boolean(),
   });
 
     const onSubmit = (values) => {
