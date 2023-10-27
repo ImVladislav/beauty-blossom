@@ -16,6 +16,7 @@ export const theme = {
     color504056: "#504056",
     menuHover: "#FFF6E9",
     menuHoverShadow: "0px 3.76642px 3.76642px 0px rgba(0, 0, 0, 0.25)",
+    border: "#f5f2ea",
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

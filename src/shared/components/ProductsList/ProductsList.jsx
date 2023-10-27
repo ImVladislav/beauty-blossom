@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import ProductCard from "../ProductCard/ProductCard";
 import Pagination from "../../../shared/components/Pagination/Pagination";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
@@ -11,6 +10,8 @@ import {
   FilterSelect,
   FilterWrap,
 } from "./ProductsList.styled";
+import { optUserSelector } from "../../../redux/auth/selectors";
+import { useSelector } from "react-redux";
 
 const itemsPerPage = 12;
 
@@ -19,10 +20,7 @@ const ProductsList = ({ items }) => {
   const [selectedFilter, setSelectedFilter] = useState("none");
   const [filteredItems, setFilteredItems] = useState(items);
   const { search } = useLocation();
-
-  useEffect(() => {
-    setFilteredItems(items);
-  }, [items]);
+  const optUser = useSelector(optUserSelector);
 
   // Функція для фільтрації товарів
   const applyFilters = () => {
@@ -33,7 +31,13 @@ const ProductsList = ({ items }) => {
         a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
       );
     } else if (selectedFilter === "price") {
-      newFilteredItems = newFilteredItems.sort((a, b) => a.price - b.price);
+      if (!optUser) {
+        newFilteredItems = newFilteredItems.sort((a, b) => a.price - b.price);
+      } else {
+        newFilteredItems = newFilteredItems.sort(
+          (a, b) => a.priceOPT - b.priceOPT
+        );
+      }
     } else if (selectedFilter === "inStock") {
       newFilteredItems = newFilteredItems.filter((item) => item.amount >= 1);
     }
@@ -41,6 +45,7 @@ const ProductsList = ({ items }) => {
     setFilteredItems(newFilteredItems);
   };
 
+  //При зміні параметра search у розташуванні (URL)
   useEffect(() => {
     const searchParams = new URLSearchParams(search);
     const filterParam = searchParams.get("filter");
@@ -57,27 +62,31 @@ const ProductsList = ({ items }) => {
     }
   }, [search]);
 
+  //При зміні selectedFilter або items.
   useEffect(() => {
     if (selectedFilter !== "none") {
       applyFilters();
     }
-  }, [selectedFilter, filteredItems]);
+  }, [selectedFilter, items]);
 
+  // Оновлює URL без перезавантаження сторінки, коли змінюються selectedFilter або currentPage
   useEffect(() => {
-    // Оновлення URL з новим фільтром і сторінкою без перезавантаження сторінки
     const searchParams = new URLSearchParams();
+
     if (selectedFilter !== "none") {
       searchParams.set("filter", selectedFilter);
     }
     if (currentPage > 1) {
       searchParams.set("page", currentPage);
     }
+
     const newSearch = searchParams.toString();
+
     window.history.pushState({}, "", `?${newSearch}`);
   }, [selectedFilter, currentPage]);
 
+  // Обробка для оновлення компонента при "Без фільтра"
   useEffect(() => {
-    // Додайте обробку для оновлення компонента при "Без фільтра"
     if (selectedFilter === "none") {
       applyFilters();
     }
@@ -99,7 +108,10 @@ const ProductsList = ({ items }) => {
         <FilterWrap>
           <FilterSelect
             value={selectedFilter}
-            onChange={(e) => setSelectedFilter(e.target.value)}
+            onChange={(e) => {
+              setCurrentPage(1); //Встановлює поточну сторінку на 1 після зміни фільтра
+              setSelectedFilter(e.target.value);
+            }} //
           >
             <option value="none">Без фільтра</option>
             <option value="name">Фільтрувати за назвою</option>
@@ -125,6 +137,7 @@ const ProductsList = ({ items }) => {
           onPageChange={setCurrentPage}
         />
       )}
+
       <ScrollToTop />
     </div>
   );

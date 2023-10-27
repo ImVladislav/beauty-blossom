@@ -28,59 +28,71 @@ export const WrapName = styled.div`
 
 export const ProductName = styled.h2`
   margin: 0 10px 10px 0;
-  font-size: 30px;
+
+  font-size: ${(p) => p.theme.fontSizes.l}px;
   text-align: justify;
 
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
 `;
 
 export const ProductArticle = styled.div`
-  margin: 0 0 -15px 0;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-
+  text-align: center;
   padding: 7px 14px;
+  margin: 0 0 -15px 0;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+
   background: ${(p) => p.theme.colors.menuBg};
-  border-radius: 0;
+  border-radius: ${(p) => p.theme.radii.none};
   color: ${(p) => p.theme.colors.black};
 `;
 
 export const ProductArticleSpan = styled.span`
   display: block;
-  margin-bottom: 1px;
-  font-size: 12px;
+  margin: 3px;
+
+  text-align: center;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   color: ${(p) => p.theme.colors.black};
-  white-space: nowrap;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
 `;
 
-export const ProductBrand = styled.p`
-  font-size: 20px;
+export const ProductCode = styled.p`
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
 
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: normal;
+  margin: 5px 0;
+`;
+export const ProductBrand = styled.p`
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   margin: 5px 0;
 `;
 
 export const ProductPrice = styled.p`
-  font-size: 30px;
+  font-size: ${(p) => p.theme.fontSizes.authxl}px;
 
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   margin: 10px 0 10px 0;
   color: ${(p) => p.theme.colors.black};
 `;
 
 export const ProductTitleDescription = styled.p`
-  font-size: 30px;
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
   margin: 5px 0;
-  font-size: 30px;
+
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   letter-spacing: 1.2px;
 
@@ -89,9 +101,9 @@ export const ProductTitleDescription = styled.p`
 export const ProductDescription = styled.p`
   text-align: justify;
 
-  font-size: 20px;
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: normal;
 
   margin: 5px 0;
@@ -108,7 +120,7 @@ export const CounterBlock = styled.div`
   border: 1px solid ${(p) => p.theme.colors.black};
   position: relative;
   align-items: center;
-  font-size: 18px;
+  font-size: ${(p) => p.theme.fontSizes.m}px;
   margin-bottom: 10px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
@@ -127,7 +139,7 @@ export const ButtonIncDec = styled.button`
   border: 0;
   padding: 0;
   background: none;
-  font-size: 20px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
@@ -136,14 +148,14 @@ export const ButtonIncDec = styled.button`
 
 export const InputIncDec = styled.input`
   text-align: center;
-  appearance: none;
+
   outline: none;
 
   color: ${(p) => p.theme.colors.black};
   border: 0;
   padding: 0;
   background-color: none;
-  font-size: 20px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {

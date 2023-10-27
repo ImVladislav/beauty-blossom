@@ -31,6 +31,8 @@ import {
   ButtonIncDec,
   CounterBlock,
   InputIncDec,
+  ProductCode,
+  ProductArticleSpan,
 } from "./ProductPage.styled";
 
 const ProductPage = () => {
@@ -94,11 +96,11 @@ const ProductPage = () => {
           <WrapName>
             <ProductName>{product.name}</ProductName>
             <ProductArticle>
-              <span>Артикул </span>
+              <ProductArticleSpan>Артикул</ProductArticleSpan>
               {product.article}
             </ProductArticle>
           </WrapName>
-          <div>Штрих-код: {product.code}</div>
+          <ProductCode>Штрих-код: {product.code}</ProductCode>
           <ProductBrand> {product.brand}</ProductBrand>
           {optUser ? (
             <ProductPrice>{product.priceOPT} ₴</ProductPrice>
