@@ -21,12 +21,6 @@ const ProductsList = ({ items }) => {
   const [filteredItems, setFilteredItems] = useState(items);
   const { search } = useLocation();
   const optUser = useSelector(optUserSelector);
-  const prevSelectedFilter = useRef(selectedFilter);
-
-  //
-  useEffect(() => {
-    setFilteredItems(items);
-  }, [items]);
 
   // Функція для фільтрації товарів
   const applyFilters = () => {
@@ -50,7 +44,8 @@ const ProductsList = ({ items }) => {
 
     setFilteredItems(newFilteredItems);
   };
-  //
+
+  //При зміні параметра search у розташуванні (URL)
   useEffect(() => {
     const searchParams = new URLSearchParams(search);
     const filterParam = searchParams.get("filter");
@@ -67,18 +62,15 @@ const ProductsList = ({ items }) => {
     }
   }, [search]);
 
-  //
+  //При зміні selectedFilter або items.
   useEffect(() => {
-    if (prevSelectedFilter.current !== selectedFilter) {
-      // setCurrentPage(1);
+    if (selectedFilter !== "none") {
       applyFilters();
     }
-    prevSelectedFilter.current = selectedFilter;
-  }, [selectedFilter, prevSelectedFilter]);
+  }, [selectedFilter, items]);
 
-  //
+  // Оновлює URL без перезавантаження сторінки, коли змінюються selectedFilter або currentPage
   useEffect(() => {
-    // Оновлення URL з новим фільтром і сторінкою без перезавантаження сторінки
     const searchParams = new URLSearchParams();
 
     if (selectedFilter !== "none") {
@@ -92,6 +84,13 @@ const ProductsList = ({ items }) => {
 
     window.history.pushState({}, "", `?${newSearch}`);
   }, [selectedFilter, currentPage]);
+
+  // Обробка для оновлення компонента при "Без фільтра"
+  useEffect(() => {
+    if (selectedFilter === "none") {
+      applyFilters();
+    }
+  }, [search, selectedFilter]);
 
   // Розрахунок кількості сторінок на основі загальної кількості товарів
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
@@ -109,7 +108,10 @@ const ProductsList = ({ items }) => {
         <FilterWrap>
           <FilterSelect
             value={selectedFilter}
-            onChange={(e) => setSelectedFilter(e.target.value)}
+            onChange={(e) => {
+              setCurrentPage(1); //Встановлює поточну сторінку на 1 після зміни фільтра
+              setSelectedFilter(e.target.value);
+            }} //
           >
             <option value="none">Без фільтра</option>
             <option value="name">Фільтрувати за назвою</option>
@@ -135,6 +137,7 @@ const ProductsList = ({ items }) => {
           onPageChange={setCurrentPage}
         />
       )}
+
       <ScrollToTop />
     </div>
   );
