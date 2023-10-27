@@ -1,22 +1,21 @@
-import bannerImg from "../../images/bannerPopularBrands.jpg";
+// import bannerImg from "../../images/bannerPopularBrands.jpg";
 export const theme = {
   colors: {
     white: "#ffffff",
     black: "#000000",
+    textColor: "#504056",
     accentColor: "#833989",
     hoverAccentColor: "#ff358a",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
-    bgImage: bannerImg,
-    topHeaderLine: "#FFF3B6",
-    textColor: "#504056",
-    title: "#504056",
+    // bgImage: bannerImg,
+    topHeaderLine: "#FFF6E9",
     heroTitle: "#C14CAF",
-    color504056: "#504056",
     menuHover: "#FFF6E9",
     menuHoverShadow: "0px 3.76642px 3.76642px 0px rgba(0, 0, 0, 0.25)",
-    border: "#f5f2ea",
+    border: "#461C49",
+    borderCard: "#e8dfd8",
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

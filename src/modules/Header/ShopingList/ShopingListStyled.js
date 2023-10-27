@@ -216,7 +216,7 @@ export const Amount = styled.p`
 `;
 export const TextNoProduckts = styled.p`
   margin: 30px;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 
   font-size: 30px;
   text-align: center;

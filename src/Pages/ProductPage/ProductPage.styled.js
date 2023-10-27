@@ -47,7 +47,7 @@ export const ProductArticle = styled.div`
 
   background: ${(p) => p.theme.colors.menuBg};
   border-radius: ${(p) => p.theme.radii.none};
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 `;
 
 export const ProductArticleSpan = styled.span`
@@ -56,7 +56,7 @@ export const ProductArticleSpan = styled.span`
 
   text-align: center;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   font-weight: ${(p) => p.theme.fontWeights.bold};
 `;
 
@@ -84,7 +84,7 @@ export const ProductPrice = styled.p`
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   margin: 10px 0 10px 0;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 `;
 
 export const ProductTitleDescription = styled.p`
@@ -117,7 +117,7 @@ export const CounterBlock = styled.div`
   height: 38px;
   display: flex;
   border-radius: 4px;
-  border: 1px solid ${(p) => p.theme.colors.black};
+  border: 1px solid ${(p) => p.theme.colors.textColor};
   position: relative;
   align-items: center;
   font-size: ${(p) => p.theme.fontSizes.m}px;
@@ -135,7 +135,7 @@ export const ButtonIncDec = styled.button`
   vertical-align: top;
 
   cursor: pointer;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
   background: none;
@@ -151,7 +151,7 @@ export const InputIncDec = styled.input`
 
   outline: none;
 
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
   background-color: none;

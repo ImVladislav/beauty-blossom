@@ -8,9 +8,9 @@ export const ButtonStyle = styled.button`
   transition: background-color 0.3s ease color 0.3s ease;
   margin: 0 5px;
 
-  border: 1px solid ${(p) => p.theme.colors.black};
+  border: 1px solid ${(p) => p.theme.colors.border};
   background-color: ${(p) => p.theme.colors.white};
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 
   &:hover {
     background-color: ${(p) => p.disabled || p.theme.colors.hoverAccentColor};

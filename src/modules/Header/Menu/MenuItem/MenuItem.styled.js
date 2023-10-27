@@ -11,11 +11,6 @@ export const Item = styled.li`
   padding: 5px;
   position: relative;
   padding: 0 20px;
-  /* background-color: ${(p) => p.theme.colors.white}; */
-
-  /* border: solid ${(p) => p.theme.colors.topHeaderLine} 0px; */
-
-  /* border-radius: 1px; */
   transition: 556ms;
   display: flex;
   flex-direction: row;
@@ -25,23 +20,18 @@ export const Item = styled.li`
     background: ${(p) => p.theme.colors.menuHover};
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
     border-radius: 49px;
-    /* transition: 556ms;
-    transform: translateY(-3px);
-    color: #0066cc;
-    border: solid 0px #0066cc;
-    transform: translateY(0); */
   }
 `;
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 
   font-size: ${(p) => p.theme.fontSizes.m}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
-  /* padding: 0 20px; */
+
   &.active {
     color: ${(p) => p.theme.colors.accentColor};
   }
@@ -50,6 +40,7 @@ export const Link = styled(NavLink)`
     color: ${(p) => p.theme.colors.accentColor};
   }
 `;
+
 export const SubMenuWrap = styled.div`
   min-height: 320px;
   width: auto;
@@ -60,7 +51,7 @@ export const SubMenuWrap = styled.div`
   position: absolute;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-  /* z-index: 0; */
+  /* z-index: 1; */
 `;
 
 export const RightIcon = styled(AiOutlineRight)`
@@ -80,4 +71,63 @@ export const ListSub = styled.ul`
   display: flex;
   gap: 20px;
   flex-direction: column;
+`;
+
+export const SubMenuWrapBrand = styled.ul`
+  min-height: 320px;
+  width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  top: 105%;
+  left: 0;
+  right: auto;
+  border-radius: 10px;
+  position: absolute;
+  background: ${(p) => p.theme.colors.white};
+  box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
+  /* z-index: 1; */
+`;
+
+export const ListSubBrand = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ItemSubBrand = styled.li`
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+`;
+export const LinkBrand = styled(NavLink)`
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.textColor};
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px 20px;
+  &.active {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+    background: ${(p) => p.theme.colors.menuHover};
+    box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
+    border-radius: 49px;
+  }
+`;
+export const BrandLetter = styled.h3`
+  color: ${(p) => p.theme.colors.textColor};
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-weight: ${(p) => p.theme.fontWeights.title};
+`;
+export const BrandCard = styled.li`
+  border-radius: 8px;
+  max-width: 155px;
 `;

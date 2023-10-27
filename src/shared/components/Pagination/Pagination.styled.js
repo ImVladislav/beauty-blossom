@@ -12,13 +12,17 @@ export const PageButton = styled.button`
   margin: 0 5px;
   padding: 8px 12px;
   border: 1px solid #ddd;
-  background-color: ${(p) => (p.active === "true" ? "#A03DA9" : "#fff")};
-  color: ${(p) => (p.active === "true" ? "#fff" : "#333")};
-  border-color: ${(p) => (p.active === "true" ? "#A03DA9" : "#ddd")};
+  background-color: ${(p) =>
+    p.active === "true" ? p.theme.colors.heroBtn : p.theme.colors.while};
+  color: ${(p) =>
+    p.active === "true" ? p.theme.colors.while : p.theme.colors.textColor};
+  border-color: ${(p) =>
+    p.active === "true" ? p.theme.colors.heroBtn : "#ddd"};
   cursor: pointer;
 
   &:hover {
-    background-color: ${(p) => (p.active === "true" ? "#A03DA9" : "#f8f9fa")};
+    background-color: ${(p) =>
+      p.active === "true" ? p.theme.colors.heroBtn : "#f8f9fa"};
   }
 `;
 export const IconLeft = styled(AiOutlineLeft)``;

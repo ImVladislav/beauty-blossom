@@ -19,15 +19,14 @@ export const Title = styled.h3`
 `
 
 export const SubTitle = styled.h4`
- margin-bottom: 15px;
- color: ${(p) => p.theme.colors.black};
+  margin-bottom: 15px;
+  color: ${(p) => p.theme.colors.textColor};
   display: flex;
-    justify-content: center;
+  justify-content: center;
 
- font-size: 80%;
- text-align: center;
-
-    `
+  font-size: 80%;
+  text-align: center;
+`;
 export const Text= styled.p`
     font-size: 70%;
     margin: 0px 20px 10px;

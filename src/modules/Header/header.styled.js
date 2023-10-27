@@ -10,7 +10,7 @@ export const Container = styled.div`
   background: white;
 `;
 export const HeaderTop = styled.div`
-  color: #000;
+  color: ${(p) => p.theme.colors.textColor};
 `;
 export const HeaderWrap = styled.div`
   max-width: 1440px;
@@ -47,7 +47,7 @@ export const LoginShipingThumb = styled.div`
 
 export const Link = styled.a`
   text-decoration: none;
-  color: #000;
+  color: ${(p) => p.theme.colors.textColor};
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
@@ -57,9 +57,9 @@ export const MenuBottom = styled.div`
   position: relative;
   top: 20px;
   margin: -20px 0 20px;
-  background: #fff6e96e;
+  background: ${(p) => p.theme.colors.topHeaderLine};
   /* background: ${(p) => p.theme.colors.menuHover}; */
-  color: #000;
+  color: ${(p) => p.theme.colors.textColor};
 `;
 export const MenuWrap = styled.div`
   max-width: 1440px;

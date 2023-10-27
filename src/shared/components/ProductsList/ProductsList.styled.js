@@ -29,6 +29,6 @@ export const FilterSelect = styled.select`
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 4px;
   font-size: ${(p) => p.theme.fontSizes.s}px;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   font-weight: ${(p) => p.theme.fontWeights.body};
 `;

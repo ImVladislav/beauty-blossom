@@ -11,12 +11,12 @@ export const ContactsElips = styled.div`
 export const ContactsIcon = styled(EmailIcon)`
   width: 28px;
   height: 28px;
-  fill: ${(p) => p.theme.colors.color504056};
+  fill: ${(p) => p.theme.colors.textColor};
 `;
 
 export const Link = styled.a`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.color504056};
+  color: ${(p) => p.theme.colors.textColor};
   font-size: 20px;
 `;
 export const Wrap = styled.div`
