@@ -28,7 +28,7 @@ export const WrapItem = styled.div`
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   font-size: ${(p) => p.theme.fontSizes.m}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;

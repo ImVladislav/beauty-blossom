@@ -44,7 +44,7 @@ export const ProductSticker = styled.div`
 `;
 
 export const StickerText = styled.span`
-  color: #fff;
+  color: ${(p) => p.theme.colors.white};
   font-weight: bold;
   font-size: 14px;
   text-align: center;

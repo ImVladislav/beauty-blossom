@@ -13,7 +13,6 @@ export const SearchFormContainer = styled.div`
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
-    
   }
 `;
 
@@ -27,8 +26,8 @@ export const SearchInput = styled.input`
   padding: 0px 16px 0px 42px;
   background: rgb(255, 255, 255);
   font-size: 18px;
-  border: 1px solid rgb(212, 212, 212);
-  color: ${(p) => p.theme.colors.color504056};
+  border: 1.321px solid ${(p) => p.theme.colors.border};
+  color: ${(p) => p.theme.colors.textColor};
   &:hover,
   &:focus {
     outline: 2px solid ${(p) => p.theme.colors.accentColor};
@@ -54,5 +53,5 @@ export const SearchButton = styled.button`
 export const SearchIcon = styled(BsSearch)`
   width: 20px;
   height: 20px;
-  color: #d2b9a6;
+  color: ${(p) => p.theme.colors.textColor};
 `;

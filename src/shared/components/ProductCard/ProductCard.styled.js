@@ -15,7 +15,7 @@ export const ItemStyle = styled.li`
 
 export const LinkStyle = styled(Link)`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
 `;
 
 export const Container = styled.div`
@@ -28,7 +28,7 @@ export const Container = styled.div`
   height: 100%;
   border-radius: 0;
   /* margin: 6px; */
-  border: 1px solid ${(p) => p.theme.colors.border};
+  border: 1px solid ${(p) => p.theme.colors.borderCard};
   /* height: calc(100% - calc(12px + 1 * 2px)); */
   background: ${(p) => p.theme.colors.white};
   &:hover {
@@ -78,9 +78,9 @@ export const Name = styled.h2`
 
 export const Price = styled.p`
   align-self: center;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   font-size: ${(p) => p.theme.fontSizes.m}px;
-  font-weight: ${(p) => p.theme.fontWeights.title};
+  font-weight: ${(p) => p.theme.fontWeights.textColor};
   line-height: 1.2;
   text-align: center;
   display: flex;

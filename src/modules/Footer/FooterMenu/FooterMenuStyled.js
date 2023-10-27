@@ -16,7 +16,7 @@ export const List = styled.ul`
 
 export const LinkItem = styled(Link)`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.black};
+  color: ${(p) => p.theme.colors.textColor};
   font-size: ${(p) => p.theme.fontSizes.m}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
 `;
