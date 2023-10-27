@@ -22,6 +22,9 @@ const ProductsList = ({ items }) => {
   const { search } = useLocation();
   const optUser = useSelector(optUserSelector);
 
+  useEffect(() => {
+    setFilteredItems(items);
+  }, [items]);
   // Функція для фільтрації товарів
   const applyFilters = () => {
     let newFilteredItems = [...items];
