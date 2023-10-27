@@ -1,5 +1,5 @@
 
-import { Navigate, Route, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { isAdminSelector, loggedInSelector, refreshSelector } from '../../redux/auth/selectors';
 import { useSelector } from 'react-redux';

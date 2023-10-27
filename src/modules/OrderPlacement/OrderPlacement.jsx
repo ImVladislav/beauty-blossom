@@ -15,12 +15,12 @@ import RegisterForm from '../Header/LogIn/RegisterForm';
 import { selectCart } from '../../redux/cart/selectors';
 import { Amount, AmountBlock, CounterBlock, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
 import axios from 'axios';
+import { nanoid } from '@reduxjs/toolkit';
+
 
 const OrderPlacement = () => {
     const isLogin = useSelector(loggedInSelector);
-    const [selectedWarehouse, setSelectedWarehouse] = useState("");
     const [customerType, setCustomerType] = useState("registered");
-    const [responceCities, setResponceCities] = useState([]); // Список міст для вибору
     const [warehouses, setWarehouses] = useState([]); // Список відділень
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
@@ -32,7 +32,6 @@ const OrderPlacement = () => {
     const userEmail = useSelector(userSelectorEmail);
 
     const [formData, setFormData] = useState({
-        
         email: userEmail || '',
         firstName: userFirstName || '',
         lastName: userLastName || '',
@@ -44,7 +43,6 @@ const OrderPlacement = () => {
     });
 
     const cartItems = useSelector(selectCart);
-
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -59,20 +57,10 @@ const OrderPlacement = () => {
 
     if (words.length > 1) {
         firstWord = words[0];
-
     }
 
-    // if (firstWord !== '') { 
-    //         const filtered = warehouses.filter(warehouse =>
-// warehouse.toLowerCase().includes(firstWord.toLowerCase())
-    //                 const filtered = warehouses.filter(warehouse =>
-    // warehouse === firstWord )
-
-    //     //  setFiltredWarehouses(filtered)
-    // }
-
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
-    
+
     const handleCityChange = () => {
         
         const requestData = {
@@ -147,8 +135,6 @@ const OrderPlacement = () => {
                     console.log(data.data);
                     console.log(warehouses);
                     console.log(warehouses.length);
-                    const fsw = warehouses.filter(warehouse => warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase()))
-                console.log(fsw);
                 }
 
             })
@@ -157,21 +143,22 @@ const OrderPlacement = () => {
             });
     }
     
-useEffect(() => {
-    if (searchText) {
-        handleCityChange();
-        console.log(firstWord);
-console.log(formData);
-        console.log(searchText);
-    }
-    console.log(searchWarehouses);
-console.log(searchText);
+    useEffect(() => {
+
+    setSearchWarehouses('')
+  
+    if (words.length > 1) {
+        firstWord = words[0];
+        }
+
+        handleCityChange(); 
+       
+
+
 }, [ searchText, ]);
 
 useEffect(() => {
-        
-        handleWarehousesChange();
-        
+        handleWarehousesChange(); 
 }, [ firstWord]);
 
 const handleSearchTextChange = async(e) => {
@@ -186,13 +173,10 @@ const handleSearchTextChange = async(e) => {
       return quantities;
     }, {})
   );
-    
      const totalCost = cartItems.reduce(
     (total, item) => total + item.price * itemQuantities[item.id],
     0
   );
-
-    
     
 const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -207,6 +191,7 @@ const handleFormSubmit = async (e) => {
 
     const orderedItems = cartItems.map((item) => ({
         productId: item.id,
+        images: item.images,
         name: item.name,
         code: item.code.toString(),
         quantity: itemQuantities[item.id],
@@ -223,6 +208,7 @@ const handleFormSubmit = async (e) => {
         warehouse: searchWarehouses,
         orderedItems: orderedItems,
         amount: totalCost,
+        status: "Новий"
     };
 
     const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
@@ -334,18 +320,20 @@ const handleFormSubmit = async (e) => {
                                 list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
                                 placeholder="Введіть назву міста"
                             />
-                            <datalist id="citiesList">
-                                <label htmlFor="responceCities">Оберіть населений пункт (склад)</label>
+                                <datalist id="citiesList">
+                                    
+                                <label htmlFor="searchCities">Оберіть населений пункт (склад)</label>
                                 
                                 <option value="">Оберіть населений пункт</option>
-                                {responceCities.map(responceCity => (
-                                    <option key={responceCity.Index1} value={`${responceCity.Description} ${responceCity.RegionsDescription} ${responceCity.AreaDescription}`} >{responceCity.Description} </option>
+                                {searchCities.filter((searchCity) =>
+                                        searchCity.Description.toLowerCase().includes(formData.city.toLowerCase())).map(searchCity => (
+                                    <option key={nanoid()} value={`${searchCity.Description} ${searchCity.RegionsDescription} ${searchCity.AreaDescription}`} >{searchCity.Description} </option>
                                 ))}
                                 <label htmlFor="responceWarehouses"></label>
                             </datalist>
                                       
                                 
-                            {responceCities.length === 0 && (
+                            {firstWord.length > 0 && (
                                 <OrderDetails>
                                     <label htmlFor="searchWarehouses">Оберіть відділення</label>
                                         <input
@@ -361,7 +349,7 @@ const handleFormSubmit = async (e) => {
                                         <option value="">Оберіть відділення</option>
                                         {warehouses.filter((warehouse) =>
                                         warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
-                                            <option key={warehouse.WarehouseIndex} value={warehouse.Description}>
+                                            <option key={nanoid()} value={warehouse.Description}>
                                                 {warehouse.Description}
                                             </option>
                     ))}
@@ -386,7 +374,7 @@ const handleFormSubmit = async (e) => {
                 
                             <OrderSummary>
                                 <h3>Замовлення</h3>
-
+<table>
             <GoodsBlock>
               {cartItems.map((item) => (
                 <Thumb key={item.id}>
@@ -410,7 +398,7 @@ const handleFormSubmit = async (e) => {
                 </Thumb>
               ))}
             </GoodsBlock>
-          
+          </table>
           <Amount>Всього: {totalCost} грн</Amount>
 
                                  
@@ -431,3 +419,4 @@ const handleFormSubmit = async (e) => {
 export default OrderPlacement;
 
 //411
+//430
