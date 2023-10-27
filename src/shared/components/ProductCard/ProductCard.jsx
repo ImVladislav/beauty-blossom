@@ -42,10 +42,11 @@ const ProductCard = ({ products }) => {
   const isProductInCart = productCart?.some(
     (item) => +item.id === +products.id
   );
+  const isProductUnavailable = products.amount <= 0;
 
   return (
     <>
-      <ItemStyle>
+      <ItemStyle className={isProductUnavailable ? "unavailable" : ""}>
         <LinkStyle to={`/product/${products.id}`}>
           <Container
             onMouseEnter={() => setIsHovered(true)}

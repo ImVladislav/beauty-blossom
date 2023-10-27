@@ -5,6 +5,12 @@ export const ItemStyle = styled.li`
   /* vertical-align: top; */
   width: 350px;
   /* width: 25%; */
+  &.unavailable {
+    /* filter: blur(2px); Додавання блюру */
+
+    opacity: 0.5; /* Зменшення прозорості, щоб позначити відсутність товару */
+    /* pointer-events: none; Вимкнення можливості кліку на відсутній товар */
+  }
 `;
 
 export const LinkStyle = styled(Link)`
