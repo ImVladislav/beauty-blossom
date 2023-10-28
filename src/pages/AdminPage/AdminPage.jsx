@@ -19,7 +19,7 @@ const AdminPage = () => {
           
         }));
           
-          console.log(receivedOrders);
+         
         setOrders(ordersWithNumbers);
       })
       .catch(error => {
@@ -55,7 +55,7 @@ const AdminPage = () => {
               <td>{order.firstName} {order.lastName}</td>
               <td>{order.number} {order.email}</td>
               <td>{order.amount} грн</td>
-              <td>{order.paymentMethod}</td>
+              <td>{order.status}</td>
                   <td>{order.paymentMethod}</td>
                   
             </tr>
