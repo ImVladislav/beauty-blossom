@@ -2,37 +2,48 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { ReactComponent as NextPrevButtonSvg } from "../../images/NextPrev.svg";
 import { useSelector } from "react-redux";
-import { selectGoods } from "../../redux/products/selectors";
-
-
+import {
+  selectGoods,
+  selectNew,
+  selectSale,
+} from "../../redux/products/selectors";
+import Sticker from "../../shared/components/Sticker/Sticker";
+import { Link } from "react-router-dom";
 
 const SliderContainer = styled.div`
   display: flex;
   justify-content: center;
+  gap: 30px;
   margin-left: auto;
   margin-right: auto;
   max-width: 1440px;
-  white-space: nowrap; /* Забороняє перенесення на новий рядок */
+  /* white-space: pre; */
+  /* white-space: nowrap; Забороняє перенесення на новий рядок */
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
 `;
 
-const ProductCard = styled.div`
+const ProductCard = styled(Link)`
   /* flex: 0 0 calc(16% - 20px); */
   width: 261px;
-  margin-right: 10px; /* Відступ між карточками */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-right: 10px; Відступ між карточками */
   scroll-snap-align: start;
   background-color: ${(p) => p.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 10px;
   text-align: center;
-  display: inline-block; /* Вирівнювання в ряд */
+  /* display: inline-block; Вирівнювання в ряд */
   vertical-align: top; /* Вирівнювання вгору */
   overflow: hidden;
   position: relative;
+  text-decoration: none;
 
   &:hover {
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
@@ -42,12 +53,18 @@ const ProductCard = styled.div`
 `;
 
 const ProductImage = styled.img`
-  width: 240px;
-  height: 240px;
+  max-width: 200px;
+  max-height: 200px;
 `;
 
 const ProductName = styled.h3`
   margin: 10px 0;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 2.4em;
+  color: ${(p) => p.theme.colors.accentColor};
+  text-transform: uppercase;
 `;
 
 const ProductTags = styled.div`
@@ -137,7 +154,8 @@ const SliderHeaderToggle = styled.button`
   color: ${(p) => p.theme.colors.accentColor};
   background-color: transparent;
   font-size: 29px;
-  font-weight: bold;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  text-transform: uppercase;
   cursor: pointer;
   &:last-child {
     margin-left: 20px;
@@ -145,8 +163,9 @@ const SliderHeaderToggle = styled.button`
 `;
 
 export const ProductSlider = () => {
-  // const saleProducts = useSelector(selectSale);// всі sale
-  // const newProducts = useSelector(selectNew);// всі new
+  // const saleProducts = useSelector(selectSale); // всі sale
+  // const newProducts = useSelector(selectNew); // всі new
+  // const products = [...newProducts, ...saleProducts];
   const products = useSelector(selectGoods); // всі продукти
 
   const [filteredProduct, setFilteredProduct] = useState(products);
@@ -183,7 +202,6 @@ export const ProductSlider = () => {
     if (showNew) {
       setShowNew(false);
     }
-
   };
 
   const toggleNewFilter = () => {
@@ -191,13 +209,12 @@ export const ProductSlider = () => {
     if (showSale) {
       setShowSale(false);
     }
-    
   };
 
   useEffect(() => {
     const filteredProducts = products.filter((product) => {
       if (showSale && showNew) {
-        return true; // Показати всі товари
+        return product.sale + product.new; // Показати всі товари
       }
       if (showSale) {
         setCurrentSlide(0);
@@ -207,7 +224,7 @@ export const ProductSlider = () => {
         setCurrentSlide(0);
         return product.new;
       }
-      return true; // Показати всі товари, якщо фільтри не активовані
+      return product.sale + product.new; // Показати всі товари, якщо фільтри не активовані
     });
 
     setFilteredProduct(filteredProducts);
@@ -216,6 +233,7 @@ export const ProductSlider = () => {
   return (
     <div>
       <SliderContainer>
+        {/* <div> */}
         <SliderHeaderToggle
           style={{ color: showSale ? "#e93f11" : "#A03DA9" }}
           onClick={toggleSaleFilter}
@@ -228,6 +246,7 @@ export const ProductSlider = () => {
         >
           Новинка
         </SliderHeaderToggle>
+        {/* </div> */}
       </SliderContainer>
       <SliderContainer>
         <Button
@@ -243,12 +262,25 @@ export const ProductSlider = () => {
         </Button>
 
         {displayedProducts.map((filtred) => (
-          <ProductCard key={filtred.id}>
-            <ProductImage src={filtred.images} alt={filtred.name} >
-
-              </ProductImage>
+          <ProductCard to={`/product/${filtred.id}`} key={filtred.id}>
+            <div style={{ position: "relative" }}>
+              <ProductImage
+                src={filtred.images}
+                alt={filtred.name}
+              ></ProductImage>
+              {filtred.sale && (
+                <Sticker
+                  text="Розпродаж"
+                  saleproduct={filtred.sale.toString()}
+                />
+              )}
+              {filtred.new && (
+                <Sticker text="Новинка" newproduct={filtred.new.toString()} />
+              )}
+            </div>
             <ProductName>{filtred.name}</ProductName>
-            <ProductTags>
+
+            {/* <ProductTags>
               {filtred.sale && (
                 <SaleTag>
                   <TagText>Розпродаж</TagText>
@@ -259,27 +291,26 @@ export const ProductSlider = () => {
                   <TagText>Новинка</TagText>
                 </NewTag>
               )}
-            </ProductTags>
+            </ProductTags> */}
           </ProductCard>
         ))}
-<Button
-  style={{ transform: "rotate(180deg)" }}
-  onClick={handleNextSlide}
-  disabled={
-    currentSlide >= Math.max(0, products.length - 5) ||
-    displayedProducts.length < 5
-  }
-  className={currentSlide === products.length - 2 ? "icon-disabled" : ""}
->
+        <Button
+          style={{ transform: "rotate(180deg)" }}
+          onClick={handleNextSlide}
+          disabled={
+            currentSlide >= Math.max(0, products.length - 5) ||
+            displayedProducts.length < 5
+          }
+          className={
+            currentSlide === products.length - 2 ? "icon-disabled" : ""
+          }
+        >
           <NextPrevButtonSvg
-    style={{
-      fill:
-        displayedProducts.length < 5
-          ? "#ffffff"
-          : "#A03DA9",
-    }}
-  />
-</Button>
+            style={{
+              fill: displayedProducts.length < 5 ? "#ffffff" : "#A03DA9",
+            }}
+          />
+        </Button>
       </SliderContainer>
     </div>
   );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerHeader = styled.header`
   position: relative;
   z-index: 102;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 `;
 
 export const Container = styled.div`

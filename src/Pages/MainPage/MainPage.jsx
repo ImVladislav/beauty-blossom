@@ -15,36 +15,46 @@ import {
   Product,
   BottomBanerText,
 } from "./MainPage.styled";
+import Hero from "../../modules/Hero/Hero";
 
 const MainPage = () => {
   return (
-    <Background>
-      <Container style={{ maxWidth: "100%" }}>
-        {/* <MainBanner src={Banner} alt="banner" /> */}
-        <Thumb>
-          <Container>
-            <ProductImg>
-              <Product src={product} alt="product" />
-            </ProductImg>
-            <TextBlock>
-              <BannerTitle>
-                ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
-              </BannerTitle>
-              <BannerSubTitle>
-                {" "}
-                ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
-              </BannerSubTitle>
-              <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
-              <BottomBanerText> *ТИСНИ ЩОБ ДІЗНАТИСЬ УМОВИ</BottomBanerText>
-            </TextBlock>
-          </Container>
-        </Thumb>
-      </Container>
-      <ProductSlider />
-      <AboutUs />
-      <BrandsWraper />
-      <ScrollToTop />
-    </Background>
+    <Container>
+      <div>
+        <Hero />
+        <ProductSlider />
+        <BrandsWraper />
+        <AboutUs />
+        <ScrollToTop />
+      </div>
+    </Container>
+    // <Background>
+    //   <Container style={{ maxWidth: "100%" }}>
+    //     {/* <MainBanner src={Banner} alt="banner" /> */}
+    //     <Thumb>
+    //       <Container>
+    //         <ProductImg>
+    //           <Product src={product} alt="product" />
+    //         </ProductImg>
+    //         <TextBlock>
+    //           <BannerTitle>
+    //             ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
+    //           </BannerTitle>
+    //           <BannerSubTitle>
+    //             {" "}
+    //             ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
+    //           </BannerSubTitle>
+    //           <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
+    //           <BottomBanerText> *ТИСНИ ЩОБ ДІЗНАТИСЬ УМОВИ</BottomBanerText>
+    //         </TextBlock>
+    //       </Container>
+    //     </Thumb>
+    //   </Container>
+    //   <ProductSlider />
+    //   <AboutUs />
+    //   <BrandsWraper />
+    //   <ScrollToTop />
+    // </Background>
   );
 };
 export default MainPage;

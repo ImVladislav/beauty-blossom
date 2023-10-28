@@ -6,6 +6,7 @@ export const theme = {
     textColor: "#504056",
     accentColor: "#833989",
     hoverAccentColor: "#ff358a",
+    accentColorText: "#C253CC",
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
