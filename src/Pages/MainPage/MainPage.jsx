@@ -16,6 +16,7 @@ import {
   BottomBanerText,
 } from "./MainPage.styled";
 import Hero from "../../modules/Hero/Hero";
+import Baners from "../../modules/Baners/Baners";
 
 const MainPage = () => {
   return (
@@ -25,6 +26,7 @@ const MainPage = () => {
         <ProductSlider />
         <BrandsWraper />
         <AboutUs />
+        <Baners />
         <ScrollToTop />
       </div>
     </Container>

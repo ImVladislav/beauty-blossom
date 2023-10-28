@@ -82,7 +82,6 @@ export const LinkBtn = styled(Link)`
   text-decoration: none;
   font-size: ${(p) => p.theme.fontSizes.m}px;
 
-  color: ${(p) => p.theme.colors.accentColor};
   padding: 7px 30px;
 
   transition: all 250ms ease-in-out;
