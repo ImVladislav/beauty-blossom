@@ -24,7 +24,7 @@ const ProductCard = styled.div`
   width: 261px;
   margin-right: 10px; /* Відступ між карточками */
   scroll-snap-align: start;
-  background-color: ${(p) => p.theme.colors.while};
+  background-color: ${(p) => p.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 10px;
@@ -60,7 +60,7 @@ const ProductTags = styled.div`
 const SaleTag = styled.span`
   position: relative;
   background-color: #e93f11;
-  color: ${(p) => p.theme.colors.while};
+  color: ${(p) => p.theme.colors.white};
   padding: 5px;
   border-radius: 5px 5px 5px 0px;
   &:after {
@@ -79,7 +79,7 @@ const SaleTag = styled.span`
 const NewTag = styled.span`
   position: relative;
   background-color: #7baf35;
-  color: ${(p) => p.theme.colors.while};
+  color: ${(p) => p.theme.colors.white};
   padding: 5px;
   border-radius: 5px 5px 5px 0px;
   &:after {
