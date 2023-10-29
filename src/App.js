@@ -21,6 +21,7 @@ import { refreshSelector } from "./redux/auth/selectors";
 import { PrivateAdminRoute, PrivateRoute } from "./modules/PrivateRoutes/PrivateRoutse";
 import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
 import AdminPage from "./pages/AdminPage/AdminPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -65,11 +66,16 @@ function App() {
           
 
           
-
+      </Route>
           <Route
             path="/cabinet"
+            element={<PrivateRoute component={UserPage} to="/" />}
+        >
+                    <Route
+            path="/cabinet/userData"
             element={<PrivateRoute component={UserData} to="/" />}
-          />
+        ></Route>
+          
           <Route
             path="/cabinet/ordersbyclient"
             element={<PrivateAdminRoute component={AdminPage} to="/" />}
