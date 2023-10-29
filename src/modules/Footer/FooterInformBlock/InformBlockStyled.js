@@ -15,7 +15,8 @@ export const ItemTitle = styled.a`
   color: #461c49;
 
   font-family: Noto Sans;
-  font-size: 25px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
+  /* font-size: 25px; */
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%; /* 25.828px */
@@ -35,7 +36,8 @@ export const Item = styled(Link)`
   color: #461c49;
 
   font-family: Noto Sans;
-  font-size: 25px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
+  /* font-size: 25px; */
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%; /* 25.828px */
@@ -60,7 +62,8 @@ export const Title = styled.h3`
   color: #461c49;
 
   font-family: Alegreya Sans;
-  font-size: 34px;
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
+  /* font-size: 34px; */
   font-style: normal;
   font-weight: 500;
   line-height: 103.312%; /* 35.126px */

@@ -1,14 +1,15 @@
-
 import { Background, Text, Link } from "./ProductOfTheWeekStyled";
 export const ProductOfTheWeek = () => {
-
-    return (
-    <Background>   
-        <Text>
-           Знижені ціни на <Link href='https://t.me/+Eejgotzs-ktiMTIy' >товар тижня </Link>. Приєднуйтесь до нашого телеграм каналу за посиланням 
-        </Text>
-    </Background> 
-    );
-}
+  return (
+    <Background>
+      <Text>
+        <Link href="https://t.me/+Eejgotzs-ktiMTIy">
+          Підписуйся на наш телеграм канал, щоб дізнатись першим про новинки та
+          поповнення асортименту
+        </Link>
+      </Text>
+    </Background>
+  );
+};
 
 // текст має стати лінком для переходу на товар тижня

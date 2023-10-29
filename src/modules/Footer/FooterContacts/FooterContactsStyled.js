@@ -10,7 +10,8 @@ export const Title = styled.h3`
   color: #461c49;
 
   font-family: Alegreya Sans;
-  font-size: 34px;
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
+  /* font-size: 34px; */
   font-style: normal;
   font-weight: 500;
   line-height: 103.312%; /* 35.126px */

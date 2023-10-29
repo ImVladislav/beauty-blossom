@@ -6,6 +6,7 @@ export const Wrap = styled.div`
   justify-content: center;
   gap: 20px;
   padding: 0 40px;
+  margin-bottom: 20px;
 `;
 
 export const BanersWrap = styled.div`

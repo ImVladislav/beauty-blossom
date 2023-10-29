@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.div`
   position: relative;
-  background: #e8dfd8;
+  background: ${(p) => p.theme.colors.topHeaderLine};
   color: #333;
   font-size: 12px;
   padding: 14px 0 36px;
