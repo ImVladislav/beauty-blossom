@@ -9,8 +9,16 @@ import {
 const Sticker = ({ text, newproduct, saleproduct }) => {
   return (
     <>
-      <ProductStickerWrap newproduct={newproduct} saleproduct={saleproduct}>
-        <ProductSticker newproduct={newproduct} saleproduct={saleproduct}>
+      <ProductStickerWrap
+        text={text}
+        newproduct={newproduct}
+        saleproduct={saleproduct}
+      >
+        <ProductSticker
+          text={text}
+          newproduct={newproduct}
+          saleproduct={saleproduct}
+        >
           <StickerText>{text}</StickerText>
         </ProductSticker>
       </ProductStickerWrap>

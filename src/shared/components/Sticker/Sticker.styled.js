@@ -4,7 +4,7 @@ export const ProductStickerWrap = styled.div`
   position: absolute;
   left: 10px;
 
-  bottom: ${(p) => (p.newproduct ? "0" : "33px")};
+  bottom: ${(p) => (p.newproduct ? "10px" : "43px")};
   line-height: 1;
 `;
 

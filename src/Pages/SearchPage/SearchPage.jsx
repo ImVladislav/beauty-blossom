@@ -14,13 +14,21 @@ const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
   const searchQueryCode = useSelector(selectSearchQueryCode);
 
-  let search = [...searchQuery];
+  const searchQuerySorted = [...searchQuery].sort(
+    (a, b) => b.amount - a.amount
+  );
+  const searchQueryCodeSorted = [...searchQueryCode].sort(
+    (a, b) => b.amount - a.amount
+  );
+
+  let search = [...searchQuerySorted];
+
   if (searchQuery.length === 0) {
     // Якщо результати пошуку за текстовим запитом відсутні, використовуємо результати пошуку за кодом
-    search = [...searchQueryCode];
+    search = [...searchQueryCodeSorted];
   } else {
     // В іншому випадку використовуємо результати пошуку за текстовим запитом
-    search = [...searchQuery];
+    search = [...searchQuerySorted];
   }
 
   if (search.length === 0) {

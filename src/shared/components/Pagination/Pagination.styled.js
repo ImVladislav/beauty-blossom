@@ -13,9 +13,9 @@ export const PageButton = styled.button`
   padding: 8px 12px;
   border: 1px solid #ddd;
   background-color: ${(p) =>
-    p.active === "true" ? p.theme.colors.heroBtn : p.theme.colors.while};
+    p.active === "true" ? p.theme.colors.heroBtn : p.theme.colors.white};
   color: ${(p) =>
-    p.active === "true" ? p.theme.colors.while : p.theme.colors.textColor};
+    p.active === "true" ? p.theme.colors.white : p.theme.colors.textColor};
   border-color: ${(p) =>
     p.active === "true" ? p.theme.colors.heroBtn : "#ddd"};
   cursor: pointer;
