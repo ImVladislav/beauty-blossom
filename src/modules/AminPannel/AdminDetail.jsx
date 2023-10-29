@@ -48,7 +48,7 @@ const AdminDetail = ({ selectedOrder }) => {
 
     // Відправляємо PUT-запит на сервер з `dataToUpdate`
     const response = await axios.put(`https://beauty-blossom-backend.onrender.com/api/orders/${editedOrder._id}`, dataToUpdate);
-
+    console.log(dataToUpdate);
     // Перевіряємо відповідь сервера
     if (response.status === 200) {
       // Оновлюємо стан isEditing, щоб завершити режим редагування
@@ -159,7 +159,7 @@ const AdminDetail = ({ selectedOrder }) => {
                           <p>
                         Адреса доставки:
           {isEditing ? (
-            <div>
+            <tr>
               <input
                 type="text"
                 value={editedOrder.city}
@@ -170,7 +170,7 @@ const AdminDetail = ({ selectedOrder }) => {
                 value={editedOrder.warehouse}
                 onChange={(e) => handleInputChange(e, 'warehouse')}
               />
-            </div>
+            </tr>
           ) : (
             <span>
               {editedOrder.city}, {editedOrder.warehouse}
