@@ -25,7 +25,7 @@ const SaleProgramPage = () => {
   return (
     <Container>
       <div>
-        <section>
+        <section id="about">
           <Title>Корейська косметика оптом в Україні</Title>
         </section>
 
@@ -51,7 +51,7 @@ const SaleProgramPage = () => {
           </ConditionsList>
         </section>
 
-        <section>
+        <section id="payment">
           <ConditionsTitle>Відправка</ConditionsTitle>
           <Text>
             Відправляємо Новою Поштою щоденно (крім неділі). При оплаті до 14:30
@@ -69,7 +69,7 @@ const SaleProgramPage = () => {
           </Text>
         </section>
 
-        <section>
+        <section id="return">
           <ConditionsTitle>Обмін та повернення</ConditionsTitle>
           <Text>
             Протягом 14-ти днів з моменту отримання замовлення ви можете
