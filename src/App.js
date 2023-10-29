@@ -22,6 +22,7 @@ import { PrivateAdminRoute, PrivateRoute } from "./modules/PrivateRoutes/Private
 import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import UserPage from "./pages/UserPage/UserPage";
+import ChangePassword from "./pages/UserPage/ChangePassword";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -63,7 +64,11 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/order" element={<OrderPlacement />} />
-          
+                    <Route
+            path="/ordersbyclient"
+            element={<PrivateAdminRoute component={AdminPage} to="/" />}
+          />
+
 
           
       </Route>
@@ -77,8 +82,8 @@ function App() {
         ></Route>
           
           <Route
-            path="/cabinet/ordersbyclient"
-            element={<PrivateAdminRoute component={AdminPage} to="/" />}
+            path="/cabinet/сhangePassword"
+            element={<PrivateAdminRoute component={ChangePassword} to="/" />}
           />
 
           <Route

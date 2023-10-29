@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import {
     CostumerStatus,
     CostumerStatusItem,
+    CostumerStatusinput,
     DeliveryInfoBlock,
     Form,
     OrderDetails,
     OrderForm,
     OrderSummary,
+    Select,
+    Textarea,
 } from './OrderPlacementStyled';
 import { useSelector } from 'react-redux';
 import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
@@ -228,90 +231,100 @@ const handleFormSubmit = async (e) => {
 
 
 
-        return (
-            <OrderForm>
-                <OrderDetails>
-                    <h2>Оформлення замовлення</h2>
-                    {!isLogin &&
-                        <CostumerStatus>
-                            <CostumerStatusItem htmlFor="registered">
-                                <input
-                                    type="radio"
-                                    id="registered"
-                                    name="customer"
-                                    value="registered"
-                                    checked={customerType === "registered"}
-                                    onChange={() => setCustomerType("registered")}
-                                />
-                                Я зареєстрований
-                            </CostumerStatusItem>
+    return (
+        <OrderForm>
+            <OrderDetails>
+                <h2>Оформлення замовлення</h2>
+                {!isLogin &&
+                    <CostumerStatus>
+                        <CostumerStatusItem htmlFor="registered">
+                            <input
+                                type="radio"
+                                id="registered"
+                                name="customer"
+                                value="registered"
+                                checked={customerType === "registered"}
+                                onChange={() => setCustomerType("registered")}
+                            />
+                            Я зареєстрований
+                        </CostumerStatusItem>
 
-                            <CostumerStatusItem htmlFor="not-registered">
-                                <input
-                                    type="radio"
-                                    id="not-registered"
-                                    name="customer"
-                                    value="not-registered"
-                                    checked={customerType === "not-registered"}
-                                    onChange={() => setCustomerType("not-registered")}
-                                />
-                                Зареєструватись?
-                            </CostumerStatusItem>
-                            <CostumerStatusItem htmlFor="without-registered">
-                                <input
-                                    type="radio"
-                                    id="without-registered"
-                                    name="customer"
-                                    value="without-registered"
-                                    checked={customerType === "without-registered"}
-                                    onChange={() => setCustomerType("without-registered")}
-                                />
-                                Продовжити без реєстрації
-                            </CostumerStatusItem>
-                        </CostumerStatus>}
+                        <CostumerStatusItem htmlFor="not-registered">
+                            <input
+                                type="radio"
+                                id="not-registered"
+                                name="customer"
+                                value="not-registered"
+                                checked={customerType === "not-registered"}
+                                onChange={() => setCustomerType("not-registered")}
+                            />
+                            Зареєструватись?
+                        </CostumerStatusItem>
+                        <CostumerStatusItem htmlFor="without-registered">
+                            <input
+                                type="radio"
+                                id="without-registered"
+                                name="customer"
+                                value="without-registered"
+                                checked={customerType === "without-registered"}
+                                onChange={() => setCustomerType("without-registered")}
+                            />
+                            Продовжити без реєстрації
+                        </CostumerStatusItem>
+                    </CostumerStatus>}
                     
                 {customerType === "registered" && !isLogin && <LoginForm />}
                 {customerType === "not-registered" && !isLogin && <RegisterForm />}
                 {customerType === "without-registered" || isLogin ? (
-                        <Form onSubmit={handleFormSubmit}>
-                            <DeliveryInfoBlock>
-                            <label htmlFor="email">Ваш Email</label>
-                            <input
+                    <Form onSubmit={handleFormSubmit}>
+                        <DeliveryInfoBlock>
+                            <h3>КОНТАКТНІ ДАННІ</h3>
+                            {/* <label htmlFor="email">Ваш Email</label>
+                            <CostumerStatusinput
                                 type="email"
                                 id="email"
                                 name="email"
                                 value={formData.email || ''}
                                 onChange={handleInputChange}
-                            />
+                            /> */}
 
-                            <label htmlFor="firstName">Ім'я</label>
-                            <input
+                            <label htmlFor="firstName"></label>
+                            <CostumerStatusinput
                                 type="text"
                                 id="firstName"
                                 name="firstName"
+                                placeholder='Введіть імя отримувача*'
                                 value={formData.firstName || ''}
                                 onChange={handleInputChange}
+                                    
                             />
 
-                            <label htmlFor="lastName">Прізвище</label>
-                            <input
+                            <label htmlFor="lastName"></label>
+                            <CostumerStatusinput
                                 type="text"
                                 id="lastName"
                                 name="lastName"
+                                placeholder='Введіть прізвище отримувача*'
                                 value={formData.lastName || ''}
                                 onChange={handleInputChange}
                             />
-                            <label htmlFor="number">Номер телефону</label>
-                            <input
+                            <label htmlFor="number"></label>
+                            <CostumerStatusinput
                                 type="text"
                                 id="number"
                                 name="number"
+                                placeholder='Введіть номер телефону отримувача*'
                                 value={formData.number || ''}
                                 onChange={handleInputChange}
                             />
-
+                            <h3>ДАННІ ДОСТАВКИ</h3>
+                            <Select id="deliveryMethod" name="deliveryMethod" onChange={handleInputChange}>
+                                    <option value="Доставка на відділення">Доставка на відділення</option>
+                                    
+                                    <option value="Курєрна доставка">Курєрна доставка</option>
+                                </Select>
                             <label htmlFor="city">Оберіть місто</label>
-                            <input
+                            <CostumerStatusinput
                                 type="text"
                                 id="city"
                                 name="city"
@@ -320,15 +333,15 @@ const handleFormSubmit = async (e) => {
                                 list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
                                 placeholder="Введіть назву міста"
                             />
-                                <datalist id="citiesList">
+                            <datalist id="citiesList">
                                     
                                 <label htmlFor="searchCities">Оберіть населений пункт (склад)</label>
                                 
                                 <option value="">Оберіть населений пункт</option>
                                 {searchCities.filter((searchCity) =>
-                                        searchCity.Description.toLowerCase().includes(formData.city.toLowerCase())).map(searchCity => (
-                                    <option key={nanoid()} value={`${searchCity.Description} ${searchCity.RegionsDescription} ${searchCity.AreaDescription}`} >{searchCity.Description} </option>
-                                ))}
+                                    searchCity.Description.toLowerCase().includes(formData.city.toLowerCase())).map(searchCity => (
+                                        <option key={nanoid()} value={`${searchCity.Description} ${searchCity.RegionsDescription} ${searchCity.AreaDescription}`} >{searchCity.Description} </option>
+                                    ))}
                                 <label htmlFor="responceWarehouses"></label>
                             </datalist>
                                       
@@ -336,84 +349,88 @@ const handleFormSubmit = async (e) => {
                             {firstWord.length > 0 && (
                                 <OrderDetails>
                                     <label htmlFor="searchWarehouses">Оберіть відділення</label>
-                                        <input
-                                            type="text"
+                                    <CostumerStatusinput
+                                        type="text"
                                         id="warehouse"
                                         name="warehouse"
-                                            value={searchWarehouses}
-                                            placeholder="Пошук відділення"
-                                            list="warehousesList"
+                                        value={searchWarehouses}
+                                        placeholder="відділення*"
+                                        list="warehousesList"
                                         onChange={(e) => setSearchWarehouses(e.target.value)}
-                                        />
-                                        <datalist id="warehousesList">
+                                    />
+                                    <datalist id="warehousesList">
                                         <option value="">Оберіть відділення</option>
                                         {warehouses.filter((warehouse) =>
-                                        warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
-                                            <option key={nanoid()} value={warehouse.Description}>
-                                                {warehouse.Description}
-                                            </option>
-                    ))}
-                                        </datalist>
+                                            warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
+                                                <option key={nanoid()} value={warehouse.Description}>
+                                                    {warehouse.Description}
+                                                </option>
+                                            ))}
+                                    </datalist>
                                     
-                                    </OrderDetails>
+                                </OrderDetails>
                                     
                                     
                             )}
+                                
                             <div>
-                                <label htmlFor="paymentMethod">Способ оплаты</label>
-                                <select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
-                                    <option value="paymentDetails">Оплата за реквізитами</option>
+                                <label htmlFor="paymentMethod"></label>
+                                <h3>СПОСІБ ОПЛАТИ</h3>
+                                <Select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
+                                    <option value="Оплата за реквізитами">Оплата за реквізитами</option>
                                     
-                                    <option value="cashOnDelivery">Післяплата</option>
-                                </select>
+                                    <option value="Післяплата">Післяплата</option>
+                                </Select>
+                                <h3>КОМЕНТАР ДО ЗАМОВЛЕННЯ</h3>
+                                <label htmlFor="comments"></label>
+                                <Textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></Textarea>
                             </div>
 
                             <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
 
-                            </DeliveryInfoBlock>
+                        </DeliveryInfoBlock>
                 
-                            <OrderSummary>
-                                <h3>Замовлення</h3>
-<table>
-            <GoodsBlock>
-              {cartItems.map((item) => (
-                <Thumb key={item.id}>
-                  <ImageBlock>
-                    <img src={item.images} alt="itemImage" />
-                  </ImageBlock>
-                  <DescriptionBlock>
-                          <ItemNameLink>{item.name} </ItemNameLink>
-                          <ItemNameLink>{item.code}</ItemNameLink>
-                  </DescriptionBlock>
-                  <AmountBlock>
-                    <CounterBlock>
+                        <OrderSummary>
+                            <h3>Замовлення</h3>
+                            <table>
+                                <GoodsBlock>
+                                    {cartItems.map((item) => (
+                                        <Thumb key={item.id}>
+                                            <ImageBlock>
+                                                <img src={item.images} alt="itemImage" />
+                                            </ImageBlock>
+                                            <DescriptionBlock>
+                                                <ItemNameLink>{item.name} </ItemNameLink>
+                                                <ItemNameLink>{item.code}</ItemNameLink>
+                                            </DescriptionBlock>
+                                            <AmountBlock>
+                                                <CounterBlock>
 
-                      {itemQuantities[item.id]}
+                                                    {itemQuantities[item.id]}
   
-                    </CounterBlock>
-                  </AmountBlock>
-                  <PriceBlock>
-                    {item.price * itemQuantities[item.id]} грн
-                  </PriceBlock>
-                </Thumb>
-              ))}
-            </GoodsBlock>
-          </table>
-          <Amount>Всього: {totalCost} грн</Amount>
+                                                </CounterBlock>
+                                            </AmountBlock>
+                                            <PriceBlock>
+                                                {item.price * itemQuantities[item.id]} грн
+                                            </PriceBlock>
+                                        </Thumb>
+                                    ))}
+                                </GoodsBlock>
+                            </table>
+                            <Amount>Всього: {totalCost} грн</Amount>
 
                                  
                                 
-                                <label htmlFor="comments">Комментарий</label>
-                                <textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></textarea>
-                                <button type="submit" disabled={isSubmitting}>
-                            {isSubmitting ? 'Відправляється...' : 'Відправити'}
-                        </button>
+                               
+                            <button type="submit" disabled={isSubmitting}>
+                                {isSubmitting ? 'Відправляється...' : 'Відправити'}
+                            </button>
 
-                            </OrderSummary>
-                        </Form>) : (null)}
-      </OrderDetails>
-    </OrderForm>
-  );
+                        </OrderSummary>
+                    </Form>) : (null)}
+            </OrderDetails>
+        </OrderForm>
+    );
 };
 
 export default OrderPlacement;
