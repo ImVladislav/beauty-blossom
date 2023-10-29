@@ -54,20 +54,20 @@ const LogIn = () => {
           <ul>
             {admin &&
             <ListItem>
-              <a href="/beauty-blossom/cabinet/ordersbyclient/">Замовлення(Адмін права)</a>
+              <a href="/beauty-blossom/ordersbyclient/">Замовлення(Адмін права)</a>
             </ListItem>
             }
             <ListItem>
-              <a href="/beauty-blossom/cabinet/userData">Особисті дані</a>
+              <a href="/beauty-blossom/cabinet/userData">ОСОБИСТИЙ КАБІНЕТ</a>
             </ListItem>
             <ListItem>
-              <a href="/beauty-blossom/cabinet/history">Замовлення</a>
+              <a href="/beauty-blossom/cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
             </ListItem>
-            <ListItem>
+            {/* <ListItem>
               <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
-            </ListItem>
+            </ListItem> */}
             <ListItem>
-                   <LogOut onClick={logoutDispatch}>Вихід</LogOut>
+                   <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
             </ListItem>
           </ul>
 
