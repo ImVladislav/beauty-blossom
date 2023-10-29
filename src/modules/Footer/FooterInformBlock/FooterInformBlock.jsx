@@ -1,16 +1,32 @@
-import { Item, ItemTitle, Nav } from "./InformBlockStyled"
-
+import {
+  Item,
+  ItemTitle,
+  Nav,
+  TitleWrap,
+  Title,
+  Underline,
+} from "./InformBlockStyled";
 
 export const FooterInformBlock = () => {
   return (
-          <Nav>
-              <ItemTitle to="/myaccount" >Особистий кабінет</ItemTitle>
-              <Item to="/wholesaleProgram">Повернення та обмін</Item>
-              <Item to="/wholesaleProgram">Оплата і доставка</Item>
-              <Item to="/wholesaleProgram">Оптова программа</Item>
-              {/* <Item to="/contacts">Контакти</Item> */}
-          </Nav>
-          
-  )
-}
-
+    <div>
+      <TitleWrap>
+        <Title>Клієнтам</Title>
+        <Underline />
+      </TitleWrap>
+      <Nav>
+        <Item to="/cabinet">Особистий кабінет</Item>
+        <ItemTitle href="/beauty-blossom/wholesaleProgram/#return">
+          Повернення та обмін
+        </ItemTitle>
+        <ItemTitle href="/beauty-blossom/wholesaleProgram/#payment">
+          Оплата і доставка
+        </ItemTitle>
+        <ItemTitle href="/beauty-blossom/wholesaleProgram/#about">
+          Про нас
+        </ItemTitle>
+        {/* <Item to="/contacts">Контакти</Item> */}
+      </Nav>
+    </div>
+  );
+};

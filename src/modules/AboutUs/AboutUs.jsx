@@ -9,6 +9,7 @@ import {
   TextItem,
   Title,
   TextLink,
+  Link,
 } from "./AboutUsStyled";
 
 const AboutUs = () => {
@@ -55,9 +56,10 @@ const AboutUs = () => {
         </BenefitsItem>
       </BenefitsList>
       <TextLink>
-        Слідкуйте за нами в соціальних мережах: Instagram @beauty_blossom_opt та
-        Telegram @beauty_blossom, щоб завжди залишатись в курсі новин та
-        поповнення асортименту.
+        Слідкуйте за нами в соціальних мережах: Instagram{" "}
+        <Link href="https://www.instagram.com/">@beauty_blossom_opt</Link> та
+        Telegram <Link href="https://web.telegram.org/">@beauty_blossom</Link>,
+        щоб завжди залишатись в курсі новин та поповнення асортименту.
       </TextLink>
       {/* </div> */}
     </AboutUsContainer>

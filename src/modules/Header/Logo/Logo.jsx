@@ -1,15 +1,17 @@
 import React from "react";
 
-import IconLogo from "../../../images/BeautyBlossom.svg";
+import IconLogo from "../../../images/BeautyBlossom.png";
 
-import { Link, LogoImg } from "./logo.styled";
+import { LinkLogo, LogoImg, TextLogo } from "./logo.styled";
 
 const Logo = () => {
   return (
     <>
-      <Link href="/beauty-blossom">
+      <LinkLogo to="/">
+        {/* <TextLogo>Beauty Blossom</TextLogo> */}
+
         <LogoImg src={IconLogo} alt="React Logo" />
-      </Link>
+      </LinkLogo>
     </>
   );
 };

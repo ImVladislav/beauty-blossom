@@ -44,8 +44,17 @@ export const Header = () => {
               <WrapTop>
                 <Wrap>
                   <WrapContacts>
-                    <Contacts />
-                    <Email />
+                    <Contacts
+                      title="+380500529100"
+                      to="tel:+380500529100"
+                      icon="phone"
+                    />
+                    <Contacts
+                      title="beautyblossom.opt@gmail.com"
+                      to="mailto:beautyblossom.opt@gmail.com"
+                      icon="mail"
+                    />
+                    {/* <Email /> */}
                   </WrapContacts>
                   <LoginShipingThumb>
                     <LogIn />

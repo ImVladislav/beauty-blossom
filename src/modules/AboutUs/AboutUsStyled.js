@@ -80,3 +80,11 @@ export const TextLink = styled.p`
   color: ${(p) => p.theme.colors.accentColor};
   margin: 0px 20px 10px;
 `;
+
+export const Link = styled.a`
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.accentColor};
+  &:hover {
+    color: ${(p) => p.theme.colors.textColor};
+  }
+`;
