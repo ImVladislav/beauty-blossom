@@ -77,6 +77,7 @@ export const GoodsBlock = styled.tbody`
   padding-bottom: 8px;
   color: #898989;
   font-size: 11px;
+ 
 `;
 
 export const ImageBlock = styled.td`
