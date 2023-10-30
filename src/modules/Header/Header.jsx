@@ -27,8 +27,11 @@ import {
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
 import Email from "./Email/Email";
+import { useLocation } from "react-router-dom";
 
 export const Header = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <ContainerHeader>
       <Container>
@@ -65,7 +68,7 @@ export const Header = () => {
             </HeaderLayout>
           </HeaderWrap>
         </HeaderTop>
-        <MenuBottom>
+        <MenuBottom pathname={pathname}>
           <MenuWrap>
             <MenuLayout>
               <MenuColumn>

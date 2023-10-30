@@ -57,7 +57,9 @@ export const MenuBottom = styled.div`
   position: relative;
   top: 20px;
   margin: -20px 0 20px;
-  background: ${(p) => p.theme.colors.topHeaderLine};
+  background: ${(p) =>
+    p.pathname === "/" ? p.theme.colors.white : p.theme.colors.topHeaderLine};
+  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
   /* background: ${(p) => p.theme.colors.menuHover}; */
   color: ${(p) => p.theme.colors.textColor};
 `;

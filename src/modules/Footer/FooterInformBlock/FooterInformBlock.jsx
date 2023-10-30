@@ -15,7 +15,7 @@ export const FooterInformBlock = () => {
         <Underline />
       </TitleWrap>
       <Nav>
-        <Item to="/cabinet">Особистий кабінет</Item>
+        <Item to="/cabinet/userData">Особистий кабінет</Item>
         <ItemTitle href="/beauty-blossom/wholesaleProgram/#return">
           Повернення та обмін
         </ItemTitle>
