@@ -4,12 +4,25 @@ import {
     CostumerStatusItem,
     CostumerStatusinput,
     DeliveryInfoBlock,
+    Description,
+    FirstOrdersHeaderItem,
     Form,
+    LastOrdersHeaderItem,
     OrderDetails,
     OrderForm,
     OrderSummary,
+    OrderThumb,
+    OrdersHeaderItem,
+    OrdersHeaders,
+    OrdersImage,
+    OrdersItem,
+    OrdersItemBlock,
+    OrdersThumb,
     Select,
+    SubmitButton,
     Textarea,
+    Title,
+    Titles,
 } from './OrderPlacementStyled';
 import { useSelector } from 'react-redux';
 import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
@@ -23,26 +36,32 @@ import { nanoid } from '@reduxjs/toolkit';
 
 const OrderPlacement = () => {
     const isLogin = useSelector(loggedInSelector);
-    const [customerType, setCustomerType] = useState("registered");
+    const [customerType, setCustomerType] = useState("without-registered");
     const [warehouses, setWarehouses] = useState([]); // Список відділень
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
-     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [courierDelivery, setCourierDelivery] = useState(false);
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
     const userEmail = useSelector(userSelectorEmail);
 
-    const [formData, setFormData] = useState({
+
+        const [formData, setFormData] = useState({
         email: userEmail || '',
         firstName: userFirstName || '',
         lastName: userLastName || '',
         number: userNumber || null,
         city: '',
         warehouse: '',
-        paymentMethod: "paymentDetails",
+        paymentMethod: "",
+        deliveryMethod:"",
         comments: "",
+        address: "", // Додано поле для адреси
+        building: "", // Додано поле для будинку
+        apartment: "" // Додано поле для квартири
     });
 
     const cartItems = useSelector(selectCart);
@@ -53,6 +72,13 @@ const OrderPlacement = () => {
             ...formData,
             [name]: value,
         });
+        console.log(formData.deliveryMethod);
+        if (formData.deliveryMethod === 'Курєрська доставка') {
+            setCourierDelivery(false)
+        } else {
+            setCourierDelivery(true)
+        }
+        console.log(courierDelivery);
     };
 
     let firstWord = ''
@@ -153,11 +179,9 @@ const OrderPlacement = () => {
     if (words.length > 1) {
         firstWord = words[0];
         }
+        
 
         handleCityChange(); 
-       
-
-
 }, [ searchText, ]);
 
 useEffect(() => {
@@ -181,60 +205,68 @@ const handleSearchTextChange = async(e) => {
     0
   );
     
-const handleFormSubmit = async (e) => {
-    e.preventDefault();
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
 
-    setIsSubmitting(true);
+        setIsSubmitting(true);
 
-    if (!searchText || !searchWarehouses) {
-        alert('Будь ласка, виберіть місто та відділення');
-        setIsSubmitting(false);
-        return;
-    }
-
-    const orderedItems = cartItems.map((item) => ({
-        productId: item.id,
-        images: item.images,
-        name: item.name,
-        code: item.code.toString(),
-        quantity: itemQuantities[item.id],
-        amount: item.price * itemQuantities[item.id],
-    }));
-
-    const dataToSend = {
-        ...formData,
-        email: userEmail || formData.email,
-        firstName: userFirstName || formData.firstName,
-        lastName: userLastName || formData.lastName,
-        number: userNumber || formData.number,
-        city: searchText,
-        warehouse: searchWarehouses,
-        orderedItems: orderedItems,
-        amount: totalCost,
-        status: "Новий"
-    };
-
-    const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
-
-    axios.post(ordersUrl, dataToSend)
-        .then(response => {
-            console.log('Відповідь від сервера:', response.data);
-        })
-        .catch(error => {
-            console.error('Сталася помилка:', error);
-        })
-        .finally(() => {
+        if (!searchText || (!searchWarehouses && courierDelivery)) {
+            alert('Будь ласка, виберіть місто та відділення');
             setIsSubmitting(false);
-        });
-};
+            return;
+        }
 
+        if (courierDelivery && (!formData.address || !formData.building || !formData.apartment)) {
+            alert('Будь ласка, заповніть адресу, будинок та квартиру для курєрської доставки');
+            setIsSubmitting(false);
+            return;
+        }
+    
 
+        const orderedItems = cartItems.map((item) => ({
+            productId: item.id,
+            images: item.images,
+            name: item.name,
+            code: item.code.toString(),
+            quantity: itemQuantities[item.id],
+            amount: item.price * itemQuantities[item.id],
+        }));
 
+        const dataToSend = {
+            ...formData,
+            email: userEmail || formData.email,
+            firstName: userFirstName || formData.firstName,
+            lastName: userLastName || formData.lastName,
+            number: userNumber || formData.number,
+            city: searchText,
+            deliveryMethod: formData.deliveryMethod,
+            warehouse: searchWarehouses,
+            orderedItems: orderedItems,
+            amount: totalCost,
+            status: "Новий",
+            address: "", // Додано поле для адреси
+            building: "", // Додано поле для будинку
+            apartment: "" // Додано поле для квартири
+        };
+
+        const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
+
+        axios.post(ordersUrl, dataToSend)
+            .then(response => {
+                console.log('Відповідь від сервера:', response.data);
+            })
+            .catch(error => {
+                console.error('Сталася помилка:', error);
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
+    };
 
     return (
         <OrderForm>
             <OrderDetails>
-                <h2>Оформлення замовлення</h2>
+                <Title>Оформлення замовлення</Title>
                 {!isLogin &&
                     <CostumerStatus>
                         <CostumerStatusItem htmlFor="registered">
@@ -272,22 +304,12 @@ const handleFormSubmit = async (e) => {
                             Продовжити без реєстрації
                         </CostumerStatusItem>
                     </CostumerStatus>}
-                    
                 {customerType === "registered" && !isLogin && <LoginForm />}
                 {customerType === "not-registered" && !isLogin && <RegisterForm />}
                 {customerType === "without-registered" || isLogin ? (
                     <Form onSubmit={handleFormSubmit}>
                         <DeliveryInfoBlock>
-                            <h3>КОНТАКТНІ ДАННІ</h3>
-                            {/* <label htmlFor="email">Ваш Email</label>
-                            <CostumerStatusinput
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email || ''}
-                                onChange={handleInputChange}
-                            /> */}
-
+                            <Titles>КОНТАКТНІ ДАННІ</Titles>
                             <label htmlFor="firstName"></label>
                             <CostumerStatusinput
                                 type="text"
@@ -296,9 +318,7 @@ const handleFormSubmit = async (e) => {
                                 placeholder='Введіть імя отримувача*'
                                 value={formData.firstName || ''}
                                 onChange={handleInputChange}
-                                    
                             />
-
                             <label htmlFor="lastName"></label>
                             <CostumerStatusinput
                                 type="text"
@@ -317,38 +337,70 @@ const handleFormSubmit = async (e) => {
                                 value={formData.number || ''}
                                 onChange={handleInputChange}
                             />
-                            <h3>ДАННІ ДОСТАВКИ</h3>
+                            <Titles>ДАННІ ДОСТАВКИ</Titles>
                             <Select id="deliveryMethod" name="deliveryMethod" onChange={handleInputChange}>
-                                    <option value="Доставка на відділення">Доставка на відділення</option>
-                                    
-                                    <option value="Курєрна доставка">Курєрна доставка</option>
-                                </Select>
-                            <label htmlFor="city">Оберіть місто</label>
+                                <option value="Доставка на відділення">Доставка на відділення</option>
+                                <option value="Курєрська доставка">Курєрська доставка</option>
+                                
+                            </Select>
+                            
+                            <label htmlFor="city"></label>
                             <CostumerStatusinput
                                 type="text"
                                 id="city"
                                 name="city"
                                 value={formData.city || searchText}
                                 onChange={handleSearchTextChange}
-                                list="citiesList" // Вказуємо ідентифікатор <datalist> для цього інпуту
+                                list="citiesList"
                                 placeholder="Введіть назву міста"
                             />
                             <datalist id="citiesList">
-                                    
                                 <label htmlFor="searchCities">Оберіть населений пункт (склад)</label>
-                                
                                 <option value="">Оберіть населений пункт</option>
                                 {searchCities.filter((searchCity) =>
                                     searchCity.Description.toLowerCase().includes(formData.city.toLowerCase())).map(searchCity => (
                                         <option key={nanoid()} value={`${searchCity.Description} ${searchCity.RegionsDescription} ${searchCity.AreaDescription}`} >{searchCity.Description} </option>
                                     ))}
-                                <label htmlFor="responceWarehouses"></label>
                             </datalist>
-                                      
+                            {courierDelivery ? (
                                 
-                            {firstWord.length > 0 && (
+                                    
                                 <OrderDetails>
-                                    <label htmlFor="searchWarehouses">Оберіть відділення</label>
+                                    <label htmlFor="address"></label>
+                                    <CostumerStatusinput
+                                        type="text"
+                                        id="address"
+                                        name="address"
+                                        placeholder='Адреса*'
+                                        value={formData.address || ''}
+                                        onChange={handleInputChange}
+                                    />
+                                    <label htmlFor="house"></label>
+                                    <CostumerStatusinput
+                                        type="text"
+                                        id="house"
+                                        name="house"
+                                        placeholder='Будинок*'
+                                        value={formData.house || ''}
+                                        onChange={handleInputChange}
+                                    />
+                                    <label htmlFor="apartment"></label>
+                                    <CostumerStatusinput
+                                        type="text"
+                                        id="apartment"
+                                        name="apartment"
+                                        placeholder='Квартира*'
+                                        value={formData.apartment || ''}
+                                        onChange={handleInputChange}
+                                    />
+                                </OrderDetails>
+                                    
+                                
+                            ) : (
+
+                                    
+                                <OrderDetails>
+                                    <label htmlFor="searchWarehouses"></label>
                                     <CostumerStatusinput
                                         type="text"
                                         id="warehouse"
@@ -369,22 +421,20 @@ const handleFormSubmit = async (e) => {
                                     </datalist>
                                     
                                 </OrderDetails>
-                                    
-                                    
+
                             )}
+                            <DeliveryInfoBlock>
                                 
-                            <div>
-                                <label htmlFor="paymentMethod"></label>
-                                <h3>СПОСІБ ОПЛАТИ</h3>
+                                <Titles>СПОСІБ ОПЛАТИ</Titles>
                                 <Select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
                                     <option value="Оплата за реквізитами">Оплата за реквізитами</option>
                                     
                                     <option value="Післяплата">Післяплата</option>
                                 </Select>
-                                <h3>КОМЕНТАР ДО ЗАМОВЛЕННЯ</h3>
+                                <Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
                                 <label htmlFor="comments"></label>
                                 <Textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></Textarea>
-                            </div>
+                            </DeliveryInfoBlock>
 
                             <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
 
@@ -392,39 +442,44 @@ const handleFormSubmit = async (e) => {
                 
                         <OrderSummary>
                             <h3>Замовлення</h3>
-                            <table>
-                                <GoodsBlock>
+                            <OrdersThumb>
+                                <thead>
+                                    <OrdersHeaders>
+                                        <FirstOrdersHeaderItem>Найменування товару</FirstOrdersHeaderItem>
+                                        <OrdersHeaderItem>Кількість</OrdersHeaderItem>
+                                        <OrdersHeaderItem>Ціна</OrdersHeaderItem>
+                                        <LastOrdersHeaderItem>Сума</LastOrdersHeaderItem>
+                                    </OrdersHeaders>
+                                </thead>
+                                <tbody>
                                     {cartItems.map((item) => (
-                                        <Thumb key={item.id}>
-                                            <ImageBlock>
-                                                <img src={item.images} alt="itemImage" />
-                                            </ImageBlock>
-                                            <DescriptionBlock>
-                                                <ItemNameLink>{item.name} </ItemNameLink>
-                                                <ItemNameLink>{item.code}</ItemNameLink>
-                                            </DescriptionBlock>
-                                            <AmountBlock>
-                                                <CounterBlock>
-
-                                                    {itemQuantities[item.id]}
-  
-                                                </CounterBlock>
-                                            </AmountBlock>
-                                            <PriceBlock>
+                                        <OrdersItemBlock key={item.id}>
+                                            <OrdersItem style={{maxWidth: '800px'}}>
+                                                <OrdersImage src={item.images} alt="itemImage" />
+                                                <ItemNameLink>{item.name} <br/> Код товару: {item.code}</ItemNameLink>
+                                                
+                                            </OrdersItem>
+                                            <OrdersItem>
+                                                {itemQuantities[item.id]}
+                                            </OrdersItem>
+                                            <OrdersItem>
+                                                {item.price} грн
+                                            </OrdersItem>
+                                            <OrdersItem>
                                                 {item.price * itemQuantities[item.id]} грн
-                                            </PriceBlock>
-                                        </Thumb>
+                                            </OrdersItem>
+                                        </OrdersItemBlock>
                                     ))}
-                                </GoodsBlock>
-                            </table>
-                            <Amount>Всього: {totalCost} грн</Amount>
+                                </tbody>
+                                        
+                                <Amount style={{ fontWeight: 'bold', }} >Загальна сума: {totalCost} грн</Amount>
+                                <Description>*вартість доставки здійснюється за рахунок покупця</Description>
+                                </OrdersThumb>
 
-                                 
-                                
                                
-                            <button type="submit" disabled={isSubmitting}>
-                                {isSubmitting ? 'Відправляється...' : 'Відправити'}
-                            </button>
+                                <SubmitButton type="submit" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Замовлення в обробці...' : 'Оформити замовлення'}
+                                </SubmitButton>
 
                         </OrderSummary>
                     </Form>) : (null)}
