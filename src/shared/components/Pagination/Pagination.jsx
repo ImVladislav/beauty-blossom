@@ -15,7 +15,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     <PageButton
       key={page}
       onClick={() => handlePageChange(page)}
-      active={isActive ? "true" : "false"}
+      $active={isActive ? "true" : "false"}
     >
       {label}
     </PageButton>
