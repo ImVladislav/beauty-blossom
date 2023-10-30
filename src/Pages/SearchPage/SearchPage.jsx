@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -9,11 +9,16 @@ import {
 
 import ProductsList from "../../shared/components/ProductsList/ProductsList.jsx";
 import { Container } from "../../shared/styles/Container";
+import { Loader } from "../../shared/components/Loader/Loader.jsx";
 
 const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
   const searchQueryCode = useSelector(selectSearchQueryCode);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    setLoading(false);
+  }, []);
   const searchQuerySorted = [...searchQuery].sort(
     (a, b) => b.amount - a.amount
   );
@@ -38,7 +43,7 @@ const SearchPage = () => {
   return (
     <main>
       <Container>
-        <ProductsList items={search} />
+        {loading ? <Loader /> : <ProductsList items={search} />}
       </Container>
     </main>
   );

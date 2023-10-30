@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -34,6 +34,7 @@ import {
   ProductCode,
   ProductArticleSpan,
 } from "./ProductPage.styled";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -43,6 +44,11 @@ const ProductPage = () => {
   const products = useSelector(selectGoods);
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   const product = products?.find((item) => +item.id === +id); // amount, article, brand, code, description, images, name,new,price,priceOPT,sale,category,subCategory,subSubCategory
   const productCartFind = productCart?.find((item) => +item.id === +id);
@@ -82,69 +88,73 @@ const ProductPage = () => {
 
   return (
     <Container>
-      <PageContainer>
-        <ImageWrap>
-          <ProductImage src={product.images} alt={product.name} />
-          {product.new && (
-            <Sticker text="Новинка" newproduct={product.new.toString()} />
-          )}
-          {product.sale && (
-            <Sticker text="Розпродаж" saleproduct={product.sale.toString()} />
-          )}
-        </ImageWrap>
-        <Info>
-          <WrapName>
-            <ProductName>{product.name}</ProductName>
-            <ProductArticle>
-              <ProductArticleSpan>Артикул</ProductArticleSpan>
-              {product.article}
-            </ProductArticle>
-          </WrapName>
-          <ProductCode>Штрих-код: {product.code}</ProductCode>
-          <ProductBrand> {product.brand}</ProductBrand>
-          {optUser ? (
-            <ProductPrice>{product.priceOPT} ₴</ProductPrice>
-          ) : (
-            <ProductPrice>{product.price} ₴</ProductPrice>
-          )}
-          {product.amount <= 0 ||
-            (!productCartFind && (
-              <CounterBlock>
-                <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
-                <InputIncDec
-                  type="number"
-                  min="1"
-                  max={product.amount}
-                  value={quantity}
-                  onChange={handleQuantityChange}
-                  readOnly={true}
-                />
-                <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
-              </CounterBlock>
-            ))}
+      {loading ? (
+        <Loader />
+      ) : (
+        <PageContainer>
+          <ImageWrap>
+            <ProductImage src={product.images} alt={product.name} />
+            {product.new && (
+              <Sticker text="Новинка" newproduct={product.new.toString()} />
+            )}
+            {product.sale && (
+              <Sticker text="Розпродаж" saleproduct={product.sale.toString()} />
+            )}
+          </ImageWrap>
+          <Info>
+            <WrapName>
+              <ProductName>{product.name}</ProductName>
+              <ProductArticle>
+                <ProductArticleSpan>Артикул</ProductArticleSpan>
+                {product.article}
+              </ProductArticle>
+            </WrapName>
+            <ProductCode>Штрих-код: {product.code}</ProductCode>
+            <ProductBrand> {product.brand}</ProductBrand>
+            {optUser ? (
+              <ProductPrice>{product.priceOPT} ₴</ProductPrice>
+            ) : (
+              <ProductPrice>{product.price} ₴</ProductPrice>
+            )}
+            {product.amount <= 0 ||
+              (!productCartFind && (
+                <CounterBlock>
+                  <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
+                  <InputIncDec
+                    type="number"
+                    min="1"
+                    max={product.amount}
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    readOnly={true}
+                  />
+                  <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
+                </CounterBlock>
+              ))}
 
-          <Button
-            text={
-              product.amount <= 0
-                ? "Немає в наявності"
-                : productCartFind
-                ? "У кошику"
-                : "Купити"
-            }
-            onClick={handleAddToCart}
-            disabled={productCartFind || product.amount <= 0}
-          />
-          {/* <SecondButton
+            <Button
+              text={
+                product.amount <= 0
+                  ? "Немає в наявності"
+                  : productCartFind
+                  ? "У кошику"
+                  : "Купити"
+              }
+              onClick={handleAddToCart}
+              disabled={productCartFind || product.amount <= 0}
+            />
+            {/* <SecondButton
             text="Швидке замовлення"
             onClick={toggleModal}
             disabled={product.amount <= 0}
           ></SecondButton> */}
-          <ProductTitleDescription>Опис</ProductTitleDescription>
-          <ProductDescription>{product.description}</ProductDescription>
+            <ProductTitleDescription>Опис</ProductTitleDescription>
+            <ProductDescription>{product.description}</ProductDescription>
 
-          {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
-        </Info>
-      </PageContainer>
+            {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
+          </Info>
+        </PageContainer>
+      )}
       <ScrollToTop />
     </Container>
   );

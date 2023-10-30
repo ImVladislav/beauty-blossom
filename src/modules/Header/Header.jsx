@@ -31,7 +31,7 @@ import { useLocation } from "react-router-dom";
 
 export const Header = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  // console.log(pathname);
   return (
     <ContainerHeader>
       <Container>
@@ -68,7 +68,7 @@ export const Header = () => {
             </HeaderLayout>
           </HeaderWrap>
         </HeaderTop>
-        <MenuBottom pathname={pathname}>
+        <MenuBottom $pathname={pathname}>
           <MenuWrap>
             <MenuLayout>
               <MenuColumn>

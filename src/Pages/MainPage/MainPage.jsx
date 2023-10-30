@@ -17,18 +17,30 @@ import {
 } from "./MainPage.styled";
 import Hero from "../../modules/Hero/Hero";
 import Baners from "../../modules/Baners/Baners";
+import { useEffect, useState } from "react";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 const MainPage = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <Container>
-      <div>
-        <Hero />
-        <ProductSlider />
-        <BrandsWraper />
-        <AboutUs />
-        <Baners />
-        <ScrollToTop />
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <Hero />
+          <ProductSlider />
+          <BrandsWraper />
+          <AboutUs />
+          <Baners />
+          <ScrollToTop />
+        </div>
+      )}
     </Container>
     // <Background>
     //   <Container style={{ maxWidth: "100%" }}>
