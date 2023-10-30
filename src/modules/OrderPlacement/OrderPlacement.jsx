@@ -59,11 +59,19 @@ const OrderPlacement = () => {
         paymentMethod: "",
         deliveryMethod:"",
         comments: "",
-        address: "", // Додано поле для адреси
-        building: "", // Додано поле для будинку
-        apartment: "" // Додано поле для квартири
+        address: "", 
+        building: "", 
+        apartment: "" 
     });
+    const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
+const showOrderPlacedModal = () => {
+  setIsOrderPlaced(true);
+};
+
+const hideOrderPlacedModal = () => {
+  setIsOrderPlaced(false);
+};
     const cartItems = useSelector(selectCart);
 
     const handleInputChange = (e) => {
@@ -181,7 +189,8 @@ const OrderPlacement = () => {
         }
         
 
-        handleCityChange(); 
+        handleCityChange();
+        console.log(formData);
 }, [ searchText, ]);
 
 useEffect(() => {
@@ -244,9 +253,9 @@ const handleSearchTextChange = async(e) => {
             orderedItems: orderedItems,
             amount: totalCost,
             status: "Новий",
-            address: "", // Додано поле для адреси
-            building: "", // Додано поле для будинку
-            apartment: "" // Додано поле для квартири
+            address: "", 
+            building: "", 
+            apartment: "" 
         };
 
         const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
@@ -254,7 +263,25 @@ const handleSearchTextChange = async(e) => {
         axios.post(ordersUrl, dataToSend)
             .then(response => {
                 console.log('Відповідь від сервера:', response.data);
-            })
+
+                // Показати модальне вікно "Товари замовлено"
+                showOrderPlacedModal();
+
+                // Очистити дані відповідно до вашого стейту
+                setFormData({
+                    email: userEmail || '',
+                    firstName: userFirstName || '',
+                    lastName: userLastName || '',
+                    number: userNumber || null,
+                    city: '',
+                    warehouse: '',
+                    paymentMethod: '',
+                    deliveryMethod: '',
+                    comments: '',
+                    address: '',
+                    building: '',
+                    apartment: '',
+                })})
             .catch(error => {
                 console.error('Сталася помилка:', error);
             })
@@ -338,7 +365,13 @@ const handleSearchTextChange = async(e) => {
                                 onChange={handleInputChange}
                             />
                             <Titles>ДАННІ ДОСТАВКИ</Titles>
-                            <Select id="deliveryMethod" name="deliveryMethod" onChange={handleInputChange}>
+                            <Select
+  id="deliveryMethod"
+  name="deliveryMethod"
+  value={formData.deliveryMethod} // Bind to formData
+  onChange={handleInputChange}
+>
+                                <option value="">Оберіть спосіб доставки</option>
                                 <option value="Доставка на відділення">Доставка на відділення</option>
                                 <option value="Курєрська доставка">Курєрська доставка</option>
                                 
