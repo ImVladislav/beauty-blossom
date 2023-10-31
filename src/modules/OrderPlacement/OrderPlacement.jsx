@@ -7,6 +7,7 @@ import {
     Description,
     FirstOrdersHeaderItem,
     Form,
+    HeaderBlock,
     LastOrdersHeaderItem,
     OrderDetails,
     OrderForm,
@@ -57,7 +58,7 @@ const OrderPlacement = () => {
         city: '',
         warehouse: '',
         paymentMethod: "",
-        deliveryMethod:"",
+        deliveryMethod:"Доставка на відділення",
         comments: "",
         address: "", 
         building: "", 
@@ -83,7 +84,7 @@ const hideOrderPlacedModal = () => {
         console.log(formData.deliveryMethod);
         if (formData.deliveryMethod === 'Курєрська доставка') {
             setCourierDelivery(false)
-        } else {
+        } else if(formData.deliveryMethod === 'Доставка на відділення') {
             setCourierDelivery(true)
         }
         console.log(courierDelivery);
@@ -371,7 +372,7 @@ const handleSearchTextChange = async(e) => {
   value={formData.deliveryMethod} // Bind to formData
   onChange={handleInputChange}
 >
-                                <option value="">Оберіть спосіб доставки</option>
+                                
                                 <option value="Доставка на відділення">Доставка на відділення</option>
                                 <option value="Курєрська доставка">Курєрська доставка</option>
                                 
@@ -466,55 +467,71 @@ const handleSearchTextChange = async(e) => {
                                 </Select>
                                 <Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
                                 <label htmlFor="comments"></label>
-                                <Textarea id="comments" name="comments" rows="4" onChange={handleInputChange}></Textarea>
+<Textarea
+  id="comments"
+  name="comments"
+  rows="4"
+  value={formData.comments || ''} // Встановлюємо значення з formData
+  onChange={(e) => {
+    setFormData({
+      ...formData,
+      comments: e.target.value, // Оновлюємо лише поле "comments"
+    });
+  }}
+></Textarea>
                             </DeliveryInfoBlock>
 
-                            <label htmlFor="deliveryMethod"> Доставка здійснюється перевізником нова пошт</label>
+                            <label htmlFor="deliveryMethod"> </label>
 
                         </DeliveryInfoBlock>
                 
-                        <OrderSummary>
+                        <div>
                             <h3>Замовлення</h3>
                             <OrdersThumb>
-                                <thead>
-                                    <OrdersHeaders>
-                                        <FirstOrdersHeaderItem>Найменування товару</FirstOrdersHeaderItem>
-                                        <OrdersHeaderItem>Кількість</OrdersHeaderItem>
-                                        <OrdersHeaderItem>Ціна</OrdersHeaderItem>
-                                        <LastOrdersHeaderItem>Сума</LastOrdersHeaderItem>
-                                    </OrdersHeaders>
-                                </thead>
-                                <tbody>
-                                    {cartItems.map((item) => (
-                                        <OrdersItemBlock key={item.id}>
-                                            <OrdersItem style={{maxWidth: '800px'}}>
-                                                <OrdersImage src={item.images} alt="itemImage" />
-                                                <ItemNameLink>{item.name} <br/> Код товару: {item.code}</ItemNameLink>
-                                                
-                                            </OrdersItem>
-                                            <OrdersItem>
-                                                {itemQuantities[item.id]}
-                                            </OrdersItem>
-                                            <OrdersItem>
-                                                {item.price} грн
-                                            </OrdersItem>
-                                            <OrdersItem>
-                                                {item.price * itemQuantities[item.id]} грн
-                                            </OrdersItem>
-                                        </OrdersItemBlock>
-                                    ))}
-                                </tbody>
-                                        
+
+<table cols ="5">
+  <thead style={{bordeRadius: "25px" }}>
+    <tr>
+      <HeaderBlock><FirstOrdersHeaderItem> s</FirstOrdersHeaderItem></HeaderBlock>
+      <HeaderBlock><OrdersHeaderItem><p>Найменування товару</p></OrdersHeaderItem></HeaderBlock>
+      <HeaderBlock><OrdersHeaderItem>Кількість</OrdersHeaderItem></HeaderBlock>
+      <HeaderBlock><OrdersHeaderItem>Ціна</OrdersHeaderItem></HeaderBlock>
+      <HeaderBlock><LastOrdersHeaderItem>Сума</LastOrdersHeaderItem></HeaderBlock>
+    </tr>
+  </thead>
+  <tbody>
+    {cartItems.map((item) => (
+      <tr key={item.id}>
+        <OrdersItem>
+          <OrdersImage src={item.images} alt="itemImage" />
+        </OrdersItem>
+        <OrdersItem>
+          <ItemNameLink>{item.name} <br/> Код товару: {item.code}</ItemNameLink>
+        </OrdersItem>
+        <OrdersItem>
+          {itemQuantities[item.id]}
+        </OrdersItem>
+        <OrdersItem>
+          {item.price} грн
+        </OrdersItem>
+        <OrdersItem>
+          {item.price * itemQuantities[item.id]} грн
+        </OrdersItem>
+      </tr>
+    ))}
+  </tbody>
+</table>
                                 <Amount style={{ fontWeight: 'bold', }} >Загальна сума: {totalCost} грн</Amount>
                                 <Description>*вартість доставки здійснюється за рахунок покупця</Description>
-                                </OrdersThumb>
+                                
+                            </OrdersThumb>
 
                                
                                 <SubmitButton type="submit" disabled={isSubmitting}>
                                     {isSubmitting ? 'Замовлення в обробці...' : 'Оформити замовлення'}
                                 </SubmitButton>
 
-                        </OrderSummary>
+                        </div>
                     </Form>) : (null)}
             </OrderDetails>
         </OrderForm>
