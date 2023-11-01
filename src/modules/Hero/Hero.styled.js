@@ -150,6 +150,7 @@ export const LinkBtn = styled(Link)`
   transition: all 250ms ease-in-out;
   color: ${(p) => p.theme.colors.accentColor};
   margin-bottom: 30px;
+  margin-left: auto;
   &:hover {
     color: white;
     background: ${(p) => p.theme.colors.accentColor};
@@ -168,7 +169,7 @@ export const LinkBtn = styled(Link)`
     font-weight: ${(p) => p.theme.fontWeights.body};
     text-decoration: none;
     font-size: ${(p) => p.theme.fontSizes.m}px;
-
+    margin-left: 0;
     padding: 7px 30px;
 
     transition: all 250ms ease-in-out;
