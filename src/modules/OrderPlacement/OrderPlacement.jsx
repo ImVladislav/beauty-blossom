@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
+    CityItem,
+    CityitemsBlock,
+    Citylist,
     CostumerStatus,
     CostumerStatusItem,
     CostumerStatusinput,
@@ -11,13 +14,9 @@ import {
     LastOrdersHeaderItem,
     OrderDetails,
     OrderForm,
-    OrderSummary,
-    OrderThumb,
     OrdersHeaderItem,
-    OrdersHeaders,
     OrdersImage,
     OrdersItem,
-    OrdersItemBlock,
     OrdersThumb,
     Select,
     SubmitButton,
@@ -30,7 +29,7 @@ import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfi
 import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
 import { selectCart } from '../../redux/cart/selectors';
-import { Amount, AmountBlock, CounterBlock, DescriptionBlock, GoodsBlock, ImageBlock, ItemNameLink, PriceBlock, Thumb } from '../Header/ShopingList/ShopingListStyled';
+import { Amount, ItemNameLink } from '../Header/ShopingList/ShopingListStyled';
 import axios from 'axios';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -42,13 +41,17 @@ const OrderPlacement = () => {
     const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
     const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
     const [searchWarehouses, setSearchWarehouses] = useState("");
+    const [isDropdownCityVisible, setDropdownCityVisible] = useState(false);
+    const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [courierDelivery, setCourierDelivery] = useState(false);
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
     const userEmail = useSelector(userSelectorEmail);
-
+  
+  
+  const [selectedCity, setSelectedCity] = useState('');
 
         const [formData, setFormData] = useState({
         email: userEmail || '',
@@ -86,124 +89,101 @@ const hideOrderPlacedModal = () => {
             setCourierDelivery(false)
         } else if(formData.deliveryMethod === 'Доставка на відділення') {
             setCourierDelivery(true)
-        }
-        console.log(courierDelivery);
+        };
     };
 
     let firstWord = ''
     const words = searchText.trim().split(" ");
-
-    if (words.length > 1) {
         firstWord = words[0];
-    }
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
 
-    const handleCityChange = () => {
-        
-        const requestData = {
-            apiKey: apiKey,
-            modelName: "Address",
-            calledMethod: "getSettlements",
-            methodProperties: {
-                Page: "1",
-                FindByString: searchText,
-                Limit: "60"
-            }
-        };
-
-        fetch("https://api.novaposhta.ua/v2.0/json/", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json, text/plain, */*",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(requestData),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data.success) {
-                    setSearchCities(data.data);
-                    
-                }
-            })
-            .catch((error) => {
-                console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
-            });
+const handleCityChange = async () => {
+  try {
+    const requestData = {
+      apiKey: apiKey,
+      modelName: "Address",
+      calledMethod: "getSettlements",
+      methodProperties: {
+        Page: "1",
+        FindByString: searchText,
+        Limit: "60"
+      }
     };
-    const handleWarehousesChange = () => {
 
-        const requestData = {
-            apiKey: apiKey,
-            modelName: "Address",
-            calledMethod: "getWarehouses",
-            methodProperties: {
-                CityName: firstWord,
-                Page: "1",
-                Limit: "4105",
-                WarehouseId: searchWarehouses,
-            }
-        };
-         if (searchWarehouses) {
-        requestData.methodProperties.WarehouseRef = searchWarehouses;
-    }
-        fetch('https://api.novaposhta.ua/v2.0/json/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestData)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    const dataWarehouses = data.data
-                    setWarehouses(dataWarehouses);
-                    console.log(data.data);
-                    console.log(warehouses);
-                    console.log(warehouses.length);
-                }
+    const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
 
-            })
-            .catch(error => {
-                console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
-            });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
+    const data = await response.json();
+
+    if (data.success) {
+      setSearchCities(data.data);
+    }
+  } catch (error) {
+    console.error("Помилка при запиті до API Нової Пошти для населених пунктів", error);
+  }
+};
+const handleWarehousesChange = async () => {
+  try {
+    const requestData = {
+      apiKey: apiKey,
+      modelName: "Address",
+      calledMethod: "getWarehouses",
+      methodProperties: {
+        CityName: firstWord,
+        Page: "1",
+        Limit: "4105",
+        WarehouseId: searchWarehouses,
+      }
+    };
+
+    if (searchWarehouses) {
+      requestData.methodProperties.WarehouseRef = searchWarehouses;
+    }
+
+    const response = await fetch('https://api.novaposhta.ua/v2.0/json/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      setWarehouses(data.data);
+
+    }
+  } catch (error) {
+    console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
+  }
+};
     
     useEffect(() => {
-
-    setSearchWarehouses('')
-  
+        
     if (words.length > 1) {
         firstWord = words[0];
         }
-        
-
         handleCityChange();
-        console.log(formData);
-}, [ searchText, ]);
+}, [ searchText ]);
 
-useEffect(() => {
-        handleWarehousesChange(); 
-}, [ firstWord]);
 
-const handleSearchTextChange = async(e) => {
-     const text = await e.target.value;
-    console.log(text);
-    setSearchText(text);
-    }
-    
+
       const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
       quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
@@ -265,10 +245,8 @@ const handleSearchTextChange = async(e) => {
             .then(response => {
                 console.log('Відповідь від сервера:', response.data);
 
-                // Показати модальне вікно "Товари замовлено"
                 showOrderPlacedModal();
 
-                // Очистити дані відповідно до вашого стейту
                 setFormData({
                     email: userEmail || '',
                     firstName: userFirstName || '',
@@ -291,6 +269,71 @@ const handleSearchTextChange = async(e) => {
             });
     };
 
+function throttle(func, delay) {
+  let inThrottle;
+  return function () {
+    const args = arguments;
+    const context = this;
+
+    if (!inThrottle) {
+      func.apply(context, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), delay);
+    }
+  };
+}
+
+const handleSearchTextChange = throttle( (e) => {
+console.log(searchCities.length);
+    const value = e.target.value;
+    setSearchText(value);
+    if (value.length > 2) {
+        setDropdownCityVisible(searchCities.length < 40) 
+        
+    } 
+
+    setDropdownCityVisible(value.length > 2);
+}, 300); 
+    
+
+    const handleSearchTextChangeWarehose = throttle( (e) => {
+
+    const value = e.target.value;
+        setSearchWarehouses(value);
+        
+    if (value.length > 2) {
+      setDropdownWarehouseVisible (searchWarehouses.length < 40) 
+    }
+    setDropdownWarehouseVisible(value.length >= 1);
+}, 300); 
+
+    
+
+const handleCitySelect = (city, areaDescription) => {
+  const selectedCityWithArea = `${city} ${areaDescription}`;
+  setSearchText(selectedCityWithArea);
+    setDropdownCityVisible(false);
+    setSearchWarehouses('')
+    handleWarehousesChange()
+    console.log(searchCities);
+    };
+    
+    const handleWarehouseSelect = (warehouse) => {
+        const selectedWarehouse = `${warehouse}`;
+        setSearchWarehouses(selectedWarehouse);
+        setDropdownWarehouseVisible(false);
+
+       
+    }
+
+
+    // useEffect(() => {
+        
+    //     handleWarehousesChange()
+
+          
+    // }, [searchWarehouses]);
+    
     return (
         <OrderForm>
             <OrderDetails>
@@ -367,38 +410,52 @@ const handleSearchTextChange = async(e) => {
                             />
                             <Titles>ДАННІ ДОСТАВКИ</Titles>
                             <Select
-  id="deliveryMethod"
-  name="deliveryMethod"
-  value={formData.deliveryMethod} // Bind to formData
-  onChange={handleInputChange}
->
-                                
+                                id="deliveryMethod"
+                                name="deliveryMethod"
+                                value={formData.deliveryMethod}
+                                onChange={handleInputChange}
+                            >
                                 <option value="Доставка на відділення">Доставка на відділення</option>
                                 <option value="Курєрська доставка">Курєрська доставка</option>
                                 
                             </Select>
-                            
-                            <label htmlFor="city"></label>
-                            <CostumerStatusinput
-                                type="text"
-                                id="city"
-                                name="city"
-                                value={formData.city || searchText}
-                                onChange={handleSearchTextChange}
-                                list="citiesList"
-                                placeholder="Введіть назву міста"
-                            />
-                            <datalist id="citiesList">
-                                <label htmlFor="searchCities">Оберіть населений пункт (склад)</label>
-                                <option value="">Оберіть населений пункт</option>
-                                {searchCities.filter((searchCity) =>
-                                    searchCity.Description.toLowerCase().includes(formData.city.toLowerCase())).map(searchCity => (
-                                        <option key={nanoid()} value={`${searchCity.Description} ${searchCity.RegionsDescription} ${searchCity.AreaDescription}`} >{searchCity.Description} </option>
-                                    ))}
-                            </datalist>
+                            <div>
+      
+                                <div style={{ position: 'relative' }}>
+
+                                    <CostumerStatusinput
+                                        autoComplete="off"
+                                        type="text"
+                                        id="city"
+                                        name="city"
+                                        value={searchText}
+                                        onChange={handleSearchTextChange}
+                                        placeholder="Введіть назву міста"
+                                        // onBlur={handleCityBlur} 
+                                        onClick={() => { setDropdownCityVisible(searchCities.length <= 40); setDropdownWarehouseVisible(false); setDropdownCityVisible(searchCities.length !== 0 )}}
+                                    />
+                                    {isDropdownCityVisible && (
+                                        <Citylist>
+                                            <CityitemsBlock>
+                                                {searchCities.map((searchCity) => (
+                                                    <li
+                                                        key={nanoid()}
+                                                        onClick={() => {
+                                                            handleCitySelect(searchCity.Description , searchCity.AreaDescription);
+                                                        }}
+                                                    >
+                                                        <CityItem>
+                                                            {searchCity.Description} , {searchCity.AreaDescription}
+                                                        </CityItem>
+                                                    </li>
+                                                ))}
+                                            </CityitemsBlock>
+                                        </Citylist>
+                                    )}
+                                </div>
+                            </div>
                             {courierDelivery ? (
-                                
-                                    
+                                     
                                 <OrderDetails>
                                     <label htmlFor="address"></label>
                                     <CostumerStatusinput
@@ -428,32 +485,48 @@ const handleSearchTextChange = async(e) => {
                                         onChange={handleInputChange}
                                     />
                                 </OrderDetails>
-                                    
-                                
+
                             ) : (
 
-                                    
-                                <OrderDetails>
-                                    <label htmlFor="searchWarehouses"></label>
-                                    <CostumerStatusinput
+                                <OrderDetails>                
+                                   
+                       <div>
+                                <div style={{ position: 'relative' }}>
+
+
+                                     <CostumerStatusinput
+                                        autoComplete="off"
                                         type="text"
                                         id="warehouse"
                                         name="warehouse"
                                         value={searchWarehouses}
-                                        placeholder="відділення*"
-                                        list="warehousesList"
-                                        onChange={(e) => setSearchWarehouses(e.target.value)}
+                                        onChange={handleSearchTextChangeWarehose}
+                                                    placeholder="Введіть адресу відділення"
+                                                    // onBlur={handleWarehouseBlur} 
+                                                    onClick={() => { setDropdownWarehouseVisible(searchCities.length <= 40); setDropdownCityVisible(false); handleWarehousesChange() }}
                                     />
-                                    <datalist id="warehousesList">
-                                        <option value="">Оберіть відділення</option>
+                            {isDropdownWarehouseVisible && (
+                                    <Citylist>
+                                            <CityitemsBlock >
+                                        
                                         {warehouses.filter((warehouse) =>
                                             warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
-                                                <option key={nanoid()} value={warehouse.Description}>
-                                                    {warehouse.Description}
-                                                </option>
+                                                <li
+                                                    key={nanoid()}
+                                                    onClick={() => {
+                                                            handleWarehouseSelect(warehouse.Description);
+                                                    }}>
+                                                    <CityItem>
+                                                        {warehouse.Description}
+                                                        </CityItem>
+                                                 </li>
                                             ))}
-                                    </datalist>
-                                    
+                                        </CityitemsBlock>
+                                        </Citylist>
+   
+                                        )}
+                                </div>
+                            </div>  
                                 </OrderDetails>
 
                             )}
@@ -467,18 +540,18 @@ const handleSearchTextChange = async(e) => {
                                 </Select>
                                 <Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
                                 <label htmlFor="comments"></label>
-<Textarea
-  id="comments"
-  name="comments"
-  rows="4"
-  value={formData.comments || ''} // Встановлюємо значення з formData
-  onChange={(e) => {
-    setFormData({
-      ...formData,
-      comments: e.target.value, // Оновлюємо лише поле "comments"
-    });
-  }}
-></Textarea>
+                                <Textarea
+                                    id="comments"
+                                    name="comments"
+                                    rows="4"
+                                    value={formData.comments || ''} // Встановлюємо значення з formData
+                                    onChange={(e) => {
+                                        setFormData({
+                                            ...formData,
+                                            comments: e.target.value, // Оновлюємо лише поле "comments"
+                                        });
+                                    }}
+                                ></Textarea>
                             </DeliveryInfoBlock>
 
                             <label htmlFor="deliveryMethod"> </label>
@@ -489,47 +562,47 @@ const handleSearchTextChange = async(e) => {
                             <h3>Замовлення</h3>
                             <OrdersThumb>
 
-<table cols ="5">
-  <thead style={{bordeRadius: "25px" }}>
-    <tr>
-      <HeaderBlock><FirstOrdersHeaderItem> s</FirstOrdersHeaderItem></HeaderBlock>
-      <HeaderBlock><OrdersHeaderItem><p>Найменування товару</p></OrdersHeaderItem></HeaderBlock>
-      <HeaderBlock><OrdersHeaderItem>Кількість</OrdersHeaderItem></HeaderBlock>
-      <HeaderBlock><OrdersHeaderItem>Ціна</OrdersHeaderItem></HeaderBlock>
-      <HeaderBlock><LastOrdersHeaderItem>Сума</LastOrdersHeaderItem></HeaderBlock>
-    </tr>
-  </thead>
-  <tbody>
-    {cartItems.map((item) => (
-      <tr key={item.id}>
-        <OrdersItem>
-          <OrdersImage src={item.images} alt="itemImage" />
-        </OrdersItem>
-        <OrdersItem>
-          <ItemNameLink>{item.name} <br/> Код товару: {item.code}</ItemNameLink>
-        </OrdersItem>
-        <OrdersItem>
-          {itemQuantities[item.id]}
-        </OrdersItem>
-        <OrdersItem>
-          {item.price} грн
-        </OrdersItem>
-        <OrdersItem>
-          {item.price * itemQuantities[item.id]} грн
-        </OrdersItem>
-      </tr>
-    ))}
-  </tbody>
-</table>
+                                <table cols="5">
+                                    <thead style={{ bordeRadius: "25px" }}>
+                                        <tr>
+                                            <HeaderBlock><FirstOrdersHeaderItem> s</FirstOrdersHeaderItem></HeaderBlock>
+                                            <HeaderBlock><OrdersHeaderItem><p>Найменування товару</p></OrdersHeaderItem></HeaderBlock>
+                                            <HeaderBlock><OrdersHeaderItem>Кількість</OrdersHeaderItem></HeaderBlock>
+                                            <HeaderBlock><OrdersHeaderItem>Ціна</OrdersHeaderItem></HeaderBlock>
+                                            <HeaderBlock><LastOrdersHeaderItem>Сума</LastOrdersHeaderItem></HeaderBlock>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {cartItems.map((item) => (
+                                            <tr key={item.id}>
+                                                <OrdersItem>
+                                                    <OrdersImage src={item.images} alt="itemImage" />
+                                                </OrdersItem>
+                                                <OrdersItem>
+                                                    <ItemNameLink>{item.name} <br /> Код товару: {item.code}</ItemNameLink>
+                                                </OrdersItem>
+                                                <OrdersItem>
+                                                    {itemQuantities[item.id]}
+                                                </OrdersItem>
+                                                <OrdersItem>
+                                                    {item.price} грн
+                                                </OrdersItem>
+                                                <OrdersItem>
+                                                    {item.price * itemQuantities[item.id]} грн
+                                                </OrdersItem>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                                 <Amount style={{ fontWeight: 'bold', }} >Загальна сума: {totalCost} грн</Amount>
                                 <Description>*вартість доставки здійснюється за рахунок покупця</Description>
                                 
                             </OrdersThumb>
 
                                
-                                <SubmitButton type="submit" disabled={isSubmitting}>
-                                    {isSubmitting ? 'Замовлення в обробці...' : 'Оформити замовлення'}
-                                </SubmitButton>
+                            <SubmitButton type="submit" disabled={isSubmitting}>
+                                {isSubmitting ? 'Замовлення в обробці...' : 'Оформити замовлення'}
+                            </SubmitButton>
 
                         </div>
                     </Form>) : (null)}
@@ -542,3 +615,4 @@ export default OrderPlacement;
 
 //411
 //430
+//619

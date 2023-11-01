@@ -27,14 +27,64 @@ export const DeliveryInfoBlock = styled.div`
     min-width: 510px;
  `
 
- export const CostumerStatusinput = styled.input`
-       border-radius: 50px;
-       border: 1px solid black;
-       padding: 5px 10px;
-       background: transparent;
-       margin: 10px 0px ;
-       width: 100%;
-`
+
+export const CostumerStatusinput = styled.input`
+  border-radius: 50px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  background: transparent;
+  margin: 10px 0px;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const Citylist = styled.div`
+  top: 100%;
+  left: 0;
+  right: 0;
+ z-index: 2;
+  position: absolute;
+`;
+
+export const CityItem = styled.span`
+  cursor: pointer;
+
+  &:hover {
+    background: ${(p) => p.theme.colors.textColor};
+    color: white;
+  }
+`;
+
+export const CityitemsBlock = styled.ul`
+  border: 1px solid ${(p) => p.theme.colors.textColor};
+  border-radius: 12px;
+  padding: 14px;
+  position: relative;
+  background: #FFF6E9;
+  overflow-y: auto;
+  
+  max-height: 256px;
+  scrollbar-width: thin; /* Товщина смуги прокрутки */
+  scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
+  
+  /* Стилізація смуги прокрутки для WebKit (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    padding: 10px;
+    width: 8px; /* Товщина смуги прокрутки */
+  }
+  &::-webkit-scrollbar-thumb {
+    padding: 10px;
+    background-color: ${(p) => p.theme.colors.textColor}; /* Колір смуги прокрутки */
+    border-radius: 8px; /* Круглий вигляд смуги прокрутки */
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent; /* Колір фону смуги прокрутки */
+  }
+
+`;
 
 export const Select = styled.select`
 border-radius: 50px; 
@@ -212,3 +262,9 @@ overflow: hidden;
     height: 2.4em;
     max-width: 480px;
     `
+
+
+
+
+
+
