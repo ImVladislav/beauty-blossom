@@ -91,7 +91,7 @@ export const ModalTitle = styled.h2`
 `;
 export const TableWrap = styled.div`
   overflow-y: auto;
-  max-height: 256px;
+  max-height: 800px;
   scrollbar-width: thin; /* Товщина смуги прокрутки */
   scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
 
@@ -176,17 +176,18 @@ export const PriceBlock = styled.td`
 
 export const DeleteBtn = styled.button`
   position: absolute;
-  left: -25px;
-  top: 20px;
+  right: 0px;
+  top: 50%;
   border: none;
   background: transparent;
+  transform: translateY(-50%);
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1440px) {
     position: absolute;
-    left: -25px;
-    top: 45px;
+    right: 0px;
+    top: 50%;
     border: none;
     background: transparent;
   }
@@ -222,6 +223,12 @@ export const Thumb = styled.tr`
     background-repeat: no-repeat;
     background-size: cover;
     transition: color 0.3s ease-in-out;
+    @media screen and (min-width: 768px) {
+    }
+
+    @media screen and (min-width: 1440px) {
+      /* left: -5px; */
+    }
   }
 `;
 

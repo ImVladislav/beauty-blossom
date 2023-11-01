@@ -109,14 +109,6 @@ export const Modal = styled.div`
     /* width: 500px;
   height: 329px; */
     padding: 30px;
-    border: 1px solid ${(p) => p.theme.colors.border};
-    border-radius: 4px;
-    position: fixed; /* Замініть 'relative' на 'fixed' для розміщення модального вікна відносно вікна браузера */
-    top: 50%; /* Розміщення в вертикальному центрі сторінки */
-    left: 50%; /* Розміщення в горизонтальному центрі сторінки */
-    transform: translate(-50%, -50%); /* Вирівнювання вікна по центру */
-    background-color: ${(p) => p.theme.colors.white};
-    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   }
 `;
 
@@ -156,7 +148,14 @@ export const LoginPasswordToggle = styled.h3`
   }
 
   @media screen and (min-width: 1440px) {
-    font-weight: bold;
+    text-align: center;
+
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    text-transform: uppercase;
   }
 `;
 
@@ -175,10 +174,18 @@ export const LoginModalText = styled.p`
   }
 
   @media screen and (min-width: 1440px) {
+    text-align: center;
+    font-family: Century Gothic;
+
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    /* text-transform: uppercase; */
     font-weight: bold;
     display: flex;
     align-self: center;
-    font-size: 25px;
+    font-size: 22px;
   }
 `;
 
@@ -209,11 +216,19 @@ font-family: Century Gothic; */
   }
 
   @media screen and (min-width: 1440px) {
+    min-width: 300px;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+
     margin: 10px;
-    border-radius: 12px;
+    border-radius: 25px;
     /* color: #b2b2b2; */
     border-color: ${(p) => p.theme.colors.borderCard};
-    padding: 10px;
+    padding: 23px;
     /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */

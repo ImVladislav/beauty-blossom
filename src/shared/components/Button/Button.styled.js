@@ -16,7 +16,7 @@ export const ButtonStyle = styled.button`
   padding: 5px 20px;
 
   transition: all 250ms ease-in-out;
-
+  cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
   &:hover {
     color: white;
     background: ${(p) => p.theme.colors.accentColor};
@@ -26,13 +26,15 @@ export const ButtonStyle = styled.button`
   }
 
   @media screen and (min-width: 1440px) {
-    background-color: ${(p) => (p.disabled ? "#ccc" : p.theme.colors.heroBtn)};
-    color: ${(p) => p.theme.colors.white};
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    /* background-color: ${(p) =>
+      p.disabled ? "#ccc" : p.theme.colors.heroBtn};
+    color: ${(p) => p.theme.colors.white}; */
     padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
-    transition: background-color 0.3s ease;
+    /* border: none;
+    border-radius: 4px; */
+    /* cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")}; */
+    /* transition: background-color 0.3s ease; */
   }
 `;
 

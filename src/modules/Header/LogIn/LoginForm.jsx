@@ -57,7 +57,7 @@ const LoginForm = () => {
     >
       <Form>
         {IsLogined ? (
-          "Ви успішно авторизувались"
+          <p>Ви успішно авторизувались</p>
         ) : (
           <>
             <FormLavelBloks>
@@ -65,11 +65,13 @@ const LoginForm = () => {
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
                 <ErrorMessage name="email" component="div" />
+                ////////
               </div>
               <div>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
                 <ErrorMessage name="password" component="div" />
+                ////////
               </div>
             </FormLavelBloks>
 
