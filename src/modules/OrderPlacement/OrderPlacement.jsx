@@ -48,10 +48,8 @@ const OrderPlacement = () => {
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
+    const [courier, setCourier] = useState('no');
     const userEmail = useSelector(userSelectorEmail);
-  
-  
-  const [selectedCity, setSelectedCity] = useState('');
 
         const [formData, setFormData] = useState({
         email: userEmail || '',
@@ -61,7 +59,7 @@ const OrderPlacement = () => {
         city: '',
         warehouse: '',
         paymentMethod: "",
-        deliveryMethod:"Доставка на відділення",
+        deliveryMethod: courier,
         comments: "",
         address: "", 
         building: "", 
@@ -77,7 +75,7 @@ const hideOrderPlacedModal = () => {
   setIsOrderPlaced(false);
 };
     const cartItems = useSelector(selectCart);
-
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -85,18 +83,37 @@ const hideOrderPlacedModal = () => {
             [name]: value,
         });
         console.log(formData.deliveryMethod);
-        if (formData.deliveryMethod === 'Курєрська доставка') {
-            setCourierDelivery(false)
-        } else if(formData.deliveryMethod === 'Доставка на відділення') {
-            setCourierDelivery(true)
-        };
+        console.log(formData.deliveryMethod);
+        // if (formData.deliveryMethod === 'no') {
+            
+        //     setCourierDelivery('1')
+        // }
+        
+        // if (formData.deliveryMethod === 'yes') {
+        //     setCourierDelivery('2')
+        // };
     };
-
+    console.log(courierDelivery);
+    // console.log(formData);
+    console.log(courier);
     let firstWord = ''
     const words = searchText.trim().split(" ");
         firstWord = words[0];
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
+
+    useEffect(() => {
+
+               if (formData.deliveryMethod === 'no') {
+            
+            setCourierDelivery('1')
+        }
+        
+        if (formData.deliveryMethod === 'yes') {
+            setCourierDelivery('2')
+        }; 
+}, [ handleInputChange ]);
+
 
 const handleCityChange = async () => {
   try {
@@ -181,8 +198,6 @@ const handleWarehousesChange = async () => {
         }
         handleCityChange();
 }, [ searchText ]);
-
-
 
       const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
@@ -307,7 +322,6 @@ console.log(searchCities.length);
     setDropdownWarehouseVisible(value.length >= 1);
 }, 300); 
 
-    
 
 const handleCitySelect = (city, areaDescription) => {
   const selectedCityWithArea = `${city} ${areaDescription}`;
@@ -326,14 +340,6 @@ const handleCitySelect = (city, areaDescription) => {
        
     }
 
-
-    // useEffect(() => {
-        
-    //     handleWarehousesChange()
-
-          
-    // }, [searchWarehouses]);
-    
     return (
         <OrderForm>
             <OrderDetails>
@@ -410,15 +416,22 @@ const handleCitySelect = (city, areaDescription) => {
                             />
                             <Titles>ДАННІ ДОСТАВКИ</Titles>
                             <Select
-                                id="deliveryMethod"
-                                name="deliveryMethod"
-                                value={formData.deliveryMethod}
-                                onChange={handleInputChange}
-                            >
-                                <option value="Доставка на відділення">Доставка на відділення</option>
-                                <option value="Курєрська доставка">Курєрська доставка</option>
-                                
+    id="deliveryMethod"
+    name="deliveryMethod"
+    value={formData.deliveryMethod}
+    onChange={(e) => {
+        handleInputChange(e);
+        if (e.target.value === 'no') {
+            setCourier('no');
+        } else if (e.target.value === 'yes') {
+            setCourier('yes');
+        }
+    }}
+>
+    <option value="no">Доставка на відділення</option>
+    <option value="yes">Кур'єрська доставка</option>
                             </Select>
+                             <p>Обраний варіант: {formData.deliveryMethod}</p>
                             <div>
       
                                 <div style={{ position: 'relative' }}>
@@ -454,7 +467,7 @@ const handleCitySelect = (city, areaDescription) => {
                                     )}
                                 </div>
                             </div>
-                            {courierDelivery ? (
+                            {courierDelivery === '1' ? (
                                      
                                 <OrderDetails>
                                     <label htmlFor="address"></label>
