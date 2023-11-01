@@ -21,6 +21,7 @@ export const LinkWrap = styled.c`
   display: flex;
   flex-direction: row;
   align-items: center;
+
   &.active {
     border-radius: 26.467px;
     background: #ffecd2;

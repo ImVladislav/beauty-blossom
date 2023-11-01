@@ -20,6 +20,7 @@ import {
   Thumb,
   TextNoProduckts,
   ReturnIcon,
+  TableWrap,
 } from "./ShopingListStyled";
 import Button from "../../../shared/components/Button/Button";
 
@@ -91,82 +92,79 @@ const CartModal = ({ closeModal }) => {
 
   return (
     <ModalShopingList>
-      <div>
-        <ModalTitle>Корзина</ModalTitle>
-        {/* <CloseButton onClick={closeModal}/> */}
-        {cartItems.length !== 0 ? (
-          <div>
-            <table
-              style={{ borderCollapse: "collapse", borderSpacing: "20px" }}
-            >
-              <thead>
-                <tr>
-                  <HeaderContent></HeaderContent>
-                  <HeaderContent></HeaderContent>
-                  <HeaderContent>Товар</HeaderContent>
-                  <HeaderContent>Кількість</HeaderContent>
-                  <HeaderContent>Вартість</HeaderContent>
-                </tr>
-              </thead>
-              <GoodsBlock>
-                {cartItems.map((item) => (
-                  <Thumb key={item.id}>
-                    <ImageBlock>
-                      <img src={item.images} alt="itemImage" />
-                    </ImageBlock>
-                    <DescriptionBlock>
-                      <ItemNameLink>{item.name}</ItemNameLink>
-                    </DescriptionBlock>
-                    <AmountBlock>
-                      <CounterBlock>
-                        <DecIncBtn
-                          onClick={() => item && decreaseQuantity(item.id)}
-                        >
-                          -
-                        </DecIncBtn>
-                        {itemQuantities[item.id]}
-                        <DecIncBtn onClick={() => increaseQuantity(item.id)}>
-                          +
-                        </DecIncBtn>
-                      </CounterBlock>
-                    </AmountBlock>
-                    <PriceBlock>
-                      {item.price * itemQuantities[item.id]} грн
-                    </PriceBlock>
-                    <DeleteBtn onClick={() => removeItem(item.id)}>
-                      <DeleteIcon />
-                    </DeleteBtn>
-                  </Thumb>
-                ))}
-              </GoodsBlock>
-            </table>
-            <Amount>Всього: {totalCost} грн</Amount>
-          </div>
-        ) : (
-          <TextNoProduckts>Ви ще нічого не вибрали!</TextNoProduckts>
-        )}
+      <ModalTitle>Корзина</ModalTitle>
+      {/* <CloseButton onClick={closeModal}/> */}
+      {cartItems.length !== 0 ? (
+        <TableWrap>
+          <table style={{ borderCollapse: "collapse", borderSpacing: "20px" }}>
+            <thead>
+              <tr>
+                <HeaderContent></HeaderContent>
+                <HeaderContent></HeaderContent>
+                <HeaderContent>Товар</HeaderContent>
+                <HeaderContent>Кількість</HeaderContent>
+                <HeaderContent>Вартість</HeaderContent>
+              </tr>
+            </thead>
+            <GoodsBlock>
+              {cartItems.map((item) => (
+                <Thumb key={item.id}>
+                  <ImageBlock>
+                    <img src={item.images} alt="itemImage" />
+                  </ImageBlock>
+                  <DescriptionBlock>
+                    <ItemNameLink>{item.name}</ItemNameLink>
+                  </DescriptionBlock>
+                  <AmountBlock>
+                    <CounterBlock>
+                      <DecIncBtn
+                        onClick={() => item && decreaseQuantity(item.id)}
+                      >
+                        -
+                      </DecIncBtn>
+                      {itemQuantities[item.id]}
+                      <DecIncBtn onClick={() => increaseQuantity(item.id)}>
+                        +
+                      </DecIncBtn>
+                    </CounterBlock>
+                  </AmountBlock>
+                  <PriceBlock>
+                    {item.price * itemQuantities[item.id]} грн
+                  </PriceBlock>
+                  <DeleteBtn onClick={() => removeItem(item.id)}>
+                    <DeleteIcon />
+                  </DeleteBtn>
+                </Thumb>
+              ))}
+            </GoodsBlock>
+          </table>
+          <Amount>Всього: {totalCost} грн</Amount>
+        </TableWrap>
+      ) : (
+        <TextNoProduckts>Ви ще нічого не вибрали!</TextNoProduckts>
+      )}
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <ButtonContainer>
-            <ReturnBTN onClick={closeModal}>
-              <ReturnIcon />
-              Повернутись до покупок
-            </ReturnBTN>
-          </ButtonContainer>
-          <ButtonContainer>
-            <Button
-              onClick={placeOrder}
-              text="Оформити замовлення"
-              disabled={cartItems.length === 0}
-            />
-          </ButtonContainer>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginTop: "10px",
+        }}
+      >
+        <ButtonContainer>
+          <ReturnBTN onClick={closeModal}>
+            <ReturnIcon />
+            Повернутись до покупок
+          </ReturnBTN>
+        </ButtonContainer>
+        <ButtonContainer>
+          <Button
+            onClick={placeOrder}
+            text="Оформити замовлення"
+            disabled={cartItems.length === 0}
+          />
+        </ButtonContainer>
       </div>
     </ModalShopingList>
   );

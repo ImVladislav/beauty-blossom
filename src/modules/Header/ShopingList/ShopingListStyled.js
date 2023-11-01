@@ -29,16 +29,17 @@ export const OpenModal = styled.button`
 export const ModalShopingList = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: 900px;
 
   /* width: 800px; */
   /* margin-left: auto;
   margin-right: auto; */
   /* top: 100px; */
-  width: 100vw;
+  max-width: 100vw;
   max-height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 
   background-color: white;
 
@@ -47,11 +48,15 @@ export const ModalShopingList = styled.div`
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
 
   @media screen and (min-width: 768px) {
+    justify-content: start;
+    max-width: 80vw;
+    max-height: 70vh;
   }
 
   @media screen and (min-width: 1440px) {
+    /* justify-content: center;
     width: 80vw;
-    max-height: 80vh;
+    max-height: 80vh; */
   }
 `;
 
@@ -84,7 +89,27 @@ export const ModalTitle = styled.h2`
     font-weight: normal;
   }
 `;
+export const TableWrap = styled.div`
+  overflow-y: auto;
+  max-height: 256px;
+  scrollbar-width: thin; /* Товщина смуги прокрутки */
+  scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
 
+  /* Стилізація смуги прокрутки для WebKit (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    padding: 10px;
+    width: 8px; /* Товщина смуги прокрутки */
+  }
+  &::-webkit-scrollbar-thumb {
+    padding: 10px;
+    background-color: ${(p) =>
+      p.theme.colors.textColor}; /* Колір смуги прокрутки */
+    border-radius: 8px; /* Круглий вигляд смуги прокрутки */
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent; /* Колір фону смуги прокрутки */
+  }
+`;
 export const HeaderContent = styled.th`
   padding-bottom: 8px;
   color: #898989;
@@ -151,10 +176,20 @@ export const PriceBlock = styled.td`
 
 export const DeleteBtn = styled.button`
   position: absolute;
-  right: 730px;
-  top: 45px;
+  left: -25px;
+  top: 20px;
   border: none;
   background: transparent;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    position: absolute;
+    left: -25px;
+    top: 45px;
+    border: none;
+    background: transparent;
+  }
 `;
 
 export const Thumb = styled.tr`
@@ -264,7 +299,13 @@ export const CounterBlock = styled.div`
 
 export const ButtonContainer = styled.div`
   display: inline-block;
-  padding-bottom: 30px;
+  /* padding-bottom: px; */
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-bottom: 30px;
+  }
 `;
 
 export const Amount = styled.p`
@@ -307,6 +348,7 @@ export const ReturnBTN = styled.button`
   padding: 0;
   background: none;
   font-size: 12px;
+  margin-right: 10px;
   /* width: 170px; */
   /* height: 36px; */
   &:hover {

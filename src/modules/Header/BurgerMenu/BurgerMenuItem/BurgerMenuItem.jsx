@@ -16,7 +16,8 @@ export const LinkWrap = styled.div`
   /* justify-content: space-between; */
   /* list-style: none; */
   margin: 0;
-  /* padding: 5px; */
+
+  padding: 4px 0;
   /* position: relative; */
   /* padding: 3px 10px; */
   /* transition: 556ms; */
@@ -127,7 +128,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
       //     : `menu-level-${level}`
       // }
     >
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <LinkWrap className={pathname === item.to ? "active" : ""}>
           <Link
             to={item.to}

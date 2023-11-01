@@ -16,6 +16,7 @@ export const LinkLogo = styled(Link)`
   }
 
   @media screen and (min-width: 1440px) {
+    max-width: none;
   }
 `;
 export const TextLogo = styled.p`

@@ -10,10 +10,32 @@ export const MobileMenuContainer = styled(Menu)`
   left: 0;
   /* color: ${(p) => p.theme.colors.accentColor}; */
   padding: 25px;
+  & div {
+    overflow: auto;
+    /* max-height: 256px; */
+    scrollbar-width: thin; /* Товщина смуги прокрутки */
+    scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
+
+    /* Стилізація смуги прокрутки для WebKit (Chrome, Safari) */
+    &::-webkit-scrollbar {
+      padding: 10px;
+      width: 8px; /* Товщина смуги прокрутки */
+    }
+    &::-webkit-scrollbar-thumb {
+      padding: 10px;
+      background-color: ${(p) =>
+        p.theme.colors.textColor}; /* Колір смуги прокрутки */
+      border-radius: 8px; /* Круглий вигляд смуги прокрутки */
+    }
+    &::-webkit-scrollbar-track {
+      background-color: transparent; /* Колір фону смуги прокрутки */
+    }
+  }
 `;
 
 export const MobileMenuItem = styled.div`
-  margin: 10px 0;
+  /* margin: 10px 0; */
+
   a {
     font-size: 14px;
     font-style: normal;
