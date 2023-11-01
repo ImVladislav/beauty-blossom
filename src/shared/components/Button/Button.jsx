@@ -1,9 +1,14 @@
 import React from "react";
 import { ButtonStyle } from "./Button.styled";
 
-const Button = ({ type, text, onClick, disabled }) => {
+const Button = ({ type, text, onClick, disabled, goods }) => {
   return (
-    <ButtonStyle type={type} onClick={onClick} disabled={disabled}>
+    <ButtonStyle
+      className={goods && "goods"}
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {text}
     </ButtonStyle>
   );

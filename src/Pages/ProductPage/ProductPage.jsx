@@ -133,6 +133,7 @@ const ProductPage = () => {
               ))}
 
             <Button
+              goods
               text={
                 product.amount <= 0
                   ? "Немає в наявності"

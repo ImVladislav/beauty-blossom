@@ -205,7 +205,8 @@ export const Thumb = styled.tr`
 
     /* Застосовуємо стилі до внутрішнього DeleteBtn */
     ${DeleteIcon} {
-      fill: red; /* Змінюємо колір DeleteBtn на червоний */
+      fill: ${(p) =>
+        p.theme.colors.accentColor}; /* Змінюємо колір DeleteBtn на червоний */
     }
   }
 

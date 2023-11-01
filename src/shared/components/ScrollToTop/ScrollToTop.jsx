@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollToTopButton } from "./ScrollToTop.styled";
+import { ScrollToTopButton, Icon } from "./ScrollToTop.styled";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,7 +34,8 @@ const ScrollToTop = () => {
       className={isVisible ? "visible" : ""}
       onClick={scrollToTop}
     >
-      &#9650;
+      <Icon />
+      {/* &#9650; */}
     </ScrollToTopButton>
   );
 };

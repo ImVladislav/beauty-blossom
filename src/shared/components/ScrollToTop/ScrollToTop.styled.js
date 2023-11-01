@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RiArrowUpDoubleFill } from "react-icons/ri";
 
 export const ScrollToTopButton = styled.div`
   display: none;
@@ -12,14 +13,19 @@ export const ScrollToTopButton = styled.div`
   color: ${(p) => p.theme.colors.white};
   border: none;
   border-radius: 50%;
-  padding: 10px 15px;
+  padding: 5px;
 
   &:hover {
-    background-color: ${(p) => p.theme.colors.accentColor};
+    background-color: ${(p) => p.theme.colors.textColor};
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
   }
 
   &.visible {
     display: block;
   }
+`;
+
+export const Icon = styled(RiArrowUpDoubleFill)`
+  width: 50px;
+  height: 50px;
 `;

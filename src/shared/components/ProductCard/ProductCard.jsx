@@ -76,6 +76,7 @@ const ProductCard = ({ products }) => {
             {isHovered && (
               <ButtonWrap>
                 <Button
+                  goods
                   className="buy-button"
                   text={
                     products.amount <= 0

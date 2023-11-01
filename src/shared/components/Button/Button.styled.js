@@ -1,25 +1,46 @@
 import styled from "styled-components";
 
 export const ButtonStyle = styled.button`
-  background: transparent;
-  border: 1px solid ${(p) => p.theme.colors.accentColor};
+  /* background: transparent; */
+  background-color: ${(p) => (p.disabled ? "#ccc" : "transparent")};
+  border: ${(p) =>
+    p.disabled ? `1px solid #ccc` : p.theme.colors.accentColor};
   border-radius: 50px;
   display: flex;
   text-align: center;
   justify-content: center;
-  align-items: center;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
 
-  color: ${(p) => p.theme.colors.accentColor};
+  color: ${(p) =>
+    p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
   padding: 5px 20px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
   &:hover {
-    color: white;
-    background: ${(p) => p.theme.colors.accentColor};
+    color: ${(p) => (p.disabled ? p.theme.colors.white : p.theme.colors.white)};
+    border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+
+    background-color: ${(p) =>
+      p.disabled ? "#ccc" : p.theme.colors.accentColor};
+  }
+
+  &.goods {
+    background-color: ${(p) =>
+      p.disabled ? "#ccc" : p.theme.colors.accentColor};
+
+    color: ${(p) => p.theme.colors.white};
+
+    border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+
+    &:hover {
+      background-color: ${(p) =>
+        p.disabled ? "#ccc" : p.theme.colors.textColor};
+
+      border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+    }
   }
 
   @media screen and (min-width: 768px) {
