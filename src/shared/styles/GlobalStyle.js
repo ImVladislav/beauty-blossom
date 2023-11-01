@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
 body {
   margin: 0;
   font-family: 'Noto Sans', sans-serif;
-  font-size: 18px;
+  font-size: 5px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

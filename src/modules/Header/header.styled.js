@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { HiMenu } from "react-icons/hi";
+
 export const ContainerHeader = styled.header`
   position: relative;
   z-index: 102;
@@ -95,4 +97,57 @@ export const MenuProducts = styled.div`
   position: relative;
   height: 100%;
   margin: 0 auto;
+`;
+// ///////////////////////////////
+
+export const TopWrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 28px;
+  background: #fff6e9;
+`;
+
+export const ButtonMenu = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: ${(p) => p.theme.borders.none};
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  color: ${(p) => p.theme.colors.textColor};
+  transition: all 0.15s ease 0s;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+`;
+
+export const MenuIcon = styled(HiMenu)`
+  width: 35px;
+  height: 35px;
+`;
+export const Schedule = styled.p`
+  color: #504056;
+
+  text-align: center;
+
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 118.9%; /* 10.701px */
+  letter-spacing: -0.135px;
+`;
+export const CenterWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 23px 3px 30px;
+`;
+
+export const IconWrap = styled.div`
+  display: flex;
+  align-items: center;
 `;

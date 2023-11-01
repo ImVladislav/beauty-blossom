@@ -90,17 +90,26 @@ export const LogOut = styled.button`
 `;
 
 export const Modal = styled.div`
-  /* width: 500px;
-  height: 329px; */
-  padding: 30px;
+  max-width: 90%;
+  max-height: 90%;
+  padding: 10px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 4px;
   position: fixed; /* Замініть 'relative' на 'fixed' для розміщення модального вікна відносно вікна браузера */
   top: 50%; /* Розміщення в вертикальному центрі сторінки */
   left: 50%; /* Розміщення в горизонтальному центрі сторінки */
   transform: translate(-50%, -50%); /* Вирівнювання вікна по центру */
-  background-color: ${(p) => p.theme.colors.white};
+  /* background-color: ${(p) => p.theme.colors.white}; */
+  background: #fffdf0;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    /* width: 500px;
+  height: 329px; */
+    padding: 30px;
+  }
 `;
 
 export const ModalBackdrop = styled.div`
@@ -121,22 +130,107 @@ export const FormLogin = styled.form`
   position: relative;
 `;
 export const LoginPasswordToggle = styled.h3`
-  font-weight: bold;
+  color: #504056;
+
+  text-align: center;
+
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 15.347px */
+  letter-spacing: 0.225px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    text-align: center;
+
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    text-transform: uppercase;
+  }
 `;
 
 export const LoginModalText = styled.p`
-  font-weight: bold;
+  color: #504056;
   display: flex;
+  /* text-align: center; */
   align-self: center;
-  font-size: 25px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 15.347px */
+  letter-spacing: 0.225px;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    text-align: center;
+    font-family: Century Gothic;
+
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    /* text-transform: uppercase; */
+    font-weight: bold;
+    display: flex;
+    align-self: center;
+    font-size: 22px;
+  }
 `;
+
 export const FormikInput = styled(Field)`
-  margin: 10px;
-  border-radius: 12px;
-  /* color: #b2b2b2; */
-  border-color: ${(p) => p.theme.colors.border};
-  padding: 10px;
-  /* &:focus-visible{
+  margin: 3px 3px 3px 0;
+  max-width: 100px;
+  max-height: 20px;
+  border-radius: 4px;
+  border: 1px solid ${(p) => p.theme.colors.borderCard};
+  border-radius: 25px;
+  padding: 3px 10px;
+  outline: none;
+
+  /* text-align: center;
+font-family: Century Gothic; */
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 12.955px */
+  letter-spacing: 0.19px;
+  &:hover,
+  &:focus {
+    /* outline: 1px solid ${(p) => p.theme.colors.accentColor}; */
+    border: 1px solid ${(p) => p.theme.colors.accentColor};
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 300px;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+
+    margin: 10px;
+    border-radius: 25px;
+    /* color: #b2b2b2; */
+    border-color: ${(p) => p.theme.colors.borderCard};
+    padding: 23px;
+    /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
+  }
 `;

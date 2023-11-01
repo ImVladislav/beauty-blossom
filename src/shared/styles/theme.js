@@ -3,8 +3,8 @@ export const theme = {
   colors: {
     white: "#ffffff",
     black: "#000000",
-    textColor: "#504056",
-    accentColor: "#833989",
+    textColor: "#504056", //
+    accentColor: "#833989", //
     hoverAccentColor: "#ff358a",
     accentColorText: "#C253CC",
     background: " #f9f8f6",

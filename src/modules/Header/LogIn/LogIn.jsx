@@ -1,9 +1,22 @@
 import React, { useState } from "react";
-import { Link, LogInIcon, DropDown, ListItem, Modal, ModalBackdrop, LoginPasswordToggle, LogOut } from "./login.styled";
+import {
+  Link,
+  LogInIcon,
+  DropDown,
+  ListItem,
+  Modal,
+  ModalBackdrop,
+  LoginPasswordToggle,
+  LogOut,
+} from "./login.styled";
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { loggedInSelector, userSelectorfirstName, isAdminSelector } from "../../../redux/auth/selectors";
+import {
+  loggedInSelector,
+  userSelectorfirstName,
+  isAdminSelector,
+} from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
 
@@ -26,37 +39,36 @@ const LogIn = () => {
 
   const handleDropdownEnter = () => {
     if (isLogin) {
-        setShowDropdown(true);
+      setShowDropdown(true);
     }
   };
 
   const handleDropdownLeave = () => {
-      setShowDropdown(false);
-  };
-  
-  const logoutDispatch = () => {
-    dispatch(logout())
+    setShowDropdown(false);
   };
 
+  const logoutDispatch = () => {
+    dispatch(logout());
+  };
 
   return (
     <>
       <Link
         onClick={!isLogin ? handleModalEnter : null}
         onMouseEnter={isLogin ? handleDropdownEnter : null}
-        
       >
         <LogInIcon />
       </Link>
       {showDropdown && (
-        <DropDown
-        onMouseLeave={handleDropdownLeave}>
+        <DropDown onMouseLeave={handleDropdownLeave}>
           <ul>
-            {admin &&
-            <ListItem>
-              <a href="/beauty-blossom/ordersbyclient/">Замовлення(Адмін права)</a>
-            </ListItem>
-            }
+            {admin && (
+              <ListItem>
+                <a href="/beauty-blossom/ordersbyclient/">
+                  Замовлення(Адмін права)
+                </a>
+              </ListItem>
+            )}
             <ListItem>
               <a href="/beauty-blossom/cabinet/userData">ОСОБИСТИЙ КАБІНЕТ</a>
             </ListItem>
@@ -67,12 +79,9 @@ const LogIn = () => {
               <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
             </ListItem> */}
             <ListItem>
-                   <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
+              <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
             </ListItem>
           </ul>
-
-  
-
         </DropDown>
       )}
       <p>{userName} </p>
@@ -81,13 +90,15 @@ const LogIn = () => {
         <ModalBackdrop>
           <Modal>
             <CloseButton close={() => setShowModal(false)} />
-            <Link onClick={() => setLoginOrRegister(true)}>
-              <LoginPasswordToggle>Вхід</LoginPasswordToggle>
-            </Link>
-            /
-            <Link onClick={() => setLoginOrRegister(false)}>
-              <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
-            </Link>
+            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+              <Link onClick={() => setLoginOrRegister(true)}>
+                <LoginPasswordToggle>Вхід</LoginPasswordToggle>
+              </Link>
+
+              <Link onClick={() => setLoginOrRegister(false)}>
+                <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
+              </Link>
+            </div>
             {loginOrRegister ? <LoginForm /> : <RegisterForm />}
           </Modal>
         </ModalBackdrop>

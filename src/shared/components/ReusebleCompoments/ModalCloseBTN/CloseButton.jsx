@@ -1,11 +1,9 @@
-import { CgClose } from "react-icons/cg";
-import { ModalClose } from "./CloseButtonStyled";
+import { ModalClose, IconClose } from "./CloseButtonStyled";
 
 export const CloseButton = ({ close }) => {
   return (
-      <ModalClose onClick={close}>
-        <CgClose style={{width: "24px", height: "24px"}} />
-      </ModalClose>
-  )
-}
-
+    <ModalClose onClick={close}>
+      <IconClose />
+    </ModalClose>
+  );
+};

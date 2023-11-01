@@ -5,7 +5,7 @@ export const ScrollToTopButton = styled.div`
   position: fixed;
   bottom: 20px;
   right: 30px;
-  z-index: 1000;
+  z-index: 2;
   cursor: pointer;
   font-size: 24px;
   background-color: ${(p) => p.theme.colors.accentColor};
