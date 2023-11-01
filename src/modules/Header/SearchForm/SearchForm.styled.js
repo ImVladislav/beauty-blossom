@@ -4,33 +4,61 @@ import { BsSearch } from "react-icons/bs";
 export const SearchFormContainer = styled.div`
   text-align: center;
   position: relative;
-  width: 410px;
-
+  margin: 5px 25px 5px 30px;
+  transition: all 0.15s ease 0s;
   &:hover,
   &:focus {
-    border: 2px solid ${(p) => p.theme.colors.accentColor};
-    border-radius: 50px;
+    /* border: 2px solid ${(p) => p.theme.colors.accentColor};
+    border-radius: 50px; */
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
   }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 410px;
+  }
 `;
 
 export const SearchInput = styled.input`
-  border-radius: 50px;
+  font-size: 12.662px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 12.955px */
+  letter-spacing: 0.19px;
+
   outline: none;
+  border-radius: 24.614px;
+  border: 0.574px solid #504056;
 
   box-sizing: border-box;
   width: 100%;
-  height: 50px;
-  padding: 0px 16px 0px 42px;
-  background: rgb(255, 255, 255);
-  font-size: 18px;
-  border: 1.321px solid ${(p) => p.theme.colors.border};
+  height: 23px;
+  padding: 5px 20px 5px 35px;
+
   color: ${(p) => p.theme.colors.textColor};
+  transition: all 0.15s ease 0s;
   &:hover,
   &:focus {
-    outline: 2px solid ${(p) => p.theme.colors.accentColor};
+    border: 1px solid ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    border-radius: 50px;
+    outline: none;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 0px 16px 0px 42px;
+    background: #fff;
+    font-size: 18px;
+    border: 1px solid ${(p) => p.theme.colors.border};
+    color: ${(p) => p.theme.colors.textColor};
   }
 `;
 
@@ -41,17 +69,31 @@ export const SearchButton = styled.button`
 
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: 15px;
   bottom: 0px;
-  width: 50px;
+  /* width: 35px; */
 
   padding: 0px;
   background-color: transparent;
-  transition: all 0.15s ease 0s;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    /* width: 50px; */
+    left: 25px;
+  }
 `;
 
 export const SearchIcon = styled(BsSearch)`
-  width: 20px;
-  height: 20px;
+  width: 10px;
+  height: 10px;
   color: ${(p) => p.theme.colors.textColor};
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 20px;
+    height: 20px;
+  }
 `;

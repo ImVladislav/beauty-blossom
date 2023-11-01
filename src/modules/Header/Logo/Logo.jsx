@@ -8,9 +8,9 @@ const Logo = () => {
   return (
     <>
       <LinkLogo to="/">
-        {/* <TextLogo>Beauty Blossom</TextLogo> */}
+        <TextLogo>Beauty Blossom</TextLogo>
 
-        <LogoImg src={IconLogo} alt="React Logo" />
+        {/* <LogoImg src={IconLogo} alt="React Logo" /> */}
       </LinkLogo>
     </>
   );

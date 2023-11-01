@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import { BsFillTrash3Fill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 export const DeleteIcon = styled(BsFillTrash3Fill)`
   width: 15px;
@@ -35,10 +36,8 @@ export const ModalShopingList = styled.div`
   /* margin-left: auto;
   margin-right: auto; */
   /* top: 100px; */
-
-  width: 80vw;
-  max-height: 80vh;
-
+  width: 100vw;
+  max-height: 100vh;
   overflow-y: auto;
 
   background-color: white;
@@ -46,6 +45,14 @@ export const ModalShopingList = styled.div`
   padding: 30px;
 
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 80vw;
+    max-height: 80vh;
+  }
 `;
 
 export const ModalBackground = styled.div`
@@ -59,12 +66,23 @@ export const ModalBackground = styled.div`
   justify-content: center; /* Центруємо горизонтально */
   align-items: center; /* Центруємо вертикально */
   z-index: 3;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ModalTitle = styled.h2`
-  font-size: 32px;
-  font-weight: normal;
   margin: -6px 0 12px -2px;
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 32px;
+    font-weight: normal;
+  }
 `;
 
 export const HeaderContent = styled.th`
@@ -77,7 +95,6 @@ export const GoodsBlock = styled.tbody`
   padding-bottom: 8px;
   color: #898989;
   font-size: 11px;
- 
 `;
 
 export const ImageBlock = styled.td`
@@ -95,12 +112,19 @@ export const DescriptionBlock = styled.td`
   border-bottom: 1px solid #f5f2ea;
   border-top: 1px solid #f5f2ea;
   width: 392px;
-  height: 113px;
+  /* height: 113px; */
   /* &::after{
         content: '';
     height: 5px;
     display: block;
     } */
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 392px;
+    height: 113px;
+  }
 `;
 export const AmountBlock = styled.td`
   color: #898989;
@@ -111,12 +135,18 @@ export const AmountBlock = styled.td`
 `;
 export const PriceBlock = styled.td`
   color: #898989;
-  font-size: 18px;
+  font-size: 12px;
   border-bottom: 1px solid #f5f2ea;
   border-top: 1px solid #f5f2ea;
   border-right: 1px solid #f5f2ea;
   width: 130px;
   text-align: center;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 18px;
+  }
 `;
 
 export const DeleteBtn = styled.button`
@@ -163,10 +193,16 @@ export const Thumb = styled.tr`
 export const ItemNameLink = styled(Link)`
   color: black;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 8px;
 
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 18px;
   }
 `;
 
@@ -182,26 +218,47 @@ export const DecIncBtn = styled.button`
   border: 0;
   padding: 0;
   background: none;
-  font-size: 20px;
+  font-size: 12px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 20px;
   }
 `;
 
 export const CounterBlock = styled.div`
   border: 1px solid #f5f2ea;
-  width: 92px;
-  height: 38px;
+  width: 50px;
+  height: 22px;
   display: flex;
   border-radius: 4px;
   border: 1px solid #acacac;
   position: relative;
   align-items: center;
-  font-size: 18px;
+  font-size: 13px;
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    border: 1px solid #f5f2ea;
+    width: 92px;
+    height: 38px;
+    display: flex;
+    border-radius: 4px;
+    border: 1px solid #acacac;
+    position: relative;
+    align-items: center;
+    font-size: 18px;
   }
 `;
 
@@ -212,32 +269,78 @@ export const ButtonContainer = styled.div`
 
 export const Amount = styled.p`
   text-align: end;
-  font-size: 24px;
+  font-size: 12px;
   margin: 10px;
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+  }
 `;
 export const TextNoProduckts = styled.p`
-  margin: 30px;
-  color: ${(p) => p.theme.colors.textColor};
+  font-size: 12px;
+  @media screen and (min-width: 768px) {
+  }
 
-  font-size: 30px;
-  text-align: center;
+  @media screen and (min-width: 1440px) {
+    margin: 30px;
+    color: ${(p) => p.theme.colors.textColor};
+
+    font-size: 30px;
+    text-align: center;
+  }
 `;
 export const ReturnBTN = styled.button`
-  flex: 1 0 auto;
-  height: 100%;
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  /* text-align: center; */
+  align-items: center;
+  /* flex: 1 0 auto; */
+  /* height: 100%; */
+  /* position: relative; */
+  /* display: inline-block; */
+  /* vertical-align: top; */
   cursor: pointer;
-  color: #000;
+  color: ${(p) => p.theme.colors.textColor};
   border: none;
   padding: 0;
   background: none;
-  font-size: 18px;
-  width: 258px;
-  height: 36px;
+  font-size: 12px;
+  /* width: 170px; */
+  /* height: 36px; */
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
+    & svg {
+      color: ${(p) => p.theme.colors.accentColor};
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 258px;
+    height: 36px;
+    font-size: 18px;
+  }
+`;
+
+export const ReturnIcon = styled(FaArrowLeft)`
+  width: 10px;
+  height: 10px;
+  color: ${(p) => p.theme.colors.textColor};
+  margin-right: 5px;
+  cursor: pointer;
+  /* &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  } */
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 15px;
+    height: 15px;
   }
 `;

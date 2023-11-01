@@ -19,10 +19,10 @@ import {
   ReturnBTN,
   Thumb,
   TextNoProduckts,
+  ReturnIcon,
 } from "./ShopingListStyled";
 import Button from "../../../shared/components/Button/Button";
 
-import { FaArrowLeft } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -95,7 +95,7 @@ const CartModal = ({ closeModal }) => {
         <ModalTitle>Корзина</ModalTitle>
         {/* <CloseButton onClick={closeModal}/> */}
         {cartItems.length !== 0 ? (
-          <>
+          <div>
             <table
               style={{ borderCollapse: "collapse", borderSpacing: "20px" }}
             >
@@ -141,29 +141,32 @@ const CartModal = ({ closeModal }) => {
               </GoodsBlock>
             </table>
             <Amount>Всього: {totalCost} грн</Amount>
-          </>
+          </div>
         ) : (
           <TextNoProduckts>Ви ще нічого не вибрали!</TextNoProduckts>
         )}
 
-        <ButtonContainer>
-          <ReturnBTN onClick={closeModal}>
-            <FaArrowLeft
-              style={{
-                width: "23px",
-                height: "14px",
-              }}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <ButtonContainer>
+            <ReturnBTN onClick={closeModal}>
+              <ReturnIcon />
+              Повернутись до покупок
+            </ReturnBTN>
+          </ButtonContainer>
+          <ButtonContainer>
+            <Button
+              onClick={placeOrder}
+              text="Оформити замовлення"
+              disabled={cartItems.length === 0}
             />
-            Повернутись до покупок
-          </ReturnBTN>
-        </ButtonContainer>
-        <ButtonContainer style={{ marginLeft: "210px" }}>
-          <Button
-            onClick={placeOrder}
-            text="Оформити замовлення"
-            disabled={cartItems.length === 0}
-          />
-        </ButtonContainer>
+          </ButtonContainer>
+        </div>
       </div>
     </ModalShopingList>
   );

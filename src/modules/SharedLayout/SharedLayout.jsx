@@ -6,7 +6,6 @@ import { ProductOfTheWeek } from "../ProductOfTheWeek/ProductOfTheWeek";
 import { Footer } from "../Footer/Footer";
 import { Bgd } from "./SharedLayout.styled";
 
-
 export const SharedLayout = () => {
   // const [isOpen, setIsOpen] = useState(false);
 
@@ -16,10 +15,9 @@ export const SharedLayout = () => {
 
   return (
     <>
-      <ProductOfTheWeek />
+      {/* <ProductOfTheWeek /> */}
       <Header />
       <Bgd>
-       
         {/* <Header isOpen={isOpen} toggle={handleClickToggle} /> */}
         <Outlet />
       </Bgd>

@@ -10,20 +10,36 @@ import {
 } from "./Baners.styled";
 import retinol from "../../images/retinol.png";
 import purito from "../../images/purito.png";
+import { useDispatch } from "react-redux";
+import { setfilter } from "../../redux/filter/slice";
 
 const Baners = () => {
+  const dispatch = useDispatch();
+  const handleClick = (e) => {
+    const name = e.currentTarget.name;
+
+    dispatch(setfilter(name));
+  };
   return (
     <>
       <Wrap>
         <BanersWrap>
           <ProductRetinol src={retinol} alt="retinol" />
-          <LinkRetinol to="/brands/medi-peel">Дізнатись більше</LinkRetinol>
+          <LinkRetinol
+            to="/brands/medi-peel"
+            name="medi-peel"
+            onClick={handleClick}
+          >
+            Дізнатись більше
+          </LinkRetinol>
         </BanersWrap>
         <BanersWrap>
           <Background>
             <ProductPurito src={purito} alt="purito" />
           </Background>
-          <LinkPurito to="/brands/purito">Дізнатись більше</LinkPurito>
+          <LinkPurito to="/brands/purito" name="purito" onClick={handleClick}>
+            Дізнатись більше
+          </LinkPurito>
         </BanersWrap>
       </Wrap>
     </>

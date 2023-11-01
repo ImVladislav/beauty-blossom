@@ -9,16 +9,25 @@ export const LinkLogo = styled(Link)`
   align-items: center;
   text-decoration: none;
   margin-left: 10px;
+  max-width: 96px;
   /* color: #000; */
   /* flex-direction: column; */
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 export const TextLogo = styled.p`
-  /* width: 100%; */
   font-family: "Kodchasan", sans-serif;
   text-transform: uppercase;
-  font-size: 50px;
-  line-height: 1;
+  font-size: 17.833px;
+  font-style: normal;
+  line-height: 103.312%;
+
   font-weight: 500;
+  letter-spacing: -1.159px;
+  text-align: center;
   background: linear-gradient(
     180deg,
     #b347bc 0.21%,
@@ -27,4 +36,20 @@ export const TextLogo = styled.p`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 50px;
+    line-height: 1;
+
+    background: linear-gradient(
+      180deg,
+      #b347bc 0.21%,
+      rgba(179, 71, 188, 0) 237.87%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 `;
