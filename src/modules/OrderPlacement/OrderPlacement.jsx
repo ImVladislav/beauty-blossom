@@ -304,7 +304,7 @@ console.log(searchCities.length);
     if (value.length > 2) {
       setDropdownWarehouseVisible (searchWarehouses.length < 40) 
     }
-    setDropdownWarehouseVisible(value.length > 2);
+    setDropdownWarehouseVisible(value.length >= 1);
 }, 300); 
 
     
@@ -326,22 +326,13 @@ const handleCitySelect = (city, areaDescription) => {
        
     }
 
-const handleCityBlur = () => {
-  // Код, який виконується, коли інпут втрачає фокус
-  setDropdownCityVisible(false);
-    };
-    const handleWarehouseBlur = () => {
-  // Код, який виконується, коли інпут втрачає фокус
-  setDropdownWarehouseVisible(false);
-    };
-    console.log(searchCities.length);
 
-    useEffect(() => {
+    // useEffect(() => {
         
+    //     handleWarehousesChange()
 
-        (searchCities.length === 0) &&  setDropdownCityVisible(false);
           
-    }, [searchCities]);
+    // }, [searchWarehouses]);
     
     return (
         <OrderForm>
