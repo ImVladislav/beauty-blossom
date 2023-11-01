@@ -1,44 +1,32 @@
 import styled from "styled-components";
 
-export const OrderSummary = styled.div`
-
-`
-
-export const CustomerDetails = styled.div`
-
-`
-
 export const CostumerStatus = styled.div`
     display: flex;
-    /* flex-direction: column; */
 `
 
 export const OrderForm = styled.div`
 display: flex;
 `
+
 export const OrderDetails = styled.div`
 width: 100%;
-
 `
 
-
-export const CostumerStatusItem = styled.label`
-    
+export const CostumerStatusItem = styled.label`  
     padding: 5px;
 `
 
 export const Form = styled.form`
     display: flex;
-    
-
 `
+
 export const DeliveryInfoBlock = styled.div`
  display: flex;
     flex-direction: column;
     margin-right: 80px;
     min-width: 510px;
-
  `
+
  export const CostumerStatusinput = styled.input`
        border-radius: 50px;
        border: 1px solid black;
@@ -103,14 +91,16 @@ export const OrdersThumb = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
-        background: #FFF6E9; /* Колір фону, до якого буде застосована opacity */
-        opacity: 0.5; /* Початкова прозорість 0, а не 0.4 */
+        background: #FFF6E9; 
+        opacity: 0.5; 
         pointer-events: none;
-        z-index: -1; /* Помістіть псевдоелемент позаду контенту */
+        z-index: -1; 
+        
+    border-radius: 50px;
     }
 `
 
-export const OrdersHeaders = styled.tr`
+export const OrdersHeaders = styled.thead`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -120,46 +110,58 @@ export const OrdersHeaders = styled.tr`
   border-top-right-radius: 20px;
       border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-
 `;
-export const OrdersHeaderItem = styled.th`
 
+export const OrdersHeaderItem = styled.p`
   background: #FFF6E9;
-  padding: 8px; 
-
-
-
+  padding: 8px;  
+ border-top: 1px solid ${(p) => p.theme.colors.textColor};
+    border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
+ border-collapse: collapse;
 `;
-export const FirstOrdersHeaderItem = styled.th`
+export const FirstOrdersHeaderItem = styled.p`
 
-    width: 800px;
+     border-bottom-left-radius: 20px;
+border-top-left-radius: 20px;
+    border-top: 1px solid ${(p) => p.theme.colors.textColor};
+    border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
     border-left: 1px solid ${(p) => p.theme.colors.textColor};
-    border-bottom-left-radius: 20px;
-     border-top-left-radius: 20px;
-     padding: 8px;
-     background: #FFF6E9;
-    
-
+    padding: 8px;
+    background: #FFF6E9;
+     border-collapse: collapse;
+     color: #FFF6E9;
 `
-export const LastOrdersHeaderItem = styled.th`
+export const LastOrdersHeaderItem = styled.p`
 
     border-right: 1px solid ${(p) => p.theme.colors.textColor};
+    border-top: 1px solid ${(p) => p.theme.colors.textColor};
+    border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
         border-bottom-right-radius: 20px;
      border-top-right-radius: 20px;
      padding: 8px;
 background: #FFF6E9;
-
+ overflow: hidden;
+ border-collapse: collapse;
      
 `
+export const HeaderBlock = styled.th`
+  /* border-top: 1px solid ${(p) => p.theme.colors.textColor};
+    border-bottom: 1px solid ${(p) => p.theme.colors.textColor}; */
+background: #FFF6E9;
+`
+
+
 export const OrdersItem = styled.td`
     color: black;
     text-decoration: none;
     font-size: 18px;
-    display: flex;
-    align-items: center;
-    
-
+    text-align: center;
+    min-width: 90px;
+  
 `
+
+
+
 export const OrdersImage = styled.img`
     width: 80px;
     padding: 0px;
@@ -172,7 +174,10 @@ export const OrdersItemBlock = styled.tr`
     justify-content: space-between;
      border-bottom: 1px solid #c7c7c7;
     `
-
+    
+export const OrdersItemlist = styled.tr`
+     border-bottom: 1px solid #c7c7c7;
+    `
 
 export const Description = styled.p`
    display: flex;
@@ -200,4 +205,10 @@ export const SubmitButton = styled.button`
         color: white;
     background: ${(p) => p.theme.colors.textColor};
     }
+    `
+    export const Text = styled.p`
+overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2.4em;
+    max-width: 480px;
     `

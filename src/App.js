@@ -174,7 +174,7 @@ function App() {
 
           <Route
             path="/cabinet/сhangePassword"
-            element={<PrivateAdminRoute component={ChangePassword} to="/" />}
+            element={<PrivateRoute component={ChangePassword} to="/" />}
           />
 
           <Route
