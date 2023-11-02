@@ -9,52 +9,127 @@ import {
 } from "../../redux/products/selectors";
 import Sticker from "../../shared/components/Sticker/Sticker";
 import { Link } from "react-router-dom";
+import { useMedia } from "../../hooks/useMedia";
 
 const SliderContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 5px;
   margin-left: auto;
   margin-right: auto;
   max-width: 1440px;
-  /* white-space: pre; */
-  /* white-space: nowrap; Забороняє перенесення на новий рядок */
   margin-top: 40px;
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1440px;
+    /* white-space: pre; */
+    /* white-space: nowrap; Забороняє перенесення на новий рядок */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
+const CartWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (min-width: 768px) {
+    max-width: 740px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    flex-wrap: nowrap;
+    display: flex;
+
+    justify-content: center;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1300px;
+    /* white-space: pre; */
+    /* white-space: nowrap; Забороняє перенесення на новий рядок */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+`;
 const ProductCard = styled(Link)`
-  /* flex: 0 0 calc(16% - 20px); */
-  width: 261px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* margin-right: 10px; Відступ між карточками */
   scroll-snap-align: start;
-  background-color: ${(p) => p.theme.colors.white};
+  background-color: #ffffff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 10px;
   text-align: center;
-  /* display: inline-block; Вирівнювання в ряд */
-  vertical-align: top; /* Вирівнювання вгору */
+  vertical-align: top;
   overflow: hidden;
   position: relative;
   text-decoration: none;
-
   &:hover {
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
     z-index: 3;
     cursor: pointer;
   }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    /* flex: 0 0 calc(16% - 20px); */
+    width: 261px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-right: 10px; Відступ між карточками */
+    scroll-snap-align: start;
+    background-color: ${(p) => p.theme.colors.white};
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    /* display: inline-block; Вирівнювання в ряд */
+    vertical-align: top; /* Вирівнювання вгору */
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+  }
 `;
 
 const ProductImage = styled.img`
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 80px;
+  max-height: 80px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 200px;
+    max-height: 200px;
+  }
 `;
 
 const ProductName = styled.h3`
@@ -64,7 +139,18 @@ const ProductName = styled.h3`
   text-overflow: ellipsis;
   height: 2.4em;
   color: ${(p) => p.theme.colors.accentColor};
-  text-transform: uppercase;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin: 10px 0;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2.4em;
+    color: ${(p) => p.theme.colors.accentColor};
+    text-transform: uppercase;
+  }
 `;
 
 const ProductTags = styled.div`
@@ -118,12 +204,17 @@ const TagText = styled.p`
 `;
 
 const Button = styled.button`
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
   position: relative;
   display: block;
   margin-top: auto;
   margin-bottom: auto;
-  width: 30px;
-  height: 50px;
+  /* width: 30px; */
+  /* height: 50px; */
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -153,16 +244,34 @@ const SliderHeaderToggle = styled.button`
   padding: 3px;
   color: ${(p) => p.theme.colors.accentColor};
   background-color: transparent;
-  font-size: 29px;
+  font-size: 14px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-transform: uppercase;
   cursor: pointer;
   &:last-child {
     margin-left: 20px;
   }
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    border: none;
+    padding: 3px;
+    color: ${(p) => p.theme.colors.accentColor};
+    background-color: transparent;
+    font-size: 29px;
+    font-weight: ${(p) => p.theme.fontWeights.body};
+    text-transform: uppercase;
+    cursor: pointer;
+    &:last-child {
+      margin-left: 20px;
+    }
+  }
 `;
 
 export const ProductSlider = () => {
+  const { isDesktopScreen } = useMedia();
   // const saleProducts = useSelector(selectSale); // всі sale
   // const newProducts = useSelector(selectNew); // всі new
   // const products = [...newProducts, ...saleProducts];
@@ -174,7 +283,7 @@ export const ProductSlider = () => {
   const [showSale, setShowSale] = useState(false);
   const [showNew, setShowNew] = useState(false);
 
-  const itemsPerSlide = 5;
+  const itemsPerSlide = isDesktopScreen ? 5 : 6;
 
   const handlePrevSlide = () => {
     if (currentSlide > 0) {
@@ -260,45 +369,39 @@ export const ProductSlider = () => {
             }}
           />
         </Button>
-
-        {displayedProducts.map((filtred) => (
-          <ProductCard to={`/product/${filtred.id}`} key={filtred.id}>
-            <div style={{ position: "relative" }}>
+        <CartWrap>
+          {displayedProducts.map((filtred) => (
+            <ProductCard to={`/product/${filtred.id}`} key={filtred.id}>
               <ProductImage
                 src={filtred.images}
                 alt={filtred.name}
               ></ProductImage>
-              {filtred.sale && (
-                <Sticker
-                  text="Розпродаж"
-                  saleproduct={filtred.sale.toString()}
-                />
-              )}
-              {filtred.new && (
-                <Sticker text="Новинка" newproduct={filtred.new.toString()} />
-              )}
-            </div>
-            <ProductName>{filtred.name}</ProductName>
+              <ProductTags>
+                {filtred.sale && <Sticker sale text="Розпродаж" />}
+                {filtred.new && <Sticker text="Новинка" />}
+              </ProductTags>
+              <ProductName>{filtred.name}</ProductName>
 
-            {/* <ProductTags>
-              {filtred.sale && (
-                <SaleTag>
-                  <TagText>Розпродаж</TagText>
-                </SaleTag>
-              )}
-              {filtred.new && (
-                <NewTag>
-                  <TagText>Новинка</TagText>
-                </NewTag>
-              )}
-            </ProductTags> */}
-          </ProductCard>
-        ))}
+              {/* <ProductTags>
+                {filtred.sale && (
+                  <SaleTag>
+                    <TagText>Розпродаж</TagText>
+                  </SaleTag>
+                )}
+                {filtred.new && (
+                  <NewTag>
+                    <TagText>Новинка</TagText>
+                  </NewTag>
+                )}
+              </ProductTags> */}
+            </ProductCard>
+          ))}
+        </CartWrap>
         <Button
           style={{ transform: "rotate(180deg)" }}
           onClick={handleNextSlide}
           disabled={
-            currentSlide >= Math.max(0, products.length - 5) ||
+            currentSlide >= Math.max(0, products.length - itemsPerSlide) ||
             displayedProducts.length < 5
           }
           className={
@@ -307,7 +410,10 @@ export const ProductSlider = () => {
         >
           <NextPrevButtonSvg
             style={{
-              fill: displayedProducts.length < 5 ? "#ffffff" : "#A03DA9",
+              fill:
+                displayedProducts.length < itemsPerSlide
+                  ? "#ffffff"
+                  : "#A03DA9",
             }}
           />
         </Button>

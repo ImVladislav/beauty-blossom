@@ -25,7 +25,12 @@ export const WrapName = styled.div`
   display: flex;
   align-items: flex-start;
 `;
-
+export const ProductTags = styled.div`
+  display: grid;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 60px;
+`;
 export const ProductName = styled.h2`
   margin: 0 10px 10px 0;
 

@@ -15,14 +15,25 @@ export const ItemTitle = styled.a`
   color: #461c49;
 
   font-family: Noto Sans;
-  font-size: ${(p) => p.theme.fontSizes.l}px;
-  /* font-size: 25px; */
+  /* font-size: ${(p) => p.theme.fontSizes.l}px; */
+  font-size: 8.422px;
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%; /* 25.828px */
-  letter-spacing: -1.125px;
+  letter-spacing: -0.379px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    /* font-size: 25px; */
+    font-style: normal;
+    font-weight: 300;
+    line-height: 103.312%; /* 25.828px */
+    letter-spacing: -1.125px;
   }
 `;
 
@@ -36,14 +47,25 @@ export const Item = styled(Link)`
   color: #461c49;
 
   font-family: Noto Sans;
-  font-size: ${(p) => p.theme.fontSizes.l}px;
-  /* font-size: 25px; */
+  /* font-size: ${(p) => p.theme.fontSizes.l}px; */
+  font-size: 8.422px;
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%; /* 25.828px */
-  letter-spacing: -1.125px;
+  letter-spacing: -0.379px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    /* font-size: 25px; */
+    font-style: normal;
+    font-weight: 300;
+    line-height: 103.312%; /* 25.828px */
+    letter-spacing: -1.125px;
   }
 `;
 export const Nav = styled.nav`
@@ -62,13 +84,24 @@ export const Title = styled.h3`
   color: #461c49;
 
   font-family: Alegreya Sans;
-  font-size: ${(p) => p.theme.fontSizes.xl}px;
-  /* font-size: 34px; */
+
+  font-size: 11.455px;
   font-style: normal;
   font-weight: 500;
   line-height: 103.312%; /* 35.126px */
-  letter-spacing: 2.21px;
-  padding: 0 180px 0 20px;
+  letter-spacing: 0.745px;
+  padding: 0px 20px 0 20px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 180px 0 20px;
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 103.312%; /* 35.126px */
+    letter-spacing: 2.21px;
+  }
 `;
 
 export const Underline = styled.div`

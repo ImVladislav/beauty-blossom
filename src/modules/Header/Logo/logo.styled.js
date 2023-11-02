@@ -8,15 +8,15 @@ export const LinkLogo = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  margin-left: 10px;
-  max-width: 96px;
+  /* margin-left: 10px; */
+  /* max-width: 96px; */
   /* color: #000; */
   /* flex-direction: column; */
   @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1440px) {
-    max-width: none;
+    /* max-width: none; */
   }
 `;
 export const TextLogo = styled.p`

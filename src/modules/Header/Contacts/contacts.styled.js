@@ -18,9 +18,14 @@ export const ContactsElips = styled.div`
 `;
 
 export const IconPhone = styled(PhoneIcon)`
-  width: 19px;
-  height: 19px;
+  width: 10px;
+  height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
+  margin-right: 5px;
+  &.head {
+    width: 19px;
+    height: 19px;
+  }
   @media screen and (min-width: 768px) {
   }
 
@@ -30,29 +35,56 @@ export const IconPhone = styled(PhoneIcon)`
   }
 `;
 export const IconEmail = styled(EmailIcon)`
-  width: 28px;
-  height: 28px;
+  width: 10px;
+  height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 export const InstagramIcon = styled(AiOutlineInstagram)`
-  width: 28px;
-  height: 28px;
+  width: 10px;
+  height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 10px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 export const TelegramIcon = styled(RiTelegramLine)`
-  width: 28px;
-  height: 28px;
+  width: 10px;
+  height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 10px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 28px;
+    height: 28px;
+  }
 `;
 
 export const Link = styled.a`
   display: flex;
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: 11px;
+  font-size: 7.008px;
   align-items: center;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 103.312%;
+  &.head {
+    font-size: 11px;
+  }
   @media screen and (min-width: 768px) {
   }
 
@@ -93,3 +125,12 @@ export const Wrap = styled.div`
     }
   }
 `;
+
+// color: #461C49;
+
+// font-variant-numeric: lining-nums proportional-nums;
+// font-family: Alegreya Sans;
+// font-size: 7.008px;
+// font-style: normal;
+// font-weight: 400;
+// line-height: 103.312%;

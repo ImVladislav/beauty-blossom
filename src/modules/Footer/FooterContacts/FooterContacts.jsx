@@ -8,8 +8,10 @@ import {
 } from "./FooterContactsStyled";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 import Contacts from "../../Header/Contacts/Contacts";
+import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterContacts = () => {
+  const { isDesktopScreen } = useMedia();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -24,7 +26,7 @@ export const FooterContacts = () => {
     <div>
       <TitleWrap>
         <Title>Контакти:</Title>
-        <Underline />
+        {isDesktopScreen && <Underline />}
       </TitleWrap>
       <ContactWraper>
         <ContactGroup>
@@ -59,7 +61,7 @@ export const FooterContacts = () => {
               Київ
             </ContactItem> */}
         </ContactGroup>
-        <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} />{" "}
+        <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} />
         {/* Відобразити модальне вікно */}
       </ContactWraper>
     </div>

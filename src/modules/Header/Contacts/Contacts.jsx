@@ -11,7 +11,7 @@ import {
   Wrap,
 } from "./contacts.styled";
 
-const Contacts = ({ title, to, icon }) => {
+const Contacts = ({ title, to, icon, head }) => {
   if (icon === "telegram") {
     return (
       <Wrap>
@@ -35,9 +35,9 @@ const Contacts = ({ title, to, icon }) => {
   } else if (icon === "phone") {
     return (
       <Wrap>
-        <Link href={to}>
+        <Link href={to} className={head && "head"}>
           <ContactsElips>
-            <IconPhone />
+            <IconPhone className={head && "head"} />
           </ContactsElips>
           {title}
         </Link>

@@ -33,6 +33,7 @@ import {
   InputIncDec,
   ProductCode,
   ProductArticleSpan,
+  ProductTags,
 } from "./ProductPage.styled";
 import { Loader } from "../../shared/components/Loader/Loader";
 
@@ -94,12 +95,10 @@ const ProductPage = () => {
         <PageContainer>
           <ImageWrap>
             <ProductImage src={product.images} alt={product.name} />
-            {product.new && (
-              <Sticker text="Новинка" newproduct={product.new.toString()} />
-            )}
-            {product.sale && (
-              <Sticker text="Розпродаж" saleproduct={product.sale.toString()} />
-            )}
+            <ProductTags>
+              {product.new && <Sticker text="Новинка" />}
+              {product.sale && <Sticker text="Розпродаж" sale />}
+            </ProductTags>
           </ImageWrap>
           <Info>
             <WrapName>

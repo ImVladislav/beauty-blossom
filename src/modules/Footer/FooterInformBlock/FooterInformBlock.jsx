@@ -1,3 +1,4 @@
+import { useMedia } from "../../../hooks/useMedia";
 import {
   Item,
   ItemTitle,
@@ -8,11 +9,12 @@ import {
 } from "./InformBlockStyled";
 
 export const FooterInformBlock = () => {
+  const { isDesktopScreen } = useMedia();
   return (
     <div>
       <TitleWrap>
         <Title>Клієнтам</Title>
-        <Underline />
+        {isDesktopScreen && <Underline />}
       </TitleWrap>
       <Nav>
         <Item to="/cabinet/userData">Особистий кабінет</Item>
@@ -25,7 +27,6 @@ export const FooterInformBlock = () => {
         <ItemTitle href="/beauty-blossom/wholesaleProgram/#about">
           Про нас
         </ItemTitle>
-        {/* <Item to="/contacts">Контакти</Item> */}
       </Nav>
     </div>
   );
