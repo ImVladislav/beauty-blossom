@@ -8,7 +8,7 @@ export const ScrollToTopButton = styled.div`
   right: 30px;
   z-index: 2;
   cursor: pointer;
-  font-size: 24px;
+
   background-color: ${(p) => p.theme.colors.accentColor};
   color: ${(p) => p.theme.colors.white};
   border: none;
@@ -26,6 +26,13 @@ export const ScrollToTopButton = styled.div`
 `;
 
 export const Icon = styled(RiArrowUpDoubleFill)`
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
