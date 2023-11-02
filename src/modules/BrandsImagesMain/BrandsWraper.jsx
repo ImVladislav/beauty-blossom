@@ -14,8 +14,10 @@ import { ReactComponent as Brand5 } from "./BrandsImages/medi_peel_logo.svg";
 import { ReactComponent as Brand6 } from "./BrandsImages/DAENG-GI-MEO-RI.svg";
 import { useDispatch } from "react-redux";
 import { setfilter } from "../../redux/filter/slice";
+import { useMedia } from "../../hooks/useMedia";
 
 export const BrandsWraper = () => {
+  const { isDesktopScreen } = useMedia();
   const dispatch = useDispatch();
   const handleClick = (e) => {
     const name = e.currentTarget.name;
@@ -25,48 +27,75 @@ export const BrandsWraper = () => {
   return (
     <FrontBrands>
       <BrandsList>
-        <BrandsItem>
-          <BrandLink
-            to="/brands/dr. jart+"
-            name="dr. jart+"
-            onClick={handleClick}
-          >
-            <Brand1 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
-        <BrandsItem>
-          <BrandLink to="/brands/cp-1" name="cp-1" onClick={handleClick}>
-            <Brand2 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
-        <BrandsItem>
-          <BrandLink to="/brands/lador" name="lador" onClick={handleClick}>
-            <Brand3 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
-        <BrandsItem>
-          <BrandLink to="/brands/masil" name="masil" onClick={handleClick}>
-            <Brand4 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
-        <BrandsItem>
-          <BrandLink
-            to="/brands/medi-peel"
-            name="medi-peel"
-            onClick={handleClick}
-          >
-            <Brand5 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
-        <BrandsItem>
-          <BrandLink
-            to="/brands/daeng gi meori"
-            name="daeng gi meori"
-            onClick={handleClick}
-          >
-            <Brand6 className="BrandSVG" />
-          </BrandLink>
-        </BrandsItem>
+        {isDesktopScreen ? (
+          <>
+            <BrandsItem>
+              <BrandLink
+                to="/brands/dr. jart+"
+                name="dr. jart+"
+                onClick={handleClick}
+              >
+                <Brand1 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink to="/brands/cp-1" name="cp-1" onClick={handleClick}>
+                <Brand2 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink to="/brands/lador" name="lador" onClick={handleClick}>
+                <Brand3 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+
+            <BrandsItem>
+              <BrandLink to="/brands/masil" name="masil" onClick={handleClick}>
+                <Brand4 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink
+                to="/brands/medi-peel"
+                name="medi-peel"
+                onClick={handleClick}
+              >
+                <Brand5 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink
+                to="/brands/daeng gi meori"
+                name="daeng gi meori"
+                onClick={handleClick}
+              >
+                <Brand6 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+          </>
+        ) : (
+          <>
+            <BrandsItem>
+              <BrandLink
+                to="/brands/dr. jart+"
+                name="dr. jart+"
+                onClick={handleClick}
+              >
+                <Brand1 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink to="/brands/cp-1" name="cp-1" onClick={handleClick}>
+                <Brand2 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+            <BrandsItem>
+              <BrandLink to="/brands/lador" name="lador" onClick={handleClick}>
+                <Brand3 className="BrandSVG" />
+              </BrandLink>
+            </BrandsItem>
+          </>
+        )}
       </BrandsList>
     </FrontBrands>
   );

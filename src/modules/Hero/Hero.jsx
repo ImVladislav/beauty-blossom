@@ -13,6 +13,7 @@ import {
   LinkBtn,
   TextСonditions,
   WrapСonditions,
+  Wraper,
 } from "./Hero.styled.js";
 const Hero = () => {
   return (
@@ -24,15 +25,18 @@ const Hero = () => {
               <ImageWrap>
                 <Product src={mp} alt="banner" />
               </ImageWrap>
-              <TextWrap>
-                <Title>MEDI-PEEL</Title>
-                <Text>Молодість, краса та розкіш</Text>
-                <TextSecond>
-                  Нова лінійка бренду <br />з комбучею та гіалуроновою кислотою
-                </TextSecond>
-                <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
-              </TextWrap>
-              <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+              <Wraper>
+                <TextWrap>
+                  <Title>MEDI-PEEL</Title>
+                  <Text>Молодість, краса та розкіш</Text>
+                  <TextSecond>
+                    Нова лінійка бренду <br />з комбучею та гіалуроновою
+                    кислотою
+                  </TextSecond>
+                  <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+                </TextWrap>
+                <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+              </Wraper>
             </Wrap>
           </WrapСonditions>
         </Background>

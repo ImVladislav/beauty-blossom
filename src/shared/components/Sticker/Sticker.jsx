@@ -5,14 +5,14 @@ import {
   StickerText,
 } from "./Sticker.styled";
 
-const Sticker = ({ text, newproduct, saleproduct }) => {
+const Sticker = ({ text, sale }) => {
   return (
     <>
-      <ProductStickerWrap $newproduct={newproduct} $saleproduct={saleproduct}>
-        <ProductSticker $newproduct={newproduct} $saleproduct={saleproduct}>
-          <StickerText>{text}</StickerText>
-        </ProductSticker>
-      </ProductStickerWrap>
+      {/* <ProductStickerWrap className={sale && "sale"}> */}
+      <ProductSticker className={sale && "sale"}>
+        <StickerText>{text}</StickerText>
+      </ProductSticker>
+      {/* </ProductStickerWrap> */}
     </>
   );
 };

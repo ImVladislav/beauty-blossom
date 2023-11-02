@@ -18,6 +18,7 @@ import {
   Name,
   Price,
   ButtonWrap,
+  ProductTags,
 } from "./ProductCard.styled";
 
 const ProductCard = ({ products }) => {
@@ -55,15 +56,10 @@ const ProductCard = ({ products }) => {
             <div></div>
             <ImageWrap>
               <Image src={products.images} alt={products.name} />
-              {products.new && (
-                <Sticker text="Новинка" newproduct={products.new.toString()} />
-              )}
-              {products.sale && (
-                <Sticker
-                  text="Розпродаж"
-                  saleproduct={products.sale.toString()}
-                />
-              )}
+              <ProductTags>
+                {products.new && <Sticker text="Новинка" />}
+                {products.sale && <Sticker text="Розпродаж" sale />}
+              </ProductTags>
             </ImageWrap>
             <Content>
               <Name>{products.name}</Name>
@@ -76,6 +72,7 @@ const ProductCard = ({ products }) => {
             {isHovered && (
               <ButtonWrap>
                 <Button
+                  goods
                   className="buy-button"
                   text={
                     products.amount <= 0

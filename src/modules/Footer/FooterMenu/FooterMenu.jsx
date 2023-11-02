@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   LinkItem,
   List,
@@ -9,8 +8,11 @@ import {
   TitleWrap,
   Wrap,
 } from "./FooterMenuStyled";
+import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterMenu = ({ menuItems }) => {
+  const { isDesktopScreen } = useMedia();
+
   const element = menuItems.map(({ to, text }) => (
     <ListItem key={to}>
       <LinkItem to={to}>{text}</LinkItem>
@@ -20,7 +22,7 @@ export const FooterMenu = ({ menuItems }) => {
     <div>
       <TitleWrap>
         <Title>Iнформація</Title>
-        <Underline />
+        {isDesktopScreen && <Underline />}
       </TitleWrap>
       <Wrap>
         <List>{element}</List>

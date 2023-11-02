@@ -13,6 +13,12 @@ export const ItemStyle = styled.li`
   }
 `;
 
+export const ProductTags = styled.div`
+  display: grid;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 3px;
+`;
 export const LinkStyle = styled(Link)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};

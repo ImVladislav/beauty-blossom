@@ -10,13 +10,23 @@ export const Title = styled.h3`
   color: #461c49;
 
   font-family: Alegreya Sans;
-  font-size: ${(p) => p.theme.fontSizes.xl}px;
-  /* font-size: 34px; */
+  font-size: 11.455px;
   font-style: normal;
   font-weight: 500;
   line-height: 103.312%; /* 35.126px */
-  letter-spacing: 2.21px;
+  letter-spacing: 0.745px;
   padding: 0 20px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 180px 0 20px;
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 103.312%; /* 35.126px */
+    letter-spacing: 2.21px;
+  }
 `;
 export const Underline = styled.div`
   flex: 1;

@@ -12,8 +12,10 @@ import retinol from "../../images/retinol.png";
 import purito from "../../images/purito.png";
 import { useDispatch } from "react-redux";
 import { setfilter } from "../../redux/filter/slice";
+import { useMedia } from "../../hooks/useMedia";
 
 const Baners = () => {
+  const { isDesktopScreen } = useMedia();
   const dispatch = useDispatch();
   const handleClick = (e) => {
     const name = e.currentTarget.name;
@@ -33,14 +35,16 @@ const Baners = () => {
             Дізнатись більше
           </LinkRetinol>
         </BanersWrap>
-        <BanersWrap>
-          <Background>
-            <ProductPurito src={purito} alt="purito" />
-          </Background>
-          <LinkPurito to="/brands/purito" name="purito" onClick={handleClick}>
-            Дізнатись більше
-          </LinkPurito>
-        </BanersWrap>
+        {isDesktopScreen && (
+          <BanersWrap>
+            <Background>
+              <ProductPurito src={purito} alt="purito" />
+            </Background>
+            <LinkPurito to="/brands/purito" name="purito" onClick={handleClick}>
+              Дізнатись більше
+            </LinkPurito>
+          </BanersWrap>
+        )}
       </Wrap>
     </>
   );
