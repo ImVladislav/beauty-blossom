@@ -5,6 +5,7 @@ import {
   ContactGroup,
   Title,
   ContactWraper,
+  Wrap,
 } from "./FooterContactsStyled";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 import Contacts from "../../Header/Contacts/Contacts";
@@ -23,7 +24,7 @@ export const FooterContacts = () => {
   };
 
   return (
-    <div>
+    <Wrap>
       <TitleWrap>
         <Title>Контакти:</Title>
         {isDesktopScreen && <Underline />}
@@ -64,6 +65,6 @@ export const FooterContacts = () => {
         <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} />
         {/* Відобразити модальне вікно */}
       </ContactWraper>
-    </div>
+    </Wrap>
   );
 };

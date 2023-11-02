@@ -123,17 +123,13 @@ export const Footer = () => {
     //   </Wrapper>
     // </FooterContainer>
     <FooterWrap>
-      {/* <Container> */}
       <Wrap>
         <LogoWrap>
           <Logo />
         </LogoWrap>
         <InfoWrap>
           <FooterMenu menuItems={menuItems} />
-          {/* <div>
-            <FooterInformBlock />
-            <FooterContacts />
-          </div> */}
+
           {isMobileScreen || isTabletScreen ? (
             <div>
               <FooterInformBlock />
@@ -147,7 +143,6 @@ export const Footer = () => {
           )}
         </InfoWrap>
       </Wrap>
-      {/* </Container> */}
     </FooterWrap>
   );
 };
