@@ -106,7 +106,7 @@ const ProductsList = ({ items }) => {
   };
 
   return (
-    <div style={{ width: "1440px", padding: "6px" }}>
+    <div>
       <FilterContainer>
         <FilterWrap>
           <FilterSelect
