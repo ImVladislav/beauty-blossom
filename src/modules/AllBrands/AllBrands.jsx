@@ -10,6 +10,7 @@ import {
   BrandCard,
   BrandItem,
   BrandName,
+  Title,
 } from "./AllBrands.styled";
 
 const AllBrands = () => {
@@ -48,7 +49,7 @@ const AllBrands = () => {
         <BrandPageContainer>
           {sortedBrands.map((letter, index) => (
             <BrandItem key={index}>
-              <h2>{letter}</h2>
+              <Title>{letter}</Title>
               {brand.map((item, itemIndex) => {
                 if (item.charAt(0).toUpperCase() === letter) {
                   return (
