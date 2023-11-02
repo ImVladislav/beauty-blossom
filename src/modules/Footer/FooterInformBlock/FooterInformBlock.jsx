@@ -9,12 +9,12 @@ import {
 } from "./InformBlockStyled";
 
 export const FooterInformBlock = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
   return (
     <div>
       <TitleWrap>
         <Title>Клієнтам</Title>
-        {isDesktopScreen && <Underline />}
+        {!isMobileScreen && <Underline />}
       </TitleWrap>
       <Nav>
         <Item to="/cabinet/userData">Особистий кабінет</Item>

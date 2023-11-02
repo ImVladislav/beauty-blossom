@@ -19,8 +19,10 @@ import Hero from "../../modules/Hero/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { useEffect, useState } from "react";
 import { Loader } from "../../shared/components/Loader/Loader";
+import { useMedia } from "../../hooks/useMedia";
 
 const MainPage = () => {
+  const { isDesktopScreen } = useMedia();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -36,7 +38,8 @@ const MainPage = () => {
           <Hero />
           <ProductSlider />
           <BrandsWraper />
-          <AboutUs />
+          {isDesktopScreen && <AboutUs />}
+
           <Baners />
           <ScrollToTop />
         </div>

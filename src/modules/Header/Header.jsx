@@ -31,6 +31,7 @@ import {
   LinkLogo,
   IconWrap,
   ButtonMenu,
+  HeaderWraper,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -50,7 +51,7 @@ export const Header = () => {
     setIsMenuOpen((state) => !state);
   };
   return (
-    <>
+    <HeaderWraper>
       {isDesktopScreen && (
         <>
           <ProductOfTheWeek />
@@ -140,6 +141,6 @@ export const Header = () => {
           )}
         </div>
       )}
-    </>
+    </HeaderWraper>
   );
 };

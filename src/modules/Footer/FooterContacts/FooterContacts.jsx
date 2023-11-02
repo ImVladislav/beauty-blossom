@@ -12,7 +12,7 @@ import Contacts from "../../Header/Contacts/Contacts";
 import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterContacts = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -27,7 +27,7 @@ export const FooterContacts = () => {
     <Wrap>
       <TitleWrap>
         <Title>Контакти:</Title>
-        {isDesktopScreen && <Underline />}
+        {!isMobileScreen && <Underline />}
       </TitleWrap>
       <ContactWraper>
         <ContactGroup>

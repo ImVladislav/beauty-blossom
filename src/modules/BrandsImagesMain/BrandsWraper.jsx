@@ -17,7 +17,7 @@ import { setfilter } from "../../redux/filter/slice";
 import { useMedia } from "../../hooks/useMedia";
 
 export const BrandsWraper = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isDesktopScreen, isMobileScreen } = useMedia();
   const dispatch = useDispatch();
   const handleClick = (e) => {
     const name = e.currentTarget.name;
@@ -27,7 +27,7 @@ export const BrandsWraper = () => {
   return (
     <FrontBrands>
       <BrandsList>
-        {isDesktopScreen ? (
+        {!isMobileScreen ? (
           <>
             <BrandsItem>
               <BrandLink

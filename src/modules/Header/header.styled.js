@@ -2,9 +2,20 @@ import styled from "styled-components";
 
 import { HiMenu } from "react-icons/hi";
 
-export const ContainerHeader = styled.header`
+export const HeaderWraper = styled.header`
+  /* @media screen and (min-width: 768px) {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+  } */
+`;
+
+export const ContainerHeader = styled.div`
   position: relative;
-  z-index: 102;
+  z-index: 12;
   /* margin-bottom: 30px; */
 `;
 
@@ -15,9 +26,15 @@ export const HeaderTop = styled.div`
   color: ${(p) => p.theme.colors.textColor};
 `;
 export const HeaderWrap = styled.div`
-  max-width: 1440px;
+  max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+  }
 `;
 export const HeaderLayout = styled.div`
   height: 100px;

@@ -19,7 +19,7 @@ import styled from "styled-components";
 import { Container } from "../../shared/styles/Container";
 import { useMedia } from "../../hooks/useMedia";
 
-export const FooterWrap = styled.div`
+export const FooterWrap = styled.footer`
   padding: 10px 0 36px 0;
   background: ${(p) => p.theme.colors.topHeaderLine};
   @media screen and (min-width: 768px) {
@@ -59,10 +59,12 @@ export const InfoWrap = styled.div`
   flex-wrap: wrap;
   max-width: 300px;
   gap: 5px;
+  margin-right: 5px;
   @media screen and (min-width: 768px) {
     flex-wrap: nowrap;
     gap: 0;
     max-width: 900px;
+    margin-right: 0;
   }
 
   @media screen and (min-width: 1440px) {
@@ -130,7 +132,7 @@ export const Footer = () => {
         <InfoWrap>
           <FooterMenu menuItems={menuItems} />
 
-          {isMobileScreen || isTabletScreen ? (
+          {isMobileScreen ? (
             <div>
               <FooterInformBlock />
               <FooterContacts />

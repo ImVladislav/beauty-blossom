@@ -14,6 +14,10 @@ export const Text = styled.h2`
   padding: 6px;
 `;
 export const Link = styled.a`
-  text-decoration: underline;
+  text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
+`;
+export const Underline = styled.div`
+  height: 1px;
+  background-color: #000;
 `;
