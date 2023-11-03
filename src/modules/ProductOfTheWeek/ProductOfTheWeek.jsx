@@ -1,4 +1,4 @@
-import { Background, Text, Link } from "./ProductOfTheWeekStyled";
+import { Background, Text, Link, Underline } from "./ProductOfTheWeekStyled";
 export const ProductOfTheWeek = () => {
   return (
     <Background>
@@ -7,6 +7,7 @@ export const ProductOfTheWeek = () => {
           Підписуйся на наш телеграм канал, щоб дізнатись першим про новинки та
           поповнення асортименту
         </Link>
+        <Underline />
       </Text>
     </Background>
   );

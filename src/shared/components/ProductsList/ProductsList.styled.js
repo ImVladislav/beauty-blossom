@@ -1,12 +1,27 @@
 import styled from "styled-components";
+export const WrapListProduct = styled.div`
+  padding: 6px;
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+  }
+`;
 
 export const ProductListContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   text-align: center;
-  /* justify-content: center; */
-  /* max-width: 1440px; */
+  justify-content: center;
+
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    justify-content: flex-start;
+  }
 `;
 
 export const FilterContainer = styled.div`

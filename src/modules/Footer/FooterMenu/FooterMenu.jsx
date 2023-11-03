@@ -11,7 +11,7 @@ import {
 import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterMenu = ({ menuItems }) => {
-  const { isDesktopScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
 
   const element = menuItems.map(({ to, text }) => (
     <ListItem key={to}>
@@ -22,7 +22,7 @@ export const FooterMenu = ({ menuItems }) => {
     <div>
       <TitleWrap>
         <Title>Iнформація</Title>
-        {isDesktopScreen && <Underline />}
+        {!isMobileScreen && <Underline />}
       </TitleWrap>
       <Wrap>
         <List>{element}</List>

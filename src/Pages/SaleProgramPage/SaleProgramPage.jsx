@@ -30,7 +30,9 @@ const SaleProgramPage = () => {
         </section>
 
         <section>
-          <SubTitle>Компанія Beauty Blossom – запрошує до співпраці</SubTitle>
+          <ConditionsTitle>
+            Компанія Beauty Blossom – запрошує до співпраці
+          </ConditionsTitle>
           <Text>
             Компанія Beauty Blossom запрошує до співпраці великі та малі гуртові
             магазини, салони краси та інстаграм сторінки. З нами ви отримуєте

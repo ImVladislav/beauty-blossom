@@ -9,8 +9,9 @@ export const PaginationContainer = styled.div`
 `;
 
 export const PageButton = styled.button`
-  margin: 0 5px;
-  padding: 8px 12px;
+  font-size: 13px;
+  margin: 0 3px;
+  padding: 3px 8px;
   border: 1px solid #ddd;
   background-color: ${(p) =>
     p.active === "true" ? p.theme.colors.heroBtn : p.theme.colors.white};
@@ -23,6 +24,14 @@ export const PageButton = styled.button`
   &:hover {
     background-color: ${(p) =>
       p.active === "true" ? p.theme.colors.heroBtn : "#f8f9fa"};
+  }
+  @media screen and (min-width: 768px) {
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin: 0 5px;
+    padding: 8px 12px;
+    font-size: 18px;
   }
 `;
 export const IconLeft = styled(AiOutlineLeft)``;

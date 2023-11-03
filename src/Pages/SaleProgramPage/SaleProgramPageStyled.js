@@ -4,10 +4,16 @@ import styled from "styled-components";
 export const Title = styled.h2`
   display: flex;
   justify-content: center;
-  font-size: 2.2em;
+  font-size: 16px;
   font-weight: bold;
   margin-top: 40px;
   color: ${(p) => p.theme.colors.accentColor};
+  @media screen and (min-width: 768px) {
+    font-size: 2.2em;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 export const Container = styled.div`
   position: relative;
@@ -21,27 +27,55 @@ export const SubTitle = styled.h3`
   color: ${(p) => p.theme.colors.accentColor};
   display: flex;
   justify-content: center;
-  font-size: 1.8em;
+  font-size: 12px;
   font-weight: bold;
   margin: 30px;
+  @media screen and (min-width: 768px) {
+    font-size: 1.8em;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ConditionsTitle = styled.h4`
   display: flex;
-  font-size: 1.8em;
+  font-size: 12px;
   font-weight: bold;
   padding: 20px 0px;
-
-  margin-left: 34px;
+  margin-left: 10px;
   color: ${(p) => p.theme.colors.accentColor};
+  @media screen and (min-width: 768px) {
+    font-size: 1.8em;
+    margin-left: 34px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 export const Text = styled.p`
+  padding: 0 5px;
   font-weight: bold;
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ListItems = styled.li`
-  margin-left: 10px;
+  margin-left: 5px;
   list-style-type: decimal;
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const ConditionsList = styled.ul`
@@ -73,10 +107,10 @@ export const ModalContent = styled.div`
 `;
 
 export const OpenModal = styled.button`
-  width: 340px;
-  height: 70px;
+  /* width: 340px;
+  height: 70px; */
   background: ${(p) => p.theme.colors.accentColor};
-  border-radius: 25px;
+  border-radius: 50px;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -85,17 +119,22 @@ export const OpenModal = styled.button`
   margin-left: auto;
   margin-right: auto;
   border: none;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 20px;
-
+  font-size: 14px;
+  padding: 15px 20px;
   background: ${(p) => p.theme.colors.accentColor};
   &:hover {
-    color: #cccccc;
-    background: #f66d52;
-    background: ${(p) => p.theme.colors.accentColor};
+    background: ${(p) => p.theme.colors.textColor};
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+    padding: 20px 30px;
+  }
+
+  @media screen and (min-width: 1440px) {
   }
 `;
 export const CloseModal = styled.button``;

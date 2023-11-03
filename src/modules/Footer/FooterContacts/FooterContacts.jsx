@@ -5,13 +5,14 @@ import {
   ContactGroup,
   Title,
   ContactWraper,
+  Wrap,
 } from "./FooterContactsStyled";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 import Contacts from "../../Header/Contacts/Contacts";
 import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterContacts = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -23,10 +24,10 @@ export const FooterContacts = () => {
   };
 
   return (
-    <div>
+    <Wrap>
       <TitleWrap>
         <Title>Контакти:</Title>
-        {isDesktopScreen && <Underline />}
+        {!isMobileScreen && <Underline />}
       </TitleWrap>
       <ContactWraper>
         <ContactGroup>
@@ -64,6 +65,6 @@ export const FooterContacts = () => {
         <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} />
         {/* Відобразити модальне вікно */}
       </ContactWraper>
-    </div>
+    </Wrap>
   );
 };

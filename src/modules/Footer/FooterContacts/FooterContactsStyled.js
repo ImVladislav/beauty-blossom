@@ -1,4 +1,15 @@
 import styled from "styled-components";
+
+export const Wrap = styled.div`
+  margin-top: 10px;
+  @media screen and (min-width: 768px) {
+    margin-top: 0px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
 export const TitleWrap = styled.div`
   text-align: start;
 `;

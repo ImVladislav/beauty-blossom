@@ -18,8 +18,8 @@ const SliderContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 1440px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
@@ -49,8 +49,8 @@ const CartWrap = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 350px;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
@@ -134,7 +134,7 @@ const ProductImage = styled.img`
 
 const ProductName = styled.h3`
   margin: 10px 0;
-  font-size: 14px;
+  font-size: 9px;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 2.4em;
