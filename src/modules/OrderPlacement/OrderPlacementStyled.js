@@ -14,6 +14,11 @@ width: 100%;
 
 export const CostumerStatusItem = styled.label`  
     padding: 5px;
+      @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
 `
 
 export const Form = styled.form`
@@ -39,6 +44,18 @@ export const CostumerStatusinput = styled.input`
   &:focus {
     outline: none;
   }
+  @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
+.custom-toast{
+  font-size: 20px; /* Ваш розмір шрифту */
+  background-color: #ff0000;
+  color: #ffffff; /* Ваш колір тексту */
+  /* Додайте інші стилі за потреби */
+}
+ /* #ff0000;  */
 `;
 
 export const Citylist = styled.div`
@@ -56,6 +73,11 @@ export const CityItem = styled.span`
     background: ${(p) => p.theme.colors.textColor};
     color: white;
   }
+    @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
 `;
 
 export const CityitemsBlock = styled.ul`
@@ -88,7 +110,13 @@ export const CityitemsBlock = styled.ul`
 
 export const Select = styled.select`
 border-radius: 50px; 
-height: 41px;
+
+
+         @media (min-width: 1440px) {
+    padding: 5px 10px;
+    font-size: 16px;
+  
+}
  `
 
 export const Textarea = styled.textarea`
@@ -106,9 +134,13 @@ export const Textarea = styled.textarea`
     white-space: pre-wrap;
   }
 
-  &:focus {
-    height: auto; /* Змінюємо висоту на "auto" при фокусі */
-  }
+ 
+
+    @media (min-width: 1440px) {
+   padding: 5px 10px;
+    font-size: 16px;
+  
+}
 `;
 
 export const Titles = styled.h3`
@@ -168,6 +200,11 @@ export const OrdersHeaderItem = styled.p`
  border-top: 1px solid ${(p) => p.theme.colors.textColor};
     border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
  border-collapse: collapse;
+      @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
 `;
 export const FirstOrdersHeaderItem = styled.p`
 
@@ -180,6 +217,12 @@ border-top-left-radius: 20px;
     background: #FFF6E9;
      border-collapse: collapse;
      color: #FFF6E9;
+
+     @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
 `
 export const LastOrdersHeaderItem = styled.p`
 
@@ -192,7 +235,11 @@ export const LastOrdersHeaderItem = styled.p`
 background: #FFF6E9;
  overflow: hidden;
  border-collapse: collapse;
-     
+          @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
 `
 export const HeaderBlock = styled.th`
   /* border-top: 1px solid ${(p) => p.theme.colors.textColor};
@@ -227,12 +274,29 @@ export const OrdersItemBlock = styled.tr`
     
 export const OrdersItemlist = styled.tr`
      border-bottom: 1px solid #c7c7c7;
+     
     `
 
 export const Description = styled.p`
    display: flex;
     justify-content: flex-end;
+         @media (min-width: 1440px) {
+   
+    font-size: 12px;
+  
+}
     `
+
+export const SelectOpton = styled.option`
+
+         @media (min-width: 1440px) {
+   
+    font-size: 16px;
+  
+}
+    `
+
+
 
 export const SubmitButton = styled.button`
     background: transparent;
@@ -254,6 +318,9 @@ export const SubmitButton = styled.button`
     &:hover{
         color: white;
     background: ${(p) => p.theme.colors.textColor};
+
+
+
     }
     `
     export const Text = styled.p`
@@ -261,10 +328,10 @@ overflow: hidden;
     text-overflow: ellipsis;
     height: 2.4em;
     max-width: 480px;
+         @media (min-width: 1440px) {
+   
+    font-size: 12px;
+  
+}
     `
-
-
-
-
-
 

@@ -19,6 +19,7 @@ import {
     OrdersItem,
     OrdersThumb,
     Select,
+    SelectOpton,
     SubmitButton,
     Textarea,
     Title,
@@ -32,6 +33,7 @@ import { selectCart } from '../../redux/cart/selectors';
 import { Amount, ItemNameLink } from '../Header/ShopingList/ShopingListStyled';
 import axios from 'axios';
 import { nanoid } from '@reduxjs/toolkit';
+import { toast } from "react-toastify";
 
 
 const OrderPlacement = () => {
@@ -48,7 +50,7 @@ const OrderPlacement = () => {
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
-    const [courier, setCourier] = useState('no');
+    const [courier, setCourier] = useState('Доставка на відділення');
     const userEmail = useSelector(userSelectorEmail);
 
         const [formData, setFormData] = useState({
@@ -57,13 +59,10 @@ const OrderPlacement = () => {
         lastName: userLastName || '',
         number: userNumber || null,
         city: '',
-        warehouse: '',
-        paymentMethod: "",
+        paymentMethod: "Оплата за реквізитами",
         deliveryMethod: courier,
-        comments: "",
-        address: "", 
-        building: "", 
-        apartment: "" 
+        
+
     });
     const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
@@ -82,34 +81,27 @@ const hideOrderPlacedModal = () => {
             ...formData,
             [name]: value,
         });
-        console.log(formData.deliveryMethod);
-        console.log(formData.deliveryMethod);
-        // if (formData.deliveryMethod === 'no') {
-            
-        //     setCourierDelivery('1')
-        // }
+
         
-        // if (formData.deliveryMethod === 'yes') {
-        //     setCourierDelivery('2')
-        // };
     };
-    console.log(courierDelivery);
-    // console.log(formData);
-    console.log(courier);
+
     let firstWord = ''
+    let secoundWord = ''
+
     const words = searchText.trim().split(" ");
         firstWord = words[0];
+    secoundWord = words[1];
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
 
     useEffect(() => {
 
-               if (formData.deliveryMethod === 'no') {
-            
+               if (formData.deliveryMethod === 'Доставка на відділення') {
+        
             setCourierDelivery('1')
         }
         
-        if (formData.deliveryMethod === 'yes') {
+        if (formData.deliveryMethod === "Доставка кур'єром") {
             setCourierDelivery('2')
         }; 
 }, [ handleInputChange ]);
@@ -143,7 +135,10 @@ const handleCityChange = async () => {
     const data = await response.json();
 
     if (data.success) {
-      setSearchCities(data.data);
+        setSearchCities(data.data);
+
+        
+        
     }
   } catch (error) {
     console.error("Помилка при запиті до API Нової Пошти для населених пунктів", error);
@@ -184,7 +179,7 @@ const handleWarehousesChange = async () => {
 
     if (data.success) {
       setWarehouses(data.data);
-
+        
     }
   } catch (error) {
     console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
@@ -194,9 +189,14 @@ const handleWarehousesChange = async () => {
     useEffect(() => {
         
     if (words.length > 1) {
+        
         firstWord = words[0];
+    secoundWord = words[1];
+        
         }
         handleCityChange();
+         console.log(warehouses.length);
+        console.log(warehouses);
 }, [ searchText ]);
 
       const [itemQuantities, setItemQuantities] = useState(
@@ -215,18 +215,38 @@ const handleWarehousesChange = async () => {
 
         setIsSubmitting(true);
 
-        if (!searchText || (!searchWarehouses && courierDelivery)) {
-            alert('Будь ласка, виберіть місто та відділення');
-            setIsSubmitting(false);
-            return;
+        if (courierDelivery === '1') {
+            if (!searchText || (!searchWarehouses && courierDelivery)) {
+                toast.error("Будь ласка, виберіть місто та відділення");
+                setIsSubmitting(false);
+                
+                return;
+            }
         }
+        if (!formData.firstName) {
+      toast.error("Введіть ім'я отримувача.");
+      setIsSubmitting(false);
+      return;
+    }
+    if (!formData.lastName) {
+      toast.error('Введіть прізвище отримувача.');
+      setIsSubmitting(false);
+      return;
+    }
+    if (!formData.number) {
+      toast.error('Введіть номер телефону отримувача.');
+      setIsSubmitting(false);
+      return;
+    }
+        if (!formData.email) {
+        
+        toast.error('Введіть адресу вашої пошти.', {
+          className: 'custom-toast',
+        });
+      setIsSubmitting(false);
+      return;
+    }
 
-        if (courierDelivery && (!formData.address || !formData.building || !formData.apartment)) {
-            alert('Будь ласка, заповніть адресу, будинок та квартиру для курєрської доставки');
-            setIsSubmitting(false);
-            return;
-        }
-    
 
         const orderedItems = cartItems.map((item) => ({
             productId: item.id,
@@ -237,26 +257,61 @@ const handleWarehousesChange = async () => {
             amount: item.price * itemQuantities[item.id],
         }));
 
-        const dataToSend = {
-            ...formData,
-            email: userEmail || formData.email,
-            firstName: userFirstName || formData.firstName,
-            lastName: userLastName || formData.lastName,
-            number: userNumber || formData.number,
-            city: searchText,
-            deliveryMethod: formData.deliveryMethod,
-            warehouse: searchWarehouses,
-            orderedItems: orderedItems,
-            amount: totalCost,
-            status: "Новий",
-            address: "", 
-            building: "", 
-            apartment: "" 
-        };
+
+
+
+
+             const dataToSendCourier = {
+                ...formData,
+                email: userEmail || formData.email,
+                firstName: userFirstName || formData.firstName,
+                lastName: userLastName || formData.lastName,
+                number: userNumber || formData.number,
+                city: searchText,
+                deliveryMethod: formData.deliveryMethod,
+                comments: formData.comments,
+                orderedItems: orderedItems,
+                amount: totalCost,
+                status: "Новий",
+                address: formData.address ,
+                building: formData.house,
+                apartment: formData.apartment,
+        }
+        
+             const dataToSendWarehouse = {
+                ...formData,
+                email: userEmail || formData.email,
+                firstName: userFirstName || formData.firstName,
+                lastName: userLastName || formData.lastName,
+                number: userNumber || formData.number,
+                city: searchText,
+                comments: formData.comments,
+                deliveryMethod: formData.deliveryMethod,
+                 warehouse: searchWarehouses === '' ? "ewq":searchWarehouses ,
+                orderedItems: orderedItems,
+                amount: totalCost,
+                status: "Новий",
+
+            }
+        
+//         if (courierDelivery === '2') {
+//   if (!dataToSendCourier.address || !dataToSendCourier.building || !dataToSendCourier.apartment) {
+//     alert('Будь ласка, заповніть адресу, будинок та квартиру для курєрської доставки');
+//       setIsSubmitting(false);
+//         console.log(formData.address);
+//     console.log(formData.building);
+//     console.log(formData.apartment);
+//     return;
+//     }
+
+// }
+
+        
+        console.log(dataToSendCourier);
 
         const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
 
-        axios.post(ordersUrl, dataToSend)
+        axios.post(ordersUrl, courier === "no"? dataToSendCourier : dataToSendWarehouse)
             .then(response => {
                 console.log('Відповідь від сервера:', response.data);
 
@@ -268,7 +323,7 @@ const handleWarehousesChange = async () => {
                     lastName: userLastName || '',
                     number: userNumber || null,
                     city: '',
-                    warehouse: '',
+
                     paymentMethod: '',
                     deliveryMethod: '',
                     comments: '',
@@ -284,6 +339,8 @@ const handleWarehousesChange = async () => {
             });
     };
 
+
+    
 function throttle(func, delay) {
   let inThrottle;
   return function () {
@@ -299,7 +356,6 @@ function throttle(func, delay) {
 }
 
 const handleSearchTextChange = throttle( (e) => {
-console.log(searchCities.length);
     const value = e.target.value;
     setSearchText(value);
     if (value.length > 2) {
@@ -329,7 +385,7 @@ const handleCitySelect = (city, areaDescription) => {
     setDropdownCityVisible(false);
     setSearchWarehouses('')
     handleWarehousesChange()
-    console.log(searchCities);
+   
     };
     
     const handleWarehouseSelect = (warehouse) => {
@@ -414,6 +470,15 @@ const handleCitySelect = (city, areaDescription) => {
                                 value={formData.number || ''}
                                 onChange={handleInputChange}
                             />
+                             <label htmlFor="email"></label>
+                            <CostumerStatusinput
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder='Введіть адресу вашої пошти*'
+                                value={formData.email || ''}
+                                onChange={handleInputChange}
+                            />
                             <Titles>ДАННІ ДОСТАВКИ</Titles>
                             <Select
     id="deliveryMethod"
@@ -421,17 +486,17 @@ const handleCitySelect = (city, areaDescription) => {
     value={formData.deliveryMethod}
     onChange={(e) => {
         handleInputChange(e);
-        if (e.target.value === 'no') {
-            setCourier('no');
-        } else if (e.target.value === 'yes') {
-            setCourier('yes');
+        if (e.target.value === 'Доставка на відділення') {
+            setCourier('Доставка на відділення');
+        } else if (e.target.value === "Доставка кур'єром") {
+            setCourier("Доставка кур'єром");
         }
     }}
 >
-    <option value="no">Доставка на відділення</option>
-    <option value="yes">Кур'єрська доставка</option>
+    <option value="Доставка на відділення">Доставка на відділення</option>
+    <option value="Доставка кур'єром">Доставка кур'єром</option>
                             </Select>
-                             <p>Обраний варіант: {formData.deliveryMethod}</p>
+                             
                             <div>
       
                                 <div style={{ position: 'relative' }}>
@@ -442,10 +507,14 @@ const handleCitySelect = (city, areaDescription) => {
                                         id="city"
                                         name="city"
                                         value={searchText}
+                                        onClick={() => { setDropdownCityVisible(searchCities.length <= 40); setDropdownWarehouseVisible(false); setDropdownCityVisible(searchCities.length !== 0 )}}
                                         onChange={handleSearchTextChange}
                                         placeholder="Введіть назву міста"
-                                        // onBlur={handleCityBlur} 
-                                        onClick={() => { setDropdownCityVisible(searchCities.length <= 40); setDropdownWarehouseVisible(false); setDropdownCityVisible(searchCities.length !== 0 )}}
+                                            onBlur={() => {
+                                            setTimeout(() => {
+                                            setDropdownCityVisible(false);
+                                            }, 500);
+                                                }}
                                     />
                                     {isDropdownCityVisible && (
                                         <Citylist>
@@ -467,7 +536,7 @@ const handleCitySelect = (city, areaDescription) => {
                                     )}
                                 </div>
                             </div>
-                            {courierDelivery === '1' ? (
+                            {courierDelivery === '2' ? (
                                      
                                 <OrderDetails>
                                     <label htmlFor="address"></label>
@@ -475,17 +544,17 @@ const handleCitySelect = (city, areaDescription) => {
                                         type="text"
                                         id="address"
                                         name="address"
-                                        placeholder='Адреса*'
-                                        value={formData.address || ''}
+                                        placeholder='Адреса*' 
+                                        value={formData.address }
                                         onChange={handleInputChange}
                                     />
-                                    <label htmlFor="house"></label>
+                                    <label htmlFor="building"></label>
                                     <CostumerStatusinput
                                         type="text"
-                                        id="house"
-                                        name="house"
+                                        id="building"
+                                        name="building"
                                         placeholder='Будинок*'
-                                        value={formData.house || ''}
+                                        value= {formData.building}
                                         onChange={handleInputChange}
                                     />
                                     <label htmlFor="apartment"></label>
@@ -494,7 +563,7 @@ const handleCitySelect = (city, areaDescription) => {
                                         id="apartment"
                                         name="apartment"
                                         placeholder='Квартира*'
-                                        value={formData.apartment || ''}
+                                        value={formData.apartment}
                                         onChange={handleInputChange}
                                     />
                                 </OrderDetails>
@@ -512,18 +581,23 @@ const handleCitySelect = (city, areaDescription) => {
                                         type="text"
                                         id="warehouse"
                                         name="warehouse"
-                                        value={searchWarehouses}
+                                                    value={searchWarehouses}
+                                                    
                                         onChange={handleSearchTextChangeWarehose}
                                                     placeholder="Введіть адресу відділення"
-                                                    // onBlur={handleWarehouseBlur} 
                                                     onClick={() => { setDropdownWarehouseVisible(searchCities.length <= 40); setDropdownCityVisible(false); handleWarehousesChange() }}
+                                                    onBlur={() => {
+                                            setTimeout(() => {
+                                            setDropdownWarehouseVisible(false);
+                                            }, 500);
+                                                }}
                                     />
-                            {isDropdownWarehouseVisible && (
+                            {warehouses.length > 1000 && isDropdownWarehouseVisible && (
                                     <Citylist>
                                             <CityitemsBlock >
-                                        
                                         {warehouses.filter((warehouse) =>
-                                            warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).map(warehouse => (
+                                            warehouse.Description.toLowerCase().includes(searchWarehouses.toLowerCase())).filter((warehouse) =>
+                                            warehouse.SettlementAreaDescription.toLowerCase().includes(secoundWord.toLowerCase())).map(warehouse => (
                                                 <li
                                                     key={nanoid()}
                                                     onClick={() => {
@@ -547,17 +621,17 @@ const handleCitySelect = (city, areaDescription) => {
                                 
                                 <Titles>СПОСІБ ОПЛАТИ</Titles>
                                 <Select id="paymentMethod" name="paymentMethod" onChange={handleInputChange}>
-                                    <option value="Оплата за реквізитами">Оплата за реквізитами</option>
+                                    <SelectOpton value="Оплата за реквізитами">Оплата за реквізитами</SelectOpton>
                                     
-                                    <option value="Післяплата">Післяплата</option>
+                                    <SelectOpton value="Післяплата">Післяплата</SelectOpton>
                                 </Select>
                                 <Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
                                 <label htmlFor="comments"></label>
                                 <Textarea
                                     id="comments"
                                     name="comments"
-                                    rows="4"
-                                    value={formData.comments || ''} // Встановлюємо значення з formData
+                                    rows="4"  
+                                    value={formData.comments } // Встановлюємо значення з formData
                                     onChange={(e) => {
                                         setFormData({
                                             ...formData,
