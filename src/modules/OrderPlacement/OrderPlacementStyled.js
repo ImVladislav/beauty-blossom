@@ -28,8 +28,8 @@ export const Form = styled.form`
 export const DeliveryInfoBlock = styled.div`
  display: flex;
     flex-direction: column;
-    margin-right: 80px;
-    min-width: 510px;
+   
+    min-width: 450px;
  `
 
 
@@ -115,6 +115,7 @@ border-radius: 50px;
          @media (min-width: 1440px) {
     padding: 5px 10px;
     font-size: 16px;
+    margin: 10px 0px;
   
 }
  `
@@ -166,6 +167,7 @@ export const OrdersThumb = styled.div`
     border-radius: 50px;
     padding: 14px;
     position: relative;
+    margin-left: 40px;
     &::before {
         content: "";
         position: absolute;

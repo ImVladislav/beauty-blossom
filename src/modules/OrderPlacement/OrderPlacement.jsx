@@ -179,15 +179,23 @@ const handleWarehousesChange = async () => {
 
     if (data.success) {
       setWarehouses(data.data);
-        
+        console.log(warehouses);
     }
   } catch (error) {
     console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
   }
-};
+    };
+    
+
     
     useEffect(() => {
+
+        const preFilter = warehouses.filter((warehouse) => warehouse.CityDescription.toLowerCase().includes(searchWarehouses.toLowerCase()))
         
+                const filtred = warehouses.filter((warehouse) => warehouse.CityDescription.toLowerCase().includes(searchWarehouses.toLowerCase())).filter((warehouse) =>
+        warehouse.SettlementAreaDescription.toLowerCase().includes(secoundWord.toLowerCase()))
+        console.log(preFilter);
+        console.log(filtred);
     if (words.length > 1) {
         
         firstWord = words[0];
@@ -196,7 +204,7 @@ const handleWarehousesChange = async () => {
         }
         handleCityChange();
          console.log(warehouses.length);
-        console.log(warehouses);
+        console.log(secoundWord, firstWord);
 }, [ searchText ]);
 
       const [itemQuantities, setItemQuantities] = useState(
@@ -306,8 +314,7 @@ const handleWarehousesChange = async () => {
 
 // }
 
-        
-        console.log(dataToSendCourier);
+     
 
         const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
 
@@ -585,14 +592,14 @@ const handleCitySelect = (city, areaDescription) => {
                                                     
                                         onChange={handleSearchTextChangeWarehose}
                                                     placeholder="Введіть адресу відділення"
-                                                    onClick={() => { setDropdownWarehouseVisible(searchCities.length <= 40); setDropdownCityVisible(false); handleWarehousesChange() }}
+                                                    onClick={() => { setDropdownWarehouseVisible(searchCities.length <= 40); handleWarehousesChange() }}
                                                     onBlur={() => {
                                             setTimeout(() => {
                                             setDropdownWarehouseVisible(false);
                                             }, 500);
                                                 }}
                                     />
-                            {warehouses.length > 1000 && isDropdownWarehouseVisible && (
+                            {warehouses.length < 1000 && isDropdownWarehouseVisible && (
                                     <Citylist>
                                             <CityitemsBlock >
                                         {warehouses.filter((warehouse) =>
@@ -646,7 +653,7 @@ const handleCitySelect = (city, areaDescription) => {
                         </DeliveryInfoBlock>
                 
                         <div>
-                            <h3>Замовлення</h3>
+                            <Titles>Замовлення</Titles>
                             <OrdersThumb>
 
                                 <table cols="5">

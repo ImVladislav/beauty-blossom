@@ -2,7 +2,7 @@ import styled from "styled-components";
 import flowers from "../../images/flowers.png";
 
 export const Bgd = styled.div`
-  background-image: url(${flowers});
+  /* background-image: url(${flowers}); */
   background-size: cover;
   /* pointer-events: none; */
   /* max-width: 1440px; */
