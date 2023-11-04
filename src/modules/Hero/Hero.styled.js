@@ -9,10 +9,11 @@ export const WrapBackground = styled.div`
   position: relative;
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     max-width: 1440px;
     height: 350px;
+  }
+  @media screen and (min-width: 1440px) {
     /* display: flex; */
     /* justify-content: center; */
   }
@@ -55,10 +56,11 @@ export const Product = styled.img`
   width: 210px;
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     width: 350px;
     position: relative;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 export const Wraper = styled.div`
@@ -75,14 +77,15 @@ export const TextWrap = styled.div`
   margin-left: 150px;
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     margin-left: 50px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -93,11 +96,12 @@ export const Title = styled.h2`
   color: ${(p) => p.theme.colors.accentColor};
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
     font-weight: ${(p) => p.theme.fontWeights.bold};
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -108,12 +112,13 @@ export const Text = styled.p`
   margin-bottom: 30px;
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
     font-weight: ${(p) => p.theme.fontWeights.body};
     color: ${(p) => p.theme.colors.accentColor};
     margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 export const TextSecond = styled.p`
@@ -124,12 +129,13 @@ export const TextSecond = styled.p`
   /* max-width: 300px; */
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
     font-weight: ${(p) => p.theme.fontWeights.body};
     color: ${(p) => p.theme.colors.accentColor};
     margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -157,26 +163,11 @@ export const LinkBtn = styled(Link)`
   }
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
-    background: transparent;
-    border: 3px solid ${(p) => p.theme.colors.accentColor};
-    border-radius: 50px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-weight: ${(p) => p.theme.fontWeights.body};
-    text-decoration: none;
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
     margin-left: 0;
     padding: 7px 30px;
-
-    transition: all 250ms ease-in-out;
-    color: ${(p) => p.theme.colors.accentColor};
-    &:hover {
-      color: white;
-      background: ${(p) => p.theme.colors.accentColor};
+    @media screen and (min-width: 1440px) {
     }
   }
 `;
@@ -194,8 +185,7 @@ export const TextСonditions = styled.p`
   justify-content: flex-end; */
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     position: absolute;
     bottom: 10%;
     right: 10%;
@@ -204,6 +194,8 @@ export const TextСonditions = styled.p`
     color: ${(p) => p.theme.colors.accentColor};
     margin-top: 10px;
     margin-right: 30px;
+  }
+  @media screen and (min-width: 1440px) {
     /* display: flex;
 
   justify-content: flex-end; */

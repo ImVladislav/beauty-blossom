@@ -55,7 +55,27 @@ export const BrandLink = styled(Link)`
 
   @media screen and (min-width: 768px) {
   }
-
+  @media screen and (min-width: 1024px) {
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    padding: 10px;
+    border: 0;
+    text-align: center;
+    .BrandSVG {
+      width: 110px;
+      height: 80px;
+      transition: transform 1s ease;
+      fill: black;
+      &:hover {
+        transform: scale(1.5);
+        box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
+        z-index: 3;
+        cursor: pointer;
+        fill: ${(p) => p.theme.colors.accentColor};
+      }
+    }
+  }
   @media screen and (min-width: 1440px) {
     justify-content: center;
     align-items: center;

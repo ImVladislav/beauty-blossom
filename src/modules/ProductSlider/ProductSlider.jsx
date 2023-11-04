@@ -23,8 +23,22 @@ const SliderContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 768px) {
+    max-width: 768px;
   }
-
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1024px;
+    /* white-space: pre; */
+    /* white-space: nowrap; Забороняє перенесення на новий рядок */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media screen and (min-width: 1440px) {
     display: flex;
     justify-content: center;
@@ -56,7 +70,21 @@ const CartWrap = styled.div`
   @media screen and (min-width: 768px) {
     max-width: 740px;
   }
+  @media screen and (min-width: 1024px) {
+    display: flex;
 
+    justify-content: center;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    /* white-space: pre; */
+    /* white-space: nowrap; Забороняє перенесення на новий рядок */
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   @media screen and (min-width: 1440px) {
     flex-wrap: nowrap;
     display: flex;
@@ -96,10 +124,9 @@ const ProductCard = styled(Link)`
     cursor: pointer;
   }
   @media screen and (min-width: 768px) {
+    width: 180px;
   }
-
-  @media screen and (min-width: 1440px) {
-    /* flex: 0 0 calc(16% - 20px); */
+  @media screen and (min-width: 1024px) {
     width: 261px;
     display: flex;
     flex-direction: column;
@@ -118,14 +145,22 @@ const ProductCard = styled(Link)`
     position: relative;
     text-decoration: none;
   }
+  @media screen and (min-width: 1440px) {
+    /* flex: 0 0 calc(16% - 20px); */
+  }
 `;
 
 const ProductImage = styled.img`
   max-width: 80px;
   max-height: 80px;
   @media screen and (min-width: 768px) {
+    max-width: 120px;
+    max-height: 120px;
   }
-
+  @media screen and (min-width: 1024px) {
+    max-width: 150px;
+    max-height: 150px;
+  }
   @media screen and (min-width: 1440px) {
     max-width: 200px;
     max-height: 200px;
@@ -141,8 +176,7 @@ const ProductName = styled.h3`
   color: ${(p) => p.theme.colors.accentColor};
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin: 10px 0;
     font-size: 14px;
     overflow: hidden;
@@ -150,6 +184,8 @@ const ProductName = styled.h3`
     height: 2.4em;
     color: ${(p) => p.theme.colors.accentColor};
     text-transform: uppercase;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -206,7 +242,8 @@ const TagText = styled.p`
 const Button = styled.button`
   @media screen and (min-width: 768px) {
   }
-
+  @media screen and (min-width: 1024px) {
+  }
   @media screen and (min-width: 1440px) {
   }
   position: relative;
@@ -254,8 +291,7 @@ const SliderHeaderToggle = styled.button`
 
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     border: none;
     padding: 3px;
     color: ${(p) => p.theme.colors.accentColor};
@@ -267,6 +303,8 @@ const SliderHeaderToggle = styled.button`
     &:last-child {
       margin-left: 20px;
     }
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
