@@ -43,18 +43,14 @@ import BurgerMenu from "./BurgerMenu/BurgerMenu";
 export const Header = () => {
   const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isDesktopScreen, isMobileScreen, isTabletScreen, screenType } =
-    useMedia();
-  console.log(screenType);
-  // console.log(isDesktopScreen);
-  // console.log(pathname);
+  const { isMobileScreen } = useMedia();
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
   };
   return (
-    <HeaderWraper>
-      {(isDesktopScreen || isTabletScreen) && (
+    <header>
+      {!isMobileScreen ? (
         <>
           <ProductOfTheWeek />
           <ContainerHeader>
@@ -108,8 +104,7 @@ export const Header = () => {
             </Container>
           </ContainerHeader>
         </>
-      )}
-      {screenType === "mobile" && (
+      ) : (
         <div>
           {/* top */}
           <TopWrap>
@@ -134,7 +129,7 @@ export const Header = () => {
           </CenterWrap>
           {/* bottom */}
           <SearchForm />
-          {isMenuOpen && !isDesktopScreen && (
+          {isMenuOpen && isMobileScreen && (
             <BurgerMenu
               handleClick={handleMenuClick}
               isMenuOpen={isMenuOpen}
@@ -143,6 +138,6 @@ export const Header = () => {
           )}
         </div>
       )}
-    </HeaderWraper>
+    </header>
   );
 };

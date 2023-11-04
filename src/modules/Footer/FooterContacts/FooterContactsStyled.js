@@ -28,15 +28,17 @@ export const Title = styled.h3`
   letter-spacing: 0.745px;
   padding: 0 20px;
   @media screen and (min-width: 768px) {
+    padding: 0 20px 0 20px;
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 103.312%; /* 35.126px */
+    letter-spacing: 2.21px;
   }
 
   @media screen and (min-width: 1440px) {
     padding: 0 180px 0 20px;
     font-size: ${(p) => p.theme.fontSizes.xl}px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 103.312%; /* 35.126px */
-    letter-spacing: 2.21px;
   }
 `;
 export const Underline = styled.div`

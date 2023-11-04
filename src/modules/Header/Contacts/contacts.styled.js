@@ -32,6 +32,8 @@ export const IconPhone = styled(PhoneIcon)`
   }
 
   @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -43,7 +45,10 @@ export const IconEmail = styled(EmailIcon)`
   width: 10px;
   height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
+
   @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -57,6 +62,8 @@ export const InstagramIcon = styled(AiOutlineInstagram)`
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
   @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -70,6 +77,8 @@ export const TelegramIcon = styled(RiTelegramLine)`
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
   @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -111,6 +120,10 @@ export const Link = styled.a`
     }
   }
   @media screen and (min-width: 768px) {
+    font-size: 16px;
+    &.head {
+      font-size: 12px;
+    }
   }
 
   @media screen and (min-width: 1440px) {

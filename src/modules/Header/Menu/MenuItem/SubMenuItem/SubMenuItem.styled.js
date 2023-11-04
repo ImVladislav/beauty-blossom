@@ -29,7 +29,7 @@ export const WrapItem = styled.div`
 export const Link = styled(NavLink)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
@@ -40,6 +40,9 @@ export const Link = styled(NavLink)`
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 

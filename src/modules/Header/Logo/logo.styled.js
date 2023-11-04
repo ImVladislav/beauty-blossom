@@ -38,19 +38,13 @@ export const TextLogo = styled.p`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   @media screen and (min-width: 768px) {
+    font-size: 25px;
+    line-height: 1;
   }
-
+  @media screen and (min-width: 1024px) {
+    font-size: 38px;
+  }
   @media screen and (min-width: 1440px) {
     font-size: 50px;
-    line-height: 1;
-
-    background: linear-gradient(
-      180deg,
-      #b347bc 0.21%,
-      rgba(179, 71, 188, 0) 237.87%
-    );
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 `;

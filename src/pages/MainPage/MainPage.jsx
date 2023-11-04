@@ -3,7 +3,6 @@ import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../shared/styles/Container";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import product from "../../images/productsBaner.png";
-import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 import {
   BannerTitle,
   StyledLink,
@@ -41,7 +40,6 @@ const MainPage = () => {
           {!isMobileScreen && <AboutUs />}
 
           <Baners />
-          <ScrollToTop />
         </div>
       )}
     </Container>
@@ -70,7 +68,6 @@ const MainPage = () => {
     //   <ProductSlider />
     //   <AboutUs />
     //   <BrandsWraper />
-    //   <ScrollToTop />
     // </Background>
   );
 };

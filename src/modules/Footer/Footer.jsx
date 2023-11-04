@@ -133,18 +133,8 @@ export const Footer = () => {
             </LogoWrap>
             <InfoWrap>
               <FooterMenu menuItems={menuItems} />
-
-              {isMobileScreen ? (
-                <div>
-                  <FooterInformBlock />
-                  <FooterContacts />
-                </div>
-              ) : (
-                <>
-                  <FooterInformBlock />
-                  <FooterContacts />
-                </>
-              )}
+              <FooterInformBlock />
+              <FooterContacts />
             </InfoWrap>
           </Wrap>
         </FooterWrap>

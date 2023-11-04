@@ -27,7 +27,7 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
 
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
@@ -38,6 +38,9 @@ export const Link = styled(NavLink)`
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 
@@ -75,7 +78,7 @@ export const ListSub = styled.ul`
 
 export const SubMenuWrapBrand = styled.ul`
   min-height: 320px;
-  width: 700px;
+  width: 550px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -88,6 +91,9 @@ export const SubMenuWrapBrand = styled.ul`
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
   /* z-index: 1; */
+  @media screen and (min-width: 1024px) {
+    width: 700px;
+  }
 `;
 
 export const ListSubBrand = styled.ul`
@@ -105,7 +111,7 @@ export const ItemSubBrand = styled.li`
 export const LinkBrand = styled(NavLink)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: flex-start;
@@ -121,11 +127,17 @@ export const LinkBrand = styled(NavLink)`
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
     border-radius: 49px;
   }
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
+  }
 `;
 export const BrandLetter = styled.h3`
   color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.title};
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
+  }
 `;
 export const BrandCard = styled.li`
   border-radius: 8px;

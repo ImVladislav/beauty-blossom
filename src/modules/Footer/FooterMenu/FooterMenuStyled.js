@@ -25,15 +25,15 @@ export const LinkItem = styled(NavLink)`
     color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.l}px;
-    /* font-size: 25px; */
+    font-size: ${(p) => p.theme.fontSizes.m}px;
     font-style: normal;
     font-weight: 300;
     line-height: 103.312%; /* 25.828px */
     letter-spacing: -1.125px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
 
@@ -60,16 +60,18 @@ export const Title = styled.h3`
   letter-spacing: 0.745px;
   padding: 0 20px 0 20px;
   @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-    padding: 0 100px 0 20px;
-    font-size: ${(p) => p.theme.fontSizes.xl}px;
+    padding: 0 20px 0 20px;
+    font-size: ${(p) => p.theme.fontSizes.l}px;
     /* font-size: 34px; */
     font-style: normal;
     font-weight: 500;
     line-height: 103.312%; /* 35.126px */
     letter-spacing: 2.21px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 100px 0 20px;
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
 `;
 

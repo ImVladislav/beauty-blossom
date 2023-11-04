@@ -2,17 +2,6 @@ import styled from "styled-components";
 
 import { HiMenu } from "react-icons/hi";
 
-export const HeaderWraper = styled.header`
-  /* @media screen and (min-width: 768px) {
-    max-width: 768px;
-    margin: 0 auto;
-  }
-
-  @media screen and (min-width: 1440px) {
-    max-width: 1440px;
-  } */
-`;
-
 export const ContainerHeader = styled.div`
   position: relative;
   z-index: 12;
@@ -26,15 +15,18 @@ export const HeaderTop = styled.div`
   color: ${(p) => p.theme.colors.textColor};
 `;
 export const HeaderWrap = styled.div`
-  max-width: 375px;
+  max-width: 767px;
   padding: 0 20px;
   margin: 0 auto;
   @media screen and (min-width: 768px) {
-    max-width: 768px;
+    max-width: 1023px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     max-width: 1440px;
   }
+  /* @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+  } */
 `;
 export const HeaderLayout = styled.div`
   height: 100px;
@@ -57,11 +49,15 @@ export const Wrap = styled.div`
 export const WrapContacts = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
 `;
 
 export const LoginShipingThumb = styled.div`
-  margin-left: 90px;
+  margin-left: 20px;
   display: flex;
+  @media screen and (min-width: 1440px) {
+    margin-left: 90px;
+  }
 `;
 
 export const Link = styled.a`

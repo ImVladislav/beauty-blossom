@@ -10,6 +10,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
+import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,6 +18,7 @@ root.render(
     <Provider store={store}>
       <BrowserRouter basename="/beauty-blossom">
         <App />
+        <ScrollToTopMobile />
         <ToastContainer
           position="bottom-right"
           autoClose={5000}

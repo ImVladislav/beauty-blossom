@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import Pagination from "../../../shared/components/Pagination/Pagination";
-import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 import {
   ProductListContainer,
@@ -140,8 +139,6 @@ const ProductsList = ({ items }) => {
           onPageChange={setCurrentPage}
         />
       )}
-
-      <ScrollToTop />
     </div>
   );
 };
