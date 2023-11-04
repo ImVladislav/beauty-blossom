@@ -12,8 +12,8 @@ export const TABLET_TYPE = "tablet";
 // export const LG_TABLET_SCREEN = 960;
 // export const LG_TABLET_TYPE = 'md';
 
-// export const SM_DESKTOP_SCREEN = 1024;
-// export const SM_DESKTOP_TYPE = 'lg';
+export const SM_DESKTOP_SCREEN = 1024;
+export const SM_DESKTOP_TYPE = "lg";
 
 export const LG_DESKTOP_SCREEN = 1440;
 // export const LG_DESKTOP_TYPE = 'xl';
@@ -43,10 +43,10 @@ export const RESOLUTIONS_LIST = [
   //   type: LG_TABLET_TYPE,
   //   size: LG_TABLET_SCREEN,
   // },
-  // {
-  //   type: SM_DESKTOP_TYPE,
-  //   size: SM_DESKTOP_SCREEN,
-  // },
+  {
+    type: SM_DESKTOP_TYPE,
+    size: SM_DESKTOP_SCREEN,
+  },
   {
     type: LG_DESKTOP_TYPE,
     size: LG_DESKTOP_SCREEN,

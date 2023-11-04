@@ -1,6 +1,7 @@
 // MobileMenu.styled.js
 import styled from "styled-components";
 import { stack as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom";
 
 export const MobileMenuContainer = styled(Menu)`
   background: #fff; // Колір фону меню
@@ -9,7 +10,8 @@ export const MobileMenuContainer = styled(Menu)`
   top: 0;
   left: 0;
   /* color: ${(p) => p.theme.colors.accentColor}; */
-  padding: 25px;
+  padding: 0 15px;
+
   & div {
     overflow: auto;
     /* max-height: 256px; */
@@ -45,5 +47,58 @@ export const MobileMenuItem = styled.div`
 
     text-decoration: none;
     color: ${(p) => p.theme.colors.textColor};
+  }
+`;
+
+export const InfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  padding: 4px 0;
+`;
+export const InfoLink = styled.a`
+  text-decoration: none;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 118.9%; /* 23.78px */
+  letter-spacing: -0.3px;
+
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.textColor};
+  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
+  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
+  /* display: flex; */
+  /* align-items: center; */
+
+  padding: 3px 10px;
+  &:hover,
+  &:focus {
+    border-radius: 26.467px;
+    background: #ffecd2;
+    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+export const InfoStylesLink = styled(Link)`
+  text-decoration: none;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 118.9%; /* 23.78px */
+  letter-spacing: -0.3px;
+
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.textColor};
+  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
+  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
+  /* display: flex; */
+  /* align-items: center; */
+
+  padding: 3px 10px;
+  &:hover,
+  &:focus {
+    border-radius: 26.467px;
+    background: #ffecd2;
+    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
 `;

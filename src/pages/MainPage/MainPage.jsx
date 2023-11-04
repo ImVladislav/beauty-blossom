@@ -22,7 +22,7 @@ import { Loader } from "../../shared/components/Loader/Loader";
 import { useMedia } from "../../hooks/useMedia";
 
 const MainPage = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isDesktopScreen, isMobileScreen } = useMedia();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const MainPage = () => {
           <Hero />
           <ProductSlider />
           <BrandsWraper />
-          {isDesktopScreen && <AboutUs />}
+          {!isMobileScreen && <AboutUs />}
 
           <Baners />
           <ScrollToTop />
