@@ -19,18 +19,18 @@ export const BanersWrap = styled.div`
   position: relative;
 `;
 
-export const Background = styled.div`
-  background: linear-gradient(
-    180deg,
-    #ffde9f 0.03%,
-    rgba(192, 178, 167, 0) 123.08%
-  );
-  background-size: contain;
+// export const Background = styled.div`
+//   background: linear-gradient(
+//     180deg,
+//     #ffde9f 0.03%,
+//     rgba(192, 178, 167, 0) 123.08%
+//   );
+//   background-size: contain;
 
-  width: 100%;
-  padding: 0 30px;
-  height: 291px;
-`;
+//   width: 100%;
+//   padding: 0 30px;
+//   height: 291px;
+// `;
 
 export const ProductPurito = styled.img`
   width: 100%;
@@ -50,7 +50,8 @@ export const LinkRetinol = styled(Link)`
   /* right: 65px; */
   bottom: 14%;
   right: 6%;
-
+  /* bottom: 15%;
+  right: 10%; */
   background: transparent;
   border: 3px solid #ec1c1c;
   border-radius: 50px;
@@ -62,7 +63,7 @@ export const LinkRetinol = styled(Link)`
   text-decoration: none;
 
   font-size: 10px;
-
+  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
   color: #ec1c1c;
   padding: 7px 30px;
 
@@ -74,12 +75,12 @@ export const LinkRetinol = styled(Link)`
     /* border: 3px solid ${(p) => p.theme.colors.accentColor}; */
   }
   @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 
   @media screen and (min-width: 1440px) {
     bottom: 15%;
     right: 10%;
-    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 export const LinkPurito = styled(Link)`

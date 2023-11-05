@@ -60,13 +60,13 @@ const CartWrap = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 5px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
   max-width: 350px;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
   @media screen and (min-width: 768px) {
     max-width: 740px;
   }
@@ -75,15 +75,12 @@ const CartWrap = styled.div`
 
     justify-content: center;
     gap: 30px;
-    margin-left: auto;
-    margin-right: auto;
+
     max-width: 900px;
     /* white-space: pre; */
     /* white-space: nowrap; Забороняє перенесення на новий рядок */
     margin-top: 40px;
     margin-bottom: 40px;
-    margin-left: auto;
-    margin-right: auto;
   }
   @media screen and (min-width: 1440px) {
     flex-wrap: nowrap;

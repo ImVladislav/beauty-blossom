@@ -38,9 +38,9 @@ const Baners = () => {
         </BanersWrap>
         {(screenType === "lg" || screenType === "desktop") && (
           <BanersWrap>
-            <Background>
-              <ProductPurito src={purito} alt="purito" />
-            </Background>
+            {/* <Background> */}
+            <ProductPurito src={purito} alt="purito" />
+            {/* </Background> */}
             <LinkPurito to="/brands/purito" name="purito" onClick={handleClick}>
               Дізнатись більше
             </LinkPurito>

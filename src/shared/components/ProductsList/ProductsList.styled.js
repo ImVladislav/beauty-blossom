@@ -1,11 +1,20 @@
 import styled from "styled-components";
+
 export const WrapListProduct = styled.div`
   padding: 6px;
+  min-width: 375px;
+  max-width: 768px;
   @media screen and (min-width: 768px) {
+    min-width: 768px;
+    max-width: 1024px;
   }
-
+  @media screen and (min-width: 1024px) {
+    min-width: 1024px;
+    max-width: 1440px;
+  }
   @media screen and (min-width: 1440px) {
-    width: 1440px;
+    /* width: 1440px; */
+    /* max-width: 1440px; */
   }
 `;
 
@@ -17,10 +26,11 @@ export const ProductListContainer = styled.ul`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
+    /* justify-content: flex-start; */
   }
 
   @media screen and (min-width: 1440px) {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
   }
 `;
 
