@@ -22,7 +22,6 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
       onStateChange={handleClick}
       left
       width={270}
-      className={isMenuOpen && "no-scroll"}
     >
       {items.map((item, index) => (
         <MobileMenuItem key={index}>

@@ -4,7 +4,7 @@ import { HiMenu } from "react-icons/hi";
 
 export const ContainerHeader = styled.div`
   position: relative;
-  z-index: 12;
+  z-index: 1;
   /* margin-bottom: 30px; */
 `;
 

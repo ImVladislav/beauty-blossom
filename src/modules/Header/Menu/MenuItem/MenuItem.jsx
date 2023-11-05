@@ -28,7 +28,7 @@ const MenuItem = ({ item }) => {
   const dispatch = useDispatch();
 
   const brand = items
-    ?.map((item) => item.brand)
+    ?.map((item) => item.brand.toUpperCase())
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);
@@ -38,7 +38,7 @@ const MenuItem = ({ item }) => {
     .sort();
 
   const sortedBrands = brand
-    .map((item) => item.charAt(0).toUpperCase()) // Виділяємо першу букву та переводимо її в верхній регістр
+    .map((item) => item.charAt(0)) // Виділяємо першу букву та переводимо її в верхній регістр
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);

@@ -77,6 +77,7 @@ export const ListSub = styled.ul`
 `;
 
 export const SubMenuWrapBrand = styled.ul`
+  padding: 5px;
   min-height: 320px;
   width: 550px;
   display: flex;
