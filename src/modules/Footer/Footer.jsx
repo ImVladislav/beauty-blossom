@@ -123,28 +123,22 @@ export const Footer = () => {
     //       </div>
     //     </Colums>
     //   </Wrapper>
-    // </FooterContainer>
-    <FooterWrap>
-      <Wrap>
-        <LogoWrap>
-          <Logo />
-        </LogoWrap>
-        <InfoWrap>
-          <FooterMenu menuItems={menuItems} />
-
-          {isMobileScreen ? (
-            <div>
+    // </FooterContainer
+    <>
+      {!isMobileScreen && (
+        <FooterWrap>
+          <Wrap>
+            <LogoWrap>
+              <Logo />
+            </LogoWrap>
+            <InfoWrap>
+              <FooterMenu menuItems={menuItems} />
               <FooterInformBlock />
               <FooterContacts />
-            </div>
-          ) : (
-            <>
-              <FooterInformBlock />
-              <FooterContacts />
-            </>
-          )}
-        </InfoWrap>
-      </Wrap>
-    </FooterWrap>
+            </InfoWrap>
+          </Wrap>
+        </FooterWrap>
+      )}
+    </>
   );
 };

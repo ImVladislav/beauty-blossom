@@ -11,11 +11,11 @@ import {
   Wrap,
 } from "./contacts.styled";
 
-const Contacts = ({ title, to, icon, head }) => {
+const Contacts = ({ title, to, icon, head, burger }) => {
   if (icon === "telegram") {
     return (
       <Wrap>
-        <Link href={to}>
+        <Link href={to} className={(head && "head") || (burger && "burger")}>
           <TelegramIcon />
 
           {title}
@@ -25,7 +25,7 @@ const Contacts = ({ title, to, icon, head }) => {
   } else if (icon === "instagram") {
     return (
       <Wrap>
-        <Link href={to}>
+        <Link href={to} className={(head && "head") || (burger && "burger")}>
           <InstagramIcon />
 
           {title}
@@ -35,8 +35,8 @@ const Contacts = ({ title, to, icon, head }) => {
   } else if (icon === "phone") {
     return (
       <Wrap>
-        <Link href={to} className={head && "head"}>
-          <ContactsElips>
+        <Link href={to} className={(head && "head") || (burger && "burger")}>
+          <ContactsElips className={burger && "burger"}>
             <IconPhone className={head && "head"} />
           </ContactsElips>
           {title}
@@ -46,8 +46,8 @@ const Contacts = ({ title, to, icon, head }) => {
   } else
     return (
       <Wrap>
-        <Link href={to}>
-          <ContactsElips>
+        <Link href={to} className={(head && "head") || (burger && "burger")}>
+          <ContactsElips className={burger && "burger"}>
             <IconEmail />
           </ContactsElips>
           {title}

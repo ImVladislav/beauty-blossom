@@ -15,13 +15,14 @@ import { setfilter } from "../../redux/filter/slice";
 import { useMedia } from "../../hooks/useMedia";
 
 const Baners = () => {
-  const { isDesktopScreen } = useMedia();
+  const { screenType } = useMedia();
   const dispatch = useDispatch();
+
   const handleClick = (e) => {
     const name = e.currentTarget.name;
-
     dispatch(setfilter(name));
   };
+
   return (
     <>
       <Wrap>
@@ -35,7 +36,7 @@ const Baners = () => {
             Дізнатись більше
           </LinkRetinol>
         </BanersWrap>
-        {isDesktopScreen && (
+        {(screenType === "lg" || screenType === "desktop") && (
           <BanersWrap>
             <Background>
               <ProductPurito src={purito} alt="purito" />

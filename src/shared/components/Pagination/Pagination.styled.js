@@ -27,11 +27,12 @@ export const PageButton = styled.button`
   }
   @media screen and (min-width: 768px) {
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     margin: 0 5px;
     padding: 8px 12px;
     font-size: 18px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 export const IconLeft = styled(AiOutlineLeft)``;

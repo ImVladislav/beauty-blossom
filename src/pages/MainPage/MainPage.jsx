@@ -3,7 +3,6 @@ import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { Container } from "../../shared/styles/Container";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import product from "../../images/productsBaner.png";
-import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 import {
   BannerTitle,
   StyledLink,
@@ -22,7 +21,7 @@ import { Loader } from "../../shared/components/Loader/Loader";
 import { useMedia } from "../../hooks/useMedia";
 
 const MainPage = () => {
-  const { isDesktopScreen } = useMedia();
+  const { isDesktopScreen, isMobileScreen } = useMedia();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,10 +37,9 @@ const MainPage = () => {
           <Hero />
           <ProductSlider />
           <BrandsWraper />
-          {isDesktopScreen && <AboutUs />}
+          {!isMobileScreen && <AboutUs />}
 
           <Baners />
-          <ScrollToTop />
         </div>
       )}
     </Container>
@@ -70,7 +68,6 @@ const MainPage = () => {
     //   <ProductSlider />
     //   <AboutUs />
     //   <BrandsWraper />
-    //   <ScrollToTop />
     // </Background>
   );
 };

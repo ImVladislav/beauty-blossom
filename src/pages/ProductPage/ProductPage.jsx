@@ -13,7 +13,6 @@ import Button from "../../shared/components/Button/Button";
 // import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
 import Sticker from "../../shared/components/Sticker/Sticker";
-import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 import { Container } from "../../shared/styles/Container";
 
 import {
@@ -155,7 +154,6 @@ const ProductPage = () => {
           </Info>
         </PageContainer>
       )}
-      <ScrollToTop />
     </Container>
   );
 };

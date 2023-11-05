@@ -13,12 +13,14 @@ const ScrollToTop = () => {
   };
 
   const scrollToTop = () => {
-    const scrollStep = -window.scrollY / (1000 / 10); // 10 мс - час для кожного кадру
-    const scrollInterval = setInterval(function () {
+    const scrollStep = -window.scrollY / 5; // Змінена швидкість прокрутки
+    const scrollInterval = requestAnimationFrame(function step() {
       if (window.scrollY === 0) {
-        clearInterval(scrollInterval);
+        cancelAnimationFrame(scrollInterval);
+      } else {
+        window.scrollBy(0, scrollStep);
+        requestAnimationFrame(step);
       }
-      window.scrollBy(0, scrollStep);
     });
   };
 

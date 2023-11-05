@@ -13,7 +13,6 @@ import {
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import OPTSalesRegister from "./OPTSalesRegister";
-import ScrollToTop from "../../shared/components/ScrollToTop/ScrollToTop";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -136,7 +135,6 @@ const SaleProgramPage = () => {
           </ModalContent>
         </ModalBackground>
       )}
-      <ScrollToTop />
     </Container>
   );
 };

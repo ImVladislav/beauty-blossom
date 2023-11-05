@@ -15,6 +15,10 @@ export const SearchFormContainer = styled.div`
     }
   }
   @media screen and (min-width: 768px) {
+    margin-le: auto;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 300px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -35,7 +39,7 @@ export const SearchInput = styled.input`
 
   box-sizing: border-box;
   width: 100%;
-  height: 23px;
+  /* height: 23px; */
   padding: 5px 20px 5px 35px;
 
   color: ${(p) => p.theme.colors.textColor};
@@ -45,9 +49,19 @@ export const SearchInput = styled.input`
     border: 1px solid ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
-  }
+    border-radius: 50px;
+    outline: none;
 
-  @media screen and (min-width: 1440px) {
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    padding: 0px 16px 0px 42px;
+    background: #fff;
+    font-size: 18px;
+    border: 1px solid ${(p) => p.theme.colors.border};
+    color: ${(p) => p.theme.colors.textColor};
+  }
+  @media screen and (min-width: 1024px) {
     border-radius: 50px;
     outline: none;
 
@@ -59,6 +73,8 @@ export const SearchInput = styled.input`
     font-size: 18px;
     border: 1px solid ${(p) => p.theme.colors.border};
     color: ${(p) => p.theme.colors.textColor};
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -77,11 +93,11 @@ export const SearchButton = styled.button`
   background-color: transparent;
 
   @media screen and (min-width: 768px) {
+    left: 20px;
   }
 
   @media screen and (min-width: 1440px) {
     /* width: 50px; */
-    left: 25px;
   }
 `;
 
@@ -90,10 +106,10 @@ export const SearchIcon = styled(BsSearch)`
   height: 10px;
   color: ${(p) => p.theme.colors.textColor};
   @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 20px;
-    height: 20px;
   }
 `;
