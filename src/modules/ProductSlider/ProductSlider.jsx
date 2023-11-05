@@ -327,7 +327,7 @@ export const ProductSlider = () => {
   };
 
   const handleNextSlide = () => {
-    console.log(displayedProducts);
+    // console.log(displayedProducts);
     const maxSlide = Math.ceil(products.length - itemsPerSlide);
     if (currentSlide < maxSlide) {
       setCurrentSlide(currentSlide + 1);

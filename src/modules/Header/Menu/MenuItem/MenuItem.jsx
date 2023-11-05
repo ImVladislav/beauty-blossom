@@ -57,7 +57,7 @@ const MenuItem = ({ item }) => {
   };
   const handleClick = (e) => {
     const name = e.target.innerText;
-    console.log(name);
+
     dispatch(setfilter(name));
   };
   return (
