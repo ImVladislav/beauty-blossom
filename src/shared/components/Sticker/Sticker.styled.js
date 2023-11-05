@@ -17,7 +17,7 @@ import styled from "styled-components";
 
 export const ProductSticker = styled.div`
   position: relative;
-  z-index: 1;
+  z-index: 0;
   /* display: table; */
   /* height: 24px; */
   /* line-height: 24px; */

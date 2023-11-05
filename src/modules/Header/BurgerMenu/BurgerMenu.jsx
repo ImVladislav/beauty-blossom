@@ -5,16 +5,21 @@ import {
   InfoWrap,
   InfoLink,
   InfoStylesLink,
+  InfoButton,
 } from "./BurgerMenu.styled";
-import BurgerMenuItem from "./BurgerMenuItem/BurgerMenuItem"; // Імпортуйте ваш компонент MenuItem
-import { Link } from "react-router-dom";
+import BurgerMenuItem from "./BurgerMenuItem/BurgerMenuItem";
+
 import Contacts from "../Contacts/Contacts";
 
 const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(true);
+  const [contacts, setContacts] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+  const handleClickP = () => {
+    setContacts(!contacts);
   };
   return (
     <MobileMenuContainer
@@ -33,7 +38,14 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
           />
         </MobileMenuItem>
       ))}
-      <InfoWrap style={{ display: "flex", flexDirection: "column" }}>
+      <InfoWrap
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: "3px",
+        }}
+      >
         <InfoStylesLink to="/cabinet/userData">
           Особистий кабінет
         </InfoStylesLink>
@@ -47,30 +59,35 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
         <InfoLink href="/beauty-blossom/wholesaleProgram/#about">
           Про нас
         </InfoLink>
-        <Contacts
-          burger
-          title="+380500529100"
-          to="tel:+380500529100"
-          icon="phone"
-        />
-        <Contacts
-          burger
-          title="beautyblossom.opt@gmail.com"
-          to="mailto:beautyblossom.opt@gmail.com"
-          icon="mail"
-        />
-        <Contacts
-          burger
-          title="beauty_blossom_opt"
-          to="https://www.instagram.com/"
-          icon="instagram"
-        />
-        <Contacts
-          burger
-          title="beauty_blossom"
-          to="https://web.telegram.org/"
-          icon="telegram"
-        />
+        <InfoButton onClick={handleClickP}>Контакти</InfoButton>
+        {contacts && (
+          <>
+            <Contacts
+              burger
+              title="+380500529100"
+              to="tel:+380500529100"
+              icon="phone"
+            />
+            <Contacts
+              burger
+              title="beautyblossom.opt@gmail.com"
+              to="mailto:beautyblossom.opt@gmail.com"
+              icon="mail"
+            />
+            <Contacts
+              burger
+              title="beauty_blossom_opt"
+              to="https://www.instagram.com/"
+              icon="instagram"
+            />
+            <Contacts
+              burger
+              title="beauty_blossom"
+              to="https://web.telegram.org/"
+              icon="telegram"
+            />
+          </>
+        )}
       </InfoWrap>
     </MobileMenuContainer>
   );
