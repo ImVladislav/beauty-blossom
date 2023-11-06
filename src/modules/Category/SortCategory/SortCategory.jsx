@@ -24,11 +24,12 @@ const SortCategory = () => {
   if (products.length === 0) {
     products = subSubCategoryItems;
   }
+  const sortedItems = [...products].sort((a, b) => b.amount - a.amount);
 
   return (
     <main>
       <Container>
-        <ProductsList items={products} />
+        <ProductsList items={sortedItems} />
       </Container>
     </main>
   );

@@ -4,13 +4,13 @@ import bg from "../../images/banner.png";
 import { Link } from "react-router-dom";
 
 export const WrapBackground = styled.div`
-  max-width: 1440px;
-  height: 270px;
+  /* max-width: 1440px; */
+  /* height: 270px; */
   position: relative;
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1024px) {
-    max-width: 1440px;
+    /* max-width: 1440px; */
     height: 350px;
   }
   @media screen and (min-width: 1440px) {
@@ -21,6 +21,7 @@ export const WrapBackground = styled.div`
 
 export const Background = styled.div`
   /* height: 400px; */
+  width: 100vw;
   background: linear-gradient(
     180deg,
     #ffc8a1 0.02%,
@@ -186,7 +187,7 @@ export const TextСonditions = styled.p`
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1024px) {
-    position: absolute;
+    /* position: absolute; */
     bottom: 10%;
     right: 10%;
     font-size: ${(p) => p.theme.fontSizes.sm}px;

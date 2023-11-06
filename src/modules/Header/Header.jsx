@@ -106,7 +106,14 @@ export const Header = () => {
         </>
       ) : (
         <div>
-          {/* top */}
+          {/* top */}{" "}
+          {isMenuOpen && isMobileScreen && (
+            <BurgerMenu
+              handleClick={handleMenuClick}
+              isMenuOpen={isMenuOpen}
+              items={menuItems}
+            />
+          )}
           <TopWrap>
             <Schedule>ПН - ПТ 9:30 - 18:00</Schedule>
             <Contacts
@@ -129,13 +136,6 @@ export const Header = () => {
           </CenterWrap>
           {/* bottom */}
           <SearchForm />
-          {isMenuOpen && isMobileScreen && (
-            <BurgerMenu
-              handleClick={handleMenuClick}
-              isMenuOpen={isMenuOpen}
-              items={menuItems}
-            />
-          )}
         </div>
       )}
     </header>

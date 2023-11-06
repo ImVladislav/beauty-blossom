@@ -4,6 +4,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import Pagination from "../../../shared/components/Pagination/Pagination";
 
 import {
+  WrapListProduct,
   ProductListContainer,
   FilterContainer,
   FilterSelect,
@@ -122,23 +123,25 @@ const ProductsList = ({ items }) => {
           </FilterSelect>
         </FilterWrap>
       </FilterContainer>
+      <WrapListProduct>
+        <ProductListContainer>
+          {getCurrentPageItems().length > 0 ? (
+            getCurrentPageItems().map((item) => (
+              <ProductCard key={item.id} products={item} />
+            ))
+          ) : (
+            <p>NO PRODUCTS</p>
+          )}
+        </ProductListContainer>
 
-      <ProductListContainer>
-        {getCurrentPageItems().length > 0 ? (
-          getCurrentPageItems().map((item) => (
-            <ProductCard key={item.id} products={item} />
-          ))
-        ) : (
-          <p>NO PRODUCTS</p>
+        {filteredItems.length > itemsPerPage && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
         )}
-      </ProductListContainer>
-      {filteredItems.length > itemsPerPage && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      )}
+      </WrapListProduct>
     </div>
   );
 };

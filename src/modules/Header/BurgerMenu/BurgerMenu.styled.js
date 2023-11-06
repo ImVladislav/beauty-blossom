@@ -102,3 +102,28 @@ export const InfoStylesLink = styled(Link)`
     box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
 `;
+export const InfoButton = styled.button`
+  text-decoration: none;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 118.9%; /* 23.78px */
+  letter-spacing: -0.3px;
+  background: transparent;
+  border: none;
+  /* text-decoration:   none; */
+  color: ${(p) => p.theme.colors.textColor};
+  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
+  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
+  /* display: flex; */
+  /* align-items: center; */
+
+  padding: 3px 10px;
+  text-align: left;
+  &:hover,
+  &:focus {
+    border-radius: 26.467px;
+    background: #ffecd2;
+    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
+  }
+`;

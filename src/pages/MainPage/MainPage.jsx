@@ -29,7 +29,8 @@ const MainPage = () => {
   }, []);
 
   return (
-    <Container>
+    // <Container>
+    <>
       {loading ? (
         <Loader />
       ) : (
@@ -42,7 +43,8 @@ const MainPage = () => {
           <Baners />
         </div>
       )}
-    </Container>
+    </>
+    // </Container>
     // <Background>
     //   <Container style={{ maxWidth: "100%" }}>
     //     {/* <MainBanner src={Banner} alt="banner" /> */}
