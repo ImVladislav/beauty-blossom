@@ -83,7 +83,7 @@ export const CostumerStatusinput = styled.input`
   &:focus {
     outline: none;
   }
-  @media (min-width: 1440px) {
+  @media (max-width: 1440px) {
     font-size: 14px;
 }
 @media (min-width: 1024px) and (max-width: 1439px) {
@@ -159,8 +159,10 @@ export const CityitemsBlock = styled.ul`
 
 export const Select = styled.select`
 border-radius: 50px; 
-
-
+width: 100%;
+    padding: 5px 25px 5px 10px;
+    font-size: 14px;
+    margin: 10px 0px;
          @media (min-width: 1440px) {
     padding: 5px 25px 5px 10px;
     font-size: 14px;
@@ -265,7 +267,7 @@ export const OrdersThumb = styled.div`
     padding: 14px;
     overflow-x: auto;
     position: relative;
-
+    margin-left: 80px;
     
     &::before {
         content: "";
@@ -281,6 +283,7 @@ export const OrdersThumb = styled.div`
         
     border-radius: 50px;
     }
+    
 
          @media (min-width: 1240px) and (max-width: 1439px) {
 
