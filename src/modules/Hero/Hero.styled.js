@@ -40,6 +40,9 @@ export const WrapСonditions = styled.div`
 `;
 
 export const Wrap = styled.div`
+  margin: 0 auto;
+  max-width: 1440px;
+  position: relative;
   display: flex;
   justify-content: center;
 
@@ -51,7 +54,7 @@ export const ImageWrap = styled.div``;
 export const Product = styled.img`
   position: absolute;
 
-  bottom: 0px;
+  bottom: -35px;
   /* left: 536px; */
 
   width: 210px;
@@ -62,12 +65,13 @@ export const Product = styled.img`
     position: relative;
   }
   @media screen and (min-width: 1440px) {
+    width: 375px;
   }
 `;
 export const Wraper = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  /* flex-direction: column;
+  align-items: flex-end; */
 `;
 export const TextWrap = styled.div`
   margin-top: 10px;
@@ -77,13 +81,11 @@ export const TextWrap = styled.div`
   text-align: center;
   margin-left: 150px;
   @media screen and (min-width: 768px) {
+    margin-left: 200px;
   }
   @media screen and (min-width: 1024px) {
     margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+
     margin-left: 50px;
   }
   @media screen and (min-width: 1440px) {
@@ -129,6 +131,7 @@ export const TextSecond = styled.p`
   margin-bottom: 37px;
   /* max-width: 300px; */
   @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
@@ -157,12 +160,14 @@ export const LinkBtn = styled(Link)`
   transition: all 250ms ease-in-out;
   color: ${(p) => p.theme.colors.accentColor};
   margin-bottom: 30px;
-  margin-left: auto;
+  margin-left: 50px;
   &:hover {
     color: white;
     background: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
+    margin-left: 0;
+    margin-bottom: 40px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
@@ -174,8 +179,9 @@ export const LinkBtn = styled(Link)`
 `;
 
 export const TextСonditions = styled.p`
-  /* position: absolute; */
-
+  position: absolute;
+  bottom: -2%;
+  right: 3%;
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.accentColor};
@@ -185,24 +191,22 @@ export const TextСonditions = styled.p`
 
   justify-content: flex-end; */
   @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1024px) {
-    /* position: absolute; */
-    bottom: 10%;
+    bottom: 8%;
     right: 10%;
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    font-size: ${(p) => p.theme.fontSizes.xxs}px;
     font-weight: ${(p) => p.theme.fontWeights.body};
     color: ${(p) => p.theme.colors.accentColor};
-    margin-top: 10px;
+
     margin-right: 30px;
   }
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
   @media screen and (min-width: 1440px) {
-    /* display: flex;
-
-  justify-content: flex-end; */
   }
 `;
 
+export const WrapTextСonditions = styled.div``;
 // @media screen and (min-width: 768px) {
 // }
 
