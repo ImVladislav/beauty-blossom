@@ -1,35 +1,74 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 export const CostumerStatus = styled.div`
     display: flex;
+    justify-content: space-evenly;
+
+        @media (max-width: 767px) {
+      display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 export const OrderForm = styled.div`
 display: flex;
+padding: 0 20px;
+
 `
 
 export const OrderDetails = styled.div`
 width: 100%;
 `
 
-export const CostumerStatusItem = styled.label`  
+export const CostumerStatusItem = styled.label`
+  
     padding: 5px;
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 12px;
+}
+    @media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
       @media (min-width: 1440px) {
    
-    font-size: 16px;
+    font-size: 14px;
   
 }
 `
 
 export const Form = styled.form`
     display: flex;
+
+
+@media (max-width: 768px) {
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+
 `
 
 export const DeliveryInfoBlock = styled.div`
  display: flex;
     flex-direction: column;
    
-    min-width: 450px;
+    min-width: 400px;
+    @media (min-width: 1024px) and (max-width: 1439px) {
+  min-width: 300px;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  min-width: 250px;
+}
+@media (max-width: 768px) {
+  min-width: 200px;
+}
+
  `
 
 
@@ -45,10 +84,15 @@ export const CostumerStatusinput = styled.input`
     outline: none;
   }
   @media (min-width: 1440px) {
-   
-    font-size: 16px;
-  
+    font-size: 14px;
 }
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 12px;
+}
+
 .custom-toast{
   font-size: 20px; /* Ваш розмір шрифту */
   background-color: #ff0000;
@@ -64,6 +108,7 @@ export const Citylist = styled.div`
   right: 0;
  z-index: 2;
   position: absolute;
+
 `;
 
 export const CityItem = styled.span`
@@ -74,9 +119,13 @@ export const CityItem = styled.span`
     color: white;
   }
     @media (min-width: 1440px) {
-   
-    font-size: 16px;
-  
+    font-size: 14px;
+}
+    @media (min-width: 1024px) and (max-width: 1439px) {  
+    font-size: 12px;
+}
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
 }
 `;
 
@@ -113,12 +162,23 @@ border-radius: 50px;
 
 
          @media (min-width: 1440px) {
-    padding: 5px 10px;
-    font-size: 16px;
+    padding: 5px 25px 5px 10px;
+    font-size: 14px;
     margin: 10px 0px;
-  
 }
- `
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+  padding: 5px 25px 5px 10px;
+  margin: 10px 0px;
+}
+ 
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+  padding: 5px 25px 5px 10px;
+  margin: 10px 0px;
+}
+`
 
 export const Textarea = styled.textarea`
   border-radius: 50px;
@@ -128,7 +188,7 @@ export const Textarea = styled.textarea`
   height: 41px; /* Початкова висота 100px */
   padding: 14px 20px;
   overflow-y: hidden;
-
+  margin-bottom: 20px;
   &:not(:focus)::after {
     content: "${(props) => props.value || ' '}";
     visibility: hidden;
@@ -139,35 +199,74 @@ export const Textarea = styled.textarea`
 
     @media (min-width: 1440px) {
    padding: 5px 10px;
-    font-size: 16px;
+    font-size: 14px;
+    height: 31px;
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
   
+}
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
 }
 `;
 
 export const Titles = styled.h3`
     display: flex;
+    justify-content: center;
     white-space: nowrap;
  margin-bottom: 12px;
  margin-top: 12px;
- width: 26px;
+ width: 100%;
  font-weight:bold;
+ font-size: 22px;
+ @media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 20px;
+
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 16px;
+}
 `
 export const Title = styled.h2`
     display: flex;
     justify-content: center;
-    
+    font-size: 32px;
     border-bottom: 1px solid #C7C7C7;
-    margin: 0px 180px 18px 180px;
+    margin: 20px 320px 20px 320px;
     white-space: nowrap;
      font-weight:bold;
+
+     @media (min-width: 1240px) and (max-width: 1439px) {
+  font-size: 28px;
+  margin: 20px 400px 20px 400px;
+}
+
+     @media (min-width: 1024px) and (max-width: 1239px) {
+    font-size: 22px;
+     margin: 16px 280px 16px 280px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 20px;
+     margin: 16px 280px 16px 280px;
+}
+
+     @media (max-width: 767px) {
+    font-size: 20px;
+     margin: 16px 50px 16px 50px;
+}
 `
 
 export const OrdersThumb = styled.div`
     border: 1px solid ${(p) => p.theme.colors.textColor};
     border-radius: 50px;
     padding: 14px;
+    overflow-x: auto;
     position: relative;
-    margin-left: 40px;
+
+    
     &::before {
         content: "";
         position: absolute;
@@ -182,6 +281,21 @@ export const OrdersThumb = styled.div`
         
     border-radius: 50px;
     }
+
+         @media (min-width: 1240px) and (max-width: 1439px) {
+
+ margin-left: 80px;
+         }
+
+         
+         @media (min-width: 1024px) and (max-width: 1239px) {
+
+ margin-left: 20px;
+         }
+
+           @media screen and (min-width: 768px) and (max-width: 1023px) {
+    margin-left: 10px;
+  }
 `
 
 export const OrdersHeaders = styled.thead`
@@ -204,8 +318,19 @@ export const OrdersHeaderItem = styled.p`
  border-collapse: collapse;
       @media (min-width: 1440px) {
    
-    font-size: 16px;
-  
+    font-size: 14px;
+}
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+
+}
+
+     @media (max-width: 767px) {
+    font-size: 10px;
+
 }
 `;
 export const FirstOrdersHeaderItem = styled.p`
@@ -222,8 +347,21 @@ border-top-left-radius: 20px;
 
      @media (min-width: 1440px) {
    
-    font-size: 16px;
+    font-size: 14px;
   
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+
+}
+     @media (max-width: 767px) {
+    font-size: 10px;
+
 }
 `
 export const LastOrdersHeaderItem = styled.p`
@@ -239,8 +377,21 @@ background: #FFF6E9;
  border-collapse: collapse;
           @media (min-width: 1440px) {
    
-    font-size: 16px;
+    font-size: 14px;
   
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+
+}
+
+     @media (max-width: 767px) {
+    font-size: 10px;
+
 }
 `
 export const HeaderBlock = styled.th`
@@ -255,19 +406,52 @@ export const OrdersItem = styled.td`
     text-decoration: none;
     font-size: 18px;
     text-align: center;
-    min-width: 90px;
+    /* min-width: 90px; */
   
 `
 
+export const ItemNameItem = styled.td`
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+   @media (min-width: 768px) and (max-width: 1023px) {
+    max-width: 300px;
+  }
 
+  @media (min-width: 1220px) and (max-width: 1439px) {
+     max-width: 100%
+  }
+
+    @media (min-width: 1024px) and (max-width: 1219px) {
+     max-width: 400px
+  }
+
+       @media (max-width: 767px) {
+    max-width: 250px;
+
+}
+`
 
 export const OrdersImage = styled.img`
-    width: 80px;
-    padding: 0px;
+  width: 80px;
+  padding: 0px;
+  margin: 6px;
+  border: 1px solid ${(p) => p.theme.colors.textColor};
 
-    margin: 6px;
-    border: 1px solid ${(p) => p.theme.colors.textColor};
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 50px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    width: 60px;
+  }
+
+  @media (min-width: 1439px) {
+    width: 80px;
+  }
 `
+
 export const OrdersItemBlock = styled.tr`
     display: flex;
     justify-content: space-between;
@@ -287,14 +471,36 @@ export const Description = styled.p`
     font-size: 12px;
   
 }
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 10px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 10px;
+
+}
+
+     @media (max-width: 767px) {
+    font-size: 10px;
+
+}
     `
 
 export const SelectOpton = styled.option`
 
          @media (min-width: 1440px) {
    
-    font-size: 16px;
+    font-size: 14px;
   
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 12px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+
 }
     `
 
@@ -310,20 +516,39 @@ export const SubmitButton = styled.button`
     align-items: center;
     font-weight: 400;
     text-decoration: none;
-    font-size: 18px;
+
     padding: 7px 30px;
     transition: all 250ms ease-in-out;
     color: ${(p) => p.theme.colors.textColor};
-    margin-left: auto;
-    margin-right: 15px;
-    margin-top: 30px;
+    margin: 30px auto 30px;
+
+
+         @media (min-width: 1440px) {
+   
+    font-size: 18px;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 16px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+    border: 2px solid ${(p) => p.theme.colors.textColor};
+    padding: 4px 12px;
+}
+
+
+
     &:hover{
         color: white;
     background: ${(p) => p.theme.colors.textColor};
 
 
-
     }
+
+    
     `
     export const Text = styled.p`
 overflow: hidden;
@@ -335,5 +560,77 @@ overflow: hidden;
     font-size: 12px;
   
 }
+
+         @media (min-width: 1440px) {
+   
+    font-size: 18px;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 16px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
+    border: 2px solid ${(p) => p.theme.colors.textColor};
+    padding: 4px 12px;
+}
+
     `
+export const LoaderThumb = styled.li`
+width: 60px;
+height: 60px;
+position: relative;
+
+    margin-left: auto;
+    margin-right: auto;
+
+`
+
+
+export const LinkThumb = styled.div`
+ display: flex;
+ justify-content: space-around;
+ margin: 24px 0;
+`
+export const LinkButton = styled(Link)`
+  cursor: pointer;
+  background: #FFF0DA;
+  color: ${(p) => p.theme.colors.textColor};
+  border-radius: 46px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  padding: 6px 40px;
+  margin-top: 20px;
+  &:hover {
+    background: #FFE9C9;
+  }
+`;
+
+export const ModalText = styled.p`
+color: ${(p) => p.theme.colors.textColor};
+  color: ${(p) => p.theme.colors.textColor};
+font-size: 20px;
+display: flex;
+justify-content: center;
+`
+
+export const TableThumb = styled.div`
+
+
+         @media (min-width: 1240px) {
+   
+    width: 100%;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  width: 685px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+     width: 500px;
+}
+`
 
