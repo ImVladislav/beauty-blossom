@@ -4,7 +4,7 @@ import { HiMenu } from "react-icons/hi";
 
 export const ContainerHeader = styled.div`
   position: relative;
-  z-index: 12;
+  z-index: 1;
   /* margin-bottom: 30px; */
 `;
 
@@ -73,7 +73,7 @@ export const MenuBottom = styled.div`
   top: 20px;
   margin: -20px 0 20px;
   background: ${(p) =>
-    p.pathname === "/" ? p.theme.colors.white : p.theme.colors.topHeaderLine};
+    p.$pathname === "/" ? p.theme.colors.white : p.theme.colors.topHeaderLine};
   /* background: ${(p) => p.theme.colors.topHeaderLine}; */
   /* background: ${(p) => p.theme.colors.menuHover}; */
   color: ${(p) => p.theme.colors.textColor};

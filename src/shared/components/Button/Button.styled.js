@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const ButtonStyle = styled.button`
   /* background: transparent; */
   background-color: ${(p) => (p.disabled ? "#ccc" : "transparent")};
-  border: ${(p) =>
-    p.disabled ? `1px solid #ccc` : p.theme.colors.accentColor};
+  border: 1px solid ${(p) => (p.disabled ? `#ccc` : p.theme.colors.accentColor)};
   border-radius: 50px;
   display: flex;
   text-align: center;
@@ -21,7 +20,7 @@ export const ButtonStyle = styled.button`
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
   &:hover {
     color: ${(p) => (p.disabled ? p.theme.colors.white : p.theme.colors.white)};
-    border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+    border: 1px solid ${(p) => (p.disabled ? `#ccc` : "none")};
 
     background-color: ${(p) =>
       p.disabled ? "#ccc" : p.theme.colors.accentColor};
