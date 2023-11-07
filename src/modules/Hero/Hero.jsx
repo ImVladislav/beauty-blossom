@@ -14,6 +14,7 @@ import {
   TextСonditions,
   WrapСonditions,
   Wraper,
+  WrapTextСonditions,
 } from "./Hero.styled.js";
 const Hero = () => {
   return (
@@ -35,7 +36,9 @@ const Hero = () => {
                   </TextSecond>
                   <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
                 </TextWrap>
-                <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+                <div>
+                  <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+                </div>
               </Wraper>
             </Wrap>
           </WrapСonditions>
