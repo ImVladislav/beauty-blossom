@@ -8,6 +8,7 @@ import {
   ModalBackdrop,
   LoginPasswordToggle,
   LogOut,
+  Underline,
 } from "./login.styled";
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
@@ -90,13 +91,29 @@ const LogIn = () => {
         <ModalBackdrop>
           <Modal>
             <CloseButton close={() => setShowModal(false)} />
-            <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-              <Link onClick={() => setLoginOrRegister(true)}>
-                <LoginPasswordToggle>Вхід</LoginPasswordToggle>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                marginBottom: "10px",
+              }}
+            >
+              <Link
+                className={loginOrRegister && "activ"}
+                onClick={() => setLoginOrRegister(true)}
+              >
+                Вхід
+                {/* <LoginPasswordToggle>Вхід</LoginPasswordToggle> */}
+                {loginOrRegister && <Underline />}
               </Link>
 
-              <Link onClick={() => setLoginOrRegister(false)}>
-                <LoginPasswordToggle>Реєстрація</LoginPasswordToggle>
+              <Link
+                className={!loginOrRegister && "activ"}
+                onClick={() => setLoginOrRegister(false)}
+              >
+                Реєстрація
+                {/* <LoginPasswordToggle>Реєстрація</LoginPasswordToggle> */}
+                {!loginOrRegister && <Underline />}
               </Link>
             </div>
             {loginOrRegister ? <LoginForm /> : <RegisterForm />}

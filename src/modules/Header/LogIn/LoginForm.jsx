@@ -7,6 +7,13 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/operation";
 import { toast } from "react-toastify";
+import styled from "styled-components";
+
+const Message = styled(ErrorMessage)`
+  font-size: 7px;
+  color: red;
+  position: absolute;
+`;
 
 const LoginForm = () => {
   const initialValues = {
@@ -41,7 +48,7 @@ const LoginForm = () => {
       .email("Не валідна адреса пошти")
       .required("Введіть адресу електронної пошти "),
     password: Yup.string()
-      .min(6, "Пароль має мітити не менше 6 символів")
+      .min(6, "Пароль має містити не менше 6 символів")
       .required("Введіть пароль"),
   });
 
@@ -60,20 +67,20 @@ const LoginForm = () => {
           <p>Ви успішно авторизувались</p>
         ) : (
           <>
-            <FormLavelBloks>
+            <div style={{ display: "flex", gap: "5px", marginBottom: "15px" }}>
+              {/* <FormLavelBloks> */}
               <div>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-                ////////
+                <Message name="email" component="div" />
               </div>
               <div>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-                ////////
+                <Message name="password" component="div" />
               </div>
-            </FormLavelBloks>
+            </div>
+            {/* </FormLavelBloks> */}
 
             <FormLavelBloks>
               <Button text={"Авторизуватись"} type="submit" />

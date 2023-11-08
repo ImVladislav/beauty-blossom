@@ -7,6 +7,39 @@ export const Link = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+  text-align: center;
+  color: #504056;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 15.347px */
+  letter-spacing: 0.225px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+    & div {
+      background: ${(p) => p.theme.colors.accentColor};
+    }
+  }
+  &.activ {
+    color: ${(p) => p.theme.colors.accentColor};
+    & div {
+      background: ${(p) => p.theme.colors.accentColor};
+    }
+  }
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1440px) {
+    text-align: center;
+
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    text-transform: uppercase;
+  }
 `;
 
 export const LogInElips = styled.div`
@@ -162,9 +195,10 @@ export const LoginPasswordToggle = styled.h3`
 export const LoginModalText = styled.p`
   color: #504056;
   display: flex;
+  margin-left: 10px;
   /* text-align: center; */
   align-self: center;
-  font-size: 10px;
+  font-size: 9px;
   font-style: normal;
   font-weight: 400;
   line-height: 102.312%; /* 15.347px */
@@ -191,8 +225,9 @@ export const LoginModalText = styled.p`
 
 export const FormikInput = styled(Field)`
   margin: 3px 3px 3px 0;
-  max-width: 100px;
-  max-height: 20px;
+  max-width: 150px;
+  min-width: 130px;
+  /* max-height: 20px; */
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   border-radius: 25px;
@@ -216,7 +251,7 @@ font-family: Century Gothic; */
   }
 
   @media screen and (min-width: 1440px) {
-    min-width: 300px;
+    /* min-width: 300px; */
 
     font-size: 18px;
     font-style: normal;
@@ -233,4 +268,11 @@ font-family: Century Gothic; */
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
   }
+`;
+
+export const Underline = styled.div`
+  flex: 1;
+  height: 1px;
+  background-color: #000; /* You can change the color to your preference */
+  /* margin-left: 20px; Adjust the spacing between the title and the line */
 `;
