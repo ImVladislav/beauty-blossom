@@ -47,9 +47,41 @@ export const CabinetLink = styled(Link)`
     &:hover::before {
         opacity: 1; /* Змінити прозорість фону при наведенні */
     }
+
+
+     @media (min-width: 1440px) {
+        
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+padding: 0px 20px;
+ } 
+ @media (max-width: 768px) {
+  padding: 0px 30px;
+ }
 `;
 export const UserPageBlock = styled.div`
 display: flex;
+
+     @media (min-width: 1440px) {
+        
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+
+ } 
+ @media (max-width: 768px) {
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
 
 
 `
@@ -57,7 +89,7 @@ export const Title = styled.h2`
 display: flex;
 justify-content: center;
 border-bottom: 1px solid #C7C7C7;
-margin: 40px 140px;
+margin: 40px 0px;
 
 `
 export const RedStar = styled.span`
@@ -69,6 +101,16 @@ display: flex;
 justify-content: space-between;
 margin-bottom: 15px;
 
+
+
+ @media (max-width: 768px) {
+
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 export const ContactInformInput = styled.input`
@@ -76,11 +118,27 @@ border-radius: 50px;
 padding: 4px 10px;
 width: 480px;
 
+ @media (min-width: 1440px) {
+        width: 480px;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+        width: 380px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  width: 280px;
+ } 
+ @media (max-width: 768px) {
+    width: 350px;
+ }
+
 `
 
 export const ContactInformForm = styled.form`
 margin-left: 50px;
-
+ @media (max-width: 768px) {
+    margin-left: 0px;
+ }
 `
 
 export const ContactInformSubButton = styled.button`
@@ -123,6 +181,12 @@ export const ContactInformSubButton = styled.button`
     &:hover::before {
         opacity: 1; /* Змінити прозорість фону при наведенні */
     }
+
+     @media (max-width: 768px) {
+    margin-bottom: 50px;
+ }
+
+
 `;
 
 
@@ -193,4 +257,11 @@ border: 1px solid #C7C7C7;
         font-weight: bold;
         background: #FFF6E9;
     }
+`
+export const CabinetContainer = styled.div`
+width: 100%;
+
+`
+export const CabinetBlock = styled.div`
+padding: 0, 20px;
 `

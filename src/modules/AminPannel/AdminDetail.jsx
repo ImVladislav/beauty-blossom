@@ -155,47 +155,47 @@ const AdminDetail = ({ selectedOrder }) => {
                 ) : (
                   selectedOrder.email
                 )}
-                          </p>
-                          <p>
-                        Адреса доставки:
-          {isEditing ? (
-            <tr>
-              <input
-                type="text"
-                value={editedOrder.city}
-                onChange={(e) => handleInputChange(e, 'city')}
-              />
-              <input
-                type="text"
-                value={editedOrder.warehouse}
-                onChange={(e) => handleInputChange(e, 'warehouse')}
-              />
-            </tr>
-          ) : (
-            <span>
-              {editedOrder.city}, {editedOrder.warehouse}
-            </span>
-          )}
-        </p>
-                                    <p>
-  Статус товару:{' '}
-  {isEditing ? (
-                                  <select
-                                      name="status"
-      value={selectedOrder.status}
-      onChange={(e) => handleInputChange(e, 'status')}
-    >
-      <option value="Новий">Новий</option>
-      <option value="Прийняте в роботу">Прийняте в роботу</option>
-      <option value="Збирається">Збирається</option>
-      <option value="Зібрано">Зібрано</option>
-      <option value="Відправлено">Відправлено</option>
-      <option value="Відміна">Відміна</option>
-    </select>
-  ) : (
-    editedOrder.status
-  )}
-</p>
+              </p>
+              <p>
+                Адреса доставки:
+                {isEditing ? (
+                  <tr>
+                    <input
+                      type="text"
+                      value={editedOrder.city}
+                      onChange={(e) => handleInputChange(e, 'city')}
+                    />
+                    <input
+                      type="text"
+                      value={editedOrder.warehouse}
+                      onChange={(e) => handleInputChange(e, 'warehouse')}
+                    />
+                  </tr>
+                ) : (
+                  <span>
+                    {editedOrder.city}, {editedOrder.warehouse}
+                  </span>
+                )}
+              </p>
+              <p>
+                Статус товару:{' '}
+                {isEditing ? (
+                  <select
+                    name="status"
+                    value={selectedOrder.status}
+                    onChange={(e) => handleInputChange(e, 'status')}
+                  >
+                    <option value="Новий">Новий</option>
+                    <option value="Прийняте в роботу">Прийняте в роботу</option>
+                    <option value="Збирається">Збирається</option>
+                    <option value="Зібрано">Зібрано</option>
+                    <option value="Відправлено">Відправлено</option>
+                    <option value="Відміна">Відміна</option>
+                  </select>
+                ) : (
+                  editedOrder.status
+                )}
+              </p>
             </TableItems>
           </tr>
         </tbody>

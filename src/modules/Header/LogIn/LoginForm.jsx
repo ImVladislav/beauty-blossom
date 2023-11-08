@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText } from "./login.styled";
+import { FormikInput, InputBlock, InputErrors, LoginModalText } from "./login.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -61,18 +61,18 @@ const LoginForm = () => {
         ) : (
           <>
             <FormLavelBloks>
-              <div>
+              <InputBlock>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-                ////////
-              </div>
-              <div>
+                <ErrorMessage name="email" component={InputErrors} />
+               
+              </InputBlock>
+              <InputBlock>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-                ////////
-              </div>
+                <ErrorMessage name="password" component={InputErrors} />
+                
+              </InputBlock>
             </FormLavelBloks>
 
             <FormLavelBloks>

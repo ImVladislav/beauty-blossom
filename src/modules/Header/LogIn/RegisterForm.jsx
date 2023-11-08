@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText } from "./login.styled";
+import { FormikInput, InputBlock, LoginModalText } from "./login.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -81,35 +81,36 @@ const RegisterForm = () => {
         ) : (
           <>
             <FormLavelBloks>
-              <div>
+              <InputBlock>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
                 <ErrorMessage name="email" component="div" />
-              </div>
-              <div>
+              </InputBlock>
+              <InputBlock>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
                 <ErrorMessage name="password" component="div" />
-              </div>
+              </InputBlock>
             </FormLavelBloks>
             <FormLavelBloks>
-              <div>
+              <InputBlock>
                 <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
                 <FormikInput type="text" name="firstName" />
                 <ErrorMessage name="firstName" component="div" />
-              </div>
-              <div>
+              </InputBlock>
+              <InputBlock>
                 <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
                 <FormikInput type="text" name="lastName" />
                 <ErrorMessage name="lastName" component="div" />
-              </div>
-            </FormLavelBloks>
-            <div>
+              </InputBlock>
+              </FormLavelBloks>
+            <FormLavelBloks>  
+            <InputBlock>
               <LoginModalText htmlFor="number">Телефон</LoginModalText>
               <FormikInput type="tel" name="number" />
               <ErrorMessage name="number" component="div" />
-            </div>
-
+            </InputBlock>
+              </FormLavelBloks>
             <FormLavelBloks>
               <Button text={"Зареєструватись"} type="submit" />
             </FormLavelBloks>

@@ -1,6 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
 import { Container } from "../../shared/styles/Container";
 import {
+  CabinetBlock,
+  CabinetContainer,
   CabinetLink,
   Nav,
   StyledLink,
@@ -26,12 +28,12 @@ const UserPage = () => {
     setPageTitle("ЗМІНИТИ ПАРОЛЬ");
   };
   return (
-    <Container>
-      <div>
+    <CabinetContainer>
+<div>
         {/* <ProductOfTheWeek /> */}
         <Header />
         <Bgd>
-          <div>
+          <CabinetBlock>
             <Title>{pageTitle}</Title>
             <UserPageBlock>
               <Nav>
@@ -55,11 +57,11 @@ const UserPage = () => {
 
               <Outlet />
             </UserPageBlock>
-          </div>
+          </CabinetBlock>
         </Bgd>
         <Footer />
-      </div>
-    </Container>
+        </div>
+    </CabinetContainer>
   );
 };
 export default UserPage;

@@ -1,27 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton } from './UserPageStyled';
+import axios from 'axios';
 
 const PaymentHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const [paymentHistoryData, setPaymentHistoryData] = useState([]);
+
+  useEffect(() => {
+    // Виконати GET-запит при завантаженні компонента
+    axios.get('https://beauty-blossom-backend.onrender.com/api/orders/byUser')
+      .then((response) => {
+        setPaymentHistoryData(response.data); // Встановити отримані дані
+      })
+      .catch((error) => {
+        console.error('Помилка при отриманні даних:', error);
+      });
+  }, []);
 
   // Приклад даних історії оплати (можете замінити на свої дані)
-  const paymentHistoryData = [
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description:'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-    { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  // const paymentHistoryData = [
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description:'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
+  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
                
-  ];
+  // ];
 
   // Розрахунок індексів для пагінації
 const startIndex = (currentPage - 1) * itemsPerPage;
@@ -42,10 +55,10 @@ const startIndex = (currentPage - 1) * itemsPerPage;
       <table>
         <thead>
           <tr>
-            <PaymentHistoryTh>ДАТА ЗАМОВЛЕННЯ</PaymentHistoryTh>
-            <PaymentHistoryTh>НОМЕР ЗАМОВЛЕННЯ</PaymentHistoryTh>
-            <PaymentHistoryTh>СТАТУС ЗАМОВЛЕННЯ</PaymentHistoryTh>
-            <PaymentHistoryTh>ЗАГАЛЬНА СУМА</PaymentHistoryTh>
+            <PaymentHistoryTh>ДАТА </PaymentHistoryTh>
+            <PaymentHistoryTh>НОМЕР </PaymentHistoryTh>
+            <PaymentHistoryTh>СТАТУС </PaymentHistoryTh>
+            <PaymentHistoryTh> СУМА</PaymentHistoryTh>
             <PaymentHistoryTh>ПЕРЕГЛЯД</PaymentHistoryTh>
           </tr>
         </thead>

@@ -55,6 +55,7 @@ const OrderPlacement = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [courierDelivery, setCourierDelivery] = useState(false);
+    const [orderNumber, setOrderNumber] = useState('');
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
@@ -69,7 +70,7 @@ const OrderPlacement = () => {
         city: '',
         paymentMethod: "Оплата за реквізитами",
         deliveryMethod: courier,
-        
+        orderNumber: orderNumber,
 
     });
 
@@ -99,8 +100,29 @@ const handleInputChange = (e) => {
     secoundWord = words[1];
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
+    
+function logCurrentTime12HourFormat() {
+  const currentTime = new Date();
+  let hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const seconds = currentTime.getSeconds();
+  const milliseconds = currentTime.getMilliseconds();
 
-    useEffect(() => {
+  // Додавання нуля перед однозначними хвилинами, секундами та мілісекундами
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const formattedMilliseconds = milliseconds < 10 ? `00${milliseconds}` : (milliseconds < 100 ? `0${milliseconds}` : milliseconds);
+
+  setOrderNumber(`${hours}${formattedMinutes}${formattedSeconds}${formattedMilliseconds}`);
+    }
+    
+useEffect(() => {
+logCurrentTime12HourFormat()
+}, []);
+
+// Виклик функції для виведення теперішнього часу в консоль
+useEffect(() => {
+
 
                if (formData.deliveryMethod === 'Доставка на відділення') {
         
@@ -193,17 +215,19 @@ const handleWarehousesChange = async () => {
     };
     
 
-    
+    console.log(warehouses);
+
 useEffect(() => {
 const preFilter = warehouses.filter((warehouse) =>
     (warehouse.CityDescription.toLowerCase().includes(searchWarehouses.toLowerCase()))
 );
-
+    console.log(preFilter);
+    
 const filtred = preFilter.filter((warehouse) =>
     (warehouse.SettlementAreaDescription.includes(secoundWord))
 );
 
-    console.log(preFilter);
+    
     console.log(filtred);
 
     if (words.length > 1) {
@@ -231,6 +255,8 @@ const filtred = preFilter.filter((warehouse) =>
 
         setIsSubmitting(true);
 
+        
+
         if (courierDelivery === '1') {
             if (!searchText || (!searchWarehouses && courierDelivery)) {
                 toast.error("Будь ласка, виберіть місто та відділення");
@@ -239,7 +265,12 @@ const filtred = preFilter.filter((warehouse) =>
                 return;
             }
         }
-        if (!formData.firstName) {
+        if (orderNumber === '') {
+      toast.error("Щось пішло не так, спробуйте ще раз, або зверніться до адміністратора");
+      setIsSubmitting(false);
+      return;
+        }
+                if (!formData.firstName) {
       toast.error("Введіть ім'я отримувача.");
       setIsSubmitting(false);
       return;
@@ -251,8 +282,8 @@ const filtred = preFilter.filter((warehouse) =>
         }
   
         const phonePattern = /^0\d{9}$/;
-        const trimedVlaue = formData.number.trim()
-        const trimmedValue2 = formData.number.replace(/\s+/g, ''); 
+        const trimedVlaue = formData.number
+        // const trimmedValue2 = formData.number.replace(/\s+/g, ''); 
         
 
     const isPhoneValid = phonePattern.test(trimedVlaue);
@@ -284,6 +315,7 @@ const filtred = preFilter.filter((warehouse) =>
             code: item.code.toString(),
             quantity: itemQuantities[item.id],
             amount: item.price * itemQuantities[item.id],
+            
         }));
 
 
@@ -304,7 +336,8 @@ const filtred = preFilter.filter((warehouse) =>
                 status: "Новий",
                 address: formData.address ,
                 building: formData.house,
-                apartment: formData.apartment,
+                 apartment: formData.apartment,
+                orderNumber: orderNumber
         }
         
              const dataToSendWarehouse = {
@@ -320,7 +353,7 @@ const filtred = preFilter.filter((warehouse) =>
                 orderedItems: orderedItems,
                 amount: totalCost,
                 status: "Новий",
-
+                orderNumber: orderNumber,
             }
         
 //         if (courierDelivery === '2') {
@@ -351,7 +384,7 @@ const filtred = preFilter.filter((warehouse) =>
                     lastName: userLastName || '',
                     number: userNumber || null,
                     city: '',
-
+                    orderNumber: orderNumber,
                     paymentMethod: '',
                     deliveryMethod: '',
                     comments: '',
@@ -632,7 +665,7 @@ const handleCitySelect = (city, areaDescription) => {
                                                         }, 500);
                                                     }}
                                                 />
-                                                {warehouses.length < 1000 && isDropdownWarehouseVisible && (
+                                                {warehouses.length < 5000 && isDropdownWarehouseVisible && (
                                                     <Citylist>
                                                         <CityitemsBlock>
                                                             {warehouses.length === 0 ? (
