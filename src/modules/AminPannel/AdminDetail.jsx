@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InfoBlock, ProductBlock, ProductImage, TableHeaders, TableItems, TableTrBlock } from './AdminDetailStyled';
+import {  ProductBlock, ProductImage, TableItems, TableTrBlock } from './AdminDetailStyled';
 import { Table } from 'react-bootstrap';
 import axios from 'axios';
 

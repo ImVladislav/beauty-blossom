@@ -1,19 +1,18 @@
-import { Link, Outlet } from "react-router-dom";
-import { Container } from "../../shared/styles/Container";
+import { Outlet } from "react-router-dom";
 import {
   CabinetBlock,
   CabinetContainer,
   CabinetLink,
   Nav,
-  StyledLink,
   Title,
   UserPageBlock,
 } from "./UserPageStyled";
-import { ProductOfTheWeek } from "../../modules/ProductOfTheWeek/ProductOfTheWeek";
 import { Header } from "../../modules/Header/Header";
 import { Footer } from "../../modules/Footer/Footer";
 import { Bgd } from "../../modules/SharedLayout/SharedLayout.styled";
 import { useState } from "react";
+import { Container } from "../../shared/components/ProductCard/ProductCard.styled";
+import { ContainerHeader } from "../../modules/Header/header.styled";
 
 const UserPage = () => {
   const [pageTitle, setPageTitle] = useState("КОНТАКТНА ІНФОРМАЦІЯ");
@@ -30,12 +29,12 @@ const UserPage = () => {
   return (
     <CabinetContainer>
 <div>
-        {/* <ProductOfTheWeek /> */}
         <Header />
         <Bgd>
           <CabinetBlock>
             <Title>{pageTitle}</Title>
             <UserPageBlock>
+              
               <Nav>
                 <CabinetLink
                   to="/cabinet/userData"
@@ -51,6 +50,12 @@ const UserPage = () => {
                   onClick={handleChangePasswordClick}
                 >
                   ЗМІНИТИ ПАРОЛЬ
+                </CabinetLink>
+                                <CabinetLink
+                  // to="/cabinet/сhangePassword"
+                  // onClick={handleChangePasswordClick}
+                >
+                  ЗАЛИШИТИ ВІДГУК
                 </CabinetLink>
                 <CabinetLink to="/">ПОВЕРНУТИСЬ ДО ПОКУПОК</CabinetLink>
               </Nav>

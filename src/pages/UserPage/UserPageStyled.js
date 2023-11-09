@@ -2,8 +2,10 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Nav = styled.nav`
-display: grid;
-padding: 0px 20px;
+    display: grid;
+    padding: 0px 20px;
+    margin-right: auto;
+    margin-bottom: auto;
 `
 
 export const StyledLink = styled(Link)`
@@ -13,7 +15,7 @@ margin: 10px 0px;
 export const CabinetLink = styled(Link)`
     border: 1px solid ${(p) => p.theme.colors.textColor};
     border-radius: 75px;
-    padding: 0px 85px;
+    padding: 0px 65px;
     text-decoration: none;
     height: 66px;
     color: ${(p) => p.theme.colors.textColor};
@@ -25,7 +27,7 @@ export const CabinetLink = styled(Link)`
     margin-bottom: 10px;
     font-size: 20px;
     position: relative; /* Додайте 'position: relative' */
-    
+        overflow: hidden;
     &::before {
         content: "";
         position: absolute;
@@ -67,7 +69,10 @@ export const UserPageBlock = styled.div`
 display: flex;
 
      @media (min-width: 1440px) {
-        
+       width: 1400px ;
+    padding: 0px 20px;
+    margin-right: auto;
+    margin-bottom: auto;
  }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
@@ -190,11 +195,25 @@ export const ContactInformSubButton = styled.button`
 `;
 
 
-
-
 export const PaymentHistoryTd = styled.td`
 border: 1px solid #C7C7C7;
 text-align: center;
+
+ @media (min-width: 1440px) {
+    font-size: 18px;  
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 16px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+ } 
+ @media (max-width: 768px) {
+   font-size: 12px;
+ }
+
+
 `
 
 export const PaymentHistoryTh = styled.th`
@@ -222,6 +241,20 @@ border: 1px solid #C7C7C7;
         pointer-events: none;
         z-index: -1; /* Помістіть псевдоелемент позаду контенту */
     }
+
+     @media (min-width: 1440px) {
+    font-size: 18px;  
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 16px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+ } 
+ @media (max-width: 768px) {
+   font-size: 12px;
+ }
 
 `;
 export const PaymentPagination = styled.div`
@@ -259,9 +292,61 @@ border: 1px solid #C7C7C7;
     }
 `
 export const CabinetContainer = styled.div`
-width: 100%;
+
+ @media (min-width: 1440px) {
+      /* width: 1400px; */
+      /* padding: 0 20px;
+      display: flex; */
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
 
 `
 export const CabinetBlock = styled.div`
 padding: 0, 20px;
+`
+export const DetailTableThumb = styled.div`
+
+
+ @media (min-width: 1440px) {
+      width: 905px;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
+`
+export const Table = styled.table`
+width: 100%;
+
+ @media (min-width: 1440px) {
+      
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
 `

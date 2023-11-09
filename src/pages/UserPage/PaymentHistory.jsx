@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton } from './UserPageStyled';
+import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton, Th } from './UserPageStyled';
 import axios from 'axios';
+import { Table } from 'react-bootstrap';
 
 const PaymentHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
   const [paymentHistoryData, setPaymentHistoryData] = useState([]);
+  const [openedOrder, setOpenedOrder] = useState(null);
+  const [openedOrderDetails, setOpenedOrderDetails] = useState(null);
 
   useEffect(() => {
     // Виконати GET-запит при завантаженні компонента
     axios.get('https://beauty-blossom-backend.onrender.com/api/orders/byUser')
       .then((response) => {
+        console.log(response.data);
         setPaymentHistoryData(response.data); // Встановити отримані дані
       })
       .catch((error) => {
@@ -18,28 +22,17 @@ const PaymentHistory = () => {
       });
   }, []);
 
-  // Приклад даних історії оплати (можете замінити на свої дані)
-  // const paymentHistoryData = [
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description:'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-  //   { date: '2023-10-01', orderNumber: '12345', status: 'Завершено', totalAmount: '$100', description: 'Переглянути' },
-               
-  // ];
+
+const toggleOrderDetails = (item) => {
+  setOpenedOrder((prevOrder) => (prevOrder === item ? null : item));
+  setOpenedOrderDetails((prevDetails) => (prevDetails === item ? null : item.orderedItems));
+};
 
   // Розрахунок індексів для пагінації
-const startIndex = (currentPage - 1) * itemsPerPage;
+  const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = paymentHistoryData.slice(startIndex, endIndex);
+  console.log(paymentHistoryData);
 
   // Подія для зміни сторінки
   const handlePageChange = (pageNumber) => {
@@ -50,9 +43,15 @@ const startIndex = (currentPage - 1) * itemsPerPage;
   const totalPages = Math.ceil(paymentHistoryData.length / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
+  // Функція для форматування дати
+  const formatDate = (dateTimeString) => {
+    const formattedDate = new Date(dateTimeString).toISOString().split('T')[0];
+    return formattedDate;
+  };
   return (
     <div>
-      <table>
+      <DetailTableThumb>
+      <Table>
         <thead>
           <tr>
             <PaymentHistoryTh>ДАТА </PaymentHistoryTh>
@@ -63,17 +62,43 @@ const startIndex = (currentPage - 1) * itemsPerPage;
           </tr>
         </thead>
         <tbody>
-          {currentData.map((item, index) => (
-            <tr key={index}>
-              <PaymentHistoryTd>{item.date}</PaymentHistoryTd>
-              <PaymentHistoryTd>{item.orderNumber}</PaymentHistoryTd>
-              <PaymentHistoryTd>{item.status}</PaymentHistoryTd>
-              <PaymentHistoryTd>{item.totalAmount}</PaymentHistoryTd>
-              <PaymentHistoryTd>{item.description}</PaymentHistoryTd>
-            </tr>
-          ))}
+{currentData.map((item, index) => (
+  <tr key={index}>
+    <PaymentHistoryTd>{formatDate(item.createdAt)}</PaymentHistoryTd>
+    <PaymentHistoryTd>{item.orderNumber}</PaymentHistoryTd>
+    <PaymentHistoryTd>{item.status}</PaymentHistoryTd>
+    <PaymentHistoryTd>{item.amount}</PaymentHistoryTd>
+    <PaymentHistoryTd>
+      <button onClick={() => toggleOrderDetails(item)}>Відкрити деталі</button>
+    </PaymentHistoryTd>
+  </tr>
+))}
+
         </tbody>
-      </table>
+      </Table>
+{openedOrder !== null && (
+    <Table>
+      <thead>
+        <tr>
+          <PaymentHistoryTh>Назва товару</PaymentHistoryTh>
+          <PaymentHistoryTh>Кількість</PaymentHistoryTh>
+          <PaymentHistoryTh>Ціна</PaymentHistoryTh>
+          <PaymentHistoryTh>Сума</PaymentHistoryTh>
+        </tr>
+      </thead>
+      <tbody>
+        {openedOrderDetails.map((product, productIndex) => (
+          <tr key={productIndex}>
+            <PaymentHistoryTd>{product.name}</PaymentHistoryTd>
+            <PaymentHistoryTd>{product.quantity}</PaymentHistoryTd>
+            <PaymentHistoryTd>{product.amount}</PaymentHistoryTd>
+            <PaymentHistoryTd>{product.quantity * product.amount}</PaymentHistoryTd>
+          </tr>
+        ))}
+      </tbody>
+    </Table>
+)}
+</DetailTableThumb>
 
       {/* Номерована пагінація */}
       <PaymentPagination className="pagination">

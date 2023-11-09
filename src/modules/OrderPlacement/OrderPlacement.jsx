@@ -29,7 +29,7 @@ import {
     Title,
     Titles,
 } from './OrderPlacementStyled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
 import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
@@ -41,6 +41,7 @@ import { toast } from "react-toastify";
 import { Container } from "../../shared/styles/Container";
 import { InputLoader } from '../../shared/components/Loader/Loader';
 import { OrderModalWindow } from './OrderModal';
+import { deleteAll } from '../../redux/cart/slice';
 
 
 const OrderPlacement = () => {
@@ -61,6 +62,7 @@ const OrderPlacement = () => {
     const userNumber = useSelector(userSelectorNumber);
     const [courier, setCourier] = useState('Доставка на відділення');
     const userEmail = useSelector(userSelectorEmail);
+ 
 
         const [formData, setFormData] = useState({
         email: userEmail || '',
@@ -71,24 +73,20 @@ const OrderPlacement = () => {
         paymentMethod: "Оплата за реквізитами",
         deliveryMethod: courier,
         orderNumber: orderNumber,
-
     });
 
-
+    const dispatch = useDispatch()
+    
 const showOrderPlacedModal = () => {
   setIsModalOpen(true);
 };
 
-const hideOrderPlacedModal = () => {
-  setIsModalOpen(false);
-};
     const cartItems = useSelector(selectCart);
     
 const handleInputChange = (e) => {
     const { name, value } = e.target;
 
   setFormData({ ...formData, [name]: value });
-
 
 };
 
@@ -120,9 +118,7 @@ useEffect(() => {
 logCurrentTime12HourFormat()
 }, []);
 
-// Виклик функції для виведення теперішнього часу в консоль
 useEffect(() => {
-
 
                if (formData.deliveryMethod === 'Доставка на відділення') {
         
@@ -165,8 +161,6 @@ const handleCityChange = async () => {
     if (data.success) {
         setSearchCities(data.data);
 
-        
-        
     }
   } catch (error) {
     console.error("Помилка при запиті до API Нової Пошти для населених пунктів", error);
@@ -207,36 +201,28 @@ const handleWarehousesChange = async () => {
 
     if (data.success) {
       setWarehouses(data.data);
-        console.log(warehouses);
     }
   } catch (error) {
     console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
   }
     };
-    
-
-    console.log(warehouses);
 
 useEffect(() => {
 const preFilter = warehouses.filter((warehouse) =>
     (warehouse.CityDescription.toLowerCase().includes(searchWarehouses.toLowerCase()))
 );
-    console.log(preFilter);
-    
+
 const filtred = preFilter.filter((warehouse) =>
     (warehouse.SettlementAreaDescription.includes(secoundWord))
 );
 
-    
-    console.log(filtred);
 
     if (words.length > 1) {
         firstWord = words[0];
         secoundWord = words[1];
     }
         handleCityChange();
-         console.log(warehouses.length);
-        console.log(secoundWord, firstWord);
+
 }, [ searchText ]);
 
       const [itemQuantities, setItemQuantities] = useState(
@@ -254,8 +240,6 @@ const filtred = preFilter.filter((warehouse) =>
         e.preventDefault();
 
         setIsSubmitting(true);
-
-        
 
         if (courierDelivery === '1') {
             if (!searchText || (!searchWarehouses && courierDelivery)) {
@@ -307,7 +291,6 @@ const filtred = preFilter.filter((warehouse) =>
       return;
     }
 
-
         const orderedItems = cartItems.map((item) => ({
             productId: item.id,
             images: item.images,
@@ -317,10 +300,6 @@ const filtred = preFilter.filter((warehouse) =>
             amount: item.price * itemQuantities[item.id],
             
         }));
-
-
-
-
 
              const dataToSendCourier = {
                 ...formData,
@@ -337,7 +316,8 @@ const filtred = preFilter.filter((warehouse) =>
                 address: formData.address ,
                 building: formData.house,
                  apartment: formData.apartment,
-                orderNumber: orderNumber
+                 orderNumber: orderNumber,
+                // owner: id,
         }
         
              const dataToSendWarehouse = {
@@ -353,29 +333,17 @@ const filtred = preFilter.filter((warehouse) =>
                 orderedItems: orderedItems,
                 amount: totalCost,
                 status: "Новий",
-                orderNumber: orderNumber,
+                 orderNumber: orderNumber,
+                // owner: id,
             }
         
-//         if (courierDelivery === '2') {
-//   if (!dataToSendCourier.address || !dataToSendCourier.building || !dataToSendCourier.apartment) {
-//     alert('Будь ласка, заповніть адресу, будинок та квартиру для курєрської доставки');
-//       setIsSubmitting(false);
-//         console.log(formData.address);
-//     console.log(formData.building);
-//     console.log(formData.apartment);
-//     return;
-//     }
-
-// }
-
-     
 
         const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
 
         axios.post(ordersUrl, courier === "no"? dataToSendCourier : dataToSendWarehouse)
             .then(response => {
                 console.log('Відповідь від сервера:', response.data);
-
+                dispatch(deleteAll())
                 showOrderPlacedModal();
 
                 setFormData({
@@ -391,7 +359,10 @@ const filtred = preFilter.filter((warehouse) =>
                     address: '',
                     building: '',
                     apartment: '',
+                    // owner: id,
                 })
+                
+                
             })
             .then(setIsModalOpen(true))
             .catch(error => {
@@ -785,3 +756,4 @@ export default OrderPlacement;
 //411
 //430
 //619
+//792
