@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Link,
   LogInIcon,
@@ -9,6 +9,7 @@ import {
   LoginPasswordToggle,
   LogOut,
   Underline,
+  WrapLink,
 } from "./login.styled";
 import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 import LoginForm from "./LoginForm";
@@ -17,6 +18,7 @@ import {
   loggedInSelector,
   userSelectorfirstName,
   isAdminSelector,
+  registerSelector,
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
@@ -29,7 +31,8 @@ const LogIn = () => {
   const userName = useSelector(userSelectorfirstName);
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
-
+  const isRegister = useSelector(registerSelector); //якщо зареєструвався
+  // console.log(isRegister);
   const dispatch = useDispatch();
 
   const handleModalEnter = () => {
@@ -85,19 +88,14 @@ const LogIn = () => {
           </ul>
         </DropDown>
       )}
-      <p>{userName} </p>
+      {/* {isLogin && <NameUser>{userName} </NameUser>} */}
+      {/* <p>{userName} </p> */}
 
       {showModal && (
         <ModalBackdrop>
           <Modal>
             <CloseButton close={() => setShowModal(false)} />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                marginBottom: "10px",
-              }}
-            >
+            <WrapLink>
               <Link
                 className={loginOrRegister && "activ"}
                 onClick={() => setLoginOrRegister(true)}
@@ -115,7 +113,8 @@ const LogIn = () => {
                 {/* <LoginPasswordToggle>Реєстрація</LoginPasswordToggle> */}
                 {!loginOrRegister && <Underline />}
               </Link>
-            </div>
+            </WrapLink>
+
             {loginOrRegister ? <LoginForm /> : <RegisterForm />}
           </Modal>
         </ModalBackdrop>

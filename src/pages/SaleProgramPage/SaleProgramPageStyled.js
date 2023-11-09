@@ -145,14 +145,17 @@ export const FormLavelBloks = styled.div`
   display: flex;
   /* justify-content: space-between; */
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   position: relative;
-
   @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1024px) {
+    margin-top: 40px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin-top: 14px;
+    /* margin-top: 14px; */
   }
 `;
 export const Label = styled.label``;

@@ -44,7 +44,10 @@ export const ButtonStyle = styled.button`
 
   @media screen and (min-width: 768px) {
   }
-
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    padding: 10px 20px;
+  }
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
     /* background-color: ${(p) =>

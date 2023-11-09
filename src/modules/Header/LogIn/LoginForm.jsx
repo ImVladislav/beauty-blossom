@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText } from "./login.styled";
+import { FormikInput, LoginModalText, WrapInput } from "./login.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -13,6 +13,17 @@ const Message = styled(ErrorMessage)`
   font-size: 7px;
   color: red;
   position: absolute;
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+  }
 `;
 
 const LoginForm = () => {
@@ -67,7 +78,7 @@ const LoginForm = () => {
           <p>Ви успішно авторизувались</p>
         ) : (
           <>
-            <div style={{ display: "flex", gap: "5px", marginBottom: "15px" }}>
+            <WrapInput>
               {/* <FormLavelBloks> */}
               <div>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
@@ -79,7 +90,7 @@ const LoginForm = () => {
                 <FormikInput type="password" name="password" />
                 <Message name="password" component="div" />
               </div>
-            </div>
+            </WrapInput>
             {/* </FormLavelBloks> */}
 
             <FormLavelBloks>

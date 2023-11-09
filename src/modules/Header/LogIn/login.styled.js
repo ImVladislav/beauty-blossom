@@ -11,7 +11,7 @@ export const Link = styled.button`
   color: #504056;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 102.312%; /* 15.347px */
   letter-spacing: 0.225px;
   text-transform: uppercase;
@@ -29,8 +29,9 @@ export const Link = styled.button`
     }
   }
   @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     text-align: center;
 
     font-size: 25px;
@@ -39,6 +40,20 @@ export const Link = styled.button`
     line-height: 102.312%; /* 25.578px */
     letter-spacing: 0.375px;
     text-transform: uppercase;
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const WrapLink = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 30px;
   }
 `;
 
@@ -72,8 +87,8 @@ export const LogInIcon = styled(userIcon)`
 
 export const DropDown = styled.div`
   position: absolute;
-  top: 70%;
-  right: 1%;
+  top: 78px;
+  right: 0;
   display: block;
   background: ${(p) => p.theme.colors.white};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -92,6 +107,17 @@ export const DropDown = styled.div`
 
   ${LogInElips}:hover & ul {
     display: block;
+  }
+  @media screen and (min-width: 768px) {
+    top: 81px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    top: 84px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    top: 88px;
   }
 `;
 
@@ -136,6 +162,7 @@ export const Modal = styled.div`
   background: #fffdf0;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   @media screen and (min-width: 768px) {
+    padding: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -205,21 +232,24 @@ export const LoginModalText = styled.p`
   letter-spacing: 0.225px;
 
   @media screen and (min-width: 768px) {
+    font-size: 14px;
   }
-
+  @media screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
   @media screen and (min-width: 1440px) {
+    margin-left: 30px;
     text-align: center;
-    font-family: Century Gothic;
 
+    font-size: 18px;
     font-style: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
     line-height: 102.312%; /* 25.578px */
     letter-spacing: 0.375px;
     /* text-transform: uppercase; */
-    font-weight: bold;
+    /* font-weight: bold; */
     display: flex;
     align-self: center;
-    font-size: 22px;
   }
 `;
 
@@ -248,10 +278,21 @@ font-family: Century Gothic; */
   }
 
   @media screen and (min-width: 768px) {
+    max-width: 220px;
+    min-width: 200px;
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 300px;
+    min-width: 280px;
+    font-size: 18px;
+    padding: 5px 15px;
   }
 
   @media screen and (min-width: 1440px) {
     /* min-width: 300px; */
+    max-width: 400px;
+    min-width: 350px;
 
     font-size: 18px;
     font-style: normal;
@@ -263,7 +304,7 @@ font-family: Century Gothic; */
     border-radius: 25px;
     /* color: #b2b2b2; */
     border-color: ${(p) => p.theme.colors.borderCard};
-    padding: 23px;
+    padding: 10px 30px;
     /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
@@ -275,4 +316,31 @@ export const Underline = styled.div`
   height: 1px;
   background-color: #000; /* You can change the color to your preference */
   /* margin-left: 20px; Adjust the spacing between the title and the line */
+`;
+
+export const WrapInput = styled.div`
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    gap: 10px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 30px;
+  }
+`;
+export const WrapPhone = styled.div`
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 40px;
+  }
 `;

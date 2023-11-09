@@ -50,13 +50,27 @@ export const WrapContacts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  position: relative;
+  @media screen and (min-width: 768px) {
+    gap: 5px;
+  }
+  @media screen and (min-width: 1024px) {
+    gap: 10px;
+  }
 `;
 
 export const LoginShipingThumb = styled.div`
   margin-left: 20px;
   display: flex;
+  align-items: flex-end;
+  @media screen and (min-width: 768px) {
+    margin-left: 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-left: 20px;
+  }
   @media screen and (min-width: 1440px) {
-    margin-left: 90px;
+    margin-left: 30px;
   }
 `;
 
@@ -162,5 +176,19 @@ export const CenterWrap = styled.div`
 
 export const IconWrap = styled.div`
   display: flex;
-  align-items: center;
+
+  align-items: flex-end;
+`;
+
+export const NameUser = styled.p`
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 16px;
+  }
 `;
