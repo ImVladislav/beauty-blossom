@@ -120,7 +120,13 @@ export const Link = styled.a`
     }
   }
   @media screen and (min-width: 768px) {
-    font-size: 16px;
+    font-size: 12px;
+    &.head {
+      font-size: 12px;
+    }
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 14px;
     &.head {
       font-size: 12px;
     }
@@ -138,7 +144,7 @@ export const Wrap = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
   }
 
   &:hover,

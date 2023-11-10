@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 export const SearchFormContainer = styled.div`
   text-align: center;
   position: relative;
-  margin: 5px 25px 5px 30px;
+  margin: 5px 10px 5px 30px;
   transition: all 0.15s ease 0s;
   &:hover,
   &:focus {
@@ -15,7 +15,7 @@ export const SearchFormContainer = styled.div`
     }
   }
   @media screen and (min-width: 768px) {
-    margin-le: auto;
+    margin-left: auto;
   }
   @media screen and (min-width: 1024px) {
     width: 300px;
@@ -57,7 +57,7 @@ export const SearchInput = styled.input`
     height: 35px;
     padding: 0px 16px 0px 42px;
     background: #fff;
-    font-size: 18px;
+    font-size: 14px;
     border: 1px solid ${(p) => p.theme.colors.border};
     color: ${(p) => p.theme.colors.textColor};
   }

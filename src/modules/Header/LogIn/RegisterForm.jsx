@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { FormikInput, InputBlock, LoginModalText } from "./login.styled";
+
+import {
+  FormikInput,
+  LoginModalText,
+  WrapInput,
+  WrapPhone,
+  InputBlock,
+} from "./login.styled";
+
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -7,6 +15,25 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../../redux/auth/operation";
 import { toast } from "react-toastify";
+import styled from "styled-components";
+import LoginForm from "./LoginForm";
+
+const Message = styled(ErrorMessage)`
+  font-size: 7px;
+  color: red;
+  position: absolute;
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+  }
+`;
 
 const RegisterForm = () => {
   const initialValues = {
@@ -14,7 +41,7 @@ const RegisterForm = () => {
     password: "",
     firstName: "",
     lastName: "",
-    number: null,
+    number: "",
     city: "місто",
     link: "myshop.com",
     onlineShop: false,
@@ -48,14 +75,14 @@ const RegisterForm = () => {
       .email("Не валідна адреса пошти")
       .required("Введіть адресу електронної пошти "),
     password: Yup.string()
-      .min(6, "Пароль має мітити не менше 6 символів")
+      .min(6, "Пароль має містити не менше 6 символів")
       .required("Введіть пароль"),
     firstName: Yup.string()
-      .min(2, "Імя має бути не менше 2х букв")
-      .required("Ведіть ваше імя"),
+      .min(2, "Ім'я має бути не менше 2х букв")
+      .required("Введіть ваше ім'я"),
     lastName: Yup.string()
       .min(2, "Прізвище має бути не менше 2х букв")
-      .required("Ведыть ваше прізвище"),
+      .required("Введіть ваше прізвище"),
     number: Yup.number().required("Введіть ваш номер телефону"),
     link: Yup.string(),
     city: Yup.string(),
@@ -75,48 +102,55 @@ const RegisterForm = () => {
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
-      <Form>
-        {IsRegistered ? (
-          "Ви успішно зареєструвалися як оптовий клієнт"
-        ) : (
-          <>
-            <FormLavelBloks>
-              <InputBlock>
-                <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
-                <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-              </InputBlock>
-              <InputBlock>
-                <LoginModalText htmlFor="password">Пароль</LoginModalText>
-                <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-              </InputBlock>
-            </FormLavelBloks>
-            <FormLavelBloks>
-              <InputBlock>
-                <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
-                <FormikInput type="text" name="firstName" />
-                <ErrorMessage name="firstName" component="div" />
-              </InputBlock>
-              <InputBlock>
-                <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
-                <FormikInput type="text" name="lastName" />
-                <ErrorMessage name="lastName" component="div" />
-              </InputBlock>
-              </FormLavelBloks>
-            <FormLavelBloks>  
-            <InputBlock>
+      {(formikProps) => (
+        <Form>
+          {IsRegistered ? (
+            <>
+              <p>Ви успішно зареєструвалися, авторизуйтеся</p>
+            </>
+          ) : (
+            <div>
+              {/* <FormLavelBloks> */}
+              <WrapInput>
+                <div>
+                  <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
+                  <FormikInput type="email" name="email" />
+                  <Message name="email" component="div" />
+                </div>
+                <div>
+                  <LoginModalText htmlFor="password">Пароль</LoginModalText>
+                  <FormikInput type="password" name="password" />
+                  <Message name="password" component="div" />
+                </div>
+              </WrapInput>
+              {/* </FormLavelBloks> */}
+              {/* <FormLavelBloks> */}
+              <WrapInput>
+                <div>
+                  <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
+                  <FormikInput type="text" name="firstName" />
+                  <Message name="firstName" component="div" />
+                </div>
+                <div>
+                  <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
+                  <FormikInput type="text" name="lastName" />
+                  <Message name="lastName" component="div" />
+                </div>
+              </WrapInput>
+              {/* </FormLavelBloks> */}
+              {/* <WrapPhone> */}
               <LoginModalText htmlFor="number">Телефон</LoginModalText>
               <FormikInput type="tel" name="number" />
-              <ErrorMessage name="number" component="div" />
-            </InputBlock>
+              <Message name="number" component="div" />
+              {/* </WrapPhone> */}
+
+              <FormLavelBloks>
+                <Button text={"Зареєструватись"} type="submit" />
               </FormLavelBloks>
-            <FormLavelBloks>
-              <Button text={"Зареєструватись"} type="submit" />
-            </FormLavelBloks>
-          </>
-        )}
-      </Form>
+            </div>
+          )}
+        </Form>
+      )}
     </Formik>
   );
 };

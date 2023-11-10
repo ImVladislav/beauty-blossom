@@ -32,6 +32,7 @@ import {
   IconWrap,
   ButtonMenu,
   HeaderWraper,
+  NameUser,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -40,9 +41,19 @@ import { useLocation } from "react-router-dom";
 import { useMedia } from "../../hooks/useMedia";
 import { ProductOfTheWeek } from "../ProductOfTheWeek/ProductOfTheWeek";
 import BurgerMenu from "./BurgerMenu/BurgerMenu";
+import {
+  loggedInSelector,
+  userSelectorfirstName,
+} from "../../redux/auth/selectors";
+import { useSelector } from "react-redux";
+
 export const Header = () => {
-  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const userName = useSelector(userSelectorfirstName);
+  console.log(userName);
+  const isLogin = useSelector(loggedInSelector);
+  console.log(isLogin);
+  const { pathname } = useLocation();
   const { isMobileScreen } = useMedia();
 
   const handleMenuClick = () => {
@@ -77,10 +88,19 @@ export const Header = () => {
                             to="mailto:beautyblossom.opt@gmail.com"
                             icon="mail"
                           />
+
                           {/* <Email /> */}
                         </WrapContacts>
                         <LoginShipingThumb>
-                          <LogIn />
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                            }}
+                          >
+                            {isLogin && <NameUser>{userName} </NameUser>}
+                            <LogIn />
+                          </div>
                           <ShoppingCart />
                         </LoginShipingThumb>
                       </Wrap>
@@ -130,7 +150,10 @@ export const Header = () => {
             </ButtonMenu>
             <Logo />
             <IconWrap>
-              <LogIn />
+              <div>
+                {isLogin && <NameUser>{userName} </NameUser>}
+                <LogIn />
+              </div>
               <ShoppingCart />
             </IconWrap>
           </CenterWrap>

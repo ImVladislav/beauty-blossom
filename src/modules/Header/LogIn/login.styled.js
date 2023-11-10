@@ -7,6 +7,54 @@ export const Link = styled.button`
   border: none;
   background: transparent;
   cursor: pointer;
+  text-align: center;
+  color: #504056;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 102.312%; /* 15.347px */
+  letter-spacing: 0.225px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+    & div {
+      background: ${(p) => p.theme.colors.accentColor};
+    }
+  }
+  &.activ {
+    color: ${(p) => p.theme.colors.accentColor};
+    & div {
+      background: ${(p) => p.theme.colors.accentColor};
+    }
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: 1024px) {
+    text-align: center;
+
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    text-transform: uppercase;
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const WrapLink = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const LogInElips = styled.div`
@@ -39,8 +87,8 @@ export const LogInIcon = styled(userIcon)`
 
 export const DropDown = styled.div`
   position: absolute;
-  top: 70%;
-  right: 1%;
+  top: 78px;
+  right: 0;
   display: block;
   background: ${(p) => p.theme.colors.white};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -59,6 +107,17 @@ export const DropDown = styled.div`
 
   ${LogInElips}:hover & ul {
     display: block;
+  }
+  @media screen and (min-width: 768px) {
+    top: 81px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    top: 84px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    top: 88px;
   }
 `;
 
@@ -103,6 +162,7 @@ export const Modal = styled.div`
   background: #fffdf0;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   @media screen and (min-width: 768px) {
+    padding: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -162,82 +222,38 @@ export const LoginPasswordToggle = styled.h3`
 export const LoginModalText = styled.p`
   color: #504056;
   display: flex;
+  margin-left: 10px;
   /* text-align: center; */
   align-self: center;
-  font-size: 16px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 102.312%; /* 15.347px */
   letter-spacing: 0.225px;
 
-    /* min-width: 400px; */
-    @media (min-width: 1024px) and (max-width: 1439px) {
- display: flex;
- justify-content: center;
-font-size: 20px;
-margin: 12px 0;
-    font-family: Century Gothic;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 102.312%; /* 25.578px */
-    letter-spacing: 0.375px;
-    font-weight: bold;
-
-   
-
-
-}
-@media (min-width: 768px) and (max-width: 1023px) {
- display: flex;
- justify-content: center;
-font-size: 18px;
-margin: 8px 0;
-
-    font-family: Century Gothic;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 102.312%; /* 25.578px */
-    letter-spacing: 0.375px;
-    font-weight: bold;
-
-
-}
-@media (max-width: 767px) {
- display: flex;
- justify-content: center;
-font-size: 18px;
-margin: 8px 0;
-
-    font-family: Century Gothic;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 102.312%; /* 25.578px */
-    letter-spacing: 0.375px;
-    font-weight: bold;
-
-}
-
-
+  @media screen and (min-width: 768px) {
+  }
 
   @media screen and (min-width: 1440px) {
+    margin-left: 30px;
     text-align: center;
-    font-family: Century Gothic;
 
+    font-size: 18px;
     font-style: normal;
-    font-weight: 700;
+    /* font-weight: 700; */
     line-height: 102.312%; /* 25.578px */
     letter-spacing: 0.375px;
     /* text-transform: uppercase; */
-    font-weight: bold;
+    /* font-weight: bold; */
     display: flex;
     align-self: center;
-    font-size: 22px;
   }
 `;
 
 export const FormikInput = styled(Field)`
   margin: 3px 3px 3px 0;
-
+  max-width: 100px;
+  max-height: 20px;
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   border-radius: 25px;
@@ -254,14 +270,15 @@ font-family: Century Gothic; */
   &:focus {
     /* outline: 1px solid ${(p) => p.theme.colors.accentColor}; */
     border: 1px solid ${(p) => p.theme.colors.accentColor};
-
-
-
   }
 
+  @media screen and (min-width: 768px) {
+  }
 
   @media screen and (min-width: 1440px) {
-    min-width: 300px;
+    /* min-width: 300px; */
+    max-width: 400px;
+    min-width: 350px;
 
     font-size: 18px;
     font-style: normal;
@@ -273,85 +290,9 @@ font-family: Century Gothic; */
     border-radius: 25px;
     /* color: #b2b2b2; */
     border-color: ${(p) => p.theme.colors.borderCard};
-    padding: 23px;
+    padding: 10px 30px;
     /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
   }
-
-  @media (min-width: 1440px) {
-    max-width: 100%;
-    max-height: 35px;
-    margin: 5px;
-
-font-size: 22px;
-}
-
-@media (min-width: 1024px) and (max-width: 1439px) {
-  width: 350px;
-  height: 45px;
-  font-size: 26px;
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  width: 250px;
-  height: 40px;
-  font-size: 22px;
-}
-
-
-
-
-@media (max-width: 767px) {
-    max-width: 100%;
-    height: 45px;
-    margin: 5px;
-
-font-size: 20px;
-}
-
-
-
 `;
-
-export const InputErrors = styled.div`
-  font-size: 12px;
-  display: flex;
-  justify-content: center;
-`;
-
-
-export const InputBlock = styled.div`
-
- @media (min-width: 1440px) {
-        padding: 25px;
- }
-
-  @media (min-width: 1024px) and (max-width: 1439px) {
-        padding: 25px;
- }
- @media (min-width: 768px) and (max-width: 1023px) {
-  padding: 15px;
- } 
- @media (max-width: 768px) {
- 
- }
-
-
-`;
-
-
-
-
-
-
-//     min-width: 400px;
-//     @media (min-width: 1024px) and (max-width: 1439px) {
-//   min-width: 300px;
-// }
-// @media (min-width: 768px) and (max-width: 1023px) {
-//   min-width: 250px;
-// }
-// @media (max-width: 768px) {
-//   min-width: 200px;
-// }

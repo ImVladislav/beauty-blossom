@@ -22,7 +22,7 @@ export const LinkLogo = styled(Link)`
 export const TextLogo = styled.p`
   font-family: "Kodchasan", sans-serif;
   text-transform: uppercase;
-  font-size: 17.833px;
+  font-size: 25px;
   font-style: normal;
   line-height: 103.312%;
 

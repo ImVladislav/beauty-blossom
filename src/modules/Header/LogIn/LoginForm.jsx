@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, InputBlock, InputErrors, LoginModalText } from "./login.styled";
+import { FormikInput, LoginModalText } from "./login.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -7,6 +7,24 @@ import { Formik, Form, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/auth/operation";
 import { toast } from "react-toastify";
+import styled from "styled-components";
+
+const Message = styled(ErrorMessage)`
+  font-size: 7px;
+  color: red;
+  position: absolute;
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+  }
+`;
 
 const LoginForm = () => {
   const initialValues = {
@@ -41,7 +59,7 @@ const LoginForm = () => {
       .email("Не валідна адреса пошти")
       .required("Введіть адресу електронної пошти "),
     password: Yup.string()
-      .min(6, "Пароль має мітити не менше 6 символів")
+      .min(6, "Пароль має містити не менше 6 символів")
       .required("Введіть пароль"),
   });
 
@@ -61,18 +79,18 @@ const LoginForm = () => {
         ) : (
           <>
             <FormLavelBloks>
-              <InputBlock>
+              <div>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component={InputErrors} />
-               
-              </InputBlock>
-              <InputBlock>
+                <ErrorMessage name="email" component="div" />
+                ////////
+              </div>
+              <div>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component={InputErrors} />
-                
-              </InputBlock>
+                <ErrorMessage name="password" component="div" />
+                ////////
+              </div>
             </FormLavelBloks>
 
             <FormLavelBloks>
