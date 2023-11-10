@@ -41,7 +41,7 @@ const Message = styled(ErrorMessage)`
   }
 `;
 
-const RegisterForm = () => {
+const RegisterForm = ({ onRegisterSuccess }) => {
   const initialValues = {
     email: "",
     password: "",
@@ -66,6 +66,7 @@ const RegisterForm = () => {
           toast.error("Користувач з цим номером телефону вже зареєстрований!");
         }
         if (response.type === "auth/register/fulfilled") {
+          onRegisterSuccess();
           setIsRegistered(true);
         } else {
           setIsRegistered(false);
@@ -112,7 +113,10 @@ const RegisterForm = () => {
         <Form>
           {IsRegistered ? (
             <>
-              <p>Ви успішно зареєструвалися, авторизуйтеся</p>
+              <p style={{ margin: "15px", textAlign: "center" }}>
+                Ви успішно зареєструвалися, авторизуйтеся
+              </p>
+              <LoginForm />
             </>
           ) : (
             <div>
