@@ -111,7 +111,7 @@ const RegisterForm = () => {
           ) : (
             <div>
               {/* <FormLavelBloks> */}
-              <WrapInput>
+              {/* <WrapInput> */}
                 <div>
                   <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                   <FormikInput type="email" name="email" />
@@ -122,10 +122,10 @@ const RegisterForm = () => {
                   <FormikInput type="password" name="password" />
                   <Message name="password" component="div" />
                 </div>
-              </WrapInput>
+              {/* </WrapInput> */}
               {/* </FormLavelBloks> */}
               {/* <FormLavelBloks> */}
-              <WrapInput>
+              {/* <WrapInput> */}
                 <div>
                   <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
                   <FormikInput type="text" name="firstName" />
@@ -136,7 +136,7 @@ const RegisterForm = () => {
                   <FormikInput type="text" name="lastName" />
                   <Message name="lastName" component="div" />
                 </div>
-              </WrapInput>
+              {/* </WrapInput> */}
               {/* </FormLavelBloks> */}
               {/* <WrapPhone> */}
               <LoginModalText htmlFor="number">Телефон</LoginModalText>
