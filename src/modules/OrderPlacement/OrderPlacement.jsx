@@ -749,7 +749,7 @@ const handleCitySelect = (city, areaDescription) => {
                         </Form>) : (null)}
                 </OrderDetails>
             </OrderForm>
-            <OrderModalWindow isOpen={isModalOpen} />
+            <OrderModalWindow orderNumber={orderNumber} isOpen={isModalOpen} />
         </Container>
     );
 };

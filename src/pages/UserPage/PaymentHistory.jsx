@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentHistoryTr, PaymentPagination, PaymentPaginationButton, Table, } from './UserPageStyled';
+import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton, ShowDetailButton, Th } from './UserPageStyled';
 
 import axios from 'axios';
 
@@ -36,7 +36,6 @@ const toggleOrderDetails = (item ) => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = paymentHistoryData.slice(startIndex, endIndex);
-  console.log(paymentHistoryData);
 
   // Подія для зміни сторінки
   const handlePageChange = (pageNumber) => {
@@ -76,7 +75,7 @@ const toggleOrderDetails = (item ) => {
     <PaymentHistoryTd>{item.status}</PaymentHistoryTd>
     <PaymentHistoryTd>{item.amount}</PaymentHistoryTd>
     <PaymentHistoryTd>
-      <button onClick={() => toggleOrderDetails(item)}>Відкрити деталі</button>
+      <ShowDetailButton onClick={() => toggleOrderDetails(item)}>Відкрити деталі</ShowDetailButton>
     </PaymentHistoryTd>
   </PaymentHistoryTr>
 ))}
