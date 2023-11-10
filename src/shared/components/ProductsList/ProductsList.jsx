@@ -13,7 +13,7 @@ import {
 import { optUserSelector } from "../../../redux/auth/selectors";
 import { useSelector } from "react-redux";
 
-const itemsPerPage = 12;
+const itemsPerPage = 32;
 
 const ProductsList = ({ items }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -104,9 +104,28 @@ const ProductsList = ({ items }) => {
     const endIndex = startIndex + itemsPerPage;
     return filteredItems.slice(startIndex, endIndex);
   };
+  // Оновлюємо клас при зміні сторінки
+  useEffect(() => {
+    const wrapListProduct = document.querySelector(".WrapListProduct");
+    if (wrapListProduct) {
+      wrapListProduct.classList.add("active");
+
+      // Відстрочення видалення класу для дочекатися анімації перед зміною сторінки
+      setTimeout(() => {
+        wrapListProduct.classList.remove("active");
+      }, 500);
+    }
+  }, [currentPage]);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+
+    // Підняття сторінки вгору
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <div>
+    <div className="WrapListProduct">
       <FilterContainer>
         <FilterWrap>
           <FilterSelect
@@ -138,7 +157,7 @@ const ProductsList = ({ items }) => {
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={setCurrentPage}
+            onPageChange={handlePageChange}
           />
         )}
       </WrapListProduct>

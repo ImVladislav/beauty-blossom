@@ -3,14 +3,25 @@ import "modern-normalize";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const GlobalStyle = createGlobalStyle`
+
 body {
   margin: 0;
+
   font-family: 'Noto Sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #504056
+  color: #504056;
+  scroll-behavior: smooth;
+ 
+}
+
+
+
+
+main {
+  min-height: 50vh;
 }
 
 
@@ -62,5 +73,14 @@ input {
   padding: 0;
   margin: 0;
   line-height: 0;
+}
+/* Додайте transition, щоб забезпечити плавний перехід при анімації */
+.WrapListProduct {
+  transition: transform 0.5s linear;
+}
+
+/* Додайте клас active для ефекту "зжимання" */
+.WrapListProduct.active {
+  transform: translateY(-100%);
 }
 `;

@@ -4,6 +4,8 @@ export const Background = styled.div`
   background: ${(p) => p.theme.colors.topHeaderLine};
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 `;
 export const Text = styled.h2`
   margin: 0;

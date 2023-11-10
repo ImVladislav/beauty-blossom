@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const WrapListProduct = styled.div`
   padding: 6px;
+  width: 100vw;
   min-width: 375px;
   max-width: 768px;
   @media screen and (min-width: 768px) {
@@ -26,7 +27,7 @@ export const ProductListContainer = styled.ul`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
   }
 
   @media screen and (min-width: 1440px) {

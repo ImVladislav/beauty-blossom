@@ -19,13 +19,18 @@ import {
   Price,
   ButtonWrap,
   ProductTags,
+  CounterBlock,
+  ButtonIncDec,
+  InputIncDec,
 } from "./ProductCard.styled";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = (event) => {
     event.preventDefault();
@@ -35,7 +40,7 @@ const ProductCard = ({ products }) => {
     );
 
     if (!productCartFind) {
-      dispatch(addToCart({ ...products, quantity: 1 }));
+      dispatch(addToCart({ ...products, quantity }));
     }
     return;
   };
@@ -45,14 +50,35 @@ const ProductCard = ({ products }) => {
   );
   const isProductUnavailable = products.amount <= 0;
 
+  const handleQuantityChange = (event) => {
+    console.log(event.curentTarget);
+    const newQuantity = parseInt(event.curentTarget.value, 10);
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const incrementQuantity = () => {
+    if (products.amount > quantity) {
+      setQuantity(quantity + 1);
+    } else {
+      toast.error("Обмежена кількість товару на складі!");
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
   return (
     <>
       <ItemStyle className={isProductUnavailable ? "unavailable" : ""}>
-        <LinkStyle to={`/product/${products.id}`}>
-          <Container
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
+        <Container
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <LinkStyle to={`/product/${products.id}`}>
             <div></div>
             <ImageWrap>
               <Image src={products.images} alt={products.name} />
@@ -69,7 +95,23 @@ const ProductCard = ({ products }) => {
                 <Price>{products.price} ₴</Price>
               )}
             </Content>
-            {isHovered && (
+          </LinkStyle>
+          {products.amount <= 0 || (
+            <CounterBlock>
+              <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
+              <InputIncDec
+                type="number"
+                min="1"
+                max={products.amount}
+                value={quantity}
+                onChange={handleQuantityChange}
+                readOnly={true}
+              />
+              <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
+            </CounterBlock>
+          )}
+          {isHovered && (
+            <>
               <ButtonWrap>
                 <Button
                   goods
@@ -85,9 +127,9 @@ const ProductCard = ({ products }) => {
                   disabled={isProductInCart || products.amount <= 0}
                 />
               </ButtonWrap>
-            )}
-          </Container>
-        </LinkStyle>
+            </>
+          )}
+        </Container>
       </ItemStyle>
     </>
   );

@@ -22,6 +22,13 @@ export const ProductTags = styled.div`
 export const LinkStyle = styled(Link)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
 `;
 
 export const Container = styled.div`
@@ -103,4 +110,83 @@ export const ButtonWrap = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
+`;
+export const ButtonIncDec = styled.button`
+  flex: 1 0 auto;
+  height: 100%;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+
+  cursor: pointer;
+  color: ${(p) => p.theme.colors.textColor};
+  border: 0;
+  padding: 0;
+  background: none;
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+    cursor: pointer;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const CounterBlock = styled.div`
+  position: relative;
+  /* bottom: 0; */
+  width: 103px;
+  height: 38px;
+  display: flex;
+  border-radius: 4px;
+  border: 1px solid ${(p) => p.theme.colors.textColor};
+
+  align-items: center;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  margin-bottom: 10px;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+    cursor: pointer;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
+`;
+export const InputIncDec = styled.input`
+  text-align: center;
+
+  outline: none;
+
+  color: ${(p) => p.theme.colors.textColor};
+  border: 0;
+  padding: 0;
+  background-color: none;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
+
+  &[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
+  @media screen and (min-width: 1024px) {
+  }
+  @media screen and (min-width: 1440px) {
+  }
 `;
