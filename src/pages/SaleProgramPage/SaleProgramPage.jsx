@@ -38,7 +38,6 @@ const SaleProgramPage = () => {
           </Text>
           <ConditionsList>
             <ListItems>Мінімальна сума замовлення 2500 грн</ListItems>
-            <ListItems>Безкоштовна доставка від 10 тис грн</ListItems>
             <ListItems>
               Доставка протягом 1-2 робочих днів з моменту оформлення
             </ListItems>

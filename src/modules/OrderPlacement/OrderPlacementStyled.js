@@ -93,13 +93,6 @@ export const CostumerStatusinput = styled.input`
   font-size: 12px;
 }
 
-.custom-toast{
-  font-size: 20px; /* Ваш розмір шрифту */
-  background-color: #ff0000;
-  color: #ffffff; /* Ваш колір тексту */
-  /* Додайте інші стилі за потреби */
-}
- /* #ff0000;  */
 `;
 
 export const Citylist = styled.div`
@@ -600,7 +593,26 @@ export const LinkThumb = styled.div`
  display: flex;
  justify-content: space-around;
  margin: 24px 0;
+
+         @media (min-width: 1240px) {
+    width: 700px;
+
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  width: 500px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    width: 500px;
+     }
+
+              @media (max-width: 767px) {
+    flex-direction: column
+
+}
 `
+
 export const LinkButton = styled(Link)`
   cursor: pointer;
   background: #FFF0DA;
@@ -609,10 +621,32 @@ export const LinkButton = styled(Link)`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   text-decoration: none;
   padding: 6px 40px;
-  margin-top: 20px;
+  margin: 20px 5px 0px 5px;
   &:hover {
     background: #FFE9C9;
   }
+
+
+           @media (min-width: 1240px) {
+     padding: 6px 40px;
+    font-size: 20px;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  font-size: 16px;
+    padding: 6px 30px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 16px;
+    padding: 6px 20px;
+
+     }
+     @media (max-width: 768px) {
+        font-size: 14px;
+    padding: 6px 14px;
+}
 `;
 
 export const ModalText = styled.p`
@@ -621,7 +655,30 @@ color: ${(p) => p.theme.colors.textColor};
 font-size: 20px;
 display: flex;
 justify-content: center;
+
+         @media (min-width: 1240px) {
+   
+    font-size: 20px;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  font-size: 16px;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 16px;
+     }
+       @media (max-width: 767px) {
+   
+    font-size: 14px;
+  
+}
+
+
 `
+
+
 
 export const TableThumb = styled.div`
 
@@ -641,3 +698,69 @@ export const TableThumb = styled.div`
 }
 `
 
+export const ModalStyle = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 800px;
+  max-height: 500px;
+  margin: auto;
+  padding: 30px;
+  border: 4px solid #504056;
+  border-radius: 100px;
+  background: #FFF6E9;
+  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    max-height: 500px;
+    margin: auto;
+    padding: 30px;
+    border: 4px solid #504056;
+    border-radius: 100px;
+    background: #FFF6E9;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+    z-index: 6;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
+  z-index: 6;
+
+         @media (min-width: 1240px) {
+   
+    width: 80%;
+  
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+  width: 50%;
+}
+
+     @media (min-width: 768px) and (max-width: 1023px) {
+     width: 70%;
+}
+
+     @media (max-width: 768px) {
+     width: 90%;
+}
+
+
+`;
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5; /* Ensure the backdrop is behind the modal but above other content */
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+`;

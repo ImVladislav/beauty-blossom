@@ -18,7 +18,7 @@ import {
   loggedInSelector,
   userSelectorfirstName,
   isAdminSelector,
-  registerSelector,
+
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
@@ -32,9 +32,6 @@ const LogIn = () => {
   // const userName = useSelector(userSelectorfirstName);
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
-  const isRegister = useSelector(registerSelector); //якщо зареєструвався
-  // console.log("isRegister", isRegister);
-  // console.log("isLogin", isLogin);
   const dispatch = useDispatch();
 
   const onRegisterSuccess = () => {

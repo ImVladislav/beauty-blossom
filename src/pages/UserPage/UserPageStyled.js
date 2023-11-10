@@ -217,46 +217,28 @@ text-align: center;
 `
 
 export const PaymentHistoryTh = styled.th`
-border: 1px solid #C7C7C7;
+  border: 1px solid #C7C7C7;
+  background-color: #FFF6E9 !important;
+  text-align: center;
+  white-space: nowrap;
 
-    text-align: center;
-    white-space: nowrap; /* Замість 'text-wrap' */
-    /* display: flex;
-    justify-content: center; */
-    align-items: center;
-    position: relative; /* Додайте 'position: relative' */
-    background: transparent;
-
-
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #FFF6E9; /* Колір фону, до якого буде застосована opacity */
-        opacity: 1; /* Початкова прозорість 0, а не 0.4 */
-        pointer-events: none;
-        z-index: -1; /* Помістіть псевдоелемент позаду контенту */
-    }
-
-     @media (min-width: 1440px) {
-    font-size: 18px;  
- }
+  @media (min-width: 1440px) {
+    font-size: 18px;
+  }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-      font-size: 16px;
- }
- @media (min-width: 768px) and (max-width: 1023px) {
-  font-size: 14px;
- } 
- @media (max-width: 768px) {
-   font-size: 12px;
- }
+    font-size: 16px;
+  }
 
+  @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
+
 export const PaymentPagination = styled.div`
 display: flex;
 justify-content: end;
@@ -350,3 +332,16 @@ width: 100%;
  }
 
 `
+
+export const ShowDetailButton = styled.button`
+width: 100%;
+height: 100%;
+background: transparent;
+border: none;
+`
+
+export const PaymentHistoryTr = styled.tr`
+  &.selected {
+    background-color: #FFE9C9; 
+  }
+`;

@@ -22,10 +22,12 @@ export const StyledTr = styled.tr`
         
         font-size: 18px;
     }        
+    &.yellow-row  {
+      background-color: yellow; 
+    }
         &.selected-order {
-          background-color: yellow;
+          background-color: #FFE9C9; 
         }
-
 `
 export const FilterInput  = styled.input`
    border-radius: 50px;

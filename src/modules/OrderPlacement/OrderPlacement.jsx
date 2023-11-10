@@ -48,6 +48,7 @@ import {
 } from "../Header/ShopingList/ShopingListStyled";
 import axios from "axios";
 import { nanoid } from "@reduxjs/toolkit";
+
 import { toast } from "react-toastify";
 import { Container } from "../../shared/styles/Container";
 import { InputLoader } from "../../shared/components/Loader/Loader";
@@ -55,6 +56,8 @@ import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 
 const OrderPlacement = () => {
+  const dispatch = useDispatch();
+
   const isLogin = useSelector(loggedInSelector);
   const [customerType, setCustomerType] = useState("without-registered");
   const [warehouses, setWarehouses] = useState([]); // Список відділень
@@ -73,7 +76,8 @@ const OrderPlacement = () => {
   const userNumber = useSelector(userSelectorNumber);
   const [courier, setCourier] = useState("Доставка на відділення");
   const userEmail = useSelector(userSelectorEmail);
-  const optUser = useSelector(optUserSelector);
+  const isOptUser = useSelector(optUserSelector);
+
   const [formData, setFormData] = useState({
     email: userEmail || "",
     firstName: userFirstName || "",
@@ -83,9 +87,8 @@ const OrderPlacement = () => {
     paymentMethod: "Оплата за реквізитами",
     deliveryMethod: courier,
     orderNumber: orderNumber,
+    isOptUser: isOptUser,
   });
-
-  const dispatch = useDispatch();
 
   const showOrderPlacedModal = () => {
     setIsModalOpen(true);
@@ -250,7 +253,7 @@ const OrderPlacement = () => {
     }, {})
   );
 
-  const totalCost = optUser
+  const totalCost = isOptUser
     ? cartItems.reduce(
         (total, item) => total + item.priceOPT * itemQuantities[item.id],
         0
@@ -323,7 +326,8 @@ const OrderPlacement = () => {
       name: item.name,
       code: item.code.toString(),
       quantity: itemQuantities[item.id],
-      amount: (optUser ? item.priceOPT : item.price) * itemQuantities[item.id],
+      amount:
+        (isOptUser ? item.priceOPT : item.price) * itemQuantities[item.id],
     }));
 
     const dataToSendCourier = {
@@ -342,7 +346,7 @@ const OrderPlacement = () => {
       building: formData.house,
       apartment: formData.apartment,
       orderNumber: orderNumber,
-      // owner: id,
+      isOptUser: isOptUser,
     };
 
     const dataToSendWarehouse = {
@@ -359,7 +363,7 @@ const OrderPlacement = () => {
       amount: totalCost,
       status: "Новий",
       orderNumber: orderNumber,
-      // owner: id,
+      isOptUser: isOptUser,
     };
 
     const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
@@ -387,7 +391,7 @@ const OrderPlacement = () => {
           address: "",
           building: "",
           apartment: "",
-          // owner: id,
+          isOptUser: isOptUser,
         });
       })
       .then(setIsModalOpen(true))
@@ -783,12 +787,12 @@ const OrderPlacement = () => {
                           </OrdersItem>
                           <OrdersItem>
                             <ItemAmount>
-                              {optUser ? item.priceOPT : item.price} грн
+                              {isOptUser ? item.priceOPT : item.price} грн
                             </ItemAmount>
                           </OrdersItem>
                           <OrdersItem>
                             <ItemAmount>
-                              {(optUser ? item.priceOPT : item.price) *
+                              {(isOptUser ? item.priceOPT : item.price) *
                                 itemQuantities[item.id]}
                               грн
                             </ItemAmount>
@@ -819,7 +823,7 @@ const OrderPlacement = () => {
           ) : null}
         </OrderDetails>
       </OrderForm>
-      <OrderModalWindow isOpen={isModalOpen} />
+      <OrderModalWindow orderNumber={orderNumber} isOpen={isModalOpen} />
     </Container>
   );
 };

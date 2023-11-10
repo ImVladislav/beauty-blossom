@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton, Th } from './UserPageStyled';
+
+import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentHistoryTr, PaymentPagination, PaymentPaginationButton, ShowDetailButton, Table, Th } from './UserPageStyled';
+
 import axios from 'axios';
-import { Table } from 'react-bootstrap';
+
 
 const PaymentHistory = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,6 +11,7 @@ const PaymentHistory = () => {
   const [paymentHistoryData, setPaymentHistoryData] = useState([]);
   const [openedOrder, setOpenedOrder] = useState(null);
   const [openedOrderDetails, setOpenedOrderDetails] = useState(null);
+
 
   useEffect(() => {
     // Виконати GET-запит при завантаженні компонента
@@ -23,16 +26,16 @@ const PaymentHistory = () => {
   }, []);
 
 
-const toggleOrderDetails = (item) => {
+const toggleOrderDetails = (item ) => {
   setOpenedOrder((prevOrder) => (prevOrder === item ? null : item));
+  console.log(openedOrder);
+ console.log(item);
   setOpenedOrderDetails((prevDetails) => (prevDetails === item ? null : item.orderedItems));
 };
-
   // Розрахунок індексів для пагінації
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = paymentHistoryData.slice(startIndex, endIndex);
-  console.log(paymentHistoryData);
 
   // Подія для зміни сторінки
   const handlePageChange = (pageNumber) => {
@@ -63,15 +66,18 @@ const toggleOrderDetails = (item) => {
         </thead>
         <tbody>
 {currentData.map((item, index) => (
-  <tr key={index}>
+    <PaymentHistoryTr
+    key={index}
+    className={openedOrder === item ? "selected" : ""}
+  >
     <PaymentHistoryTd>{formatDate(item.createdAt)}</PaymentHistoryTd>
     <PaymentHistoryTd>{item.orderNumber}</PaymentHistoryTd>
     <PaymentHistoryTd>{item.status}</PaymentHistoryTd>
     <PaymentHistoryTd>{item.amount}</PaymentHistoryTd>
     <PaymentHistoryTd>
-      <button onClick={() => toggleOrderDetails(item)}>Відкрити деталі</button>
+      <ShowDetailButton onClick={() => toggleOrderDetails(item)}>Відкрити деталі</ShowDetailButton>
     </PaymentHistoryTd>
-  </tr>
+  </PaymentHistoryTr>
 ))}
 
         </tbody>
