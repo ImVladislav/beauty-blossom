@@ -30,7 +30,7 @@ import {
     Titles,
 } from './OrderPlacementStyled';
 import { useDispatch, useSelector } from 'react-redux';
-import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
+import { loggedInSelector, optUserSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
 import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
 import { selectCart } from '../../redux/cart/selectors';
@@ -62,8 +62,10 @@ const OrderPlacement = () => {
     const userNumber = useSelector(userSelectorNumber);
     const [courier, setCourier] = useState('Доставка на відділення');
     const userEmail = useSelector(userSelectorEmail);
- 
+    const isOptUser = useSelector(optUserSelector);
 
+
+    
         const [formData, setFormData] = useState({
         email: userEmail || '',
         firstName: userFirstName || '',
@@ -73,6 +75,7 @@ const OrderPlacement = () => {
         paymentMethod: "Оплата за реквізитами",
         deliveryMethod: courier,
         orderNumber: orderNumber,
+        isOptUser:isOptUser,
     });
 
     const dispatch = useDispatch()
@@ -317,7 +320,7 @@ const filtred = preFilter.filter((warehouse) =>
                 building: formData.house,
                  apartment: formData.apartment,
                  orderNumber: orderNumber,
-                // owner: id,
+                isOptUser:isOptUser,
         }
         
              const dataToSendWarehouse = {
@@ -334,7 +337,7 @@ const filtred = preFilter.filter((warehouse) =>
                 amount: totalCost,
                 status: "Новий",
                  orderNumber: orderNumber,
-                // owner: id,
+                isOptUser:isOptUser,
             }
         
 
@@ -359,7 +362,7 @@ const filtred = preFilter.filter((warehouse) =>
                     address: '',
                     building: '',
                     apartment: '',
-                    // owner: id,
+                    isOptUser:isOptUser,
                 })
                 
                 

@@ -113,19 +113,19 @@ const handleOrderClick = (order) => {
           </thead>
           <tbody>
             {filteredOrders.map(order => (
-              <StyledTr
-                key={order._id}
-                onClick={() => handleOrderClick(order)}
-                className={selectedOrder && selectedOrder._id === order._id ? 'selected-order' : ''}
-              >
-                <Td>{order.orderNumber}</Td>
-                <Td>{order.createdAt.substr(0, 10)}</Td>
-                <Td>{order.firstName} {order.lastName}</Td>
-                <Td>{order.number} {order.email}</Td>
-                <Td>{order.amount} грн</Td>
-                <Td>{order.status}</Td>
-                <Td>{order.paymentMethod}</Td>
-              </StyledTr>
+        <StyledTr
+          key={order._id}
+          onClick={() => handleOrderClick(order)}
+           className={`order-row ${selectedOrder && selectedOrder._id === order._id ? 'selected-order' : ''} ${order.isOptUser ? 'yellow-row' : ''}`}
+        >
+          <Td>{order.orderNumber}</Td>
+          <Td>{order.createdAt.substr(0, 10)}</Td>
+          <Td>{order.firstName} {order.lastName}</Td>
+          <Td>{order.number} {order.email}</Td>
+          <Td>{order.amount} грн</Td>
+          <Td>{order.status}</Td>
+          <Td>{order.paymentMethod}</Td>
+        </StyledTr>
             ))}
          
           </tbody>

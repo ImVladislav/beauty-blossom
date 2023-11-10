@@ -12,7 +12,7 @@ import {
   BrandName,
   Title,
 } from "./AllBrands.styled";
-
+ 
 const AllBrands = () => {
   const items = useSelector(selectGoods);
   const dispatch = useDispatch();

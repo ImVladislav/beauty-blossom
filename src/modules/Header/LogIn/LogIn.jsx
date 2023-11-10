@@ -18,22 +18,26 @@ import {
   loggedInSelector,
   userSelectorfirstName,
   isAdminSelector,
-  registerSelector,
+
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loginOrRegister, setLoginOrRegister] = useState(false);
 
-  const userName = useSelector(userSelectorfirstName);
+  // const userName = useSelector(userSelectorfirstName);
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
-  const isRegister = useSelector(registerSelector); //якщо зареєструвався
-  // console.log(isRegister);
   const dispatch = useDispatch();
+
+  const onRegisterSuccess = () => {
+    setLoginOrRegister(true); // Зміна на true при успішній реєстрації
+    toast.info("Ви успішно зареєструвалися, авторизуйтеся");
+  };
 
   const handleModalEnter = () => {
     if (!isLogin) {
@@ -54,7 +58,7 @@ const LogIn = () => {
   const logoutDispatch = () => {
     dispatch(logout());
   };
-
+  console.log(loginOrRegister);
   return (
     <>
       <Link
@@ -97,25 +101,27 @@ const LogIn = () => {
             <CloseButton close={() => setShowModal(false)} />
             <WrapLink>
               <Link
-                className={loginOrRegister && "activ"}
+                className={(loginOrRegister && "activ") || (isLogin && "none")}
                 onClick={() => setLoginOrRegister(true)}
               >
                 Вхід
-                {/* <LoginPasswordToggle>Вхід</LoginPasswordToggle> */}
-                {/* {loginOrRegister && <Underline />} */}
+                {loginOrRegister && <Underline />}
               </Link>
 
               <Link
-                className={!loginOrRegister && "activ"}
+                className={(!loginOrRegister && "activ") || (isLogin && "none")}
                 onClick={() => setLoginOrRegister(false)}
               >
                 Реєстрація
-                {/* <LoginPasswordToggle>Реєстрація</LoginPasswordToggle> */}
-                {/* {!loginOrRegister && <Underline />} */}
+                {!loginOrRegister && <Underline />}
               </Link>
             </WrapLink>
 
-            {loginOrRegister ? <LoginForm /> : <RegisterForm />}
+            {loginOrRegister ? (
+              <LoginForm />
+            ) : (
+              <RegisterForm onRegisterSuccess={onRegisterSuccess} />
+            )}
           </Modal>
         </ModalBackdrop>
       )}
