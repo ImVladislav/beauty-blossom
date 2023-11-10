@@ -28,6 +28,9 @@ export const Link = styled.button`
       background: ${(p) => p.theme.colors.accentColor};
     }
   }
+  &.none {
+    display: none;
+  }
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
@@ -159,7 +162,7 @@ export const Modal = styled.div`
   left: 50%; /* Розміщення в горизонтальному центрі сторінки */
   transform: translate(-50%, -50%); /* Вирівнювання вікна по центру */
   /* background-color: ${(p) => p.theme.colors.white}; */
-  background: #fffdf0;
+  background: ${(p) => p.theme.colors.white};
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   @media screen and (min-width: 768px) {
     padding: 20px;

@@ -53,7 +53,7 @@ export const SearchInput = styled.input`
     outline: none;
 
     box-sizing: border-box;
-    width: 100%;
+    width: 275px;
     height: 35px;
     padding: 0px 16px 0px 42px;
     background: #fff;
@@ -66,7 +66,7 @@ export const SearchInput = styled.input`
     outline: none;
 
     box-sizing: border-box;
-    width: 100%;
+    width: 350px;
     height: 50px;
     padding: 0px 16px 0px 42px;
     background: #fff;
@@ -75,6 +75,7 @@ export const SearchInput = styled.input`
     color: ${(p) => p.theme.colors.textColor};
   }
   @media screen and (min-width: 1440px) {
+    width: 100%;
   }
 `;
 

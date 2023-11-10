@@ -36,7 +36,7 @@ export const HeaderLayout = styled.div`
   align-items: center;
 `;
 export const WrapTop = styled.div`
-  padding-right: 12px;
+  /* padding-right: 12px; */
   display: flex;
   align-items: center;
   max-width: 100%;
@@ -171,7 +171,12 @@ export const CenterWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 3px 23px 3px 30px;
+  padding: 3px 5px 3px 30px;
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 3px 23px 3px 30px;
+  }
 `;
 
 export const IconWrap = styled.div`
