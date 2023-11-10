@@ -102,7 +102,7 @@ const LogIn = () => {
               >
                 Вхід
                 {/* <LoginPasswordToggle>Вхід</LoginPasswordToggle> */}
-                {loginOrRegister && <Underline />}
+                {/* {loginOrRegister && <Underline />} */}
               </Link>
 
               <Link
@@ -111,7 +111,7 @@ const LogIn = () => {
               >
                 Реєстрація
                 {/* <LoginPasswordToggle>Реєстрація</LoginPasswordToggle> */}
-                {!loginOrRegister && <Underline />}
+                {/* {!loginOrRegister && <Underline />} */}
               </Link>
             </WrapLink>
 

@@ -304,17 +304,19 @@ export const LableInput = styled.p`
   /* text-align: center; */
   align-self: center;
   font-size: 9px;
+
   font-style: normal;
   font-weight: 400;
   line-height: 102.312%; /* 15.347px */
   letter-spacing: 0.225px;
 
   @media screen and (min-width: 768px) {
-    font-size: 14px;
   }
+
   @media screen and (min-width: 1024px) {
     font-size: 16px;
   }
+
   @media screen and (min-width: 1440px) {
     margin-left: 30px;
     text-align: center;
@@ -357,10 +359,8 @@ font-family: Century Gothic; */
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 220px;
-    min-width: 200px;
-    font-size: 14px;
   }
+
   @media screen and (min-width: 1024px) {
     max-width: 300px;
     min-width: 280px;

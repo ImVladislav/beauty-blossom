@@ -14,6 +14,7 @@ import {
   ButtonWrapper,
   FormLavelBloks,
 } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
+
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -92,7 +93,6 @@ const LoginForm = () => {
         ) : (
           <>
             <WrapInput>
-              {/* <FormLavelBloks> */}
               <div>
                 <LableInput htmlFor="email">Ваш Email</LableInput>
                 <InputField type="email" name="email" />
@@ -104,22 +104,6 @@ const LoginForm = () => {
                 <Message name="password" component="div" />
               </div>
             </WrapInput>
-            {/* </FormLavelBloks> */}
-
-            {/* <FormLavelBloks>
-              <InputBlock>
-                <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
-                <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component={InputErrors} />
-               
-              </InputBlock>
-              <InputBlock>
-                <LoginModalText htmlFor="password">Пароль</LoginModalText>
-                <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component={InputErrors} />
-                
-              </InputBlock>
-            </FormLavelBloks> */}
 
             <ButtonWrapper>
               <Button text={"Авторизуватись"} type="submit" />
