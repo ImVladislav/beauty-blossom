@@ -48,6 +48,7 @@ export const ButtonStyle = styled.button`
     font-size: ${(p) => p.theme.fontSizes.l}px;
     padding: 10px 20px;
   }
+
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
     /* background-color: ${(p) =>
@@ -59,10 +60,23 @@ export const ButtonStyle = styled.button`
     /* cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")}; */
     /* transition: background-color 0.3s ease; */
   }
+
+  @media (min-width: 1240px) and (max-width: 1439px) {
+    font-size: 20px;
+    padding: 18px 50px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1239px) {
+    font-size: 20px;
+    padding: 18px 50px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 18px;
+    padding: 16px 50px;
+  }
+  @media (max-width: 767px) {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
 `;
-
-// @media screen and (min-width: 768px) {
-// }
-
-// @media screen and (min-width: 1440px) {
-// }

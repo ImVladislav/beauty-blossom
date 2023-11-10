@@ -3,11 +3,37 @@ import styled from "styled-components";
 export const ProductBlock = styled.td`
  display: flex;
  border: none;
+             @media (max-width: 767px) {
+    font-size: 12px;
+}
+    @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 14px;
+    }
+    @media (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 16px;
+    }
+    @media (min-width: 1440px) {
+        
+        font-size: 18px;
+    }     
 `
 export const ProductImage = styled.img`
  max-width: 80px;
  width: 100%;
  height: 100%;
+             @media (max-width: 767px) {
+     max-width: 20px;
+}
+    @media (min-width: 768px) and (max-width: 1023px) {
+        max-width: 40px;
+    }
+    @media (min-width: 1024px) and (max-width: 1439px) {
+         max-width: 60px;
+    }
+    @media (min-width: 1440px) {
+        
+         max-width: 80px;
+    }     
 `
 
 
@@ -27,8 +53,34 @@ export const Table = styled.table`
 
 export const TableItems= styled.td`
  border: 1px solid grey;
+             @media (max-width: 767px) {
+    font-size: 12px;
+}
+    @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 14px;
+    }
+    @media (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 16px;
+    }
+    @media (min-width: 1440px) {
+        
+        font-size: 18px;
+    }     
 `
 export const TableTrBlock= styled.tr`
  border: 1px solid grey;
  height: 50px;
+             @media (max-width: 767px) {
+    font-size: 12px;
+}
+    @media (min-width: 768px) and (max-width: 1023px) {
+        font-size: 14px;
+    }
+    @media (min-width: 1024px) and (max-width: 1439px) {
+        font-size: 16px;
+    }
+    @media (min-width: 1440px) {
+        
+        font-size: 18px;
+    }     
 `

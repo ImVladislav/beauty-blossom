@@ -29,7 +29,7 @@ import {
     Title,
     Titles,
 } from './OrderPlacementStyled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loggedInSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from '../../redux/auth/selectors';
 import LoginForm from '../Header/LogIn/LoginForm';
 import RegisterForm from '../Header/LogIn/RegisterForm';
@@ -41,6 +41,7 @@ import { toast } from "react-toastify";
 import { Container } from "../../shared/styles/Container";
 import { InputLoader } from '../../shared/components/Loader/Loader';
 import { OrderModalWindow } from './OrderModal';
+import { deleteAll } from '../../redux/cart/slice';
 
 
 const OrderPlacement = () => {
@@ -55,11 +56,13 @@ const OrderPlacement = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [courierDelivery, setCourierDelivery] = useState(false);
+    const [orderNumber, setOrderNumber] = useState('');
     const userFirstName = useSelector(userSelectorfirstName);
     const userLastName = useSelector(userSelectorlastName);
     const userNumber = useSelector(userSelectorNumber);
     const [courier, setCourier] = useState('Доставка на відділення');
     const userEmail = useSelector(userSelectorEmail);
+ 
 
         const [formData, setFormData] = useState({
         email: userEmail || '',
@@ -69,25 +72,21 @@ const OrderPlacement = () => {
         city: '',
         paymentMethod: "Оплата за реквізитами",
         deliveryMethod: courier,
-        
-
+        orderNumber: orderNumber,
     });
 
-
+    const dispatch = useDispatch()
+    
 const showOrderPlacedModal = () => {
   setIsModalOpen(true);
 };
 
-const hideOrderPlacedModal = () => {
-  setIsModalOpen(false);
-};
     const cartItems = useSelector(selectCart);
     
 const handleInputChange = (e) => {
     const { name, value } = e.target;
 
   setFormData({ ...formData, [name]: value });
-
 
 };
 
@@ -99,8 +98,27 @@ const handleInputChange = (e) => {
     secoundWord = words[1];
 
     const apiKey = 'c9cfd468abe7e624f872ca0e59a29184';
+    
+function logCurrentTime12HourFormat() {
+  const currentTime = new Date();
+  let hours = currentTime.getHours();
+  const minutes = currentTime.getMinutes();
+  const seconds = currentTime.getSeconds();
+  const milliseconds = currentTime.getMilliseconds();
 
-    useEffect(() => {
+  // Додавання нуля перед однозначними хвилинами, секундами та мілісекундами
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const formattedMilliseconds = milliseconds < 10 ? `00${milliseconds}` : (milliseconds < 100 ? `0${milliseconds}` : milliseconds);
+
+  setOrderNumber(`${hours}${formattedMinutes}${formattedSeconds}${formattedMilliseconds}`);
+    }
+    
+useEffect(() => {
+logCurrentTime12HourFormat()
+}, []);
+
+useEffect(() => {
 
                if (formData.deliveryMethod === 'Доставка на відділення') {
         
@@ -143,8 +161,6 @@ const handleCityChange = async () => {
     if (data.success) {
         setSearchCities(data.data);
 
-        
-        
     }
   } catch (error) {
     console.error("Помилка при запиті до API Нової Пошти для населених пунктів", error);
@@ -185,15 +201,12 @@ const handleWarehousesChange = async () => {
 
     if (data.success) {
       setWarehouses(data.data);
-        console.log(warehouses);
     }
   } catch (error) {
     console.error("Помилка запиту до API Нової Пошти для населених пунктів", error);
   }
     };
-    
 
-    
 useEffect(() => {
 const preFilter = warehouses.filter((warehouse) =>
     (warehouse.CityDescription.toLowerCase().includes(searchWarehouses.toLowerCase()))
@@ -203,16 +216,13 @@ const filtred = preFilter.filter((warehouse) =>
     (warehouse.SettlementAreaDescription.includes(secoundWord))
 );
 
-    console.log(preFilter);
-    console.log(filtred);
 
     if (words.length > 1) {
         firstWord = words[0];
         secoundWord = words[1];
     }
         handleCityChange();
-         console.log(warehouses.length);
-        console.log(secoundWord, firstWord);
+
 }, [ searchText ]);
 
       const [itemQuantities, setItemQuantities] = useState(
@@ -239,7 +249,12 @@ const filtred = preFilter.filter((warehouse) =>
                 return;
             }
         }
-        if (!formData.firstName) {
+        if (orderNumber === '') {
+      toast.error("Щось пішло не так, спробуйте ще раз, або зверніться до адміністратора");
+      setIsSubmitting(false);
+      return;
+        }
+                if (!formData.firstName) {
       toast.error("Введіть ім'я отримувача.");
       setIsSubmitting(false);
       return;
@@ -251,8 +266,8 @@ const filtred = preFilter.filter((warehouse) =>
         }
   
         const phonePattern = /^0\d{9}$/;
-        const trimedVlaue = formData.number.trim()
-        const trimmedValue2 = formData.number.replace(/\s+/g, ''); 
+        const trimedVlaue = formData.number
+        // const trimmedValue2 = formData.number.replace(/\s+/g, ''); 
         
 
     const isPhoneValid = phonePattern.test(trimedVlaue);
@@ -276,7 +291,6 @@ const filtred = preFilter.filter((warehouse) =>
       return;
     }
 
-
         const orderedItems = cartItems.map((item) => ({
             productId: item.id,
             images: item.images,
@@ -284,11 +298,8 @@ const filtred = preFilter.filter((warehouse) =>
             code: item.code.toString(),
             quantity: itemQuantities[item.id],
             amount: item.price * itemQuantities[item.id],
+            
         }));
-
-
-
-
 
              const dataToSendCourier = {
                 ...formData,
@@ -304,7 +315,9 @@ const filtred = preFilter.filter((warehouse) =>
                 status: "Новий",
                 address: formData.address ,
                 building: formData.house,
-                apartment: formData.apartment,
+                 apartment: formData.apartment,
+                 orderNumber: orderNumber,
+                // owner: id,
         }
         
              const dataToSendWarehouse = {
@@ -320,29 +333,17 @@ const filtred = preFilter.filter((warehouse) =>
                 orderedItems: orderedItems,
                 amount: totalCost,
                 status: "Новий",
-
+                 orderNumber: orderNumber,
+                // owner: id,
             }
         
-//         if (courierDelivery === '2') {
-//   if (!dataToSendCourier.address || !dataToSendCourier.building || !dataToSendCourier.apartment) {
-//     alert('Будь ласка, заповніть адресу, будинок та квартиру для курєрської доставки');
-//       setIsSubmitting(false);
-//         console.log(formData.address);
-//     console.log(formData.building);
-//     console.log(formData.apartment);
-//     return;
-//     }
-
-// }
-
-     
 
         const ordersUrl = 'https://beauty-blossom-backend.onrender.com/api/orders';
 
         axios.post(ordersUrl, courier === "no"? dataToSendCourier : dataToSendWarehouse)
             .then(response => {
                 console.log('Відповідь від сервера:', response.data);
-
+                dispatch(deleteAll())
                 showOrderPlacedModal();
 
                 setFormData({
@@ -351,14 +352,17 @@ const filtred = preFilter.filter((warehouse) =>
                     lastName: userLastName || '',
                     number: userNumber || null,
                     city: '',
-
+                    orderNumber: orderNumber,
                     paymentMethod: '',
                     deliveryMethod: '',
                     comments: '',
                     address: '',
                     building: '',
                     apartment: '',
+                    // owner: id,
                 })
+                
+                
             })
             .then(setIsModalOpen(true))
             .catch(error => {
@@ -632,7 +636,7 @@ const handleCitySelect = (city, areaDescription) => {
                                                         }, 500);
                                                     }}
                                                 />
-                                                {warehouses.length < 1000 && isDropdownWarehouseVisible && (
+                                                {warehouses.length < 5000 && isDropdownWarehouseVisible && (
                                                     <Citylist>
                                                         <CityitemsBlock>
                                                             {warehouses.length === 0 ? (
@@ -752,3 +756,4 @@ export default OrderPlacement;
 //411
 //430
 //619
+//792

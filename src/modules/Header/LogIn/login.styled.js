@@ -225,18 +225,15 @@ export const LoginModalText = styled.p`
   margin-left: 10px;
   /* text-align: center; */
   align-self: center;
-  font-size: 9px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 102.312%; /* 15.347px */
   letter-spacing: 0.225px;
 
   @media screen and (min-width: 768px) {
-    font-size: 14px;
   }
-  @media screen and (min-width: 1024px) {
-    font-size: 16px;
-  }
+
   @media screen and (min-width: 1440px) {
     margin-left: 30px;
     text-align: center;
@@ -255,15 +252,13 @@ export const LoginModalText = styled.p`
 
 export const FormikInput = styled(Field)`
   margin: 3px 3px 3px 0;
-  max-width: 150px;
-  min-width: 130px;
-  /* max-height: 20px; */
+  max-width: 100px;
+  max-height: 20px;
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   border-radius: 25px;
   padding: 3px 10px;
   outline: none;
-
   /* text-align: center;
 font-family: Century Gothic; */
   font-size: 10px;
@@ -278,15 +273,6 @@ font-family: Century Gothic; */
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 220px;
-    min-width: 200px;
-    font-size: 14px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 300px;
-    min-width: 280px;
-    font-size: 18px;
-    padding: 5px 15px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -308,39 +294,5 @@ font-family: Century Gothic; */
     /* &:focus-visible{
             border-color: ${(p) => p.theme.colors.accentColor} !important;
         } */
-  }
-`;
-
-export const Underline = styled.div`
-  flex: 1;
-  height: 1px;
-  background-color: #000; /* You can change the color to your preference */
-  /* margin-left: 20px; Adjust the spacing between the title and the line */
-`;
-
-export const WrapInput = styled.div`
-  display: flex;
-  gap: 5px;
-  margin-bottom: 15px;
-  @media screen and (min-width: 768px) {
-    margin-bottom: 20px;
-  }
-  @media screen and (min-width: 1024px) {
-    gap: 10px;
-  }
-  @media screen and (min-width: 1440px) {
-    margin-bottom: 30px;
-  }
-`;
-export const WrapPhone = styled.div`
-  margin-bottom: 20px;
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 30px;
-  }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-    margin-bottom: 40px;
   }
 `;

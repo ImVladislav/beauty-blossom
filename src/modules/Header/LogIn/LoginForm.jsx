@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText, WrapInput } from "./login.styled";
+import { FormikInput, LoginModalText } from "./login.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
@@ -78,20 +78,20 @@ const LoginForm = () => {
           <p>Ви успішно авторизувались</p>
         ) : (
           <>
-            <WrapInput>
-              {/* <FormLavelBloks> */}
+            <FormLavelBloks>
               <div>
                 <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
                 <FormikInput type="email" name="email" />
-                <Message name="email" component="div" />
+                <ErrorMessage name="email" component="div" />
+                ////////
               </div>
               <div>
                 <LoginModalText htmlFor="password">Пароль</LoginModalText>
                 <FormikInput type="password" name="password" />
-                <Message name="password" component="div" />
+                <ErrorMessage name="password" component="div" />
+                ////////
               </div>
-            </WrapInput>
-            {/* </FormLavelBloks> */}
+            </FormLavelBloks>
 
             <FormLavelBloks>
               <Button text={"Авторизуватись"} type="submit" />

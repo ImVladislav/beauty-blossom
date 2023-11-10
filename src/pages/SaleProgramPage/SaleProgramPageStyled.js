@@ -136,6 +136,11 @@ export const OpenModal = styled.button`
 
   @media screen and (min-width: 1440px) {
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    padding: 20px 30px;
+  }
 `;
 export const CloseModal = styled.button``;
 
@@ -148,14 +153,12 @@ export const FormLavelBloks = styled.div`
   margin-top: 30px;
   margin-bottom: 20px;
   position: relative;
+
   @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1024px) {
-    margin-top: 40px;
   }
 
   @media screen and (min-width: 1440px) {
-    /* margin-top: 14px; */
+    margin-top: 14px;
   }
 `;
 export const Label = styled.label``;

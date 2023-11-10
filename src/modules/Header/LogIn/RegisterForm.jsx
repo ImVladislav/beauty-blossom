@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+
 import {
   FormikInput,
   LoginModalText,
   WrapInput,
   WrapPhone,
+  InputBlock,
 } from "./login.styled";
+
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";

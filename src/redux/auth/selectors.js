@@ -7,3 +7,4 @@ export const refreshSelector = (state) => state.auth.isRefreshing;
 export const isAdminSelector = (state) => state.auth.isAdmin;
 export const optUserSelector = (state) => state.auth.optUser;
 export const registerSelector = (state) => state.auth.isRegister;
+export const _idSelector = (state) => state.auth._id;
