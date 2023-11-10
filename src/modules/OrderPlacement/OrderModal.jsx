@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
-import { Link, LinkButton, LinkThumb, ModalText, Titles } from "./OrderPlacementStyled";
+import { LinkButton, LinkThumb, ModalText, Titles } from "./OrderPlacementStyled";
 
 const ModuleStyle = {
     overlay: {

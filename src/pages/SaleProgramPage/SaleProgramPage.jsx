@@ -7,7 +7,6 @@ import {
   ModalBackground,
   ModalContent,
   OpenModal,
-  SubTitle,
   Text,
   Title,
 } from "./SaleProgramPageStyled";

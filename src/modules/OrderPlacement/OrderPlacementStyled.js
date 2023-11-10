@@ -28,10 +28,10 @@ export const CostumerStatusItem = styled.label`
     padding: 5px;
 
     @media (min-width: 768px) and (max-width: 1023px) {
-  font-size: 12px;
+  font-size: 16px;
 }
     @media (min-width: 1024px) and (max-width: 1439px) {
-  font-size: 12px;
+  font-size: 18px;
 }
       @media (min-width: 1440px) {
    
@@ -252,12 +252,12 @@ export const Title = styled.h2`
 
      @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 20px;
-     margin: 16px 280px 16px 280px;
+     margin: 16px 28px 16px 28px;
 }
 
      @media (max-width: 767px) {
     font-size: 20px;
-     margin: 16px 50px 16px 50px;
+     margin: 16px 5px 16px 5px;
 }
 `
 
@@ -299,6 +299,10 @@ export const OrdersThumb = styled.div`
            @media screen and (min-width: 768px) and (max-width: 1023px) {
     margin-left: 10px;
   }
+           @media  (max-width: 767px) {
+
+ margin-left: 0px;
+         }
 `
 
 export const OrdersHeaders = styled.thead`

@@ -1,14 +1,25 @@
 import React, { useState } from "react";
 import { ContactInformForm, ContactInformInput, ContactInformInputBlock, ContactInformSubButton, RedStar } from "./UserPageStyled";
+import { useSelector } from "react-redux";
+import { _idSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from "../../redux/auth/selectors";
+import axios from "axios";
 
 
 const UserData = () => {
+  const firstName = useSelector(userSelectorfirstName);
+  const lastName = useSelector(userSelectorlastName);
+  const email = useSelector(userSelectorEmail);
+  const number = useSelector(userSelectorNumber);
+  const id = useSelector(_idSelector);
+
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    number: number,
   });
+
+
 
   const [activeTab, setActiveTab] = useState("контактна інформація");
 
@@ -24,10 +35,18 @@ const UserData = () => {
     setActiveTab(tab);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/updateUserData/${id}`, formData);
+    console.log(response.data);
+    // Вивести повідомлення про успішне оновлення даних, якщо потрібно
+  } catch (error) {
+    console.error("Помилка при відправленні POST-запиту:", error);
+    // Вивести повідомлення про помилку, якщо потрібно
+  }
+};
 
     return (
     <div className="cabinet-page">
@@ -43,7 +62,7 @@ const UserData = () => {
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email}
+                  value={formData.email || ''}
                   onChange={handleChange}
                 />
               </ContactInformInputBlock>
@@ -73,7 +92,7 @@ const UserData = () => {
                   type="tel"
                   id="number"
                   name="number"
-                  value={formData.phone}
+                  value={formData.number}
                   onChange={handleChange}
                 />
               </ContactInformInputBlock>

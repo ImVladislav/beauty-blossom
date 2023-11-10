@@ -2,8 +2,10 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Nav = styled.nav`
-display: grid;
-padding: 0px 20px;
+    display: grid;
+    padding: 0px 20px;
+    margin-right: auto;
+    margin-bottom: auto;
 `
 
 export const StyledLink = styled(Link)`
@@ -13,7 +15,7 @@ margin: 10px 0px;
 export const CabinetLink = styled(Link)`
     border: 1px solid ${(p) => p.theme.colors.textColor};
     border-radius: 75px;
-    padding: 0px 85px;
+    padding: 0px 65px;
     text-decoration: none;
     height: 66px;
     color: ${(p) => p.theme.colors.textColor};
@@ -25,7 +27,7 @@ export const CabinetLink = styled(Link)`
     margin-bottom: 10px;
     font-size: 20px;
     position: relative; /* Додайте 'position: relative' */
-    
+        overflow: hidden;
     &::before {
         content: "";
         position: absolute;
@@ -47,9 +49,44 @@ export const CabinetLink = styled(Link)`
     &:hover::before {
         opacity: 1; /* Змінити прозорість фону при наведенні */
     }
+
+
+     @media (min-width: 1440px) {
+        
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+padding: 0px 20px;
+ } 
+ @media (max-width: 768px) {
+  padding: 0px 30px;
+ }
 `;
 export const UserPageBlock = styled.div`
 display: flex;
+
+     @media (min-width: 1440px) {
+       width: 1400px ;
+    padding: 0px 20px;
+    margin-right: auto;
+    margin-bottom: auto;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+
+ } 
+ @media (max-width: 768px) {
+      display: flex;
+    flex-direction: column;
+    align-items: center;
+ }
+
 
 
 `
@@ -57,7 +94,7 @@ export const Title = styled.h2`
 display: flex;
 justify-content: center;
 border-bottom: 1px solid #C7C7C7;
-margin: 40px 140px;
+margin: 40px 0px;
 
 `
 export const RedStar = styled.span`
@@ -69,6 +106,16 @@ display: flex;
 justify-content: space-between;
 margin-bottom: 15px;
 
+
+
+ @media (max-width: 768px) {
+
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+}
 `
 
 export const ContactInformInput = styled.input`
@@ -76,11 +123,27 @@ border-radius: 50px;
 padding: 4px 10px;
 width: 480px;
 
+ @media (min-width: 1440px) {
+        width: 480px;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+        width: 380px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  width: 280px;
+ } 
+ @media (max-width: 768px) {
+    width: 350px;
+ }
+
 `
 
 export const ContactInformForm = styled.form`
 margin-left: 50px;
-
+ @media (max-width: 768px) {
+    margin-left: 0px;
+ }
 `
 
 export const ContactInformSubButton = styled.button`
@@ -123,14 +186,34 @@ export const ContactInformSubButton = styled.button`
     &:hover::before {
         opacity: 1; /* Змінити прозорість фону при наведенні */
     }
+
+     @media (max-width: 768px) {
+    margin-bottom: 50px;
+ }
+
+
 `;
-
-
 
 
 export const PaymentHistoryTd = styled.td`
 border: 1px solid #C7C7C7;
 text-align: center;
+
+ @media (min-width: 1440px) {
+    font-size: 18px;  
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 16px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+ } 
+ @media (max-width: 768px) {
+   font-size: 12px;
+ }
+
+
 `
 
 export const PaymentHistoryTh = styled.th`
@@ -158,6 +241,20 @@ border: 1px solid #C7C7C7;
         pointer-events: none;
         z-index: -1; /* Помістіть псевдоелемент позаду контенту */
     }
+
+     @media (min-width: 1440px) {
+    font-size: 18px;  
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      font-size: 16px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+ } 
+ @media (max-width: 768px) {
+   font-size: 12px;
+ }
 
 `;
 export const PaymentPagination = styled.div`
@@ -193,4 +290,63 @@ border: 1px solid #C7C7C7;
         font-weight: bold;
         background: #FFF6E9;
     }
+`
+export const CabinetContainer = styled.div`
+
+ @media (min-width: 1440px) {
+      /* width: 1400px; */
+      /* padding: 0 20px;
+      display: flex; */
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
+
+`
+export const CabinetBlock = styled.div`
+padding: 0, 20px;
+`
+export const DetailTableThumb = styled.div`
+
+
+ @media (min-width: 1440px) {
+      width: 905px;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
+`
+export const Table = styled.table`
+width: 100%;
+
+ @media (min-width: 1440px) {
+      
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+      
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
 `

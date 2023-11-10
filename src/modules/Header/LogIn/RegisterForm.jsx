@@ -1,11 +1,20 @@
 import React, { useState } from "react";
+
 import {
   FormikInput,
+  InputField,
+  LableInput,
   LoginModalText,
   WrapInput,
   WrapPhone,
 } from "./login.styled";
-import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
+
+// import { FormikInput, InputBlock, LoginModalText } from "./login.styled";
+
+import {
+  ButtonWrapper,
+  FormLavelBloks,
+} from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -110,13 +119,13 @@ const RegisterForm = () => {
               {/* <FormLavelBloks> */}
               <WrapInput>
                 <div>
-                  <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
-                  <FormikInput type="email" name="email" />
+                  <LableInput htmlFor="email">Ваш Email</LableInput>
+                  <InputField type="email" name="email" />
                   <Message name="email" component="div" />
                 </div>
                 <div>
-                  <LoginModalText htmlFor="password">Пароль</LoginModalText>
-                  <FormikInput type="password" name="password" />
+                  <LableInput htmlFor="password">Пароль</LableInput>
+                  <InputField type="password" name="password" />
                   <Message name="password" component="div" />
                 </div>
               </WrapInput>
@@ -124,30 +133,72 @@ const RegisterForm = () => {
               {/* <FormLavelBloks> */}
               <WrapInput>
                 <div>
-                  <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
-                  <FormikInput type="text" name="firstName" />
+                  <LableInput htmlFor="firstName">Ім'я</LableInput>
+                  <InputField type="text" name="firstName" />
                   <Message name="firstName" component="div" />
                 </div>
                 <div>
-                  <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
-                  <FormikInput type="text" name="lastName" />
+                  <LableInput htmlFor="lastName">Прізвище</LableInput>
+                  <InputField type="text" name="lastName" />
                   <Message name="lastName" component="div" />
                 </div>
               </WrapInput>
               {/* </FormLavelBloks> */}
               {/* <WrapPhone> */}
-              <LoginModalText htmlFor="number">Телефон</LoginModalText>
-              <FormikInput type="tel" name="number" />
+              <LableInput htmlFor="number">Телефон</LableInput>
+              <InputField type="tel" name="number" />
               <Message name="number" component="div" />
               {/* </WrapPhone> */}
 
-              <FormLavelBloks>
+              <ButtonWrapper>
                 <Button text={"Зареєструватись"} type="submit" />
-              </FormLavelBloks>
+              </ButtonWrapper>
             </div>
           )}
         </Form>
       )}
+      {/* <Form>
+        {IsRegistered ? (
+          "Ви успішно зареєструвалися як оптовий клієнт"
+        ) : (
+          <>
+            <FormLavelBloks>
+              <InputBlock>
+                <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
+                <FormikInput type="email" name="email" />
+                <ErrorMessage name="email" component="div" />
+              </InputBlock>
+              <InputBlock>
+                <LoginModalText htmlFor="password">Пароль</LoginModalText>
+                <FormikInput type="password" name="password" />
+                <ErrorMessage name="password" component="div" />
+              </InputBlock>
+            </FormLavelBloks>
+            <FormLavelBloks>
+              <InputBlock>
+                <LoginModalText htmlFor="firstName">Ім'я</LoginModalText>
+                <FormikInput type="text" name="firstName" />
+                <ErrorMessage name="firstName" component="div" />
+              </InputBlock>
+              <InputBlock>
+                <LoginModalText htmlFor="lastName">Прізвище</LoginModalText>
+                <FormikInput type="text" name="lastName" />
+                <ErrorMessage name="lastName" component="div" />
+              </InputBlock>
+              </FormLavelBloks>
+            <FormLavelBloks>  
+            <InputBlock>
+              <LoginModalText htmlFor="number">Телефон</LoginModalText>
+              <FormikInput type="tel" name="number" />
+              <ErrorMessage name="number" component="div" />
+            </InputBlock>
+              </FormLavelBloks>
+            <FormLavelBloks>
+              <Button text={"Зареєструватись"} type="submit" />
+            </FormLavelBloks>
+          </>
+        )}
+      </Form> */}
     </Formik>
   );
 };

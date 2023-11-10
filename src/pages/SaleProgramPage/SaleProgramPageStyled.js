@@ -136,6 +136,11 @@ export const OpenModal = styled.button`
 
   @media screen and (min-width: 1440px) {
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    padding: 20px 30px;
+  }
 `;
 export const CloseModal = styled.button``;
 
@@ -148,14 +153,53 @@ export const FormLavelBloks = styled.div`
   margin-top: 30px;
   margin-bottom: 20px;
   position: relative;
-  @media screen and (min-width: 768px) {
-  }
+
   @media screen and (min-width: 1024px) {
     margin-top: 40px;
   }
 
   @media screen and (min-width: 1440px) {
-    /* margin-top: 14px; */
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: space-around;
+    padding: 12px;
+    margin-bottom: auto;
+  }
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 12px;
+  }
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  position: relative;
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 40px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
   }
 `;
 export const Label = styled.label``;
