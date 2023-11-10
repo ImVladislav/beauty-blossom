@@ -3,12 +3,10 @@ import {  ProductBlock, ProductImage, TableItems, TableTrBlock } from './AdminDe
 import { Table } from 'react-bootstrap';
 import axios from 'axios';
 
-
-
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
-
+console.log(selectedOrder);
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -16,9 +14,7 @@ const AdminDetail = ({ selectedOrder }) => {
   const handleCancelClick = () => {
     setIsEditing(false);
     };
-    
-
-
+console.log(selectedOrder.isOptUser);
     const handleSaveClick = async () => {
   try {
     // Створюємо новий масив orderedItems без поля _id
@@ -34,13 +30,14 @@ const AdminDetail = ({ selectedOrder }) => {
       status: editedOrder.status,
 
       orderedItems: updatedOrderedItems,
-                
+            
         firstName: editedOrder.firstName,
         lastName: editedOrder.lastName,
         number: editedOrder.number,
         email: editedOrder.email,
         city: editedOrder.city,
-        warehouse: editedOrder.warehouse,
+      warehouse: editedOrder.warehouse,
+        deliveryMethod: editedOrder.deliveryMethod,
         paymentMethod: editedOrder.paymentMethod,
         amount: editedOrder.amount,
        

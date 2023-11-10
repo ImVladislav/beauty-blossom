@@ -27,7 +27,7 @@ const ModuleStyle = {
   },
 };
 
-export const OrderModalWindow = ({ isOpen, onRequestClose }) => {
+export const OrderModalWindow = ({ isOpen, onRequestClose, orderNumber }) => {
   const appElement = document.getElementById("root");
   Modal.setAppElement(appElement);
 
@@ -39,11 +39,18 @@ export const OrderModalWindow = ({ isOpen, onRequestClose }) => {
       style={ModuleStyle}
     >
 
+
       <Titles>Дякуємо за замовлення!</Titles>
 
-      <ModalText>
-       Номер вашого замовлення №.... .очікуйте на зворотній зв’язок з менеджером.
-      </ModalText>
+        <ModalText>
+          <ModalText>
+            {`Номер вашого замовлення № ${orderNumber}.`}
+          </ModalText>
+        </ModalText>
+
+        <ModalText>
+          Очікуйте на зворотній зв’язок з менеджером.
+        </ModalText>
 
       <LinkThumb>
         <LinkButton href="/beauty-blossom">Головна сторінка</LinkButton>
