@@ -93,13 +93,6 @@ export const CostumerStatusinput = styled.input`
   font-size: 12px;
 }
 
-.custom-toast{
-  font-size: 20px; /* Ваш розмір шрифту */
-  background-color: #ff0000;
-  color: #ffffff; /* Ваш колір тексту */
-  /* Додайте інші стилі за потреби */
-}
- /* #ff0000;  */
 `;
 
 export const Citylist = styled.div`

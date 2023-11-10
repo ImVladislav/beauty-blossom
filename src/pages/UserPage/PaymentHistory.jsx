@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentPagination, PaymentPaginationButton, ShowDetailButton, Th } from './UserPageStyled';
+import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentHistoryTr, PaymentPagination, PaymentPaginationButton, ShowDetailButton, Table, Th } from './UserPageStyled';
 
 import axios from 'axios';
 
