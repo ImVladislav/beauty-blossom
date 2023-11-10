@@ -1,6 +1,20 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText } from "./login.styled";
-import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
+
+import {
+  FormikInput,
+  InputField,
+  LableInput,
+  LoginModalText,
+  WrapInput,
+} from "./login.styled";
+
+// import { FormikInput, InputBlock, InputErrors, LoginModalText } from "./login.styled";
+
+import {
+  ButtonWrapper,
+  FormLavelBloks,
+} from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
+
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";
 import { Formik, Form, ErrorMessage } from "formik";
@@ -78,24 +92,22 @@ const LoginForm = () => {
           <p>Ви успішно авторизувались</p>
         ) : (
           <>
-            <FormLavelBloks>
+            <WrapInput>
               <div>
-                <LoginModalText htmlFor="email">Ваш Email</LoginModalText>
-                <FormikInput type="email" name="email" />
-                <ErrorMessage name="email" component="div" />
-                ////////
+                <LableInput htmlFor="email">Ваш Email</LableInput>
+                <InputField type="email" name="email" />
+                <Message name="email" component="div" />
               </div>
               <div>
-                <LoginModalText htmlFor="password">Пароль</LoginModalText>
-                <FormikInput type="password" name="password" />
-                <ErrorMessage name="password" component="div" />
-                ////////
+                <LableInput htmlFor="password">Пароль</LableInput>
+                <InputField type="password" name="password" />
+                <Message name="password" component="div" />
               </div>
-            </FormLavelBloks>
+            </WrapInput>
 
-            <FormLavelBloks>
+            <ButtonWrapper>
               <Button text={"Авторизуватись"} type="submit" />
-            </FormLavelBloks>
+            </ButtonWrapper>
           </>
         )}
       </Form>
