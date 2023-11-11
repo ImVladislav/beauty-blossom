@@ -112,7 +112,9 @@ export const ButtonWrap = styled.div`
   z-index: 2;
 `;
 export const ButtonIncDec = styled.button`
-  flex: 1 0 auto;
+  /* display: flex;
+  align-items: center; */
+  /* flex: 1 0 auto; */
   height: 100%;
   position: relative;
   display: inline-block;
@@ -139,9 +141,12 @@ export const ButtonIncDec = styled.button`
 
 export const CounterBlock = styled.div`
   position: relative;
+
+  justify-content: center;
+  align-items: center;
   /* bottom: 0; */
-  width: 103px;
-  height: 38px;
+  width: 75px;
+  height: 30px;
   display: flex;
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
@@ -155,6 +160,7 @@ export const CounterBlock = styled.div`
   }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
+    width: 85px;
   }
   @media screen and (min-width: 1024px) {
   }
