@@ -8,7 +8,7 @@ export const PageContainer = styled.div`
   /* align-items: center; */
   /* justify-content: center; */
   @media screen and (min-width: 768px) {
-    margin: 40px 0px;
+    margin: 40px 5px;
     flex-direction: row;
     align-items: flex-start;
   }
@@ -45,6 +45,7 @@ export const ProductImage = styled.img`
 export const WrapName = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
 `;
 export const ProductTags = styled.div`
   display: grid;
@@ -81,7 +82,7 @@ export const ProductArticle = styled.div`
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
 
-  background: ${(p) => p.theme.colors.menuBg};
+  background: ${(p) => p.theme.colors.topHeaderLine};
   border-radius: ${(p) => p.theme.radii.none};
   color: ${(p) => p.theme.colors.textColor};
   @media screen and (min-width: 768px) {

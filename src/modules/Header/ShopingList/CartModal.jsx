@@ -32,9 +32,11 @@ import {
 } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
 import { useNavigate } from "react-router-dom";
+import { optUserSelector } from "../../../redux/auth/selectors";
 
 const CartModal = ({ closeModal }) => {
   const cartItems = useSelector(selectCart);
+  const optUser = useSelector(optUserSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -80,10 +82,15 @@ const CartModal = ({ closeModal }) => {
   };
 
   // Розрахунок загальної вартості товарів в корзині
-  const totalCost = cartItems.reduce(
-    (total, item) => total + item.price * itemQuantities[item.id],
-    0
-  );
+  const totalCost = optUser
+    ? cartItems.reduce(
+        (total, item) => total + item.priceOPT * itemQuantities[item.id],
+        0
+      )
+    : cartItems.reduce(
+        (total, item) => total + item.price * itemQuantities[item.id],
+        0
+      );
 
   const placeOrder = () => {
     navigate("/order");
@@ -128,9 +135,16 @@ const CartModal = ({ closeModal }) => {
                       </DecIncBtn>
                     </CounterBlock>
                   </AmountBlock>
-                  <PriceBlock>
-                    {item.price * itemQuantities[item.id]} грн
-                  </PriceBlock>
+                  {optUser ? (
+                    <PriceBlock>
+                      {item.priceOPT * itemQuantities[item.id]} грн
+                    </PriceBlock>
+                  ) : (
+                    <PriceBlock>
+                      {item.price * itemQuantities[item.id]} грн
+                    </PriceBlock>
+                  )}
+
                   <DeleteBtn onClick={() => removeItem(item.id)}>
                     <DeleteIcon />
                   </DeleteBtn>
