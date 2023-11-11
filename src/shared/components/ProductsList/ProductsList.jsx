@@ -12,6 +12,7 @@ import {
 } from "./ProductsList.styled";
 import { optUserSelector } from "../../../redux/auth/selectors";
 import { useSelector } from "react-redux";
+import NoProducts from "../../../pages/NoProducts/NoProducts";
 
 const itemsPerPage = 32;
 
@@ -149,7 +150,7 @@ const ProductsList = ({ items }) => {
               <ProductCard key={item.id} products={item} />
             ))
           ) : (
-            <p>NO PRODUCTS</p>
+            <NoProducts />
           )}
         </ProductListContainer>
 

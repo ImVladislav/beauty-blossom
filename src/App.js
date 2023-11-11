@@ -27,6 +27,8 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import UserPage from "./pages/UserPage/UserPage";
 import ChangePassword from "./pages/UserPage/ChangePassword";
 import { Loader } from "./shared/components/Loader/Loader";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import NoProducts from "./pages/NoProducts/NoProducts";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -44,6 +46,7 @@ function App() {
   return !isRefreshing ? (
     <ThemeProvider theme={theme}>
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route
           path="/"
           element={
@@ -150,6 +153,7 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="/no-product" element={<NoProducts />} />
           <Route
             path="/order"
             element={
@@ -182,7 +186,7 @@ function App() {
             element={<PrivateRoute component={PaymentHistory} to="/" />}
           />
           <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
-          <Route path="*" element={<p>Йой Лишенько! це ми ще не робили.</p>} />
+          {/* <Route element={NotFoundPage} /> */}
         </Route>
       </Routes>
     </ThemeProvider>
