@@ -79,7 +79,7 @@ const OrderPlacement = () => {
   const isOptUser = useSelector(optUserSelector);
 
   const [formData, setFormData] = useState({
-    email: userEmail || "",
+    email: userEmail || "380",
     firstName: userFirstName || "",
     lastName: userLastName || "",
     number: userNumber || null,
@@ -178,10 +178,7 @@ const OrderPlacement = () => {
         setSearchCities(data.data);
       }
     } catch (error) {
-      console.error(
-        "Помилка при запиті до API Нової Пошти для населених пунктів",
-        error
-      );
+      console.error(error);
     }
   };
   const handleWarehousesChange = async () => {
@@ -228,25 +225,23 @@ const OrderPlacement = () => {
     }
   };
 
-  useEffect(() => {
-    const preFilter = warehouses.filter((warehouse) =>
-      warehouse.CityDescription.toLowerCase().includes(
-        searchWarehouses.toLowerCase()
-      )
-    );
-
-    const filtred = preFilter.filter((warehouse) =>
-      warehouse.SettlementAreaDescription.includes(secoundWord)
-    );
+useEffect(() => {
 
     if (words.length > 1) {
-      firstWord = words[0];
-      secoundWord = words[1];
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        firstWord = words[0];
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        secoundWord = words[1];
+
     }
     handleCityChange();
   }, [searchText]);
 
-  const [itemQuantities, setItemQuantities] = useState(
+
+      // eslint-disable-next-line no-unused-vars
+      const [itemQuantities, setItemQuantities] = useState(
+
     cartItems.reduce((quantities, item) => {
       quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
       return quantities;
@@ -294,15 +289,14 @@ const OrderPlacement = () => {
       return;
     }
 
-    const phonePattern = /^0\d{9}$/;
+    const phonePattern = /^380\d{9}$/;
     const trimedVlaue = formData.number;
-    // const trimmedValue2 = formData.number.replace(/\s+/g, '');
-
+   
     const isPhoneValid = phonePattern.test(trimedVlaue);
 
     if (!isPhoneValid) {
       toast.error(
-        "Номер телефону не коректний введіть в форматі 063 123 45 67 "
+        "Введіть номер телефону починаючи з 380 "
       );
       setIsSubmitting(false);
       return;
@@ -437,9 +431,6 @@ const OrderPlacement = () => {
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
 
-  // console.log(searchCities.length);
-  // console.log(searchCities);
-
   const handleCitySelect = (city, areaDescription) => {
     const selectedCityWithArea = `${city} ${areaDescription}`;
     setSearchText(selectedCityWithArea);
@@ -527,7 +518,7 @@ const OrderPlacement = () => {
                   type="text"
                   id="number"
                   name="number"
-                  placeholder="Введіть номер телефону отримувача починаючи з 0 *"
+                  placeholder="Введіть номер телефону починаючи з 380 *"
                   value={formData.number || ""}
                   onChange={handleInputChange}
                 />

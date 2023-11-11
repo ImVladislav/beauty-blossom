@@ -3,7 +3,7 @@ import { ContactInformForm, ContactInformInput, ContactInformInputBlock, Contact
 import { useSelector } from "react-redux";
 import { _idSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from "../../redux/auth/selectors";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 
 const UserData = () => {
   const firstName = useSelector(userSelectorfirstName);
@@ -41,8 +41,9 @@ const handleSubmit = async (e) => {
   try {
     const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/updateUserData/${id}`, formData);
     console.log(response.data);
-    // Вивести повідомлення про успішне оновлення даних, якщо потрібно
+    toast.info("Данні зміненні успішно")
   } catch (error) {
+    toast.error("Сталася помилка, спробуйте пізніше")
     console.error("Помилка при відправленні POST-запиту:", error);
     // Вивести повідомлення про помилку, якщо потрібно
   }

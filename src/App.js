@@ -29,6 +29,7 @@ import ChangePassword from "./pages/UserPage/ChangePassword";
 import { Loader } from "./shared/components/Loader/Loader";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import NoProducts from "./pages/NoProducts/NoProducts";
+import Feedback from "./pages/UserPage/Feedback";
 
 function App() {
   // const [goodsData, setGoodsData] = useState(null);
@@ -37,6 +38,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGoods());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -185,8 +187,8 @@ function App() {
             path="/cabinet/history"
             element={<PrivateRoute component={PaymentHistory} to="/" />}
           />
-          <Route path="favorites" element={<p>/cabinet/favorites/</p>} />
-          {/* <Route element={NotFoundPage} /> */}
+          <Route path="/cabinet/feedback" element={<Feedback/>} />
+
         </Route>
       </Routes>
     </ThemeProvider>

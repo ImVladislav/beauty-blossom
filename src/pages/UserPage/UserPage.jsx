@@ -11,8 +11,6 @@ import { Header } from "../../modules/Header/Header";
 import { Footer } from "../../modules/Footer/Footer";
 import { Bgd } from "../../modules/SharedLayout/SharedLayout.styled";
 import { useState } from "react";
-import { Container } from "../../shared/components/ProductCard/ProductCard.styled";
-import { ContainerHeader } from "../../modules/Header/header.styled";
 
 const UserPage = () => {
   const [pageTitle, setPageTitle] = useState("КОНТАКТНА ІНФОРМАЦІЯ");
@@ -26,8 +24,12 @@ const UserPage = () => {
   const handleChangePasswordClick = () => {
     setPageTitle("ЗМІНИТИ ПАРОЛЬ");
   };
+ const handleChangeFeedbackClick = () => {
+    setPageTitle("ВІДГУКИ ТА ПРОПОЗИЦІЇ");
+  };
+
   return (
-    <CabinetContainer>
+<CabinetContainer>
 <div>
         <Header />
         <Bgd>
@@ -52,8 +54,8 @@ const UserPage = () => {
                   ЗМІНИТИ ПАРОЛЬ
                 </CabinetLink>
                                 <CabinetLink
-                  // to="/cabinet/сhangePassword"
-                  // onClick={handleChangePasswordClick}
+                  to="/cabinet/feedback"
+                  onClick={handleChangeFeedbackClick}
                 >
                   ЗАЛИШИТИ ВІДГУК
                 </CabinetLink>
@@ -65,8 +67,8 @@ const UserPage = () => {
           </CabinetBlock>
         </Bgd>
         <Footer />
-        </div>
-    </CabinetContainer>
+  </div>
+</CabinetContainer>
   );
 };
 export default UserPage;

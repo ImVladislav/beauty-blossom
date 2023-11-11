@@ -60,7 +60,7 @@ console.log(selectedOrder.isOptUser);
 };
 
  const handleInputChange = (e, fieldName) => {
-  const { name, value } = e.target;
+  const { value } = e.target;
   if (fieldName === 'status') {
     setEditedOrder((prevOrder) => ({
       ...prevOrder,

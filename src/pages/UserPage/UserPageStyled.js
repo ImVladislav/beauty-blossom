@@ -295,6 +295,7 @@ export const CabinetContainer = styled.div`
 `
 export const CabinetBlock = styled.div`
 padding: 0, 20px;
+margin-right: auto;
 `
 export const DetailTableThumb = styled.div`
 
@@ -304,7 +305,7 @@ export const DetailTableThumb = styled.div`
  }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-      
+      width: 705px;
  }
  @media (min-width: 768px) and (max-width: 1023px) {
   
@@ -345,3 +346,58 @@ export const PaymentHistoryTr = styled.tr`
     background-color: #FFE9C9; 
   }
 `;
+
+
+export const FeedbackText = styled.p`
+display: flex;
+justify-content: center;
+padding: 20px;
+`
+
+
+export const FeedbackTextArea = styled.textarea`
+padding: 12px;
+border-radius: 50px;
+margin: 20px;
+width: 90%;
+resize: none;
+`
+
+export const FeedbackThumb =  styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
+
+ @media (min-width: 1440px) {
+      width: 905px;
+ }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+       width: 505px;
+ }
+ @media (min-width: 768px) and (max-width: 1023px) {
+  width: 373px;
+ } 
+ @media (max-width: 768px) {
+   
+ }
+
+`
+
+export const SubmitFeedback = styled.button`
+
+background: transparent;
+border: 1px solid ${(p) => p.theme.colors.textColor};
+border-radius: 75px;
+padding: 0px 65px;
+text-decoration: none;
+height: 66px;
+color: ${(p) => p.theme.colors.textColor};
+text-align: center;
+white-space: nowrap; /* Замість 'text-wrap' */
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 10px;
+font-size: 20px;
+`

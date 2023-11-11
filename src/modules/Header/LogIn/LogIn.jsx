@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Link,
   LogInIcon,
@@ -6,7 +6,6 @@ import {
   ListItem,
   Modal,
   ModalBackdrop,
-  LoginPasswordToggle,
   LogOut,
   Underline,
   WrapLink,
@@ -16,7 +15,6 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import {
   loggedInSelector,
-  userSelectorfirstName,
   isAdminSelector,
 
 } from "../../../redux/auth/selectors";
