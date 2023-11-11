@@ -295,23 +295,26 @@ export const CabinetContainer = styled.div`
 `
 export const CabinetBlock = styled.div`
 padding: 0, 20px;
-margin-right: auto;
+/* margin-right: auto; */
 `
 export const DetailTableThumb = styled.div`
-
+padding: 0, 20px;
 
  @media (min-width: 1440px) {
-      width: 905px;
+        width: 890px;
+      padding: 0, 20px;
  }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-      width: 705px;
+         width: 600px;
+      padding: 0, 20px;
  }
  @media (min-width: 768px) and (max-width: 1023px) {
-  
+    width: 450px;
+  padding: 0, 20px;
  } 
  @media (max-width: 768px) {
-   
+   padding: 0, 20px;
  }
 
 `
