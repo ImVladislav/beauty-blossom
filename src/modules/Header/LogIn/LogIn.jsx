@@ -32,7 +32,6 @@ const LogIn = () => {
   const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
 
-
   const onRegisterSuccess = () => {
     setLoginOrRegister(true); // Зміна на true при успішній реєстрації
     toast.info("Ви успішно зареєструвалися, авторизуйтеся");
@@ -57,7 +56,7 @@ const LogIn = () => {
   const logoutDispatch = () => {
     dispatch(logout());
   };
-  console.log(loginOrRegister);
+
   return (
     <>
       <Link

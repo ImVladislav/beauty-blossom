@@ -50,9 +50,9 @@ import { useSelector } from "react-redux";
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userName = useSelector(userSelectorfirstName);
-  console.log(userName);
+
   const isLogin = useSelector(loggedInSelector);
-  console.log(isLogin);
+
   const { pathname } = useLocation();
   const { isMobileScreen } = useMedia();
 

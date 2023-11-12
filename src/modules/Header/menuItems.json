@@ -7,7 +7,7 @@
       {
         "level": 2,
         "to": "/category/facial",
-        "text": "Догляд за обличчям",
+        "text": "Догляд для обличчя",
         "children": [
           {
             "level": 3,
@@ -21,12 +21,12 @@
               },
               {
                 "to": "/category/facial/masks/fabricMask",
-                "text": "Тканинна маска",
+                "text": "Тканинні маски",
                 "children": []
               },
               {
                 "to": "/category/facial/masks/nightMask",
-                "text": "Нічна маска",
+                "text": "Нічні маски",
                 "children": []
               }
             ]
@@ -39,7 +39,7 @@
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/cream",
-                "text": "Крем",
+                "text": "Крем для обличчя",
                 "children": []
               },
               {
@@ -51,19 +51,19 @@
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/geel",
-                "text": "Гель",
+                "text": "Гель для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/bridge",
-                "text": "Міст",
+                "text": "Міст для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/serum",
-                "text": "Сироватка",
+                "text": "Сироватка для обличчя",
                 "children": []
               },
               {
@@ -94,7 +94,19 @@
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/scrub",
-                "text": "Скраб",
+                "text": "Скраб для обличчя",
+                "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/cleaning/peelingGel",
+                "text": "Пілінг гель",
+                "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/cleaning/cleansingBalm",
+                "text": "Бальзам для очищення",
                 "children": []
               }
             ]
@@ -127,6 +139,12 @@
                 "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
                 "text": "Крем під очі",
+                "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/forSkinUnderTheEyes/serumUnderTheEyes",
+                "text": "Сироватка під очі",
                 "children": []
               },
               {
@@ -192,32 +210,60 @@
       {
         "level": 2,
         "to": "/category/hairCare",
-        "text": "Догляд за волоссям",
+        "text": "Догляд для волосся",
         "children": [
           {
             "to": "/category/hairCare/shampoos",
             "text": "Шампуні",
-            "children": []
+            "children": [
+              {
+                "to": "/category/hairCare/shampoos/dryShampoo",
+                "text": "Сухий шампунь",
+                "children": []
+              }
+            ]
           },
           {
             "to": "/category/hairCare/airConditioners",
             "text": "Кондиціонери",
             "children": []
           },
-          {
-            "to": "/category/hairCare/serumEmulsionsFillers",
-            "text": "Сироватки, емульсії,філери",
-            "children": []
-          },
-          {
-            "to": "/category/hairCare/hairMasks",
-            "text": "Маски для волосся",
-            "children": []
-          },
+
           {
             "to": "/category/hairCare/forTheScalp",
             "text": "Для шкіри голови",
             "children": []
+          },
+          {
+            "to": "/category/hairCare/additionalCare",
+            "text": "Додатковий догляд",
+            "children": [
+              {
+                "to": "/category/hairCare/additionalCare/hairMasks",
+                "text": "Маски для волосся",
+                "children": []
+              },
+              {
+                "to": "/category/hairCare/additionalCare/hairEmulsions",
+                "text": "Емульсії для волосся",
+                "children": []
+              },
+              {
+                "to": "/category/hairCare/additionalCare/hairFillers",
+                "text": "Філери для волосся",
+                "children": []
+              },
+              {
+                "to": "/category/hairCare/additionalCare/hairOil",
+                "text": "Масло для волосся",
+                "children": []
+              },
+              {
+                "to": "/category/hairCare/additionalCare/hairSpray",
+                "text": "Спрей для волосся",
+                "children": []
+              }
+            ]
           },
           {
             "to": "/category/hairCare/hairCareSets",
@@ -229,7 +275,7 @@
       {
         "level": 2,
         "to": "/category/bodyCare",
-        "text": "Догляд за тілом",
+        "text": "Догляд для тіла",
         "children": [
           {
             "to": "/category/bodyCare/handCosmetics",
@@ -245,6 +291,16 @@
           {
             "to": "/category/bodyCare/bodyFoam",
             "text": "Пінка для тіла",
+            "children": []
+          },
+          {
+            "to": "/category/bodyCare/soulGel",
+            "text": "Гель для душу",
+            "children": []
+          },
+          {
+            "to": "/category/bodyCare/deodorant",
+            "text": "Дезодорант",
             "children": []
           }
         ]

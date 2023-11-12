@@ -38,7 +38,7 @@ export const login = createAsyncThunk(
       token.set(data.token);
       // Зберігаємо токен в Local Storage
       localStorage.setItem("authToken", data.token);
-      console.log(data);
+
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -78,7 +78,7 @@ export const refreshCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get("/auth/current");
-      console.log(data);
+
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
