@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FeedBackBlock } from './AdminPageStyled';
 
 const AdminFeedbackPage = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -20,10 +21,10 @@ const AdminFeedbackPage = () => {
     <div>
       <h3>Сторінка відгуків адміністратора</h3>
       {feedbacks.map(feedback => (
-        <div key={feedback._id}>
+        <FeedBackBlock key={feedback._id}>
           {/* Рендерінг даних відгуку */}
           <p>{feedback.feedbacks}</p>
-        </div>
+        </FeedBackBlock>
       ))}
     </div>
   );

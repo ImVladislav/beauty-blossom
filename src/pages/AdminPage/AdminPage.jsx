@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminDetail from '../../modules/AminPannel/AdminDetail';
 import { Container } from '../../shared/styles/Container';
-import { AdminBlock, FilterInput, StyledTr, Table, Td, Th } from './AdminPageStyled';
+import { AdminBlock, Button, FilterInput, NavigateBlock, StyledTr, Table, Td, Th } from './AdminPageStyled';
 import AdminFeedbackPage from './AdminFeedbackPage';
 
 
@@ -57,10 +57,20 @@ const handleOrderClick = (order) => {
     <Container>
       <AdminBlock>
         <h1>Панель адміністратора</h1>
-        <div>
-          <button onClick={() => setShowOrders(true)}>Замовлення</button>
-          <button onClick={() => setShowOrders(false)}>Відгуки</button>
-        </div>
+        <NavigateBlock>
+          <Button
+            onClick={() => setShowOrders(true)}
+            className={showOrders ? 'selected-button' : ''}
+          >
+            Замовлення
+          </Button>
+          <Button
+            onClick={() => setShowOrders(false)}
+            className={!showOrders ? 'selected-button' : ''}
+          >
+            Відгуки
+          </Button>
+        </NavigateBlock>
 
         {showOrders ? (
           <>

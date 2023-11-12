@@ -101,8 +101,14 @@ export const Button = styled.button`
   
   border: 1px solid black;
   cursor: pointer;
-
-
+  background: transparent;
+  border-radius: 50px;
+  padding: 5px 10px;
+  margin: 10px;
+&.selected-button {
+  background-color: gainsboro; 
+ font-weight: bold;
+}
         @media (max-width: 767px) {
     font-size: 12px;
 }
@@ -117,4 +123,21 @@ export const Button = styled.button`
     font-size: 18px;
   
 }
+
+
+
 `
+
+export const NavigateBlock = styled.div`
+display: flex;
+justify-content: center;
+
+`
+
+export const FeedBackBlock = styled.div`
+display: flex;
+justify-content: center;
+border: 1px solid black
+
+`
+

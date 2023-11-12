@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FeedbackText, FeedbackTextArea, FeedbackThumb, SubmitFeedback } from './UserPageStyled';
+import { toast } from 'react-toastify';
 
 const Feedback = () => {
   const [feedbackText, setFeedbackText] = useState('');
@@ -13,17 +14,15 @@ const Feedback = () => {
     try {
       // Відправка POST-запиту на сервер
       const response = await axios.post('https://beauty-blossom-backend.onrender.com/api/feedback', {
-        feedback: feedbackText,
+        feedbacks: feedbackText,
       });
 
       // Опрацювання відповіді сервера
       console.log(response.data);
-
+      toast.info('Ваш відгук Відправлено!')
       // Очищення textarea після успішної відправки
       setFeedbackText('');
 
-      // Виведення повідомлення в консоль
-      console.log('Дякуємо за відгук!');
     } catch (error) {
       console.error('Помилка при відправці відгуку:', error);
     }
