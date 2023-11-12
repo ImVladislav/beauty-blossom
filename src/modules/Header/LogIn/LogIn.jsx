@@ -16,7 +16,7 @@ import RegisterForm from "./RegisterForm";
 import {
   loggedInSelector,
   isAdminSelector,
-  _idSelector,
+
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
