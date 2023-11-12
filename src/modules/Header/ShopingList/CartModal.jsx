@@ -144,10 +144,11 @@ const CartModal = ({ closeModal }) => {
                       {item.price * itemQuantities[item.id]} грн
                     </PriceBlock>
                   )}
-
-                  <DeleteBtn onClick={() => removeItem(item.id)}>
-                    <DeleteIcon />
-                  </DeleteBtn>
+                  <td>
+                    <DeleteBtn onClick={() => removeItem(item.id)}>
+                      <DeleteIcon />
+                    </DeleteBtn>
+                  </td>
                 </Thumb>
               ))}
             </GoodsBlock>

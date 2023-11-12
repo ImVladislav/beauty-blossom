@@ -17,7 +17,6 @@ import {
   loggedInSelector,
   isAdminSelector,
   _idSelector,
-
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
@@ -32,7 +31,6 @@ const LogIn = () => {
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
-
 
   const onRegisterSuccess = () => {
     setLoginOrRegister(true); // Зміна на true при успішній реєстрації
@@ -58,7 +56,7 @@ const LogIn = () => {
   const logoutDispatch = () => {
     dispatch(logout());
   };
-  console.log(loginOrRegister);
+
   return (
     <>
       <Link

@@ -144,6 +144,7 @@ export const ButtonMenu = styled.button`
   cursor: pointer;
   padding: 0;
   margin: 0;
+  margin-right: 30px;
   color: ${(p) => p.theme.colors.textColor};
   transition: all 0.15s ease 0s;
   &:hover,
