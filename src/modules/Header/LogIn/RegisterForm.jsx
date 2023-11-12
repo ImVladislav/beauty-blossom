@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
 import {
+  FormikInputOrders,
   InputField,
   LableInput,
+  LableInputOreders,
+  LoginBlock,
   WrapInput,
+  WrapInputOrders,
 } from "./login.styled";
 
 import {
@@ -115,7 +119,6 @@ const RegisterForm = ({ onRegisterSuccess }) => {
             </>
           ) : (
             <div>
-              {/* <FormLavelBloks> */}
 
               <WrapInput>
                 <div>
@@ -129,8 +132,7 @@ const RegisterForm = ({ onRegisterSuccess }) => {
                   <Message name="password" component="div" />
                 </div>
               </WrapInput>
-              {/* </FormLavelBloks> */}
-              {/* <FormLavelBloks> */}
+
               <WrapInput>
                 <div>
                   <LableInput htmlFor="firstName">Ім'я</LableInput>
@@ -143,12 +145,11 @@ const RegisterForm = ({ onRegisterSuccess }) => {
                   <Message name="lastName" component="div" />
                 </div>
               </WrapInput>
-              {/* </FormLavelBloks> */}
-              {/* <WrapPhone> */}
+
               <LableInput htmlFor="number">Телефон</LableInput>
               <InputField type="tel" name="number" />
               <Message name="number" component="div" />
-              {/* </WrapPhone> */}
+
 
               <ButtonWrapper>
                 <Button text={"Зареєструватись"} type="submit" />
@@ -161,4 +162,129 @@ const RegisterForm = ({ onRegisterSuccess }) => {
   );
 };
 
+
+export const RegisterFormOrders = ({ onRegisterSuccess }) => {
+  const initialValues = {
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    number: "",
+    city: "місто",
+    link: "myshop.com",
+    onlineShop: false,
+    offlineShop: false,
+    socialMedia: false,
+    optUser: false,
+  };
+  const [IsRegistered, setIsRegistered] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const registerDispatch = (data) => {
+    dispatch(register(data))
+      .then((response) => {
+        if (response.payload === "Server error") {
+          toast.error("Користувач з цим номером телефону вже зареєстрований!");
+        }
+        if (response.type === "auth/register/fulfilled") {
+          onRegisterSuccess();
+          setIsRegistered(true);
+        } else {
+          setIsRegistered(false);
+        }
+      })
+      .catch((error) => {
+        setIsRegistered(false);
+      });
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Не валідна адреса пошти")
+      .required("Введіть адресу електронної пошти "),
+    password: Yup.string()
+      .min(6, "Пароль має містити не менше 6 символів")
+      .required("Введіть пароль"),
+    firstName: Yup.string()
+      .min(2, "Ім'я має бути не менше 2х букв")
+      .required("Введіть ваше ім'я"),
+    lastName: Yup.string()
+      .min(2, "Прізвище має бути не менше 2х букв")
+      .required("Введіть ваше прізвище"),
+    number: Yup.number().required("Введіть ваш номер телефону"),
+    link: Yup.string(),
+    city: Yup.string(),
+    onlineShop: Yup.boolean(),
+    offlineShop: Yup.boolean(),
+    socialMedia: Yup.boolean(),
+    optUser: Yup.boolean(),
+  });
+
+  const onSubmit = (values) => {
+    registerDispatch(values);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {(formikProps) => (
+        <Form>
+          {IsRegistered ? (
+            <>
+              <p style={{ margin: "15px", textAlign: "center" }}>
+                Ви успішно зареєструвалися, авторизуйтеся
+              </p>
+              <LoginForm />
+            </>
+          ) : (
+            <LoginBlock>
+
+              <WrapInputOrders>
+                <div>
+                  <LableInputOreders htmlFor="email">Ваш Email</LableInputOreders>
+                  <FormikInputOrders type="email" name="email" />
+                  <Message name="email" component="div" />
+                </div>
+                <div>
+                  <LableInputOreders htmlFor="password">Пароль</LableInputOreders>
+                  <FormikInputOrders type="password" name="password" />
+                  <Message name="password" component="div" />
+                </div>
+              </WrapInputOrders>
+
+              <WrapInputOrders>
+                <div>
+                  <LableInputOreders htmlFor="firstName">Ім'я</LableInputOreders>
+                  <FormikInputOrders type="text" name="firstName" />
+                  <Message name="firstName" component="div" />
+                </div>
+                <div>
+                  <LableInputOreders htmlFor="lastName">Прізвище</LableInputOreders>
+                  <FormikInputOrders type="text" name="lastName" />
+                  <Message name="lastName" component="div" />
+                </div>
+              </WrapInputOrders>
+
+              <WrapInputOrders>
+              <LableInputOreders htmlFor="number">Телефон</LableInputOreders>
+              <FormikInputOrders type="tel" name="number" />
+              <Message name="number" component="div" />
+              </WrapInputOrders>
+
+              <ButtonWrapper>
+                <Button text={"Зареєструватись"} type="submit" />
+              </ButtonWrapper>
+              </LoginBlock>
+          )}
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
 export default RegisterForm;
+

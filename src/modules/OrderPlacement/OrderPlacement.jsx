@@ -38,8 +38,8 @@ import {
   userSelectorfirstName,
   userSelectorlastName,
 } from "../../redux/auth/selectors";
-import LoginForm from "../Header/LogIn/LoginForm";
-import RegisterForm from "../Header/LogIn/RegisterForm";
+import LoginForm, { LoginFormOrders } from "../Header/LogIn/LoginForm";
+import RegisterForm, { RegisterFormOrders } from "../Header/LogIn/RegisterForm";
 import { selectCart } from "../../redux/cart/selectors";
 import {
   Amount,
@@ -68,7 +68,7 @@ const OrderPlacement = () => {
   const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
     useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
   const [courierDelivery, setCourierDelivery] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
   const userFirstName = useSelector(userSelectorfirstName);
@@ -79,10 +79,10 @@ const OrderPlacement = () => {
   const isOptUser = useSelector(optUserSelector);
 
   const [formData, setFormData] = useState({
-    email: userEmail || "380",
+    email: userEmail || "",
     firstName: userFirstName || "",
     lastName: userLastName || "",
-    number: userNumber || null,
+    number: userNumber || "380",
     city: "",
     paymentMethod: "Оплата за реквізитами",
     deliveryMethod: courier,
@@ -489,8 +489,8 @@ useEffect(() => {
               </CostumerStatusItem>
             </CostumerStatus>
           )}
-          {customerType === "registered" && !isLogin && <LoginForm />}
-          {customerType === "not-registered" && !isLogin && <RegisterForm />}
+          {customerType === "registered" && !isLogin && <LoginFormOrders />}
+          {customerType === "not-registered" && !isLogin && <RegisterFormOrders />}
           {customerType === "without-registered" || isLogin ? (
             <Form onSubmit={handleFormSubmit}>
               <DeliveryInfoBlock>

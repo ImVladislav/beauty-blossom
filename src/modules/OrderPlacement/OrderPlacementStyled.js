@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 export const CostumerStatus = styled.div`
     display: flex;
     justify-content: space-evenly;
-
+margin: 40px 0;
         @media (max-width: 767px) {
       display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    
 }
 `
 
@@ -329,7 +330,7 @@ export const OrdersHeaderItem = styled.p`
 }
 
      @media (max-width: 767px) {
-    font-size: 10px;
+    font-size: 8px;
 
 }
 `;
@@ -360,7 +361,7 @@ border-top-left-radius: 20px;
 
 }
      @media (max-width: 767px) {
-    font-size: 10px;
+    font-size: 8px;
 
 }
 `
@@ -390,7 +391,7 @@ background: #FFF6E9;
 }
 
      @media (max-width: 767px) {
-    font-size: 10px;
+    font-size: 8px;
 
 }
 `
@@ -750,6 +751,7 @@ export const ModalStyle = styled.div`
 
      @media (max-width: 768px) {
      width: 90%;
+     border-radius: 20px;
 }
 
 

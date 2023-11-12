@@ -336,6 +336,9 @@ export const LableInput = styled.p`
   }
 `;
 
+
+
+
 export const FormikInput = styled(Field)`
   margin: 3px 3px 3px 0;
 
@@ -498,6 +501,24 @@ export const WrapInput = styled.div`
   @media screen and (min-width: 1440px) {
     margin-bottom: 30px;
   }
+`
+export const WrapInputOrders = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
+
+    flex-direction: column;
+    align-items: center;
+  }
+  @media screen and (min-width: 1024px) {
+    gap: 10px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 30px;
+  }
+
 `;
 export const WrapPhone = styled.div`
   margin-bottom: 20px;
@@ -543,3 +564,104 @@ export const InputBlock = styled.div`
 // @media (max-width: 768px) {
 //   min-width: 200px;
 // }
+export const LoginBlock= styled.div`
+height: 50dvh;
+
+  `
+
+
+
+export const FormikInputOrders = styled(Field)`
+  margin: 3px 3px 3px 0;
+
+
+  /* max-height: 20px; */
+
+  border-radius: 4px;
+  border: 1px solid ${(p) => p.theme.colors.borderCard};
+  border-radius: 25px;
+  padding: 3px 10px;
+  outline: none;
+  /* text-align: center;
+font-family: Century Gothic; */
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 12.955px */
+  letter-spacing: 0.19px;
+  &:hover,
+  &:focus {
+    /* outline: 1px solid ${(p) => p.theme.colors.accentColor}; */
+    border: 1px solid ${(p) => p.theme.colors.accentColor};
+  }
+
+
+  @media (min-width: 1440px) {
+    max-width: 100%;
+    max-height: 35px;
+    margin: 5px;
+
+    font-size: 22px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    width: 350px;
+    height: 45px;
+    font-size: 26px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    width: 250px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 100%;
+    height: 40px;
+
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+  `
+
+  export const LableInputOreders = styled.p`
+  color: #504056;
+  display: flex;
+  margin-left: 10px;
+  /* text-align: center; */
+  align-self: center;
+  font-size: 9px;
+
+  font-style: normal;
+  font-weight: 400;
+  line-height: 102.312%; /* 15.347px */
+  letter-spacing: 0.225px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+    justify-content:center;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-left: 30px;
+    text-align: center;
+
+    font-size: 18px;
+    font-style: normal;
+    /* font-weight: 700; */
+    line-height: 102.312%; /* 25.578px */
+    letter-spacing: 0.375px;
+    /* text-transform: uppercase; */
+    /* font-weight: bold; */
+    display: flex;
+    align-self: center;
+  }
+`;

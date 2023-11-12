@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
 import {
-  FormikInput,
+  FormikInputOrders,
   InputField,
   LableInput,
-  LoginModalText,
+  LableInputOreders,
+  LoginBlock,
   WrapInput,
+  WrapInputOrders,
 } from "./login.styled";
 
 // import { FormikInput, InputBlock, InputErrors, LoginModalText } from "./login.styled";
 
 import {
   ButtonWrapper,
-  FormLavelBloks,
 } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 
 import Button from "../../../shared/components/Button/Button";
@@ -52,7 +53,6 @@ const LoginForm = () => {
   const registerDispatch = (data) => {
     dispatch(login(data))
       .then((response) => {
-        console.log(response.payload);
         if (response.payload === "Email or password invalid") {
           toast.error("Логін або пароль ваказано не вірно!");
         }
@@ -109,6 +109,83 @@ const LoginForm = () => {
               <Button text={"Авторизуватись"} type="submit" />
             </ButtonWrapper>
           </>
+        )}
+      </Form>
+    </Formik>
+  );
+};
+
+
+
+
+export const LoginFormOrders = () => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const [IsLogined, setIsLogined] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const registerDispatch = (data) => {
+    dispatch(login(data))
+      .then((response) => {
+        if (response.payload === "Email or password invalid") {
+          toast.error("Логін або пароль ваказано не вірно!");
+        }
+
+        if (response.type === "auth/login/fulfilled") {
+          setIsLogined(true);
+        } else {
+          setIsLogined(false);
+        }
+      })
+      .catch((error) => {
+        setIsLogined(false);
+      });
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string()
+      .email("Не валідна адреса пошти")
+      .required("Введіть адресу електронної пошти "),
+    password: Yup.string()
+      .min(6, "Пароль має містити не менше 6 символів")
+      .required("Введіть пароль"),
+  });
+
+  const onSubmit = (values) => {
+    registerDispatch(values);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      <Form>
+        {IsLogined ? (
+          <p>Ви успішно авторизувались</p>
+        ) : (
+          <LoginBlock>
+            <WrapInputOrders>
+              <div>
+                <LableInputOreders htmlFor="email">Ваш Email</LableInputOreders>
+                <FormikInputOrders type="email" name="email" />
+                <Message name="email" component="div" />
+              </div>
+              <div>
+                <LableInputOreders htmlFor="password">Пароль</LableInputOreders>
+                <FormikInputOrders type="password" name="password" />
+                <Message name="password" component="div" />
+              </div>
+            </WrapInputOrders>
+
+            <ButtonWrapper>
+              <Button text={"Авторизуватись"} type="submit" />
+            </ButtonWrapper>
+          </LoginBlock>
         )}
       </Form>
     </Formik>
