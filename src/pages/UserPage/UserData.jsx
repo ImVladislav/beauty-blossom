@@ -31,6 +31,7 @@ const UserData = () => {
     });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };

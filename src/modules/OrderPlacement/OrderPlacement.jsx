@@ -38,8 +38,8 @@ import {
   userSelectorfirstName,
   userSelectorlastName,
 } from "../../redux/auth/selectors";
-import LoginForm, { LoginFormOrders } from "../Header/LogIn/LoginForm";
-import RegisterForm, { RegisterFormOrders } from "../Header/LogIn/RegisterForm";
+import { LoginFormOrders } from "../Header/LogIn/LoginForm";
+import { RegisterFormOrders } from "../Header/LogIn/RegisterForm";
 import { selectCart } from "../../redux/cart/selectors";
 import {
   Amount,
@@ -68,7 +68,7 @@ const OrderPlacement = () => {
   const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
     useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [courierDelivery, setCourierDelivery] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
   const userFirstName = useSelector(userSelectorfirstName);
@@ -145,6 +145,7 @@ const OrderPlacement = () => {
     if (formData.deliveryMethod === "Доставка кур'єром") {
       setCourierDelivery("2");
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleInputChange]);
 
   const handleCityChange = async () => {
