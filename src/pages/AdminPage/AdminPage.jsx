@@ -3,18 +3,20 @@ import axios from 'axios';
 import AdminDetail from '../../modules/AminPannel/AdminDetail';
 import { Container } from '../../shared/styles/Container';
 import { AdminBlock, FilterInput, StyledTr, Table, Td, Th } from './AdminPageStyled';
+import AdminFeedbackPage from './AdminFeedbackPage';
 
 
 const AdminPage = () => {
   const [orders, setOrders] = useState([]);
-  const [selectedOrder, setSelectedOrder] = useState(null); // Додано стан для вибраного замовлення
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [orderNumberFilter, setOrderNumberFilter] = useState('');
-const [dateFilter, setDateFilter] = useState('');
-const [nameFilter, setNameFilter] = useState('');
-const [emailFilter, setEmailFilter] = useState('');
-const [amountFilter, setAmountFilter] = useState('');
-const [statusFilter, setStatusFilter] = useState('');
-const [paymentMethodFilter, setPaymentMethodFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
+  const [nameFilter, setNameFilter] = useState('');
+  const [emailFilter, setEmailFilter] = useState('');
+  const [amountFilter, setAmountFilter] = useState('');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [paymentMethodFilter, setPaymentMethodFilter] = useState('');
+  const [showOrders, setShowOrders] = useState(true);
 
   
   const filteredOrders = orders.filter(order => {
@@ -51,11 +53,17 @@ const handleOrderClick = (order) => {
   }
 };
 
-  return (
+ return (
     <Container>
       <AdminBlock>
-        <h1>Замовлення</h1>
+        <h1>Панель адміністратора</h1>
         <div>
+          <button onClick={() => setShowOrders(true)}>Замовлення</button>
+          <button onClick={() => setShowOrders(false)}>Відгуки</button>
+        </div>
+
+        {showOrders ? (
+          <>
           <FilterInput
             type="text"
             placeholder="Фільтр по номеру замовлення"
@@ -98,7 +106,7 @@ const handleOrderClick = (order) => {
             value={paymentMethodFilter}
             onChange={(e) => setPaymentMethodFilter(e.target.value)}
           />
-        </div>
+        
         <Table>
           <thead>
             <tr>
@@ -131,10 +139,13 @@ const handleOrderClick = (order) => {
           </tbody>
         </Table>
 
-        {selectedOrder && ( // Відображення детальної інформації, якщо вибрано замовлення
-          <AdminDetail selectedOrder={selectedOrder} />
+                    {selectedOrder && (
+              <AdminDetail selectedOrder={selectedOrder} />
+            )}
+          </>
+        ) : (
+           <AdminFeedbackPage/>
         )}
-                
       </AdminBlock>
     </Container>
   );

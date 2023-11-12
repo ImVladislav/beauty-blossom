@@ -96,3 +96,25 @@ export const Td = styled.td`
   
 }
 `
+
+export const Button = styled.button`
+  
+  border: 1px solid black;
+  cursor: pointer;
+
+
+        @media (max-width: 767px) {
+    font-size: 12px;
+}
+      @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+}
+    @media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 16px;
+}
+      @media (min-width: 1440px) {
+   
+    font-size: 18px;
+  
+}
+`

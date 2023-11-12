@@ -16,6 +16,7 @@ import RegisterForm from "./RegisterForm";
 import {
   loggedInSelector,
   isAdminSelector,
+  _idSelector,
 
 } from "../../../redux/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +32,7 @@ const LogIn = () => {
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
+
 
   const onRegisterSuccess = () => {
     setLoginOrRegister(true); // Зміна на true при успішній реєстрації
