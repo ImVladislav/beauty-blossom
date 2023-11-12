@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Link,
   LogInIcon,
@@ -37,6 +37,20 @@ const LogIn = () => {
     setLoginOrRegister(true); // Зміна на true при успішній реєстрації
     toast.info("Ви успішно зареєструвалися, авторизуйтеся");
   };
+
+    useEffect(() => {
+    // Додайте або видаліть клас при відкритті/закритті модалки
+    if (showModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+
+    // Очистіть клас при виході з компонента
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [showModal]);
 
   const handleModalEnter = () => {
     if (!isLogin) {

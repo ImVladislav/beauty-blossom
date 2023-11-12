@@ -1,4 +1,4 @@
-import React from "react";
+import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -16,6 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+       <StrictMode>
       <BrowserRouter basename="beauty-blossom">
         <App />
         <ScrollToTopMobile />
@@ -32,7 +33,8 @@ root.render(
           theme="colored"
         />
         <GlobalStyle />
-      </BrowserRouter>
+        </BrowserRouter>
+        </StrictMode>
     </Provider>
   </React.StrictMode>
 );

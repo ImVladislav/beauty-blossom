@@ -18,7 +18,9 @@ body {
 }
 
 
-
+body.modal-open {
+  overflow: hidden;
+}
 
 main {
   min-height: 50vh;
