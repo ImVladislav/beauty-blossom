@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  Link,
+  LinkBtn,
   LogInIcon,
   DropDown,
   ListItem,
@@ -21,6 +21,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../redux/auth/operation";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -59,27 +60,27 @@ const LogIn = () => {
 
   return (
     <>
-      <Link
+      <LinkBtn
         onClick={!isLogin ? handleModalEnter : null}
         onMouseEnter={isLogin ? handleDropdownEnter : null}
       >
         <LogInIcon />
-      </Link>
+      </LinkBtn>
       {showDropdown && (
         <DropDown onMouseLeave={handleDropdownLeave}>
           <ul>
             {admin && (
               <ListItem>
-                <a href="cabinet/ordersbyclient/">
+                <Link to="/cabinet/ordersbyclient/">
                   Замовлення(Адмін права)
-                </a>
+                </Link>
               </ListItem>
             )}
             <ListItem>
-              <a href="cabinet">ОСОБИСТИЙ КАБІНЕТ</a>
+              <Link to="/cabinet">ОСОБИСТИЙ КАБІНЕТ</Link>
             </ListItem>
             <ListItem>
-              <a href="cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
+              <Link to="/cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</Link>
             </ListItem>
             <ListItem>
               <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
@@ -95,21 +96,21 @@ const LogIn = () => {
           <Modal>
             <CloseButton close={() => setShowModal(false)} />
             <WrapLink>
-              <Link
+              <LinkBtn
                 className={(loginOrRegister && "activ") || (isLogin && "none")}
                 onClick={() => setLoginOrRegister(true)}
               >
                 Вхід
                 {loginOrRegister && <Underline />}
-              </Link>
+              </LinkBtn>
 
-              <Link
+              <LinkBtn
                 className={(!loginOrRegister && "activ") || (isLogin && "none")}
                 onClick={() => setLoginOrRegister(false)}
               >
                 Реєстрація
                 {!loginOrRegister && <Underline />}
-              </Link>
+              </LinkBtn>
             </WrapLink>
 
             {loginOrRegister ? (
