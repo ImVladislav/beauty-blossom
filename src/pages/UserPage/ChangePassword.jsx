@@ -1,50 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ContactInformForm, ContactInformInput, ContactInformInputBlock, ContactInformSubButton, RedStar } from './UserPageStyled';
-import { useSelector } from 'react-redux';
-import { _idSelector } from '../../redux/auth/selectors';
-import { toast } from "react-toastify";
-import { refreshCurrentUser } from 'шлях до вашого файла з операціями';
 
+import { toast } from "react-toastify";
 
 const ChangePassword = () => {
-  const idSelector = useSelector(_idSelector);
 
-  const dispatch = useDispatch();
-  const [id, setId] = useState(idSelector);
-
-  useEffect(() => {
-    // Якщо id є undefined, відправляємо запит на сервер для оновлення користувача
-    if (id === undefined) {
-      dispatch(refreshCurrentUser());
-    }
-  }, [id, dispatch]);
-
-  useEffect(() => {
-    // Оновлюємо локальний стан, коли змінюється id
-    setId(id);
-  }, [id]);
-
-  console.log(id);
-
-  if (id === undefined) {
-    // Обробляємо випадок, коли ідентифікатор є undefined
-    return <div>Loading...</div>;
-  }
-
-  // Решта логіки компоненту
-  // ...
-
-  return (
-    <div>
-      {/* JSX вашого компоненту */}
-    </div>
-  );
-};
-
-
-  console.log(id);
-  
   const [formData, setFormData] = useState({
     oldPassword: "",
     password: "",
@@ -58,41 +19,42 @@ const ChangePassword = () => {
     });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  // console.log(id);
 
-  if (formData.oldPassword === formData.password) {
-    
-   toast.error("Старий та новий паролі однакові.");
-    return;
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  if (formData.oldPassword.length < 6 || formData.password.length < 6) {
-    toast.error("Пароль повинен містити більше 6 символів.");
-    return;
-  }
+    if (formData.oldPassword === formData.password) {
+      toast.error("Старий та новий паролі однакові.");
+      return;
+    }
 
-  try {
-    // eslint-disable-next-line no-unused-vars
-    const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/changePassword/${id}`, {
-      oldPassword: formData.oldPassword,
-      newPassword: formData.password,
-    });
+    if (formData.oldPassword.length < 6 || formData.password.length < 6) {
+      toast.error("Пароль повинен містити більше 6 символів.");
+      return;
+    }
 
-    setFormData({
-      oldPassword: "",
-      password: "",
-    });
+    try {
+      const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/changePassword/`, {
+        oldPassword: formData.oldPassword,
+        newPassword: formData.password,
+      });
+
+      setFormData({
+        oldPassword: "",
+        password: "",
+      });
       toast.info("Пароль змінено. Новий пароль набуде чинності через 2 хвилини.");
 
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-       toast.error("Ви ввели невірний діючий пароль.");
-    } else {
-      console.error("Помилка при відправці запиту:", error);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        toast.error("Ви ввели невірний діючий пароль.");
+      } else {
+        console.error("Помилка при відправці запиту:", error);
+      }
     }
-  }
-};
+  };
+
   return (
     <div>
       <ContactInformForm onSubmit={handleSubmit}>
@@ -124,3 +86,7 @@ const handleSubmit = async (e) => {
 }
 
 export default ChangePassword;
+
+
+
+
