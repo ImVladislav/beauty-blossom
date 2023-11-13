@@ -67,10 +67,10 @@ function App() {
               </Suspense>
             }
           />
-          <Route path="/login" element={<p>Login Page</p>} />
-          <Route path="/registration" element={<p>Registration Page</p>} />
+          <Route path="login" element={<p>Login Page</p>} />
+          <Route path="registration" element={<p>Registration Page</p>} />
           <Route
-            path="/category"
+            path="category"
             element={
               <Suspense fallback={<Loader />}>
                 <CategoryPage />
@@ -78,7 +78,7 @@ function App() {
             }
           />
           <Route
-            path="/category/:category"
+            path="category/:category"
             element={
               <Suspense fallback={<Loader />}>
                 <SortCategory />
@@ -86,7 +86,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/category/:category/:category"
+            path="category/:category/:category"
             element={
               <Suspense fallback={<Loader />}>
                 <SortCategory />
@@ -94,7 +94,7 @@ function App() {
             }
           />
           <Route
-            path="/category/:category/:category/:category"
+            path="category/:category/:category/:category"
             element={
               <Suspense fallback={<Loader />}>
                 <SortCategory />
@@ -102,7 +102,7 @@ function App() {
             }
           />
           <Route
-            path="/brands"
+            path="brands"
             element={
               <Suspense fallback={<Loader />}>
                 <BrandsPage />
@@ -110,7 +110,7 @@ function App() {
             }
           />
           <Route
-            path="/brands/:brands"
+            path="brands/:brands"
             element={
               <Suspense fallback={<Loader />}>
                 <BrandsPage />
@@ -118,7 +118,7 @@ function App() {
             }
           />
           <Route
-            path="/news"
+            path="news"
             element={
               <Suspense fallback={<Loader />}>
                 <NewPage />
@@ -126,7 +126,7 @@ function App() {
             }
           />
           <Route
-            path="/discount"
+            path="discount"
             element={
               <Suspense fallback={<Loader />}>
                 <DiscountPage />
@@ -134,7 +134,7 @@ function App() {
             }
           />
           <Route
-            path="/wholesaleProgram"
+            path="wholesaleProgram"
             element={
               <Suspense fallback={<Loader />}>
                 <SaleProgramPage />
@@ -142,7 +142,7 @@ function App() {
             }
           />
           <Route
-            path="/search"
+            path="search"
             element={
               <Suspense fallback={<Loader />}>
                 <SearchPage />
@@ -150,16 +150,16 @@ function App() {
             }
           />
           <Route
-            path="/product/:id"
+            path="product/:id"
             element={
               <Suspense fallback={<Loader />}>
                 <ProductPage />
               </Suspense>
             }
           />
-          <Route path="/no-product" element={<NoProducts />} />
+          <Route path="no-product" element={<NoProducts />} />
           <Route
-            path="/order"
+            path="order"
             element={
               <Suspense fallback={<Loader />}>
                 <OrderPlacement />
@@ -167,29 +167,29 @@ function App() {
             }
           />
           <Route
-            path="/ordersbyclient"
+            path="ordersbyclient"
             element={<PrivateAdminRoute component={AdminPage} to="/" />}
           />
         </Route>
         <Route
-          path="/cabinet"
+          path="cabinet"
           element={<PrivateRoute component={UserPage} to="/" />}
         >
           <Route
-            path="/cabinet/userData"
+            path="cabinet/userData"
             element={<PrivateRoute component={UserData} to="/" />}
           ></Route>
 
           <Route
-            path="/cabinet/сhangePassword"
+            path="cabinet/сhangePassword"
             element={<PrivateRoute component={ChangePassword} to="/" />}
           />
 
           <Route
-            path="/cabinet/history"
+            path="cabinet/history"
             element={<PrivateRoute component={PaymentHistory} to="/" />}
           />
-          <Route path="/cabinet/feedback" element={<Feedback/>} />
+          <Route path="cabinet/feedback" element={<Feedback/>} />
 
         </Route>
       </Routes>

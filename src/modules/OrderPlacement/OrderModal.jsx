@@ -24,8 +24,8 @@ export const OrderModalWindow = ({ isOpen, onRequestClose, orderNumber }) => {
 
 
         <LinkThumb>
-          <LinkButton href="/beauty-blossom">Головна сторінка</LinkButton>
-          <LinkButton href="/beauty-blossom/cabinet/userData">Особистий кабінет</LinkButton>
+          <LinkButton href="/">Головна сторінка</LinkButton>
+          <LinkButton href="/userData">Особистий кабінет</LinkButton>
         </LinkThumb>
       </ModalStyle>
     </>

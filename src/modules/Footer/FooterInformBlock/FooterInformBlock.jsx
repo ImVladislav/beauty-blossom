@@ -18,13 +18,13 @@ export const FooterInformBlock = () => {
       </TitleWrap>
       <Nav>
         <Item to="/cabinet/userData">Особистий кабінет</Item>
-        <ItemTitle href="/beauty-blossom/wholesaleProgram/#return">
+        <ItemTitle href="wholesaleProgram/#return">
           Повернення та обмін
         </ItemTitle>
-        <ItemTitle href="/beauty-blossom/wholesaleProgram/#payment">
+        <ItemTitle href="wholesaleProgram/#payment">
           Оплата і доставка
         </ItemTitle>
-        <ItemTitle href="/beauty-blossom/wholesaleProgram/#about">
+        <ItemTitle href="wholesaleProgram/#about">
           Про нас
         </ItemTitle>
       </Nav>

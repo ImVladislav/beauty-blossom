@@ -70,20 +70,17 @@ const LogIn = () => {
           <ul>
             {admin && (
               <ListItem>
-                <a href="/beauty-blossom/ordersbyclient/">
+                <a href="ordersbyclient/">
                   Замовлення(Адмін права)
                 </a>
               </ListItem>
             )}
             <ListItem>
-              <a href="/beauty-blossom/cabinet/userData">ОСОБИСТИЙ КАБІНЕТ</a>
+              <a href="userData">ОСОБИСТИЙ КАБІНЕТ</a>
             </ListItem>
             <ListItem>
-              <a href="/beauty-blossom/cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
+              <a href="history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
             </ListItem>
-            {/* <ListItem>
-              <a href="/beauty-blossom/cabinet/favorite">Список бажань</a>
-            </ListItem> */}
             <ListItem>
               <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
             </ListItem>

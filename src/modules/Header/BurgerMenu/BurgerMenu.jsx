@@ -50,13 +50,13 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
           Особистий кабінет
         </InfoStylesLink>
         <InfoStylesLink to="/cabinet/history">Історія замовлень</InfoStylesLink>
-        <InfoLink href="/beauty-blossom/wholesaleProgram/#return">
+        <InfoLink href="wholesaleProgram/#return">
           Повернення та обмін
         </InfoLink>
-        <InfoLink href="/beauty-blossom/wholesaleProgram/#payment">
+        <InfoLink href="wholesaleProgram/#payment">
           Оплата і доставка
         </InfoLink>
-        <InfoLink href="/beauty-blossom/wholesaleProgram/#about">
+        <InfoLink href="wholesaleProgram/#about">
           Про нас
         </InfoLink>
         <InfoButton onClick={handleClickP}>Контакти</InfoButton>
