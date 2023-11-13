@@ -86,7 +86,7 @@ const ProductsList = ({ items }) => {
 
     const newSearch = searchParams.toString();
 
-    window.history.pushState({}, "", `?${newSearch}`);
+    window.history.pushState({}, "", `${newSearch}`);
   }, [selectedFilter, currentPage]);
 
   // Обробка для оновлення компонента при "Без фільтра"

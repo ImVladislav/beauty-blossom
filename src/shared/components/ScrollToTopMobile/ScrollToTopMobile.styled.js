@@ -8,8 +8,12 @@ export const StyleScrollToTop = styled(ScrollToTop)`
   cursor: pointer;
   z-index: 999;
   text-align: center;
-
+  touch-action: manipulation;
   transition: background-color 0.3s;
+  line-height: 24px;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: middle;
   &:hover {
     background-color: #504056;
     box-shadow: 0px 3.76642px 3.76642px 0px rgba(0, 0, 0, 0.25);
