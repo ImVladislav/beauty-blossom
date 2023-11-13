@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   AboutUsContainer,
   BenefitsItem,
@@ -15,7 +16,6 @@ import {
 const AboutUs = () => {
   return (
     <AboutUsContainer>
-      {/* <div> */}
       <Title>
         BEAUTY BLOSSOM – ТВІЙ НАЙКРАЩИЙ ПОСТАЧАЛЬНИК УЛЮБЛЕНОЇ КОРЕЙСЬКОЇ
         КОСМЕТИКИ
@@ -61,7 +61,6 @@ const AboutUs = () => {
         Telegram <Link href="https://web.telegram.org/">@beauty_blossom</Link>,
         щоб завжди залишатись в курсі новин та поповнення асортименту.
       </TextLink>
-      {/* </div> */}
     </AboutUsContainer>
   );
 };

@@ -2,14 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: localStorage.getItem("cart")
-    ? JSON.parse(localStorage.getItem("cart"))
-    : [],
-  reducers: {
-    addToCart: (state, action) => {
-      const { id, quantity } = action.payload;
 
-      const existingItem = state.find((item) => item.id === id);
+  initialState: [],
+  reducers: {
+    setCart: (state, action) => {
+      state.length = 0; // Очистити існуючий масив
+      state.push(...action.payload); // Додати нові елементи
+    },
+    addToCart: (state, action) => {
+      const { _id, quantity } = action.payload;
+
+      const existingItem = state.find((item) => item._id === _id);
 
       if (existingItem) {
         // Якщо товар вже є в корзині, збільшуємо кількість
@@ -18,12 +21,11 @@ const cartSlice = createSlice({
         // Інакше додаємо новий товар до корзини
         state.push(action.payload);
       }
-
-      localStorage.setItem("cart", JSON.stringify(state));
     },
     removeQuantityCart: (state, action) => {
-      const { id, quantity } = action.payload;
-      const existingItemIndex = state.findIndex((item) => item.id === id);
+      const { _id, quantity } = action.payload;
+
+      const existingItemIndex = state.findIndex((item) => item._id === _id);
 
       if (existingItemIndex !== -1) {
         const existingItem = state[existingItemIndex];
@@ -33,23 +35,21 @@ const cartSlice = createSlice({
         } else {
           state.splice(existingItemIndex, 1);
         }
-
-        localStorage.setItem("cart", JSON.stringify(state));
       }
     },
     removeCart: (state, action) => {
       const { itemId } = action.payload;
-      const updatedCart = state.filter((item) => item.id !== itemId);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      const updatedCart = state.filter((item) => item._id !== itemId);
+
       return updatedCart;
     },
-        deleteAll: () => {
-      
-      localStorage.removeItem("cart"); 
-  return [];
+    deleteAll: () => {
+      return [];
     },
   },
 });
 
-export const { deleteAll, addToCart, removeQuantityCart, removeCart } = cartSlice.actions;
+export const { setCart, addToCart, removeQuantityCart, removeCart, deleteAll } =
+  cartSlice.actions;
 export default cartSlice.reducer;
