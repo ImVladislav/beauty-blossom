@@ -45,6 +45,8 @@ function App() {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
 
+
+
   return !isRefreshing ? (
     <ThemeProvider theme={theme}>
       <Routes>
