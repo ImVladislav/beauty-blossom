@@ -18,8 +18,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter> 
-    {/* <BrowserRouter basename="beauty-blossom">  */}
+        {/* <BrowserRouter>  */}
+        {/* <BrowserRouter basename="beauty-blossom">  */}
+        <BrowserRouter basename="/"> 
           <App />
           <ScrollToTopMobile />
           <ToastContainer
