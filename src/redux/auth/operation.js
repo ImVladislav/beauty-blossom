@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
       const res = await axios.post("/auth/register", credentials);
 
       return res.data;
-      console.log(res.data);
+   
     } catch (error) {
       if (error.response.status === 409) {
         toast.error("Ви вже зареєстровані!");
@@ -68,17 +68,22 @@ export const refreshCurrentUser = createAsyncThunk(
   "auth/refresh",
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
-    const persistedToken = state.auth.token;
+    // const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
+    // if (persistedToken === null) {
+    //   return rejectWithValue("Unautorized");
+    // }
+
+    // token.set(persistedToken);
+
+      if (!state.auth.token) {
       return rejectWithValue("Unautorized");
     }
 
-    token.set(persistedToken);
-
+    token.set(state.auth.token);
     try {
       const { data } = await axios.get("/auth/current");
-
+      console.log(data);
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

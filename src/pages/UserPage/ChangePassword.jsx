@@ -19,6 +19,7 @@ const ChangePassword = () => {
     });
   };
 
+  // console.log(id);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +35,7 @@ const ChangePassword = () => {
     }
 
     try {
+
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/changePassword/`, {
         oldPassword: formData.oldPassword,
