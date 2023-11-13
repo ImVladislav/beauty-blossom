@@ -315,8 +315,10 @@ useEffect(() => {
       return;
     }
 
+    console.log(cartItems);
+
     const orderedItems = cartItems.map((item) => ({
-      productId: item.id,
+      productId: item.id || item.productId,
       images: item.images,
       name: item.name,
       code: item.code.toString(),
