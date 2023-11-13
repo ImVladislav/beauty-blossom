@@ -71,16 +71,16 @@ const LogIn = () => {
           <ul>
             {admin && (
               <ListItem>
-                <Link to="cabinet/ordersbyclient/">
+                <Link to="/cabinet/ordersbyclient/">
                   Замовлення(Адмін права)
                 </Link>
               </ListItem>
             )}
             <ListItem>
-              <Link to="cabinet">ОСОБИСТИЙ КАБІНЕТ</Link>
+              <Link to="/cabinet">ОСОБИСТИЙ КАБІНЕТ</Link>
             </ListItem>
             <ListItem>
-              <Link to="cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</Link>
+              <Link to="/cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</Link>
             </ListItem>
             <ListItem>
               <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
