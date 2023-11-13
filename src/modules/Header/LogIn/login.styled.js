@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as userIcon } from "../../../images/newUser.svg";
 import { Field } from "formik";
 
-export const Link = styled.button`
+export const LinkBtn = styled.button`
   padding: 3px;
   border: none;
   background: transparent;
