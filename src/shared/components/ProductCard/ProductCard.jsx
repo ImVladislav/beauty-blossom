@@ -84,7 +84,7 @@ const ProductCard = ({ products }) => {
               <Image src={products.images} alt={products.name} />
               <ProductTags>
                 {products.new && <Sticker text="Новинка" />}
-                {products.sale && <Sticker text="Розпродаж" sale />}
+                {products.sale && <Sticker text="Знижка" sale />}
               </ProductTags>
             </ImageWrap>
             <Content>

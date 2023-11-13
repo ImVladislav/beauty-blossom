@@ -96,7 +96,7 @@ const ProductPage = () => {
             <ProductImage src={product.images} alt={product.name} />
             <ProductTags>
               {product.new && <Sticker text="Новинка" />}
-              {product.sale && <Sticker text="Розпродаж" sale />}
+              {product.sale && <Sticker text="Знижка" sale />}
             </ProductTags>
           </ImageWrap>
           <Info>
