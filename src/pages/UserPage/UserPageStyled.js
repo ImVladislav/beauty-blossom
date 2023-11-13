@@ -6,6 +6,10 @@ export const Nav = styled.nav`
     padding: 0px 20px;
     margin-right: auto;
     margin-bottom: auto;
+
+     @media (max-width: 768px) {
+    margin-left: auto;
+ }
 `
 
 export const StyledLink = styled(Link)`
@@ -370,7 +374,7 @@ export const FeedbackThumb =  styled.div`
 display: flex;
 justify-content: center;
 flex-direction: column;
-
+align-items:center ;
  @media (min-width: 1440px) {
       width: 905px;
  }
@@ -403,4 +407,6 @@ justify-content: center;
 align-items: center;
 margin-bottom: 10px;
 font-size: 20px;
+max-width: 345px;
+
 `

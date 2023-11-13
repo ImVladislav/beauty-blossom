@@ -9,6 +9,9 @@ import { toast } from "react-toastify";
 const ChangePassword = () => {
   const id = useSelector(_idSelector);
 
+
+  console.log(id);
+  
   const [formData, setFormData] = useState({
     oldPassword: "",
     password: "",
