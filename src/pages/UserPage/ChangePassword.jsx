@@ -4,11 +4,47 @@ import { ContactInformForm, ContactInformInput, ContactInformInputBlock, Contact
 import { useSelector } from 'react-redux';
 import { _idSelector } from '../../redux/auth/selectors';
 import { toast } from "react-toastify";
+import { refreshCurrentUser } from 'шлях до вашого файла з операціями';
 
 
 const ChangePassword = () => {
-  const id = useSelector(_idSelector);
+  const idSelector = useSelector(_idSelector);
 
+  const dispatch = useDispatch();
+  const [id, setId] = useState(idSelector);
+
+  useEffect(() => {
+    // Якщо id є undefined, відправляємо запит на сервер для оновлення користувача
+    if (id === undefined) {
+      dispatch(refreshCurrentUser());
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    // Оновлюємо локальний стан, коли змінюється id
+    setId(id);
+  }, [id]);
+
+  console.log(id);
+
+  if (id === undefined) {
+    // Обробляємо випадок, коли ідентифікатор є undefined
+    return <div>Loading...</div>;
+  }
+
+  // Решта логіки компоненту
+  // ...
+
+  return (
+    <div>
+      {/* JSX вашого компоненту */}
+    </div>
+  );
+};
+
+
+  console.log(id);
+  
   const [formData, setFormData] = useState({
     oldPassword: "",
     password: "",
