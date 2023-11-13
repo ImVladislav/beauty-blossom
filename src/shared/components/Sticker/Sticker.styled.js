@@ -31,7 +31,7 @@ export const ProductSticker = styled.div`
     color: #e93f11;
   }
   color: #7baf35;
-  /* color: ${(p) => (p.text === "Розпродаж" ? "#e93f11" : "#7baf35")}; */
+  /* color: ${(p) => (p.text === "Знижка" ? "#e93f11" : "#7baf35")}; */
   background: currentColor;
   font-size: 14px;
   &::before {
