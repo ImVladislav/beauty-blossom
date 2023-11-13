@@ -3,12 +3,11 @@ import styled from "styled-components";
 
 export const StyleScrollToTop = styled(ScrollToTop)`
   background-color: #833989;
-  /* font-size: 24px; */
-  /* padding: 10px 20px; */
+  font-size: 24px;
   border-radius: 50%;
   cursor: pointer;
   z-index: 999;
-  /* text-align: center; */
+  text-align: center;
 
   transition: background-color 0.3s;
   &:hover {
