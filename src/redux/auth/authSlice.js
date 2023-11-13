@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout, refreshCurrentUser } from './operation';
-
+import { createSlice } from "@reduxjs/toolkit";
+import { register, login, logout, refreshCurrentUser } from "./operation";
 
 const initialState = {
   firstName: null,
@@ -14,12 +13,11 @@ const initialState = {
   _id: null,
 };
 
-
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState: initialState,
   reducers: {},
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder
       .addCase(register.pending, (state, action) => state)
       .addCase(register.fulfilled, (state, action) => {
@@ -43,11 +41,10 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRegister = true;
         state.token = action.payload.token;
-        
       })
       .addCase(register.rejected, (state, action) => state)
       .addCase(login.pending, (state, action) => state)
-      .addCase(logout.fulfilled, state => {
+      .addCase(logout.fulfilled, (state) => {
         state.firstName = null;
         state.lastName = null;
         state.email = null;
@@ -75,7 +72,15 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(refreshCurrentUser.rejected, (state, action) => {
-        state.isRefreshing = false;
+        state.firstName = null;
+        state.lastName = null;
+        state.number = null;
+        state.email = null;
+        state.isAdmin = false;
+        state.optUser = false;
+        state._id = null;
+        state.token = null;
+        state.isLoggedIn = false;
       }),
 });
 

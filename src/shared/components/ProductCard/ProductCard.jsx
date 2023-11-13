@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import { toast } from "react-toastify";
+import axios from "axios";
+
 import { addToCart } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
-import { optUserSelector } from "../../../redux/auth/selectors";
+import {
+  loggedInSelector,
+  optUserSelector,
+} from "../../../redux/auth/selectors";
 
 import Sticker from "../Sticker/Sticker";
 import Button from "../Button/Button";
@@ -23,7 +29,6 @@ import {
   ButtonIncDec,
   InputIncDec,
 } from "./ProductCard.styled";
-import { toast } from "react-toastify";
 
 const ProductCard = ({ products }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -31,16 +36,40 @@ const ProductCard = ({ products }) => {
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
   const [quantity, setQuantity] = useState(1);
+  const loggedIn = useSelector(loggedInSelector);
 
-  const handleAddToCart = (event) => {
+  const handleAddToCart = async (event) => {
     event.preventDefault();
 
     const productCartFind = productCart?.find(
       (item) => +item.id === +products.id
     );
-
     if (!productCartFind) {
       dispatch(addToCart({ ...products, quantity }));
+      if (loggedIn) {
+        try {
+          await axios.post(`/basket`, {
+            name: products.name,
+            article: products.article,
+            code: products.code,
+            amount: products.amount,
+            description: products.description,
+            priceOPT: products.priceOPT,
+            quantity: quantity,
+            price: products.price,
+            brand: products.brand,
+            images: products.images,
+            new: products.new,
+            sale: products.sale,
+            category: products.category,
+            subCategory: products.subCategory,
+            subSubCategory: products.subSubCategory,
+            productId: products.id,
+          });
+        } catch (error) {
+          console.error("Помилка додавання товару в кошик:", error);
+        }
+      }
     }
     return;
   };

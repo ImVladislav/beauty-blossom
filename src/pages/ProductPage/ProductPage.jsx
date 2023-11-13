@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
+import axios from "axios";
 import { toast } from "react-toastify";
 
 import { addToCart } from "../../redux/cart/slice";
 import { selectGoods } from "../../redux/products/selectors";
-import { optUserSelector } from "../../redux/auth/selectors";
+import {
+  _idSelector,
+  loggedInSelector,
+  optUserSelector,
+} from "../../redux/auth/selectors";
 import { selectCart } from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";
@@ -14,6 +19,7 @@ import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
 import Sticker from "../../shared/components/Sticker/Sticker";
 import { Container } from "../../shared/styles/Container";
+import { Loader } from "../../shared/components/Loader/Loader";
 
 import {
   PageContainer,
@@ -34,7 +40,6 @@ import {
   ProductArticleSpan,
   ProductTags,
 } from "./ProductPage.styled";
-import { Loader } from "../../shared/components/Loader/Loader";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -45,19 +50,47 @@ const ProductPage = () => {
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
   const [loading, setLoading] = useState(true);
+  const loggedIn = useSelector(loggedInSelector);
 
   useEffect(() => {
     setLoading(false);
   }, []);
 
-  const product = products?.find((item) => +item.id === +id); // amount, article, brand, code, description, images, name,new,price,priceOPT,sale,category,subCategory,subSubCategory
-  const productCartFind = productCart?.find((item) => +item.id === +id);
+  const product = products?.find(
+    (item) => +item.id === +id || +item.productId === +id
+  );
+  const productCartFind = productCart?.find(
+    (item) => +item.id === +id || +item.productId === +id
+  );
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
     if (!productCartFind) {
       dispatch(addToCart({ ...product, quantity }));
+      if (loggedIn) {
+        try {
+          await axios.post(`/basket`, {
+            name: product.name,
+            article: product.article,
+            code: product.code,
+            amount: product.amount,
+            description: product.description,
+            priceOPT: product.priceOPT,
+            quantity: quantity,
+            price: product.price,
+            brand: product.brand,
+            images: product.images,
+            new: product.new,
+            sale: product.sale,
+            category: product.category,
+            subCategory: product.subCategory,
+            subSubCategory: product.subSubCategory,
+            productId: product.id,
+          });
+        } catch (error) {
+          console.error("Помилка додавання товару в кошик:", error);
+        }
+      }
     }
-    return;
   };
 
   const handleQuantityChange = (event) => {
