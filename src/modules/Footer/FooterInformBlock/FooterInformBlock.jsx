@@ -1,3 +1,4 @@
+
 import { useMedia } from "../../../hooks/useMedia";
 import {
   Item,
@@ -10,6 +11,9 @@ import {
 
 export const FooterInformBlock = () => {
   const { isMobileScreen } = useMedia();
+
+
+ 
   return (
     <div>
       <TitleWrap>
@@ -17,14 +21,14 @@ export const FooterInformBlock = () => {
         {!isMobileScreen && <Underline />}
       </TitleWrap>
       <Nav>
-        <Item to="/cabinet/userData">Особистий кабінет</Item>
-        <ItemTitle href="wholesaleProgram/#return">
+        <Item to="cabinet">Особистий кабінет</Item>
+        <ItemTitle href="/wholesaleProgram#return" >
           Повернення та обмін
         </ItemTitle>
-        <ItemTitle href="wholesaleProgram/#payment">
+        <ItemTitle href="/wholesaleProgram#payment" >
           Оплата і доставка
         </ItemTitle>
-        <ItemTitle href="wholesaleProgram/#about">
+        <ItemTitle href="/wholesaleProgram#about" >
           Про нас
         </ItemTitle>
       </Nav>

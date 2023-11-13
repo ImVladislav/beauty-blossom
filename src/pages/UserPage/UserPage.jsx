@@ -39,22 +39,22 @@ const UserPage = () => {
               
               <Nav>
                 <CabinetLink
-                  to="cabinet/userData"
+                  to="userData"
                   onClick={handleUserDataClick}
                 >
                   КОНТАКТНА ІНФОРМАЦІЯ
                 </CabinetLink>
-                <CabinetLink to="cabinet/history" onClick={handleHistoryClick}>
+                <CabinetLink to="history" onClick={handleHistoryClick}>
                   ІСТОРІЯ ЗАМОВЛЕНЬ
                 </CabinetLink>
                 <CabinetLink
-                  to="cabinet/сhangePassword"
+                  to="сhangePassword"
                   onClick={handleChangePasswordClick}
                 >
                   ЗМІНИТИ ПАРОЛЬ
                 </CabinetLink>
                                 <CabinetLink
-                  to="cabinet/feedback"
+                  to="feedback"
                   onClick={handleChangeFeedbackClick}
                 >
                   ЗАЛИШИТИ ВІДГУК

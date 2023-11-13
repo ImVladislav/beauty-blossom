@@ -70,16 +70,16 @@ const LogIn = () => {
           <ul>
             {admin && (
               <ListItem>
-                <a href="ordersbyclient/">
+                <a href="cabinet/ordersbyclient/">
                   Замовлення(Адмін права)
                 </a>
               </ListItem>
             )}
             <ListItem>
-              <a href="userData">ОСОБИСТИЙ КАБІНЕТ</a>
+              <a href="cabinet">ОСОБИСТИЙ КАБІНЕТ</a>
             </ListItem>
             <ListItem>
-              <a href="history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
+              <a href="cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</a>
             </ListItem>
             <ListItem>
               <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
