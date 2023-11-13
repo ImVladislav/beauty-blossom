@@ -176,20 +176,20 @@ function App() {
           element={<PrivateRoute component={UserPage} to="/" />}
         >
           <Route
-            path="cabinet/userData"
+            path="userData"
             element={<PrivateRoute component={UserData} to="/" />}
           ></Route>
 
           <Route
-            path="cabinet/сhangePassword"
+            path="сhangePassword"
             element={<PrivateRoute component={ChangePassword} to="/" />}
           />
 
           <Route
-            path="cabinet/history"
+            path="history"
             element={<PrivateRoute component={PaymentHistory} to="/" />}
           />
-          <Route path="cabinet/feedback" element={<Feedback/>} />
+          <Route path="feedback" element={<Feedback/>} />
 
         </Route>
       </Routes>
