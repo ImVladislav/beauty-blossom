@@ -33,6 +33,7 @@ import {
   ButtonMenu,
   HeaderWraper,
   NameUser,
+  ContainerMobile,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -63,8 +64,8 @@ export const Header = () => {
     <header>
       {!isMobileScreen ? (
         <>
-          <ProductOfTheWeek />
           <ContainerHeader>
+            <ProductOfTheWeek />
             <Container>
               <HeaderTop>
                 <HeaderWrap>
@@ -125,7 +126,7 @@ export const Header = () => {
           </ContainerHeader>
         </>
       ) : (
-        <div>
+        <ContainerMobile>
           {/* top */}{" "}
           {isMenuOpen && isMobileScreen && (
             <BurgerMenu
@@ -159,7 +160,7 @@ export const Header = () => {
           </CenterWrap>
           {/* bottom */}
           <SearchForm />
-        </div>
+        </ContainerMobile>
       )}
     </header>
   );

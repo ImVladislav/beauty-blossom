@@ -73,6 +73,9 @@ export const InfoWrap = styled.div`
 
 export const Footer = () => {
   const { isMobileScreen, isTabletScreen } = useMedia();
+
+  
+  
   return (
     // <FooterContainer>
     //   <Wrapper>
