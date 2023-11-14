@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/beauty-blossom/static/css/main.b04bdbd5.css",
-    "main.js": "/beauty-blossom/static/js/main.f686f302.js",
+    "main.js": "/beauty-blossom/static/js/main.443c1157.js",
     "static/media/productsBaner.png": "/beauty-blossom/static/media/productsBaner.18b024626765c2c6f62a.png",
     "static/media/mp.png": "/beauty-blossom/static/media/mp.7f77aee467031567b88f.png",
     "static/media/banner.png": "/beauty-blossom/static/media/banner.6420317f52af6db847fc.png",
@@ -16,16 +16,15 @@
     "static/media/Dr_Jart-.svg": "/beauty-blossom/static/media/Dr_Jart-.86b4e7b43b587fccc0e99b05857781c4.svg",
     "static/media/La_dor.svg": "/beauty-blossom/static/media/La_dor.cf9e6ae9036e416d2f706f762f72a8d7.svg",
     "static/media/Masil.svg": "/beauty-blossom/static/media/Masil.139aec2ceec7f7e01fa5c4c3807cac97.svg",
-    "static/media/VisaMastercard.webp": "/beauty-blossom/static/media/VisaMastercard.0f4d3bd08a2091f1de4c.webp",
     "static/media/newCorzina.svg": "/beauty-blossom/static/media/newCorzina.4d0dd0c395906599dc4837043639a501.svg",
     "index.html": "/beauty-blossom/index.html",
     "static/media/newEmail.svg": "/beauty-blossom/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "static/media/NextPrev.svg": "/beauty-blossom/static/media/NextPrev.44749ddfef4592da8fb6a5be0bd5bc91.svg",
     "main.b04bdbd5.css.map": "/beauty-blossom/static/css/main.b04bdbd5.css.map",
-    "main.f686f302.js.map": "/beauty-blossom/static/js/main.f686f302.js.map"
+    "main.443c1157.js.map": "/beauty-blossom/static/js/main.443c1157.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.f686f302.js"
+    "static/js/main.443c1157.js"
   ]
 }
