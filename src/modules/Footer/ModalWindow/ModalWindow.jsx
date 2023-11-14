@@ -18,6 +18,7 @@ const ModuleStyle = {
     overflow: "auto",
     backgroundColor: "rgba(0, 0, 0, 0.7)",
     zIndex: 999,
+    
   },
 
   content: {
@@ -37,6 +38,8 @@ const ModuleStyle = {
 export const ModalWindow = ({ isOpen, onRequestClose }) => {
   const appElement = document.getElementById("root");
   Modal.setAppElement(appElement);
+
+  
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");

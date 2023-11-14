@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   LinkBtn,
   LogInIcon,
@@ -57,6 +57,20 @@ const LogIn = () => {
   const logoutDispatch = () => {
     dispatch(logout());
   };
+
+
+  useEffect(() => {
+  if (showModal) {
+    document.body.classList.add('modal-open');
+  } else {
+    document.body.classList.remove('modal-open');
+  }
+
+  return () => {
+    document.body.classList.remove('modal-open');
+  };
+}, [showModal]);
+
 
   return (
     <>

@@ -39,7 +39,7 @@ export const MobileMenuItem = styled.div`
   /* margin: 10px 0; */
 
   a {
-    font-size: 14px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 300;
     line-height: 118.9%;
@@ -58,7 +58,7 @@ export const InfoWrap = styled.div`
 `;
 export const InfoLink = styled.a`
   text-decoration: none;
-  font-size: 10px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
@@ -81,7 +81,7 @@ export const InfoLink = styled.a`
 `;
 export const InfoStylesLink = styled(Link)`
   text-decoration: none;
-  font-size: 10px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
@@ -104,7 +104,7 @@ export const InfoStylesLink = styled(Link)`
 `;
 export const InfoButton = styled.button`
   text-decoration: none;
-  font-size: 10px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */

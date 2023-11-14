@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "../../shared/styles/Container";
 import {
   ConditionsList,
@@ -16,10 +16,24 @@ import OPTSalesRegister from "./OPTSalesRegister";
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+  useEffect(() => {
+  if (isModalOpen) {
+    document.body.classList.add('modal-open');
+  } else {
+    document.body.classList.remove('modal-open');
+  }
+
+  return () => {
+    document.body.classList.remove('modal-open');
+  };
+}, [isModalOpen]);
   
   return (
     <Container>

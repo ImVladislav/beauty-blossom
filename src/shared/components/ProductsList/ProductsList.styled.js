@@ -27,11 +27,11 @@ export const ProductListContainer = styled.ul`
   justify-content: center;
 
   @media screen and (min-width: 768px) {
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
   }
 
   @media screen and (min-width: 1440px) {
-    /* justify-content: flex-start; */
+    justify-content: flex-start;
   }
 `;
 

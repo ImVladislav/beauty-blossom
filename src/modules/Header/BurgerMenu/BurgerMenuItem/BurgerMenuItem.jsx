@@ -34,7 +34,6 @@ export const LinkWrap = styled.div`
 
 export const Link = styled(NavLink)`
   /* text-align: center; */
-
   font-size: 14px;
   font-style: normal;
   font-weight: 300;
@@ -80,8 +79,8 @@ export const Button = styled.button`
   /* margin-left: auto; */
 `;
 export const RightIcon = styled(AiOutlineRight)`
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   margin: 5px;
   padding: 0;
   margin-left: 10px;
@@ -89,8 +88,8 @@ export const RightIcon = styled(AiOutlineRight)`
 `;
 
 export const DownIcon = styled(AiOutlineDown)`
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   margin: 5px;
   padding: 0;
   margin-left: 10px;
@@ -138,7 +137,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
       //     : `menu-level-${level}`
       // }
     >
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: 'space-between'}}>
         <LinkWrap className={pathname === item.to ? "active" : ""}>
           <Link
             to={item.to}
