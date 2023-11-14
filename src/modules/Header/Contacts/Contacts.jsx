@@ -2,7 +2,6 @@ import React from "react";
 
 import {
   ContactsElips,
-  ContactsIcon,
   IconEmail,
   IconPhone,
   InstagramIcon,

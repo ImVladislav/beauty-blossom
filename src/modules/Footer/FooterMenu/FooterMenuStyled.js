@@ -18,17 +18,38 @@ export const LinkItem = styled(NavLink)`
   font-weight: 300;
   line-height: 103.312%;
   letter-spacing: -0.379px;
+  position: relative;
+  display: inline-block;
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: ${(p) => p.theme.colors.accentColor};
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+
   &:active {
     color: ${(p) => p.theme.colors.accentColor};
   }
+
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
     font-style: normal;
     font-weight: 300;
-    line-height: 103.312%; /* 25.828px */
+    line-height: 103.312%;
     letter-spacing: -1.125px;
   }
 

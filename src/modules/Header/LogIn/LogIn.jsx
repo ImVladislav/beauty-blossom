@@ -85,7 +85,7 @@ const LogIn = () => {
           <ul>
             {admin && (
               <ListItem>
-                <Link to="/cabinet/ordersbyclient/">
+                <Link to="ordersbyclient">
                   Замовлення(Адмін права)
                 </Link>
               </ListItem>

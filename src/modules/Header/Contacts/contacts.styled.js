@@ -118,6 +118,7 @@ export const Link = styled.a`
       background: #ffecd2;
       box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
     }
+    
   }
   @media screen and (min-width: 768px) {
     font-size: 12px;
@@ -139,6 +140,9 @@ export const Link = styled.a`
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
+
+
+  
 
   @media screen and (min-width: 768px) {
   }

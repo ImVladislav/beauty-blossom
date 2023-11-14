@@ -1,79 +1,53 @@
 import styled from "styled-components";
 
-export const FooterContainer = styled.div`
-  position: relative;
+export const FooterWrap = styled.footer`
+  padding: 10px 0 36px 0;
   background: ${(p) => p.theme.colors.topHeaderLine};
-  color: #333;
-  font-size: 12px;
-  padding: 14px 0 36px;
-`;
+  @media screen and (min-width: 768px) {
+  }
 
-export const Wrapper = styled.div`
-  min-width: 960px;
+  @media screen and (min-width: 1440px) {
+  }
+`;
+export const LogoWrap = styled.div`
+  margin-left: 10px;
+  margin-right: 50px;
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+export const Wrap = styled.div`
+  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
   max-width: 1440px;
-  padding: 0 s20px;
   margin: 0 auto;
-`;
+  align-items: flex-start;
 
-export const Colums = styled.div`
-  display: -moz-flex;
   display: flex;
   justify-content: space-around;
-  /* margin: 0 -15px; */
-`;
-export const Colum = styled.div`
-  /* max-width: 500px; */
-  /* margin-right: 100px; */
-  /* flex: 2 0 0; */
-`;
-export const ColumWrapper = styled.div`
-  display: flex;
-  -moz-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-  /* padding: 0 15px; */
-`;
-export const ColumWrapperLogo = styled.div`
-  display: flex;
-  -moz-flex-direction: column;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  /* padding: 0 15px; */
-`;
-export const LogoThumb = styled.div`
-  /* margin-bottom: 25px; */
-`;
-export const PaymentBlock = styled.div`
-  flex: 2 0 0;
-`;
+  @media screen and (min-width: 768px) {
+    align-items: center;
+  }
 
-export const PaymentText = styled.p`
-  color: #333;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  border-bottom-color: rgba(51, 51, 51, 0.4);
+  @media screen and (min-width: 1440px) {
+  }
 `;
-export const PaymentBlock3 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock4 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock5 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock6 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock7 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock8 = styled.div`
-  flex: 2 0 0;
-`;
-export const PaymentBlock9 = styled.div`
-  flex: 2 0 0;
-`;
+export const InfoWrap = styled.div`
+  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 300px;
+  gap: 5px;
+  margin-right: 5px;
+  @media screen and (min-width: 768px) {
+    flex-wrap: nowrap;
+    gap: 0;
+    max-width: 900px;
+    margin-right: 0;
+  }
 
-export const WrapFooter = styled.div``;
+  @media screen and (min-width: 1440px) {
+  }
+`;
