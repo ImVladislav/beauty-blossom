@@ -28,7 +28,6 @@ const LogIn = () => {
   const [showModal, setShowModal] = useState(false);
   const [loginOrRegister, setLoginOrRegister] = useState(false);
 
-  // const userName = useSelector(userSelectorfirstName);
   const admin = useSelector(isAdminSelector);
   const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
@@ -58,6 +57,13 @@ const LogIn = () => {
     dispatch(logout());
   };
 
+
+  const handelDropClose = (e) => {
+     if (e.target.tagName === "DIV") {
+          setShowModal(false)
+    } 
+
+    }
 
   useEffect(() => {
   if (showModal) {
@@ -102,11 +108,9 @@ const LogIn = () => {
           </ul>
         </DropDown>
       )}
-      {/* {isLogin && <NameUser>{userName} </NameUser>} */}
-      {/* <p>{userName} </p> */}
 
       {showModal && (
-        <ModalBackdrop>
+        <ModalBackdrop onClick={handelDropClose}>
           <Modal>
             <CloseButton close={() => setShowModal(false)} />
             <WrapLink>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import {
   TitleWrap,
   Underline,
@@ -7,21 +7,21 @@ import {
   ContactWraper,
   Wrap,
 } from "./FooterContactsStyled";
-import { ModalWindow } from "../ModalWindow/ModalWindow";
+// import { ModalWindow } from "../ModalWindow/ModalWindow";
 import Contacts from "../../Header/Contacts/Contacts";
 import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterContacts = () => {
   const { isMobileScreen } = useMedia();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   return (
     <Wrap>
@@ -46,7 +46,7 @@ export const FooterContacts = () => {
           />
 
         </ContactGroup>
-        <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} />
+        {/* <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} /> */}
       </ContactWraper>
     </Wrap>
   );
