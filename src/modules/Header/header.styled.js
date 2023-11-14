@@ -5,9 +5,14 @@ import { HiMenu } from "react-icons/hi";
 export const ContainerHeader = styled.div`
   position: relative;
   z-index: 1;
+  background: white;
   /* margin-bottom: 30px; */
 `;
-
+export const ContainerMobile = styled.div`
+  position: relative;
+  background: white;
+  z-index: 1;
+`;
 export const Container = styled.div`
   background: white;
 `;

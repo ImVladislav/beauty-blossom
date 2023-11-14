@@ -5,6 +5,7 @@ import styled from "styled-components";
 const Message = styled.p`
   font-size: 24px;
   margin-bottom: 20px;
+  margin-top: 60%;
 `;
 
 const NoProducts = () => {

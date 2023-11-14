@@ -13,9 +13,16 @@ import { useMedia } from "../../../hooks/useMedia";
 export const FooterMenu = ({ menuItems }) => {
   const { isMobileScreen } = useMedia();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth" // Додає плавність прокрутки
+    });
+  };
+
   const element = menuItems.map(({ to, text }) => (
     <ListItem key={to}>
-      <LinkItem to={to}>{text}</LinkItem>
+      <LinkItem onClick={scrollToTop} to={to}>{text}</LinkItem>
     </ListItem>
   ));
   return (

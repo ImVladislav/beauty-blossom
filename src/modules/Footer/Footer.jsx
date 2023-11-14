@@ -8,6 +8,7 @@ import { FooterWrap, InfoWrap, LogoWrap, Wrap } from "./FooterStyled";
 
 export const Footer = () => {
   const { isMobileScreen } = useMedia();
+
   return (
     <>
       {!isMobileScreen && (

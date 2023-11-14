@@ -21,7 +21,7 @@ export const FooterInformBlock = () => {
         {!isMobileScreen && <Underline />}
       </TitleWrap>
       <Nav>
-        <Item to="cabinet">Особистий кабінет</Item>
+        <Item to="/cabinet">Особистий кабінет</Item>
         <ItemTitle href="/wholesaleProgram#return" >
           Повернення та обмін
         </ItemTitle>
