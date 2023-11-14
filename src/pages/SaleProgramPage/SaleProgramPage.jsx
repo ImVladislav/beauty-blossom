@@ -17,7 +17,12 @@ const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
 
+  const handelDropClose = (e) => {
+     if (e.target.tagName === "DIV") {
+          setIsModalOpen(false)
+    } 
 
+    }
   
   const openModal = () => {
     setIsModalOpen(true);
@@ -141,7 +146,7 @@ const SaleProgramPage = () => {
         </section>
       </div>
       {isModalOpen && (
-        <ModalBackground>
+        <ModalBackground onClick={handelDropClose}>
           <ModalContent>
             <CloseButton close={() => setIsModalOpen(false)} />
             <OPTSalesRegister />

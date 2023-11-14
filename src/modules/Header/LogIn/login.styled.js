@@ -412,7 +412,7 @@ font-family: Century Gothic; */
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 250px;
     height: 40px;
-    font-size: 22px;
+    font-size: 16px;
   }
 
   @media (max-width: 767px) {
