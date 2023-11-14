@@ -1,9 +1,20 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Backdrop, LinkButton, LinkThumb, ModalStyle, ModalText, Titles } from './OrderPlacementStyled';
 
 
-export const OrderModalWindow = ({ isOpen, onRequestClose, orderNumber }) => {
+export const OrderModalWindow = ({ isOpen, orderNumber }) => {
+useEffect(() => {
+  if (isOpen) {
+    document.body.classList.add('modal-open');
+  } else {
+    document.body.classList.remove('modal-open');
+  }
+
+  return () => {
+    document.body.classList.remove('modal-open');
+  };
+}, [isOpen]);
   return (
 
     <>

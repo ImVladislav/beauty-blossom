@@ -1,35 +1,50 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const ItemTitle = styled.a`
-  /* font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-  text-decoration: none;
 
-  font-size: 18px;
-  font-weight: 400; */
+export const ItemTitle = styled.a`
   cursor: pointer;
   text-decoration: none;
   color: #461c49;
-
-  font-family: Noto Sans;
-  /* font-size: ${(p) => p.theme.fontSizes.l}px; */
+  font-family: 'Noto Sans';
   font-size: 8.422px;
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%; /* 25.828px */
   letter-spacing: -0.379px;
   padding: 3px 0;
+  position: relative;
+  display: inline-block;
+
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: ${(p) => p.theme.colors.accentColor};
+    color: ${(p) => p.theme.colors.accentColor};
+    opacity: 0; /* Початкова прозорість лінії */
+    transition: opacity 0.3s ease-in-out;
+    
+  }
+
+  &:hover:after {
+    opacity: 1; /* Прозорість лінії при ховері */
+  }
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
+    /* border-bottom: 1px solid ${(p) => p.theme.colors.accentColor}; */
   }
+
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
     font-style: normal;
     font-weight: 300;
-    line-height: 103.312%; /* 25.828px */
+    line-height: 103.312%; 
     letter-spacing: -1.125px;
   }
 
@@ -38,25 +53,39 @@ export const ItemTitle = styled.a`
   }
 `;
 
+
 export const Item = styled(Link)`
-  /* margin-bottom: 8px; */
   text-decoration: none;
-  /* color: #000000;
-
-  font-size: 18px;
-  font-weight: 400; */
   color: #461c49;
-
-  font-family: Noto Sans;
-  /* font-size: ${(p) => p.theme.fontSizes.l}px; */
+  font-family: 'Noto Sans';
   font-size: 8.422px;
   font-style: normal;
   font-weight: 300;
-  line-height: 103.312%; /* 25.828px */
+  line-height: 103.312%;
   letter-spacing: -0.379px;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: ${(p) => p.theme.colors.accentColor};
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
+
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
     /* font-size: 25px; */
@@ -73,6 +102,7 @@ export const Item = styled(Link)`
 export const Nav = styled.nav`
   display: grid;
   padding: 10px 0 0 20px;
+  justify-items: start;
 `;
 
 export const TitleWrap = styled.div`

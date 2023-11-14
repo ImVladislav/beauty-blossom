@@ -14,11 +14,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #504056;
   scroll-behavior: smooth;
- 
+
 }
 
-
-
+body.modal-open {
+  overflow: hidden;
+}
 
 main {
   min-height: 60vh;
