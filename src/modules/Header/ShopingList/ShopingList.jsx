@@ -26,13 +26,20 @@ const ShoppingCart = () => {
   };
   }, [isModalOpen]);
   
+  const handelDropClose = (e) => {
+    if (e.target.tagName === "SECTION") {
+      setIsModalOpen(false);
+
+    }
+  }
+
   return (
     <div>
       <OpenModal onClick={openModal}>
         <CorzinaIcon />
       </OpenModal>
       {isModalOpen && (
-        <ModalBackground>
+        <ModalBackground onClick={handelDropClose}>
           <CartModal closeModal={closeModal} />
         </ModalBackground>
       )}

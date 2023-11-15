@@ -61,7 +61,7 @@ const CartModal = ({ closeModal }) => {
     if (isLoggedIn) {
       fetchUserCart();
     }
-  }, [isLoggedIn, dispatch]);
+  }, [isLoggedIn, dispatch,]);
 
   const fetchUserCart = async () => {
     try {

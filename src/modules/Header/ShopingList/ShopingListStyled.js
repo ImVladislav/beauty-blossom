@@ -60,7 +60,7 @@ export const ModalShopingList = styled.div`
   }
 `;
 
-export const ModalBackground = styled.div`
+export const ModalBackground = styled.section`
   position: fixed;
   top: 0;
   left: 0;

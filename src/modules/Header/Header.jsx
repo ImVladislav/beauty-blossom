@@ -27,17 +27,13 @@ import {
   Schedule,
   TopWrap,
   CenterWrap,
-  LogoTitle,
-  LinkLogo,
   IconWrap,
   ButtonMenu,
-  HeaderWraper,
   NameUser,
   ContainerMobile,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
-import Email from "./Email/Email";
 import { useLocation } from "react-router-dom";
 import { useMedia } from "../../hooks/useMedia";
 import { ProductOfTheWeek } from "../ProductOfTheWeek/ProductOfTheWeek";
