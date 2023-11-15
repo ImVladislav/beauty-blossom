@@ -21,8 +21,8 @@ export const ContactsElips = styled.div`
 `;
 
 export const IconPhone = styled(PhoneIcon)`
-  width: 10px;
-  height: 10px;
+ width: 14px;
+  height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   &.head {
     width: 19px;
@@ -40,8 +40,8 @@ export const IconPhone = styled(PhoneIcon)`
   }
 `;
 export const IconEmail = styled(EmailIcon)`
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
 
   @media screen and (min-width: 768px) {
@@ -55,8 +55,8 @@ export const IconEmail = styled(EmailIcon)`
   }
 `;
 export const InstagramIcon = styled(AiOutlineInstagram)`
-  width: 10px;
-  height: 10px;
+ width: 14px;
+  height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
   @media screen and (min-width: 768px) {
@@ -70,8 +70,8 @@ export const InstagramIcon = styled(AiOutlineInstagram)`
   }
 `;
 export const TelegramIcon = styled(RiTelegramLine)`
-  width: 10px;
-  height: 10px;
+ width: 14px;
+  height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
   @media screen and (min-width: 768px) {
@@ -99,7 +99,11 @@ export const Link = styled.a`
   }
   &.burger {
     text-decoration: none;
+<<<<<<< Updated upstream
     font-size: ${(p) => p.theme.fontSizes.xxs}px;
+=======
+    font-size: 14px;
+>>>>>>> Stashed changes
     font-style: normal;
     font-weight: 300;
     line-height: 118.9%; /* 23.78px */

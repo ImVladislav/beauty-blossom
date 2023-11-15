@@ -53,7 +53,11 @@ export const InfoWrap = styled.div`
 `;
 export const InfoLink = styled.a`
   text-decoration: none;
+<<<<<<< Updated upstream
   font-size: ${(p) => p.theme.fontSizes.s}px;
+=======
+  font-size: 16px;
+>>>>>>> Stashed changes
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
@@ -71,7 +75,11 @@ export const InfoLink = styled.a`
 `;
 export const InfoStylesLink = styled(Link)`
   text-decoration: none;
+<<<<<<< Updated upstream
   font-size: ${(p) => p.theme.fontSizes.m}px;
+=======
+  font-size: 20x;
+>>>>>>> Stashed changes
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
