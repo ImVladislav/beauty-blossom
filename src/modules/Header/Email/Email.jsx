@@ -1,4 +1,3 @@
-import { EmailIcon } from "../../../shared/components/ReusebleCompoments/StyleSVGIcons";
 import { ContactsElips, ContactsIcon, Link, Wrap } from "./EmailStyled";
 
 const Email = () => {

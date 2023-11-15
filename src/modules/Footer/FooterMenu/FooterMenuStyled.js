@@ -11,9 +11,9 @@ export const List = styled.ul`
 
 export const LinkItem = styled(NavLink)`
   text-decoration: none;
-  color: #461c49;
+  color: ${(p) => p.theme.colors.border};
   font-family: Noto Sans;
-  font-size: 8.422px;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   font-style: normal;
   font-weight: 300;
   line-height: 103.312%;
@@ -26,7 +26,7 @@ export const LinkItem = styled(NavLink)`
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: 0;
@@ -47,8 +47,6 @@ export const LinkItem = styled(NavLink)`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
-    font-style: normal;
-    font-weight: 300;
     line-height: 103.312%;
     letter-spacing: -1.125px;
   }
@@ -58,34 +56,21 @@ export const LinkItem = styled(NavLink)`
   }
 `;
 
-export const ListItem = styled.li`
-  /* height: 12px; */
-  /* margin-bottom: 8px; */
-`;
+export const ListItem = styled.li``;
 
-export const TitleWrap = styled.div`
-  /* text-align: start; */
-`;
+export const TitleWrap = styled.div``;
 export const Title = styled.h3`
-  /* font-size: 14px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px; */
-  color: #461c49;
-
+  color: ${(p) => p.theme.colors.border};
   font-family: Alegreya Sans;
-  font-size: 11.455px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
   font-style: normal;
-  font-weight: 500;
   line-height: 103.312%; /* 35.126px */
   letter-spacing: 0.745px;
   padding: 0 20px 0 20px;
   @media screen and (min-width: 768px) {
     padding: 0 20px 0 20px;
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    /* font-size: 34px; */
-    font-style: normal;
-    font-weight: 500;
     line-height: 103.312%; /* 35.126px */
     letter-spacing: 2.21px;
   }
@@ -97,8 +82,6 @@ export const Title = styled.h3`
 `;
 
 export const Underline = styled.div`
-  /* flex: 1; */
   height: 1px;
-  background-color: #000; /* You can change the color to your preference */
-  /* margin-left: 20px; Adjust the spacing between the title and the line */
+  background-color: ${(p) => p.theme.colors.black};
 `;

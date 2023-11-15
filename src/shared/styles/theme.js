@@ -17,11 +17,13 @@ export const theme = {
     menuHoverShadow: "0px 3.76642px 3.76642px 0px rgba(0, 0, 0, 0.25)",
     border: "#461C49",
     borderCard: "#e8dfd8",
+    hoverBurger: "#ffecd2",
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
 
   fontSizes: {
+    xxxs: 8,
     xxs: 10,
     xs: 12,
     s: 14,
