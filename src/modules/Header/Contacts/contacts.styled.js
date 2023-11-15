@@ -99,11 +99,9 @@ export const Link = styled.a`
   }
   &.burger {
     text-decoration: none;
-<<<<<<< Updated upstream
+
     font-size: ${(p) => p.theme.fontSizes.xxs}px;
-=======
-    font-size: 14px;
->>>>>>> Stashed changes
+
     font-style: normal;
     font-weight: 300;
     line-height: 118.9%; /* 23.78px */
