@@ -40,6 +40,7 @@ import {
   TextNoProduckts,
   ReturnIcon,
   TableWrap,
+  ButtonThumb,
 } from "./ShopingListStyled";
 
 const CartModal = ({ closeModal }) => {
@@ -241,14 +242,7 @@ const CartModal = ({ closeModal }) => {
         <TextNoProduckts>Ви ще нічого не вибрали!</TextNoProduckts>
       )}
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop: "10px",
-        }}
-      >
+      <ButtonThumb>
         <ButtonContainer>
           <ReturnBTN onClick={closeModal}>
             <ReturnIcon />
@@ -262,7 +256,7 @@ const CartModal = ({ closeModal }) => {
             disabled={cartItems.length === 0}
           />
         </ButtonContainer>
-      </div>
+      </ButtonThumb>
     </ModalShopingList>
   );
 };

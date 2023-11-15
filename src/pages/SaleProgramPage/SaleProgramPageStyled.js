@@ -101,9 +101,10 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 90%;
-
+max-height: 100vh;
   text-align: center;
   position: relative;
+  overflow-y: auto;
 `;
 
 export const OpenModal = styled.button`

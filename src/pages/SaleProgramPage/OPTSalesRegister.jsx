@@ -52,8 +52,8 @@ const OPTSalesRegister = () => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Не валідна адреса пошти').required('Введіть адресу електронної пошти '),
     password: Yup.string().min(6, 'Пароль має мітити не менше 6 символів').required('Введіть пароль'),
-    firstName: Yup.string().min(2, 'Імя має бути не менше 2х букв').required('Ведіть ваше імя'),
-    lastName: Yup.string().min(2, 'Прізвище має бути не менше 2х букв').required('Ведыть ваше прізвище'),
+    firstName: Yup.string().min(2, 'Імя має бути не менше 2х букв').required('Введіть ваше імя'),
+    lastName: Yup.string().min(2, 'Прізвище має бути не менше 2х букв').required('Введіть ваше прізвище'),
       number: Yup.number().required('Введіть ваш номер телефону'),
       link: Yup.string(),
       city: Yup.string(),

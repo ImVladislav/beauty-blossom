@@ -402,7 +402,8 @@ export const ReturnBTN = styled.button`
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 768px) {
+padding-bottom: 20px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -429,3 +430,14 @@ export const ReturnIcon = styled(FaArrowLeft)`
     height: 15px;
   }
 `;
+export const ButtonThumb = styled.div`
+          display: "flex";
+          align-items: "center";
+          justify-content: "space-between";
+          margin-top: "10px";
+
+
+  @media screen and (max-width: 768px) {
+      flex-direction: column-reverse;
+}
+`

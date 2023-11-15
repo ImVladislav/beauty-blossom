@@ -238,8 +238,8 @@ export const LoginModalText = styled.p`
   line-height: 102.312%; /* 15.347px */
   letter-spacing: 0.225px;
 
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
   }
   @media screen and (min-width: 1024px) {
     font-size: 16px;
