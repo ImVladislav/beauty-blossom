@@ -145,7 +145,7 @@ const OrderPlacement = () => {
     if (formData.deliveryMethod === "Доставка кур'єром") {
       setCourierDelivery("2");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleInputChange]);
 
   const handleCityChange = async () => {
@@ -226,23 +226,18 @@ const OrderPlacement = () => {
     }
   };
 
-useEffect(() => {
-
+  useEffect(() => {
     if (words.length > 1) {
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        firstWord = words[0];
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        secoundWord = words[1];
-
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      firstWord = words[0];
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      secoundWord = words[1];
     }
     handleCityChange();
   }, [searchText]);
 
-
-      // eslint-disable-next-line no-unused-vars
-      const [itemQuantities, setItemQuantities] = useState(
-
+  // eslint-disable-next-line no-unused-vars
+  const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
       quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
       return quantities;
@@ -292,13 +287,11 @@ useEffect(() => {
 
     const phonePattern = /^380\d{9}$/;
     const trimedVlaue = formData.number;
-   
+
     const isPhoneValid = phonePattern.test(trimedVlaue);
 
     if (!isPhoneValid) {
-      toast.error(
-        "Введіть номер телефону починаючи з 380 "
-      );
+      toast.error("Введіть номер телефону починаючи з 380 ");
       setIsSubmitting(false);
       return;
     }
@@ -362,7 +355,13 @@ useEffect(() => {
       orderNumber: orderNumber,
       isOptUser: isOptUser,
     };
-
+    const removeCartItem = async () => {
+      try {
+        await axios.delete(`/basket/`);
+      } catch (error) {
+        console.error("Помилка видалення товарів з кошика:", error);
+      }
+    };
     const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
 
     axios
@@ -372,7 +371,9 @@ useEffect(() => {
       )
       .then((response) => {
         console.log("Відповідь від сервера:", response.data);
+        removeCartItem();
         dispatch(deleteAll());
+
         showOrderPlacedModal();
 
         setFormData({
@@ -493,7 +494,9 @@ useEffect(() => {
             </CostumerStatus>
           )}
           {customerType === "registered" && !isLogin && <LoginFormOrders />}
-          {customerType === "not-registered" && !isLogin && <RegisterFormOrders />}
+          {customerType === "not-registered" && !isLogin && (
+            <RegisterFormOrders />
+          )}
           {customerType === "without-registered" || isLogin ? (
             <Form onSubmit={handleFormSubmit}>
               <DeliveryInfoBlock>
