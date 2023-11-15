@@ -363,7 +363,7 @@ padding: 20px;
 
 
 export const FeedbackTextArea = styled.textarea`
-padding: 12px;
+padding: 20px;
 border-radius: 50px;
 margin: 20px;
 width: 90%;
@@ -410,3 +410,15 @@ font-size: 20px;
 max-width: 345px;
 
 `
+
+
+export const OptUserTag =  styled.div`
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items:center ;
+margin: 16px;
+ @media (min-width: 1440px) {
+      
+ }
+ `

@@ -142,6 +142,14 @@ function App() {
             }
           />
           <Route
+            path="feedback"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Feedback/>
+              </Suspense>
+            }
+          />
+          <Route
             path="search"
             element={
               <Suspense fallback={<Loader />}>

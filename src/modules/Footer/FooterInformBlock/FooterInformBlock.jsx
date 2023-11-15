@@ -31,7 +31,7 @@ export const FooterInformBlock = () => {
         <ItemTitle href="/wholesaleProgram#about" >
           Про нас
         </ItemTitle>
-        <ItemTitle href="/cabinet/feedback">
+        <ItemTitle href="feedback">
           Залишити відгук
         </ItemTitle>
       </Nav>

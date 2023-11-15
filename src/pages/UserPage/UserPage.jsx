@@ -4,6 +4,7 @@ import {
   CabinetContainer,
   CabinetLink,
   Nav,
+  OptUserTag,
   Title,
   UserPageBlock,
 } from "./UserPageStyled";
@@ -11,6 +12,8 @@ import { Header } from "../../modules/Header/Header";
 import { Footer } from "../../modules/Footer/Footer";
 import { Bgd } from "../../modules/SharedLayout/SharedLayout.styled";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { optUserSelector } from "../../redux/auth/selectors";
 
 const UserPage = () => {
   const [pageTitle, setPageTitle] = useState("КОНТАКТНА ІНФОРМАЦІЯ");
@@ -27,7 +30,8 @@ const UserPage = () => {
  const handleChangeFeedbackClick = () => {
     setPageTitle("ВІДГУКИ ТА ПРОПОЗИЦІЇ");
   };
-
+  const isOPTuser = useSelector(optUserSelector);
+  console.log(isOPTuser);
   return (
 <CabinetContainer>
 <div>
@@ -38,6 +42,9 @@ const UserPage = () => {
             <UserPageBlock>
               
               <Nav>
+                {isOPTuser && <OptUserTag>
+                Оптовий аккаунт  
+                </OptUserTag>}
                 <CabinetLink
                   to="userData"
                   onClick={handleUserDataClick}
@@ -60,6 +67,7 @@ const UserPage = () => {
                   ЗАЛИШИТИ ВІДГУК
                 </CabinetLink>
                 <CabinetLink to="/">ПОВЕРНУТИСЬ ДО ПОКУПОК</CabinetLink>
+
               </Nav>
 
               <Outlet />

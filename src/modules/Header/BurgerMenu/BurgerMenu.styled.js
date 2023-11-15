@@ -53,11 +53,9 @@ export const InfoWrap = styled.div`
 `;
 export const InfoLink = styled.a`
   text-decoration: none;
-<<<<<<< Updated upstream
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-=======
-  font-size: 16px;
->>>>>>> Stashed changes
+
+  font-size: ${(p) => p.theme.fontSizes.x}px;
+
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
@@ -75,16 +73,13 @@ export const InfoLink = styled.a`
 `;
 export const InfoStylesLink = styled(Link)`
   text-decoration: none;
-<<<<<<< Updated upstream
-  font-size: ${(p) => p.theme.fontSizes.m}px;
-=======
-  font-size: 20x;
->>>>>>> Stashed changes
+  font-size: ${(p) => p.theme.fontSizes.x}px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
   letter-spacing: -0.3px;
   text-decoration: none;
+  font-weight: 400;
   color: ${(p) => p.theme.colors.textColor};
   padding: 3px 10px;
   &:hover,
@@ -96,7 +91,7 @@ export const InfoStylesLink = styled(Link)`
 `;
 export const InfoButton = styled.button`
   text-decoration: none;
-  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-size: ${(p) => p.theme.fontSizes.x}px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */

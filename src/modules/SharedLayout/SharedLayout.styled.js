@@ -7,7 +7,7 @@ export const Bgd = styled.div`
   /* pointer-events: none; */
   /* max-width: 1440px; */
   width: 100%; /* Розтягуємо на всю ширину */
-  height: 100%; /* Розтягуємо на всю висоту */
+  min-height: 66vh; /* Розтягуємо на всю висоту */
   margin-left: auto;
   margin-right: auto;
   /* background-size: contain; */
