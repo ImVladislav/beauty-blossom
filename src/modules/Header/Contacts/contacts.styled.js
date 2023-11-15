@@ -9,7 +9,6 @@ export const ContactsElips = styled.div`
   align-items: center;
   justify-content: center;
   margin-right: 3px;
-  /* padding: 4px 0; */
   .burger {
     padding: 0;
   }
@@ -25,7 +24,6 @@ export const IconPhone = styled(PhoneIcon)`
   width: 10px;
   height: 10px;
   fill: ${(p) => p.theme.colors.textColor};
-  /* margin-right: 5px; */
   &.head {
     width: 19px;
     height: 19px;
@@ -91,65 +89,52 @@ export const Link = styled.a`
   display: flex;
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: 7.008px;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   align-items: center;
   font-style: normal;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: 103.312%;
   &.head {
-    font-size: 11px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
   &.burger {
     text-decoration: none;
-    font-size: 9px;
+    font-size: ${(p) => p.theme.fontSizes.xxs}px;
     font-style: normal;
     font-weight: 300;
     line-height: 118.9%; /* 23.78px */
     letter-spacing: -0.3px;
-
     text-decoration: none;
     color: ${(p) => p.theme.colors.textColor};
-
     padding: 3px 10px;
     margin: 3px 0;
     &:hover,
     &:focus {
-      border-radius: 26.467px;
-      background: #ffecd2;
+      border-radius: 27px;
+      background: ${(p) => p.theme.colors.hoverBurger};
       box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
     }
-    
   }
   @media screen and (min-width: 768px) {
-    font-size: 12px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
     &.head {
-      font-size: 12px;
+      font-size: ${(p) => p.theme.fontSizes.xs}px;
     }
   }
   @media screen and (min-width: 1024px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
     &.head {
-      font-size: 12px;
+      font-size: ${(p) => p.theme.fontSizes.xs}px;
     }
   }
 
   @media screen and (min-width: 1440px) {
-    font-size: 20px;
+    font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
-
-
-  
-
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-    /* margin-bottom: 5px; */
-  }
 
   &:hover,
   &:focus {
@@ -173,12 +158,3 @@ export const Wrap = styled.div`
     }
   }
 `;
-
-// color: #461C49;
-
-// font-variant-numeric: lining-nums proportional-nums;
-// font-family: Alegreya Sans;
-// font-size: 7.008px;
-// font-style: normal;
-// font-weight: 400;
-// line-height: 103.312%;

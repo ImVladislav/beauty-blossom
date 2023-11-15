@@ -17,7 +17,7 @@ export const ContactsIcon = styled(EmailIcon)`
 export const Link = styled.a`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: 20px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
 `;
 export const Wrap = styled.div`
   display: flex;

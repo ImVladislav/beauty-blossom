@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+
+import Contacts from "../Contacts/Contacts";
+import BurgerMenuItem from "./BurgerMenuItem/BurgerMenuItem";
+
 import {
   MobileMenuContainer,
   MobileMenuItem,
@@ -7,9 +11,6 @@ import {
   InfoStylesLink,
   InfoButton,
 } from "./BurgerMenu.styled";
-import BurgerMenuItem from "./BurgerMenuItem/BurgerMenuItem";
-
-import Contacts from "../Contacts/Contacts";
 
 const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(true);
@@ -23,6 +24,7 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
   };
   return (
     <MobileMenuContainer
+      customCrossIcon={false}
       isOpen={isMenuOpen}
       onStateChange={handleClick}
       left
@@ -50,15 +52,9 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
           Особистий кабінет
         </InfoStylesLink>
         <InfoStylesLink to="/cabinet/history">Історія замовлень</InfoStylesLink>
-        <InfoLink href="wholesaleProgram/#return">
-          Повернення та обмін
-        </InfoLink>
-        <InfoLink href="wholesaleProgram/#payment">
-          Оплата і доставка
-        </InfoLink>
-        <InfoLink href="wholesaleProgram/#about">
-          Про нас
-        </InfoLink>
+        <InfoLink href="wholesaleProgram/#return">Повернення та обмін</InfoLink>
+        <InfoLink href="wholesaleProgram/#payment">Оплата і доставка</InfoLink>
+        <InfoLink href="wholesaleProgram/#about">Про нас</InfoLink>
         <InfoButton onClick={handleClickP}>Контакти</InfoButton>
         {contacts && (
           <>

@@ -4,17 +4,15 @@ import { stack as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 
 export const MobileMenuContainer = styled(Menu)`
-  background: #fff; // Колір фону меню
+  background: ${(p) => p.theme.colors.white}; // Колір фону меню
   width: 297px; // Ширина меню
   position: fixed;
   top: 0;
   left: 0;
-  /* color: ${(p) => p.theme.colors.accentColor}; */
   padding: 0 15px;
 
   & div {
     overflow: auto;
-    /* max-height: 256px; */
     scrollbar-width: thin; /* Товщина смуги прокрутки */
     scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
 
@@ -36,15 +34,12 @@ export const MobileMenuContainer = styled(Menu)`
 `;
 
 export const MobileMenuItem = styled.div`
-  /* margin: 10px 0; */
-
   a {
-    font-size: 20px;
+    font-size: ${(p) => p.theme.fontSizes.l}px;
     font-style: normal;
     font-weight: 300;
     line-height: 118.9%;
     letter-spacing: -0.3px;
-
     text-decoration: none;
     color: ${(p) => p.theme.colors.textColor};
   }
@@ -58,72 +53,55 @@ export const InfoWrap = styled.div`
 `;
 export const InfoLink = styled.a`
   text-decoration: none;
-  font-size: 14px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
   letter-spacing: -0.3px;
-
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
-  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
-  /* display: flex; */
-  /* align-items: center; */
 
   padding: 3px 10px;
   &:hover,
   &:focus {
-    border-radius: 26.467px;
-    background: #ffecd2;
+    border-radius: 27px;
+    background: ${(p) => p.theme.colors.hoverBurger};
     box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
 `;
 export const InfoStylesLink = styled(Link)`
   text-decoration: none;
-  font-size: 18px;
+  font-size: ${(p) => p.theme.fontSizes.m}px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
   letter-spacing: -0.3px;
-
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
-  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
-  /* display: flex; */
-  /* align-items: center; */
-
   padding: 3px 10px;
   &:hover,
   &:focus {
-    border-radius: 26.467px;
-    background: #ffecd2;
+    border-radius: 27px;
+    background: ${(p) => p.theme.colors.hoverBurger};
     box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
 `;
 export const InfoButton = styled.button`
   text-decoration: none;
-  font-size: 14px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-style: normal;
   font-weight: 300;
   line-height: 118.9%; /* 23.78px */
   letter-spacing: -0.3px;
   background: transparent;
   border: none;
-  /* text-decoration:   none; */
   color: ${(p) => p.theme.colors.textColor};
-  /* font-size: ${(p) => p.theme.fontSizes.m}px; */
-  /* font-weight: ${(p) => p.theme.fontWeights.body}; */
-  /* display: flex; */
-  /* align-items: center; */
-
   padding: 3px 10px;
   text-align: left;
   &:hover,
   &:focus {
-    border-radius: 26.467px;
-    background: #ffecd2;
+    border-radius: 27px;
+    background: ${(p) => p.theme.colors.hoverBurger};
     box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
 `;

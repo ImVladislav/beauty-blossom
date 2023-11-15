@@ -17,50 +17,25 @@ export const WrapListProduct = styled.div`
     max-width: 1440px;
   }
   @media screen and (min-width: 1440px) {
-    /* width: 1440px; */
-    /* max-width: 1440px; */
   }
 `;
-
-// export const ProductListContainer = styled.ul`
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 6px;
-//   text-align: center;
-//   /* justify-content: center; */
-//   /* justify-content: flex-start; */
-
-//   @media screen and (min-width: 768px) {
-//     /* justify-content: flex-start; */
-//   }
-
-//   @media screen and (min-width: 1440px) {
-//     /* justify-content: flex-start; */
-//   }
-// `;
 
 export const ProductListContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(150px, 1fr));
   gap: 6px;
   text-align: center;
-  justify-content: center; /* Початкове вирівнювання зліва */
+  justify-content: center;
 
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(
-      2,
-      minmax(150px, 1fr)
-    ); /* 4 колонки на більших екранах */
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
   @media screen and (min-width: 1024px) {
-    grid-template-columns: repeat(
-      3,
-      minmax(150px, 1fr)
-    ); /* 4 колонки на більших екранах */
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
 
   @media screen and (min-width: 1440px) {
-    justify-content: flex-start; /* Вирівнювання зліва на дуже великих екранах */
+    justify-content: flex-start;
     grid-template-columns: repeat(4, minmax(150px, 1fr));
   }
 `;
@@ -82,17 +57,14 @@ export const FilterWrap = styled.div`
 
 export const FilterSelect = styled.select`
   padding: 5px;
-  border: 1px solid ${(p) => p.theme.colors.border};
-  /* border-radius: 2%; */
-  font-size: ${(p) => p.theme.fontSizes.s}px;
+
   color: ${(p) => p.theme.colors.textColor};
+  border: 1px solid ${(p) => p.theme.colors.borderCard};
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
 `;
 
-// Styled Components для стилізації
-export const Container = styled.div`
-  /* Стилі для контейнера */
-`;
+export const Container = styled.div``;
 
 export const Pagination = styled.div`
   display: flex;
@@ -103,7 +75,8 @@ export const Pagination = styled.div`
 `;
 
 export const PageButton = styled.button`
-  font-size: 13px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  font-weight: ${(p) => p.theme.fontWeights.body};
   margin: 0 3px;
   padding: 3px 8px;
   border: 1px solid #ddd;
@@ -124,7 +97,8 @@ export const PageButton = styled.button`
   @media screen and (min-width: 1024px) {
     margin: 0 5px;
     padding: 8px 12px;
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
+    font-weight: ${(p) => p.theme.fontWeights.body};
   }
   @media screen and (min-width: 1440px) {
   }
