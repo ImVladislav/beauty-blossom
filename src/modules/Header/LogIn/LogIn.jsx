@@ -59,8 +59,8 @@ const LogIn = () => {
 
 
   const handelDropClose = (e) => {
-     if (e.target.tagName === "DIV") {
-          setShowModal(false)
+    if (e.target.tagName === "SECTION") {
+      setShowModal(false) 
     } 
 
     }

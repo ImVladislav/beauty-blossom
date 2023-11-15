@@ -175,7 +175,7 @@ export const Modal = styled.div`
   }
 `;
 
-export const ModalBackdrop = styled.div`
+export const ModalBackdrop = styled.section`
   position: fixed;
   top: 0;
   left: 0;

@@ -83,7 +83,7 @@ export const ConditionsList = styled.ul`
 
   margin: 15px 0px 15px 25px;
 `;
-export const ModalBackground = styled.div`
+export const ModalBackground = styled.section`
   position: fixed;
   top: 0;
   left: 0;

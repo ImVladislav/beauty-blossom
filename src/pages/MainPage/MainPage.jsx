@@ -1,19 +1,19 @@
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
-import { Container } from "../../shared/styles/Container";
+// import { Container } from "../../shared/styles/Container";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-import product from "../../images/productsBaner.png";
-import {
-  BannerTitle,
-  StyledLink,
-  Thumb,
-  Background,
-  BannerSubTitle,
-  TextBlock,
-  ProductImg,
-  Product,
-  BottomBanerText,
-} from "./MainPage.styled";
+// import product from "../../images/productsBaner.png";
+// import {
+//   BannerTitle,
+//   StyledLink,
+//   Thumb,
+//   Background,
+//   BannerSubTitle,
+//   TextBlock,
+//   ProductImg,
+//   Product,
+//   BottomBanerText,
+// } from "./MainPage.styled";
 import Hero from "../../modules/Hero/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { useEffect, useState } from "react";
