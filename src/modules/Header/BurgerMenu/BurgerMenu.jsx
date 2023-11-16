@@ -55,6 +55,7 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
         <InfoLink href="wholesaleProgram/#return">Повернення та обмін</InfoLink>
         <InfoLink href="wholesaleProgram/#payment">Оплата і доставка</InfoLink>
         <InfoLink href="wholesaleProgram/#about">Про нас</InfoLink>
+        <InfoLink href="feedback">Залишити відгук</InfoLink>
         <InfoButton onClick={handleClickP}>Контакти</InfoButton>
         {contacts && (
           <>
