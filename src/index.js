@@ -10,7 +10,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
-import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
+// import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
 import { PersistGate } from "redux-persist/integration/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
