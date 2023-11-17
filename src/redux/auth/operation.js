@@ -24,6 +24,9 @@ export const register = createAsyncThunk(
       if (error.response.status === 409) {
         toast.error("Ви вже зареєстровані!");
       }
+      if (error.response.status === 400) {
+        toast.error("Клієнт з даним номером телефону вже зареєстрований!");
+      }
       return rejectWithValue("Server error");
     }
   }
