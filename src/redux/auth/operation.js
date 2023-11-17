@@ -21,11 +21,19 @@ export const register = createAsyncThunk(
 
       return res.data;
     } catch (error) {
-      if (error.response.status === 409) {
-        toast.error("Ви вже зареєстровані!");
+      if (error.response.data.message === "Email already in use") {
+        toast.error("Клієнт з такою поштою вже зареєстрований!");
+      }
+      if (
+        error.response.data.message === "The phone number is already in use"
+      ) {
+        toast.error("Клієнт з таким номером телефону вже зареєстрований!");
       }
       if (error.response.status === 400) {
-        toast.error("Клієнт з даним номером телефону вже зареєстрований!");
+        toast.error("Дані введені не коректні!");
+      }
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(error.response?.data?.message || "Server error");
       }
       return rejectWithValue("Server error");
     }
