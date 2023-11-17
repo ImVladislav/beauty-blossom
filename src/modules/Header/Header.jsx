@@ -104,14 +104,16 @@ export const Header = () => {
                             <User />
                           </div>
                           {/* кошик */}
-                          <div style={{ position: "relative" }}>
-                            <ShoppingCart />
-                            <CartQuantityWrap>
-                              <CartQuantitySpan>
-                                {cartItems.length}
-                              </CartQuantitySpan>
-                            </CartQuantityWrap>
-                          </div>
+                          {cartItems.length > 0 && (
+                            <div style={{ position: "relative" }}>
+                              <ShoppingCart />
+                              <CartQuantityWrap>
+                                <CartQuantitySpan>
+                                  {cartItems.length}
+                                </CartQuantitySpan>
+                              </CartQuantityWrap>
+                            </div>
+                          )}
                         </LoginShipingThumb>
                       </Wrap>
                     </WrapTop>
@@ -140,8 +142,8 @@ export const Header = () => {
           {isMenuOpen && isMobileScreen && (
             <BurgerMenu
               handleClick={handleMenuClick}
-                isMenuOpen={isMenuOpen}
-                setIsMenuOpen={setIsMenuOpen}
+              isMenuOpen={isMenuOpen}
+              setIsMenuOpen={setIsMenuOpen}
               items={menuItems}
             />
           )}
@@ -165,12 +167,14 @@ export const Header = () => {
                 {isLogin && <NameUser>{userName} </NameUser>}
                 <User />
               </div>
-              <div style={{ position: "relative" }}>
-                <ShoppingCart />
-                <CartQuantityWrap>
-                  <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
-                </CartQuantityWrap>
-              </div>
+              {cartItems.length > 0 && (
+                <div style={{ position: "relative" }}>
+                  <ShoppingCart />
+                  <CartQuantityWrap>
+                    <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
+                  </CartQuantityWrap>
+                </div>
+              )}
             </IconWrap>
           </CenterWrap>
           {/* bottom */}
