@@ -20,9 +20,9 @@ root.render(
       <PersistGate loading={null} persistor={persistor}>
         {/* <BrowserRouter>  */}
         {/* <BrowserRouter basename="beauty-blossom">  */}
-        <BrowserRouter basename="/"> 
+        <BrowserRouter basename="/">
           <App />
-          <ScrollToTopMobile />
+          {/* <ScrollToTopMobile /> */}
           <ToastContainer
             position="bottom-right"
             autoClose={5000}

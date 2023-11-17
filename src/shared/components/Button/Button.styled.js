@@ -42,6 +42,9 @@ export const ButtonStyle = styled.button`
     }
   }
 
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
     padding: 10px 20px;
@@ -58,10 +61,7 @@ export const ButtonStyle = styled.button`
     /* cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")}; */
     /* transition: background-color 0.3s ease; */
   }
-  @media (max-width: 767px) {
-font-size: 20px;
-padding: 10px 20px;
-}
+
   &.user-menu {
     @media (min-width: 1240px) and (max-width: 1439px) {
       font-size: 20px;
@@ -80,6 +80,21 @@ padding: 10px 20px;
     @media (max-width: 767px) {
       font-size: 16px;
       padding: 18px 20px;
+    }
+  }
+  &.opt {
+    font-weight: ${(p) => p.theme.fontWeights.title};
+    font-size: 14px;
+    padding: 10px 20px;
+    @media screen and (min-width: 768px) {
+      font-size: 30px;
+      padding: 16px 30px;
+    }
+    @media screen and (min-width: 1024px) {
+      padding: 18px 30px;
+    }
+
+    @media screen and (min-width: 1440px) {
     }
   }
 `;

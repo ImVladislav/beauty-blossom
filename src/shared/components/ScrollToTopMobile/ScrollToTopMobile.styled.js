@@ -6,7 +6,7 @@ export const StyleScrollToTop = styled(ScrollToTop)`
   font-size: 24px;
   border-radius: 50%;
   cursor: pointer;
-  z-index: 999;
+  z-index: 1;
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.3s;

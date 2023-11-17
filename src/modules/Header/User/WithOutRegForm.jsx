@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormikInput, LoginModalText } from "./login.styled";
+import { FormikInput, LoginModalText } from "./user.styled";
 import { FormLavelBloks } from "../../../pages/SaleProgramPage/SaleProgramPageStyled";
 import Button from "../../../shared/components/Button/Button";
 import * as Yup from "yup";

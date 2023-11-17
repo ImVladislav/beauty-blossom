@@ -3,7 +3,9 @@ import { register, login, logout, refreshCurrentUser } from "./operation";
 
 const initialState = {
   firstName: null,
+  lastName: null,
   email: null,
+  number: null,
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -34,7 +36,7 @@ const authSlice = createSlice({
         state.firstName = action.payload.firstName;
         state.lastName = action.payload.lastName;
         state.email = action.payload.email;
-        state.lastName = action.payload.lastName;
+        state.number = action.payload.number;
         state.isAdmin = action.payload.isAdmin;
         state.optUser = action.payload.optUser;
         state._id = action.payload._id;

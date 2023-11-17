@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SearchForm from "./SearchForm/SearchForm";
 import Logo from "./Logo/Logo";
 import Contacts from "./Contacts/Contacts";
-import LogIn from "./LogIn/LogIn";
+import User from "./User/User";
 
 import menuItems from "./menuItems.json";
 
@@ -96,7 +96,7 @@ export const Header = () => {
                             }}
                           >
                             {isLogin && <NameUser>{userName} </NameUser>}
-                            <LogIn />
+                            <User />
                           </div>
                           <ShoppingCart />
                         </LoginShipingThumb>
@@ -149,7 +149,7 @@ export const Header = () => {
             <IconWrap>
               <div>
                 {isLogin && <NameUser>{userName} </NameUser>}
-                <LogIn />
+                <User />
               </div>
               <ShoppingCart />
             </IconWrap>

@@ -5,12 +5,16 @@ import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 export const DeleteIcon = styled(BsFillTrash3Fill)`
-  width: 15px;
-  height: 15px;
+  width: 10px;
+  height: 10px;
   color: #80808061;
   cursor: pointer;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+    width: 15px;
+    height: 15px;
   }
 `;
 
@@ -244,28 +248,25 @@ export const ItemNameLink = styled(Link)`
 
   @media screen and (min-width: 1440px) {
     font-size: 14px;
-
   }
   @media (min-width: 1024px) and (max-width: 1439px) {
-  font-size: 12px;
-
-}
+    font-size: 12px;
+  }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     font-size: 10px;
   }
-
 `;
 
 export const ItemAmount = styled.p`
   color: black;
   text-decoration: none;
   font-size: 8px;
-white-space: pre; 
+  white-space: pre;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
-    @media screen and (min-width: 768px) and (max-width: 1023px) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
     font-size: 10px;
     white-space: pre;
   }
@@ -273,12 +274,11 @@ white-space: pre;
   @media screen and (min-width: 1440px) {
     font-size: 14px;
     white-space: pre;
-
   }
   @media (min-width: 1024px) and (max-width: 1439px) {
-  font-size: 12px;
-  white-space: pre;
-}
+    font-size: 12px;
+    white-space: pre;
+  }
 `;
 
 export const DecIncBtn = styled.button`
@@ -355,13 +355,12 @@ export const Amount = styled.p`
   font-weight: 500;
   @media screen and (min-width: 768px) {
   }
-@media (min-width: 1024px) and (max-width: 1439px) {
-  font-size: 22px;
-}
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 22px;
+  }
   @media screen and (min-width: 1440px) {
     font-size: 24px;
   }
-  
 `;
 export const TextNoProduckts = styled.p`
   font-size: 12px;
@@ -402,10 +401,12 @@ export const ReturnBTN = styled.button`
     }
   }
 
-  @media screen and (max-width: 768px) {
-padding-bottom: 20px;
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
   }
-
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
   @media screen and (min-width: 1440px) {
     width: 258px;
     height: 36px;
@@ -423,21 +424,27 @@ export const ReturnIcon = styled(FaArrowLeft)`
     color: ${(p) => p.theme.colors.accentColor};
   } */
   @media screen and (min-width: 768px) {
+    width: 12px;
+    height: 12px;
   }
-
+  @media screen and (min-width: 1024px) {
+    width: 14px;
+    height: 14px;
+  }
   @media screen and (min-width: 1440px) {
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
   }
 `;
 export const ButtonThumb = styled.div`
-          display: "flex";
-          align-items: "center";
-          justify-content: "space-between";
-          margin-top: "10px";
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 10px; */
+  flex-direction: column-reverse;
+  gap: 20px;
 
-
-  @media screen and (max-width: 768px) {
-      flex-direction: column-reverse;
-}
-`
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`;

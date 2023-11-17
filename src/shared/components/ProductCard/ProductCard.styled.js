@@ -111,11 +111,7 @@ export const ButtonWrap = styled.div`
   justify-content: center;
   z-index: 2;
 `;
-export const ButtonIncDec = styled.button`
-  /* display: flex;
-  align-items: center; */
-  /* flex: 1 0 auto; */
-  height: 100%;
+export const ButtonIncDec = styled.span`
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -124,11 +120,10 @@ export const ButtonIncDec = styled.button`
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
-  background: none;
+  background: transparent;
   font-size: ${(p) => p.theme.fontSizes.m}px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
-    cursor: pointer;
   }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
@@ -141,16 +136,14 @@ export const ButtonIncDec = styled.button`
 
 export const CounterBlock = styled.div`
   position: relative;
-
-  justify-content: center;
-  align-items: center;
-  /* bottom: 0; */
   width: 75px;
   height: 30px;
+
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
-
   align-items: center;
   font-size: ${(p) => p.theme.fontSizes.s}px;
   margin-bottom: 10px;
@@ -169,13 +162,13 @@ export const CounterBlock = styled.div`
 `;
 export const InputIncDec = styled.input`
   text-align: center;
-
+  font-family: monospace;
   outline: none;
 
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
-  background-color: none;
+  background-color: transparent;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
 
   &::-webkit-outer-spin-button,

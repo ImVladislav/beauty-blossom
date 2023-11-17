@@ -56,10 +56,19 @@ const AboutUs = () => {
         </BenefitsItem>
       </BenefitsList>
       <TextLink>
-        Слідкуйте за нами в соціальних мережах: Instagram{" "}
-        <Link href="https://www.instagram.com/">@beauty_blossom_opt</Link> та
-        Telegram <Link href="https://web.telegram.org/">@beauty_blossom</Link>,
-        щоб завжди залишатись в курсі новин та поповнення асортименту.
+        Слідкуйте за нами в соціальних мережах: Instagram
+        <Link
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @beauty_blossom_opt
+        </Link>
+        та Telegram
+        <Link href="https://web.telegram.org/" target="_blank" rel="noreferrer">
+          @beauty_blossom
+        </Link>
+        , щоб завжди залишатись в курсі новин та поповнення асортименту.
       </TextLink>
     </AboutUsContainer>
   );

@@ -10,7 +10,9 @@ import {
   Description,
   FirstOrdersHeaderItem,
   Form,
+  HeaderBlocRight,
   HeaderBlock,
+  HeaderBlockLeft,
   ItemNameItem,
   LastOrdersHeaderItem,
   LoaderThumb,
@@ -38,8 +40,7 @@ import {
   userSelectorfirstName,
   userSelectorlastName,
 } from "../../redux/auth/selectors";
-import { LoginFormOrders } from "../Header/LogIn/LoginForm";
-import { RegisterFormOrders } from "../Header/LogIn/RegisterForm";
+
 import { selectCart } from "../../redux/cart/selectors";
 import {
   Amount,
@@ -54,6 +55,8 @@ import { Container } from "../../shared/styles/Container";
 import { InputLoader } from "../../shared/components/Loader/Loader";
 import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -233,7 +236,9 @@ const OrderPlacement = () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
       secoundWord = words[1];
     }
-    handleCityChange();
+    if (searchText) {
+      handleCityChange();
+    }
   }, [searchText]);
 
   // eslint-disable-next-line no-unused-vars
@@ -371,7 +376,10 @@ const OrderPlacement = () => {
       )
       .then((response) => {
         console.log("Відповідь від сервера:", response.data);
-        removeCartItem();
+        if (isLogin) {
+          removeCartItem();
+        }
+
         dispatch(deleteAll());
 
         showOrderPlacedModal();
@@ -448,6 +456,10 @@ const OrderPlacement = () => {
     setSearchWarehouses(selectedWarehouse);
     setDropdownWarehouseVisible(false);
   };
+  const onRegisterSuccess = () => {
+    setCustomerType("registered"); // Зміна на true при успішній реєстрації
+    toast.info("Ви успішно зареєструвалися, авторизуйтеся");
+  };
 
   return (
     <Container>
@@ -459,6 +471,7 @@ const OrderPlacement = () => {
             <CostumerStatus>
               <CostumerStatusItem htmlFor="registered">
                 <input
+                  style={{ marginRight: "3px" }}
                   type="radio"
                   id="registered"
                   name="customer"
@@ -471,6 +484,7 @@ const OrderPlacement = () => {
 
               <CostumerStatusItem htmlFor="not-registered">
                 <input
+                  style={{ marginRight: "3px" }}
                   type="radio"
                   id="not-registered"
                   name="customer"
@@ -482,6 +496,7 @@ const OrderPlacement = () => {
               </CostumerStatusItem>
               <CostumerStatusItem htmlFor="without-registered">
                 <input
+                  style={{ marginRight: "3px" }}
                   type="radio"
                   id="without-registered"
                   name="customer"
@@ -493,9 +508,13 @@ const OrderPlacement = () => {
               </CostumerStatusItem>
             </CostumerStatus>
           )}
-          {customerType === "registered" && !isLogin && <LoginFormOrders />}
+          {/* {customerType === "registered" && !isLogin && <LoginFormOrders />}
           {customerType === "not-registered" && !isLogin && (
             <RegisterFormOrders />
+          )} */}
+          {customerType === "registered" && !isLogin && <Login />}
+          {customerType === "not-registered" && !isLogin && (
+            <Register onRegisterSuccess={onRegisterSuccess} />
           )}
           {customerType === "without-registered" || isLogin ? (
             <Form onSubmit={handleFormSubmit}>
@@ -560,7 +579,7 @@ const OrderPlacement = () => {
                 <div>
                   <div style={{ position: "relative" }}>
                     <CostumerStatusinput
-                      autoComplete="off"
+                      autoComplete="none"
                       type="text"
                       id="city"
                       name="city"
@@ -643,7 +662,7 @@ const OrderPlacement = () => {
                     <div>
                       <div style={{ position: "relative" }}>
                         <CostumerStatusinput
-                          autoComplete="off"
+                          autoComplete="none"
                           type="text"
                           id="warehouse"
                           name="warehouse"
@@ -746,26 +765,36 @@ const OrderPlacement = () => {
               <TableThumb>
                 <Titles>Замовлення</Titles>
                 <OrdersThumb>
-                  <table cols="5">
+                  <table
+                    cols="5"
+                    style={{
+                      borderCollapse: "separate",
+                      borderSpacing: "unset",
+                    }}
+                  >
                     <thead style={{ bordeRadius: "25px" }}>
                       <tr>
+                        <HeaderBlockLeft>
+                          {/* <FirstOrdersHeaderItem> s</FirstOrdersHeaderItem> */}
+                        </HeaderBlockLeft>
                         <HeaderBlock>
-                          <FirstOrdersHeaderItem> s</FirstOrdersHeaderItem>
-                        </HeaderBlock>
-                        <HeaderBlock>
-                          <OrdersHeaderItem>
+                          Найменування товару
+                          {/* <OrdersHeaderItem>
                             Найменування товару
-                          </OrdersHeaderItem>
+                          </OrdersHeaderItem> */}
                         </HeaderBlock>
                         <HeaderBlock>
-                          <OrdersHeaderItem>Кількість</OrdersHeaderItem>
+                          Кількість
+                          {/* <OrdersHeaderItem>Кількість</OrdersHeaderItem> */}
                         </HeaderBlock>
                         <HeaderBlock>
-                          <OrdersHeaderItem>Ціна</OrdersHeaderItem>
+                          Ціна
+                          {/* <OrdersHeaderItem>Ціна</OrdersHeaderItem> */}
                         </HeaderBlock>
-                        <HeaderBlock>
-                          <LastOrdersHeaderItem>Сума</LastOrdersHeaderItem>
-                        </HeaderBlock>
+                        <HeaderBlocRight>
+                          Сума
+                          {/* <LastOrdersHeaderItem>Сума</LastOrdersHeaderItem> */}
+                        </HeaderBlocRight>
                       </tr>
                     </thead>
                     <tbody>

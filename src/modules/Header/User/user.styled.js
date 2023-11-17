@@ -336,9 +336,6 @@ export const LableInput = styled.p`
   }
 `;
 
-
-
-
 export const FormikInput = styled(Field)`
   margin: 3px 3px 3px 0;
 
@@ -407,6 +404,7 @@ font-family: Century Gothic; */
     width: 350px;
     height: 45px;
     font-size: 26px;
+    padding: 5px 15px;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -501,7 +499,7 @@ export const WrapInput = styled.div`
   @media screen and (min-width: 1440px) {
     margin-bottom: 30px;
   }
-`
+`;
 export const WrapInputOrders = styled.div`
   display: flex;
   justify-content: center;
@@ -518,7 +516,6 @@ export const WrapInputOrders = styled.div`
   @media screen and (min-width: 1440px) {
     margin-bottom: 30px;
   }
-
 `;
 export const WrapPhone = styled.div`
   margin-bottom: 20px;
@@ -564,16 +561,12 @@ export const InputBlock = styled.div`
 // @media (max-width: 768px) {
 //   min-width: 200px;
 // }
-export const LoginBlock= styled.div`
-height: 50dvh;
-
-  `
-
-
+export const LoginBlock = styled.div`
+  height: 50dvh;
+`;
 
 export const FormikInputOrders = styled(Field)`
   margin: 3px 3px 3px 0;
-
 
   /* max-height: 20px; */
 
@@ -594,7 +587,6 @@ font-family: Century Gothic; */
     /* outline: 1px solid ${(p) => p.theme.colors.accentColor}; */
     border: 1px solid ${(p) => p.theme.colors.accentColor};
   }
-
 
   @media (min-width: 1440px) {
     max-width: 100%;
@@ -623,9 +615,9 @@ font-family: Century Gothic; */
     font-size: 20px;
     margin-bottom: 14px;
   }
-  `
+`;
 
-  export const LableInputOreders = styled.p`
+export const LableInputOreders = styled.p`
   color: #504056;
   display: flex;
   margin-left: 10px;
@@ -640,7 +632,7 @@ font-family: Century Gothic; */
 
   @media screen and (max-width: 767px) {
     font-size: 18px;
-    justify-content:center;
+    justify-content: center;
   }
   @media screen and (min-width: 768px) {
     font-size: 18px;
