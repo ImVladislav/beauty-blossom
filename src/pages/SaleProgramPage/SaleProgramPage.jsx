@@ -1,33 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "../../shared/styles/Container";
 import {
-  ConditionsList,
+  Title,
   ConditionsTitle,
+  Text,
+  ConditionsList,
   ListItems,
+  ButtonWrapper,
   ModalBackground,
   ModalContent,
-  OpenModal,
-  Text,
-  Title,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
-import OPTSalesRegister from "./OPTSalesRegister";
+
+import Register from "../../modules/Register/Register";
+import { toast } from "react-toastify";
+import Button from "../../shared/components/Button/Button";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-  if (isModalOpen) {
-    document.body.classList.add('modal-open');
-  } else {
-    document.body.classList.remove('modal-open');
-  }
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
 
-  return () => {
-    document.body.classList.remove('modal-open');
-  };
-}, [isModalOpen]);
-
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [isModalOpen]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -36,12 +38,12 @@ const SaleProgramPage = () => {
   const handelDropClose = (e) => {
     if (e.target.tagName === "SECTION") {
       setIsModalOpen(false);
-
     }
+  };
 
-
-
-  }
+  const onRegisterSuccess = () => {
+    toast.info("Ви успішно зареєструвалися як оптовий клієнт, авторизуйтеся");
+  };
   return (
     <Container>
       <div>
@@ -108,7 +110,8 @@ const SaleProgramPage = () => {
           <Text>З усіх питань ви можете зв’язатись з нами:</Text>
           <ConditionsList>
             <ListItems style={{ listStyle: "none" }}>
-              Телефон: +38 (050) 052 91 00
+              Телефон:
+              <a href="tel:+380500529100"> +38 (050) 052 91 00</a>
             </ListItems>
             <ListItems style={{ listStyle: "none" }}>
               Електронна пошта:{" "}
@@ -136,7 +139,6 @@ const SaleProgramPage = () => {
               вказували при реєстрації
             </ListItems>
             <ListItems>
-              {" "}
               Ми переведемо ваш акаунт в статус оптового покупця
             </ListItems>
           </ConditionsList>
@@ -144,14 +146,22 @@ const SaleProgramPage = () => {
             Готово! Тепер ви можете оформляти замовлення на сайті та бачити
             історію своїх покупок.
           </Text>
-          <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal>
+          {/* <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal> */}
+          <ButtonWrapper>
+            <Button
+              opt
+              text={"Стати оптовим покупцем"}
+              type="submit"
+              onClick={openModal}
+            />
+          </ButtonWrapper>
         </section>
       </div>
       {isModalOpen && (
         <ModalBackground onClick={handelDropClose}>
           <ModalContent>
             <CloseButton close={() => setIsModalOpen(false)} />
-            <OPTSalesRegister />
+            <Register onRegisterSuccess={onRegisterSuccess} opt />
           </ModalContent>
         </ModalBackground>
       )}

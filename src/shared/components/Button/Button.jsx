@@ -1,10 +1,12 @@
 import React from "react";
 import { ButtonStyle } from "./Button.styled";
 
-const Button = ({ type, text, onClick, disabled, goods, userMenu }) => {
+const Button = ({ type, text, onClick, disabled, goods, userMenu, opt }) => {
   return (
     <ButtonStyle
-      className={(goods && "goods") || (userMenu && "user-menu")}
+      className={
+        (goods && "goods") || (userMenu && "user-menu") || (opt && "opt")
+      }
       type={type}
       onClick={onClick}
       disabled={disabled}

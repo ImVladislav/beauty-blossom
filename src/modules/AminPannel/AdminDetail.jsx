@@ -1,78 +1,84 @@
-import React, { useState } from 'react';
-import {  ProductBlock, ProductImage, TableItems, TableTrBlock } from './AdminDetailStyled';
-import { Table } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useState } from "react";
+import {
+  ProductBlock,
+  ProductImage,
+  TableItems,
+  TableTrBlock,
+} from "./AdminDetailStyled";
+import { Table } from "react-bootstrap";
+import axios from "axios";
 
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
-console.log(selectedOrder);
+  console.log(selectedOrder);
   const handleEditClick = () => {
     setIsEditing(true);
   };
 
   const handleCancelClick = () => {
     setIsEditing(false);
-    };
-console.log(selectedOrder.isOptUser);
-    const handleSaveClick = async () => {
-  try {
-    // Створюємо новий масив orderedItems без поля _id
-    const updatedOrderedItems = editedOrder.orderedItems.map(item => {
-      // Копіюємо об'єкт item без поля _id
-      const { _id, ...updatedItem } = item;
-      return updatedItem;
-    });
+  };
+  console.log(selectedOrder.isOptUser);
+  const handleSaveClick = async () => {
+    try {
+      // Створюємо новий масив orderedItems без поля _id
+      const updatedOrderedItems = editedOrder.orderedItems.map((item) => {
+        // Копіюємо об'єкт item без поля _id
+        const { _id, ...updatedItem } = item;
+        return updatedItem;
+      });
 
-    // Створюємо окремий об'єкт dataToUpdate без поля orderedItems
-    const dataToUpdate = {
+      // Створюємо окремий об'єкт dataToUpdate без поля orderedItems
+      const dataToUpdate = {
+        status: editedOrder.status,
 
-      status: editedOrder.status,
+        orderedItems: updatedOrderedItems,
 
-      orderedItems: updatedOrderedItems,
-            
         firstName: editedOrder.firstName,
         lastName: editedOrder.lastName,
         number: editedOrder.number,
         email: editedOrder.email,
         city: editedOrder.city,
-      warehouse: editedOrder.warehouse,
+        warehouse: editedOrder.warehouse,
         deliveryMethod: editedOrder.deliveryMethod,
         paymentMethod: editedOrder.paymentMethod,
         amount: editedOrder.amount,
-       
-    };
+      };
 
-    // Відправляємо PUT-запит на сервер з `dataToUpdate`
-    const response = await axios.put(`https://beauty-blossom-backend.onrender.com/api/orders/${editedOrder._id}`, dataToUpdate);
-    console.log(dataToUpdate);
-    // Перевіряємо відповідь сервера
-    if (response.status === 200) {
-      // Оновлюємо стан isEditing, щоб завершити режим редагування
-      setIsEditing(false);
-    } else {
-      // Обробка помилки, якщо потрібно
-      console.error('Помилка оновлення даних на сервері');
+      // Відправляємо PUT-запит на сервер з `dataToUpdate`
+      const response = await axios.put(
+        `https://beauty-blossom-backend.onrender.com/api/orders/${editedOrder._id}`,
+        dataToUpdate
+      );
+      console.log(dataToUpdate);
+      // Перевіряємо відповідь сервера
+      if (response.status === 200) {
+        // Оновлюємо стан isEditing, щоб завершити режим редагування
+        setIsEditing(false);
+      } else {
+        // Обробка помилки, якщо потрібно
+        console.error("Помилка оновлення даних на сервері");
+      }
+    } catch (error) {
+      console.error("Помилка відправки запиту на сервер:", error);
     }
-  } catch (error) {
-    console.error('Помилка відправки запиту на сервер:', error);
-  }
-};
+  };
 
- const handleInputChange = (e, fieldName) => {
-  const { value } = e.target;
-  if (fieldName === 'status') {
-    setEditedOrder((prevOrder) => ({
-      ...prevOrder,
-      [fieldName]: value,
-    }));
-  } else {
-    setEditedOrder((prevOrder) => ({
-      ...prevOrder,
-      [fieldName]: value,
-    }));
-  }
-};
+  const handleInputChange = (e, fieldName) => {
+    const { value } = e.target;
+    if (fieldName === "status") {
+      setEditedOrder((prevOrder) => ({
+        ...prevOrder,
+        [fieldName]: value,
+      }));
+    } else {
+      setEditedOrder((prevOrder) => ({
+        ...prevOrder,
+        [fieldName]: value,
+      }));
+    }
+  };
   return (
     <div>
       <h2>Детальна інформація про замовлення</h2>
@@ -87,7 +93,7 @@ console.log(selectedOrder.isOptUser);
             </TableTrBlock>
             {selectedOrder.orderedItems.map((item, index) => (
               <TableTrBlock key={index}>
-                <td style={{ display: 'flex', border: 'none' }}>
+                <td style={{ display: "flex", border: "none" }}>
                   <ProductImage src={item.images} alt="product" />
                   <p>{item.name}</p>
                 </td>
@@ -114,40 +120,40 @@ console.log(selectedOrder.isOptUser);
                   <input
                     type="text"
                     value={editedOrder.firstName}
-                    onChange={(e) => handleInputChange(e, 'firstName')}
+                    onChange={(e) => handleInputChange(e, "firstName")}
                   />
                 ) : (
                   selectedOrder.firstName
-                )}{' '}
+                )}{" "}
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedOrder.lastName}
-                    onChange={(e) => handleInputChange(e, 'lastName')}
+                    onChange={(e) => handleInputChange(e, "lastName")}
                   />
                 ) : (
                   selectedOrder.lastName
                 )}
               </p>
               <p>
-                Телефон:{' '}
+                Телефон:{" "}
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedOrder.number}
-                    onChange={(e) => handleInputChange(e, 'number')}
+                    onChange={(e) => handleInputChange(e, "number")}
                   />
                 ) : (
                   selectedOrder.number
                 )}
               </p>
               <p>
-                Email:{' '}
+                Email:{" "}
                 {isEditing ? (
                   <input
                     type="text"
                     value={editedOrder.email}
-                    onChange={(e) => handleInputChange(e, 'email')}
+                    onChange={(e) => handleInputChange(e, "email")}
                   />
                 ) : (
                   selectedOrder.email
@@ -160,12 +166,12 @@ console.log(selectedOrder.isOptUser);
                     <input
                       type="text"
                       value={editedOrder.city}
-                      onChange={(e) => handleInputChange(e, 'city')}
+                      onChange={(e) => handleInputChange(e, "city")}
                     />
                     <input
                       type="text"
                       value={editedOrder.warehouse}
-                      onChange={(e) => handleInputChange(e, 'warehouse')}
+                      onChange={(e) => handleInputChange(e, "warehouse")}
                     />
                   </tr>
                 ) : (
@@ -175,12 +181,12 @@ console.log(selectedOrder.isOptUser);
                 )}
               </p>
               <p>
-                Статус товару:{' '}
+                Статус товару:{" "}
                 {isEditing ? (
                   <select
                     name="status"
                     value={selectedOrder.status}
-                    onChange={(e) => handleInputChange(e, 'status')}
+                    onChange={(e) => handleInputChange(e, "status")}
                   >
                     <option value="Новий">Новий</option>
                     <option value="Прийняте в роботу">Прийняте в роботу</option>

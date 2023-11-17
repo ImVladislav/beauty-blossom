@@ -206,30 +206,33 @@ export const Info = styled.div`
   }
 `;
 export const CounterBlock = styled.div`
-  width: 103px;
-  height: 38px;
+  position: relative;
+  width: 75px;
+  height: 30px;
   display: flex;
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
-  position: relative;
   align-items: center;
-  font-size: ${(p) => p.theme.fontSizes.s}px;
+
   margin-bottom: 10px;
+  justify-content: space-evenly;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
   }
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
+    height: 38px;
+    width: 85px;
   }
   @media screen and (min-width: 1024px) {
+    width: 110px;
   }
   @media screen and (min-width: 1440px) {
   }
 `;
-export const ButtonIncDec = styled.button`
-  flex: 1 0 auto;
-  height: 100%;
+export const ButtonIncDec = styled.span`
+  /* flex: 1 0 auto; */
+  /* height: 100%; */
   position: relative;
   display: inline-block;
   vertical-align: top;
@@ -238,11 +241,10 @@ export const ButtonIncDec = styled.button`
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
-  background: none;
+  background: transparent;
   font-size: ${(p) => p.theme.fontSizes.m}px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
-    cursor: pointer;
   }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
@@ -255,14 +257,15 @@ export const ButtonIncDec = styled.button`
 
 export const InputIncDec = styled.input`
   text-align: center;
-
+  /* font-family: auto; */
+  font-family: monospace;
   outline: none;
 
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
-  background-color: none;
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  background-color: transparent;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -275,9 +278,10 @@ export const InputIncDec = styled.input`
     -moz-appearance: textfield; /* Firefox */
   }
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.l}px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
   @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
   }
   @media screen and (min-width: 1440px) {
   }

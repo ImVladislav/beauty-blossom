@@ -20,7 +20,6 @@ export const register = createAsyncThunk(
       const res = await axios.post("/auth/register", credentials);
 
       return res.data;
-   
     } catch (error) {
       if (error.response.status === 409) {
         toast.error("Ви вже зареєстровані!");
@@ -76,7 +75,7 @@ export const refreshCurrentUser = createAsyncThunk(
 
     // token.set(persistedToken);
 
-      if (!state.auth.token) {
+    if (!state.auth.token) {
       return rejectWithValue("Unautorized");
     }
 

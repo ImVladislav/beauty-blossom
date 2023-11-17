@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { ContactInformForm, ContactInformInput, ContactInformInputBlock, ContactInformSubButton, RedStar } from './UserPageStyled';
+import React, { useState } from "react";
+import axios from "axios";
+import {
+  ContactInformForm,
+  ContactInformInput,
+  ContactInformInputBlock,
+  ContactInformSubButton,
+  RedStar,
+} from "./UserPageStyled";
 
 import { toast } from "react-toastify";
 
 const ChangePassword = () => {
-
   const [formData, setFormData] = useState({
     oldPassword: "",
     password: "",
@@ -35,19 +40,22 @@ const ChangePassword = () => {
     }
 
     try {
-
       // eslint-disable-next-line no-unused-vars
-      const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/changePassword/`, {
-        oldPassword: formData.oldPassword,
-        newPassword: formData.password,
-      });
+      const response = await axios.post(
+        `https://beauty-blossom-backend.onrender.com/api/auth/changePassword/`,
+        {
+          oldPassword: formData.oldPassword,
+          newPassword: formData.password,
+        }
+      );
 
       setFormData({
         oldPassword: "",
         password: "",
       });
-      toast.info("Пароль змінено. Новий пароль набуде чинності через 2 хвилини.");
-
+      toast.info(
+        "Пароль змінено. Новий пароль набуде чинності через 2 хвилини."
+      );
     } catch (error) {
       if (error.response && error.response.status === 401) {
         toast.error("Ви ввели невірний діючий пароль.");
@@ -61,7 +69,9 @@ const ChangePassword = () => {
     <div>
       <ContactInformForm onSubmit={handleSubmit}>
         <ContactInformInputBlock className="form-group">
-          <label style={{ whiteSpace: 'nowrap'}} htmlFor="oldPassword">СТАРИЙ ПАРОЛЬ<RedStar>*</RedStar></label>
+          <label style={{ whiteSpace: "nowrap" }} htmlFor="oldPassword">
+            СТАРИЙ ПАРОЛЬ<RedStar>*</RedStar>
+          </label>
           <ContactInformInput
             type="password"
             id="oldPassword"
@@ -70,9 +80,11 @@ const ChangePassword = () => {
             onChange={handleChange}
           />
         </ContactInformInputBlock>
-          
+
         <ContactInformInputBlock className="form-group">
-          <label htmlFor="password">НОВИЙ ПАРОЛЬ<RedStar>*</RedStar></label>
+          <label htmlFor="password">
+            НОВИЙ ПАРОЛЬ<RedStar>*</RedStar>
+          </label>
           <ContactInformInput
             type="password"
             id="password"
@@ -85,10 +97,6 @@ const ChangePassword = () => {
       </ContactInformForm>
     </div>
   );
-}
+};
 
 export default ChangePassword;
-
-
-
-

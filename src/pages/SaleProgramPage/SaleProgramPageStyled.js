@@ -1,4 +1,3 @@
-import { Field } from "formik";
 import styled from "styled-components";
 
 export const Title = styled.h2`
@@ -15,29 +14,6 @@ export const Title = styled.h2`
   @media screen and (min-width: 1440px) {
   }
 `;
-export const Container = styled.div`
-  position: relative;
-  background: #e8dfd8;
-  color: #333;
-  font-size: 12px;
-  padding: 30px 0 60px;
-`;
-
-export const SubTitle = styled.h3`
-  color: ${(p) => p.theme.colors.accentColor};
-  display: flex;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 30px;
-  @media screen and (min-width: 768px) {
-    font-size: 1.8em;
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
-`;
-
 export const ConditionsTitle = styled.h4`
   display: flex;
   font-size: 12px;
@@ -64,6 +40,11 @@ export const Text = styled.p`
   @media screen and (min-width: 1440px) {
   }
 `;
+export const ConditionsList = styled.ul`
+  display: block;
+
+  margin: 15px 0px 15px 25px;
+`;
 
 export const ListItems = styled.li`
   margin-left: 5px;
@@ -78,10 +59,22 @@ export const ListItems = styled.li`
   }
 `;
 
-export const ConditionsList = styled.ul`
-  display: block;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: center;
+  margin: 30px 0;
+  position: relative;
 
-  margin: 15px 0px 15px 25px;
+  @media screen and (min-width: 1024px) {
+    margin: 40px 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    /* justify-content: space-between; */
+    justify-content: center;
+  }
 `;
 export const ModalBackground = styled.section`
   position: fixed;
@@ -101,151 +94,8 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   max-width: 90%;
-max-height: 100vh;
+  max-height: 100vh;
   text-align: center;
   position: relative;
   overflow-y: auto;
-`;
-
-export const OpenModal = styled.button`
-  /* width: 340px;
-  height: 70px; */
-  background: ${(p) => p.theme.colors.accentColor};
-  border-radius: 50px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  border: none;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
-  padding: 15px 20px;
-  background: ${(p) => p.theme.colors.accentColor};
-  &:hover {
-    background: ${(p) => p.theme.colors.textColor};
-  }
-  @media screen and (min-width: 768px) {
-    font-size: 20px;
-    padding: 20px 30px;
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
-
-  @media screen and (max-width: 768px) {
-    font-size: 20px;
-    padding: 20px 30px;
-  }
-`;
-export const CloseModal = styled.button``;
-
-export const ModalForm = styled.form``;
-
-export const FormLavelBloks = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  position: relative;
-
-  @media screen and (min-width: 1024px) {
-    margin-top: 40px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: center;
-  }
-  @media (min-width: 1024px) and (max-width: 1439px) {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: center;
-  }
-  @media (min-width: 768px) and (max-width: 1023px) {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: space-around;
-    padding: 12px;
-    margin-bottom: auto;
-  }
-  @media (max-width: 768px) {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0px 12px;
-  }
-`;
-export const ButtonWrapper = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
-  justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  position: relative;
-
-  @media screen and (min-width: 1024px) {
-    margin-top: 40px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    display: flex;
-    /* justify-content: space-between; */
-    justify-content: center;
-  }
-`;
-export const Label = styled.label``;
-
-export const ModalText = styled.p`
-  font-weight: bold;
-`;
-
-export const ReqStar = styled.span`
-  color: red;
-  font-weight: bold;
-`;
-
-export const Input = styled.input`
-  margin: 10px;
-  border-radius: 12px;
-  /* color: #b2b2b2; */
-  border-color: #b2b2b2;
-  padding: 10px;
-  /* &:focus-visible{
-            border-color: ${(p) => p.theme.colors.accentColor} !important;
-        } */
-  &.error {
-    border: 2px solid red;
-  }
-`;
-export const ModalShopTypeItem = styled.li`
-  display: flex;
-  margin: 8px;
-`;
-
-export const ModalShopTypeText = styled.p`
-  margin-left: 8px;
-`;
-
-export const CheckBox = styled.input`
-  width: 20px;
-`;
-
-export const ChekBoxThumb = styled.div`
-  display: grid;
-  justify-items: start;
-`;
-export const FormikChekbox = styled(Field)`
-  width: 18px;
-  height: 18px;
-  margin: 8px;
 `;

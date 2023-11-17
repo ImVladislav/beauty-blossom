@@ -30,22 +30,23 @@ import { Loader } from "./shared/components/Loader/Loader";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import NoProducts from "./pages/NoProducts/NoProducts";
 import Feedback from "./pages/UserPage/Feedback";
+import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
+import { useMedia } from "./hooks/useMedia";
 
 function App() {
+  const { isMobileScreen } = useMedia();
   // const [goodsData, setGoodsData] = useState(null);
   const isRefreshing = useSelector(refreshSelector);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGoods());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     dispatch(refreshCurrentUser());
   }, [dispatch]);
-
-
 
   return !isRefreshing ? (
     <ThemeProvider theme={theme}>
@@ -145,7 +146,7 @@ function App() {
             path="feedback"
             element={
               <Suspense fallback={<Loader />}>
-                <Feedback/>
+                <Feedback />
               </Suspense>
             }
           />
@@ -197,10 +198,10 @@ function App() {
             path="history"
             element={<PrivateRoute component={PaymentHistory} to="/" />}
           />
-          <Route path="feedback" element={<Feedback/>} />
-
+          <Route path="feedback" element={<Feedback />} />
         </Route>
       </Routes>
+      {!isMobileScreen && <ScrollToTopMobile />}
     </ThemeProvider>
   ) : null;
 }

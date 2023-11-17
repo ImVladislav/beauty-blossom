@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import Login from "../../Login/Login";
+import Register from "../../Register/Register";
+import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
+import { toast } from "react-toastify";
+
+import {
+  loggedInSelector,
+  isAdminSelector,
+} from "../../../redux/auth/selectors";
+import { logout } from "../../../redux/auth/operation";
+
 import {
   LinkBtn,
   LogInIcon,
   DropDown,
   ListItem,
-  Modal,
-  ModalBackdrop,
   LogOut,
-  Underline,
+  ModalBackdrop,
+  Modal,
   WrapLink,
-} from "./login.styled";
-import { CloseButton } from "../../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
-import {
-  loggedInSelector,
-  isAdminSelector,
-
-} from "../../../redux/auth/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../redux/auth/operation";
-import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+  Underline,
+} from "./user.styled";
 
 const LogIn = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -57,26 +59,23 @@ const LogIn = () => {
     dispatch(logout());
   };
 
-
   const handelDropClose = (e) => {
     if (e.target.tagName === "SECTION") {
-      setShowModal(false) 
-    } 
-
+      setShowModal(false);
     }
+  };
 
   useEffect(() => {
-  if (showModal) {
-    document.body.classList.add('modal-open');
-  } else {
-    document.body.classList.remove('modal-open');
-  }
+    if (showModal) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
 
-  return () => {
-    document.body.classList.remove('modal-open');
-  };
-}, [showModal]);
-
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [showModal]);
 
   return (
     <>
@@ -91,9 +90,7 @@ const LogIn = () => {
           <ul>
             {admin && (
               <ListItem>
-                <Link to="ordersbyclient">
-                  Замовлення(Адмін права)
-                </Link>
+                <Link to="ordersbyclient">Замовлення(Адмін права)</Link>
               </ListItem>
             )}
             <ListItem>
@@ -132,9 +129,9 @@ const LogIn = () => {
             </WrapLink>
 
             {loginOrRegister ? (
-              <LoginForm />
+              <Login />
             ) : (
-              <RegisterForm onRegisterSuccess={onRegisterSuccess} />
+              <Register onRegisterSuccess={onRegisterSuccess} />
             )}
           </Modal>
         </ModalBackdrop>

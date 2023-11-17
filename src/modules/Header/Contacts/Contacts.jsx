@@ -14,7 +14,12 @@ const Contacts = ({ title, to, icon, head, burger }) => {
   if (icon === "telegram") {
     return (
       <Wrap>
-        <Link href={to} className={(head && "head") || (burger && "burger")}>
+        <Link
+          href={to}
+          target="_blank"
+          rel="noreferrer"
+          className={(head && "head") || (burger && "burger")}
+        >
           <TelegramIcon />
 
           {title}
@@ -24,7 +29,12 @@ const Contacts = ({ title, to, icon, head, burger }) => {
   } else if (icon === "instagram") {
     return (
       <Wrap>
-        <Link href={to} className={(head && "head") || (burger && "burger")}>
+        <Link
+          href={to}
+          target="_blank"
+          rel="noreferrer"
+          className={(head && "head") || (burger && "burger")}
+        >
           <InstagramIcon />
 
           {title}
