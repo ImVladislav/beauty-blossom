@@ -37,7 +37,7 @@ const PaymentHistory = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = paymentHistoryData.slice(startIndex, endIndex);
-
+console.log(currentData);
   // Подія для зміни сторінки
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -104,9 +104,9 @@ const PaymentHistory = () => {
                 <tr key={productIndex}>
                   <PaymentHistoryTd>{product.name}</PaymentHistoryTd>
                   <PaymentHistoryTd>{product.quantity}</PaymentHistoryTd>
-                  <PaymentHistoryTd>{product.amount}</PaymentHistoryTd>
+                  <PaymentHistoryTd>{product.amount / product.quantity}</PaymentHistoryTd>
                   <PaymentHistoryTd>
-                    {product.quantity * product.amount}
+                    {product.amount}
                   </PaymentHistoryTd>
                 </tr>
               ))}

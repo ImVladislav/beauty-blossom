@@ -320,9 +320,9 @@ const OrderPlacement = () => {
       images: item.images,
       name: item.name,
       code: item.code.toString(),
-      quantity: itemQuantities[item.id],
+      quantity: item.quantity,
       amount:
-        (isOptUser ? item.priceOPT : item.price) * itemQuantities[item.id],
+        (isOptUser ? item.priceOPT : item.price) * item.quantity,
     }));
 
     const dataToSendCourier = {
@@ -819,7 +819,7 @@ const OrderPlacement = () => {
                           <OrdersItem>
                             <ItemAmount>
                               {(isOptUser ? item.priceOPT : item.price) *
-                               itemQuantities[item.id]}
+                               item.quantity}
                               грн
                             </ItemAmount>
                           </OrdersItem>
