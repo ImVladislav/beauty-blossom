@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -23,10 +23,12 @@ const ProductList = ({ items }) => {
   const [filteredProducts, setFilteredProducts] = useState(items);
   const [filter, setFilter] = useState("none");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 32;
-  const navigate = useNavigate(); // Хік для навігації
-  const location = useLocation();
 
+  const itemsPerPage = 32;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchRef = useRef(location);
+  console.log(searchRef.current);
   const optUser = useSelector(optUserSelector);
 
   // Функція для фільтрації продуктів
@@ -34,21 +36,42 @@ const ProductList = ({ items }) => {
     const { value } = e.target;
     setFilter(value);
     setCurrentPage(1);
-    navigate(`?filter=${value}&page=1`);
+
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("filter", value);
+    searchParams.set("page", 1);
+
+    const newSearch = searchParams.toString();
+    const targetPath =
+      location.pathname === "/search"
+        ? `${location.pathname}?${newSearch}`
+        : `?${newSearch}`;
+
+    navigate(targetPath);
   };
 
   useEffect(() => {
     let filtered = [...items];
 
-    if (filter === "name") {
+    if (filter === "nameABC") {
       filtered = filtered.sort((a, b) =>
         a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
       );
-    } else if (filter === "price") {
+    } else if (filter === "nameCBA") {
+      filtered = filtered.sort((a, b) =>
+        b.name.localeCompare(a.name, undefined, { sensitivity: "base" })
+      );
+    } else if (filter === "priceMin") {
       if (!optUser) {
         filtered = filtered.sort((a, b) => a.price - b.price);
       } else {
         filtered = filtered.sort((a, b) => a.priceOPT - b.priceOPT);
+      }
+    } else if (filter === "priceMax") {
+      if (!optUser) {
+        filtered = filtered.sort((a, b) => b.price - a.price);
+      } else {
+        filtered = filtered.sort((a, b) => b.priceOPT - a.priceOPT);
       }
     } else if (filter === "inStock") {
       filtered = filtered.filter((item) => item.amount >= 1);
@@ -84,8 +107,23 @@ const ProductList = ({ items }) => {
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
+  // const paginate = (pageNumber) => {
+  //   location.pathname === "/search"
+  //     ? navigate(`${location.search}?filter=${filter}&page=${pageNumber}`)
+  //     : navigate(`?filter=${filter}&page=${pageNumber}`);
+  // };
   const paginate = (pageNumber) => {
-    navigate(`?filter=${filter}&page=${pageNumber}`);
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("filter", filter);
+    searchParams.set("page", pageNumber);
+
+    const newSearch = searchParams.toString();
+    const targetPath =
+      location.pathname === "/search"
+        ? `${location.pathname}?${newSearch}`
+        : `?${newSearch}`;
+
+    navigate(targetPath);
   };
 
   const getPageNumbers = () => {
@@ -151,8 +189,10 @@ const ProductList = ({ items }) => {
               {/* Замінено введення на селект */}
               <FilterSelect value={filter} onChange={handleFilterChange}>
                 <option value="none">Без фільтра</option>
-                <option value="name">Фільтрувати за назвою</option>
-                <option value="price">Фільтрувати за ціною</option>
+                <option value="nameABC">Назва (А - Я)</option>
+                <option value="nameCBA">Назва (Я - А)</option>
+                <option value="priceMin">Ціна (за зростанням)</option>
+                <option value="priceMax">Ціна (за зменшенням)</option>
                 <option value="inStock">Товари в наявності</option>
               </FilterSelect>
             </FilterWrap>
