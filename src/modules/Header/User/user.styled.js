@@ -423,7 +423,7 @@ font-family: Century Gothic; */
 `;
 export const InputField = styled(Field)`
   margin: 3px 3px 3px 0;
-  max-width: 150px;
+  max-width: 165px;
   min-width: 130px;
   /* max-height: 20px; */
   border-radius: 4px;
@@ -434,7 +434,7 @@ export const InputField = styled(Field)`
 
   /* text-align: center;
 font-family: Century Gothic; */
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 102.312%; /* 12.955px */
