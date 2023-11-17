@@ -89,7 +89,7 @@ export const Link = styled.a`
   display: flex;
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
   align-items: center;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
@@ -100,7 +100,7 @@ export const Link = styled.a`
   &.burger {
     text-decoration: none;
 
-    font-size: ${(p) => p.theme.fontSizes.xxs}px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
 
     font-style: normal;
     font-weight: 300;

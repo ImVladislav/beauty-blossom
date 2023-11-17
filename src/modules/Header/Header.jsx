@@ -140,7 +140,8 @@ export const Header = () => {
           {isMenuOpen && isMobileScreen && (
             <BurgerMenu
               handleClick={handleMenuClick}
-              isMenuOpen={isMenuOpen}
+                isMenuOpen={isMenuOpen}
+                setIsMenuOpen={setIsMenuOpen}
               items={menuItems}
             />
           )}

@@ -775,25 +775,18 @@ const OrderPlacement = () => {
                     <thead style={{ bordeRadius: "25px" }}>
                       <tr>
                         <HeaderBlockLeft>
-                          {/* <FirstOrdersHeaderItem> s</FirstOrdersHeaderItem> */}
                         </HeaderBlockLeft>
                         <HeaderBlock>
                           Найменування товару
-                          {/* <OrdersHeaderItem>
-                            Найменування товару
-                          </OrdersHeaderItem> */}
                         </HeaderBlock>
                         <HeaderBlock>
                           Кількість
-                          {/* <OrdersHeaderItem>Кількість</OrdersHeaderItem> */}
                         </HeaderBlock>
                         <HeaderBlock>
                           Ціна
-                          {/* <OrdersHeaderItem>Ціна</OrdersHeaderItem> */}
                         </HeaderBlock>
                         <HeaderBlocRight>
                           Сума
-                          {/* <LastOrdersHeaderItem>Сума</LastOrdersHeaderItem> */}
                         </HeaderBlocRight>
                       </tr>
                     </thead>
@@ -860,3 +853,4 @@ export default OrderPlacement;
 //430
 //619
 //792
+//863
