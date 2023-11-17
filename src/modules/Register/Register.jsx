@@ -31,7 +31,7 @@ const Register = ({ onRegisterSuccess, opt }) => {
     firstName: "",
     lastName: "",
     number: "",
-    city: "",
+    city: "misto",
     link: "myshop.com",
     onlineShop: false,
     offlineShop: false,
