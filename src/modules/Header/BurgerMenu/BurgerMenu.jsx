@@ -12,21 +12,20 @@ import {
   InfoButton,
 } from "./BurgerMenu.styled";
 
-const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
+const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(true);
   const [contacts, setContacts] = useState(false);
 
   const closeMenu = () => {
+    setIsMenuOpen(false);
     setMenuOpen(false);
-  };
-  const handleClickP = () => {
+  }
+  const handleContactTogle = () => {
     setContacts(!contacts);
   };
 
-
-
   return (
-    <MobileMenuContainer onClick={(e)=> console.log(e.target.tagName)}
+    <MobileMenuContainer
       customCrossIcon={false}
       isOpen={isMenuOpen}
       onStateChange={handleClick}
@@ -54,12 +53,11 @@ const BurgerMenu = ({ items, handleClick, isMenuOpen }) => {
         <InfoStylesLink to="/cabinet/userData">
           Особистий кабінет
         </InfoStylesLink>
-        <InfoStylesLink to="/cabinet/history">Історія замовлень</InfoStylesLink>
-        <InfoLink href="/wholesaleProgram#return">Повернення та обмін</InfoLink>
-        <InfoLink href="/wholesaleProgram#payment">Оплата і доставка</InfoLink>
-        <InfoLink href="/wholesaleProgram#about">Про нас</InfoLink>
-        <InfoLink href="feedback">Залишити відгук</InfoLink>
-        <InfoButton onClick={handleClickP}>Контакти</InfoButton>
+        <InfoStylesLink onClick={closeMenu} to="/cabinet/history">Історія замовлень</InfoStylesLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">Повернення та обмін</InfoLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#payment">Оплата і доставка</InfoLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#about">Про нас</InfoLink>
+        <InfoButton onClick={handleContactTogle}>Контакти</InfoButton>
         {contacts && (
           <>
             <Contacts

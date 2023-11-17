@@ -240,7 +240,8 @@ export const Thumb = styled.tr`
 export const ItemNameLink = styled(Link)`
   color: black;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 11px;
+  line-height: 0.9;
 
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
@@ -261,7 +262,7 @@ export const ItemNameLink = styled(Link)`
 export const ItemAmount = styled.p`
   color: black;
   text-decoration: none;
-  font-size: 8px;
+  font-size: 11px;
   white-space: pre;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};

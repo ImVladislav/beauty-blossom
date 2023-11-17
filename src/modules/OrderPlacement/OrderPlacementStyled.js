@@ -462,6 +462,7 @@ export const ItemNameItem = styled.td`
   text-decoration: none;
   font-size: 18px;
   text-align: center;
+  line-height: 1;
   @media (min-width: 768px) and (max-width: 1023px) {
     max-width: 300px;
   }
@@ -480,7 +481,7 @@ export const ItemNameItem = styled.td`
 `;
 
 export const OrdersImage = styled.img`
-  width: 80px;
+  max-width: 80px;
   padding: 0px;
   margin: 6px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
