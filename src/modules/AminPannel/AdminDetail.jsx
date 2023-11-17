@@ -97,7 +97,7 @@ const AdminDetail = ({ selectedOrder }) => {
                   <ProductImage src={item.images} alt="product" />
                   <p>{item.name}</p>
                 </td>
-                <TableItems>{item.amount} грн</TableItems>
+                <TableItems>{item.amount / item.quantity} грн</TableItems>
                 <TableItems>{item.quantity}</TableItems>
                 <TableItems>{item.amount}</TableItems>
               </TableTrBlock>
@@ -198,6 +198,9 @@ const AdminDetail = ({ selectedOrder }) => {
                 ) : (
                   editedOrder.status
                 )}
+              </p>
+              <p>
+                 Коментар:{" "}{editedOrder.comments !==undefined? editedOrder.comments : 'кроментар відсутній'}
               </p>
             </TableItems>
           </tr>

@@ -130,7 +130,7 @@ const handleOrderClick = (order) => {
             </tr>
           </thead>
           <tbody>
-            {filteredOrders.map(order => (
+            {filteredOrders.slice().reverse().map(order => (
         <StyledTr
           key={order._id}
           onClick={() => handleOrderClick(order)}
