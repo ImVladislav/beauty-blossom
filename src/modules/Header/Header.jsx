@@ -31,6 +31,8 @@ import {
   ButtonMenu,
   NameUser,
   ContainerMobile,
+  CartQuantityWrap,
+  CartQuantitySpan,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -43,10 +45,13 @@ import {
   userSelectorfirstName,
 } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
+import { selectCart } from "../../redux/cart/selectors";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userName = useSelector(userSelectorfirstName);
+  const cartItems = useSelector(selectCart);
+  console.log(cartItems.length);
 
   const isLogin = useSelector(loggedInSelector);
 
@@ -98,7 +103,15 @@ export const Header = () => {
                             {isLogin && <NameUser>{userName} </NameUser>}
                             <User />
                           </div>
-                          <ShoppingCart />
+                          {/* кошик */}
+                          <div style={{ position: "relative" }}>
+                            <ShoppingCart />
+                            <CartQuantityWrap>
+                              <CartQuantitySpan>
+                                {cartItems.length}
+                              </CartQuantitySpan>
+                            </CartQuantityWrap>
+                          </div>
                         </LoginShipingThumb>
                       </Wrap>
                     </WrapTop>
@@ -151,7 +164,12 @@ export const Header = () => {
                 {isLogin && <NameUser>{userName} </NameUser>}
                 <User />
               </div>
-              <ShoppingCart />
+              <div style={{ position: "relative" }}>
+                <ShoppingCart />
+                <CartQuantityWrap>
+                  <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
+                </CartQuantityWrap>
+              </div>
             </IconWrap>
           </CenterWrap>
           {/* bottom */}

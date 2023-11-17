@@ -79,6 +79,26 @@ export const LoginShipingThumb = styled.div`
   }
 `;
 
+export const CartQuantityWrap = styled.div`
+  position: absolute;
+
+  top: 0;
+
+  background: ${(p) => p.theme.colors.accentColor};
+
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+`;
+export const CartQuantitySpan = styled.span`
+  color: ${(p) => p.theme.colors.white};
+  font-size: 10px;
+`;
+
 export const Link = styled.a`
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
@@ -129,7 +149,6 @@ export const MenuProducts = styled.div`
   position: relative;
   height: 100%;
   margin: 0 auto;
-  
 `;
 // ///////////////////////////////
 
