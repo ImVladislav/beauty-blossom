@@ -246,11 +246,11 @@ const OrderPlacement = () => {
 
   const totalCost = isOptUser
     ? cartItems.reduce(
-        (total, item) => total + item.priceOPT * itemQuantities[item.id],
+        (total, item) => total + item.priceOPT * item.quantity,
         0
       )
     : cartItems.reduce(
-        (total, item) => total + item.price * itemQuantities[item.id],
+        (total, item) => total + item.price * item.quantity,
         0
       );
 
@@ -770,7 +770,7 @@ const OrderPlacement = () => {
                     </thead>
                     <tbody>
                       {cartItems.map((item) => (
-                        <OrdersItemlist key={item.id}>
+                        <OrdersItemlist key={item._id}>
                           <OrdersItem>
                             <OrdersImage src={item.images} alt="itemImage" />
                           </OrdersItem>
@@ -780,7 +780,7 @@ const OrderPlacement = () => {
                             </ItemNameLink>
                           </ItemNameItem>
                           <OrdersItem>
-                            <ItemAmount>{itemQuantities[item.id]}</ItemAmount>
+                            <ItemAmount>{item.quantity}</ItemAmount>
                           </OrdersItem>
                           <OrdersItem>
                             <ItemAmount>
@@ -790,7 +790,7 @@ const OrderPlacement = () => {
                           <OrdersItem>
                             <ItemAmount>
                               {(isOptUser ? item.priceOPT : item.price) *
-                                itemQuantities[item.id]}
+                               itemQuantities[item.id]}
                               грн
                             </ItemAmount>
                           </OrdersItem>
