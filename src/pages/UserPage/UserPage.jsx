@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 import { optUserSelector } from "../../redux/auth/selectors";
 
 const UserPage = () => {
-  const [pageTitle, setPageTitle] = useState("");
+  const [pageTitle, setPageTitle] = useState("ІНФОРМАЦІЯ");
 
   const handleUserDataClick = () => {
     setPageTitle("КОНТАКТНА ІНФОРМАЦІЯ");

@@ -336,6 +336,10 @@ export const SubmitFeedback = styled.button`
   margin-bottom: 10px;
   font-size: ${(p) => p.theme.fontSizes.l}px;
   max-width: 345px;
+  &:hover {
+    background: #fff6e9;
+    color: ${(p) => p.theme.colors.black};
+  }
 `;
 
 export const OptUserTag = styled.div`
@@ -344,6 +348,4 @@ export const OptUserTag = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 16px;
-  @media (min-width: 1440px) {
-  }
 `;

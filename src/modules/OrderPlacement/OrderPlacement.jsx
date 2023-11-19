@@ -72,6 +72,8 @@ const OrderPlacement = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [courierDelivery, setCourierDelivery] = useState(false);
+  const [warehouseSearch, setWarehouseSearch] = useState(false);
+
   const [orderNumber, setOrderNumber] = useState("");
   const userFirstName = useSelector(userSelectorfirstName);
   const userLastName = useSelector(userSelectorlastName);
@@ -104,12 +106,12 @@ const OrderPlacement = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  let firstWord = "";
-  let secoundWord = "";
+  // let firstWord = "";
+  // let secoundWord = "";
 
-  const words = searchText.trim().split(" ");
-  firstWord = words[0];
-  secoundWord = words[1];
+  // const words = searchText.trim().split(" ");
+  // firstWord = words[0];
+  // secoundWord = words[1];
 
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
@@ -155,11 +157,11 @@ const OrderPlacement = () => {
       const requestData = {
         apiKey: apiKey,
         modelName: "Address",
-        calledMethod: "getSettlements",
+        calledMethod: "searchSettlements",
         methodProperties: {
           Page: "1",
-          FindByString: searchText,
-          Limit: "6000",
+          CityName: searchText,
+          Limit: "50",
         },
       };
 
@@ -177,9 +179,15 @@ const OrderPlacement = () => {
       }
       const data = await response.json();
 
+      const addresses = data.data[0].Addresses; // Отримання масиву Addresses
+
+      console.log(addresses);
+
       if (data.success) {
-        setSearchCities(data.data);
+        setSearchCities(addresses);
       }
+
+      console.log(searchCities);
     } catch (error) {
       console.error(error);
     }
@@ -191,10 +199,8 @@ const OrderPlacement = () => {
         modelName: "Address",
         calledMethod: "getWarehouses",
         methodProperties: {
-          CityName: firstWord,
-          Page: "1",
-          Limit: "40000",
-          WarehouseId: searchWarehouses,
+          CityRef: warehouseSearch,
+          Limit: "20",
         },
       };
 
@@ -202,21 +208,24 @@ const OrderPlacement = () => {
         requestData.methodProperties.WarehouseRef = searchWarehouses;
       }
 
-      const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        "https://api.novaposhta.ua/v2.0/json/Address",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
-
+      console.log(data.data);
       if (data.success) {
         setWarehouses(data.data);
       }
@@ -229,12 +238,6 @@ const OrderPlacement = () => {
   };
 
   useEffect(() => {
-    if (words.length > 1) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      firstWord = words[0];
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      secoundWord = words[1];
-    }
     if (searchText) {
       handleCityChange();
     }
@@ -438,12 +441,13 @@ const OrderPlacement = () => {
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
 
-  const handleCitySelect = (city, areaDescription) => {
-    const selectedCityWithArea = `${city} ${areaDescription}`;
+  const handleCitySelect = (city, DeliveryCity) => {
+    const selectedCityWithArea = `${city}`;
     setSearchText(selectedCityWithArea);
     setDropdownCityVisible(false);
     setSearchWarehouses("");
     handleWarehousesChange();
+    setWarehouseSearch(DeliveryCity);
   };
 
   const handleWarehouseSelect = (warehouse) => {
@@ -605,14 +609,14 @@ const OrderPlacement = () => {
                                 key={nanoid()}
                                 onClick={() => {
                                   handleCitySelect(
-                                    searchCity.Description,
-                                    searchCity.AreaDescription
+                                    searchCity.Present,
+                                    searchCity.DeliveryCity
                                   );
                                 }}
                               >
                                 <CityItem>
-                                  {searchCity.Description},{" "}
-                                  {searchCity.AreaDescription}
+                                  {searchCity.Present},
+                                  {/* {searchCity.AreaDescription} */}
                                 </CityItem>
                               </li>
                             ))
@@ -686,23 +690,23 @@ const OrderPlacement = () => {
                                   </LoaderThumb>
                                 ) : (
                                   warehouses
-                                    .filter((warehouse) => {
-                                      const description =
-                                        warehouse.Description || "";
-                                      const areaDescription =
-                                        warehouse.SettlementAreaDescription ||
-                                        "";
-                                      return (
-                                        description
-                                          .toLowerCase()
-                                          .includes(
-                                            searchWarehouses.toLowerCase()
-                                          ) &&
-                                        areaDescription
-                                          .toLowerCase()
-                                          .includes(secoundWord.toLowerCase())
-                                      );
-                                    })
+                                    // .filter((warehouse) => {
+                                    //   const description =
+                                    //     warehouse.Description || "";
+                                    //   const areaDescription =
+                                    //     warehouse.SettlementAreaDescription ||
+                                    //     "";
+                                    //   return (
+                                    //     description
+                                    //       .toLowerCase()
+                                    //       .includes(
+                                    //         searchWarehouses.toLowerCase()
+                                    //       ) &&
+                                    //     areaDescription
+                                    //       .toLowerCase()
+                                    //       .includes(secoundWord.toLowerCase())
+                                    //   );
+                                    // })
                                     .map((warehouse) => (
                                       <li
                                         key={nanoid()}
@@ -774,6 +778,22 @@ const OrderPlacement = () => {
                         <HeaderBlock>Кількість</HeaderBlock>
                         <HeaderBlock>Ціна</HeaderBlock>
                         <HeaderBlocRight>Сума</HeaderBlocRight>
+                        {/* 
+                         <HeaderBlockLeft>
+
+                         </HeaderBlockLeft>
+                         <HeaderBlock>
+                           Найменування товару
+                         </HeaderBlock>
+                         <HeaderBlock>
+                           Кількість
+                         </HeaderBlock>
+                         <HeaderBlock>
+                           Ціна
+                         </HeaderBlock>
+                         <HeaderBlocRight>
+                           Сума
+                         </HeaderBlocRight> */}
                       </tr>
                     </thead>
                     <tbody>

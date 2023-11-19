@@ -1,7 +1,19 @@
 import React, { useState } from "react";
-import { ContactInformForm, ContactInformInput, ContactInformInputBlock, ContactInformSubButton, RedStar } from "./UserPageStyled";
+import {
+  ContactInformForm,
+  ContactInformInput,
+  ContactInformInputBlock,
+  ContactInformSubButton,
+  RedStar,
+} from "./UserPageStyled";
 import { useSelector } from "react-redux";
-import { _idSelector, userSelectorEmail, userSelectorNumber, userSelectorfirstName, userSelectorlastName } from "../../redux/auth/selectors";
+import {
+  _idSelector,
+  userSelectorEmail,
+  userSelectorNumber,
+  userSelectorfirstName,
+  userSelectorlastName,
+} from "../../redux/auth/selectors";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -19,8 +31,6 @@ const UserData = () => {
     number: number,
   });
 
-
-
   const [activeTab, setActiveTab] = useState("контактна інформація");
 
   const handleChange = (e) => {
@@ -36,40 +46,45 @@ const UserData = () => {
     setActiveTab(tab);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const response = await axios.post(`https://beauty-blossom-backend.onrender.com/api/auth/updateUserData/${id}`, formData);
-    console.log(response.data);
-    toast.info("Данні зміненні успішно")
-  } catch (error) {
-    toast.error("Сталася помилка, спробуйте пізніше")
-    console.error("Помилка при відправленні POST-запиту:", error);
-    // Вивести повідомлення про помилку, якщо потрібно
-  }
-};
+    try {
+      const response = await axios.post(
+        `https://beauty-blossom-backend.onrender.com/api/auth/updateUserData/${id}`,
+        formData
+      );
+      console.log(response.data);
+      toast.info("Данні зміненні успішно");
+    } catch (error) {
+      toast.error("Сталася помилка, спробуйте пізніше");
+      console.error("Помилка при відправленні POST-запиту:", error);
+      // Вивести повідомлення про помилку, якщо потрібно
+    }
+  };
 
-    return (
+  return (
     <div className="cabinet-page">
-
       <div className="cabinet-content">
         {activeTab === "контактна інформація" && (
           <div className="profile-form">
-            
             <ContactInformForm onSubmit={handleSubmit}>
               <ContactInformInputBlock className="form-group">
-                <label htmlFor="email">EMAIL<RedStar>*</RedStar></label>
+                <label htmlFor="email">
+                  EMAIL<RedStar>*</RedStar>
+                </label>
                 <ContactInformInput
                   type="email"
                   id="email"
                   name="email"
-                  value={formData.email || ''}
+                  value={formData.email || ""}
                   onChange={handleChange}
                 />
               </ContactInformInputBlock>
               <ContactInformInputBlock className="form-group">
-                <label htmlFor="firstName">ІМЯ<RedStar>*</RedStar></label>
+                <label htmlFor="firstName">
+                  ІМЯ<RedStar>*</RedStar>
+                </label>
                 <ContactInformInput
                   type="text"
                   id="firstName"
@@ -77,9 +92,11 @@ const handleSubmit = async (e) => {
                   value={formData.firstName}
                   onChange={handleChange}
                 />
-                </ContactInformInputBlock>
+              </ContactInformInputBlock>
               <ContactInformInputBlock className="form-group">
-                <label htmlFor="lastName">ПРІЗВИЩЕ<RedStar>*</RedStar></label>
+                <label htmlFor="lastName">
+                  ПРІЗВИЩЕ<RedStar>*</RedStar>
+                </label>
                 <ContactInformInput
                   type="text"
                   id="lastName"
@@ -89,7 +106,9 @@ const handleSubmit = async (e) => {
                 />
               </ContactInformInputBlock>
               <ContactInformInputBlock className="form-group">
-                <label htmlFor="number">ТЕЛЕФОН<RedStar>*</RedStar></label>
+                <label htmlFor="number">
+                  ТЕЛЕФОН<RedStar>*</RedStar>
+                </label>
                 <ContactInformInput
                   type="tel"
                   id="number"
@@ -98,13 +117,14 @@ const handleSubmit = async (e) => {
                   onChange={handleChange}
                 />
               </ContactInformInputBlock>
-              <ContactInformSubButton type="submit">ЗБЕРЕГТИ</ContactInformSubButton>
+              <ContactInformSubButton type="submit">
+                ЗБЕРЕГТИ
+              </ContactInformSubButton>
             </ContactInformForm>
           </div>
         )}
       </div>
-            </div>
-
+    </div>
   );
 };
 
