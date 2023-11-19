@@ -69,10 +69,12 @@ const OrderPlacement = () => {
   const [searchWarehouses, setSearchWarehouses] = useState("");
   const [isDropdownCityVisible, setDropdownCityVisible] = useState(false);
   const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
-    useState(false);
+  useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [courierDelivery, setCourierDelivery] = useState(false);
+  const [warehouseSearch, setWarehouseSearch] = useState(false);
+
   const [orderNumber, setOrderNumber] = useState("");
   const userFirstName = useSelector(userSelectorfirstName);
   const userLastName = useSelector(userSelectorlastName);
@@ -105,12 +107,12 @@ const OrderPlacement = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  let firstWord = "";
-  let secoundWord = "";
+  // let firstWord = "";
+  // let secoundWord = "";
 
-  const words = searchText.trim().split(" ");
-  firstWord = words[0];
-  secoundWord = words[1];
+  // const words = searchText.trim().split(" ");
+  // firstWord = words[0];
+  // secoundWord = words[1];
 
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
@@ -156,11 +158,11 @@ const OrderPlacement = () => {
       const requestData = {
         apiKey: apiKey,
         modelName: "Address",
-        calledMethod: "getSettlements",
+        calledMethod: "searchSettlements",
         methodProperties: {
           Page: "1",
-          FindByString: searchText,
-          Limit: "6000",
+          CityName: searchText,
+          Limit: "50",
         },
       };
 
@@ -177,10 +179,19 @@ const OrderPlacement = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
+      
 
-      if (data.success) {
-        setSearchCities(data.data);
-      }
+    
+          const addresses = data.data[0].Addresses // Отримання масиву Addresses
+          
+          console.log(addresses);
+          
+          if (data.success) {
+            setSearchCities(addresses);
+          }
+          
+          console.log(searchCities);
+    
     } catch (error) {
       console.error(error);
     }
@@ -192,10 +203,9 @@ const OrderPlacement = () => {
         modelName: "Address",
         calledMethod: "getWarehouses",
         methodProperties: {
-          CityName: firstWord,
-          Page: "1",
-          Limit: "40000",
-          WarehouseId: searchWarehouses,
+          CityRef: warehouseSearch,
+          Limit: "20",
+          
         },
       };
 
@@ -203,7 +213,7 @@ const OrderPlacement = () => {
         requestData.methodProperties.WarehouseRef = searchWarehouses;
       }
 
-      const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+      const response = await fetch("https://api.novaposhta.ua/v2.0/json/Address", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
@@ -217,9 +227,10 @@ const OrderPlacement = () => {
       }
 
       const data = await response.json();
-
+console.log(data.data);
       if (data.success) {
         setWarehouses(data.data);
+
       }
     } catch (error) {
       console.error(
@@ -230,12 +241,7 @@ const OrderPlacement = () => {
   };
 
   useEffect(() => {
-    if (words.length > 1) {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      firstWord = words[0];
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      secoundWord = words[1];
-    }
+
     if (searchText) {
       handleCityChange();
     }
@@ -443,12 +449,13 @@ const OrderPlacement = () => {
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
 
-  const handleCitySelect = (city, areaDescription) => {
-    const selectedCityWithArea = `${city} ${areaDescription}`;
+  const handleCitySelect = (city, DeliveryCity ) => {
+    const selectedCityWithArea = `${city}`;
     setSearchText(selectedCityWithArea);
     setDropdownCityVisible(false);
     setSearchWarehouses("");
     handleWarehousesChange();
+    setWarehouseSearch(DeliveryCity);
   };
 
   const handleWarehouseSelect = (warehouse) => {
@@ -610,14 +617,14 @@ const OrderPlacement = () => {
                                 key={nanoid()}
                                 onClick={() => {
                                   handleCitySelect(
-                                    searchCity.Description,
-                                    searchCity.AreaDescription
+                                    searchCity.Present,
+                                     searchCity.DeliveryCity
                                   );
                                 }}
                               >
                                 <CityItem>
-                                  {searchCity.Description},{" "}
-                                  {searchCity.AreaDescription}
+                                  {searchCity.Present},
+                                  {/* {searchCity.AreaDescription} */}
                                 </CityItem>
                               </li>
                             ))
@@ -691,23 +698,23 @@ const OrderPlacement = () => {
                                   </LoaderThumb>
                                 ) : (
                                   warehouses
-                                    .filter((warehouse) => {
-                                      const description =
-                                        warehouse.Description || "";
-                                      const areaDescription =
-                                        warehouse.SettlementAreaDescription ||
-                                        "";
-                                      return (
-                                        description
-                                          .toLowerCase()
-                                          .includes(
-                                            searchWarehouses.toLowerCase()
-                                          ) &&
-                                        areaDescription
-                                          .toLowerCase()
-                                          .includes(secoundWord.toLowerCase())
-                                      );
-                                    })
+                                    // .filter((warehouse) => {
+                                    //   const description =
+                                    //     warehouse.Description || "";
+                                    //   const areaDescription =
+                                    //     warehouse.SettlementAreaDescription ||
+                                    //     "";
+                                    //   return (
+                                    //     description
+                                    //       .toLowerCase()
+                                    //       .includes(
+                                    //         searchWarehouses.toLowerCase()
+                                    //       ) &&
+                                    //     areaDescription
+                                    //       .toLowerCase()
+                                    //       .includes(secoundWord.toLowerCase())
+                                    //   );
+                                    // })
                                     .map((warehouse) => (
                                       <li
                                         key={nanoid()}
@@ -775,6 +782,7 @@ const OrderPlacement = () => {
                     <thead style={{ bordeRadius: "25px" }}>
                       <tr>
                         <HeaderBlockLeft>
+
                         </HeaderBlockLeft>
                         <HeaderBlock>
                           Найменування товару
