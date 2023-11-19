@@ -62,7 +62,7 @@ const CartModal = ({ closeModal }) => {
     if (isLoggedIn) {
       fetchUserCart();
     }
-  }, [isLoggedIn, dispatch,]);
+  }, [isLoggedIn, dispatch]);
 
   const fetchUserCart = async () => {
     try {
@@ -193,7 +193,9 @@ const CartModal = ({ closeModal }) => {
                 <HeaderContent></HeaderContent>
                 <HeaderContent>Товар</HeaderContent>
                 <HeaderContent>Кількість</HeaderContent>
-                <HeaderContent>Вартість</HeaderContent>
+                <HeaderContent style={{ textAlign: "center" }}>
+                  Вартість
+                </HeaderContent>
               </tr>
             </thead>
             <GoodsBlock>
@@ -203,14 +205,19 @@ const CartModal = ({ closeModal }) => {
                     <img src={item.images} alt="itemImage" />
                   </ImageBlock>
                   <DescriptionBlock>
-                    <ItemNameLink>{item.name}</ItemNameLink>
+                    <ItemNameLink
+                      to={`/product/${item.id}`}
+                      onClick={closeModal}
+                    >
+                      {item.name}
+                    </ItemNameLink>
                   </DescriptionBlock>
                   <AmountBlock>
                     <CounterBlock>
                       <DecIncBtn
                         onClick={() => item && decreaseQuantity(item._id)}
                       >
-                        -
+                        –
                       </DecIncBtn>
                       {itemQuantities[item._id]}
                       <DecIncBtn onClick={() => increaseQuantity(item)}>

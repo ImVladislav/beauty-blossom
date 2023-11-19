@@ -9,6 +9,7 @@ import {
   ButtonWrapper,
   ModalBackground,
   ModalContent,
+  Link,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 
@@ -111,13 +112,13 @@ const SaleProgramPage = () => {
           <ConditionsList>
             <ListItems style={{ listStyle: "none" }}>
               Телефон:
-              <a href="tel:+380500529100"> +38 (050) 052 91 00</a>
+              <Link href="tel:+380500529100">+38 (050) 052 91 00</Link>
             </ListItems>
             <ListItems style={{ listStyle: "none" }}>
               Електронна пошта:{" "}
-              <a href="mailto:beautyblossom.opt@gmail.com">
+              <Link href="mailto:beautyblossom.opt@gmail.com">
                 beautyblossom.opt@gmail.com
-              </a>
+              </Link>
             </ListItems>
           </ConditionsList>
         </section>

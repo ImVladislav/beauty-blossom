@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import {
   CabinetBlock,
-  CabinetContainer,
   CabinetLink,
   Nav,
   OptUserTag,
@@ -16,7 +15,7 @@ import { useSelector } from "react-redux";
 import { optUserSelector } from "../../redux/auth/selectors";
 
 const UserPage = () => {
-  const [pageTitle, setPageTitle] = useState("КОНТАКТНА ІНФОРМАЦІЯ");
+  const [pageTitle, setPageTitle] = useState("");
 
   const handleUserDataClick = () => {
     setPageTitle("КОНТАКТНА ІНФОРМАЦІЯ");
@@ -27,56 +26,44 @@ const UserPage = () => {
   const handleChangePasswordClick = () => {
     setPageTitle("ЗМІНИТИ ПАРОЛЬ");
   };
- const handleChangeFeedbackClick = () => {
+  const handleChangeFeedbackClick = () => {
     setPageTitle("ВІДГУКИ ТА ПРОПОЗИЦІЇ");
   };
   const isOPTuser = useSelector(optUserSelector);
-  console.log(isOPTuser);
+
   return (
-<CabinetContainer>
-<div>
-        <Header />
-        <Bgd>
-          <CabinetBlock>
-            <Title>{pageTitle}</Title>
-            <UserPageBlock>
-              
-              <Nav>
-                {isOPTuser && <OptUserTag>
-                Оптовий аккаунт  
-                </OptUserTag>}
-                <CabinetLink
-                  to="userData"
-                  onClick={handleUserDataClick}
-                >
-                  КОНТАКТНА ІНФОРМАЦІЯ
-                </CabinetLink>
-                <CabinetLink to="history" onClick={handleHistoryClick}>
-                  ІСТОРІЯ ЗАМОВЛЕНЬ
-                </CabinetLink>
-                <CabinetLink
-                  to="сhangePassword"
-                  onClick={handleChangePasswordClick}
-                >
-                  ЗМІНИТИ ПАРОЛЬ
-                </CabinetLink>
-                                <CabinetLink
-                  to="feedback"
-                  onClick={handleChangeFeedbackClick}
-                >
-                  ЗАЛИШИТИ ВІДГУК
-                </CabinetLink>
-                <CabinetLink to="/">ПОВЕРНУТИСЬ ДО ПОКУПОК</CabinetLink>
+    <div>
+      <Header />
+      <Bgd>
+        <CabinetBlock>
+          <Title>{pageTitle}</Title>
+          <UserPageBlock>
+            <Nav>
+              {isOPTuser && <OptUserTag>Оптовий аккаунт</OptUserTag>}
+              <CabinetLink to="userData" onClick={handleUserDataClick}>
+                КОНТАКТНА ІНФОРМАЦІЯ
+              </CabinetLink>
+              <CabinetLink to="history" onClick={handleHistoryClick}>
+                ІСТОРІЯ ЗАМОВЛЕНЬ
+              </CabinetLink>
+              <CabinetLink
+                to="сhangePassword"
+                onClick={handleChangePasswordClick}
+              >
+                ЗМІНИТИ ПАРОЛЬ
+              </CabinetLink>
+              <CabinetLink to="feedback" onClick={handleChangeFeedbackClick}>
+                ЗАЛИШИТИ ВІДГУК
+              </CabinetLink>
+              <CabinetLink to="/">ПОВЕРНУТИСЬ ДО ПОКУПОК</CabinetLink>
+            </Nav>
 
-              </Nav>
-
-              <Outlet />
-            </UserPageBlock>
-          </CabinetBlock>
-        </Bgd>
-        <Footer />
-  </div>
-</CabinetContainer>
+            <Outlet />
+          </UserPageBlock>
+        </CabinetBlock>
+      </Bgd>
+      <Footer />
+    </div>
   );
 };
 export default UserPage;

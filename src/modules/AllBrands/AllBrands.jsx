@@ -12,11 +12,10 @@ import {
   BrandName,
   Title,
 } from "./AllBrands.styled";
- 
+
 const AllBrands = () => {
   const items = useSelector(selectGoods);
   const dispatch = useDispatch();
-  // const category = items.map((item) => console.log(item.subCategory));
 
   const handleClick = (e) => {
     const name = e.target.innerText;

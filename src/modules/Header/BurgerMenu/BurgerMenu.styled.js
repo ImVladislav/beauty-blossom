@@ -9,7 +9,7 @@ export const MobileMenuContainer = styled(Menu)`
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 15px;
+  padding: 0 10px;
 
   & div {
     overflow: auto;
@@ -38,7 +38,7 @@ export const MobileMenuItem = styled.div`
     font-size: ${(p) => p.theme.fontSizes.l}px;
     font-style: normal;
     font-weight: 300;
-    line-height: 118.9%;
+    line-height: 1.18;
     letter-spacing: -0.3px;
     text-decoration: none;
     color: ${(p) => p.theme.colors.textColor};
@@ -58,7 +58,7 @@ export const InfoLink = styled.a`
 
   font-style: normal;
   font-weight: 300;
-  line-height: 118.9%; /* 23.78px */
+  line-height: 1.18;
   letter-spacing: -0.3px;
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
@@ -76,10 +76,10 @@ export const InfoStylesLink = styled(Link)`
   font-size: ${(p) => p.theme.fontSizes.x}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 118.9%; /* 23.78px */
+  line-height: 1.18;
   letter-spacing: -0.3px;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.textColor};
   padding: 3px 10px;
   &:hover,
@@ -94,7 +94,7 @@ export const InfoButton = styled.button`
   font-size: ${(p) => p.theme.fontSizes.x}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 118.9%; /* 23.78px */
+  line-height: 1.18;
   letter-spacing: -0.3px;
   background: transparent;
   border: none;

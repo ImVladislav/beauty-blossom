@@ -16,8 +16,6 @@ export const WrapListProduct = styled.div`
     min-width: 1024px;
     max-width: 1440px;
   }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ProductListContainer = styled.ul`
@@ -43,11 +41,11 @@ export const ProductListContainer = styled.ul`
 export const FilterContainer = styled.div`
   display: flex;
   position: relative;
-
   margin-left: auto;
   margin-right: auto;
   justify-content: flex-end;
 `;
+
 export const FilterWrap = styled.div`
   display: flex;
   justify-content: space-between;
@@ -57,14 +55,11 @@ export const FilterWrap = styled.div`
 
 export const FilterSelect = styled.select`
   padding: 5px;
-
   color: ${(p) => p.theme.colors.textColor};
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
 `;
-
-export const Container = styled.div``;
 
 export const Pagination = styled.div`
   display: flex;
@@ -92,15 +87,12 @@ export const PageButton = styled.button`
     background-color: ${(p) =>
       p.$active === "true" ? p.theme.colors.heroBtn : "#f8f9fa"};
   }
-  @media screen and (min-width: 768px) {
-  }
+
   @media screen and (min-width: 1024px) {
     margin: 0 5px;
     padding: 8px 12px;
     font-size: ${(p) => p.theme.fontSizes.m}px;
     font-weight: ${(p) => p.theme.fontWeights.body};
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;
 

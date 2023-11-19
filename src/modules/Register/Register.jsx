@@ -53,6 +53,7 @@ const Register = ({ onRegisterSuccess, opt }) => {
         }
       })
       .catch((error) => {
+        console.error("Сталася помилка:", error);
         setIsRegistered(false);
       });
   };

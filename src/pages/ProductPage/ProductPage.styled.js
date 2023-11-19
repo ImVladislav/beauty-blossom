@@ -5,16 +5,10 @@ export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* align-items: center; */
-  /* justify-content: center; */
   @media screen and (min-width: 768px) {
     margin: 40px 5px;
     flex-direction: row;
     align-items: flex-start;
-  }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -55,19 +49,13 @@ export const ProductTags = styled.div`
 `;
 export const ProductName = styled.h2`
   margin: 0 10px 10px 0;
-
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   text-align: justify;
-
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-  }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;
 
@@ -81,7 +69,6 @@ export const ProductArticle = styled.div`
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
-
   background: ${(p) => p.theme.colors.topHeaderLine};
   border-radius: ${(p) => p.theme.radii.none};
   color: ${(p) => p.theme.colors.textColor};
@@ -89,16 +76,11 @@ export const ProductArticle = styled.div`
     font-size: ${(p) => p.theme.fontSizes.s}px;
     position: relative;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ProductArticleSpan = styled.span`
   display: block;
   margin: 3px;
-
   text-align: center;
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
   color: ${(p) => p.theme.colors.textColor};
@@ -106,15 +88,10 @@ export const ProductArticleSpan = styled.span`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ProductCode = styled.p`
   font-size: ${(p) => p.theme.fontSizes.xs}px;
-
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: normal;
@@ -122,14 +99,9 @@ export const ProductCode = styled.p`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 export const ProductBrand = styled.p`
   font-size: ${(p) => p.theme.fontSizes.s}px;
-
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
@@ -137,15 +109,10 @@ export const ProductBrand = styled.p`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ProductPrice = styled.p`
   font-size: ${(p) => p.theme.fontSizes.l}px;
-
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
@@ -154,57 +121,39 @@ export const ProductPrice = styled.p`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.authxl}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ProductTitleDescription = styled.p`
   font-size: ${(p) => p.theme.fontSizes.m}px;
   margin: 5px 0;
-
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   letter-spacing: 1.2px;
-
   color: ${(p) => p.theme.colors.accentColor};
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 export const ProductDescription = styled.p`
   text-align: justify;
-
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: normal;
-
   margin: 5px 0;
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
+
 export const Info = styled.div`
   @media screen and (min-width: 768px) {
     padding-left: 20px;
     width: 50%;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
+
 export const CounterBlock = styled.div`
   position: relative;
   width: 75px;
@@ -213,12 +162,11 @@ export const CounterBlock = styled.div`
   border-radius: 4px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
   align-items: center;
-
   margin-bottom: 10px;
   justify-content: space-evenly;
+  cursor: pointer;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
-    cursor: pointer;
   }
   @media screen and (min-width: 768px) {
     height: 38px;
@@ -231,12 +179,9 @@ export const CounterBlock = styled.div`
   }
 `;
 export const ButtonIncDec = styled.span`
-  /* flex: 1 0 auto; */
-  /* height: 100%; */
   position: relative;
   display: inline-block;
   vertical-align: top;
-
   cursor: pointer;
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
@@ -249,18 +194,12 @@ export const ButtonIncDec = styled.span`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
-  @media screen and (min-width: 1024px) {
-  }
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const InputIncDec = styled.input`
   text-align: center;
-  /* font-family: auto; */
   font-family: monospace;
   outline: none;
-
   color: ${(p) => p.theme.colors.textColor};
   border: 0;
   padding: 0;
@@ -269,20 +208,16 @@ export const InputIncDec = styled.input`
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    margin: 0;
   }
-
   &[type="number"] {
-    -moz-appearance: textfield; /* Firefox */
+    -moz-appearance: textfield;
   }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-  }
-  @media screen and (min-width: 1440px) {
   }
 `;

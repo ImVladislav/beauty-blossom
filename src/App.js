@@ -28,7 +28,6 @@
 // const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 // const NoProducts = lazy(() => import("./pages/NoProducts/NoProducts"));
 
-
 // function App() {
 //   // const [goodsData, setGoodsData] = useState(null);
 //   const isRefreshing = useSelector(refreshSelector);
@@ -42,8 +41,6 @@
 //   useEffect(() => {
 //     dispatch(refreshCurrentUser());
 //   }, [dispatch]);
-
-
 
 //   return !isRefreshing ? (
 //     <ThemeProvider theme={theme}>
@@ -133,8 +130,6 @@
 //             path="history"
 //             element={<PrivateRoute component={PaymentHistory} to="/" />}
 //           />
-          
-          
 
 //         </Route>
 //       </Routes>
@@ -142,9 +137,6 @@
 //   ) : null;
 // }
 // export default App;
-
-
-
 
 import { Route, Routes } from "react-router";
 import { ThemeProvider } from "styled-components";
@@ -163,7 +155,7 @@ import { getGoods } from "./redux/operations";
 import DiscountPage from "./pages/DiscountPage/DiscountPage";
 import UserData from "./pages/UserPage/UserData";
 import PaymentHistory from "./pages/UserPage/PaymentHistory";
-import SortCategory from "./modules/Category/SortCategory/SortCategory";
+import SortCategory from "./modules/SortCategory/SortCategory";
 import { refreshCurrentUser } from "./redux/auth/operation";
 import { refreshSelector } from "./redux/auth/selectors";
 import {

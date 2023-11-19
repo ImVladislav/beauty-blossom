@@ -12,7 +12,6 @@ import {
   FilterContainer,
   FilterSelect,
   FilterWrap,
-  Container,
   IconLeft,
   IconRight,
   PageButton,
@@ -28,7 +27,7 @@ const ProductList = ({ items }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchRef = useRef(location);
-  console.log(searchRef.current);
+
   const optUser = useSelector(optUserSelector);
 
   // Функція для фільтрації продуктів
@@ -107,11 +106,6 @@ const ProductList = ({ items }) => {
 
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  // const paginate = (pageNumber) => {
-  //   location.pathname === "/search"
-  //     ? navigate(`${location.search}?filter=${filter}&page=${pageNumber}`)
-  //     : navigate(`?filter=${filter}&page=${pageNumber}`);
-  // };
   const paginate = (pageNumber) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("filter", filter);
@@ -183,7 +177,7 @@ const ProductList = ({ items }) => {
   return (
     <>
       {currentProducts.length > 0 ? (
-        <Container className="WrapListProduct">
+        <div className="WrapListProduct">
           <FilterContainer>
             <FilterWrap>
               {/* Замінено введення на селект */}
@@ -245,7 +239,7 @@ const ProductList = ({ items }) => {
               )}
             </Pagination>
           )}
-        </Container>
+        </div>
       ) : (
         <NoProducts />
       )}

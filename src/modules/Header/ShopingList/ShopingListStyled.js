@@ -4,18 +4,17 @@ import { BsFillTrash3Fill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
-export const DeleteIcon = styled(BsFillTrash3Fill)`
-  width: 10px;
-  height: 10px;
-  color: #80808061;
-  cursor: pointer;
-  &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
-  }
-  @media screen and (min-width: 768px) {
-    width: 15px;
-    height: 15px;
-  }
+export const ModalBackground = styled.section`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Півпрозорий чорний фон */
+  display: flex;
+  justify-content: center; /* Центруємо горизонтально */
+  align-items: center; /* Центруємо вертикально */
+  z-index: 3;
 `;
 
 export const OpenModal = styled.button`
@@ -36,19 +35,10 @@ export const ModalShopingList = styled.div`
   flex-direction: column;
   justify-content: space-between;
   max-width: 900px;
-
-  /* width: 800px; */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* top: 100px; */
   max-width: 100vw;
   max-height: 100vh;
-  /* overflow-y: auto; */
-
   background-color: white;
-
   padding: 30px;
-
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
 
   @media screen and (min-width: 768px) {
@@ -56,43 +46,23 @@ export const ModalShopingList = styled.div`
     max-width: 80vw;
     max-height: 70vh;
   }
-
-  @media screen and (min-width: 1440px) {
-    /* justify-content: center;
-    width: 80vw;
-    max-height: 80vh; */
-  }
-`;
-
-export const ModalBackground = styled.section`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Півпрозорий чорний фон */
-  display: flex;
-  justify-content: center; /* Центруємо горизонтально */
-  align-items: center; /* Центруємо вертикально */
-  z-index: 3;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-  }
 `;
 
 export const ModalTitle = styled.h2`
   margin: -6px 0 12px -2px;
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-weight: normal;
   @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
-
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
   @media screen and (min-width: 1440px) {
-    font-size: 32px;
-    font-weight: normal;
+    font-size: ${(p) => p.theme.fontSizes.authxl}px;
   }
 `;
+
 export const TableWrap = styled.div`
   overflow-y: auto;
   max-height: 800px;
@@ -114,107 +84,59 @@ export const TableWrap = styled.div`
     background-color: transparent; /* Колір фону смуги прокрутки */
   }
 `;
+
 export const HeaderContent = styled.th`
   padding-bottom: 8px;
-  color: #898989;
-  font-size: 11px;
+  color: ${(p) => p.theme.colors.cartColor};
+  font-size: ${(p) => p.theme.fontSizes.xxs}px;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
 `;
 
 export const GoodsBlock = styled.tbody`
   padding-bottom: 8px;
-  color: #898989;
-  font-size: 11px;
+  /* color: ${(p) => p.theme.colors.cartColor};
+  font-size: ${(p) => p.theme.fontSizes.xxs}px; */
 `;
-
-export const ImageBlock = styled.td`
-  color: #898989;
-  font-size: 11px;
-  /* border: 1px solid red; */
-  border-bottom: 1px solid #f5f2ea;
-  border-top: 1px solid #f5f2ea;
-  border-left: 1px solid #f5f2ea;
-  width: 106px;
-`;
-export const DescriptionBlock = styled.td`
-  color: #898989;
-  font-size: 11px;
-  border-bottom: 1px solid #f5f2ea;
-  border-top: 1px solid #f5f2ea;
-  width: 392px;
-  /* height: 113px; */
-  /* &::after{
-        content: '';
-    height: 5px;
-    display: block;
-    } */
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-    width: 392px;
-    height: 113px;
-  }
-`;
-export const AmountBlock = styled.td`
-  color: #898989;
-
-  border-bottom: 1px solid #f5f2ea;
-  border-top: 1px solid #f5f2ea;
-  width: 100px;
-`;
-export const PriceBlock = styled.td`
-  color: #898989;
-  font-size: 12px;
-  border-bottom: 1px solid #f5f2ea;
-  border-top: 1px solid #f5f2ea;
-  border-right: 1px solid #f5f2ea;
-  width: 130px;
-  text-align: center;
-  @media screen and (min-width: 768px) {
-  }
-
-  @media screen and (min-width: 1440px) {
-    font-size: 18px;
-  }
-`;
-
 export const DeleteBtn = styled.button`
-  position: absolute;
-  right: 0px;
   top: 50%;
   border: none;
   background: transparent;
-  transform: translateY(-50%);
-  @media screen and (min-width: 768px) {
-  }
-
   @media screen and (min-width: 1440px) {
-    position: absolute;
-    right: 0px;
     top: 50%;
     border: none;
     background: transparent;
   }
 `;
-
+export const DeleteIcon = styled(BsFillTrash3Fill)`
+  width: 10px;
+  height: 10px;
+  color: #80808061;
+  cursor: pointer;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) {
+    width: 15px;
+    height: 15px;
+  }
+`;
 export const Thumb = styled.tr`
   position: relative;
-
-  /* Стилі для Thumb при наведенні */
   &:hover {
-    /* Додайте бажані стилі для Thumb при наведенні тут */
-    /* Наприклад, змінюємо фон або кольори тексту */
     background-color: #f0f0f0;
     color: #333;
-
-    /* Застосовуємо стилі до внутрішнього DeleteBtn */
     ${DeleteIcon} {
-      fill: ${(p) =>
-        p.theme.colors.accentColor}; /* Змінюємо колір DeleteBtn на червоний */
+      fill: ${(p) => p.theme.colors.accentColor};
     }
   }
-
-  /* Стилі для псевдоелемента ::before */
   &::before {
     content: "";
     position: absolute;
@@ -223,62 +145,72 @@ export const Thumb = styled.tr`
     transform: translateY(-50%);
     width: 15px;
     height: 15px;
+
     cursor: pointer;
     background-image: url("data:image/svg+xml;utf8,<BsFillTrash3Fill/>");
     background-repeat: no-repeat;
     background-size: cover;
     transition: color 0.3s ease-in-out;
-    @media screen and (min-width: 768px) {
-    }
+  }
+`;
 
-    @media screen and (min-width: 1440px) {
-      /* left: -5px; */
-    }
+export const ImageBlock = styled.td`
+  border-bottom: 1px solid #f5f2ea;
+  border-top: 1px solid #f5f2ea;
+  border-left: 1px solid #f5f2ea;
+  width: 106px;
+`;
+export const DescriptionBlock = styled.td`
+  color: #898989;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  border-bottom: 1px solid #f5f2ea;
+  border-top: 1px solid #f5f2ea;
+  width: 392px;
+  @media screen and (min-width: 1440px) {
+    width: 392px;
+    height: 113px;
   }
 `;
 
 export const ItemNameLink = styled(Link)`
-  color: black;
+  color: ${(p) => p.theme.colors.black};
   text-decoration: none;
-  font-size: 11px;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   line-height: 0.9;
 
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
-
-  @media screen and (min-width: 1440px) {
-    font-size: 14px;
-  }
-  @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 12px;
-  }
-
   @media screen and (min-width: 768px) and (max-width: 1023px) {
-    font-size: 10px;
+    font-size: ${(p) => p.theme.fontSizes.xxs}px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
 `;
+export const AmountBlock = styled.td`
+  color: ${(p) => p.theme.colors.cartColor};
 
-export const ItemAmount = styled.p`
-  color: black;
-  text-decoration: none;
-  font-size: 11px;
-  white-space: pre;
-  &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
-  }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
-    font-size: 10px;
-    white-space: pre;
-  }
+  border-bottom: 1px solid #f5f2ea;
+  border-top: 1px solid #f5f2ea;
+  width: 100px;
+`;
+
+export const PriceBlock = styled.td`
+  color: ${(p) => p.theme.colors.cartColor};
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  border-bottom: 1px solid #f5f2ea;
+  border-top: 1px solid #f5f2ea;
+  border-right: 1px solid #f5f2ea;
+  width: 130px;
+  text-align: center;
 
   @media screen and (min-width: 1440px) {
-    font-size: 14px;
-    white-space: pre;
-  }
-  @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 12px;
-    white-space: pre;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 
@@ -288,27 +220,24 @@ export const DecIncBtn = styled.button`
   position: relative;
   display: inline-block;
   vertical-align: top;
-
   cursor: pointer;
-  color: #000;
+  color: ${(p) => p.theme.colors.accentColor};
   border: 0;
   padding: 0;
   background: none;
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
-    cursor: pointer;
+    color: ${(p) => p.theme.colors.black};
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-
   @media screen and (min-width: 1440px) {
-    font-size: 20px;
+    font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
 
 export const CounterBlock = styled.div`
-  border: 1px solid #f5f2ea;
   width: 50px;
   height: 22px;
   display: flex;
@@ -316,34 +245,26 @@ export const CounterBlock = styled.div`
   border: 1px solid #acacac;
   position: relative;
   align-items: center;
-  font-size: 13px;
+  font-size: ${(p) => p.theme.fontSizes.xs + 1}px;
 
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
     cursor: pointer;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1024px) {
+    width: 60px;
+    height: 30px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
-
   @media screen and (min-width: 1440px) {
-    border: 1px solid #f5f2ea;
     width: 92px;
     height: 38px;
-    display: flex;
-    border-radius: 4px;
-    border: 1px solid #acacac;
-    position: relative;
-    align-items: center;
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 
 export const ButtonContainer = styled.div`
   display: inline-block;
-  /* padding-bottom: px; */
-  @media screen and (min-width: 768px) {
-  }
-
   @media screen and (min-width: 1440px) {
     padding-bottom: 30px;
   }
@@ -351,67 +272,57 @@ export const ButtonContainer = styled.div`
 
 export const Amount = styled.p`
   text-align: end;
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   margin: 10px;
   font-weight: 500;
-  @media screen and (min-width: 768px) {
-  }
+
   @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 22px;
+    font-size: ${(p) => p.theme.fontSizes.l + 2}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 24px;
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
 `;
 export const TextNoProduckts = styled.p`
-  font-size: 12px;
-  @media screen and (min-width: 768px) {
-  }
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
 
   @media screen and (min-width: 1440px) {
     margin: 30px;
     color: ${(p) => p.theme.colors.textColor};
 
-    font-size: 30px;
+    font-size: ${(p) => p.theme.fontSizes.authxl + 2}px;
     text-align: center;
   }
 `;
 export const ReturnBTN = styled.button`
   display: flex;
-  /* text-align: center; */
   align-items: center;
-  /* flex: 1 0 auto; */
-  /* height: 100%; */
-  /* position: relative; */
-  /* display: inline-block; */
-  /* vertical-align: top; */
   cursor: pointer;
   color: ${(p) => p.theme.colors.textColor};
   border: none;
   padding: 0;
   background: none;
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   margin-right: 10px;
-  /* width: 170px; */
-  /* height: 36px; */
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
-    cursor: pointer;
+
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
   }
 
   @media screen and (min-width: 768px) {
-    font-size: 12px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media screen and (min-width: 1440px) {
     width: 258px;
     height: 36px;
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 
@@ -421,9 +332,7 @@ export const ReturnIcon = styled(FaArrowLeft)`
   color: ${(p) => p.theme.colors.textColor};
   margin-right: 5px;
   cursor: pointer;
-  /* &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
-  } */
+
   @media screen and (min-width: 768px) {
     width: 12px;
     height: 12px;
@@ -441,7 +350,6 @@ export const ButtonThumb = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin-top: 10px; */
   flex-direction: column-reverse;
   gap: 20px;
 

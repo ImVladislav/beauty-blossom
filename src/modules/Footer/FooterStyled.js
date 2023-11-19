@@ -12,11 +12,9 @@ export const LogoWrap = styled.div`
   }
 `;
 export const Wrap = styled.div`
-  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
   max-width: 1440px;
   margin: 0 auto;
   align-items: flex-start;
-
   display: flex;
   justify-content: space-around;
   @media screen and (min-width: 768px) {
@@ -24,7 +22,6 @@ export const Wrap = styled.div`
   }
 `;
 export const InfoWrap = styled.div`
-  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
   display: flex;
   flex-wrap: wrap;
   max-width: 300px;

@@ -1,10 +1,8 @@
 import {
-  BrandImage,
   BrandLink,
   BrandsItem,
   BrandsList,
   FrontBrands,
-  LayoutWarp,
 } from "./BrandsWraperStyled";
 import { ReactComponent as Brand1 } from "./BrandsImages/Dr_Jart-.svg";
 import { ReactComponent as Brand2 } from "./BrandsImages/Esthetic-House.svg";
@@ -17,7 +15,7 @@ import { setfilter } from "../../redux/filter/slice";
 import { useMedia } from "../../hooks/useMedia";
 
 export const BrandsWraper = () => {
-  const { isDesktopScreen, isMobileScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
   const dispatch = useDispatch();
   const handleClick = (e) => {
     const name = e.currentTarget.name;

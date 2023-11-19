@@ -54,7 +54,6 @@ export const SubMenuWrap = styled.div`
   position: absolute;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-  /* z-index: 1; */
 `;
 
 export const RightIcon = styled(AiOutlineRight)`
@@ -91,7 +90,7 @@ export const SubMenuWrapBrand = styled.ul`
   position: absolute;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-  /* z-index: 1; */
+
   @media screen and (min-width: 1024px) {
     width: 700px;
   }
@@ -140,6 +139,7 @@ export const BrandLetter = styled.h3`
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
+
 export const BrandCard = styled.li`
   border-radius: 8px;
   max-width: 155px;

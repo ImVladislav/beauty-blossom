@@ -3,29 +3,26 @@ import mp from "../../images/mp.png";
 import {
   WrapBackground,
   Background,
-  Wrap,
-  ImageWrap,
+  HeroWrap,
   Product,
+  Wraper,
   TextWrap,
   Title,
   Text,
   TextSecond,
   LinkBtn,
   TextСonditions,
-  WrapСonditions,
-  Wraper,
-  WrapTextСonditions,
 } from "./Hero.styled.js";
 const Hero = () => {
   return (
     <>
       <WrapBackground>
         <Background>
-          <WrapСonditions>
-            <Wrap>
-              <ImageWrap>
+          <div>
+            <HeroWrap>
+              <div>
                 <Product src={mp} alt="banner" />
-              </ImageWrap>
+              </div>
               <Wraper>
                 <TextWrap>
                   <Title>MEDI-PEEL</Title>
@@ -40,8 +37,8 @@ const Hero = () => {
                   <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
                 </div>
               </Wraper>
-            </Wrap>
-          </WrapСonditions>
+            </HeroWrap>
+          </div>
         </Background>
       </WrapBackground>
     </>

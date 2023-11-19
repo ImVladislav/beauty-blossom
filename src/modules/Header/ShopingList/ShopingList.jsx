@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ModalBackground, OpenModal } from "./ShopingListStyled";
+
 import CartModal from "./CartModal";
 import { CorzinaIcon } from "../../../shared/components/ReusebleCompoments/StyleSVGIcons";
+
+import { ModalBackground, OpenModal } from "./ShopingListStyled";
 
 const ShoppingCart = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,23 +17,22 @@ const ShoppingCart = () => {
   };
 
   useEffect(() => {
-  if (isModalOpen) {
-    document.body.classList.add('modal-open');
-  } else {
-    document.body.classList.remove('modal-open');
-  }
+    if (isModalOpen) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
 
-  return () => {
-    document.body.classList.remove('modal-open');
-  };
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
   }, [isModalOpen]);
-  
+
   const handelDropClose = (e) => {
     if (e.target.tagName === "SECTION") {
       setIsModalOpen(false);
-
     }
-  }
+  };
 
   return (
     <div>

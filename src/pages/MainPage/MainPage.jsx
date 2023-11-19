@@ -1,27 +1,15 @@
-import AboutUs from "../../modules/AboutUs/AboutUs";
-import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
-// import { Container } from "../../shared/styles/Container";
-import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-// import product from "../../images/productsBaner.png";
-// import {
-//   BannerTitle,
-//   StyledLink,
-//   Thumb,
-//   Background,
-//   BannerSubTitle,
-//   TextBlock,
-//   ProductImg,
-//   Product,
-//   BottomBanerText,
-// } from "./MainPage.styled";
-import Hero from "../../modules/Hero/Hero";
-import Baners from "../../modules/Baners/Baners";
 import { useEffect, useState } from "react";
-import { Loader } from "../../shared/components/Loader/Loader";
 import { useMedia } from "../../hooks/useMedia";
 
+import AboutUs from "../../modules/AboutUs/AboutUs";
+import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
+import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
+import Hero from "../../modules/Hero/Hero";
+import Baners from "../../modules/Baners/Baners";
+import { Loader } from "../../shared/components/Loader/Loader";
+
 const MainPage = () => {
-  const { isDesktopScreen, isMobileScreen } = useMedia();
+  const { isMobileScreen } = useMedia();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +17,6 @@ const MainPage = () => {
   }, []);
 
   return (
-    // <Container>
     <>
       {loading ? (
         <Loader />
@@ -44,33 +31,6 @@ const MainPage = () => {
         </div>
       )}
     </>
-    // </Container>
-    // <Background>
-    //   <Container style={{ maxWidth: "100%" }}>
-    //     {/* <MainBanner src={Banner} alt="banner" /> */}
-    //     <Thumb>
-    //       <Container>
-    //         <ProductImg>
-    //           <Product src={product} alt="product" />
-    //         </ProductImg>
-    //         <TextBlock>
-    //           <BannerTitle>
-    //             ПОПУЛЯРНІ <br /> КОРЕЙСЬКІ БРЕНДИ
-    //           </BannerTitle>
-    //           <BannerSubTitle>
-    //             {" "}
-    //             ВЕЛИКИЙ АСОРТИМЕНТ ТА ОРИГіНАЛЬНі ТОВАРИ{" "}
-    //           </BannerSubTitle>
-    //           <StyledLink to="/wholesaleProgram">ОПТОВА СПІВПРАЦЯ*</StyledLink>
-    //           <BottomBanerText> *ТИСНИ ЩОБ ДІЗНАТИСЬ УМОВИ</BottomBanerText>
-    //         </TextBlock>
-    //       </Container>
-    //     </Thumb>
-    //   </Container>
-    //   <ProductSlider />
-    //   <AboutUs />
-    //   <BrandsWraper />
-    // </Background>
   );
 };
 export default MainPage;

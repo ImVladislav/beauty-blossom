@@ -23,14 +23,11 @@ export const BrandItem = styled.li`
   flex-direction: column;
   align-items: center;
 `;
+
 export const Title = styled.h3`
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
-
   font-weight: ${(p) => p.theme.fontSizes.body};
-
   color: ${(p) => p.theme.colors.textColor};
-  @media screen and (min-width: 768px) {
-  }
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
@@ -40,8 +37,6 @@ export const Title = styled.h3`
 export const BrandCard = styled.div`
   padding: 3px;
   max-width: 200px;
-  @media screen and (min-width: 768px) {
-  }
 
   @media screen and (min-width: 1440px) {
     padding: 16px;
@@ -61,9 +56,6 @@ export const BrandName = styled(NavLink)`
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
-  }
-
-  @media screen and (min-width: 768px) {
   }
 
   @media screen and (min-width: 1440px) {

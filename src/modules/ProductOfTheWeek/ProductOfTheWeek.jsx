@@ -12,5 +12,3 @@ export const ProductOfTheWeek = () => {
     </Background>
   );
 };
-
-// текст має стати лінком для переходу на товар тижня

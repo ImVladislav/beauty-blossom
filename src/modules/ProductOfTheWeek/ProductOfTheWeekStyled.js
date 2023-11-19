@@ -14,13 +14,9 @@ export const Text = styled.h2`
   font-family: "Alegreya Sans";
   font-size: 17px;
   padding: 6px;
-  @media screen and (min-width: 768px) {
-  }
+
   @media screen and (min-width: 1024px) {
     font-size: 20px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
 export const Link = styled.a`

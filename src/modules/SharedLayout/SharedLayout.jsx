@@ -6,14 +6,12 @@ import { Suspense } from "react";
 import { Loader } from "../../shared/components/Loader/Loader";
 
 export const SharedLayout = () => {
-
   return (
     <>
-
       <Header />
       <Bgd>
         <Suspense fallback={<Loader />}>
-        <Outlet />
+          <Outlet />
         </Suspense>
       </Bgd>
       <Footer />

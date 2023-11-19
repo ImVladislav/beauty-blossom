@@ -3,20 +3,10 @@ import styled from "styled-components";
 import { AiOutlineRight, AiOutlineDown } from "react-icons/ai";
 
 export const ItemSub = styled.li`
-  /* display: table;
-  break-inside: avoid-column; */
-  /* padding-bottom: 20px; */
-
   &:hover {
     background: ${(p) => p.theme.colors.menuHover};
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
     border-radius: 49px;
-    /* color: #ffffff;
-    font-size: 18px;
-    border-radius: 0px;
-
-    transition: 0.3s;
-    box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1); */
   }
 `;
 
@@ -67,41 +57,15 @@ export const DownIcon = styled(AiOutlineDown)`
 `;
 
 export const ListSub = styled.ul`
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 20px;
   min-width: 220px;
   min-height: 320px;
   border-radius: 10px;
-  /* columns: 240px auto; */
-
-  /* column-gap: 20px; */
-  /* padding: 20px 20px 0; */
-  position: absolute;
   left: 100%;
   top: 0;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-`;
-
-export const Item = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  list-style: none;
-  margin: 0;
-  padding: 5px;
-  position: relative;
-
-  &:hover {
-    /* color: #ffffff;
-    font-size: 18px;
-    border-radius: 0px;
-
-    transition: 0.3s;
-    box-shadow: inset 0px 0px 8px -2px rgba(0, 0, 0, 1); */
-    background: ${(p) => p.theme.colors.menuHover};
-    box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-    border-radius: 49px;
-  }
 `;

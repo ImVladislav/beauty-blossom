@@ -12,11 +12,10 @@ export const List = styled.ul`
 export const LinkItem = styled(NavLink)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-family: Noto Sans;
   font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 103.312%;
+  line-height: 1;
   letter-spacing: -0.379px;
   position: relative;
   display: inline-block;
@@ -47,7 +46,6 @@ export const LinkItem = styled(NavLink)`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
-    line-height: 103.312%;
     letter-spacing: -1.125px;
   }
 
@@ -61,17 +59,16 @@ export const ListItem = styled.li``;
 export const TitleWrap = styled.div``;
 export const Title = styled.h3`
   color: ${(p) => p.theme.colors.border};
-  font-family: Alegreya Sans;
+  font-family: "Alegreya Sans";
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-weight: ${(p) => p.theme.fontWeights.subtitle};
   font-style: normal;
-  line-height: 103.312%; /* 35.126px */
+  line-height: 1;
   letter-spacing: 0.745px;
   padding: 0 20px 0 20px;
   @media screen and (min-width: 768px) {
     padding: 0 20px 0 20px;
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    line-height: 103.312%; /* 35.126px */
     letter-spacing: 2.21px;
   }
 

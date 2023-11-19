@@ -1,29 +1,8 @@
 import styled from "styled-components";
 
-// export const ProductStickerWrap = styled.div`
-//   /* position: absolute;
-//   left: 10px;
-//   bottom: 10px; */
-//   /* bottom: ${(p) => (p.text === "Новинки" ? "10px" : "43px")}; */
-//   /* line-height: 1;
-//   &.sale {
-//     bottom: 43px;
-//   } */
-//   display: grid;
-//   justify-content: space-between;
-//   position: absolute;
-//   bottom: 60px;
-// `;
-
 export const ProductSticker = styled.div`
   position: relative;
   z-index: 0;
-  /* display: table; */
-  /* height: 24px; */
-  /* line-height: 24px; */
-  /* margin-top: 2px; */
-  /* margin: 2px; */
-  /* padding: 0 9px; */
   padding: 0 5px;
   border-radius: 2px 2px 2px 0;
   margin: 2px;
@@ -31,7 +10,6 @@ export const ProductSticker = styled.div`
     color: #e93f11;
   }
   color: #7baf35;
-  /* color: ${(p) => (p.text === "Знижка" ? "#e93f11" : "#7baf35")}; */
   background: currentColor;
   font-size: 14px;
   &::before {
@@ -62,9 +40,6 @@ export const StickerText = styled.span`
   font-weight: bold;
   font-size: 10px;
   text-align: center;
-  @media screen and (min-width: 768px) {
-  }
-
   @media screen and (min-width: 1440px) {
     color: ${(p) => p.theme.colors.white};
     font-weight: bold;

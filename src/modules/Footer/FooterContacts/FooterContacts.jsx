@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import Contacts from "../../Header/Contacts/Contacts";
 import { useMedia } from "../../../hooks/useMedia";
 import {
@@ -9,19 +8,9 @@ import {
   ContactWraper,
   Wrap,
 } from "./FooterContactsStyled";
-// import { ModalWindow } from "../ModalWindow/ModalWindow";
 
 export const FooterContacts = () => {
   const { isMobileScreen } = useMedia();
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
 
   return (
     <Wrap>
@@ -45,7 +34,6 @@ export const FooterContacts = () => {
             icon="telegram"
           />
         </ContactGroup>
-        {/* <ModalWindow isOpen={isModalOpen} onRequestClose={closeModal} /> */}
       </ContactWraper>
     </Wrap>
   );

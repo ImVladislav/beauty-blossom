@@ -30,6 +30,9 @@ import {
   Textarea,
   Title,
   Titles,
+  ItemAmount,
+  Amount,
+  ItemNameLink,
 } from "./OrderPlacementStyled";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -42,17 +45,13 @@ import {
 } from "../../redux/auth/selectors";
 
 import { selectCart } from "../../redux/cart/selectors";
-import {
-  Amount,
-  ItemAmount,
-  ItemNameLink,
-} from "../Header/ShopingList/ShopingListStyled";
+
 import axios from "axios";
 import { nanoid } from "@reduxjs/toolkit";
 
 import { toast } from "react-toastify";
 import { Container } from "../../shared/styles/Container";
-import { InputLoader } from "../../shared/components/Loader/Loader";
+import { Loader } from "../../shared/components/Loader/Loader";
 import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
@@ -254,10 +253,7 @@ const OrderPlacement = () => {
         (total, item) => total + item.priceOPT * item.quantity,
         0
       )
-    : cartItems.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
+    : cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -321,8 +317,7 @@ const OrderPlacement = () => {
       name: item.name,
       code: item.code.toString(),
       quantity: item.quantity,
-      amount:
-        (isOptUser ? item.priceOPT : item.price) * item.quantity,
+      amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
     }));
 
     const dataToSendCourier = {
@@ -602,7 +597,7 @@ const OrderPlacement = () => {
                         <CityitemsBlock>
                           {searchCities.length === 0 ? (
                             <LoaderThumb>
-                              <InputLoader />
+                              <Loader size="60px" pageHeight="60px" />
                             </LoaderThumb>
                           ) : (
                             searchCities.map((searchCity) => (
@@ -687,7 +682,7 @@ const OrderPlacement = () => {
                               <CityitemsBlock>
                                 {warehouses.length === 0 ? (
                                   <LoaderThumb>
-                                    <InputLoader />
+                                    <Loader size="60px" pageHeight="60px" />
                                   </LoaderThumb>
                                 ) : (
                                   warehouses
@@ -774,20 +769,11 @@ const OrderPlacement = () => {
                   >
                     <thead style={{ bordeRadius: "25px" }}>
                       <tr>
-                        <HeaderBlockLeft>
-                        </HeaderBlockLeft>
-                        <HeaderBlock>
-                          Найменування товару
-                        </HeaderBlock>
-                        <HeaderBlock>
-                          Кількість
-                        </HeaderBlock>
-                        <HeaderBlock>
-                          Ціна
-                        </HeaderBlock>
-                        <HeaderBlocRight>
-                          Сума
-                        </HeaderBlocRight>
+                        <HeaderBlockLeft></HeaderBlockLeft>
+                        <HeaderBlock>Найменування товару</HeaderBlock>
+                        <HeaderBlock>Кількість</HeaderBlock>
+                        <HeaderBlock>Ціна</HeaderBlock>
+                        <HeaderBlocRight>Сума</HeaderBlocRight>
                       </tr>
                     </thead>
                     <tbody>
@@ -812,7 +798,7 @@ const OrderPlacement = () => {
                           <OrdersItem>
                             <ItemAmount>
                               {(isOptUser ? item.priceOPT : item.price) *
-                               item.quantity}
+                                item.quantity}
                               грн
                             </ItemAmount>
                           </OrdersItem>
