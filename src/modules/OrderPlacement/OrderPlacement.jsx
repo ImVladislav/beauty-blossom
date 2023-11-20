@@ -8,17 +8,14 @@ import {
   CostumerStatusinput,
   DeliveryInfoBlock,
   Description,
-  FirstOrdersHeaderItem,
   Form,
   HeaderBlocRight,
   HeaderBlock,
   HeaderBlockLeft,
   ItemNameItem,
-  LastOrdersHeaderItem,
   LoaderThumb,
   OrderDetails,
   OrderForm,
-  OrdersHeaderItem,
   OrdersImage,
   OrdersItem,
   OrdersItemlist,
@@ -241,6 +238,7 @@ const OrderPlacement = () => {
     if (searchText) {
       handleCityChange();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText]);
 
   // eslint-disable-next-line no-unused-vars
