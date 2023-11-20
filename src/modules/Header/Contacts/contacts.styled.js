@@ -12,8 +12,6 @@ export const ContactsElips = styled.div`
   .burger {
     padding: 0;
   }
-  @media screen and (min-width: 768px) {
-  }
 
   @media screen and (min-width: 1440px) {
     margin-right: 10px;
@@ -21,7 +19,7 @@ export const ContactsElips = styled.div`
 `;
 
 export const IconPhone = styled(PhoneIcon)`
- width: 14px;
+  width: 14px;
   height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   &.head {
@@ -55,7 +53,7 @@ export const IconEmail = styled(EmailIcon)`
   }
 `;
 export const InstagramIcon = styled(AiOutlineInstagram)`
- width: 14px;
+  width: 14px;
   height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
@@ -70,7 +68,7 @@ export const InstagramIcon = styled(AiOutlineInstagram)`
   }
 `;
 export const TelegramIcon = styled(RiTelegramLine)`
- width: 14px;
+  width: 14px;
   height: 14px;
   fill: ${(p) => p.theme.colors.textColor};
   margin-right: 3px;
@@ -93,7 +91,7 @@ export const Link = styled.a`
   align-items: center;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: 103.312%;
+  line-height: 1;
   &.head {
     font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
@@ -104,7 +102,7 @@ export const Link = styled.a`
 
     font-style: normal;
     font-weight: 300;
-    line-height: 118.9%; /* 23.78px */
+    line-height: 1.18;
     letter-spacing: -0.3px;
     text-decoration: none;
     color: ${(p) => p.theme.colors.textColor};
@@ -134,6 +132,7 @@ export const Link = styled.a`
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
+
 export const Wrap = styled.div`
   display: flex;
   align-items: center;

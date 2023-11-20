@@ -2,11 +2,11 @@ import React from "react";
 
 import {
   ContactsElips,
-  IconEmail,
   IconPhone,
+  IconEmail,
   InstagramIcon,
-  Link,
   TelegramIcon,
+  Link,
   Wrap,
 } from "./contacts.styled";
 

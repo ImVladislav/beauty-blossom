@@ -23,14 +23,15 @@ export const CabinetLink = styled(Link)`
   height: 66px;
   color: ${(p) => p.theme.colors.textColor};
   text-align: center;
-  white-space: nowrap; /* Замість 'text-wrap' */
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 20px;
-  position: relative; /* Додайте 'position: relative' */
+  font-size: ${(p) => p.theme.fontSizes.l}px;
+  position: relative;
   overflow: hidden;
+
   &::before {
     content: "";
     position: absolute;
@@ -38,27 +39,21 @@ export const CabinetLink = styled(Link)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9; /* Колір фону, до якого буде застосована opacity */
-    opacity: 0; /* Початкова прозорість 0, а не 0.4 */
+    background: #fff6e9;
+    opacity: 0;
     pointer-events: none;
-    z-index: -1; /* Помістіть псевдоелемент позаду контенту */
+    z-index: -1;
   }
 
   &:hover {
-    opacity: 1; /* Змінити прозорість фону при наведенні */
-    color: ${(p) =>
-      p.theme.colors.black}; /* Змінити колір тексту при наведенні */
+    opacity: 1;
+    color: ${(p) => p.theme.colors.black};
   }
 
   &:hover::before {
-    opacity: 1; /* Змінити прозорість фону при наведенні */
+    opacity: 1;
   }
 
-  @media (min-width: 1440px) {
-  }
-
-  @media (min-width: 1024px) and (max-width: 1439px) {
-  }
   @media (min-width: 768px) and (max-width: 1023px) {
     padding: 0px 20px;
   }
@@ -76,10 +71,6 @@ export const UserPageBlock = styled.div`
     margin-bottom: auto;
   }
 
-  @media (min-width: 1024px) and (max-width: 1439px) {
-  }
-  @media (min-width: 768px) and (max-width: 1023px) {
-  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -145,12 +136,12 @@ export const ContactInformSubButton = styled.button`
   height: 50px;
   color: ${(p) => p.theme.colors.textColor};
   text-align: center;
-  white-space: nowrap; /* Замість 'text-wrap' */
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  position: relative; /* Додайте 'position: relative' */
+  font-size: ${(p) => p.theme.fontSizes.l}px;
+  position: relative;
   background: transparent;
   margin-left: auto;
   margin-right: auto;
@@ -164,20 +155,19 @@ export const ContactInformSubButton = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9; /* Колір фону, до якого буде застосована opacity */
-    opacity: 0; /* Початкова прозорість 0, а не 0.4 */
+    background: #fff6e9;
+    opacity: 0;
     pointer-events: none;
-    z-index: -1; /* Помістіть псевдоелемент позаду контенту */
+    z-index: -1;
   }
 
   &:hover {
-    opacity: 1; /* Змінити прозорість фону при наведенні */
-    color: ${(p) =>
-      p.theme.colors.black}; /* Змінити колір тексту при наведенні */
+    opacity: 1;
+    color: ${(p) => p.theme.colors.black};
   }
 
   &:hover::before {
-    opacity: 1; /* Змінити прозорість фону при наведенні */
+    opacity: 1;
   }
 
   @media (max-width: 768px) {
@@ -190,17 +180,17 @@ export const PaymentHistoryTd = styled.td`
   text-align: center;
 
   @media (min-width: 1440px) {
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
   @media (max-width: 768px) {
-    font-size: 12px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
 `;
 
@@ -211,19 +201,19 @@ export const PaymentHistoryTh = styled.th`
   white-space: nowrap;
 
   @media (min-width: 1440px) {
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
 
   @media (max-width: 768px) {
-    font-size: 12px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
 `;
 
@@ -237,7 +227,7 @@ export const PaymentPaginationButton = styled.button`
   text-align: center;
 
   align-items: center;
-  position: relative; /* Додайте 'position: relative' */
+  position: relative;
   background: transparent;
 
   &::before {
@@ -247,34 +237,20 @@ export const PaymentPaginationButton = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9; /* Колір фону, до якого буде застосована opacity */
-    opacity: 1; /* Початкова прозорість 0, а не 0.4 */
+    background: #fff6e9;
+    opacity: 1;
     pointer-events: none;
-    z-index: -1; /* Помістіть псевдоелемент позаду контенту */
+    z-index: -1;
   }
 
   &.current {
-    font-weight: bold;
+    font-weight: ${(p) => p.theme.fontWeights.bold};
     background: #fff6e9;
   }
 `;
-export const CabinetContainer = styled.div`
-  @media (min-width: 1440px) {
-    /* width: 1400px; */
-    /* padding: 0 20px;
-      display: flex; */
-  }
 
-  @media (min-width: 1024px) and (max-width: 1439px) {
-  }
-  @media (min-width: 768px) and (max-width: 1023px) {
-  }
-  @media (max-width: 768px) {
-  }
-`;
 export const CabinetBlock = styled.div`
   padding: 0, 20px;
-  /* margin-right: auto; */
 `;
 export const DetailTableThumb = styled.div`
   padding: 0, 20px;
@@ -298,16 +274,6 @@ export const DetailTableThumb = styled.div`
 `;
 export const Table = styled.table`
   width: 100%;
-
-  @media (min-width: 1440px) {
-  }
-
-  @media (min-width: 1024px) and (max-width: 1439px) {
-  }
-  @media (min-width: 768px) and (max-width: 1023px) {
-  }
-  @media (max-width: 768px) {
-  }
 `;
 
 export const ShowDetailButton = styled.button`
@@ -352,8 +318,6 @@ export const FeedbackThumb = styled.div`
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 373px;
   }
-  @media (max-width: 768px) {
-  }
 `;
 
 export const SubmitFeedback = styled.button`
@@ -365,13 +329,17 @@ export const SubmitFeedback = styled.button`
   height: 66px;
   color: ${(p) => p.theme.colors.textColor};
   text-align: center;
-  white-space: nowrap; /* Замість 'text-wrap' */
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: ${(p) => p.theme.fontSizes.l}px;
   max-width: 345px;
+  &:hover {
+    background: #fff6e9;
+    color: ${(p) => p.theme.colors.black};
+  }
 `;
 
 export const OptUserTag = styled.div`
@@ -380,6 +348,4 @@ export const OptUserTag = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 16px;
-  @media (min-width: 1440px) {
-  }
 `;

@@ -30,6 +30,9 @@ import {
   Textarea,
   Title,
   Titles,
+  ItemAmount,
+  Amount,
+  ItemNameLink,
 } from "./OrderPlacementStyled";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -42,17 +45,13 @@ import {
 } from "../../redux/auth/selectors";
 
 import { selectCart } from "../../redux/cart/selectors";
-import {
-  Amount,
-  ItemAmount,
-  ItemNameLink,
-} from "../Header/ShopingList/ShopingListStyled";
+
 import axios from "axios";
 import { nanoid } from "@reduxjs/toolkit";
 
 import { toast } from "react-toastify";
 import { Container } from "../../shared/styles/Container";
-import { InputLoader } from "../../shared/components/Loader/Loader";
+import { Loader } from "../../shared/components/Loader/Loader";
 import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
@@ -69,7 +68,7 @@ const OrderPlacement = () => {
   const [searchWarehouses, setSearchWarehouses] = useState("");
   const [isDropdownCityVisible, setDropdownCityVisible] = useState(false);
   const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
-  useState(false);
+    useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [courierDelivery, setCourierDelivery] = useState(false);
@@ -179,19 +178,16 @@ const OrderPlacement = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-      
 
-    
-          const addresses = data.data[0].Addresses // Отримання масиву Addresses
-          
-          console.log(addresses);
-          
-          if (data.success) {
-            setSearchCities(addresses);
-          }
-          
-          console.log(searchCities);
-    
+      const addresses = data.data[0].Addresses; // Отримання масиву Addresses
+
+      console.log(addresses);
+
+      if (data.success) {
+        setSearchCities(addresses);
+      }
+
+      console.log(searchCities);
     } catch (error) {
       console.error(error);
     }
@@ -205,7 +201,6 @@ const OrderPlacement = () => {
         methodProperties: {
           CityRef: warehouseSearch,
           Limit: "20",
-          
         },
       };
 
@@ -213,24 +208,26 @@ const OrderPlacement = () => {
         requestData.methodProperties.WarehouseRef = searchWarehouses;
       }
 
-      const response = await fetch("https://api.novaposhta.ua/v2.0/json/Address", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+      const response = await fetch(
+        "https://api.novaposhta.ua/v2.0/json/Address",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestData),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
-console.log(data.data);
+      console.log(data.data);
       if (data.success) {
         setWarehouses(data.data);
-
       }
     } catch (error) {
       console.error(
@@ -241,7 +238,6 @@ console.log(data.data);
   };
 
   useEffect(() => {
-
     if (searchText) {
       handleCityChange();
     }
@@ -260,10 +256,7 @@ console.log(data.data);
         (total, item) => total + item.priceOPT * item.quantity,
         0
       )
-    : cartItems.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
+    : cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -327,8 +320,7 @@ console.log(data.data);
       name: item.name,
       code: item.code.toString(),
       quantity: item.quantity,
-      amount:
-        (isOptUser ? item.priceOPT : item.price) * item.quantity,
+      amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
     }));
 
     const dataToSendCourier = {
@@ -449,7 +441,7 @@ console.log(data.data);
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
 
-  const handleCitySelect = (city, DeliveryCity ) => {
+  const handleCitySelect = (city, DeliveryCity) => {
     const selectedCityWithArea = `${city}`;
     setSearchText(selectedCityWithArea);
     setDropdownCityVisible(false);
@@ -609,7 +601,7 @@ console.log(data.data);
                         <CityitemsBlock>
                           {searchCities.length === 0 ? (
                             <LoaderThumb>
-                              <InputLoader />
+                              <Loader size="60px" pageHeight="60px" />
                             </LoaderThumb>
                           ) : (
                             searchCities.map((searchCity) => (
@@ -618,7 +610,7 @@ console.log(data.data);
                                 onClick={() => {
                                   handleCitySelect(
                                     searchCity.Present,
-                                     searchCity.DeliveryCity
+                                    searchCity.DeliveryCity
                                   );
                                 }}
                               >
@@ -694,7 +686,7 @@ console.log(data.data);
                               <CityitemsBlock>
                                 {warehouses.length === 0 ? (
                                   <LoaderThumb>
-                                    <InputLoader />
+                                    <Loader size="60px" pageHeight="60px" />
                                   </LoaderThumb>
                                 ) : (
                                   warehouses
@@ -781,21 +773,27 @@ console.log(data.data);
                   >
                     <thead style={{ bordeRadius: "25px" }}>
                       <tr>
-                        <HeaderBlockLeft>
+                        <HeaderBlockLeft></HeaderBlockLeft>
+                        <HeaderBlock>Найменування товару</HeaderBlock>
+                        <HeaderBlock>Кількість</HeaderBlock>
+                        <HeaderBlock>Ціна</HeaderBlock>
+                        <HeaderBlocRight>Сума</HeaderBlocRight>
+                        {/* 
+                         <HeaderBlockLeft>
 
-                        </HeaderBlockLeft>
-                        <HeaderBlock>
-                          Найменування товару
-                        </HeaderBlock>
-                        <HeaderBlock>
-                          Кількість
-                        </HeaderBlock>
-                        <HeaderBlock>
-                          Ціна
-                        </HeaderBlock>
-                        <HeaderBlocRight>
-                          Сума
-                        </HeaderBlocRight>
+                         </HeaderBlockLeft>
+                         <HeaderBlock>
+                           Найменування товару
+                         </HeaderBlock>
+                         <HeaderBlock>
+                           Кількість
+                         </HeaderBlock>
+                         <HeaderBlock>
+                           Ціна
+                         </HeaderBlock>
+                         <HeaderBlocRight>
+                           Сума
+                         </HeaderBlocRight> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -820,7 +818,7 @@ console.log(data.data);
                           <OrdersItem>
                             <ItemAmount>
                               {(isOptUser ? item.priceOPT : item.price) *
-                               item.quantity}
+                                item.quantity}
                               грн
                             </ItemAmount>
                           </OrdersItem>

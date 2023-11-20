@@ -104,16 +104,17 @@ export const Header = () => {
                             <User />
                           </div>
                           {/* кошик */}
-                          {cartItems.length > 0 && (
-                            <div style={{ position: "relative" }}>
-                              <ShoppingCart />
+
+                          <div style={{ position: "relative" }}>
+                            <ShoppingCart />
+                            {cartItems.length > 0 && (
                               <CartQuantityWrap>
                                 <CartQuantitySpan>
                                   {cartItems.length}
                                 </CartQuantitySpan>
                               </CartQuantityWrap>
-                            </div>
-                          )}
+                            )}
+                          </div>
                         </LoginShipingThumb>
                       </Wrap>
                     </WrapTop>
@@ -167,14 +168,15 @@ export const Header = () => {
                 {isLogin && <NameUser>{userName} </NameUser>}
                 <User />
               </div>
-              {cartItems.length > 0 && (
-                <div style={{ position: "relative" }}>
-                  <ShoppingCart />
+
+              <div style={{ position: "relative" }}>
+                <ShoppingCart />
+                {cartItems.length > 0 && (
                   <CartQuantityWrap>
                     <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
                   </CartQuantityWrap>
-                </div>
-              )}
+                )}
+              </div>
             </IconWrap>
           </CenterWrap>
           {/* bottom */}

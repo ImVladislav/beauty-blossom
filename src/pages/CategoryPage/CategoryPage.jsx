@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Category from "../../modules/Category/Category";
 import { useLocation } from "react-router-dom";
 
-import SortCategory from "../../modules/Category/SortCategory/SortCategory";
+import SortCategory from "../../modules/SortCategory/SortCategory";
 import { Loader } from "../../shared/components/Loader/Loader";
 
 const CategoryPage = () => {

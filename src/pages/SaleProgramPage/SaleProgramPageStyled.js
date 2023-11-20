@@ -99,3 +99,10 @@ export const ModalContent = styled.div`
   position: relative;
   overflow-y: auto;
 `;
+export const Link = styled.a`
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.accentColor};
+  &:hover {
+    color: ${(p) => p.theme.colors.textColor};
+  }
+`;

@@ -11,7 +11,6 @@ import { Container } from "../../shared/styles/Container";
 const NewPage = () => {
   const items = useSelector(selectNew);
   const sortedItems = [...items].sort((a, b) => b.amount - a.amount);
-  // const loading = useSelector((state) => state.goods.isRefreshing);
 
   const [loading, setLoading] = useState(true);
 

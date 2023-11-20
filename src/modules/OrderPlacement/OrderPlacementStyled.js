@@ -761,3 +761,62 @@ export const Backdrop = styled.div`
   z-index: 5; /* Ensure the backdrop is behind the modal but above other content */
   display: ${(props) => (props.$isOpen ? "block" : "none")};
 `;
+
+export const ItemAmount = styled.p`
+  color: black;
+  text-decoration: none;
+  font-size: 11px;
+  white-space: pre;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: 10px;
+    white-space: pre;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: 14px;
+    white-space: pre;
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 12px;
+    white-space: pre;
+  }
+`;
+
+export const Amount = styled.p`
+  text-align: end;
+  font-size: 12px;
+  margin: 10px;
+  font-weight: 500;
+  @media screen and (min-width: 768px) {
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 24px;
+  }
+`;
+
+export const ItemNameLink = styled(Link)`
+  color: ${(p) => p.theme.colors.black};
+  text-decoration: none;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  line-height: 0.9;
+
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    font-size: ${(p) => p.theme.fontSizes.xxs}px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
+`;

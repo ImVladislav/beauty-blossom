@@ -28,55 +28,39 @@ export const SubTitle = styled.h4`
   justify-content: center;
   font-size: ${(p) => p.theme.fontSizes.m}px;
   font-weight: ${(p) => p.theme.fontWeights.title};
-  /* font-size: 80%; */
   text-align: center;
 `;
 export const Text = styled.p`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.black};
-  /* font-size: 70%; */
   margin: 0px 20px 10px;
 `;
 export const TextSecond = styled.p`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-weight: ${(p) => p.theme.fontWeights.title};
   color: ${(p) => p.theme.colors.black};
-  /* font-size: 70%; */
   margin: 0px 20px 10px;
 `;
 export const BenefitsList = styled.ul`
   padding-left: 60px;
   margin: 30px 0;
-
   list-style: outside;
 `;
 export const BenefitsItem = styled.li`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   color: ${(p) => p.theme.colors.black};
-  /* position: relative;
-  padding-left: 30px;
-  margin: 2px 0px;
-  font-weight: bold; */
-  /* font-size: 70%; */
 `;
 export const TextItem = styled.p`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-weight: ${(p) => p.theme.fontWeights.title};
   color: ${(p) => p.theme.colors.black};
-  /* font-size: 70%; */
-  /* margin: 0px 20px 10px; */
 `;
 
-// export const Text= styled.p`
-//     font-weight: bold;
-//     margin: 0px 20px 10px;
-
-// `
 export const TextLink = styled.p`
   font-size: ${(p) => p.theme.fontSizes.m}px;
   font-weight: ${(p) => p.theme.fontWeights.title};
-  /* font-size: 70%; */
+
   color: ${(p) => p.theme.colors.accentColor};
   margin: 0px 20px 10px;
 `;

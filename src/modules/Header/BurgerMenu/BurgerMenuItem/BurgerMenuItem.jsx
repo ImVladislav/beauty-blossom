@@ -6,11 +6,11 @@ import { setfilter } from "../../../../redux/filter/slice";
 import { selectGoods } from "../../../../redux/products/selectors";
 
 import {
-  DownIcon,
-  Link,
-  LinkWrap,
   MenuLevel,
+  LinkWrap,
+  Link,
   RightIcon,
+  DownIcon,
 } from "./BurgerMenuItem.styled";
 
 const BurgerMenuItem = ({ item, level, closeMenu }) => {
@@ -84,7 +84,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
         <div className="submenu">
           {item.children.map((child, index) => (
             <BurgerMenuItem
-              key={index}
+              key={child.to}
               item={child}
               level={level + 1}
               closeMenu={closeMenu}

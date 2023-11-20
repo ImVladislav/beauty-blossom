@@ -5,11 +5,10 @@ export const ItemTitle = styled.a`
   cursor: pointer;
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-family: "Noto Sans";
   font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 103.312%; /* 25.828px */
+  line-height: 1;
   letter-spacing: -0.379px;
   padding: 3px 0;
   position: relative;
@@ -34,14 +33,10 @@ export const ItemTitle = styled.a`
 
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
-    /* border-bottom: 1px solid ${(p) => p.theme.colors.accentColor}; */
   }
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 103.312%;
     letter-spacing: -1.125px;
   }
 
@@ -53,11 +48,10 @@ export const ItemTitle = styled.a`
 export const Item = styled(Link)`
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-family: "Noto Sans";
   font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 103.312%;
+  line-height: 1;
   letter-spacing: -0.379px;
   position: relative;
   display: inline-block;
@@ -84,7 +78,6 @@ export const Item = styled(Link)`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
-    line-height: 103.312%; /* 25.828px */
     letter-spacing: -1.125px;
   }
 
@@ -103,19 +96,16 @@ export const TitleWrap = styled.div`
 `;
 export const Title = styled.h3`
   color: ${(p) => p.theme.colors.border};
-
-  font-family: Alegreya Sans;
-
+  font-family: "Alegreya Sans";
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-weight: ${(p) => p.theme.fontWeights.subtitle};
   font-style: normal;
-  line-height: 103.312%; /* 35.126px */
+  line-height: 1;
   letter-spacing: 0.745px;
   padding: 0px 20px 0 20px;
   @media screen and (min-width: 768px) {
     padding: 0 80px 0 20px;
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    line-height: 103.312%; /* 35.126px */
     letter-spacing: 2.21px;
   }
   @media screen and (min-width: 1440px) {
@@ -125,7 +115,6 @@ export const Title = styled.h3`
 `;
 
 export const Underline = styled.div`
-  flex: 1;
   height: 1px;
   background-color: ${(p) => p.theme.colors.black};
 `;

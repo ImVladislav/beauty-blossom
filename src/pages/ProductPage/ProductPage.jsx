@@ -175,11 +175,13 @@ const ProductPage = () => {
               onClick={handleAddToCart}
               disabled={productCartFind || product.amount <= 0}
             />
+
             {/* <SecondButton
             text="Швидке замовлення"
             onClick={toggleModal}
             disabled={product.amount <= 0}
           ></SecondButton> */}
+
             <ProductTitleDescription>Опис</ProductTitleDescription>
             <ProductDescription>{product.description}</ProductDescription>
 

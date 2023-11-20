@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { setfilter } from "../../../../../../redux/filter/slice";
+
 import {
   Link,
   Item,
@@ -8,8 +12,6 @@ import {
   DownIcon,
   WrapItem,
 } from "./SubSubMenuItem.styled";
-import { useDispatch } from "react-redux";
-import { setfilter } from "../../../../../../redux/filter/slice";
 
 export const SubSubMenuItem = ({ item, activeSubMenu, setActiveSubMenu }) => {
   const [expanded, setExpanded] = useState(false);

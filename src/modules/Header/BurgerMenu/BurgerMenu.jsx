@@ -19,7 +19,7 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
   const closeMenu = () => {
     setIsMenuOpen(false);
     setMenuOpen(false);
-  }
+  };
   const handleContactTogle = () => {
     setContacts(!contacts);
   };
@@ -53,10 +53,18 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
         <InfoStylesLink to="/cabinet/userData">
           Особистий кабінет
         </InfoStylesLink>
-        <InfoStylesLink onClick={closeMenu} to="/cabinet/history">Історія замовлень</InfoStylesLink>
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">Повернення та обмін</InfoLink>
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#payment">Оплата і доставка</InfoLink>
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#about">Про нас</InfoLink>
+        <InfoStylesLink onClick={closeMenu} to="/cabinet/history">
+          Історія замовлень
+        </InfoStylesLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">
+          Повернення та обмін
+        </InfoLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#payment">
+          Оплата і доставка
+        </InfoLink>
+        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#about">
+          Про нас
+        </InfoLink>
         <InfoButton onClick={handleContactTogle}>Контакти</InfoButton>
         {contacts && (
           <>

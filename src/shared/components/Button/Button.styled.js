@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ButtonStyle = styled.button`
-  /* background: transparent; */
   background-color: ${(p) => (p.disabled ? "#ccc" : "transparent")};
   border: 1px solid ${(p) => (p.disabled ? `#ccc` : p.theme.colors.accentColor)};
   border-radius: 50px;
@@ -52,14 +51,7 @@ export const ButtonStyle = styled.button`
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    /* background-color: ${(p) =>
-      p.disabled ? "#ccc" : p.theme.colors.heroBtn};
-    color: ${(p) => p.theme.colors.white}; */
     padding: 10px 20px;
-    /* border: none;
-    border-radius: 4px; */
-    /* cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")}; */
-    /* transition: background-color 0.3s ease; */
   }
 
   &.user-menu {

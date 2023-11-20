@@ -1,4 +1,3 @@
-// import bannerImg from "../../images/bannerPopularBrands.jpg";
 export const theme = {
   colors: {
     white: "#ffffff",
@@ -10,7 +9,6 @@ export const theme = {
     background: " #f9f8f6",
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
-    // bgImage: bannerImg,
     topHeaderLine: "#FFF6E9",
     heroTitle: "#C14CAF",
     menuHover: "#FFF6E9",
@@ -18,6 +16,7 @@ export const theme = {
     border: "#461C49",
     borderCard: "#e8dfd8",
     hoverBurger: "#ffecd2",
+    cartColor: "#898989",
   },
 
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],

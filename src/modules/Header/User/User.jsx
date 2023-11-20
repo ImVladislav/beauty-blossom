@@ -15,13 +15,13 @@ import { logout } from "../../../redux/auth/operation";
 
 import {
   LinkBtn,
+  WrapLink,
   LogInIcon,
   DropDown,
   ListItem,
   LogOut,
   ModalBackdrop,
   Modal,
-  WrapLink,
   Underline,
 } from "./user.styled";
 

@@ -1,8 +1,6 @@
 import React from "react";
 
-import IconLogo from "../../../images/BeautyBlossom.png";
-
-import { LinkLogo, LogoImg, TextLogo } from "./logo.styled";
+import { LinkLogo, TextLogo } from "./logo.styled";
 
 const Logo = () => {
   return (
@@ -11,8 +9,6 @@ const Logo = () => {
         <TextLogo>
           Beauty <br /> Blossom
         </TextLogo>
-
-        {/* <LogoImg src={IconLogo} alt="React Logo" /> */}
       </LinkLogo>
     </>
   );

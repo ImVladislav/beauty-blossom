@@ -17,7 +17,7 @@ export const Link = styled(NavLink)`
   font-size: ${(p) => p.theme.fontSizes.s}px;
   font-style: normal;
   font-weight: 300;
-  line-height: 118.9%; /* 23.78px */
+  line-height: 1.2;
   letter-spacing: -0.3px;
   text-decoration: none;
   color: ${(p) => p.theme.colors.textColor};
@@ -26,7 +26,6 @@ export const Link = styled(NavLink)`
   &:focus {
     border-radius: 27px;
     background: ${(p) => p.theme.colors.hoverBurger};
-
     box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
   }
   &.active {
@@ -36,12 +35,6 @@ export const Link = styled(NavLink)`
   }
 `;
 
-export const Button = styled.button`
-  padding: 0;
-  border: none;
-  background: transparent;
-  margin: 0;
-`;
 export const RightIcon = styled(AiOutlineRight)`
   width: 20px;
   height: 20px;

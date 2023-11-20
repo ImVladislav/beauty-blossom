@@ -3,12 +3,12 @@ import {
   selectFilterCategory,
   selectFilterCategorySub,
   selectFilterCategorySubSub,
-} from "../../../redux/filter/selectors";
+} from "../../redux/filter/selectors";
 
 import { useSelector } from "react-redux";
 
-import { Container } from "../../../shared/styles/Container";
-import ProductsList from "../../../shared/components/ProductsList/ProductsList";
+import { Container } from "../../shared/styles/Container";
+import ProductsList from "../../shared/components/ProductsList/ProductsList";
 
 const SortCategory = () => {
   const categoryItems = useSelector(selectFilterCategory);

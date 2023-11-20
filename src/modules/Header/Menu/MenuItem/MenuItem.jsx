@@ -1,5 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import SubMenuItem from "./SubMenuItem/SubMenuItem";
+
+import { selectGoods } from "../../../../redux/products/selectors";
+import { setfilter } from "../../../../redux/filter/slice";
+
 import {
   Link,
   Item,
@@ -14,11 +20,6 @@ import {
   SubMenuWrapBrand,
   BrandLetter,
 } from "./MenuItem.styled";
-
-import { useDispatch, useSelector } from "react-redux";
-import { selectGoods } from "../../../../redux/products/selectors";
-
-import { setfilter } from "../../../../redux/filter/slice";
 
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);

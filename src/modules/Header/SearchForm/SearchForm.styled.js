@@ -8,8 +8,6 @@ export const SearchFormContainer = styled.div`
   transition: all 0.15s ease 0s;
   &:hover,
   &:focus {
-    /* border: 2px solid ${(p) => p.theme.colors.accentColor};
-    border-radius: 50px; */
     & svg {
       color: ${(p) => p.theme.colors.accentColor};
     }
@@ -27,22 +25,19 @@ export const SearchFormContainer = styled.div`
 `;
 
 export const SearchInput = styled.input`
-  font-size: 12.662px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 102.312%; /* 12.955px */
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: 1;
   letter-spacing: 0.19px;
-
   outline: none;
-  border-radius: 24.614px;
-  border: 0.574px solid #504056;
-
+  border-radius: 25px;
+  border: 0.574px solid ${(p) => p.theme.colors.textColor};
   box-sizing: border-box;
   width: 100%;
-  /* height: 23px; */
   padding: 5px 20px 5px 35px;
-
   color: ${(p) => p.theme.colors.textColor};
+  background: ${(p) => p.theme.colors.white};
   transition: all 0.15s ease 0s;
   &:hover,
   &:focus {
@@ -50,29 +45,16 @@ export const SearchInput = styled.input`
   }
   @media screen and (min-width: 768px) {
     border-radius: 50px;
-    outline: none;
-
-    box-sizing: border-box;
     width: 275px;
     height: 35px;
     padding: 0px 16px 0px 42px;
-    background: #fff;
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
     border: 1px solid ${(p) => p.theme.colors.border};
-    color: ${(p) => p.theme.colors.textColor};
   }
   @media screen and (min-width: 1024px) {
-    border-radius: 50px;
-    outline: none;
-
-    box-sizing: border-box;
     width: 350px;
     height: 50px;
-    padding: 0px 16px 0px 42px;
-    background: #fff;
-    font-size: 18px;
-    border: 1px solid ${(p) => p.theme.colors.border};
-    color: ${(p) => p.theme.colors.textColor};
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
   @media screen and (min-width: 1440px) {
     width: 100%;
@@ -81,24 +63,15 @@ export const SearchInput = styled.input`
 
 export const SearchButton = styled.button`
   border: none;
-
   cursor: pointer;
-
   position: absolute;
   top: 0px;
   left: 15px;
   bottom: 0px;
-  /* width: 35px; */
-
   padding: 0px;
   background-color: transparent;
-
   @media screen and (min-width: 768px) {
     left: 20px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    /* width: 50px; */
   }
 `;
 
@@ -109,8 +82,5 @@ export const SearchIcon = styled(BsSearch)`
   @media screen and (min-width: 768px) {
     width: 20px;
     height: 20px;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;

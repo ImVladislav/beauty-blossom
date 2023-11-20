@@ -40,6 +40,7 @@ const Login = () => {
         }
       })
       .catch((error) => {
+        console.error("Сталася помилка:", error);
         setIsLogined(false);
       });
   };
