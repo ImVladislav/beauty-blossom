@@ -1,4 +1,5 @@
 
+import { useSelector } from "react-redux";
 import { useMedia } from "../../../hooks/useMedia";
 import {
   Item,
@@ -8,9 +9,11 @@ import {
   Title,
   Underline,
 } from "./InformBlockStyled";
+import { loggedInSelector } from "../../../redux/auth/selectors";
 
 export const FooterInformBlock = () => {
   const { isMobileScreen } = useMedia();
+  const isLogin = useSelector(loggedInSelector)
 
 
  
@@ -21,7 +24,9 @@ export const FooterInformBlock = () => {
         {!isMobileScreen && <Underline />}
       </TitleWrap>
       <Nav>
-        <Item to="/cabinet">Особистий кабінет</Item>
+        {isLogin &&
+          <Item to="/cabinet">Особистий кабінет</Item>
+        }
         <ItemTitle href="/wholesaleProgram#return" >
           Повернення та обмін
         </ItemTitle>

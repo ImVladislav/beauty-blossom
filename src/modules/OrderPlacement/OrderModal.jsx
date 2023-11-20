@@ -7,6 +7,8 @@ import {
   ModalText,
   Titles,
 } from "./OrderPlacementStyled";
+import { useSelector } from "react-redux";
+import { loggedInSelector } from "../../redux/auth/selectors";
 
 export const OrderModalWindow = ({ isOpen, orderNumber }) => {
   useEffect(() => {
@@ -15,11 +17,13 @@ export const OrderModalWindow = ({ isOpen, orderNumber }) => {
     } else {
       document.body.classList.remove("modal-open");
     }
-
     return () => {
       document.body.classList.remove("modal-open");
     };
   }, [isOpen]);
+
+  const isLogin = useSelector(loggedInSelector)
+
   return (
     <>
       <Backdrop $isOpen={isOpen} />
@@ -34,7 +38,9 @@ export const OrderModalWindow = ({ isOpen, orderNumber }) => {
 
         <LinkThumb>
           <LinkButton to="/">Головна сторінка</LinkButton>
-          <LinkButton to="/cabinet">Особистий кабінет</LinkButton>
+          {isLogin &&
+            <LinkButton to="/cabinet">Особистий кабінет</LinkButton>
+          }
         </LinkThumb>
       </ModalStyle>
     </>

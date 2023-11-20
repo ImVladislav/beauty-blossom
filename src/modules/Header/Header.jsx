@@ -51,7 +51,6 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const userName = useSelector(userSelectorfirstName);
   const cartItems = useSelector(selectCart);
-  console.log(cartItems.length);
 
   const isLogin = useSelector(loggedInSelector);
 

@@ -83,7 +83,7 @@ const OrderPlacement = () => {
     email: userEmail || "",
     firstName: userFirstName || "",
     lastName: userLastName || "",
-    number: userNumber || "380",
+    number: userNumber || "+380",
     city: "",
     paymentMethod: "Оплата за реквізитами",
     deliveryMethod: courier,
@@ -103,13 +103,6 @@ const OrderPlacement = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  // let firstWord = "";
-  // let secoundWord = "";
-
-  // const words = searchText.trim().split(" ");
-  // firstWord = words[0];
-  // secoundWord = words[1];
-
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
   function logCurrentTime12HourFormat() {
@@ -119,7 +112,6 @@ const OrderPlacement = () => {
     const seconds = currentTime.getSeconds();
     const milliseconds = currentTime.getMilliseconds();
 
-    // Додавання нуля перед однозначними хвилинами, секундами та мілісекундами
     const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
     const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
     const formattedMilliseconds =
@@ -176,7 +168,7 @@ const OrderPlacement = () => {
       }
       const data = await response.json();
 
-      const addresses = data.data[0].Addresses; // Отримання масиву Addresses
+      const addresses = data.data[0].Addresses; 
 
       console.log(addresses);
 
@@ -241,14 +233,6 @@ const OrderPlacement = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText]);
 
-  // eslint-disable-next-line no-unused-vars
-  const [itemQuantities, setItemQuantities] = useState(
-    cartItems.reduce((quantities, item) => {
-      quantities[item.id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
-      return quantities;
-    }, {})
-  );
-
   const totalCost = isOptUser
     ? cartItems.reduce(
         (total, item) => total + item.priceOPT * item.quantity,
@@ -287,13 +271,13 @@ const OrderPlacement = () => {
       return;
     }
 
-    const phonePattern = /^380\d{9}$/;
+    const phonePattern = /^\+380\d{9}$/;
     const trimedVlaue = formData.number;
 
     const isPhoneValid = phonePattern.test(trimedVlaue);
 
     if (!isPhoneValid) {
-      toast.error("Введіть номер телефону починаючи з 380 ");
+      toast.error("Введіть коректний номер телефону з 12 цифр, включаючи +380");
       setIsSubmitting(false);
       return;
     }
@@ -309,8 +293,6 @@ const OrderPlacement = () => {
       setIsSubmitting(false);
       return;
     }
-
-    console.log(cartItems);
 
     const orderedItems = cartItems.map((item) => ({
       productId: item.id || item.productId,
@@ -371,13 +353,11 @@ const OrderPlacement = () => {
         courier === "no" ? dataToSendCourier : dataToSendWarehouse
       )
       .then((response) => {
-        console.log("Відповідь від сервера:", response.data);
         if (isLogin) {
           removeCartItem();
         }
 
         dispatch(deleteAll());
-
         showOrderPlacedModal();
 
         setFormData({
@@ -463,7 +443,6 @@ const OrderPlacement = () => {
       <OrderForm>
         <OrderDetails>
           <Title>Оформлення замовлення</Title>
-
           {!isLogin && (
             <CostumerStatus>
               <CostumerStatusItem htmlFor="registered">
@@ -505,10 +484,6 @@ const OrderPlacement = () => {
               </CostumerStatusItem>
             </CostumerStatus>
           )}
-          {/* {customerType === "registered" && !isLogin && <LoginFormOrders />}
-          {customerType === "not-registered" && !isLogin && (
-            <RegisterFormOrders />
-          )} */}
           {customerType === "registered" && !isLogin && <Login />}
           {customerType === "not-registered" && !isLogin && (
             <Register onRegisterSuccess={onRegisterSuccess} />
@@ -540,7 +515,7 @@ const OrderPlacement = () => {
                   type="text"
                   id="number"
                   name="number"
-                  placeholder="Введіть номер телефону починаючи з 380 *"
+                  placeholder="Введіть номер телефону починаючи з +380 *"
                   value={formData.number || ""}
                   onChange={handleInputChange}
                 />
@@ -614,7 +589,6 @@ const OrderPlacement = () => {
                               >
                                 <CityItem>
                                   {searchCity.Present},
-                                  {/* {searchCity.AreaDescription} */}
                                 </CityItem>
                               </li>
                             ))
@@ -687,25 +661,7 @@ const OrderPlacement = () => {
                                     <Loader size="60px" pageHeight="60px" />
                                   </LoaderThumb>
                                 ) : (
-                                  warehouses
-                                    // .filter((warehouse) => {
-                                    //   const description =
-                                    //     warehouse.Description || "";
-                                    //   const areaDescription =
-                                    //     warehouse.SettlementAreaDescription ||
-                                    //     "";
-                                    //   return (
-                                    //     description
-                                    //       .toLowerCase()
-                                    //       .includes(
-                                    //         searchWarehouses.toLowerCase()
-                                    //       ) &&
-                                    //     areaDescription
-                                    //       .toLowerCase()
-                                    //       .includes(secoundWord.toLowerCase())
-                                    //   );
-                                    // })
-                                    .map((warehouse) => (
+                                  warehouses.map((warehouse) => (
                                       <li
                                         key={nanoid()}
                                         onClick={() =>
@@ -776,22 +732,6 @@ const OrderPlacement = () => {
                         <HeaderBlock>Кількість</HeaderBlock>
                         <HeaderBlock>Ціна</HeaderBlock>
                         <HeaderBlocRight>Сума</HeaderBlocRight>
-                        {/* 
-                         <HeaderBlockLeft>
-
-                         </HeaderBlockLeft>
-                         <HeaderBlock>
-                           Найменування товару
-                         </HeaderBlock>
-                         <HeaderBlock>
-                           Кількість
-                         </HeaderBlock>
-                         <HeaderBlock>
-                           Ціна
-                         </HeaderBlock>
-                         <HeaderBlocRight>
-                           Сума
-                         </HeaderBlocRight> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -858,3 +798,6 @@ export default OrderPlacement;
 //619
 //792
 //863
+
+
+//834

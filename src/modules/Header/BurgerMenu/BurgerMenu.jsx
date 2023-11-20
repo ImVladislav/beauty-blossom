@@ -11,6 +11,8 @@ import {
   InfoStylesLink,
   InfoButton,
 } from "./BurgerMenu.styled";
+import { useSelector } from "react-redux";
+import { loggedInSelector } from "../../../redux/auth/selectors";
 
 const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
   const [menuOpen, setMenuOpen] = useState(true);
@@ -23,6 +25,7 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
   const handleContactTogle = () => {
     setContacts(!contacts);
   };
+  const isLogin = useSelector(loggedInSelector)
 
   return (
     <MobileMenuContainer
@@ -50,12 +53,17 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
           gap: "3px",
         }}
       >
+        {isLogin && 
+          <>
         <InfoStylesLink to="/cabinet/userData">
           Особистий кабінет
         </InfoStylesLink>
+          
         <InfoStylesLink onClick={closeMenu} to="/cabinet/history">
           Історія замовлень
-        </InfoStylesLink>
+          </InfoStylesLink>
+          </>
+        }
         <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">
           Повернення та обмін
         </InfoLink>
