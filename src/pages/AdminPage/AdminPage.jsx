@@ -41,7 +41,7 @@ const AdminPage = () => {
       .catch(error => {
         console.error('Помилка отримання даних про замовлення', error);
       });
-  }, []);
+  }, [orders]);
 
 const handleOrderClick = (order) => {
   if (selectedOrder && selectedOrder._id === order._id) {
@@ -52,6 +52,7 @@ const handleOrderClick = (order) => {
     setSelectedOrder(order);
   }
 };
+
 
  return (
     <Container>

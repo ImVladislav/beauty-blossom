@@ -148,9 +148,9 @@ const [isImageVisible, setIsImageVisible] = useState(false);
         </div>
       )}
 
-      {!isImageVisible && (
+      {/* {!isImageVisible && (
         <button onClick={toggleImage}>Show Image</button>
-      )}
+      )} */}
       {!isMobileScreen ? (
         <>
           <ContainerHeader>

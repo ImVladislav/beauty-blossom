@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
-
+  
   const handleEditClick = () => {
     setIsEditing(true);
   };

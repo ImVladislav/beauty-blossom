@@ -205,7 +205,7 @@ const CartModal = ({ closeModal }) => {
                   </ImageBlock>
                   <DescriptionBlock>
                     <ItemNameLink
-                      to={`/product/${item.id}`}
+                      to={`/product/${item.id || item.productId}`}
                       onClick={closeModal}
                     >
                       {item.name}
