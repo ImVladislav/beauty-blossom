@@ -7,11 +7,12 @@ import {
 } from "./AdminDetailStyled";
 import { Table } from "react-bootstrap";
 import axios from "axios";
+import { useEffect } from "react";
 
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
-  console.log(selectedOrder);
+
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -19,7 +20,7 @@ const AdminDetail = ({ selectedOrder }) => {
   const handleCancelClick = () => {
     setIsEditing(false);
   };
-  console.log(selectedOrder.isOptUser);
+
   const handleSaveClick = async () => {
     try {
       // Створюємо новий масив orderedItems без поля _id
@@ -32,9 +33,7 @@ const AdminDetail = ({ selectedOrder }) => {
       // Створюємо окремий об'єкт dataToUpdate без поля orderedItems
       const dataToUpdate = {
         status: editedOrder.status,
-
         orderedItems: updatedOrderedItems,
-
         firstName: editedOrder.firstName,
         lastName: editedOrder.lastName,
         number: editedOrder.number,
@@ -54,8 +53,8 @@ const AdminDetail = ({ selectedOrder }) => {
       console.log(dataToUpdate);
       // Перевіряємо відповідь сервера
       if (response.status === 200) {
-        // Оновлюємо стан isEditing, щоб завершити режим редагування
-        setIsEditing(false);
+      setIsEditing(false);
+      // setEditedOrder({ ...selectedOrder }); 
       } else {
         // Обробка помилки, якщо потрібно
         console.error("Помилка оновлення даних на сервері");
@@ -65,20 +64,18 @@ const AdminDetail = ({ selectedOrder }) => {
     }
   };
 
-  const handleInputChange = (e, fieldName) => {
-    const { value } = e.target;
-    if (fieldName === "status") {
-      setEditedOrder((prevOrder) => ({
-        ...prevOrder,
-        [fieldName]: value,
-      }));
-    } else {
-      setEditedOrder((prevOrder) => ({
-        ...prevOrder,
-        [fieldName]: value,
-      }));
-    }
+  useEffect(() => {
+ setEditedOrder({ ...selectedOrder })
+  }, [selectedOrder]);
+
+const handleInputChange = (e, fieldName) => {
+  const { value } = e.target;
+  setEditedOrder((prevOrder) => ({
+    ...prevOrder,
+    [fieldName]: value,
+  }));
   };
+  
   return (
     <div>
       <h2>Детальна інформація про замовлення</h2>
@@ -91,7 +88,7 @@ const AdminDetail = ({ selectedOrder }) => {
               <TableItems>Кількість</TableItems>
               <TableItems>Сумма</TableItems>
             </TableTrBlock>
-            {selectedOrder.orderedItems.map((item, index) => (
+            {editedOrder.orderedItems.map((item, index) => (
               <TableTrBlock key={index}>
                 <td style={{ display: "flex", border: "none" }}>
                   <ProductImage src={item.images} alt="product" />
@@ -113,7 +110,7 @@ const AdminDetail = ({ selectedOrder }) => {
           </TableTrBlock>
           <tr>
             <TableItems colSpan="3">
-              <p>Створено: {editedOrder.createdAt.substr(0, 10)}</p>
+              <p>Створено: {selectedOrder.createdAt.substr(0, 10)}</p>
               <p>
                 Покупець:
                 {isEditing ? (
@@ -123,7 +120,7 @@ const AdminDetail = ({ selectedOrder }) => {
                     onChange={(e) => handleInputChange(e, "firstName")}
                   />
                 ) : (
-                  selectedOrder.firstName
+                  editedOrder.firstName
                 )}{" "}
                 {isEditing ? (
                   <input
@@ -132,7 +129,7 @@ const AdminDetail = ({ selectedOrder }) => {
                     onChange={(e) => handleInputChange(e, "lastName")}
                   />
                 ) : (
-                  selectedOrder.lastName
+                  editedOrder.lastName
                 )}
               </p>
               <p>
@@ -144,7 +141,7 @@ const AdminDetail = ({ selectedOrder }) => {
                     onChange={(e) => handleInputChange(e, "number")}
                   />
                 ) : (
-                  selectedOrder.number
+                  editedOrder.number
                 )}
               </p>
               <p>
@@ -156,7 +153,7 @@ const AdminDetail = ({ selectedOrder }) => {
                     onChange={(e) => handleInputChange(e, "email")}
                   />
                 ) : (
-                  selectedOrder.email
+                  editedOrder.email
                 )}
               </p>
               <p>
@@ -185,7 +182,7 @@ const AdminDetail = ({ selectedOrder }) => {
                 {isEditing ? (
                   <select
                     name="status"
-                    value={selectedOrder.status}
+                    value={editedOrder.status}
                     onChange={(e) => handleInputChange(e, "status")}
                   >
                     <option value="Новий">Новий</option>

@@ -667,9 +667,7 @@ const OrderPlacement = () => {
                                         onClick={() =>
                                           handleWarehouseSelect(
                                             warehouse.Description
-                                          )
-                                        }
-                                      >
+                                          )}>
                                         <CityItem>
                                           {warehouse.Description}
                                         </CityItem>
@@ -764,7 +762,6 @@ const OrderPlacement = () => {
                       ))}
                     </tbody>
                   </table>
-
                   <Amount style={{ fontWeight: "bold" }}>
                     Загальна сума: {totalCost} грн
                   </Amount>
@@ -797,7 +794,3 @@ export default OrderPlacement;
 //430
 //619
 //792
-//863
-
-
-//834

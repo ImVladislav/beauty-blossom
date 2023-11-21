@@ -58,7 +58,6 @@ const CartModal = ({ closeModal }) => {
   );
 
   useEffect(() => {
-    // Якщо користувач увійшов в систему, вивантажити його корзину з бекенду
     if (isLoggedIn) {
       fetchUserCart();
     }
