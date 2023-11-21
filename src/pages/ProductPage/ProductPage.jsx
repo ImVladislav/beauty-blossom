@@ -95,7 +95,11 @@ const ProductPage = () => {
 
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
-    if (newQuantity >= 1) {
+    if (
+      !isNaN(newQuantity) &&
+      newQuantity >= 1 &&
+      newQuantity <= product.amount
+    ) {
       setQuantity(newQuantity);
     }
   };
@@ -157,7 +161,7 @@ const ProductPage = () => {
                     max={product.amount}
                     value={quantity}
                     onChange={handleQuantityChange}
-                    readOnly={true}
+                    // readOnly={true}
                   />
                   <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
                 </CounterBlock>

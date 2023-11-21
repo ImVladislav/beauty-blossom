@@ -93,7 +93,7 @@ export const refreshCurrentUser = createAsyncThunk(
     token.set(state.auth.token);
     try {
       const { data } = await axios.get("/auth/current");
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -2,6 +2,17 @@ import styled from "styled-components";
 import { ReactComponent as userIcon } from "../../images/newUser.svg";
 import { Field, ErrorMessage } from "formik";
 
+export const ModalLoader = styled.div`
+  min-width: 300px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 600px;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 900px;
+  }
+`;
+
 export const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;

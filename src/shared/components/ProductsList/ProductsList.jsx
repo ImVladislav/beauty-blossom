@@ -196,7 +196,7 @@ const ProductList = ({ items }) => {
               {/* Відображення списку товарів */}
 
               {currentProducts.map((item) => (
-                <ProductCard key={item.id} products={item} />
+                <ProductCard key={item.id || item.productId} products={item} />
               ))}
             </ProductListContainer>
           </WrapListProduct>
