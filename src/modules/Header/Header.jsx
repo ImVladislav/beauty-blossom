@@ -66,7 +66,8 @@ export const Header = () => {
    const [isBlack, setIsBlack] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(false);
   const toggleImage = () => {
-    setIsImageVisible(!isImageVisible);
+    setIsImageVisible(false);
+    localStorage.setItem("isFirstVisit", "true");
   };
 
 useEffect(() => {
@@ -74,8 +75,7 @@ useEffect(() => {
   setIsBlack(true);
 
   
-  if (isFirstVisit === "true") {
-    localStorage.setItem("isFirstVisit", "false");
+  if (isFirstVisit !== "true") {
     setIsImageVisible(true);
   }
 }, []);
@@ -126,11 +126,12 @@ useEffect(() => {
             position: "fixed",
             zIndex: 10000,
             top: "86%",
-            left: "5%",
+            left: "11%",
             fontSize: "smaller",
             fontWeight: "bolder",
             transition: "color 1s",
             color: isBlack ? "black" : "white",
+            textAlign: "center"
           }}
           >  знижки діють з 20.11 по 26.11</p>
           <button
