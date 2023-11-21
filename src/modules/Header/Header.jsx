@@ -63,20 +63,22 @@ export const Header = () => {
     setIsMenuOpen((state) => !state);
   };
   // пятниця
-   const [isBlack, setIsBlack] = useState(true);
-const [isImageVisible, setIsImageVisible] = useState(false);
+   const [isBlack, setIsBlack] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(false);
   const toggleImage = () => {
     setIsImageVisible(!isImageVisible);
   };
 
-  useEffect(() => {
-    const isFirstVisit = localStorage.getItem("isFirstVisit");
-    if (!isFirstVisit) {
-      localStorage.setItem("isFirstVisit", "true");
-      setIsImageVisible(true);
-    }
-  }, []);
+useEffect(() => {
+  const isFirstVisit = localStorage.getItem("isFirstVisit");
+  setIsBlack(true);
 
+  
+  if (isFirstVisit === "true") {
+    localStorage.setItem("isFirstVisit", "false");
+    setIsImageVisible(true);
+  }
+}, []);
   const toggleColor = () => {
     setIsBlack(!isBlack);
   };
