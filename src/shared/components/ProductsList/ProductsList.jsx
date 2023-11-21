@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -26,7 +26,6 @@ const ProductList = ({ items }) => {
   const itemsPerPage = 32;
   const navigate = useNavigate();
   const location = useLocation();
-  const searchRef = useRef(location);
 
   const optUser = useSelector(optUserSelector);
 
@@ -77,7 +76,7 @@ const ProductList = ({ items }) => {
     }
 
     setFilteredProducts(filtered);
-  }, [filter, items]);
+  }, [filter, items, optUser]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);

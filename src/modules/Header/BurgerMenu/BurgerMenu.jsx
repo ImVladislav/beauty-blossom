@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { loggedInSelector } from "../../../redux/auth/selectors";
 
 const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
+  // eslint-disable-next-line
   const [menuOpen, setMenuOpen] = useState(true);
   const [contacts, setContacts] = useState(false);
 
@@ -25,7 +26,7 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
   const handleContactTogle = () => {
     setContacts(!contacts);
   };
-  const isLogin = useSelector(loggedInSelector)
+  const isLogin = useSelector(loggedInSelector);
 
   return (
     <MobileMenuContainer
@@ -53,17 +54,17 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
           gap: "3px",
         }}
       >
-        {isLogin && 
+        {isLogin && (
           <>
-        <InfoStylesLink to="/cabinet/userData">
-          Особистий кабінет
-        </InfoStylesLink>
-          
-        <InfoStylesLink onClick={closeMenu} to="/cabinet/history">
-          Історія замовлень
-          </InfoStylesLink>
+            <InfoStylesLink to="/cabinet/userData">
+              Особистий кабінет
+            </InfoStylesLink>
+
+            <InfoStylesLink onClick={closeMenu} to="/cabinet/history">
+              Історія замовлень
+            </InfoStylesLink>
           </>
-        }
+        )}
         <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">
           Повернення та обмін
         </InfoLink>

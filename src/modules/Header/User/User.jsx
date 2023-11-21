@@ -25,7 +25,7 @@ import {
   Underline,
 } from "./user.styled";
 
-const LogIn = () => {
+const User = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [loginOrRegister, setLoginOrRegister] = useState(false);
@@ -140,4 +140,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default User;
