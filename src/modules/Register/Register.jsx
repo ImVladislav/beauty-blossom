@@ -40,6 +40,7 @@ const Register = ({ onRegisterSuccess, opt }) => {
     socialMedia: false,
     optUser: false,
   };
+
   const [IsRegistered, setIsRegistered] = useState(false);
   const [isLoading, setIsLoading] = useState(false); //Loder
 
@@ -88,7 +89,12 @@ const Register = ({ onRegisterSuccess, opt }) => {
   });
 
   const onSubmit = (values) => {
-    registerDispatch(values);
+    if (opt) {
+      const data = { ...values, optUser: true };
+      registerDispatch(data);
+    } else {
+      registerDispatch(values);
+    }
   };
 
   if (isLoading) {
@@ -118,8 +124,7 @@ const Register = ({ onRegisterSuccess, opt }) => {
                   Ви успішно зареєструвалися, авторизуйтеся
                 </p>
               )}
-
-              <Login />
+              {!opt && <Login />}
             </>
           ) : (
             <RegisterWrapper>

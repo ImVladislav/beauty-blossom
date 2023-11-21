@@ -24,6 +24,7 @@ import {
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
+  // eslint-disable-next-line
   const [activeSubSubMenu, setActiveSubSubMenu] = useState(null);
   const items = useSelector(selectGoods);
   const dispatch = useDispatch();

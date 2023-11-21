@@ -7,11 +7,7 @@ import { toast } from "react-toastify";
 
 import { addToCart } from "../../redux/cart/slice";
 import { selectGoods } from "../../redux/products/selectors";
-import {
-  _idSelector,
-  loggedInSelector,
-  optUserSelector,
-} from "../../redux/auth/selectors";
+import { loggedInSelector, optUserSelector } from "../../redux/auth/selectors";
 import { selectCart } from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";

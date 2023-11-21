@@ -61,6 +61,7 @@ const CartModal = ({ closeModal }) => {
     if (isLoggedIn) {
       fetchUserCart();
     }
+    // eslint-disable-next-line
   }, [isLoggedIn, dispatch]);
 
   const fetchUserCart = async () => {
