@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
+import { toast } from "react-toastify";
+
+import Button from "../../shared/components/Button/Button";
+import { Loader } from "../../shared/components/Loader/Loader";
+
+import { login } from "../../redux/auth/operation";
 
 import {
   InputField,
@@ -8,14 +17,8 @@ import {
   ButtonWrapper,
   LoginWrapper,
   Message,
+  ModalLoader,
 } from "./Login.styled";
-
-import Button from "../../shared/components/Button/Button";
-import * as Yup from "yup";
-import { Formik, Form } from "formik";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/operation";
-import { toast } from "react-toastify";
 
 const Login = () => {
   const initialValues = {
@@ -23,10 +26,12 @@ const Login = () => {
     password: "",
   };
   const [IsLogined, setIsLogined] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); //Loder
 
   const dispatch = useDispatch();
 
   const loginDispatch = (data) => {
+    setIsLoading(true);
     dispatch(login(data))
       .then((response) => {
         if (response.payload === "Email or password invalid") {
@@ -35,13 +40,16 @@ const Login = () => {
 
         if (response.type === "auth/login/fulfilled") {
           setIsLogined(true);
+          setIsLoading(false);
         } else {
           setIsLogined(false);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Сталася помилка:", error);
         setIsLogined(false);
+        setIsLoading(false);
       });
   };
 
@@ -57,6 +65,14 @@ const Login = () => {
   const onSubmit = (values) => {
     loginDispatch(values);
   };
+
+  if (isLoading) {
+    return (
+      <ModalLoader>
+        <Loader pageHeight="20vh" />
+      </ModalLoader>
+    );
+  }
 
   return (
     <Formik

@@ -80,13 +80,15 @@ const ProductCard = ({ products }) => {
   const isProductUnavailable = products.amount <= 0;
 
   const handleQuantityChange = (event) => {
-    console.log(event.curentTarget);
-    const newQuantity = parseInt(event.curentTarget.value, 10);
-    if (newQuantity >= 1) {
+    const newQuantity = parseInt(event.currentTarget.value, 10);
+    if (
+      !isNaN(newQuantity) &&
+      newQuantity >= 1 &&
+      newQuantity <= products.amount
+    ) {
       setQuantity(newQuantity);
     }
   };
-
   const incrementQuantity = () => {
     if (products.amount > quantity) {
       setQuantity(quantity + 1);
@@ -107,7 +109,7 @@ const ProductCard = ({ products }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <LinkStyle to={`/product/${products.id}`}>
+          <LinkStyle to={`/product/${products.id || products.productId}`}>
             <div></div>
             <ImageWrap>
               <Image src={products.images} alt={products.name} />
@@ -134,7 +136,7 @@ const ProductCard = ({ products }) => {
                 max={products.amount}
                 value={quantity}
                 onChange={handleQuantityChange}
-                readOnly={true}
+                // readOnly={true}
               />
               <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
             </CounterBlock>

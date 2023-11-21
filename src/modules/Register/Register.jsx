@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
+
+import Button from "../../shared/components/Button/Button";
+import Login from "../Login/Login";
+import { Loader } from "../../shared/components/Loader/Loader";
+
+import { register } from "../../redux/auth/operation";
 
 import {
   RegisterWrapper,
@@ -14,15 +23,8 @@ import {
   LoginModalText,
   LableChekbox,
   Title,
+  ModalLoader,
 } from "./Register.styled";
-
-import Button from "../../shared/components/Button/Button";
-import * as Yup from "yup";
-import { Formik, Form } from "formik";
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operation";
-
-import Login from "../Login/Login";
 
 const Register = ({ onRegisterSuccess, opt }) => {
   const initialValues = {
@@ -39,22 +41,27 @@ const Register = ({ onRegisterSuccess, opt }) => {
     optUser: false,
   };
   const [IsRegistered, setIsRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); //Loder
 
   const dispatch = useDispatch();
 
   const registerDispatch = (data) => {
+    setIsLoading(true);
     dispatch(register(data))
       .then((response) => {
         if (response.type === "auth/register/fulfilled") {
           onRegisterSuccess();
           setIsRegistered(true);
+          setIsLoading(false);
         } else {
           setIsRegistered(false);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         console.error("Сталася помилка:", error);
         setIsRegistered(false);
+        setIsLoading(false);
       });
   };
 
@@ -83,6 +90,14 @@ const Register = ({ onRegisterSuccess, opt }) => {
   const onSubmit = (values) => {
     registerDispatch(values);
   };
+
+  if (isLoading) {
+    return (
+      <ModalLoader>
+        <Loader pageHeight="20vh" />
+      </ModalLoader>
+    );
+  }
 
   return (
     <Formik
@@ -135,14 +150,14 @@ const Register = ({ onRegisterSuccess, opt }) => {
                     <Message name="lastName" component="div" />
                   </WrapInput>
                 </Wrap>
-                {/* <WrapInput> */}
+
                 <Wrap>
                   <WrapInput>
                     <LableInput htmlFor="number">Телефон</LableInput>
                     <InputField type="tel" name="number" />
                     <Message name="number" component="div" />
                   </WrapInput>
-                  {/* </WrapInput> */}
+
                   {opt && (
                     <WrapInput>
                       <LableInput htmlFor="city">Місто</LableInput>
