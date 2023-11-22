@@ -34,7 +34,7 @@ export const LinkRetinol = styled(Link)`
   align-items: center;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
-  font-size: ${(p) => p.theme.fontSizes.xxs};
+  font-size: ${(p) => p.theme.fontSizes.xxs}px;
   color: #ec1c1c;
   padding: 7px 30px;
   transition: all 250ms ease-in-out;

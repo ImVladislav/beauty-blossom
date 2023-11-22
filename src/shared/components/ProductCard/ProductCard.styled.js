@@ -86,7 +86,7 @@ export const Price = styled.p`
   align-self: center;
   color: ${(p) => p.theme.colors.textColor};
   font-size: ${(p) => p.theme.fontSizes.m}px;
-  font-weight: ${(p) => p.theme.fontWeights.textColor};
+  font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: 1.2;
   text-align: center;
   display: flex;

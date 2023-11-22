@@ -51,7 +51,7 @@ export const ModalShopingList = styled.div`
 export const ModalTitle = styled.h2`
   margin: -6px 0 12px -2px;
   font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: normal;
+  font-weight: ${(p) => p.theme.fontWeights.body};
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
@@ -274,7 +274,7 @@ export const Amount = styled.p`
   text-align: end;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   margin: 10px;
-  font-weight: 500;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
 
   @media (min-width: 1024px) and (max-width: 1439px) {
     font-size: ${(p) => p.theme.fontSizes.l + 2}px;

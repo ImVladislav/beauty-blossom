@@ -67,8 +67,6 @@ export const Title = styled.h2`
   color: ${(p) => p.theme.colors.accentColor};
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
-    font-weight: ${(p) => p.theme.fontWeights.bold};
-    color: ${(p) => p.theme.colors.accentColor};
   }
 `;
 
@@ -80,9 +78,6 @@ export const Text = styled.p`
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    font-weight: ${(p) => p.theme.fontWeights.body};
-    color: ${(p) => p.theme.colors.accentColor};
-    margin-bottom: 30px;
   }
 `;
 
@@ -96,8 +91,6 @@ export const TextSecond = styled.p`
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    font-weight: ${(p) => p.theme.fontWeights.body};
-    color: ${(p) => p.theme.colors.accentColor};
     margin-bottom: 30px;
   }
 `;
@@ -144,9 +137,6 @@ export const TextСonditions = styled.p`
   @media screen and (min-width: 768px) {
     bottom: 8%;
     right: 10%;
-    font-size: ${(p) => p.theme.fontSizes.xxs}px;
-    font-weight: ${(p) => p.theme.fontWeights.body};
-    color: ${(p) => p.theme.colors.accentColor};
     margin-right: 30px;
   }
   @media screen and (min-width: 1024px) {
