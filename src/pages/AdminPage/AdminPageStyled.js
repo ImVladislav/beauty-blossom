@@ -23,7 +23,7 @@ export const StyledTr = styled.tr`
         font-size: 18px;
     }        
     &.yellow-row  {
-      background-color: yellow; 
+      background-color: #ffbb86; 
     }
         &.selected-order {
           background-color: #FFE9C9; 
@@ -80,6 +80,34 @@ export const Td = styled.td`
   border: 1px solid black;
   cursor: pointer;
 
+
+        @media (max-width: 767px) {
+    font-size: 12px;
+}
+      @media (min-width: 768px) and (max-width: 1023px) {
+  font-size: 14px;
+}
+    @media (min-width: 1024px) and (max-width: 1439px) {
+  font-size: 16px;
+}
+      @media (min-width: 1440px) {
+   
+    font-size: 18px;
+  
+}
+`
+
+export const TdStatus = styled.td`
+  
+  border: 1px solid black;
+  cursor: pointer;
+   background-color: ${props => props.status === 'Новий' && 'green' };
+   background-color: ${props => props.status === 'Прийняте в роботу' && '#54ae1b' };
+   background-color: ${props => props.status === 'Збирається' && '#a0be23' };
+   background-color: ${props => props.status === 'Зібрано' && '#e3d600' };
+   background-color: ${props => props.status === 'Відправлено' && '#fef004' };
+   background-color: ${props => props.status === 'Відміна' && 'red' };
+    color: black;
 
         @media (max-width: 767px) {
     font-size: 12px;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminDetail from '../../modules/AminPannel/AdminDetail';
 import { Container } from '../../shared/styles/Container';
-import { AdminBlock, Button, FilterInput, NavigateBlock, StyledTr, Table, Td, Th } from './AdminPageStyled';
+import { AdminBlock, Button, FilterInput, NavigateBlock, StyledTr, Table, Td, TdStatus, Th } from './AdminPageStyled';
 import AdminFeedbackPage from './AdminFeedbackPage';
 
 
@@ -132,19 +132,15 @@ const handleOrderClick = (order) => {
           </thead>
           <tbody>
             {filteredOrders.slice().reverse().map(order => (
-        <StyledTr
-          key={order._id}
-          onClick={() => handleOrderClick(order)}
-           className={`order-row ${selectedOrder && selectedOrder._id === order._id ? 'selected-order' : ''} ${order.isOptUser ? 'yellow-row' : ''}`}
-        >
-          <Td>{order.orderNumber}</Td>
-          <Td>{order.createdAt.substr(0, 10)}</Td>
-          <Td>{order.firstName} {order.lastName}</Td>
-          <Td>{order.number} {order.email}</Td>
-          <Td>{order.amount} грн</Td>
-          <Td>{order.status}</Td>
-          <Td>{order.paymentMethod}</Td>
-        </StyledTr>
+<StyledTr key={order._id} onClick={() => handleOrderClick(order)} className={`order-row ${selectedOrder && selectedOrder._id === order._id ? 'selected-order' : ''} ${order.isOptUser ? 'yellow-row' : ''}`}>
+  <Td>{order.orderNumber}</Td>
+  <Td>{order.createdAt.substr(0, 10)}</Td>
+  <Td>{order.firstName} {order.lastName}</Td>
+  <Td>{order.number} {order.email}</Td>
+  <Td>{order.amount} грн</Td>
+  <TdStatus status={order.status}>{order.status}</TdStatus>
+  <Td>{order.paymentMethod}</Td>
+</StyledTr>
             ))}
          
           </tbody>
