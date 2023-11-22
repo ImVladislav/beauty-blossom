@@ -197,43 +197,37 @@ export const LoginModalText = styled.label`
   display: flex;
   justify-content: center;
   margin-top: 20px;
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-style: normal;
-  font-weight: bold;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: 1;
   letter-spacing: 0.225px;
   @media screen and (min-width: 768px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
     margin-top: 0px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
 
   @media screen and (min-width: 1440px) {
     margin-left: 30px;
     text-align: center;
-
-    font-size: 18px;
-    font-style: normal;
-
-    line-height: 1;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
     letter-spacing: 0.375px;
-
-    display: flex;
     align-self: center;
   }
 `;
 
 export const LableChekbox = styled.label`
-  font-size: 12px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   @media screen and (min-width: 768px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 18px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;

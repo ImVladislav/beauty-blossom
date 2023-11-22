@@ -26,7 +26,7 @@ export const BrandItem = styled.li`
 
 export const Title = styled.h3`
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
-  font-weight: ${(p) => p.theme.fontSizes.body};
+  font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.textColor};
 
   @media screen and (min-width: 1440px) {
@@ -50,7 +50,7 @@ export const BrandName = styled(NavLink)`
   text-decoration: none;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
 
-  font-weight: ${(p) => p.theme.fontSizes.body};
+  font-weight: ${(p) => p.theme.fontWeights.body};
 
   color: ${(p) => p.theme.colors.accentColorText};
   &:hover,

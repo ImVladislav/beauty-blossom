@@ -5,16 +5,15 @@ import { HiMenu } from "react-icons/hi";
 export const ContainerHeader = styled.div`
   position: relative;
   z-index: 1;
-  background: white;
-  /* margin-bottom: 30px; */
+  background: ${(p) => p.theme.colors.white};
 `;
 export const ContainerMobile = styled.div`
   position: relative;
-  background: white;
+  background: ${(p) => p.theme.colors.white};
   z-index: 1;
 `;
 export const Container = styled.div`
-  background: white;
+  background: ${(p) => p.theme.colors.white};
 `;
 export const HeaderTop = styled.div`
   color: ${(p) => p.theme.colors.textColor};
@@ -29,9 +28,6 @@ export const HeaderWrap = styled.div`
   @media screen and (min-width: 1024px) {
     max-width: 1440px;
   }
-  /* @media screen and (min-width: 1440px) {
-    max-width: 1440px;
-  } */
 `;
 export const HeaderLayout = styled.div`
   height: 100px;
@@ -41,7 +37,6 @@ export const HeaderLayout = styled.div`
   align-items: center;
 `;
 export const WrapTop = styled.div`
-  /* padding-right: 12px; */
   display: flex;
   align-items: center;
   max-width: 100%;
@@ -81,11 +76,8 @@ export const LoginShipingThumb = styled.div`
 
 export const CartQuantityWrap = styled.div`
   position: absolute;
-
   top: 0;
-
   background: ${(p) => p.theme.colors.accentColor};
-
   width: 15px;
   height: 15px;
   border-radius: 10px;
@@ -96,7 +88,7 @@ export const CartQuantityWrap = styled.div`
 `;
 export const CartQuantitySpan = styled.span`
   color: ${(p) => p.theme.colors.white};
-  font-size: 10px;
+  font-size: ${(p) => p.theme.fontSizes.xxs}px;
 `;
 
 export const Link = styled.a`
@@ -113,8 +105,6 @@ export const MenuBottom = styled.div`
   margin: -20px 0 20px;
   background: ${(p) =>
     p.$pathname === "/" ? p.theme.colors.white : p.theme.colors.topHeaderLine};
-  /* background: ${(p) => p.theme.colors.topHeaderLine}; */
-  /* background: ${(p) => p.theme.colors.menuHover}; */
   color: ${(p) => p.theme.colors.textColor};
 `;
 export const MenuWrap = styled.div`
@@ -142,7 +132,7 @@ export const MenuSection = styled.div`
   max-width: 100%;
   display: inline-block;
   vertical-align: middle;
-  font-size: 14px;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
   text-align: left;
 `;
 export const MenuProducts = styled.div`
@@ -157,7 +147,7 @@ export const TopWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 3px 28px;
-  background: #fff6e9;
+  background: ${(p) => p.theme.colors.topHeaderLine};
 `;
 
 export const ButtonMenu = styled.button`
@@ -183,14 +173,12 @@ export const MenuIcon = styled(HiMenu)`
   height: 35px;
 `;
 export const Schedule = styled.p`
-  color: #504056;
-
+  color: ${(p) => p.theme.colors.textColor};
   text-align: center;
-
-  font-size: 9px;
+  font-size: ${(p) => p.theme.fontSizes.xxxs + 1}px;
   font-style: normal;
-  font-weight: 400;
-  line-height: 118.9%; /* 10.701px */
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: 1.2;
   letter-spacing: -0.135px;
 `;
 export const CenterWrap = styled.div`
@@ -198,8 +186,6 @@ export const CenterWrap = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 3px 5px 3px 30px;
-  @media screen and (min-width: 768px) {
-  }
   @media screen and (min-width: 1024px) {
     padding: 3px 23px 3px 30px;
   }
@@ -207,19 +193,18 @@ export const CenterWrap = styled.div`
 
 export const IconWrap = styled.div`
   display: flex;
-
   align-items: flex-end;
 `;
 
 export const NameUser = styled.p`
-  font-size: 10px;
+  font-size: ${(p) => p.theme.fontSizes.xxs}px;
   @media screen and (min-width: 768px) {
-    font-size: 12px;
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 14px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 16px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
 `;
