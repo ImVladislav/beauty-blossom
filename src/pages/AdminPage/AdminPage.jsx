@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminDetail from '../../modules/AminPannel/AdminDetail';
 import { Container } from '../../shared/styles/Container';
@@ -30,7 +30,7 @@ const AdminPage = () => {
     order.paymentMethod.includes(paymentMethodFilter)
   );
 });
-  
+
   useEffect(() => {
     axios.get('https://beauty-blossom-backend.onrender.com/api/orders')
       .then(response => {
@@ -41,7 +41,7 @@ const AdminPage = () => {
       .catch(error => {
         console.error('Помилка отримання даних про замовлення', error);
       });
-  }, [orders]);
+  }, [selectedOrder]);
 
 const handleOrderClick = (order) => {
   if (selectedOrder && selectedOrder._id === order._id) {
@@ -52,7 +52,6 @@ const handleOrderClick = (order) => {
     setSelectedOrder(order);
   }
 };
-
 
  return (
     <Container>

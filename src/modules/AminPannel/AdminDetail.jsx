@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
-  
+
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -75,7 +75,7 @@ const handleInputChange = (e, fieldName) => {
     [fieldName]: value,
   }));
   };
-  
+
   return (
     <div>
       <h2>Детальна інформація про замовлення</h2>
