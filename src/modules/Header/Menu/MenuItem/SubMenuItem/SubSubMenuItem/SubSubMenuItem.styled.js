@@ -23,7 +23,7 @@ export const Link = styled(NavLink)`
   font-weight: ${(p) => p.theme.fontWeights.body};
   display: flex;
   align-items: center;
-  padding: 5px 20px;
+  padding: 10px 20px;
   &.active {
     color: ${(p) => p.theme.colors.accentColor};
   }
@@ -57,11 +57,10 @@ export const DownIcon = styled(AiOutlineDown)`
 `;
 
 export const ListSub = styled.ul`
-  min-width: 220px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  min-height: 450px;
+  min-height: 380px;
   border-radius: 10px;
   position: absolute;
   left: 100%;
