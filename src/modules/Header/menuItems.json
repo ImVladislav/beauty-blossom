@@ -170,7 +170,7 @@
         "children": [
           {
             "to": "/category/makeup/forFace",
-            "text": "Для обличчя",
+            "text": "Для лиця",
             "children": [
               {
                 "to": "/category/makeup/forFace/bbCream",
@@ -255,12 +255,17 @@
               },
               {
                 "to": "/category/hairCare/additionalCare/hairOil",
-                "text": "Масло для волосся",
+                "text": "Олія для волосся",
                 "children": []
               },
               {
                 "to": "/category/hairCare/additionalCare/hairSpray",
                 "text": "Спрей для волосся",
+                "children": []
+              },
+              {
+                "to": "/category/hairCare/additionalCare/hairSerum",
+                "text": "Сироватки для волосся",
                 "children": []
               }
             ]
@@ -307,6 +312,25 @@
       },
       {
         "level": 2,
+        "to": "/category/home",
+        "text": "Дім",
+        "children": [
+          {
+            "level": 3,
+            "to": "/category/home/armlocor",
+            "text": "Аромадифузори",
+            "children": []
+          },
+          {
+            "level": 3,
+            "to": "/category/home/aromas",
+            "text": "Аромасвічки",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
         "to": "/category/demacia",
         "text": "Демакіяж",
         "children": []
@@ -315,6 +339,12 @@
         "level": 2,
         "to": "/category/sunProtection",
         "text": "Захист від сонця",
+        "children": []
+      },
+      {
+        "level": 2,
+        "to": "/category/samples",
+        "text": "Пробники",
         "children": []
       }
     ]
