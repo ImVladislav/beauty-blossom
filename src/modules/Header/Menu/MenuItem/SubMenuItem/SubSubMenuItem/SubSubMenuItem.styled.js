@@ -61,7 +61,7 @@ export const ListSub = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-height: 320px;
+  min-height: 450px;
   border-radius: 10px;
   position: absolute;
   left: 100%;
