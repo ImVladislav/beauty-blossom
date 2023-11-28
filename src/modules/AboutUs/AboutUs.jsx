@@ -48,9 +48,6 @@ const AboutUs = () => {
         <BenefitsItem>
           <TextItem>Індивідуальний підхід</TextItem>
         </BenefitsItem>
-        {/* <BenefitsItem>
-          <TextItem>Експертність</TextItem>
-        </BenefitsItem> */}
         <BenefitsItem>
           <TextItem>Широкий асортимент та конкурентні ціни</TextItem>
         </BenefitsItem>

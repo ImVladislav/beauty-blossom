@@ -10,7 +10,7 @@ export const AboutUsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h3`
+export const Title = styled.h1`
   margin-bottom: 30px;
   color: ${(p) => p.theme.colors.accentColor};
   display: flex;
