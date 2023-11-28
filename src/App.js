@@ -175,7 +175,7 @@ import { useMedia } from "./hooks/useMedia";
 
 function App() {
   const { isMobileScreen } = useMedia();
-  // const [goodsData, setGoodsData] = useState(null);
+
   const isRefreshing = useSelector(refreshSelector);
 
   const dispatch = useDispatch();
@@ -343,6 +343,8 @@ function App() {
       </Routes>
       {!isMobileScreen && <ScrollToTopMobile />}
     </ThemeProvider>
-  ) : null;
+  ) : (
+    <Loader />
+  );
 }
 export default App;

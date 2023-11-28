@@ -5,7 +5,7 @@ import { createSelector } from "@reduxjs/toolkit";
 // export const getProducts = (store) => store.products;
 export const selectGoods = (store) => store.goods.items;
 export const selectNewPost = (store) => store.selectNewPost;
-
+export const refreshSelectorGoods = (state) => state.goods.isRefreshing;
 // export const goodsSelector = createSelector(
 //   (state) => state.products, // Це посилається на ваш редюсер для товарів
 //   (products) => products.items // Це вибирає поле 'items' зі стейту редюсера товарів
