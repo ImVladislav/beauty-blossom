@@ -1,14 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.b04bdbd5.css",
-    "main.js": "/static/js/main.d16b0ddc.js",
-    "static/media/productsBaner.png": "/static/media/productsBaner.18b024626765c2c6f62a.png",
-    "static/media/mp.png": "/static/media/mp.7f77aee467031567b88f.png",
-    "static/media/banner.png": "/static/media/banner.6420317f52af6db847fc.png",
-    "static/media/flowers.png": "/static/media/flowers.d6e76324004b053b5936.png",
+    "main.js": "/static/js/main.902d7a52.js",
+    "static/media/BannerProduct.png": "/static/media/BannerProduct.f171ded4fbf2dcc31419.png",
     "static/media/purito.png": "/static/media/purito.a9d2fe631b89ee2fe28b.png",
     "static/media/retinol.png": "/static/media/retinol.367bc42961c434fd5055.png",
+    "static/media/Banner.jpg": "/static/media/Banner.12867d0d9f67940e111a.jpg",
     "static/media/DAENG-GI-MEO-RI.svg": "/static/media/DAENG-GI-MEO-RI.d7929203094c6c8a3af7899b4587c042.svg",
+    "index.html": "/index.html",
     "static/media/Esthetic-House.svg": "/static/media/Esthetic-House.109e47cf57588493365999f3ea647183.svg",
     "static/media/medi_peel_logo.svg": "/static/media/medi_peel_logo.9440fec6a33b8195c856fc337deb031c.svg",
     "static/media/newPhone.svg": "/static/media/newPhone.2be61d464c40ba3654751df69b5fd4a5.svg",
@@ -17,14 +16,13 @@
     "static/media/La_dor.svg": "/static/media/La_dor.cf9e6ae9036e416d2f706f762f72a8d7.svg",
     "static/media/Masil.svg": "/static/media/Masil.139aec2ceec7f7e01fa5c4c3807cac97.svg",
     "static/media/newCorzina.svg": "/static/media/newCorzina.4d0dd0c395906599dc4837043639a501.svg",
-    "index.html": "/index.html",
     "static/media/newEmail.svg": "/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "static/media/NextPrev.svg": "/static/media/NextPrev.44749ddfef4592da8fb6a5be0bd5bc91.svg",
     "main.b04bdbd5.css.map": "/static/css/main.b04bdbd5.css.map",
-    "main.d16b0ddc.js.map": "/static/js/main.d16b0ddc.js.map"
+    "main.902d7a52.js.map": "/static/js/main.902d7a52.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.d16b0ddc.js"
+    "static/js/main.902d7a52.js"
   ]
 }
