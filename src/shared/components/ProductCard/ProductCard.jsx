@@ -112,18 +112,22 @@ const ProductCard = ({ products }) => {
           <LinkStyle to={`/product/${products.id || products.productId}`}>
             <div></div>
             <ImageWrap>
-              <Image src={products.images} alt={products.name} />
+              <Image
+                itemprop="image"
+                src={products.images}
+                alt={products.name}
+              />
               <ProductTags>
                 {products.new && <Sticker text="Новинка" />}
                 {products.sale && <Sticker text="Знижка" sale />}
               </ProductTags>
             </ImageWrap>
-            <Content>
-              <Name>{products.name}</Name>
+            <Content itemscope itemtype="https://schema.org/Product">
+              <Name itemprop="name">{products.name}</Name>
               {optUser ? (
                 <Price>{products.priceOPT} ₴</Price>
               ) : (
-                <Price>{products.price} ₴</Price>
+                <Price itemprop="price">{products.price} ₴</Price>
               )}
             </Content>
           </LinkStyle>

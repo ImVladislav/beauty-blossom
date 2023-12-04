@@ -1,5 +1,6 @@
 import React from "react";
-import mp from "../../images/mp.png";
+import mp from "../../images/BannerProduct.png";
+import banner from "../../images/Banner.jpg"
 import {
   WrapBackground,
   Background,
@@ -12,24 +13,24 @@ import {
   TextSecond,
   LinkBtn,
   TextСonditions,
+  Banner,
 } from "./Hero.styled.js";
 const Hero = () => {
   return (
     <>
       <WrapBackground>
         <Background>
-          <div>
+            <Banner src={banner} alt= "bannerOmh" />
+          {/* <div> */}
             <HeroWrap>
-              <div>
-                <Product src={mp} alt="banner" />
-              </div>
+              {/* <div> */}
+              {/* </div> */}
               <Wraper>
                 <TextWrap>
-                  <Title>MEDI-PEEL</Title>
-                  <Text>Молодість, краса та розкіш</Text>
+                  <Title>Pyunkang Yul</Title>
+                  {/* <Text>Молодість, краса та розкіш</Text> */}
                   <TextSecond>
-                    Нова лінійка бренду <br />з комбучею та гіалуроновою
-                    кислотою
+                    Чиста та здорова шкіра завдяки натуральним компонентам
                   </TextSecond>
                   <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
                 </TextWrap>
@@ -37,8 +38,10 @@ const Hero = () => {
                   <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
                 </div>
               </Wraper>
-            </HeroWrap>
-          </div>
+                <Product src={mp} alt="productBanner" />
+              </HeroWrap>
+             
+          {/* </div> */}
         </Background>
       </WrapBackground>
     </>

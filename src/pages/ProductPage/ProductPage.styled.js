@@ -100,6 +100,16 @@ export const ProductCode = styled.p`
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
 `;
+export const ProductCountry = styled.p`
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  line-height: normal;
+  margin: 5px 0;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
+`;
 export const ProductBrand = styled.p`
   font-size: ${(p) => p.theme.fontSizes.s}px;
   font-style: normal;

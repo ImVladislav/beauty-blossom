@@ -35,6 +35,7 @@ import {
   ProductCode,
   ProductArticleSpan,
   ProductTags,
+  ProductCountry,
 } from "./ProductPage.styled";
 
 const ProductPage = () => {
@@ -126,7 +127,11 @@ const ProductPage = () => {
       ) : (
         <PageContainer>
           <ImageWrap>
-            <ProductImage src={product.images} alt={product.name} />
+            <ProductImage
+              itemprop="image"
+              src={product.images}
+              alt={product.name}
+            />
             <ProductTags>
               {product.new && <Sticker text="Новинка" />}
               {product.sale && <Sticker text="Знижка" sale />}
@@ -134,13 +139,15 @@ const ProductPage = () => {
           </ImageWrap>
           <Info>
             <WrapName>
-              <ProductName>{product.name}</ProductName>
+              <div itemscope itemtype="https://schema.org/Product"></div>
+              <ProductName itemprop="name">{product.name}</ProductName>
               <ProductArticle>
                 <ProductArticleSpan>Артикул</ProductArticleSpan>
                 {product.article}
               </ProductArticle>
             </WrapName>
             <ProductCode>Штрих-код: {product.code}</ProductCode>
+            <ProductCountry>Країна виробник {product.country}</ProductCountry>
             <ProductBrand> {product.brand}</ProductBrand>
             {optUser ? (
               <ProductPrice>{product.priceOPT} ₴</ProductPrice>
@@ -183,7 +190,9 @@ const ProductPage = () => {
           ></SecondButton> */}
 
             <ProductTitleDescription>Опис</ProductTitleDescription>
-            <ProductDescription>{product.description}</ProductDescription>
+            <ProductDescription itemprop="description">
+              {product.description}
+            </ProductDescription>
 
             {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
           </Info>

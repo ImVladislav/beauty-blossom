@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import flowers from "../../images/flowers.png";
+import flowers from "../../images/Banner.jpg";
 
 export const Bgd = styled.div`
   background-size: cover;
