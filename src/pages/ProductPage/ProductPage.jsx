@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import { addToCart } from "../../redux/cart/slice";
 import { selectGoods } from "../../redux/products/selectors";
-import { loggedInSelector, optUserSelector } from "../../redux/auth/selectors";
+import {
+  isAdminSelector,
+  loggedInSelector,
+  optUserSelector,
+} from "../../redux/auth/selectors";
 import { selectCart } from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";
@@ -41,6 +44,7 @@ import {
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
   const [quantity, setQuantity] = useState(1);
+  const [amount, setAmount] = useState(null);
   const { id } = useParams();
   const dispatch = useDispatch();
   const products = useSelector(selectGoods);
@@ -48,6 +52,7 @@ const ProductPage = () => {
   const optUser = useSelector(optUserSelector);
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
+  const isAdmin = useSelector(isAdminSelector);
 
   useEffect(() => {
     setLoading(false);
@@ -90,6 +95,42 @@ const ProductPage = () => {
     }
   };
 
+  const changeAmount = (event) => {
+    setAmount(event.target.value);
+  };
+
+  useEffect(() => {
+    setAmount(product.amount);
+  }, [product.amount]);
+
+  const changeProductAmount = async (productItem) => {
+    try {
+      await axios.put(`/goods/${productItem._id}`, {
+        name: productItem.name,
+        article: productItem.article,
+        code: productItem.code,
+        amount: amount,
+        description: productItem.description,
+        priceOPT: productItem.priceOPT,
+        price: productItem.price,
+        brand: productItem.brand,
+        images: productItem.images,
+        country: productItem.country,
+        new: productItem.new,
+        sale: productItem.sale,
+        category: productItem.category,
+        subCategory: productItem.subCategory,
+      });
+    } catch (error) {
+      console.error("Помилка зміни кількості товару", error);
+    }
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    changeProductAmount(product);
+  };
+
   const handleQuantityChange = (event) => {
     const newQuantity = parseInt(event.target.value, 10);
     if (
@@ -128,7 +169,7 @@ const ProductPage = () => {
         <PageContainer>
           <ImageWrap>
             <ProductImage
-              itemprop="image"
+              itemProp="image"
               src={product.images}
               alt={product.name}
             />
@@ -139,8 +180,8 @@ const ProductPage = () => {
           </ImageWrap>
           <Info>
             <WrapName>
-              <div itemscope itemtype="https://schema.org/Product"></div>
-              <ProductName itemprop="name">{product.name}</ProductName>
+              <div itemScope itemType="https://schema.org/Product"></div>
+              <ProductName itemProp="name">{product.name}</ProductName>
               <ProductArticle>
                 <ProductArticleSpan>Артикул</ProductArticleSpan>
                 {product.article}
@@ -170,6 +211,24 @@ const ProductPage = () => {
                 </CounterBlock>
               ))}
 
+            {isAdmin && (
+              <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
+                <CounterBlock>
+                  <InputIncDec
+                    type="number"
+                    value={amount}
+                    onChange={changeAmount}
+                  />
+                </CounterBlock>
+                <Button
+                  type="submit"
+                  goods
+                  text={"Обновити кілкість товару"}
+                  // onClick={handleChange}
+                />
+              </form>
+            )}
+
             <Button
               goods
               text={
@@ -190,7 +249,7 @@ const ProductPage = () => {
           ></SecondButton> */}
 
             <ProductTitleDescription>Опис</ProductTitleDescription>
-            <ProductDescription itemprop="description">
+            <ProductDescription itemProp="description">
               {product.description}
             </ProductDescription>
 

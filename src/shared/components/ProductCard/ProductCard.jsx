@@ -113,7 +113,7 @@ const ProductCard = ({ products }) => {
             <div></div>
             <ImageWrap>
               <Image
-                itemprop="image"
+                itemProp="image"
                 src={products.images}
                 alt={products.name}
               />
@@ -122,12 +122,12 @@ const ProductCard = ({ products }) => {
                 {products.sale && <Sticker text="Знижка" sale />}
               </ProductTags>
             </ImageWrap>
-            <Content itemscope itemtype="https://schema.org/Product">
-              <Name itemprop="name">{products.name}</Name>
+            <Content itemscope itemType="https://schema.org/Product">
+              <Name itemProp="name">{products.name}</Name>
               {optUser ? (
                 <Price>{products.priceOPT} ₴</Price>
               ) : (
-                <Price itemprop="price">{products.price} ₴</Price>
+                <Price itemProp="price">{products.price} ₴</Price>
               )}
             </Content>
           </LinkStyle>

@@ -47,7 +47,7 @@ export const ProductTags = styled.div`
   position: absolute;
   bottom: 60px;
 `;
-export const ProductName = styled.h2`
+export const ProductName = styled.h1`
   margin: 0 10px 10px 0;
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   text-align: justify;
