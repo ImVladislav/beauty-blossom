@@ -91,8 +91,6 @@ const ProductList = ({ items }) => {
     } else {
       setCurrentPage(1); // Оновлення currentPage відповідно до логіки
     }
-    // Підняття сторінки вгору
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location.search]);
 
   // Логіка для пагінації
@@ -106,6 +104,9 @@ const ProductList = ({ items }) => {
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const paginate = (pageNumber) => {
+    // Підняття сторінки вгору
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("filter", filter);
     searchParams.set("page", pageNumber);
