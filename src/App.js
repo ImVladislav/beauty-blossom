@@ -36,7 +36,7 @@ import sitemap from "../src/sitemap.xml";
 
 function App() {
   const { isMobileScreen } = useMedia();
-  console.log(sitemap);
+  // console.log(sitemap);
   const isRefreshing = useSelector(refreshSelector);
 
   const dispatch = useDispatch();

@@ -122,7 +122,7 @@ const ProductCard = ({ products }) => {
                 {products.sale && <Sticker text="Знижка" sale />}
               </ProductTags>
             </ImageWrap>
-            <Content itemscope itemType="https://schema.org/Product">
+            <Content $itemscope itemType="https://schema.org/Product">
               <Name itemProp="name">{products.name}</Name>
               {optUser ? (
                 <Price>{products.priceOPT} ₴</Price>
