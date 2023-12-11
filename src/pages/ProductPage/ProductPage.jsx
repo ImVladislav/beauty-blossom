@@ -180,7 +180,7 @@ const ProductPage = () => {
           </ImageWrap>
           <Info>
             <WrapName>
-              <div itemScope itemType="https://schema.org/Product"></div>
+              <div $itemScope itemType="https://schema.org/Product"></div>
               <ProductName itemProp="name">{product.name}</ProductName>
               <ProductArticle>
                 <ProductArticleSpan>Артикул</ProductArticleSpan>
