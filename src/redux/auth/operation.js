@@ -46,7 +46,7 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post("/auth/login", credentials);
       token.set(data.token);
-      // Зберігаємо токен в Local Storage
+
       localStorage.setItem("authToken", data.token);
 
       return data;
@@ -78,13 +78,6 @@ export const refreshCurrentUser = createAsyncThunk(
   "auth/refresh",
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
-    // const persistedToken = state.auth.token;
-
-    // if (persistedToken === null) {
-    //   return rejectWithValue("Unautorized");
-    // }
-
-    // token.set(persistedToken);
 
     if (!state.auth.token) {
       return rejectWithValue("Unautorized");
@@ -93,7 +86,7 @@ export const refreshCurrentUser = createAsyncThunk(
     token.set(state.auth.token);
     try {
       const { data } = await axios.get("/auth/current");
-      // console.log(data);
+
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -6,7 +6,7 @@ const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    setfilter: (state, { payload }) => {
+    setfilter: (_, { payload }) => {
       localStorage.setItem("filter", payload);
       return payload;
     },

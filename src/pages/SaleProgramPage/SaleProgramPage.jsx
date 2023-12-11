@@ -147,7 +147,7 @@ const SaleProgramPage = () => {
             Готово! Тепер ви можете оформляти замовлення на сайті та бачити
             історію своїх покупок.
           </Text>
-          {/* <OpenModal onClick={openModal}>Стати оптовим покупцем</OpenModal> */}
+
           <ButtonWrapper>
             <Button
               opt

@@ -5,7 +5,7 @@ export const BrandPageContainer = styled.ul`
   margin: 10px 0;
   display: grid;
   grid-gap: 10px;
-  /* Відступ між стовпцями та рядками */
+
   list-style: none;
   padding: 0;
   @media screen and (min-width: 768px) {
@@ -14,7 +14,7 @@ export const BrandPageContainer = styled.ul`
 
   @media screen and (min-width: 1440px) {
     grid-gap: 20px;
-    grid-template-columns: repeat(6, 1fr); /* 6 стовпців */
+    grid-template-columns: repeat(6, 1fr);
   }
 `;
 

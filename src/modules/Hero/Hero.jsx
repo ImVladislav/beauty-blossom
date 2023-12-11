@@ -1,6 +1,6 @@
 import React from "react";
 import mp from "../../images/BannerProduct.png";
-import banner from "../../images/Banner.jpg"
+import banner from "../../images/Banner.jpg";
 import {
   WrapBackground,
   Background,
@@ -9,7 +9,6 @@ import {
   Wraper,
   TextWrap,
   Title,
-  Text,
   TextSecond,
   LinkBtn,
   TextСonditions,
@@ -20,27 +19,27 @@ const Hero = () => {
     <>
       <WrapBackground>
         <Background>
-            <Banner src={banner} alt= "bannerOmh" />
+          <Banner src={banner} alt="bannerOmh" />
           {/* <div> */}
-            <HeroWrap>
-              {/* <div> */}
-              {/* </div> */}
-              <Wraper>
-                <TextWrap>
-                  <Title>Pyunkang Yul</Title>
-                  {/* <Text>Молодість, краса та розкіш</Text> */}
-                  <TextSecond>
-                    Чиста та здорова шкіра завдяки натуральним компонентам
-                  </TextSecond>
-                  <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
-                </TextWrap>
-                <div>
-                  <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
-                </div>
-              </Wraper>
-                <Product src={mp} alt="productBanner" />
-              </HeroWrap>
-             
+          <HeroWrap>
+            {/* <div> */}
+            {/* </div> */}
+            <Wraper>
+              <TextWrap>
+                <Title>Pyunkang Yul</Title>
+                {/* <Text>Молодість, краса та розкіш</Text> */}
+                <TextSecond>
+                  Чиста та здорова шкіра завдяки натуральним компонентам
+                </TextSecond>
+                <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+              </TextWrap>
+              <div>
+                <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+              </div>
+            </Wraper>
+            <Product src={mp} alt="productBanner" />
+          </HeroWrap>
+
           {/* </div> */}
         </Background>
       </WrapBackground>

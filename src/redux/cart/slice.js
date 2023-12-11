@@ -6,8 +6,8 @@ const cartSlice = createSlice({
   initialState: [],
   reducers: {
     setCart: (state, action) => {
-      state.length = 0; // Очистити існуючий масив
-      state.push(...action.payload); // Додати нові елементи
+      state.length = 0;
+      state.push(...action.payload);
     },
     addToCart: (state, action) => {
       const { _id, quantity } = action.payload;
@@ -15,10 +15,8 @@ const cartSlice = createSlice({
       const existingItem = state.find((item) => item._id === _id);
 
       if (existingItem) {
-        // Якщо товар вже є в корзині, збільшуємо кількість
         existingItem.quantity = quantity;
       } else {
-        // Інакше додаємо новий товар до корзини
         state.push(action.payload);
       }
     },

@@ -1,15 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getNewPost } from "../operations";
 
-
 const newPostslice = createSlice({
   name: "newPost",
-  initialState: '', // Змінено ініціалізацію початкового стану
+  initialState: "",
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getNewPost.fulfilled, (state, action) => {
-        state.items = action.payload; // Оновлюємо поле 'items' з отриманими товарами
+        state.items = action.payload;
       })
       .addCase(getNewPost.rejected, (state, action) => {
         // Обробка помилки

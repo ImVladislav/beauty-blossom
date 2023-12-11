@@ -76,12 +76,12 @@ input {
   margin: 0;
   line-height: 0;
 }
-/* Додайте transition, щоб забезпечити плавний перехід при анімації */
+
 .WrapListProduct {
   transition: transform 0.5s linear;
 }
 
-/* Додайте клас active для ефекту "зжимання" */
+
 .WrapListProduct.active {
   transform: translateY(-100%);
 }

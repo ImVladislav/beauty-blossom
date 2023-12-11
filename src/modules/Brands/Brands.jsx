@@ -16,7 +16,7 @@ const Brands = () => {
     if (brands) {
       dispatch(setfilter(brands));
     }
-  }, []);
+  }, [brands, dispatch]);
 
   const items = useSelector(selectFilterBrand);
   const sortedItems = [...items].sort((a, b) => b.amount - a.amount);

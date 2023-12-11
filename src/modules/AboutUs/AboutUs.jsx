@@ -55,14 +55,18 @@ const AboutUs = () => {
       <TextLink>
         Слідкуйте за нами в соціальних мережах: Instagram
         <Link
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/beauty_blossom_opt"
           target="_blank"
           rel="noreferrer"
         >
           @beauty_blossom_opt
         </Link>
         та Telegram
-        <Link href="https://web.telegram.org/" target="_blank" rel="noreferrer">
+        <Link
+          href="https://t.me/+Eejgotzs-ktiMTIy"
+          target="_blank"
+          rel="noreferrer"
+        >
           @beauty_blossom
         </Link>
         , щоб завжди залишатись в курсі новин та поповнення асортименту.

@@ -25,12 +25,12 @@ export const FooterContacts = () => {
         <ContactGroup>
           <Contacts
             title="beauty_blossom_opt"
-            to="https://www.instagram.com/"
+            to="https://www.instagram.com/beauty_blossom_opt"
             icon="instagram"
           />
           <Contacts
             title="beauty_blossom"
-            to="https://web.telegram.org/"
+            to="https://t.me/+Eejgotzs-ktiMTIy"
             icon="telegram"
           />
         </ContactGroup>
