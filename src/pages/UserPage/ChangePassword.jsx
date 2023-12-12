@@ -24,8 +24,6 @@ const ChangePassword = () => {
     });
   };
 
-  // console.log(id);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 

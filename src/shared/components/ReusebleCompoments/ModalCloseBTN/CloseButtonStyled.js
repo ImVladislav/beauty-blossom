@@ -9,12 +9,11 @@ export const ModalClose = styled.button`
   transition: color 0.5s;
   position: absolute;
   color: #b2b2b2;
-  background: transparent; /* Додайте прозорий фон */
-  border: none; /* Видаліть границю кнопки */
+  background: transparent;
+  border: none;
 
   &:hover {
-    color: ${(p) =>
-      p.theme.colors.accentColor}; /* Змініть колір при наведенні */
+    color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
     top: 9px;

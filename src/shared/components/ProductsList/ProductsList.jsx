@@ -89,7 +89,7 @@ const ProductList = ({ items }) => {
     if (pageParam) {
       setCurrentPage(parseInt(pageParam));
     } else {
-      setCurrentPage(1); // Оновлення currentPage відповідно до логіки
+      setCurrentPage(1);
     }
   }, [location.search]);
 
@@ -105,8 +105,8 @@ const ProductList = ({ items }) => {
 
   const paginate = (pageNumber) => {
     // Підняття сторінки вгору
-
     window.scrollTo({ top: 0, behavior: "smooth" });
+
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("filter", filter);
     searchParams.set("page", pageNumber);
@@ -122,7 +122,7 @@ const ProductList = ({ items }) => {
 
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPageBlocks = 5; // максимальна кількість блоків сторінок (центральних сторінок)
+    const maxPageBlocks = 5; // максимальна кількість блоків
     let startPage, endPage;
 
     if (totalPages <= maxPageBlocks) {
@@ -161,13 +161,14 @@ const ProductList = ({ items }) => {
 
     return pageNumbers;
   };
-  // Підняття сторінки вгору
+
+  // анімація підняття сторінки вгору
   useEffect(() => {
     const wrapListProduct = document.querySelector(".WrapListProduct");
     if (wrapListProduct) {
       wrapListProduct.classList.add("active");
 
-      // Відстрочення видалення класу для дочекатися анімації перед зміною сторінки
+      // Відстрочення анімації
       setTimeout(() => {
         wrapListProduct.classList.remove("active");
       }, 500);
@@ -180,7 +181,7 @@ const ProductList = ({ items }) => {
         <div className="WrapListProduct">
           <FilterContainer>
             <FilterWrap>
-              {/* Замінено введення на селект */}
+              {/* Фільтр */}
               <FilterSelect value={filter} onChange={handleFilterChange}>
                 <option value="none">Без фільтра</option>
                 <option value="nameABC">Назва (А - Я)</option>
@@ -194,14 +195,13 @@ const ProductList = ({ items }) => {
           <WrapListProduct>
             <ProductListContainer>
               {/* Відображення списку товарів */}
-
               {currentProducts.map((item) => (
                 <ProductCard key={item.id || item.productId} products={item} />
               ))}
             </ProductListContainer>
           </WrapListProduct>
-          {/* Пагінація */}
 
+          {/* Пагінація */}
           {getPageNumbers().length > 1 && (
             <Pagination>
               {currentPage !== 1 && (

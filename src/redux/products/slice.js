@@ -11,11 +11,10 @@ export const goodsSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(getGoods.fulfilled, (state, action) => {
-        state.items = action.payload; // Оновлюємо поле 'items' з отриманими товарами
+        state.items = action.payload;
         state.isRefreshing = false;
       })
       .addCase(getGoods.rejected, (state, action) => {
-        // Обробка помилки
         state.isRefreshing = false;
       });
   },

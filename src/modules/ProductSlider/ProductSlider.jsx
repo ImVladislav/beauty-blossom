@@ -37,7 +37,6 @@ export const ProductSlider = () => {
     if (currentSlide < maxSlide) {
       setCurrentSlide(currentSlide + 1);
     } else if (currentSlide === maxSlide && endIdx < filteredProduct.length) {
-      // Якщо досягнуто останній слайд, а ще є товари для показу, збільшити `startIdx` та `endIdx`
       setCurrentSlide(currentSlide + 1);
     }
   };
@@ -63,7 +62,7 @@ export const ProductSlider = () => {
   useEffect(() => {
     const filteredProducts = products.filter((product) => {
       if (showSale && showNew) {
-        return product.sale + product.new; // Показати всі товари
+        return product.sale + product.new;
       }
       if (showSale) {
         setCurrentSlide(0);
@@ -73,7 +72,7 @@ export const ProductSlider = () => {
         setCurrentSlide(0);
         return product.new;
       }
-      return product.sale + product.new; // Показати всі товари, якщо фільтри не активовані
+      return product.sale + product.new;
     });
 
     setFilteredProduct(filteredProducts);

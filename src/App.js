@@ -32,11 +32,10 @@ import NoProducts from "./pages/NoProducts/NoProducts";
 import Feedback from "./pages/UserPage/Feedback";
 import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
 import { useMedia } from "./hooks/useMedia";
-import sitemap from "../src/sitemap.xml";
 
 function App() {
   const { isMobileScreen } = useMedia();
-  // console.log(sitemap);
+
   const isRefreshing = useSelector(refreshSelector);
 
   const dispatch = useDispatch();

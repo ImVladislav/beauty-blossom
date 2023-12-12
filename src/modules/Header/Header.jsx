@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import SearchForm from "./SearchForm/SearchForm";
 import Logo from "./Logo/Logo";
@@ -139,7 +139,7 @@ export const Header = () => {
         </>
       ) : (
         <ContainerMobile>
-          {/* top */}{" "}
+          {/* top */}
           {isMenuOpen && isMobileScreen && (
             <BurgerMenu
               handleClick={handleMenuClick}

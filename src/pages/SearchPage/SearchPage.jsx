@@ -29,10 +29,8 @@ const SearchPage = () => {
   let search = [...searchQuerySorted];
 
   if (searchQuery.length === 0) {
-    // Якщо результати пошуку за текстовим запитом відсутні, використовуємо результати пошуку за кодом
     search = [...searchQueryCodeSorted];
   } else {
-    // В іншому випадку використовуємо результати пошуку за текстовим запитом
     search = [...searchQuerySorted];
   }
 

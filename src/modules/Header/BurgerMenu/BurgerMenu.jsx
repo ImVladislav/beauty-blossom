@@ -92,13 +92,13 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
             <Contacts
               burger
               title="beauty_blossom_opt"
-              to="https://www.instagram.com/"
+              to="https://www.instagram.com/beauty_blossom_opt"
               icon="instagram"
             />
             <Contacts
               burger
               title="beauty_blossom"
-              to="https://web.telegram.org/"
+              to="https://t.me/+Eejgotzs-ktiMTIy"
               icon="telegram"
             />
           </>

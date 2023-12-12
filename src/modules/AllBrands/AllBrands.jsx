@@ -33,7 +33,7 @@ const AllBrands = () => {
     }, []);
 
   const sortedBrands = brand
-    .map((item) => item.charAt(0).toUpperCase()) // Виділяємо першу букву та переводимо її в верхній регістр
+    .map((item) => item.charAt(0).toUpperCase()) 
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);

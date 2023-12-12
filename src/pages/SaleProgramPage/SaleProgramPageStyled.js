@@ -61,7 +61,7 @@ export const ListItems = styled.li`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+
   justify-content: center;
   margin: 30px 0;
   position: relative;
@@ -72,7 +72,7 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     display: flex;
-    /* justify-content: space-between; */
+
     justify-content: center;
   }
 `;
@@ -82,10 +82,10 @@ export const ModalBackground = styled.section`
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Півпрозорий чорний фон */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: center; /* Центруємо горизонтально */
-  align-items: center; /* Центруємо вертикально */
+  justify-content: center;
+  align-items: center;
   z-index: 103;
 `;
 export const ModalContent = styled.div`
