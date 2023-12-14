@@ -154,12 +154,6 @@
                 "children": []
               }
             ]
-          },
-          {
-            "level": 3,
-            "to": "/category/facial/setForFaceCare",
-            "text": "Набір для догляду за обличчям",
-            "children": []
           }
         ]
       },
@@ -269,11 +263,6 @@
                 "children": []
               }
             ]
-          },
-          {
-            "to": "/category/hairCare/hairCareSets",
-            "text": "Набори для догляду за волоссям",
-            "children": []
           }
         ]
       },
@@ -345,6 +334,12 @@
         "level": 2,
         "to": "/category/samples",
         "text": "Пробники",
+        "children": []
+      },
+      {
+        "level": 2,
+        "to": "/category/folds",
+        "text": "Набори",
         "children": []
       }
     ]

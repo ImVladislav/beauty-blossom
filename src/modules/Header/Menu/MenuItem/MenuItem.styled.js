@@ -45,7 +45,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const SubMenuWrap = styled.div`
-  min-height: 380px;
+  min-height: 425px;
   width: auto;
   top: 105%;
   left: 0;
@@ -76,7 +76,7 @@ export const ListSub = styled.ul`
 
 export const SubMenuWrapBrand = styled.ul`
   padding: 5px;
-  min-height: 380px;
+  min-height: 425px;
   width: 550px;
   display: flex;
   flex-wrap: wrap;
