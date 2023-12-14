@@ -16,13 +16,15 @@ export const FooterMenu = ({ menuItems }) => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth" // Додає плавність прокрутки
+      behavior: "smooth",
     });
   };
 
   const element = menuItems.map(({ to, text }) => (
     <ListItem key={to}>
-      <LinkItem onClick={scrollToTop} to={to}>{text}</LinkItem>
+      <LinkItem onClick={scrollToTop} to={to}>
+        {text}
+      </LinkItem>
     </ListItem>
   ));
   return (
