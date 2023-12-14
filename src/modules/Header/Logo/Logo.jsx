@@ -3,9 +3,15 @@ import React from "react";
 import { LinkLogo, TextLogo } from "./logo.styled";
 
 const Logo = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
-      <LinkLogo to="/">
+      <LinkLogo to="/" onClick={scrollToTop}>
         <TextLogo>
           Beauty <br /> Blossom
         </TextLogo>
