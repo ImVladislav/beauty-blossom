@@ -167,16 +167,11 @@ const OrderPlacement = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
       const data = await response.json();
-
-      const addresses = data.data[0].Addresses; 
-
-      console.log(addresses);
+      const addresses = data.data[0].Addresses;
 
       if (data.success) {
         setSearchCities(addresses);
       }
-
-      console.log(searchCities);
     } catch (error) {
       console.error(error);
     }
@@ -189,7 +184,7 @@ const OrderPlacement = () => {
         calledMethod: "getWarehouses",
         methodProperties: {
           CityRef: warehouseSearch,
-          Limit: "20",
+          Limit: "4200",
         },
       };
 
@@ -230,8 +225,17 @@ const OrderPlacement = () => {
     if (searchText) {
       handleCityChange();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchText]);
+
+  useEffect(() => {
+    if (warehouseSearch) {
+      handleCityChange();
+    }
+    handleWarehousesChange();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchWarehouses]);
 
   const totalCost = isOptUser
     ? cartItems.reduce(
@@ -413,8 +417,9 @@ const OrderPlacement = () => {
     const value = e.target.value;
     setSearchWarehouses(value);
 
+    console.log(warehouses);
     if (value.length > 2) {
-      setDropdownWarehouseVisible(searchWarehouses.length < 40);
+      setDropdownWarehouseVisible(searchWarehouses.length < 20);
     }
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
@@ -587,9 +592,7 @@ const OrderPlacement = () => {
                                   );
                                 }}
                               >
-                                <CityItem>
-                                  {searchCity.Present},
-                                </CityItem>
+                                <CityItem>{searchCity.Present},</CityItem>
                               </li>
                             ))
                           )}
@@ -642,7 +645,7 @@ const OrderPlacement = () => {
                           placeholder="Введіть адресу відділення"
                           onClick={() => {
                             setDropdownWarehouseVisible(
-                              searchCities.length <= 40
+                              searchCities.length <= 20
                             );
                             handleWarehousesChange();
                           }}
@@ -652,7 +655,7 @@ const OrderPlacement = () => {
                             }, 500);
                           }}
                         />
-                        {warehouses.length < 5000 &&
+                        {warehouses.length < 4199 &&
                           isDropdownWarehouseVisible && (
                             <Citylist>
                               <CityitemsBlock>
@@ -661,13 +664,21 @@ const OrderPlacement = () => {
                                     <Loader size="60px" pageHeight="60px" />
                                   </LoaderThumb>
                                 ) : (
-                                  warehouses.map((warehouse) => (
+                                  warehouses
+                                    .filter((warehouse) =>
+                                      warehouse.Description.toLowerCase().includes(
+                                        searchWarehouses.toLowerCase()
+                                      )
+                                    )
+                                    .map((warehouse) => (
                                       <li
                                         key={nanoid()}
                                         onClick={() =>
                                           handleWarehouseSelect(
                                             warehouse.Description
-                                          )}>
+                                          )
+                                        }
+                                      >
                                         <CityItem>
                                           {warehouse.Description}
                                         </CityItem>
