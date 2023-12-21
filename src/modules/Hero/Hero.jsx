@@ -1,6 +1,7 @@
 import React from "react";
-import mp from "../../images/BannerProduct.png";
-import banner from "../../images/Banner.jpg";
+
+import christmas from "../../images/сhristmas-big.png";
+import products from "../../images/products.png";
 import {
   WrapBackground,
   Background,
@@ -19,28 +20,22 @@ const Hero = () => {
     <>
       <WrapBackground>
         <Background>
-          <Banner src={banner} alt="bannerOmh" />
-          {/* <div> */}
+          <Banner src={christmas} alt="bannerOmh" />
           <HeroWrap>
-            {/* <div> */}
-            {/* </div> */}
             <Wraper>
               <TextWrap>
-                <Title>Pyunkang Yul</Title>
-                {/* <Text>Молодість, краса та розкіш</Text> */}
-                <TextSecond>
-                  Чиста та здорова шкіра завдяки натуральним компонентам
-                </TextSecond>
-                <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+                <Title>Новорічні знижки до -20%</Title>
+                <TextSecond>на бренди Enough та Daeng Gi Meo Ri</TextSecond>
+                <div style={{ display: "flex", width: "100%" }}>
+                  <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+                </div>
               </TextWrap>
               <div>
                 <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
               </div>
             </Wraper>
-            <Product src={mp} alt="productBanner" />
+            <Product src={products} alt="productBanner" />
           </HeroWrap>
-
-          {/* </div> */}
         </Background>
       </WrapBackground>
     </>
