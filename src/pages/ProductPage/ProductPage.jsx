@@ -41,6 +41,8 @@ import {
   ProductCountry,
 } from "./ProductPage.styled";
 
+import { Helmet } from "react-helmet";
+
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
   const [quantity, setQuantity] = useState(1);
@@ -167,6 +169,11 @@ const ProductPage = () => {
         <Loader />
       ) : (
         <PageContainer>
+          <Helmet>
+            <title>Назва продукту</title>
+            <meta name="description" content={product.description} />
+            {/* Додайте інші метатеги */}
+          </Helmet>
           <ImageWrap>
             <ProductImage
               itemProp="image"
