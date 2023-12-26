@@ -26,6 +26,8 @@ const AdminPage = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [paymentMethodFilter, setPaymentMethodFilter] = useState("");
   const [showOrders, setShowOrders] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 20;
 
   const filteredOrders = orders.filter((order) => {
     return (
@@ -38,6 +40,17 @@ const AdminPage = () => {
       order.paymentMethod.includes(paymentMethodFilter)
     );
   });
+
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = filteredOrders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     axios
@@ -111,19 +124,34 @@ const AdminPage = () => {
               value={amountFilter}
               onChange={(e) => setAmountFilter(e.target.value)}
             />
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по статусу"
+            <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-            />
+            >
+              <option value="">Всі</option>
+              <option value="Новий"> Новий </option>
+              <option value="Прийняте в роботу">Прийняте в роботу</option>
+              <option value="Збирається">Збирається</option>
+              <option value="Зібрано">Зібрано</option>
+              <option value="Відправлено">Відправлено</option>
+              <option value="Відміна"> Відміна</option>
+            </select>
             <FilterInput
               type="text"
               placeholder="Фільтр по методу оплати"
               value={paymentMethodFilter}
               onChange={(e) => setPaymentMethodFilter(e.target.value)}
             />
-
+            <div>
+              {Array.from(
+                { length: Math.ceil(filteredOrders.length / ordersPerPage) },
+                (_, index) => (
+                  <Button key={index} onClick={() => paginate(index + 1)}>
+                    {index + 1}
+                  </Button>
+                )
+              )}
+            </div>
             <Table>
               <thead>
                 <tr>
@@ -140,6 +168,7 @@ const AdminPage = () => {
                 {filteredOrders
                   .slice()
                   .reverse()
+                  .slice(indexOfFirstOrder, indexOfLastOrder)
                   .map((order) => (
                     <StyledTr
                       key={order._id}

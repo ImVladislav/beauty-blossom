@@ -42,6 +42,7 @@ import {
 } from "./ProductPage.styled";
 
 import { Helmet } from "react-helmet";
+import { jsonLdScriptProps } from "react-schemaorg";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -66,6 +67,15 @@ const ProductPage = () => {
   const productCartFind = productCart?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
+
+  const structuredProduct = {
+    "@context": "http://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    image: product.images, // URL зображення продукту
+    // Додайте інші властивості, які ви хочете включити
+  };
 
   const handleAddToCart = async () => {
     if (!productCartFind) {
@@ -170,9 +180,10 @@ const ProductPage = () => {
       ) : (
         <PageContainer>
           <Helmet>
-            <title>Назва продукту</title>
+            <title>{product.name}</title>
             <meta name="description" content={product.description} />
             {/* Додайте інші метатеги */}
+            <script {...jsonLdScriptProps(structuredProduct)} />
           </Helmet>
           <ImageWrap>
             <ProductImage
