@@ -146,7 +146,13 @@ const AdminPage = () => {
               {Array.from(
                 { length: Math.ceil(filteredOrders.length / ordersPerPage) },
                 (_, index) => (
-                  <Button key={index} onClick={() => paginate(index + 1)}>
+                  <Button
+                    key={index}
+                    onClick={() => paginate(index + 1)}
+                    className={
+                      currentPage === index + 1 ? "selected-button" : ""
+                    }
+                  >
                     {index + 1}
                   </Button>
                 )
