@@ -198,6 +198,17 @@
                 "children": []
               }
             ]
+          },
+          {
+            "to": "/category/makeup/forLips",
+            "text": "Для губ",
+            "children": [
+              {
+                "to": "/category/makeup/forLips/lipTint",
+                "text": "Тінт для губ",
+                "children": []
+              }
+            ]
           }
         ]
       },
