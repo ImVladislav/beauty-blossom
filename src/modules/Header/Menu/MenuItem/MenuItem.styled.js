@@ -45,7 +45,7 @@ export const Link = styled(NavLink)`
 `;
 
 export const SubMenuWrap = styled.div`
-  min-height: 425px;
+  min-height: 380px;
   width: auto;
   top: 105%;
   left: 0;
@@ -54,6 +54,9 @@ export const SubMenuWrap = styled.div`
   position: absolute;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
+  @media screen and (min-width: 1024px) {
+    min-height: 425px;
+  }
 `;
 
 export const RightIcon = styled(AiOutlineRight)`

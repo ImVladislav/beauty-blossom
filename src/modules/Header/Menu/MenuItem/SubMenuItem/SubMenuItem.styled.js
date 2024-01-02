@@ -61,10 +61,13 @@ export const ListSub = styled.ul`
   display: flex;
   flex-direction: column;
   min-width: 250px;
-  min-height: 425px;
+  min-height: 380px;
   border-radius: 10px;
   left: 100%;
   top: 0;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
+  @media screen and (min-width: 1024px) {
+    min-height: 425px;
+  }
 `;
