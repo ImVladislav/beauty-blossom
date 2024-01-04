@@ -196,6 +196,11 @@
                 "to": "/category/makeup/forEyes/inadvertently",
                 "text": "Туш",
                 "children": []
+              },
+              {
+                "to": "/category/makeup/forEyes/Concealer",
+                "text": "Консилер",
+                "children": []
               }
             ]
           },
