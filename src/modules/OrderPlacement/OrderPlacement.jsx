@@ -247,7 +247,18 @@ const OrderPlacement = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    setIsSubmitting(true);
+    if (totalCost === 0) {
+      toast.error("Для замовлення потрібно щось обрати!");
+      setIsSubmitting(false);
+      return;
+    }
+    if (isOptUser && totalCost < 2500) {
+      toast.error("Мінімальна сума замовлення 2500 грн!");
+      setIsSubmitting(false);
+      return;
+    } else {
+      setIsSubmitting(true);
+    }
 
     if (courierDelivery === "1") {
       if (!searchText || (!searchWarehouses && courierDelivery)) {

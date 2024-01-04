@@ -173,11 +173,15 @@ const CartModal = ({ closeModal }) => {
       );
 
   const placeOrder = async () => {
-    try {
-      navigate("/order");
-      closeModal();
-    } catch (error) {
-      console.error("Помилка розміщення замовлення:", error);
+    if (optUser && totalCost < 2500) {
+      toast.error("Мінімальна сума замовлення 2500 грн!");
+    } else {
+      try {
+        navigate("/order");
+        closeModal();
+      } catch (error) {
+        console.error("Помилка розміщення замовлення:", error);
+      }
     }
   };
 
