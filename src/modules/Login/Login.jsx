@@ -18,9 +18,10 @@ import {
   LoginWrapper,
   Message,
   ModalLoader,
+  LinkStyle,
 } from "./Login.styled";
 
-const Login = () => {
+const Login = ({ setShowModal }) => {
   const initialValues = {
     email: "",
     password: "",
@@ -98,6 +99,9 @@ const Login = () => {
               </WrapInput>
             </Wrap>
 
+            <LinkStyle to="/forgotten" onClick={() => setShowModal(false)}>
+              Забули пароль?
+            </LinkStyle>
             <ButtonWrapper>
               <Button text={"Авторизуватись"} type="submit" />
             </ButtonWrapper>

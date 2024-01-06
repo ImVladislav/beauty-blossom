@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Field, ErrorMessage } from "formik";
+import { Link } from "react-router-dom";
 
 export const ModalLoader = styled.div`
   min-width: 300px;
@@ -122,6 +123,13 @@ export const WrapInput = styled.div`
   }
   @media screen and (min-width: 1440px) {
     margin-bottom: 30px;
+  }
+`;
+export const LinkStyle = styled(Link)`
+  color: ${(p) => p.theme.colors.textColor};
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
   }
 `;
 
