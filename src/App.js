@@ -32,6 +32,8 @@ import NoProducts from "./pages/NoProducts/NoProducts";
 import Feedback from "./pages/UserPage/Feedback";
 import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
 import { useMedia } from "./hooks/useMedia";
+import ForgottenPage from "./pages/ForgottenPage/ForgottenPage";
+import ForgottenIdPage from "./pages/ForgottenPage/ForgottenIdPage/ForgottenIdPage";
 
 function App() {
   const { isMobileScreen } = useMedia();
@@ -68,7 +70,10 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="forgotten" element={<ForgottenPage />} />
+          <Route path="forgotten/:forgotten" element={<ForgottenIdPage />} />
           <Route path="login" element={<p>Login Page</p>} />
+
           <Route path="registration" element={<p>Registration Page</p>} />
           <Route
             path="category"

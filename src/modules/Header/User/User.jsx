@@ -129,7 +129,7 @@ const User = () => {
             </WrapLink>
 
             {loginOrRegister ? (
-              <Login />
+              <Login setShowModal={setShowModal} />
             ) : (
               <Register onRegisterSuccess={onRegisterSuccess} />
             )}
