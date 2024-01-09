@@ -2,10 +2,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const ItemStyle = styled.li`
-  width: 350px;
+  width: 320px;
 
   &.unavailable {
     opacity: 0.5;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 320px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 350px;
   }
 `;
 
