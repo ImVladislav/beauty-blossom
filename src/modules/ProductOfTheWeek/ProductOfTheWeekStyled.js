@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  background: ${(p) => p.theme.colors.topHeaderLine};
+  background: ${(p) => p.theme.colors.topLine};
+
   display: flex;
   justify-content: center;
   position: relative;
@@ -9,7 +10,7 @@ export const Background = styled.div`
 `;
 export const Text = styled.h2`
   margin: 0;
-  color: ${(p) => p.theme.colors.textColor};
+  color: ${(p) => p.theme.colors.accentColor};
   font-weight: 500;
   font-family: "Alegreya Sans";
   font-size: 17px;
@@ -21,9 +22,9 @@ export const Text = styled.h2`
 `;
 export const Link = styled.a`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
+  color: ${(p) => p.theme.colors.accentColor};
 `;
 export const Underline = styled.div`
   height: 1px;
-  background-color: #000;
+  background-color: ${(p) => p.theme.colors.accentColor};
 `;

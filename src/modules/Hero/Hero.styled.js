@@ -126,7 +126,7 @@ export const TextWrap = styled.div`
 export const Title = styled.h2`
   font-size: ${(p) => p.theme.fontSizes.xl * 2}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
-  /* line-height: 125%; 51.483px */
+
   letter-spacing: 2px;
   color: #1a0471;
   margin: 0;
@@ -147,7 +147,6 @@ export const Text = styled.p`
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.accentColor};
-  /* margin-bottom: 30px; */
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;

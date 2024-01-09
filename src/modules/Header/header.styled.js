@@ -147,7 +147,7 @@ export const TopWrap = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 3px 28px;
-  background: ${(p) => p.theme.colors.topHeaderLine};
+  background: ${(p) => p.theme.colors.topLine};
 `;
 
 export const ButtonMenu = styled.button`
@@ -175,7 +175,7 @@ export const MenuIcon = styled(HiMenu)`
 export const Schedule = styled.p`
   color: ${(p) => p.theme.colors.textColor};
   text-align: center;
-  font-size: ${(p) => p.theme.fontSizes.xxxs + 1}px;
+  font-size: ${(p) => p.theme.fontSizes.xxs}px;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: 1.2;

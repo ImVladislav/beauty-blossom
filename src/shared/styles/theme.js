@@ -10,6 +10,8 @@ export const theme = {
     menuBg: "#e8dfd8",
     heroBtn: "#A03DA9",
     topHeaderLine: "#FFF6E9",
+    topLine: "#ffe9fa",
+
     heroTitle: "#C14CAF",
     menuHover: "#FFF6E9",
     menuHoverShadow: "0px 3.76642px 3.76642px 0px rgba(0, 0, 0, 0.25)",
