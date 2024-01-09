@@ -5,6 +5,7 @@ import baner from "../../images/masil-desktop.png";
 import products from "../../images/masil-desktop-groupe.png";
 import banerMobile from "../../images/masil-mobile.png";
 import productsMobile from "../../images/masil-mobile-groupe.png";
+
 import {
   WrapBackground,
   Background,
