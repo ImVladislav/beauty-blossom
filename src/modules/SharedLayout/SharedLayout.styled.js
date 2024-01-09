@@ -11,6 +11,6 @@ export const Bgd = styled.div`
   min-height: 66vh;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 `;
