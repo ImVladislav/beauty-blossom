@@ -33,7 +33,7 @@ const AllBrands = () => {
     }, []);
 
   const sortedBrands = brand
-    .map((item) => item.charAt(0).toUpperCase()) 
+    .map((item) => item.charAt(0).toUpperCase())
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);
@@ -43,7 +43,7 @@ const AllBrands = () => {
     .sort();
 
   return (
-    <main>
+    <main style={{ display: "flex" }}>
       <Container>
         <BrandPageContainer>
           {sortedBrands.map((letter, index) => (

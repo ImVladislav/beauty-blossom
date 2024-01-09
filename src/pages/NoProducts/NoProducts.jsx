@@ -4,11 +4,11 @@ import { Message } from "./NoProducts.styled";
 
 const NoProducts = () => {
   return (
-    <>
+    <div style={{ display: "flex" }}>
       <Container>
         <Message>Товари відсутні</Message>
       </Container>
-    </>
+    </div>
   );
 };
 
