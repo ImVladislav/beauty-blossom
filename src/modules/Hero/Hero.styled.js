@@ -195,7 +195,7 @@ export const WraperLink = styled.div`
 `;
 export const LinkBtn = styled(Link)`
   background: transparent;
-
+  z-index: 6;
   border: 2px solid #1a0471;
   border-radius: 50px;
   display: flex;
