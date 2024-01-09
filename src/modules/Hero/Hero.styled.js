@@ -71,14 +71,21 @@ export const Product = styled.img`
     left: 2%;
     margin-top: -20px;
   }
-  @media screen and (min-width: 1024px) {
-    max-width: 120%;
+
+  @media screen and (min-width: 1000px) {
+    /* max-width: 120%; */
 
     left: 2%;
-    margin-top: -60px;
+    margin-top: -80px;
+  }
+  @media screen and (min-width: 1200px) {
+    /* max-width: 110%; */
+
+    left: 2%;
+    margin-top: -130px;
   }
   @media screen and (min-width: 1440px) {
-    max-width: 120%;
+    /* max-width: 120%; */
 
     left: 2%;
     margin-top: -100px;
