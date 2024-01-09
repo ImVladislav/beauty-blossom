@@ -5,24 +5,24 @@ export const WrapBackground = styled.div`
   position: relative;
   overflow: hidden;
   @media screen and (max-width: 767px) {
-    height: 155px;
+    height: 220px;
   }
 
   @media screen and (min-width: 768px) {
-    height: 360px;
+    height: 300px;
   }
 
   @media screen and (min-width: 1024px) {
-    height: 360px;
+    height: 350px;
   }
   @media screen and (min-width: 1440px) {
-    height: 400px;
+    height: 450px;
   }
 `;
 
 export const Background = styled.div`
   width: 100vw;
-  overflow: hidden;
+  /* overflow: hidden; */
 
   background-size: contain;
 `;
@@ -31,20 +31,20 @@ export const Banner = styled.img`
   position: absolute;
 
   width: 100%;
-  height: 250px;
+  height: 220px;
   overflow: hidden;
   object-fit: cover;
   object-position: center;
 
   @media screen and (min-width: 768px) {
-    height: 550px;
+    height: 300px;
   }
 
   @media screen and (min-width: 1024px) {
-    height: 580px;
+    height: 350px;
   }
   @media screen and (min-width: 1440px) {
-    height: 800px;
+    height: 450px;
   }
 `;
 
@@ -60,76 +60,78 @@ export const HeroWrap = styled.div`
 export const Product = styled.img`
   position: relative;
 
-  height: 125px;
+  max-width: 300%;
 
-  margin-top: 30px;
-
-  left: 10%;
-  @media screen and (min-width: 600px) {
-    height: 140px;
-    margin-top: 15px;
-    left: 16%;
-  }
+  left: -3%;
+  margin-top: -25px;
 
   @media screen and (min-width: 768px) {
-    margin-top: 30px;
-    height: 330px;
-    left: 10%;
+    max-width: 120%;
+
+    left: 2%;
+    margin-top: -20px;
   }
   @media screen and (min-width: 1024px) {
-    margin-top: 40px;
-    height: 320px;
-    left: 10%;
+    max-width: 120%;
+
+    left: 2%;
+    margin-top: -60px;
   }
   @media screen and (min-width: 1440px) {
-    height: 380px;
+    max-width: 120%;
 
-    left: 15%;
-    margin-top: 20px;
+    left: 2%;
+    margin-top: -100px;
   }
 `;
 
 export const Wraper = styled.div`
   display: flex;
+  position: absolute;
+
+  margin-right: 7%;
+  @media screen and (min-width: 768px) {
+    position: static;
+  }
 `;
 
 export const TextWrap = styled.div`
   position: absolute;
-  left: 20%;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
 
   @media screen and (min-width: 768px) {
-    margin-top: 10px;
-    display: flex;
-
-    justify-content: center;
-    flex-direction: column;
-    flex-wrap: nowrap;
+    right: 23%;
+  }
+  @media screen and (min-width: 1024px) {
+    right: 25%;
+  }
+  @media screen and (min-width: 1440px) {
+    right: 30%;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: ${(p) => p.theme.fontSizes.sm + 1}px;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-
+  font-size: ${(p) => p.theme.fontSizes.xl * 2}px;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: 125%; /* 51.483px */
+  letter-spacing: 2px;
   color: #1a0471;
   margin: 0;
-  @media screen and (min-width: 600px) {
-    font-size: ${(p) => p.theme.fontSizes.l + 2}px;
-  }
+
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl + 3}px;
+    font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
   }
 
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl + 8}px;
+    font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.xxxl + 10}px;
+    font-size: ${(p) => p.theme.fontSizes.xxxl * 2}px;
   }
 `;
 
@@ -152,11 +154,8 @@ export const TextSecond = styled.p`
   font-weight: ${(p) => p.theme.fontWeights.body};
 
   color: #1a0471;
-  margin-bottom: 10px;
-  @media screen and (min-width: 600px) {
-    font-size: ${(p) => p.theme.fontSizes.xs}px;
-    margin-bottom: 30px;
-  }
+  margin-bottom: 40px;
+  margin-left: -2%;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 70px;
@@ -170,7 +169,22 @@ export const TextSecond = styled.p`
     font-size: ${(p) => p.theme.fontSizes.l + 2}px;
   }
 `;
+export const WraperLink = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+  right: 18%;
 
+  @media screen and (min-width: 768px) {
+    justify-content: center;
+  }
+  @media screen and (min-width: 1024px) {
+    justify-content: center;
+  }
+  @media screen and (min-width: 1440px) {
+    justify-content: center;
+  }
+`;
 export const LinkBtn = styled(Link)`
   background: transparent;
 
@@ -183,21 +197,19 @@ export const LinkBtn = styled(Link)`
   text-decoration: none;
   font-weight: ${(p) => p.theme.fontWeights.body * 2};
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
-  padding: 6px 8px;
+  padding: 4px 10px;
   transition: all 250ms ease-in-out;
 
   color: #1a0471;
 
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   &:hover {
     color: white;
 
     background: #1a0471;
   }
-  @media screen and (min-width: 600px) {
-    font-size: ${(p) => p.theme.fontSizes.xs}px;
-  }
+
   @media screen and (min-width: 768px) {
     margin-left: 0;
     margin-bottom: 110px;
@@ -217,37 +229,32 @@ export const LinkBtn = styled(Link)`
   }
 `;
 
-export const TextСonditions = styled.p`
-  position: absolute;
-  bottom: -2%;
+export const TextConditions = styled.p`
+  position: relative;
 
-  left: 20%;
   font-size: ${(p) => p.theme.fontSizes.xxxs - 2}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
 
   color: #1a0471;
-  text-align: start;
-  margin-bottom: 5px;
-  @media screen and (min-width: 600px) {
-    bottom: 0;
-
-    left: 22%;
-  }
+  left: -25%;
 
   @media screen and (min-width: 768px) {
+    position: absolute;
+    font-size: ${(p) => p.theme.fontSizes.xxxs}px;
     text-transform: uppercase;
-    bottom: 2%;
 
-    margin-right: 30px;
+    top: 280px;
+    left: 26%;
   }
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.xs}px;
-    bottom: 3%;
-    left: 20%;
+    font-size: ${(p) => p.theme.fontSizes.xxs}px;
+
+    top: 320px;
+    left: 27%;
   }
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.s}px;
-    bottom: 5%;
-    left: 18%;
+    top: 410px;
+    left: 24%;
   }
 `;
