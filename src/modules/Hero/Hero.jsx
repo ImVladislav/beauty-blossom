@@ -1,7 +1,11 @@
 import React from "react";
+import { useMedia } from "../../hooks/useMedia.js";
 
-import christmas from "../../images/сhristmas-big.png";
-import products from "../../images/products.png";
+import baner from "../../images/masil-desktop.png";
+import products from "../../images/masil-desktop-groupe.png";
+import banerMobile from "../../images/masil-mobile.png";
+import productsMobile from "../../images/masil-mobile-groupe.png";
+
 import {
   WrapBackground,
   Background,
@@ -12,29 +16,47 @@ import {
   Title,
   TextSecond,
   LinkBtn,
-  TextСonditions,
+  TextConditions,
   Banner,
+  WraperLink,
 } from "./Hero.styled.js";
 const Hero = () => {
+  const { isMobileScreen } = useMedia();
   return (
     <>
       <WrapBackground>
         <Background>
-          <Banner src={christmas} alt="bannerOmh" />
+          {isMobileScreen ? (
+            <Banner src={banerMobile} alt="bannerOmh" />
+          ) : (
+            <Banner src={baner} alt="bannerOmh" />
+          )}
+
           <HeroWrap>
             <Wraper>
               <TextWrap>
-                <Title>Новорічні знижки до -20%</Title>
-                <TextSecond>на бренди Enough та Daeng Gi Meo Ri</TextSecond>
-                <div style={{ display: "flex", width: "100%" }}>
+                <Title>MASIL</Title>
+                <TextSecond>
+                  Найкращий догляд для твого волосся вдома
+                </TextSecond>
+                <WraperLink>
                   <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
-                </div>
+                </WraperLink>
+                {isMobileScreen && (
+                  <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
+                )}
               </TextWrap>
               <div>
-                <TextСonditions>*тисни, щоб дізнатись умови</TextСonditions>
+                {!isMobileScreen && (
+                  <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
+                )}
               </div>
             </Wraper>
-            <Product src={products} alt="productBanner" />
+            {isMobileScreen ? (
+              <Product src={productsMobile} alt="productBanner" />
+            ) : (
+              <Product src={products} alt="productBanner" />
+            )}
           </HeroWrap>
         </Background>
       </WrapBackground>
