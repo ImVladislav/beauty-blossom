@@ -132,7 +132,7 @@ export const Title = styled.h2`
   margin: 0;
 
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
+    font-size: ${(p) => p.theme.fontSizes.xl * 3}px;
   }
 
   @media screen and (min-width: 1024px) {
