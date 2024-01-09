@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const Bgd = styled.main`
+  display: flex;
+  justify-content: center;
+`;
+
 export const Nav = styled.nav`
   display: grid;
   padding: 0px 20px;

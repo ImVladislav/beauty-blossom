@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import {
+  Bgd,
   CabinetBlock,
   CabinetLink,
   Nav,
@@ -9,7 +10,6 @@ import {
 } from "./UserPageStyled";
 import { Header } from "../../modules/Header/Header";
 import { Footer } from "../../modules/Footer/Footer";
-import { Bgd } from "../../modules/SharedLayout/SharedLayout.styled";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { optUserSelector } from "../../redux/auth/selectors";
