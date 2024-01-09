@@ -29,7 +29,7 @@ export const Background = styled.div`
 
 export const Banner = styled.img`
   position: absolute;
-
+  z-index: -1;
   width: 100%;
   height: 220px;
   overflow: hidden;
@@ -59,7 +59,7 @@ export const HeroWrap = styled.div`
 
 export const Product = styled.img`
   position: relative;
-
+  z-index: -1;
   max-width: 300%;
 
   left: 0;
@@ -195,7 +195,7 @@ export const WraperLink = styled.div`
 `;
 export const LinkBtn = styled(Link)`
   background: transparent;
-  z-index: 6;
+  /* z-index: 1; */
   border: 2px solid #1a0471;
   border-radius: 50px;
   display: flex;
