@@ -62,7 +62,8 @@ export const Product = styled.img`
 
   max-width: 300%;
 
-  left: -3%;
+  left: 0;
+  /* left: 10%; */
   margin-top: -25px;
 
   @media screen and (min-width: 768px) {
@@ -96,7 +97,7 @@ export const Wraper = styled.div`
   display: flex;
   position: absolute;
 
-  margin-right: 7%;
+  margin-right: 5%;
   @media screen and (min-width: 768px) {
     position: static;
   }
@@ -115,17 +116,17 @@ export const TextWrap = styled.div`
     right: 23%;
   }
   @media screen and (min-width: 1024px) {
-    right: 25%;
+    right: 21%;
   }
   @media screen and (min-width: 1440px) {
-    right: 30%;
+    right: 22%;
   }
 `;
 
 export const Title = styled.h2`
   font-size: ${(p) => p.theme.fontSizes.xl * 2}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: 125%; /* 51.483px */
+  /* line-height: 125%; 51.483px */
   letter-spacing: 2px;
   color: #1a0471;
   margin: 0;
@@ -135,10 +136,10 @@ export const Title = styled.h2`
   }
 
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl * 2}px;
+    font-size: ${(p) => p.theme.fontSizes.xxxl * 2}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.xxxl * 2}px;
+    font-size: ${(p) => p.theme.fontSizes.sectXl * 3}px;
   }
 `;
 
@@ -146,13 +147,13 @@ export const Text = styled.p`
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.accentColor};
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;
 
@@ -169,11 +170,11 @@ export const TextSecond = styled.p`
     font-size: ${(p) => p.theme.fontSizes.sm * 0.8}px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.sm * 1.1}px;
+    font-size: ${(p) => p.theme.fontSizes.l * 1.1}px;
     margin-bottom: 60px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.l + 2}px;
+    font-size: ${(p) => p.theme.fontSizes.xl + 2}px;
   }
 `;
 export const WraperLink = styled.div`
@@ -183,6 +184,7 @@ export const WraperLink = styled.div`
   right: 18%;
 
   @media screen and (min-width: 768px) {
+    right: 0;
     justify-content: center;
   }
   @media screen and (min-width: 1024px) {
