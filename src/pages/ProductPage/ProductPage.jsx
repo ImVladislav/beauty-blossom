@@ -180,7 +180,9 @@ const ProductPage = () => {
       ) : (
         <PageContainer>
           <Helmet>
+            <meta charSet="utf-8" />
             <title>{product.name}</title>
+
             <meta name="description" content={product.description} />
             {/* Додайте інші метатеги */}
             <script {...jsonLdScriptProps(structuredProduct)} />
