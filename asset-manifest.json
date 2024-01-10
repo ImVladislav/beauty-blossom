@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.b04bdbd5.css",
-    "main.js": "/static/js/main.d049f223.js",
+    "main.js": "/static/js/main.24cb0280.js",
     "static/media/masil-desktop.png": "/static/media/masil-desktop.59afdee2dd7da4c2348c.png",
     "static/media/masil-desktop-groupe.png": "/static/media/masil-desktop-groupe.f06d3d7b72fc7abed942.png",
+    "static/media/masil-mobile-groupe_2.png": "/static/media/masil-mobile-groupe_2.d9182eb4471e98a98af1.png",
     "static/media/purito.png": "/static/media/purito.a9d2fe631b89ee2fe28b.png",
     "static/media/retinol.png": "/static/media/retinol.367bc42961c434fd5055.png",
     "static/media/Banner.jpg": "/static/media/Banner.12867d0d9f67940e111a.jpg",
-    "static/media/masil-mobile-groupe.png": "/static/media/masil-mobile-groupe.c293d00f6425cba62d8f.png",
     "static/media/masil-mobile.png": "/static/media/masil-mobile.080e7ea0d5b0264490ad.png",
     "static/media/DAENG-GI-MEO-RI.svg": "/static/media/DAENG-GI-MEO-RI.d7929203094c6c8a3af7899b4587c042.svg",
     "index.html": "/index.html",
@@ -22,10 +22,10 @@
     "static/media/newEmail.svg": "/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "static/media/NextPrev.svg": "/static/media/NextPrev.44749ddfef4592da8fb6a5be0bd5bc91.svg",
     "main.b04bdbd5.css.map": "/static/css/main.b04bdbd5.css.map",
-    "main.d049f223.js.map": "/static/js/main.d049f223.js.map"
+    "main.24cb0280.js.map": "/static/js/main.24cb0280.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.d049f223.js"
+    "static/js/main.24cb0280.js"
   ]
 }
