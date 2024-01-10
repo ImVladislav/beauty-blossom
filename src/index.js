@@ -8,28 +8,30 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { PersistGate } from "redux-persist/integration/react";
-
+import { Helmet, HelmetProvider } from "react-helmet-async";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/">
-          <App />
-          <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="colored"
-          />
-          <GlobalStyle />
-        </BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter basename="/">
+            <App />
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
+            <GlobalStyle />
+          </BrowserRouter>
+        </HelmetProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>
