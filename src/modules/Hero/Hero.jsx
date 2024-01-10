@@ -4,7 +4,7 @@ import { useMedia } from "../../hooks/useMedia.js";
 import baner from "../../images/masil-desktop.png";
 import products from "../../images/masil-desktop-groupe.png";
 import banerMobile from "../../images/masil-mobile.png";
-import productsMobile from "../../images/masil-mobile-groupe.png";
+import productsMobile from "../../images/masil-mobile-groupe_2.png";
 
 import {
   WrapBackground,

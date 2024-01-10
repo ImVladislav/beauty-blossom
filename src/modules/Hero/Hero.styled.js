@@ -60,12 +60,19 @@ export const HeroWrap = styled.div`
 export const Product = styled.img`
   position: relative;
   z-index: -1;
-  max-width: 300%;
+  max-width: 120%;
 
   left: 0;
   /* left: 10%; */
   margin-top: -25px;
-
+  @media screen and (min-width: 500px) {
+    max-width: 100%;
+    margin-top: -8%;
+  }
+  @media screen and (min-width: 600px) {
+    max-width: 85%;
+    margin-top: -10%;
+  }
   @media screen and (min-width: 768px) {
     max-width: 120%;
 
