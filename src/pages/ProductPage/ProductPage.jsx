@@ -40,8 +40,8 @@ import {
   ProductTags,
   ProductCountry,
 } from "./ProductPage.styled";
-
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
+// import { Helmet } from "react-helmet";
 import { jsonLdScriptProps } from "react-schemaorg";
 
 const ProductPage = () => {
@@ -182,7 +182,7 @@ const ProductPage = () => {
           <Helmet>
             <meta charSet="utf-8" />
             <title>{product.name}</title>
-            <meta name="name" content={product.name} />
+            <meta name="name" content={"Імя"} />
             <meta name="description" content={product.description} />
             {/* Додайте інші метатеги */}
             <script {...jsonLdScriptProps(structuredProduct)} />
