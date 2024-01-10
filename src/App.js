@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { SharedLayout } from "./modules/SharedLayout/SharedLayout";
 import { theme } from "./shared/styles/theme";
@@ -160,6 +160,14 @@ function App() {
             element={
               <Suspense fallback={<Loader />}>
                 <SearchPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="product"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Navigate to="/" />
               </Suspense>
             }
           />
