@@ -182,7 +182,7 @@ const ProductPage = () => {
           <Helmet>
             <meta charSet="utf-8" />
             <title>{product.name}</title>
-
+            <meta name="name" content={product.name} />
             <meta name="description" content={product.description} />
             {/* Додайте інші метатеги */}
             <script {...jsonLdScriptProps(structuredProduct)} />
