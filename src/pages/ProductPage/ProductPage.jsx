@@ -187,6 +187,7 @@ const ProductPage = () => {
             <title>{product.name}</title>
             <meta name="name" content={"Імя"} />
             <meta name="description" content={product.description} />
+            <meta name="price" value="notImportant" />
             {/* Додайте інші метатеги */}
             {/* <script {...jsonLdScriptProps(structuredProduct)} /> */}
           </Helmet>
