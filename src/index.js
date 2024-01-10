@@ -8,7 +8,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { PersistGate } from "redux-persist/integration/react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "react-helmet-async";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

@@ -172,9 +172,6 @@ const ProductPage = () => {
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-  console.log("Product:", product);
-  // console.log("Structured Product:", structuredProduct);
-  // console.log("Structured Product:", jsonLdScriptProps);
 
   return (
     <Container>
@@ -185,12 +182,13 @@ const ProductPage = () => {
           <Helmet>
             <meta charSet="utf-8" />
             <title>{product.name}</title>
-            <meta name="name" content={"Імя"} />
+            <meta name="name" content={product.name} />
             <meta name="description" content={product.description} />
             <meta name="price" value="notImportant" />
             {/* Додайте інші метатеги */}
-            {/* <script {...jsonLdScriptProps(structuredProduct)} /> */}
+            <script {...jsonLdScriptProps(structuredProduct)} />
           </Helmet>
+          <h1 className="hidden">{product.name}</h1>
           <ImageWrap>
             <ProductImage
               itemProp="image"
