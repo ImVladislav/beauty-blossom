@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 
-const selectGoods = (state) => state.goods;
-const selectSearch = (state) => state.search;
+const selectGoods = (state) => state?.goods || {};
+const selectSearch = (state) => state?.search || "";
 
 export const selectSearchQuery = createSelector(
   [selectSearch, selectGoods],
@@ -27,7 +27,12 @@ export const selectSearchQueryCode = createSelector(
       return goods;
     }
 
-    const results = goods.items.filter(({ code }) => {
+    const results = goods.items.filter(({ code, _id }) => {
+      if (code === undefined) {
+        console.error("There is no product code - id:", _id);
+        return false;
+      }
+
       const orderCodeString = code.toString();
       return orderCodeString.includes(searchQuery);
     });

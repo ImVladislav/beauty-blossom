@@ -43,6 +43,7 @@ const AdminPage = () => {
 
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  // eslint-disable-next-line
   const currentOrders = filteredOrders.slice(
     indexOfFirstOrder,
     indexOfLastOrder
