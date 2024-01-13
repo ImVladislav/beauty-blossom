@@ -42,9 +42,11 @@ import {
   TableWrap,
   ButtonThumb,
 } from "./ShopingListStyled";
+import { selectGoods } from "../../../redux/products/selectors";
 
 const CartModal = ({ closeModal }) => {
   const cartItems = useSelector(selectCart);
+  const items = useSelector(selectGoods);
   const optUser = useSelector(optUserSelector);
   const isLoggedIn = useSelector(loggedInSelector);
   const navigate = useNavigate();
@@ -52,7 +54,7 @@ const CartModal = ({ closeModal }) => {
 
   const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
-      quantities[item._id] = item.quantity || 1; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
+      quantities[item._id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
       return quantities;
     }, {})
   );
@@ -76,14 +78,69 @@ const CartModal = ({ closeModal }) => {
 
         // Встановлюємо кількість для кожного товару з отриманої відповіді
         data.forEach((item) => {
-          updatedQuantities[item._id] = item.quantity || 1;
+          updatedQuantities[item._id] = item.quantity;
         });
 
         return updatedQuantities;
       });
+      // Перевірка і оновлення цін та кількостей в корзині
+      updateCartPricesAndQuantities(data);
     } catch (error) {
       console.error("Помилка отримання корзини користувача:", error);
     }
+  };
+
+  const updateCartPricesAndQuantities = (cartData) => {
+    const updatedCartItems = cartItems
+      .map((cartItem) => {
+        const correspondingItem = items.find(
+          (item) => item.id === cartItem.productId
+        );
+
+        if (correspondingItem) {
+          // Оновлення ціни, якщо вона змінилася
+          const updatedPrice = optUser
+            ? correspondingItem.priceOPT
+            : correspondingItem.price;
+
+          // Перевірка та оновлення кількості, якщо вона перевищує amount
+          const updatedQuantity =
+            correspondingItem.amount === 0
+              ? 0
+              : cartItem.quantity > correspondingItem.amount
+              ? correspondingItem.amount
+              : cartItem.quantity;
+
+          // Видалення товару з кошика, якщо amount дорівнює 0
+          if (correspondingItem.amount === 0) {
+            removeCartItem(cartItem._id);
+            return null; // Повертаємо null для того, щоб відфільтрувати видалені товари
+          }
+
+          // Оновлення товару в кошику з новими значеннями
+          return {
+            ...cartItem,
+            price: updatedPrice,
+            quantity: updatedQuantity,
+          };
+        }
+
+        return cartItem;
+      })
+      .filter(Boolean);
+
+    // Відправлення нового списку товарів у кошику в Redux
+    dispatch(setCart(updatedCartItems));
+    // Оновлення кількостей у state
+    setItemQuantities((prevQuantities) => {
+      const updatedQuantities = { ...prevQuantities };
+
+      updatedCartItems.forEach((item) => {
+        updatedQuantities[item._id] = item.quantity;
+      });
+
+      return updatedQuantities;
+    });
   };
 
   // Створюємо об'єкт для зберігання кількості кожного товару
