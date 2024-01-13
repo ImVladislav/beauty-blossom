@@ -1,9 +1,9 @@
 import { createSelector } from "reselect";
 
+import { selectGoods } from "../products/selectors";
 const selectFilter = (store) => store.filter;
 
-const selectGoods = (store) => store.goods.items;
-
+// const selectGoods = (store) => store.goods.items;
 export const selectFilterBrand = createSelector(
   [selectFilter, selectGoods],
   (filter, goods) => {
