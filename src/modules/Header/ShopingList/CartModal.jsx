@@ -10,6 +10,7 @@ import {
   removeQuantityCart,
   removeCart,
   setCart,
+  deleteAll,
 } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
 import {
@@ -60,9 +61,16 @@ const CartModal = ({ closeModal }) => {
   );
 
   useEffect(() => {
+    // cartItems.map((item) => {
+    //   item === null && dispatch(deleteAll());
+    // });
     if (isLoggedIn) {
       fetchUserCart();
     }
+    if (!isLoggedIn) {
+      updateCartPricesAndQuantities(cartItems);
+    }
+
     // eslint-disable-next-line
   }, [isLoggedIn, dispatch]);
 
@@ -70,8 +78,13 @@ const CartModal = ({ closeModal }) => {
     try {
       const response = await axios.get(`/basket`);
       const data = response.data;
-
-      dispatch(setCart(data));
+      // console.log(data);
+      if (data.length !== 0) {
+        // Перевірка і оновлення цін та кількостей в корзині
+        updateCartPricesAndQuantities(data);
+      } else {
+        dispatch(setCart(data));
+      }
 
       setItemQuantities((prevQuantities) => {
         const updatedQuantities = { ...prevQuantities };
@@ -83,67 +96,54 @@ const CartModal = ({ closeModal }) => {
 
         return updatedQuantities;
       });
-      // Перевірка і оновлення цін та кількостей в корзині
-      updateCartPricesAndQuantities(data);
     } catch (error) {
       console.error("Помилка отримання корзини користувача:", error);
     }
   };
 
-  const updateCartPricesAndQuantities = (cartData) => {
-    const updatedCartItems = cartItems
-      .map((cartItem) => {
-        const correspondingItem = items.find(
-          (item) => item.id === cartItem.productId
-        );
+  const updateCartPricesAndQuantities = (data) => {
+    const updatedCartItems = data.map((cartItem) => {
+      const correspondingItem = items.find(
+        (item) => item.code === cartItem.code
+      );
 
-        if (correspondingItem) {
-          // Оновлення ціни, якщо вона змінилася
-          const updatedPrice = optUser
-            ? correspondingItem.priceOPT
-            : correspondingItem.price;
+      if (correspondingItem.amount === 0) {
+        removeItem(cartItem._id);
 
-          // Перевірка та оновлення кількості, якщо вона перевищує amount
-          const updatedQuantity =
-            correspondingItem.amount === 0
-              ? 0
-              : cartItem.quantity > correspondingItem.amount
-              ? correspondingItem.amount
-              : cartItem.quantity;
+        return {
+          ...cartItem,
+        };
+      }
 
-          // Видалення товару з кошика, якщо amount дорівнює 0
-          if (correspondingItem.amount === 0) {
-            removeCartItem(cartItem._id);
-            return null; // Повертаємо null для того, щоб відфільтрувати видалені товари
-          }
+      // Оновлення ціни, якщо вона змінилася
+      if (correspondingItem) {
+        const updatedPriceOpt = correspondingItem.priceOPT;
+        const updatedPrice = correspondingItem.price;
 
-          // Оновлення товару в кошику з новими значеннями
-          return {
-            ...cartItem,
-            price: updatedPrice,
-            quantity: updatedQuantity,
-          };
+        // Перевірка та оновлення кількості, якщо вона перевищує amount
+        const updatedQuantity =
+          cartItem.quantity >= correspondingItem.amount
+            ? correspondingItem.amount
+            : cartItem.quantity;
+        if (updatedQuantity !== cartItem.quantity && isLoggedIn) {
+          updateCartItem(cartItem._id, updatedQuantity);
         }
 
-        return cartItem;
-      })
-      .filter(Boolean);
+        return {
+          ...cartItem,
+          priceOPT: updatedPriceOpt,
+          price: updatedPrice,
+          quantity: updatedQuantity,
+          amount: correspondingItem.amount,
+        };
+      }
 
-    // Відправлення нового списку товарів у кошику в Redux
-    dispatch(setCart(updatedCartItems));
-    // Оновлення кількостей у state
-    setItemQuantities((prevQuantities) => {
-      const updatedQuantities = { ...prevQuantities };
-
-      updatedCartItems.forEach((item) => {
-        updatedQuantities[item._id] = item.quantity;
-      });
-
-      return updatedQuantities;
+      return cartItem;
     });
-  };
+    // Відправлення нового списку товарів у кошику в Redux
 
-  // Створюємо об'єкт для зберігання кількості кожного товару
+    dispatch(setCart(updatedCartItems));
+  };
 
   const increaseQuantity = (item) => {
     const { _id, amount } = item;
@@ -201,6 +201,7 @@ const CartModal = ({ closeModal }) => {
       dispatch(removeCart({ itemId }));
     }
   };
+
   const updateCartItem = async (itemId, quantity) => {
     try {
       await axios.put(`/basket/${itemId}`, { quantity });
@@ -209,6 +210,7 @@ const CartModal = ({ closeModal }) => {
       console.error("Помилка оновлення кількості товару в кошику:", error);
     }
   };
+
   const removeCartItem = async (itemId) => {
     try {
       await axios.delete(`/basket/${itemId}`);
