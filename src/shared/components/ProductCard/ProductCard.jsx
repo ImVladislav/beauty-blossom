@@ -75,8 +75,9 @@ const ProductCard = ({ products }) => {
   };
 
   const isProductInCart = productCart?.some(
-    (item) => +item.id === +products.id
+    (item) => +item.code === +products.code
   );
+
   const isProductUnavailable = products.amount <= 0;
 
   const handleQuantityChange = (event) => {

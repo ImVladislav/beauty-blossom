@@ -77,6 +77,17 @@ const CartModal = ({ closeModal }) => {
     // eslint-disable-next-line
   }, [isLoggedIn, dispatch]);
 
+  useEffect(() => {
+    // Оновити itemQuantities при зміні кількості товару на складі
+    const newQuantities = { ...itemQuantities };
+    items.forEach((item) => {
+      if (item._id in newQuantities) {
+        newQuantities[item._id] = item.amount;
+      }
+    });
+    setItemQuantities(newQuantities);
+  }, [items]);
+
   const fetchUserCart = async () => {
     try {
       const response = await axios.get(`/basket`);
