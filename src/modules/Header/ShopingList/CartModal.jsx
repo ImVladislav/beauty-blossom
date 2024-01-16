@@ -120,8 +120,6 @@ const CartModal = ({ closeModal }) => {
       const correspondingItem = items.find(
         (item) => item.code === cartItem.code
       );
-      console.log(correspondingItem);
-      console.log(cartItem);
 
       if (correspondingItem.amount === 0) {
         removeItem(cartItem._id);

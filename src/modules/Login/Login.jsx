@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -20,16 +20,35 @@ import {
   ModalLoader,
   LinkStyle,
 } from "./Login.styled";
+import axios from "axios";
+import { setCart } from "../../redux/cart/slice";
 
 const Login = ({ setShowModal }) => {
   const initialValues = {
     email: "",
     password: "",
   };
+
   const [IsLogined, setIsLogined] = useState(false);
   const [isLoading, setIsLoading] = useState(false); //Loder
-
   const dispatch = useDispatch();
+
+  const fetchUserCart = async () => {
+    try {
+      const response = await axios.get(`/basket`);
+      const data = response.data;
+      dispatch(setCart(data));
+    } catch {
+      console.error("Лишенько не працює");
+    }
+  };
+
+  useEffect(() => {
+    if (IsLogined) {
+      fetchUserCart();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [IsLogined]);
 
   const loginDispatch = (data) => {
     setIsLoading(true);
