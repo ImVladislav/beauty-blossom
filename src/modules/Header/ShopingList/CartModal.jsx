@@ -10,7 +10,7 @@ import {
   removeQuantityCart,
   removeCart,
   setCart,
-  deleteAll,
+  // deleteAll,
 } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
 import {
@@ -55,7 +55,10 @@ const CartModal = ({ closeModal }) => {
 
   const [itemQuantities, setItemQuantities] = useState(
     cartItems.reduce((quantities, item) => {
-      quantities[item._id] = item.quantity; // Використовуємо кількість із cartItems або 1, якщо вона не вказана
+      console.log(quantities[item._id] || 0);
+      console.log(item.quantity);
+
+      quantities[item._id] = item.quantity !== undefined ? item.quantity : 0; // Використовуємо кількість із cartItems або 0, якщо вона не вказана
       return quantities;
     }, {})
   );
@@ -106,12 +109,14 @@ const CartModal = ({ closeModal }) => {
       const correspondingItem = items.find(
         (item) => item.code === cartItem.code
       );
+      console.log(correspondingItem);
+      console.log(cartItem);
 
       if (correspondingItem.amount === 0) {
         removeItem(cartItem._id);
 
         return {
-          ...cartItem,
+          ...correspondingItem,
         };
       }
 
@@ -262,48 +267,64 @@ const CartModal = ({ closeModal }) => {
               </tr>
             </thead>
             <GoodsBlock>
-              {cartItems.map((item) => (
-                <Thumb key={item._id}>
-                  <ImageBlock>
-                    <img src={item.images} alt="itemImage" />
-                  </ImageBlock>
-                  <DescriptionBlock>
-                    <ItemNameLink
-                      to={`/product/${item.id || item.productId}`}
-                      onClick={closeModal}
-                    >
-                      {item.name}
-                    </ItemNameLink>
-                  </DescriptionBlock>
-                  <AmountBlock>
-                    <CounterBlock>
-                      <DecIncBtn
-                        onClick={() => item && decreaseQuantity(item._id)}
-                      >
-                        –
-                      </DecIncBtn>
-                      {itemQuantities[item._id]}
-                      <DecIncBtn onClick={() => increaseQuantity(item)}>
-                        +
-                      </DecIncBtn>
-                    </CounterBlock>
-                  </AmountBlock>
-                  {optUser ? (
-                    <PriceBlock>
-                      {item.priceOPT * itemQuantities[item._id]} грн
-                    </PriceBlock>
-                  ) : (
-                    <PriceBlock>
-                      {item.price * itemQuantities[item._id]} грн
-                    </PriceBlock>
-                  )}
-                  <td>
-                    <DeleteBtn onClick={() => removeItem(item._id)}>
-                      <DeleteIcon />
-                    </DeleteBtn>
-                  </td>
-                </Thumb>
-              ))}
+              {cartItems
+                .filter((item) => {
+                  if (!isLoggedIn) {
+                    if (itemQuantities[item._id] === 0) {
+                      removeItem(item._id);
+                      return false;
+                    }
+
+                    return true;
+                  } else {
+                    return true;
+                  }
+                })
+                .map(
+                  (item) =>
+                    itemQuantities[item._id] !== 0 && (
+                      <Thumb key={item._id}>
+                        <ImageBlock>
+                          <img src={item.images} alt="itemImage" />
+                        </ImageBlock>
+                        <DescriptionBlock>
+                          <ItemNameLink
+                            to={`/product/${item.id || item.productId}`}
+                            onClick={closeModal}
+                          >
+                            {item.name}
+                          </ItemNameLink>
+                        </DescriptionBlock>
+                        <AmountBlock>
+                          <CounterBlock>
+                            <DecIncBtn
+                              onClick={() => item && decreaseQuantity(item._id)}
+                            >
+                              –
+                            </DecIncBtn>
+                            {itemQuantities[item._id]}
+                            <DecIncBtn onClick={() => increaseQuantity(item)}>
+                              +
+                            </DecIncBtn>
+                          </CounterBlock>
+                        </AmountBlock>
+                        {optUser ? (
+                          <PriceBlock>
+                            {item.priceOPT * itemQuantities[item._id]} грн
+                          </PriceBlock>
+                        ) : (
+                          <PriceBlock>
+                            {item.price * itemQuantities[item._id]} грн
+                          </PriceBlock>
+                        )}
+                        <td>
+                          <DeleteBtn onClick={() => removeItem(item._id)}>
+                            <DeleteIcon />
+                          </DeleteBtn>
+                        </td>
+                      </Thumb>
+                    )
+                )}
             </GoodsBlock>
           </table>
           <Amount>Всього: {totalCost} грн</Amount>
