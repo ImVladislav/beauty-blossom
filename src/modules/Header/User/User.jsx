@@ -24,6 +24,7 @@ import {
   Modal,
   Underline,
 } from "./user.styled";
+import { deleteAll } from "../../../redux/cart/slice";
 
 const User = () => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -57,6 +58,7 @@ const User = () => {
 
   const logoutDispatch = () => {
     dispatch(logout());
+    dispatch(deleteAll());
   };
 
   const handelDropClose = (e) => {
