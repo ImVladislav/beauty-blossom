@@ -163,22 +163,22 @@ const ProductList = ({ items }) => {
   };
 
   // анімація підняття сторінки вгору
-  useEffect(() => {
-    const wrapListProduct = document.querySelector(".WrapListProduct");
-    if (wrapListProduct) {
-      wrapListProduct.classList.add("active");
+  // useEffect(() => {
+  //   const wrapListProduct = document.querySelector(".WrapListProduct");
+  //   if (wrapListProduct) {
+  //     wrapListProduct.classList.add("active");
 
-      // Відстрочення анімації
-      setTimeout(() => {
-        wrapListProduct.classList.remove("active");
-      }, 500);
-    }
-  }, [currentPage]);
+  //     // Відстрочення анімації
+  //     setTimeout(() => {
+  //       wrapListProduct.classList.remove("active");
+  //     }, 500);
+  //   }
+  // }, [currentPage]);
 
   return (
     <>
       {currentProducts.length > 0 ? (
-        <div className="WrapListProduct">
+        <div>
           <FilterContainer>
             <FilterWrap>
               {/* Фільтр */}
