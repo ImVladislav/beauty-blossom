@@ -106,3 +106,27 @@ export const Link = styled.a`
     color: ${(p) => p.theme.colors.textColor};
   }
 `;
+export const SubText = styled.p`
+  margin-bottom: 5px;
+  margin-left: 5px;
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;
+
+export const Red = styled.span`
+  color: red;
+  font-size: 10px;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    margin-left: 10px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
+`;

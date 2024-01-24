@@ -10,12 +10,15 @@ import {
   ModalBackground,
   ModalContent,
   Link,
+  SubText,
+  Red,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 
 import Register from "../../modules/Register/Register";
 import { toast } from "react-toastify";
 import Button from "../../shared/components/Button/Button";
+import { Helmet } from "react-helmet";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +50,16 @@ const SaleProgramPage = () => {
   };
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Корейська косметика оптом в Україні</title>
+        <meta
+          name="description"
+          content="Компанія Beauty Blossom запрошує до співпраці великі та малі гуртові
+            магазини, салони краси та інстаграм сторінки. З нами ви отримуєте
+            найвигідніші умови для співпраці:"
+        />
+      </Helmet>
       <div>
         <section id="about">
           <Title>Корейська косметика оптом в Україні</Title>
@@ -125,7 +138,8 @@ const SaleProgramPage = () => {
 
         <section>
           <ConditionsTitle>Графік роботи</ConditionsTitle>
-          <Text>Понеділок – субота з 9:30 по 18:00</Text>
+          <Text>Понеділок — п'ятниця з 9:30 по 18:00</Text>
+          <Text>Субота, неділя — вихідні </Text>
         </section>
 
         <section>
@@ -134,18 +148,26 @@ const SaleProgramPage = () => {
             Щоб стати оптовим покупцем, вам потрібно виконати наступні кроки:
           </Text>
           <ConditionsList>
-            <ListItems> Заповніть анкету</ListItems>
             <ListItems>
-              Надішліть менеджеру в телеграмі свою електронну пошту, яку
-              вказували при реєстрації
+              Реєструйтесь по кнопці "Стати оптовим покупцем"
             </ListItems>
             <ListItems>
-              Ми переведемо ваш акаунт в статус оптового покупця
+              Поверніться на верх сторінки та увійдіть в свій акаунт, вказавши
+              свій логін та пароль
             </ListItems>
           </ConditionsList>
+          <SubText>
+            <Red>*</Red>важливо : на електронну пошту , яку вказували при
+            реєстрації , вам прийшов лист з логіном та паролем. Рекомендуємо
+            його зберегти , аби в майбутньому завжди мати змогу увійти за своїми
+            даними на сайт
+          </SubText>
+          <SubText>
+            Готово! Ви стали оптовим покупцем та можете бачити оптові ціни.
+          </SubText>
           <Text>
-            Готово! Тепер ви можете оформляти замовлення на сайті та бачити
-            історію своїх покупок.
+            <Red>*</Red>якщо виникли труднощі з входом на сайт - напишіть нашому
+            менеджеру в телеграмі
           </Text>
 
           <ButtonWrapper>

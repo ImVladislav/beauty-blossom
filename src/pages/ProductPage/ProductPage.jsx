@@ -182,13 +182,11 @@ const ProductPage = () => {
           <Helmet>
             <meta charSet="utf-8" />
             <title>{product.name}</title>
-            <meta name="name" content={product.name} />
             <meta name="description" content={product.description} />
-            <meta name="price" value="notImportant" />
-            {/* Додайте інші метатеги */}
-            <script {...jsonLdScriptProps(structuredProduct)} />
           </Helmet>
-          <h1 className="hidden">{product.name}</h1>
+          <section>
+            <h1 className="hidden">{product.name}</h1>
+          </section>
           <ImageWrap>
             <ProductImage
               itemProp="image"
