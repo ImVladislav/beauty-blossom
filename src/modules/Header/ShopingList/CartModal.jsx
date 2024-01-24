@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,6 @@ import {
   removeQuantityCart,
   removeCart,
   setCart,
-  // deleteAll,
 } from "../../../redux/cart/slice";
 import { selectCart } from "../../../redux/cart/selectors";
 import {
@@ -53,63 +52,44 @@ const CartModal = ({ closeModal }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [itemQuantities, setItemQuantities] = useState(
-    cartItems.reduce((quantities, item) => {
-      console.log(quantities[item._id] || 0);
-      console.log(item.quantity);
-
-      quantities[item._id] = item.quantity !== undefined ? item.quantity : 0; // Використовуємо кількість із cartItems або 0, якщо вона не вказана
+  // Використання useMemo для обчислення itemQuantities
+  const itemQuantities = useMemo(() => {
+    return cartItems.reduce((quantities, item) => {
+      quantities[item._id] = item.quantity !== undefined ? item.quantity : 0;
       return quantities;
-    }, {})
-  );
+    }, {});
+  }, [cartItems]);
 
   useEffect(() => {
-    // cartItems.map((item) => {
-    //   item === null && dispatch(deleteAll());
-    // });
     if (isLoggedIn) {
       fetchUserCart();
     }
     if (!isLoggedIn) {
       updateCartPricesAndQuantities(cartItems);
     }
-
     // eslint-disable-next-line
   }, [isLoggedIn, dispatch]);
 
   useEffect(() => {
-    // Оновити itemQuantities при зміні кількості товару на складі
     const newQuantities = { ...itemQuantities };
+
     items.forEach((item) => {
-      if (item._id in newQuantities) {
+      if (newQuantities[item._id] > item.amount) {
         newQuantities[item._id] = item.amount;
       }
     });
-    setItemQuantities(newQuantities);
-  }, [items]);
+  }, [items, itemQuantities]);
 
   const fetchUserCart = async () => {
     try {
       const response = await axios.get(`/basket`);
       const data = response.data;
-      // console.log(data);
+
       if (data.length !== 0) {
-        // Перевірка і оновлення цін та кількостей в корзині
         updateCartPricesAndQuantities(data);
       } else {
         dispatch(setCart(data));
       }
-
-      setItemQuantities((prevQuantities) => {
-        const updatedQuantities = { ...prevQuantities };
-
-        // Встановлюємо кількість для кожного товару з отриманої відповіді
-        data.forEach((item) => {
-          updatedQuantities[item._id] = item.quantity;
-        });
-
-        return updatedQuantities;
-      });
     } catch (error) {
       console.error("Помилка отримання корзини користувача:", error);
     }
@@ -129,12 +109,10 @@ const CartModal = ({ closeModal }) => {
         };
       }
 
-      // Оновлення ціни, якщо вона змінилася
       if (correspondingItem) {
         const updatedPriceOpt = correspondingItem.priceOPT;
         const updatedPrice = correspondingItem.price;
 
-        // Перевірка та оновлення кількості, якщо вона перевищує amount
         const updatedQuantity =
           cartItem.quantity >= correspondingItem.amount
             ? correspondingItem.amount
@@ -154,48 +132,37 @@ const CartModal = ({ closeModal }) => {
 
       return cartItem;
     });
-    // Відправлення нового списку товарів у кошику в Redux
 
     dispatch(setCart(updatedCartItems));
   };
 
   const increaseQuantity = (item) => {
     const { _id, amount } = item;
+    const newQuantity = itemQuantities[_id] + 1;
 
-    setItemQuantities((prevQuantities) => {
-      const newQuantity = prevQuantities[_id] + 1;
+    if (amount && newQuantity > amount) {
+      toast.error("Обмежена кількість товару на складі!");
+      return;
+    }
 
-      if (amount && newQuantity > amount) {
-        toast.error("Обмежена кількість товару на складі!");
-        return prevQuantities;
-      }
-
-      if (isLoggedIn) {
-        updateCartItem(_id, newQuantity);
-      } else {
-        dispatch(addToCart({ _id, quantity: newQuantity }));
-      }
-
-      return {
-        ...prevQuantities,
-        [_id]: newQuantity,
-      };
-    });
+    if (isLoggedIn) {
+      updateCartItem(_id, newQuantity);
+    } else {
+      dispatch(addToCart({ _id, quantity: newQuantity }));
+    }
   };
 
   const decreaseQuantity = (itemId) => {
-    if (itemQuantities[itemId] > 1) {
-      setItemQuantities((prevQuantities) => ({
-        ...prevQuantities,
-        [itemId]: prevQuantities[itemId] - 1,
-      }));
+    const newQuantity = itemQuantities[itemId] - 1;
+
+    if (newQuantity > 0) {
       if (isLoggedIn) {
-        updateCartItem(itemId, itemQuantities[itemId] - 1);
+        updateCartItem(itemId, newQuantity);
       } else {
         dispatch(
           removeQuantityCart({
             _id: itemId,
-            quantity: itemQuantities[itemId] - 1,
+            quantity: newQuantity,
           })
         );
       }
@@ -205,10 +172,6 @@ const CartModal = ({ closeModal }) => {
   };
 
   const removeItem = (itemId) => {
-    setItemQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [itemId]: 0, // Видалити кількість товару
-    }));
     if (isLoggedIn) {
       removeCartItem(itemId);
     } else {
@@ -234,7 +197,6 @@ const CartModal = ({ closeModal }) => {
     }
   };
 
-  // Розрахунок загальної вартості товарів в корзині
   const totalCost = optUser
     ? cartItems.reduce(
         (total, item) => total + item.priceOPT * itemQuantities[item._id],
@@ -256,6 +218,10 @@ const CartModal = ({ closeModal }) => {
         console.error("Помилка розміщення замовлення:", error);
       }
     }
+  };
+  const backToCatalog = () => {
+    navigate("/category");
+    closeModal();
   };
 
   return (
@@ -344,13 +310,14 @@ const CartModal = ({ closeModal }) => {
 
       <ButtonThumb>
         <ButtonContainer>
-          <ReturnBTN onClick={closeModal}>
+          <ReturnBTN onClick={backToCatalog}>
             <ReturnIcon />
             Повернутись до покупок
           </ReturnBTN>
         </ButtonContainer>
         <ButtonContainer>
           <Button
+            name="Оформити замовлення"
             onClick={placeOrder}
             text="Оформити замовлення"
             disabled={cartItems.length === 0}
