@@ -231,3 +231,7 @@ export const InputIncDec = styled.input`
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
+
+export const UlHistoryList = styled.ul`
+  display: flex;
+`;

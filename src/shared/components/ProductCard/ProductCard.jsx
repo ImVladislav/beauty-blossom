@@ -103,6 +103,7 @@ const ProductCard = ({ products }) => {
       setQuantity(quantity - 1);
     }
   };
+
   return (
     <>
       <ItemStyle className={isProductUnavailable ? "unavailable" : ""}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -39,10 +39,11 @@ import {
   ProductArticleSpan,
   ProductTags,
   ProductCountry,
+  UlHistoryList,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
-// import { Helmet } from "react-helmet";
-import { jsonLdScriptProps } from "react-schemaorg";
+
+import categoryLinks from "../../modules/Header/menuItems.json";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -56,7 +57,6 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
-
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -67,15 +67,17 @@ const ProductPage = () => {
   const productCartFind = productCart?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
+  const location = useLocation();
 
-  const structuredProduct = {
-    "@context": "http://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.description,
-    image: product.images, // URL зображення продукту
-    // Додайте інші властивості, які ви хочете включити
-  };
+  console.log(window.location.pathname);
+  // const structuredProduct = {
+  //   "@context": "http://schema.org",
+  //   "@type": "Product",
+  //   name: product.name,
+  //   description: product.description,
+  //   image: product.images, // URL зображення продукту
+  //   // Додайте інші властивості, які ви хочете включити
+  // };
 
   const handleAddToCart = async () => {
     if (!productCartFind) {
@@ -173,110 +175,271 @@ const ProductPage = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  function getProductPath(productName, categories) {
+    let productPath = "";
+
+    // Перебираємо всі категорії
+    for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];
+
+      if (category.children && category.children.length > 0) {
+        for (let j = 0; j < category.children.length; j++) {
+          const subCategory = category.children[j];
+          console.log(subCategory);
+
+          const product = subCategory.children.find(
+            (item) => item.text === productName
+          );
+
+          if (product) {
+            productPath = `${category.to || ""}`;
+            console.log(productPath);
+            break;
+          }
+        }
+      }
+
+      if (productPath) {
+        break;
+      }
+    }
+
+    // Повертаємо шлях категорії
+    return productPath;
+  }
+
+  function getSubProductPath(productName, categories) {
+    let productPath = "";
+
+    console.log(categoryLinks[0].children);
+
+    // Перебираємо всі категорії
+    for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];
+
+      if (category.children && category.children.length > 0) {
+        for (let j = 0; j < category.children.length; j++) {
+          const subCategory = category.children[j];
+          console.log(subCategory);
+
+          const product = subCategory.children.find(
+            (item) => item.text === productName
+          );
+
+          if (product) {
+            productPath = `${subCategory.to || ""}`;
+            console.log(productPath);
+            break;
+          }
+        }
+      }
+
+      if (productPath) {
+        break;
+      }
+    }
+
+    // Повертаємо шлях категорії
+    return productPath;
+  }
+
+  function getSubSubProductPath(productName, categories) {
+    let productPath = "";
+    let category = null;
+
+    console.log(categoryLinks[0].children);
+    // Перебираємо всі категорії
+    for (let i = 0; i < categories.length; i++) {
+      category = categories[i];
+
+      if (category.children && category.children.length > 0) {
+        for (let j = 0; j < category.children.length; j++) {
+          const subCategory = category.children[j];
+          console.log(subCategory);
+
+          const product = subCategory.children.find(
+            (item) => item.text === productName
+          );
+
+          if (product) {
+            productPath = product.to;
+            break;
+          }
+        }
+      }
+      // setCategory(category);
+      if (productPath) {
+        break;
+      }
+    }
+
+    // Якщо шлях вже знайдено, виходимо з зовнішнього циклу
+    return productPath;
+  }
+
+  const subCategories = categoryLinks[0].children;
+  const productSubSubCategory = product.subSubCategory || product.subCategory;
+
+  const productPath = getProductPath(productSubSubCategory, subCategories);
+
+  const productSubPath = getSubProductPath(
+    productSubSubCategory,
+    subCategories
+  );
+  const producttSubSubPath = getSubSubProductPath(
+    productSubSubCategory,
+    subCategories
+  );
+
+  const flatMapCategories = (categories) =>
+    categories.flatMap((category) => [
+      category,
+      ...flatMapCategories(category.children || []),
+    ]);
+
+  const flatCategoryLinks = flatMapCategories(categoryLinks);
+
+  console.log(flatCategoryLinks);
+
+  console.log(producttSubSubPath);
+  console.log(productSubPath);
+  console.log(productPath);
+
+  console.log(product.subSubCategory);
+  console.log(product.subCategory);
+  console.log(product.category);
+
+  console.log(categoryLinks[0].children);
+  console.log(categoryLinks);
   return (
     <Container>
       {loading ? (
         <Loader />
       ) : (
-        <PageContainer>
-          <Helmet>
-            <meta charSet="utf-8" />
-            <title>{product.name}</title>
-            <meta name="description" content={product.description} />
-          </Helmet>
-          <section>
-            <h1 className="hidden">{product.name}</h1>
-          </section>
-          <ImageWrap>
-            <ProductImage
-              itemProp="image"
-              src={product.images}
-              alt={product.name}
-            />
-            <ProductTags>
-              {product.new && <Sticker text="Новинка" />}
-              {product.sale && <Sticker text="Знижка" sale />}
-            </ProductTags>
-          </ImageWrap>
-          <Info>
-            <WrapName>
-              <div itemScope itemType="https://schema.org/Product"></div>
-              <ProductName itemProp="name">{product.name}</ProductName>
-              <ProductArticle>
-                <ProductArticleSpan>Артикул</ProductArticleSpan>
-                {product.article}
-              </ProductArticle>
-            </WrapName>
-            <ProductCode>Штрих-код: {product.code}</ProductCode>
-            <ProductCountry>Країна виробник {product.country}</ProductCountry>
-            <ProductBrand> {product.brand}</ProductBrand>
-            {optUser ? (
-              <ProductPrice>{product.priceOPT} ₴</ProductPrice>
-            ) : (
-              <ProductPrice>{product.price} ₴</ProductPrice>
-            )}
-            {product.amount <= 0 ||
-              (!productCartFind && (
-                <CounterBlock>
-                  <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
-                  <InputIncDec
-                    type="number"
-                    min="1"
-                    max={product.amount}
-                    value={quantity}
-                    onChange={handleQuantityChange}
-                    // readOnly={true}
+        <div>
+          <div>
+            <UlHistoryList>
+              <li>
+                <Link to="/">Повернутись на головну сторінку</Link>
+              </li>
+              <li>
+                <Link to={`${productPath}`}>{product.category}</Link>
+              </li>
+              <li>
+                <Link to={`${productSubPath}`}>{product.subCategory}</Link>
+              </li>
+              <li>
+                <Link to={`${producttSubSubPath}`}>
+                  {product.subSubCategory}
+                </Link>
+              </li>
+              <li>
+                <Link to={window.location.pathname}>{product.name}</Link>
+              </li>
+            </UlHistoryList>
+          </div>
+          <PageContainer>
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>{product.name}</title>
+
+              <meta name="description" content={product.description} />
+            </Helmet>
+            <section>
+              <h1 className="hidden">{product.name}</h1>
+            </section>
+            <ImageWrap>
+              <ProductImage
+                itemProp="image"
+                src={product.images}
+                alt={product.name}
+              />
+              <ProductTags>
+                {product.new && <Sticker text="Новинка" />}
+                {product.sale && <Sticker text="Знижка" sale />}
+              </ProductTags>
+            </ImageWrap>
+            <Info>
+              <WrapName>
+                <div itemScope itemType="https://schema.org/Product"></div>
+                <ProductName itemProp="name">{product.name}</ProductName>
+
+                <ProductArticle>
+                  <ProductArticleSpan>Артикул</ProductArticleSpan>
+                  {product.article}
+                </ProductArticle>
+              </WrapName>
+              <ProductCode>Штрих-код: {product.code}</ProductCode>
+              <ProductCountry>Країна виробник {product.country}</ProductCountry>
+              <ProductBrand> {product.brand}</ProductBrand>
+              {optUser ? (
+                <ProductPrice>{product.priceOPT} ₴</ProductPrice>
+              ) : (
+                <ProductPrice>{product.price} ₴</ProductPrice>
+              )}
+              {product.amount <= 0 ||
+                (!productCartFind && (
+                  <CounterBlock>
+                    <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
+                    <InputIncDec
+                      type="number"
+                      min="1"
+                      max={product.amount}
+                      value={quantity}
+                      onChange={handleQuantityChange}
+                      // readOnly={true}
+                    />
+                    <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
+                  </CounterBlock>
+                ))}
+
+              {isAdmin && (
+                <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
+                  <CounterBlock>
+                    <InputIncDec
+                      type="number"
+                      value={amount}
+                      onChange={changeAmount}
+                    />
+                  </CounterBlock>
+                  <Button
+                    type="submit"
+                    goods
+                    text={"Обновити кілкість товару"}
+                    // onClick={handleChange}
                   />
-                  <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
-                </CounterBlock>
-              ))}
+                </form>
+              )}
 
-            {isAdmin && (
-              <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
-                <CounterBlock>
-                  <InputIncDec
-                    type="number"
-                    value={amount}
-                    onChange={changeAmount}
-                  />
-                </CounterBlock>
-                <Button
-                  type="submit"
-                  goods
-                  text={"Обновити кілкість товару"}
-                  // onClick={handleChange}
-                />
-              </form>
-            )}
+              <Button
+                goods
+                text={
+                  product.amount <= 0
+                    ? "Немає в наявності"
+                    : productCartFind
+                    ? "У кошику"
+                    : "Купити"
+                }
+                onClick={handleAddToCart}
+                disabled={productCartFind || product.amount <= 0}
+              />
 
-            <Button
-              goods
-              text={
-                product.amount <= 0
-                  ? "Немає в наявності"
-                  : productCartFind
-                  ? "У кошику"
-                  : "Купити"
-              }
-              onClick={handleAddToCart}
-              disabled={productCartFind || product.amount <= 0}
-            />
-
-            {/* Швидке замовлення */}
-            {/* <SecondButton
+              {/* Швидке замовлення */}
+              {/* <SecondButton
             text="Швидке замовлення"
             onClick={toggleModal}
             disabled={product.amount <= 0}
           ></SecondButton> */}
 
-            <ProductTitleDescription>Опис</ProductTitleDescription>
-            <ProductDescription itemProp="description">
-              {product.description}
-            </ProductDescription>
+              <ProductTitleDescription>Опис</ProductTitleDescription>
+              <ProductDescription itemProp="description">
+                {product.description}
+              </ProductDescription>
 
-            {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
-          </Info>
-        </PageContainer>
+              {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
+            </Info>
+          </PageContainer>
+        </div>
       )}
     </Container>
   );

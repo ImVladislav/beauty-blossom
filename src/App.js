@@ -72,9 +72,9 @@ function App() {
           />
           <Route path="forgotten" element={<ForgottenPage />} />
           <Route path="forgotten/:forgotten" element={<ForgottenIdPage />} />
-          <Route path="login" element={<p>Login Page</p>} />
+          {/* <Route path="login" element={<p>Login Page</p>} /> */}
 
-          <Route path="registration" element={<p>Registration Page</p>} />
+          {/* <Route path="registration" element={<p>Registration Page</p>} /> */}
           <Route
             path="category"
             element={
