@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -181,7 +181,7 @@ const ProductPage = () => {
     // Перебираємо всі категорії
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i];
-
+      console.log(category);
       if (category.children && category.children.length > 0) {
         for (let j = 0; j < category.children.length; j++) {
           const subCategory = category.children[j];
@@ -255,12 +255,9 @@ const ProductPage = () => {
       if (category.children && category.children.length > 0) {
         for (let j = 0; j < category.children.length; j++) {
           const subCategory = category.children[j];
-          console.log(subCategory);
-
           const product = subCategory.children.find(
             (item) => item.text === productName
           );
-
           if (product) {
             productPath = product.to;
             break;
@@ -278,7 +275,8 @@ const ProductPage = () => {
   }
 
   const subCategories = categoryLinks[0].children;
-  const productSubSubCategory = product.subSubCategory || product.subCategory;
+  const productSubSubCategory =
+    product.subSubCategory || product.subCategory || product.category;
 
   const productPath = getProductPath(productSubSubCategory, subCategories);
 
@@ -291,16 +289,73 @@ const ProductPage = () => {
     subCategories
   );
 
-  const flatMapCategories = (categories) =>
-    categories.flatMap((category) => [
-      category,
-      ...flatMapCategories(category.children || []),
-    ]);
+  function getCategoryUrl(categoryName, nodes) {
+    const findCategoryUrl = (name, nodes, parentUrl = "") => {
+      for (const node of nodes) {
+        const currentUrl = `${node.to || ""}`;
 
-  const flatCategoryLinks = flatMapCategories(categoryLinks);
+        if (node.children && node.children.length > 0) {
+          const subCategoryUrl = findCategoryUrl(
+            name,
+            node.children,
+            currentUrl
+          );
 
-  console.log(flatCategoryLinks);
+          if (subCategoryUrl) {
+            return subCategoryUrl;
+          }
+        } else if (node.text === name) {
+          return currentUrl;
+        }
+      }
 
+      return null;
+    };
+
+    return findCategoryUrl(categoryName, nodes);
+  }
+
+  function getCategoryUrl2(categoryName, nodes) {
+    const findCategoryUrl = (name, nodes, parentUrl = "") => {
+      for (const node of nodes) {
+        const currentUrl = `${node.to || ""}`;
+
+        if (node.children && node.children.length > 0) {
+          const subCategoryUrl = findCategoryUrl(
+            name,
+            node.children,
+            currentUrl
+          );
+
+          if (subCategoryUrl) {
+            return subCategoryUrl;
+          }
+        } else if (node.text === name) {
+          // Find the last index of '/' in the currentUrl
+          const lastSlashIndex = currentUrl.lastIndexOf("/");
+
+          // Return the URL up to the last slash
+          return lastSlashIndex !== -1
+            ? currentUrl.substring(0, lastSlashIndex)
+            : currentUrl;
+        }
+      }
+
+      return null;
+    };
+
+    return findCategoryUrl(categoryName, nodes);
+  }
+
+  const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
+
+  console.log(categoryUrl2);
+
+  const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
+
+  console.log(categoryUrl);
+
+  console.log(subCategories);
   console.log(producttSubSubPath);
   console.log(productSubPath);
   console.log(productPath);
@@ -323,10 +378,19 @@ const ProductPage = () => {
                 <Link to="/">Повернутись на головну сторінку</Link>
               </li>
               <li>
-                <Link to={`${productPath}`}>{product.category}</Link>
+                <Link
+                  to={
+                    productPath ||
+                    (categoryUrl2 === "/category" ? categoryUrl : categoryUrl2)
+                  }
+                >
+                  {product.category}
+                </Link>
               </li>
               <li>
-                <Link to={`${productSubPath}`}>{product.subCategory}</Link>
+                <Link to={`${productSubPath}` || `${categoryUrl}`}>
+                  {product.subCategory}
+                </Link>
               </li>
               <li>
                 <Link to={`${producttSubSubPath}`}>
