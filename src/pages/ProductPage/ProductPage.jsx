@@ -40,6 +40,8 @@ import {
   ProductTags,
   ProductCountry,
   UlHistoryList,
+  LinkHistoryLink,
+  LiHistoryList,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
@@ -359,46 +361,46 @@ const ProductPage = () => {
         <div>
           <div>
             <UlHistoryList>
-              <li>
-                <Link to="/" onClick={() => handleLinkClick("")}>
-                  Повернутись на головну сторінку
-                </Link>
-              </li>
-              <li>
-                <Link
+              <LiHistoryList>
+                <LinkHistoryLink to="/" onClick={() => handleLinkClick("")}>
+                  Повернутись на головну сторінку /
+                </LinkHistoryLink>
+              </LiHistoryList>
+              <LiHistoryList>
+                <LinkHistoryLink
                   to={
                     productPath ||
                     (categoryUrl2 === "/category" ? categoryUrl : categoryUrl2)
                   }
                   onClick={() => handleLinkClick(product.category)}
                 >
-                  {product.category}
-                </Link>
-              </li>
-              <li>
-                <Link
+                  {product.category} /
+                </LinkHistoryLink>
+              </LiHistoryList>
+              <LiHistoryList>
+                <LinkHistoryLink
                   to={productSubPath || categoryUrl}
                   onClick={() => handleLinkClick(product.subCategory)}
                 >
-                  {product.subCategory}
-                </Link>
-              </li>
-              <li>
-                <Link
+                  {product.subCategory} /
+                </LinkHistoryLink>
+              </LiHistoryList>
+              <LiHistoryList>
+                <LinkHistoryLink
                   to={producttSubSubPath}
                   onClick={() => handleLinkClick(product.subSubCategory)}
                 >
-                  {product.subSubCategory}
-                </Link>
-              </li>
-              <li>
-                <Link
+                  {product.subSubCategory} /
+                </LinkHistoryLink>
+              </LiHistoryList>
+              <LiHistoryList>
+                <LinkHistoryLink
                   to={window.location.pathname}
                   onClick={() => handleLinkClick(product.name)}
                 >
                   {product.name}
-                </Link>
-              </li>
+                </LinkHistoryLink>
+              </LiHistoryList>
             </UlHistoryList>
           </div>
           <PageContainer>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const PageContainer = styled.div`
@@ -234,4 +235,16 @@ export const InputIncDec = styled.input`
 
 export const UlHistoryList = styled.ul`
   display: flex;
+  margin-left: 3%;
+`;
+
+export const LiHistoryList = styled.li`
+  margin: 0px 2px;
+`;
+
+export const LinkHistoryLink = styled(Link)`
+  color: #833989;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
 `;
