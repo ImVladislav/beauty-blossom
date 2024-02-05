@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -44,6 +44,7 @@ import {
 import { Helmet } from "react-helmet-async";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
+import { setfilter } from "../../redux/filter/slice";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -67,17 +68,6 @@ const ProductPage = () => {
   const productCartFind = productCart?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
-  const location = useLocation();
-
-  console.log(window.location.pathname);
-  // const structuredProduct = {
-  //   "@context": "http://schema.org",
-  //   "@type": "Product",
-  //   name: product.name,
-  //   description: product.description,
-  //   image: product.images, // URL зображення продукту
-  //   // Додайте інші властивості, які ви хочете включити
-  // };
 
   const handleAddToCart = async () => {
     if (!productCartFind) {
@@ -178,14 +168,12 @@ const ProductPage = () => {
   function getProductPath(productName, categories) {
     let productPath = "";
 
-    // Перебираємо всі категорії
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i];
-      console.log(category);
+
       if (category.children && category.children.length > 0) {
         for (let j = 0; j < category.children.length; j++) {
           const subCategory = category.children[j];
-          console.log(subCategory);
 
           const product = subCategory.children.find(
             (item) => item.text === productName
@@ -193,7 +181,6 @@ const ProductPage = () => {
 
           if (product) {
             productPath = `${category.to || ""}`;
-            console.log(productPath);
             break;
           }
         }
@@ -211,16 +198,12 @@ const ProductPage = () => {
   function getSubProductPath(productName, categories) {
     let productPath = "";
 
-    console.log(categoryLinks[0].children);
-
-    // Перебираємо всі категорії
     for (let i = 0; i < categories.length; i++) {
       const category = categories[i];
 
       if (category.children && category.children.length > 0) {
         for (let j = 0; j < category.children.length; j++) {
           const subCategory = category.children[j];
-          console.log(subCategory);
 
           const product = subCategory.children.find(
             (item) => item.text === productName
@@ -228,7 +211,6 @@ const ProductPage = () => {
 
           if (product) {
             productPath = `${subCategory.to || ""}`;
-            console.log(productPath);
             break;
           }
         }
@@ -247,7 +229,6 @@ const ProductPage = () => {
     let productPath = "";
     let category = null;
 
-    console.log(categoryLinks[0].children);
     // Перебираємо всі категорії
     for (let i = 0; i < categories.length; i++) {
       category = categories[i];
@@ -349,23 +330,27 @@ const ProductPage = () => {
 
   const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
 
-  console.log(categoryUrl2);
+  // console.log(categoryUrl2);
 
   const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
 
-  console.log(categoryUrl);
+  // console.log(categoryUrl);
 
-  console.log(subCategories);
-  console.log(producttSubSubPath);
-  console.log(productSubPath);
-  console.log(productPath);
+  // console.log(subCategories);
+  // console.log(producttSubSubPath);
+  // console.log(productSubPath);
+  // console.log(productPath);
 
-  console.log(product.subSubCategory);
-  console.log(product.subCategory);
-  console.log(product.category);
+  // console.log(product.subSubCategory);
+  // console.log(product.subCategory);
+  // console.log(product.category);
 
-  console.log(categoryLinks[0].children);
-  console.log(categoryLinks);
+  // console.log(categoryLinks[0].children);
+  // console.log(categoryLinks);
+
+  const handleLinkClick = (filterValue) => {
+    dispatch(setfilter(filterValue));
+  };
   return (
     <Container>
       {loading ? (
@@ -375,7 +360,9 @@ const ProductPage = () => {
           <div>
             <UlHistoryList>
               <li>
-                <Link to="/">Повернутись на головну сторінку</Link>
+                <Link to="/" onClick={() => handleLinkClick("")}>
+                  Повернутись на головну сторінку
+                </Link>
               </li>
               <li>
                 <Link
@@ -383,22 +370,34 @@ const ProductPage = () => {
                     productPath ||
                     (categoryUrl2 === "/category" ? categoryUrl : categoryUrl2)
                   }
+                  onClick={() => handleLinkClick(product.category)}
                 >
                   {product.category}
                 </Link>
               </li>
               <li>
-                <Link to={`${productSubPath}` || `${categoryUrl}`}>
+                <Link
+                  to={productSubPath || categoryUrl}
+                  onClick={() => handleLinkClick(product.subCategory)}
+                >
                   {product.subCategory}
                 </Link>
               </li>
               <li>
-                <Link to={`${producttSubSubPath}`}>
+                <Link
+                  to={producttSubSubPath}
+                  onClick={() => handleLinkClick(product.subSubCategory)}
+                >
                   {product.subSubCategory}
                 </Link>
               </li>
               <li>
-                <Link to={window.location.pathname}>{product.name}</Link>
+                <Link
+                  to={window.location.pathname}
+                  onClick={() => handleLinkClick(product.name)}
+                >
+                  {product.name}
+                </Link>
               </li>
             </UlHistoryList>
           </div>

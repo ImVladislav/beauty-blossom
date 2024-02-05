@@ -62,6 +62,7 @@ const MenuItem = ({ item }) => {
 
     dispatch(setfilter(name));
   };
+
   return (
     <Item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <Link to={item.to}>
