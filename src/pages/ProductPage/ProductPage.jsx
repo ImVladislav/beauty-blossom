@@ -47,6 +47,7 @@ import { Helmet } from "react-helmet-async";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
+import SimilarProducts from "../../modules/SimilarProducts/SimilarProducts";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -500,7 +501,7 @@ const ProductPage = () => {
               <ProductDescription itemProp="description">
                 {product.description}
               </ProductDescription>
-
+              <SimilarProducts brand={product.brand} />
               {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
             </Info>
           </PageContainer>

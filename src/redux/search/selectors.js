@@ -10,7 +10,7 @@ export const selectSearchQuery = createSelector(
       return goods;
     }
     const result = goods.items.filter(({ name }) => {
-      return name.toLowerCase().includes(search.toLowerCase());
+      return name.toLowerCase().includes(search.toLowerCase().trim());
     });
     return result;
   }
