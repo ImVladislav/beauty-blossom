@@ -18,10 +18,6 @@ import {
   HeaderLayout,
   WrapTop,
   MenuWrap,
-  MenuLayout,
-  MenuColumn,
-  MenuSection,
-  MenuProducts,
   LoginShipingThumb,
   MenuIcon,
   Schedule,
@@ -33,6 +29,7 @@ import {
   ContainerMobile,
   CartQuantityWrap,
   CartQuantitySpan,
+  Line,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -123,16 +120,9 @@ export const Header = () => {
               </HeaderTop>
               <MenuBottom $pathname={pathname}>
                 <MenuWrap>
-                  <MenuLayout>
-                    <MenuColumn>
-                      <MenuSection>
-                        <MenuProducts>
-                          <Menu items={menuItems} />
-                        </MenuProducts>
-                      </MenuSection>
-                    </MenuColumn>
-                  </MenuLayout>
+                  <Menu items={menuItems} />
                 </MenuWrap>
+                <Line />
               </MenuBottom>
             </Container>
           </ContainerHeader>

@@ -11,6 +11,9 @@ export const BrandPageContainer = styled.ul`
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
   }
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   @media screen and (min-width: 1440px) {
     grid-gap: 20px;
@@ -28,6 +31,9 @@ export const Title = styled.h3`
   font-size: ${(p) => p.theme.fontSizes.xxs}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   color: ${(p) => p.theme.colors.textColor};
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
@@ -57,8 +63,10 @@ export const BrandName = styled(NavLink)`
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
   }
-
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.m}px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
