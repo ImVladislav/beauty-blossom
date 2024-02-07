@@ -19,12 +19,11 @@ export const ImageWrap = styled.div`
   max-width: 500px;
   max-height: 500px;
   @media screen and (min-width: 768px) {
-    max-width: 350px;
-    max-height: 350px;
+    max-width: inherit;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: inherit;
+    /* max-height: 500px; */
   }
   @media screen and (min-width: 1440px) {
   }
@@ -161,7 +160,7 @@ export const ProductDescription = styled.p`
 export const Info = styled.div`
   @media screen and (min-width: 768px) {
     padding-left: 20px;
-    width: 50%;
+    width: fit-content;
   }
 `;
 
@@ -239,7 +238,7 @@ export const UlHistoryList = styled.ul`
 `;
 
 export const LiHistoryList = styled.li`
-  margin: 0px 2px;
+  margin: 0px;
 `;
 
 export const LinkHistoryLink = styled(Link)`
@@ -247,4 +246,13 @@ export const LinkHistoryLink = styled(Link)`
   font-size: 12px;
   font-weight: 400;
   text-decoration: none;
+  margin: 0px 2px;
+`;
+export const DivProductDescr = styled.div`
+  display: flex;
+`;
+export const DivAboutProduct = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-left: auto;
 `;

@@ -42,6 +42,8 @@ import {
   UlHistoryList,
   LinkHistoryLink,
   LiHistoryList,
+  DivProductDescr,
+  DivAboutProduct,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
@@ -378,22 +380,28 @@ const ProductPage = () => {
                   {product.category} /
                 </LinkHistoryLink>
               </LiHistoryList>
+
               <LiHistoryList>
-                <LinkHistoryLink
-                  to={productSubPath || categoryUrl}
-                  onClick={() => handleLinkClick(product.subCategory)}
-                >
-                  {product.subCategory} /
-                </LinkHistoryLink>
+                {product.subSubCategory && (
+                  <LinkHistoryLink
+                    to={productSubPath || categoryUrl}
+                    onClick={() => handleLinkClick(product.subCategory)}
+                  >
+                    {product.subCategory} /
+                  </LinkHistoryLink>
+                )}
               </LiHistoryList>
               <LiHistoryList>
-                <LinkHistoryLink
-                  to={producttSubSubPath}
-                  onClick={() => handleLinkClick(product.subSubCategory)}
-                >
-                  {product.subSubCategory} /
-                </LinkHistoryLink>
+                {product.subSubCategory && (
+                  <LinkHistoryLink
+                    to={producttSubSubPath}
+                    onClick={() => handleLinkClick(product.subSubCategory)}
+                  >
+                    {product.subSubCategory} /
+                  </LinkHistoryLink>
+                )}
               </LiHistoryList>
+
               <LiHistoryList>
                 <LinkHistoryLink
                   to={window.location.pathname}
@@ -427,75 +435,93 @@ const ProductPage = () => {
             </ImageWrap>
             <Info>
               <WrapName>
-                <div itemScope itemType="https://schema.org/Product"></div>
+                {/* <div itemScope itemType="https://schema.org/Product"></div> */}
                 <ProductName itemProp="name">{product.name}</ProductName>
-
-                <ProductArticle>
-                  <ProductArticleSpan>Артикул</ProductArticleSpan>
-                  {product.article}
-                </ProductArticle>
               </WrapName>
-              <ProductCode>Штрих-код: {product.code}</ProductCode>
-              <ProductCountry>Країна виробник {product.country}</ProductCountry>
-              <ProductBrand> {product.brand}</ProductBrand>
-              {optUser ? (
-                <ProductPrice>{product.priceOPT} ₴</ProductPrice>
-              ) : (
-                <ProductPrice>{product.price} ₴</ProductPrice>
-              )}
-              {product.amount <= 0 ||
-                (!productCartFind && (
-                  <CounterBlock>
-                    <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
-                    <InputIncDec
-                      type="number"
-                      min="1"
-                      max={product.amount}
-                      value={quantity}
-                      onChange={handleQuantityChange}
-                      // readOnly={true}
+              <DivProductDescr>
+                <div>
+                  <div>
+                    {product.amount <= 0 ? "Немає в наявності" : " в наявності"}
+                  </div>
+                  {optUser ? (
+                    <ProductPrice>{product.priceOPT} ₴</ProductPrice>
+                  ) : (
+                    <ProductPrice>{product.price} ₴</ProductPrice>
+                  )}
+                  <DivProductDescr>
+                    {product.amount <= 0 ||
+                      (!productCartFind && (
+                        <CounterBlock>
+                          <ButtonIncDec onClick={decrementQuantity}>
+                            –
+                          </ButtonIncDec>
+                          <InputIncDec
+                            type="number"
+                            min="1"
+                            max={product.amount}
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                            // readOnly={true}
+                          />
+                          <ButtonIncDec onClick={incrementQuantity}>
+                            +
+                          </ButtonIncDec>
+                        </CounterBlock>
+                      ))}
+
+                    {isAdmin && (
+                      <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
+                        <CounterBlock>
+                          <InputIncDec
+                            type="number"
+                            value={amount}
+                            onChange={changeAmount}
+                          />
+                        </CounterBlock>
+                        <Button
+                          type="submit"
+                          goods
+                          text={"Обновити кілкість товару"}
+                          // onClick={handleChange}
+                        />
+                      </form>
+                    )}
+
+                    <Button
+                      goods
+                      text={
+                        product.amount <= 0
+                          ? "Немає в наявності"
+                          : productCartFind
+                          ? "У кошику"
+                          : "Купити"
+                      }
+                      onClick={handleAddToCart}
+                      disabled={productCartFind || product.amount <= 0}
                     />
-                    <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
-                  </CounterBlock>
-                ))}
-
-              {isAdmin && (
-                <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
-                  <CounterBlock>
-                    <InputIncDec
-                      type="number"
-                      value={amount}
-                      onChange={changeAmount}
-                    />
-                  </CounterBlock>
-                  <Button
-                    type="submit"
-                    goods
-                    text={"Обновити кілкість товару"}
-                    // onClick={handleChange}
-                  />
-                </form>
-              )}
-
-              <Button
-                goods
-                text={
-                  product.amount <= 0
-                    ? "Немає в наявності"
-                    : productCartFind
-                    ? "У кошику"
-                    : "Купити"
-                }
-                onClick={handleAddToCart}
-                disabled={productCartFind || product.amount <= 0}
-              />
-
-              {/* Швидке замовлення */}
-              {/* <SecondButton
+                  </DivProductDescr>
+                  {/* Швидке замовлення */}
+                  {/* <SecondButton
             text="Швидке замовлення"
             onClick={toggleModal}
             disabled={product.amount <= 0}
           ></SecondButton> */}
+                </div>
+                <DivAboutProduct>
+                  <div>
+                    <p>Бренд</p>
+                    <p>Країна виробник</p>
+                    <p>Штрихкод </p>
+                    <p>Артикул</p>
+                  </div>
+                  <div>
+                    <p> {product.brand}</p>
+                    <p>{product.article}</p>
+                    <p>{product.code}</p>
+                    <p> {product.country}</p>
+                  </div>
+                </DivAboutProduct>
+              </DivProductDescr>
 
               <ProductTitleDescription>Опис</ProductTitleDescription>
               <ProductDescription itemProp="description">

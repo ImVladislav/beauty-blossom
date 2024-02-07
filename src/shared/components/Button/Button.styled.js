@@ -10,6 +10,8 @@ export const ButtonStyle = styled.button`
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
+  max-width: 300px;
+  height: 40px;
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
