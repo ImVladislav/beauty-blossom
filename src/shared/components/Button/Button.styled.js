@@ -12,10 +12,11 @@ export const ButtonStyle = styled.button`
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   max-width: 300px;
   height: 40px;
+  /* padding: 6px 60px; */
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 5px 20px;
+  padding: 10px 60px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
@@ -45,15 +46,16 @@ export const ButtonStyle = styled.button`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
+    padding: 6px 30px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 10px 20px;
+    padding: 6px 60px;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 10px 20px;
+    padding: 6px 60px;
   }
 
   &.user-menu {

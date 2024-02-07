@@ -16,8 +16,8 @@ export const PageContainer = styled.div`
 export const ImageWrap = styled.div`
   position: relative;
   display: inline-block;
-  max-width: 500px;
-  max-height: 500px;
+  max-width: fit-content;
+  max-height: auto;
   @media screen and (min-width: 768px) {
     max-width: inherit;
   }
@@ -40,6 +40,8 @@ export const WrapName = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  border-bottom: 1px solid #aa9e9e;
+  margin-bottom: 20px;
 `;
 export const ProductTags = styled.div`
   display: grid;
@@ -49,13 +51,14 @@ export const ProductTags = styled.div`
 `;
 export const ProductName = styled.h2`
   margin: 0 10px 10px 0;
+
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   text-align: justify;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.l}px;
+    font-size: 28px;
   }
 `;
 
@@ -166,24 +169,25 @@ export const Info = styled.div`
 
 export const CounterBlock = styled.div`
   position: relative;
-  width: 75px;
+  width: 85px;
   height: 30px;
   display: flex;
-  border-radius: 4px;
+  border-radius: 20px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
   align-items: center;
   margin-bottom: 10px;
   justify-content: space-evenly;
+  margin-right: 20px;
   cursor: pointer;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
     height: 38px;
-    width: 85px;
+    width: 95px;
   }
   @media screen and (min-width: 1024px) {
-    width: 110px;
+    width: 120px;
   }
   @media screen and (min-width: 1440px) {
   }
@@ -235,6 +239,7 @@ export const InputIncDec = styled.input`
 export const UlHistoryList = styled.ul`
   display: flex;
   margin-left: 3%;
+  flex-wrap: wrap;
 `;
 
 export const LiHistoryList = styled.li`

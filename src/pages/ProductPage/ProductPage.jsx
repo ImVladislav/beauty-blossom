@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import { AiOutlineCheck } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -441,12 +443,50 @@ const ProductPage = () => {
               <DivProductDescr>
                 <div>
                   <div>
-                    {product.amount <= 0 ? "Немає в наявності" : " в наявності"}
+                    {product.amount <= 0 ? (
+                      <>
+                        <AiOutlineClose
+                          style={{
+                            fill: "#FF0000",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                        />
+                        <span
+                          style={{
+                            color: "#FF0000",
+                            fontSize: "18px",
+                            fontWeight: "700",
+                          }}
+                        >
+                          Немає в наявності
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <AiOutlineCheck
+                          style={{
+                            fill: "#379200",
+                            width: "30px",
+                            height: "30px",
+                          }}
+                        />
+                        <span
+                          style={{
+                            color: "#379200",
+                            fontSize: "18px",
+                            fontWeight: "700",
+                          }}
+                        >
+                          в наявності
+                        </span>
+                      </>
+                    )}
                   </div>
                   {optUser ? (
-                    <ProductPrice>{product.priceOPT} ₴</ProductPrice>
+                    <ProductPrice>{product.priceOPT} Грн</ProductPrice>
                   ) : (
-                    <ProductPrice>{product.price} ₴</ProductPrice>
+                    <ProductPrice>{product.price} Грн</ProductPrice>
                   )}
                   <DivProductDescr>
                     {product.amount <= 0 ||
@@ -514,11 +554,11 @@ const ProductPage = () => {
                     <p>Штрихкод </p>
                     <p>Артикул</p>
                   </div>
-                  <div>
+                  <div style={{ marginLeft: "20px" }}>
                     <p> {product.brand}</p>
-                    <p>{product.article}</p>
-                    <p>{product.code}</p>
                     <p> {product.country}</p>
+                    <p>{product.code}</p>
+                    <p>{product.article}</p>
                   </div>
                 </DivAboutProduct>
               </DivProductDescr>
