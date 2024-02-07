@@ -259,6 +259,7 @@ export const CounterBlock = styled.div`
   @media screen and (min-width: 1440px) {
     width: 92px;
     height: 38px;
+
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
 `;

@@ -127,9 +127,9 @@ const ProductCard = ({ products }) => {
             <Content itemScope itemType="https://schema.org/Product">
               <Name itemProp="name">{products.name}</Name>
               {optUser ? (
-                <Price>{products.priceOPT} ₴</Price>
+                <Price>{products.priceOPT} Грн</Price>
               ) : (
-                <Price itemProp="price">{products.price} ₴</Price>
+                <Price itemProp="price">{products.price}Грн</Price>
               )}
             </Content>
           </LinkStyle>

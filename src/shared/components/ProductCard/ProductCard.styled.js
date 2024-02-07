@@ -58,7 +58,7 @@ export const Container = styled.div`
 
 export const ImageWrap = styled.div`
   position: relative;
-  max-width: 240px;
+  max-width: fit-content;
   max-height: 240px;
   margin-top: 5px;
 `;
