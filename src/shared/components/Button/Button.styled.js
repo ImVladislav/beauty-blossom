@@ -12,11 +12,10 @@ export const ButtonStyle = styled.button`
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   max-width: 300px;
   height: 40px;
-  /* padding: 6px 60px; */
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 10px 60px;
+  padding: 5px 20px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
@@ -34,7 +33,7 @@ export const ButtonStyle = styled.button`
 
     color: ${(p) => p.theme.colors.white};
 
-    border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+    border: ${(p) => (p.disabled ? `1px solid black` : "none")};
 
     &:hover {
       background-color: ${(p) =>
@@ -46,16 +45,21 @@ export const ButtonStyle = styled.button`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    padding: 6px 30px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 6px 60px;
+    display: flex;
+    /* padding: 10px 20px; */
+    align-items: center;
+    justify-content: center;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 6px 60px;
+    display: flex;
+    /* padding: 10px 20px; */
+    align-items: center;
+    justify-content: center;
   }
 
   &.user-menu {
@@ -83,7 +87,7 @@ export const ButtonStyle = styled.button`
     font-size: 14px;
     padding: 10px 20px;
     @media screen and (min-width: 768px) {
-      font-size: 30px;
+      /* font-size: 30px; */
       padding: 16px 30px;
     }
     @media screen and (min-width: 1024px) {

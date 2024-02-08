@@ -140,12 +140,13 @@ export const ProductTitleDescription = styled.p`
   font-size: ${(p) => p.theme.fontSizes.m}px;
   margin: 5px 0;
   font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-weight: 400;
   line-height: normal;
   letter-spacing: 1.2px;
-  color: ${(p) => p.theme.colors.accentColor};
+  color: black;
+  border-bottom: 1px solid #aa9e9e;
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.xl}px;
+    font-size: 30px;
   }
 `;
 export const ProductDescription = styled.p`
@@ -253,6 +254,16 @@ export const LinkHistoryLink = styled(Link)`
   text-decoration: none;
   margin: 0px 2px;
 `;
+
+export const PHistoryName = styled.p`
+  color: #833989;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  margin: 6px 2px;
+  cursor: pointer;
+`;
+
 export const DivProductDescr = styled.div`
   display: flex;
 `;

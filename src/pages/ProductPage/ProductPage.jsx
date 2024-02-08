@@ -46,6 +46,7 @@ import {
   LiHistoryList,
   DivProductDescr,
   DivAboutProduct,
+  PHistoryName,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
@@ -341,8 +342,6 @@ const ProductPage = () => {
 
   const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
 
-  // console.log(categoryUrl);
-
   // console.log(subCategories);
   // console.log(producttSubSubPath);
   // console.log(productSubPath);
@@ -405,12 +404,7 @@ const ProductPage = () => {
               </LiHistoryList>
 
               <LiHistoryList>
-                <LinkHistoryLink
-                  to={window.location.pathname}
-                  onClick={() => handleLinkClick(product.name)}
-                >
-                  {product.name}
-                </LinkHistoryLink>
+                <PHistoryName>{product.name}</PHistoryName>
               </LiHistoryList>
             </UlHistoryList>
           </div>
@@ -484,7 +478,12 @@ const ProductPage = () => {
                     )}
                   </div>
                   {optUser ? (
-                    <ProductPrice>{product.priceOPT} Грн</ProductPrice>
+                    <>
+                      <p style={{ fontSize: "22px", fontWeight: "500" }}>
+                        Оптова ціна
+                      </p>
+                      <ProductPrice>{product.priceOPT} Грн</ProductPrice>
+                    </>
                   ) : (
                     <ProductPrice>{product.price} Грн</ProductPrice>
                   )}
@@ -509,29 +508,11 @@ const ProductPage = () => {
                         </CounterBlock>
                       ))}
 
-                    {isAdmin && (
-                      <form style={{ margin: "5px 0" }} onSubmit={handleChange}>
-                        <CounterBlock>
-                          <InputIncDec
-                            type="number"
-                            value={amount}
-                            onChange={changeAmount}
-                          />
-                        </CounterBlock>
-                        <Button
-                          type="submit"
-                          goods
-                          text={"Обновити кілкість товару"}
-                          // onClick={handleChange}
-                        />
-                      </form>
-                    )}
-
                     <Button
                       goods
                       text={
                         product.amount <= 0
-                          ? "Немає в наявності"
+                          ? "Купити"
                           : productCartFind
                           ? "У кошику"
                           : "Купити"
@@ -540,6 +521,26 @@ const ProductPage = () => {
                       disabled={productCartFind || product.amount <= 0}
                     />
                   </DivProductDescr>
+                  {isAdmin && (
+                    <form
+                      style={{ display: "flex", margin: "5px 0" }}
+                      onSubmit={handleChange}
+                    >
+                      <CounterBlock>
+                        <InputIncDec
+                          type="number"
+                          value={amount}
+                          onChange={changeAmount}
+                        />
+                      </CounterBlock>
+                      <Button
+                        type="submit"
+                        goods
+                        text={"Обновити"}
+                        // onClick={handleChange}
+                      />
+                    </form>
+                  )}
                   {/* Швидке замовлення */}
                   {/* <SecondButton
             text="Швидке замовлення"
