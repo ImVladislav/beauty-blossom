@@ -37,7 +37,7 @@ export const CartWrap = styled.div`
   display: flex;
 
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 40px;
   max-width: 100%;
   margin-top: 20px;
@@ -75,12 +75,14 @@ export const ProductCard = styled(Link)`
 `;
 
 export const ProductImage = styled.img`
-  max-width: 130px;
-  max-height: 130px;
+  max-width: 119px;
+  max-height: 119px;
 `;
 
 export const ProductName = styled.h3`
   margin: 10px 0;
+  /* display: flex; */
+  /* align-items: center; */
   font-size: ${(p) => p.theme.fontSizes.xxxs + 1}px;
   overflow: hidden;
   text-overflow: ellipsis;

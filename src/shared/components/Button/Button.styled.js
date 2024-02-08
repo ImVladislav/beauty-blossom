@@ -7,16 +7,16 @@ export const ButtonStyle = styled.button`
   display: flex;
   text-align: center;
   justify-content: center;
+  align-items: center;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   max-width: 300px;
-  height: 40px;
-  /* padding: 6px 60px; */
+  height: 31px;
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 10px 60px;
+  padding: 0px 20px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
@@ -34,7 +34,7 @@ export const ButtonStyle = styled.button`
 
     color: ${(p) => p.theme.colors.white};
 
-    border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+    border: ${(p) => (p.disabled ? `1px solid black` : "none")};
 
     &:hover {
       background-color: ${(p) =>
@@ -46,22 +46,29 @@ export const ButtonStyle = styled.button`
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    padding: 6px 30px;
+    height: 40px;
+    padding: 0px 20px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 6px 60px;
+    display: flex;
+    padding: 0px 60px;
+    align-items: center;
+    justify-content: center;
   }
 
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
-    padding: 6px 60px;
+    display: flex;
+    padding: 0px 60px;
+    align-items: center;
+    justify-content: center;
   }
 
   &.user-menu {
     @media (min-width: 1240px) and (max-width: 1439px) {
       font-size: 20px;
-      padding: 18px 50px;
+      padding: 0px 60px;
     }
 
     @media (min-width: 1024px) and (max-width: 1239px) {
@@ -83,7 +90,7 @@ export const ButtonStyle = styled.button`
     font-size: 14px;
     padding: 10px 20px;
     @media screen and (min-width: 768px) {
-      font-size: 30px;
+      /* font-size: 30px; */
       padding: 16px 30px;
     }
     @media screen and (min-width: 1024px) {
