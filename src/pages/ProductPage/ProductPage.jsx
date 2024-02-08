@@ -357,6 +357,18 @@ const ProductPage = () => {
   const handleLinkClick = (filterValue) => {
     dispatch(setfilter(filterValue));
   };
+  function addParagraphTags(textWithoutParagraphs) {
+    const lines = textWithoutParagraphs.split("\n");
+    const paragraphs = lines.map((line) => {
+      const trimmedLine = line.trim();
+      const lineArray = trimmedLine.split("\n");
+      return lineArray.map((line) => <p>{line}</p>);
+    });
+
+    return paragraphs;
+  }
+  const paragraphs = addParagraphTags(product.description);
+
   return (
     <Container>
       {loading ? (
@@ -566,7 +578,13 @@ const ProductPage = () => {
 
               <ProductTitleDescription>Опис</ProductTitleDescription>
               <ProductDescription itemProp="description">
-                {product.description}
+                {paragraphs.map((paragraph, index) => (
+                  <div key={index}>
+                    {paragraph.map((p, i) => (
+                      <React.Fragment key={i}>{p}</React.Fragment>
+                    ))}
+                  </div>
+                ))}
               </ProductDescription>
               <SimilarProducts brand={product.brand} />
               {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
