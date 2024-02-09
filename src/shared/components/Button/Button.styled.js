@@ -10,13 +10,13 @@ export const ButtonStyle = styled.button`
   align-items: center;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  /* font-size: ${(p) => p.theme.fontSizes.xl}px; */
   max-width: 300px;
-  height: 31px;
+  height: 41px;
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 0px 20px;
+  padding: 0px 100px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};

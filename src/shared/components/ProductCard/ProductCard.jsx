@@ -133,6 +133,7 @@ const ProductCard = ({ products }) => {
               )}
             </Content>
           </LinkStyle>
+          {/* <div style={{ display: "flex" }}> */}
           {products.amount <= 0 || (
             <CounterBlock>
               <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
@@ -166,6 +167,7 @@ const ProductCard = ({ products }) => {
               </ButtonWrap>
             </>
           )}
+          {/* </div> */}
         </Container>
       </ItemStyle>
     </>
