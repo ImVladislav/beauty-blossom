@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -16,7 +16,6 @@ import {
 import { selectCart } from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";
-// import SecondButton from "../../shared/components/SecondButton/SecondButton";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
 import Sticker from "../../shared/components/Sticker/Sticker";
 import { Container } from "../../shared/styles/Container";
@@ -28,8 +27,6 @@ import {
   ProductImage,
   WrapName,
   ProductName,
-  ProductArticle,
-  ProductBrand,
   ProductPrice,
   ProductDescription,
   ProductTitleDescription,
@@ -37,22 +34,29 @@ import {
   ButtonIncDec,
   CounterBlock,
   InputIncDec,
-  ProductCode,
-  ProductArticleSpan,
   ProductTags,
-  ProductCountry,
   UlHistoryList,
   LinkHistoryLink,
   LiHistoryList,
   DivProductDescr,
   DivAboutProduct,
   PHistoryName,
+  DivPriceCounterProduct,
+  DivAboutProductMobile,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
 import SimilarProducts from "../../modules/SimilarProducts/SimilarProducts";
+
+import {
+  getProductPath,
+  getSubProductPath,
+  getSubSubProductPath,
+  getCategoryUrl,
+  getCategoryUrl2,
+} from "./ProductUtils";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -168,107 +172,15 @@ const ProductPage = () => {
     }
   };
 
-  // функція для відкриття модалки швидкого замовлення
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
-  function getProductPath(productName, categories) {
-    let productPath = "";
-
-    for (let i = 0; i < categories.length; i++) {
-      const category = categories[i];
-
-      if (category.children && category.children.length > 0) {
-        for (let j = 0; j < category.children.length; j++) {
-          const subCategory = category.children[j];
-
-          const product = subCategory.children.find(
-            (item) => item.text === productName
-          );
-
-          if (product) {
-            productPath = `${category.to || ""}`;
-            break;
-          }
-        }
-      }
-
-      if (productPath) {
-        break;
-      }
-    }
-
-    // Повертаємо шлях категорії
-    return productPath;
-  }
-
-  function getSubProductPath(productName, categories) {
-    let productPath = "";
-
-    for (let i = 0; i < categories.length; i++) {
-      const category = categories[i];
-
-      if (category.children && category.children.length > 0) {
-        for (let j = 0; j < category.children.length; j++) {
-          const subCategory = category.children[j];
-
-          const product = subCategory.children.find(
-            (item) => item.text === productName
-          );
-
-          if (product) {
-            productPath = `${subCategory.to || ""}`;
-            break;
-          }
-        }
-      }
-
-      if (productPath) {
-        break;
-      }
-    }
-
-    // Повертаємо шлях категорії
-    return productPath;
-  }
-
-  function getSubSubProductPath(productName, categories) {
-    let productPath = "";
-    let category = null;
-
-    // Перебираємо всі категорії
-    for (let i = 0; i < categories.length; i++) {
-      category = categories[i];
-
-      if (category.children && category.children.length > 0) {
-        for (let j = 0; j < category.children.length; j++) {
-          const subCategory = category.children[j];
-          const product = subCategory.children.find(
-            (item) => item.text === productName
-          );
-          if (product) {
-            productPath = product.to;
-            break;
-          }
-        }
-      }
-      // setCategory(category);
-      if (productPath) {
-        break;
-      }
-    }
-
-    // Якщо шлях вже знайдено, виходимо з зовнішнього циклу
-    return productPath;
-  }
 
   const subCategories = categoryLinks[0].children;
   const productSubSubCategory =
     product.subSubCategory || product.subCategory || product.category;
 
   const productPath = getProductPath(productSubSubCategory, subCategories);
-
   const productSubPath = getSubProductPath(
     productSubSubCategory,
     subCategories
@@ -277,82 +189,8 @@ const ProductPage = () => {
     productSubSubCategory,
     subCategories
   );
-
-  function getCategoryUrl(categoryName, nodes) {
-    const findCategoryUrl = (name, nodes, parentUrl = "") => {
-      for (const node of nodes) {
-        const currentUrl = `${node.to || ""}`;
-
-        if (node.children && node.children.length > 0) {
-          const subCategoryUrl = findCategoryUrl(
-            name,
-            node.children,
-            currentUrl
-          );
-
-          if (subCategoryUrl) {
-            return subCategoryUrl;
-          }
-        } else if (node.text === name) {
-          return currentUrl;
-        }
-      }
-
-      return null;
-    };
-
-    return findCategoryUrl(categoryName, nodes);
-  }
-
-  function getCategoryUrl2(categoryName, nodes) {
-    const findCategoryUrl = (name, nodes, parentUrl = "") => {
-      for (const node of nodes) {
-        const currentUrl = `${node.to || ""}`;
-
-        if (node.children && node.children.length > 0) {
-          const subCategoryUrl = findCategoryUrl(
-            name,
-            node.children,
-            currentUrl
-          );
-
-          if (subCategoryUrl) {
-            return subCategoryUrl;
-          }
-        } else if (node.text === name) {
-          // Find the last index of '/' in the currentUrl
-          const lastSlashIndex = currentUrl.lastIndexOf("/");
-
-          // Return the URL up to the last slash
-          return lastSlashIndex !== -1
-            ? currentUrl.substring(0, lastSlashIndex)
-            : currentUrl;
-        }
-      }
-
-      return null;
-    };
-
-    return findCategoryUrl(categoryName, nodes);
-  }
-
   const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
-
-  // console.log(categoryUrl2);
-
   const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
-
-  // console.log(subCategories);
-  // console.log(producttSubSubPath);
-  // console.log(productSubPath);
-  // console.log(productPath);
-
-  // console.log(product.subSubCategory);
-  // console.log(product.subCategory);
-  // console.log(product.category);
-
-  // console.log(categoryLinks[0].children);
-  // console.log(categoryLinks);
 
   const handleLinkClick = (filterValue) => {
     dispatch(setfilter(filterValue));
@@ -447,7 +285,7 @@ const ProductPage = () => {
                 <ProductName itemProp="name">{product.name}</ProductName>
               </WrapName>
               <DivProductDescr>
-                <div>
+                <DivPriceCounterProduct>
                   <div>
                     {product.amount <= 0 ? (
                       <>
@@ -499,6 +337,20 @@ const ProductPage = () => {
                   ) : (
                     <ProductPrice>{product.price} Грн</ProductPrice>
                   )}
+                  <DivAboutProductMobile>
+                    <div>
+                      <p>Бренд</p>
+                      <p>Країна виробник</p>
+                      <p>Штрихкод </p>
+                      <p>Артикул</p>
+                    </div>
+                    <div style={{ marginLeft: "20px" }}>
+                      <p> {product.brand}</p>
+                      <p> {product.country}</p>
+                      <p>{product.code}</p>
+                      <p>{product.article}</p>
+                    </div>
+                  </DivAboutProductMobile>
                   <DivProductDescr>
                     {product.amount <= 0 ||
                       (!productCartFind && (
@@ -553,13 +405,7 @@ const ProductPage = () => {
                       />
                     </form>
                   )}
-                  {/* Швидке замовлення */}
-                  {/* <SecondButton
-            text="Швидке замовлення"
-            onClick={toggleModal}
-            disabled={product.amount <= 0}
-          ></SecondButton> */}
-                </div>
+                </DivPriceCounterProduct>
                 <DivAboutProduct>
                   <div>
                     <p>Бренд</p>

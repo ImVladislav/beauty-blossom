@@ -60,72 +60,76 @@ export const ProductName = styled.h2`
   @media screen and (min-width: 768px) {
     font-size: 28px;
   }
-`;
-
-export const ProductArticle = styled.div`
-  position: absolute;
-  right: 5px;
-  top: 10px;
-  text-align: center;
-  padding: 7px 14px;
-  margin: 0 0 -15px 0;
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  background: ${(p) => p.theme.colors.topHeaderLine};
-  border-radius: ${(p) => p.theme.radii.none};
-  color: ${(p) => p.theme.colors.textColor};
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.s}px;
-    position: relative;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    text-align: center;
   }
 `;
 
-export const ProductArticleSpan = styled.span`
-  display: block;
-  margin: 3px;
-  text-align: center;
-  font-size: ${(p) => p.theme.fontSizes.xxs}px;
-  color: ${(p) => p.theme.colors.textColor};
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.xs}px;
-  }
-`;
+// export const ProductArticle = styled.div`
+//   position: absolute;
+//   right: 5px;
+//   top: 10px;
+//   text-align: center;
+//   padding: 7px 14px;
+//   margin: 0 0 -15px 0;
+//   font-size: ${(p) => p.theme.fontSizes.xs}px;
+//   font-style: normal;
+//   font-weight: ${(p) => p.theme.fontWeights.body};
+//   background: ${(p) => p.theme.colors.topHeaderLine};
+//   border-radius: ${(p) => p.theme.radii.none};
+//   color: ${(p) => p.theme.colors.textColor};
+//   @media screen and (min-width: 768px) {
+//     font-size: ${(p) => p.theme.fontSizes.s}px;
+//     position: relative;
+//   }
+// `;
 
-export const ProductCode = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: normal;
-  margin: 5px 0;
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
-  }
-`;
-export const ProductCountry = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  line-height: normal;
-  margin: 5px 0;
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
-  }
-`;
-export const ProductBrand = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  line-height: normal;
-  margin: 5px 0;
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
-  }
-`;
+// export const ProductArticleSpan = styled.span`
+//   display: block;
+//   margin: 3px;
+//   text-align: center;
+//   font-size: ${(p) => p.theme.fontSizes.xxs}px;
+//   color: ${(p) => p.theme.colors.textColor};
+//   font-weight: ${(p) => p.theme.fontWeights.bold};
+//   @media screen and (min-width: 768px) {
+//     font-size: ${(p) => p.theme.fontSizes.xs}px;
+//   }
+// `;
+
+// export const ProductCode = styled.p`
+//   font-size: ${(p) => p.theme.fontSizes.xs}px;
+//   font-style: normal;
+//   font-weight: ${(p) => p.theme.fontWeights.body};
+//   line-height: normal;
+//   margin: 5px 0;
+//   @media screen and (min-width: 768px) {
+//     font-size: ${(p) => p.theme.fontSizes.sm}px;
+//   }
+// `;
+// export const ProductCountry = styled.p`
+//   font-size: ${(p) => p.theme.fontSizes.xs}px;
+//   font-style: normal;
+//   font-weight: ${(p) => p.theme.fontWeights.bold};
+//   line-height: normal;
+//   margin: 5px 0;
+//   @media screen and (min-width: 768px) {
+//     font-size: ${(p) => p.theme.fontSizes.sm}px;
+//   }
+// `;
+// export const ProductBrand = styled.p`
+//   font-size: ${(p) => p.theme.fontSizes.s}px;
+//   font-style: normal;
+//   font-weight: ${(p) => p.theme.fontWeights.bold};
+//   line-height: normal;
+//   margin: 5px 0;
+//   @media screen and (min-width: 768px) {
+//     font-size: ${(p) => p.theme.fontSizes.m}px;
+//   }
+// `;
 
 export const ProductPrice = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.l}px;
+  font-size: ${(p) => p.theme.fontSizes.xxl}px;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
   line-height: normal;
@@ -170,22 +174,25 @@ export const Info = styled.div`
 
 export const CounterBlock = styled.div`
   position: relative;
-  width: 85px;
-  height: 30px;
+  width: 180px;
+  height: 40px;
   display: flex;
   border-radius: 20px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   justify-content: space-evenly;
-  margin-right: 20px;
+  margin-right: auto;
+  margin-left: auto;
   cursor: pointer;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
     height: 38px;
+    margin-bottom: 10px;
     width: 95px;
+    margin-right: 20px;
   }
   @media screen and (min-width: 1024px) {
     width: 120px;
@@ -202,7 +209,7 @@ export const ButtonIncDec = styled.span`
   border: 0;
   padding: 0;
   background: transparent;
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.xxl}px;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
@@ -219,7 +226,7 @@ export const InputIncDec = styled.input`
   border: 0;
   padding: 0;
   background-color: transparent;
-  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-size: ${(p) => p.theme.fontSizes.xxl}px;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -265,10 +272,37 @@ export const PHistoryName = styled.p`
 `;
 
 export const DivProductDescr = styled.div`
-  display: flex;
+  /* display: flex; */
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
 `;
 export const DivAboutProduct = styled.div`
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+    display: flex;
+    margin-left: auto;
+  }
+`;
+
+export const DivAboutProductMobile = styled.div`
   display: flex;
-  justify-content: flex-start;
-  margin-left: auto;
+  justify-content: center;
+  margin: 15px 0px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const DivPriceCounterProduct = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+  }
 `;
