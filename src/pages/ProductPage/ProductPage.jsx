@@ -43,6 +43,7 @@ import {
   PHistoryName,
   DivPriceCounterProduct,
   DivAboutProductMobile,
+  DivAvableProduct,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
@@ -286,7 +287,7 @@ const ProductPage = () => {
               </WrapName>
               <DivProductDescr>
                 <DivPriceCounterProduct>
-                  <div>
+                  <DivAvableProduct>
                     {product.amount <= 0 ? (
                       <>
                         <AiOutlineClose
@@ -326,7 +327,7 @@ const ProductPage = () => {
                         </span>
                       </>
                     )}
-                  </div>
+                  </DivAvableProduct>
                   {optUser ? (
                     <>
                       <p style={{ fontSize: "22px", fontWeight: "500" }}>
@@ -387,7 +388,11 @@ const ProductPage = () => {
                   </DivProductDescr>
                   {isAdmin && (
                     <form
-                      style={{ display: "flex", margin: "5px 0" }}
+                      style={{
+                        display: "flex",
+                        margin: "5px 0",
+                        flexDirection: "column",
+                      }}
                       onSubmit={handleChange}
                     >
                       <CounterBlock>
