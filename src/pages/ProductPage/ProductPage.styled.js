@@ -306,3 +306,11 @@ export const DivPriceCounterProduct = styled.div`
     align-items: flex-start;
   }
 `;
+
+export const DivAvableProduct = styled.div`
+  margin-left: auto;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 0;
+  }
+`;
