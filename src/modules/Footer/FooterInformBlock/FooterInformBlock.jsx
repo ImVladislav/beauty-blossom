@@ -1,45 +1,49 @@
-
 import { useSelector } from "react-redux";
-import { useMedia } from "../../../hooks/useMedia";
+
 import {
+  LinkStyled,
+  LinkStyledSecond,
+  List,
   Item,
-  ItemTitle,
-  Nav,
   TitleWrap,
   Title,
-  Underline,
+  Wrap,
 } from "./InformBlockStyled";
 import { loggedInSelector } from "../../../redux/auth/selectors";
 
 export const FooterInformBlock = () => {
-  const { isMobileScreen } = useMedia();
-  const isLogin = useSelector(loggedInSelector)
+  const isLogin = useSelector(loggedInSelector);
 
-
- 
   return (
-    <div>
+    <Wrap>
       <TitleWrap>
         <Title>Клієнтам</Title>
-        {!isMobileScreen && <Underline />}
       </TitleWrap>
-      <Nav>
-        {isLogin &&
-          <Item to="/cabinet">Особистий кабінет</Item>
-        }
-        <ItemTitle href="/wholesaleProgram#return" >
-          Повернення та обмін
-        </ItemTitle>
-        <ItemTitle href="/wholesaleProgram#payment" >
-          Оплата і доставка
-        </ItemTitle>
-        <ItemTitle href="/wholesaleProgram#about" >
-          Про нас
-        </ItemTitle>
-        <ItemTitle href="feedback">
-          Залишити відгук
-        </ItemTitle>
-      </Nav>
-    </div>
+      <List>
+        {isLogin && (
+          <Item>
+            <LinkStyled to="/cabinet">Особистий кабінет</LinkStyled>
+          </Item>
+        )}
+        <Item>
+          <LinkStyledSecond href="/wholesaleProgram#return">
+            Повернення та обмін
+          </LinkStyledSecond>
+        </Item>
+        <Item>
+          <LinkStyledSecond href="/wholesaleProgram#payment">
+            Оплата і доставка
+          </LinkStyledSecond>
+        </Item>
+        <Item>
+          <LinkStyledSecond href="/wholesaleProgram#about">
+            Про нас
+          </LinkStyledSecond>
+        </Item>
+        <Item>
+          <LinkStyledSecond href="feedback">Залишити відгук</LinkStyledSecond>
+        </Item>
+      </List>
+    </Wrap>
   );
 };

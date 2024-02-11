@@ -1,18 +1,15 @@
 import React from "react";
 import {
-  LinkItem,
+  LinkStyled,
   List,
-  ListItem,
+  Item,
   Title,
-  Underline,
-  TitleWrap,
   Wrap,
+  TitleWrap,
+  ListWrap,
 } from "./FooterMenuStyled";
-import { useMedia } from "../../../hooks/useMedia";
 
 export const FooterMenu = ({ menuItems }) => {
-  const { isMobileScreen } = useMedia();
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -21,21 +18,20 @@ export const FooterMenu = ({ menuItems }) => {
   };
 
   const element = menuItems.map(({ to, text }) => (
-    <ListItem key={to}>
-      <LinkItem onClick={scrollToTop} to={to}>
+    <Item key={to}>
+      <LinkStyled onClick={scrollToTop} to={to}>
         {text}
-      </LinkItem>
-    </ListItem>
+      </LinkStyled>
+    </Item>
   ));
   return (
-    <div>
+    <Wrap>
       <TitleWrap>
         <Title>Iнформація</Title>
-        {!isMobileScreen && <Underline />}
       </TitleWrap>
-      <Wrap>
+      <ListWrap>
         <List>{element}</List>
-      </Wrap>
-    </div>
+      </ListWrap>
+    </Wrap>
   );
 };
