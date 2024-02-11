@@ -29,7 +29,11 @@ export const SimilarProducts = ({ brand }) => {
       <Line />
       <CartWrap>
         {limitedItems.map((filtred) => (
-          <ProductCard to={`/product/${filtred.id}`} key={filtred.id}>
+          <ProductCard
+            to={`/product/${filtred.id}`}
+            onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
+            key={filtred.id}
+          >
             <ProductImage
               src={filtred.images}
               alt={filtred.name}
