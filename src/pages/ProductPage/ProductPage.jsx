@@ -28,7 +28,6 @@ import {
   WrapName,
   ProductName,
   ProductPrice,
-  ProductDescription,
   ProductTitleDescription,
   Info,
   ButtonIncDec,
@@ -44,12 +43,13 @@ import {
   DivPriceCounterProduct,
   DivAboutProductMobile,
   DivAvableProduct,
+  ProductDescriptionWrap,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet-async";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
-import SimilarProducts from "../../modules/SimilarProducts/SimilarProducts";
+import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
 
 import {
   getProductPath,
@@ -259,86 +259,159 @@ const ProductPage = () => {
               </LiHistoryList>
             </UlHistoryList>
           </div>
-          <PageContainer>
-            <Helmet>
-              <meta charSet="utf-8" />
-              <title>{product.name}</title>
+          <section>
+            <PageContainer>
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>{product.name}</title>
 
-              <meta name="description" content={product.description} />
-            </Helmet>
-            <section>
+                <meta name="description" content={product.description} />
+              </Helmet>
               <h1 className="hidden">{product.name}</h1>
-            </section>
-            <ImageWrap>
-              <ProductImage
-                itemProp="image"
-                src={product.images}
-                alt={product.name}
-              />
-              <ProductTags>
-                {product.new && <Sticker text="Новинка" />}
-                {product.sale && <Sticker text="Акція" sale />}
-              </ProductTags>
-            </ImageWrap>
-            <Info>
-              <WrapName>
-                {/* <div itemScope itemType="https://schema.org/Product"></div> */}
-                <ProductName itemProp="name">{product.name}</ProductName>
-              </WrapName>
-              <DivProductDescr>
-                <DivPriceCounterProduct>
-                  <DivAvableProduct>
-                    {product.amount <= 0 ? (
+
+              <ImageWrap>
+                <ProductImage
+                  itemProp="image"
+                  src={product.images}
+                  alt={product.name}
+                />
+                <ProductTags>
+                  {product.new && <Sticker text="Новинка" />}
+                  {product.sale && <Sticker text="Акція" sale />}
+                </ProductTags>
+              </ImageWrap>
+              <Info>
+                <WrapName>
+                  {/* <div itemScope itemType="https://schema.org/Product"></div> */}
+                  <ProductName itemProp="name">{product.name}</ProductName>
+                </WrapName>
+                <DivProductDescr>
+                  <DivPriceCounterProduct>
+                    <DivAvableProduct>
+                      {product.amount <= 0 ? (
+                        <>
+                          <AiOutlineClose
+                            style={{
+                              fill: "#FF0000",
+                              width: "30px",
+                              height: "30px",
+                            }}
+                          />
+                          <span
+                            style={{
+                              color: "#FF0000",
+                              fontSize: "18px",
+                              fontWeight: "700",
+                            }}
+                          >
+                            Немає в наявності
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <AiOutlineCheck
+                            style={{
+                              fill: "#379200",
+                              width: "30px",
+                              height: "30px",
+                            }}
+                          />
+                          <span
+                            style={{
+                              color: "#379200",
+                              fontSize: "18px",
+                              fontWeight: "700",
+                            }}
+                          >
+                            в наявності
+                          </span>
+                        </>
+                      )}
+                    </DivAvableProduct>
+                    {optUser ? (
                       <>
-                        <AiOutlineClose
-                          style={{
-                            fill: "#FF0000",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                        />
-                        <span
-                          style={{
-                            color: "#FF0000",
-                            fontSize: "18px",
-                            fontWeight: "700",
-                          }}
-                        >
-                          Немає в наявності
-                        </span>
+                        <p style={{ fontSize: "22px", fontWeight: "500" }}>
+                          Оптова ціна
+                        </p>
+                        <ProductPrice>{product.priceOPT} Грн</ProductPrice>
                       </>
                     ) : (
-                      <>
-                        <AiOutlineCheck
-                          style={{
-                            fill: "#379200",
-                            width: "30px",
-                            height: "30px",
-                          }}
-                        />
-                        <span
-                          style={{
-                            color: "#379200",
-                            fontSize: "18px",
-                            fontWeight: "700",
-                          }}
-                        >
-                          в наявності
-                        </span>
-                      </>
+                      <ProductPrice>{product.price} Грн</ProductPrice>
                     )}
-                  </DivAvableProduct>
-                  {optUser ? (
-                    <>
-                      <p style={{ fontSize: "22px", fontWeight: "500" }}>
-                        Оптова ціна
-                      </p>
-                      <ProductPrice>{product.priceOPT} Грн</ProductPrice>
-                    </>
-                  ) : (
-                    <ProductPrice>{product.price} Грн</ProductPrice>
-                  )}
-                  <DivAboutProductMobile>
+                    <DivAboutProductMobile>
+                      <div>
+                        <p>Бренд</p>
+                        <p>Країна виробник</p>
+                        <p>Штрихкод </p>
+                        <p>Артикул</p>
+                      </div>
+                      <div style={{ marginLeft: "20px" }}>
+                        <p> {product.brand}</p>
+                        <p> {product.country}</p>
+                        <p>{product.code}</p>
+                        <p>{product.article}</p>
+                      </div>
+                    </DivAboutProductMobile>
+                    <DivProductDescr>
+                      {product.amount <= 0 ||
+                        (!productCartFind && (
+                          <CounterBlock>
+                            <ButtonIncDec onClick={decrementQuantity}>
+                              –
+                            </ButtonIncDec>
+                            <InputIncDec
+                              type="number"
+                              min="1"
+                              max={product.amount}
+                              value={quantity}
+                              onChange={handleQuantityChange}
+                              // readOnly={true}
+                            />
+                            <ButtonIncDec onClick={incrementQuantity}>
+                              +
+                            </ButtonIncDec>
+                          </CounterBlock>
+                        ))}
+
+                      <Button
+                        goods
+                        text={
+                          product.amount <= 0
+                            ? "Купити"
+                            : productCartFind
+                            ? "У кошику"
+                            : "Купити"
+                        }
+                        onClick={handleAddToCart}
+                        disabled={productCartFind || product.amount <= 0}
+                      />
+                    </DivProductDescr>
+                    {isAdmin && (
+                      <form
+                        style={{
+                          display: "flex",
+                          margin: "5px 0",
+                          flexDirection: "column",
+                        }}
+                        onSubmit={handleChange}
+                      >
+                        <CounterBlock>
+                          <InputIncDec
+                            type="number"
+                            value={amount}
+                            onChange={changeAmount}
+                          />
+                        </CounterBlock>
+                        <Button
+                          type="submit"
+                          goods
+                          text={"Обновити"}
+                          // onClick={handleChange}
+                        />
+                      </form>
+                    )}
+                  </DivPriceCounterProduct>
+                  <DivAboutProduct>
                     <div>
                       <p>Бренд</p>
                       <p>Країна виробник</p>
@@ -351,96 +424,24 @@ const ProductPage = () => {
                       <p>{product.code}</p>
                       <p>{product.article}</p>
                     </div>
-                  </DivAboutProductMobile>
-                  <DivProductDescr>
-                    {product.amount <= 0 ||
-                      (!productCartFind && (
-                        <CounterBlock>
-                          <ButtonIncDec onClick={decrementQuantity}>
-                            –
-                          </ButtonIncDec>
-                          <InputIncDec
-                            type="number"
-                            min="1"
-                            max={product.amount}
-                            value={quantity}
-                            onChange={handleQuantityChange}
-                            // readOnly={true}
-                          />
-                          <ButtonIncDec onClick={incrementQuantity}>
-                            +
-                          </ButtonIncDec>
-                        </CounterBlock>
+                  </DivAboutProduct>
+                </DivProductDescr>
+
+                <ProductTitleDescription>Опис</ProductTitleDescription>
+                <ProductDescriptionWrap itemProp="description">
+                  {paragraphs.map((paragraph, index) => (
+                    <div key={index}>
+                      {paragraph.map((p, i) => (
+                        <React.Fragment key={i}>{p}</React.Fragment>
                       ))}
-
-                    <Button
-                      goods
-                      text={
-                        product.amount <= 0
-                          ? "Купити"
-                          : productCartFind
-                          ? "У кошику"
-                          : "Купити"
-                      }
-                      onClick={handleAddToCart}
-                      disabled={productCartFind || product.amount <= 0}
-                    />
-                  </DivProductDescr>
-                  {isAdmin && (
-                    <form
-                      style={{
-                        display: "flex",
-                        margin: "5px 0",
-                        flexDirection: "column",
-                      }}
-                      onSubmit={handleChange}
-                    >
-                      <CounterBlock>
-                        <InputIncDec
-                          type="number"
-                          value={amount}
-                          onChange={changeAmount}
-                        />
-                      </CounterBlock>
-                      <Button
-                        type="submit"
-                        goods
-                        text={"Обновити"}
-                        // onClick={handleChange}
-                      />
-                    </form>
-                  )}
-                </DivPriceCounterProduct>
-                <DivAboutProduct>
-                  <div>
-                    <p>Бренд</p>
-                    <p>Країна виробник</p>
-                    <p>Штрихкод </p>
-                    <p>Артикул</p>
-                  </div>
-                  <div style={{ marginLeft: "20px" }}>
-                    <p> {product.brand}</p>
-                    <p> {product.country}</p>
-                    <p>{product.code}</p>
-                    <p>{product.article}</p>
-                  </div>
-                </DivAboutProduct>
-              </DivProductDescr>
-
-              <ProductTitleDescription>Опис</ProductTitleDescription>
-              <ProductDescription itemProp="description">
-                {paragraphs.map((paragraph, index) => (
-                  <div key={index}>
-                    {paragraph.map((p, i) => (
-                      <React.Fragment key={i}>{p}</React.Fragment>
-                    ))}
-                  </div>
-                ))}
-              </ProductDescription>
-              <SimilarProducts brand={product.brand} />
-              {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
-            </Info>
-          </PageContainer>
+                    </div>
+                  ))}
+                </ProductDescriptionWrap>
+                <SimilarProducts brand={product.brand} />
+                {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
+              </Info>
+            </PageContainer>
+          </section>
         </div>
       )}
     </Container>

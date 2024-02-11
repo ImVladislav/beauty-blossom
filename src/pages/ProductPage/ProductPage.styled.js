@@ -153,7 +153,7 @@ export const ProductTitleDescription = styled.p`
     font-size: 30px;
   }
 `;
-export const ProductDescription = styled.p`
+export const ProductDescriptionWrap = styled.div`
   text-align: justify;
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   font-style: normal;

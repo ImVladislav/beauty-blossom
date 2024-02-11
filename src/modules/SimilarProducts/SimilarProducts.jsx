@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilterBrand } from "../../redux/filter/selectors";
 import { setfilter } from "../../redux/filter/slice";
 
-const SimilarProducts = ({ brand }) => {
+export const SimilarProducts = ({ brand }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,5 +42,3 @@ const SimilarProducts = ({ brand }) => {
     </Container>
   );
 };
-
-export default SimilarProducts;
