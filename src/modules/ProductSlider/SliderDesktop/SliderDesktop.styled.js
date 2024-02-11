@@ -1,56 +1,40 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SliderContainer = styled.div`
+export const Container = styled.div`
   max-width: 1440px;
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 1024px;
-    gap: 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  @media screen and (min-width: 1440px) {
-    max-width: 1440px;
-    gap: 30px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
+  margin: 0 auto;
+  padding: 20px 20px;
 `;
 
-export const SliderHeaderToggle = styled.button`
-  border: none;
-  padding: 3px;
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 40px;
+`;
+
+export const Title = styled.h2`
   color: ${(p) => p.theme.colors.accentColor};
-  background-color: transparent;
+
   font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-transform: uppercase;
-  cursor: pointer;
-  &:last-child {
-    margin-left: 20px;
-  }
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.authxl + 1}px;
   }
 `;
 
+export const SliderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 20px;
+`;
+
 export const Button = styled.button`
   position: relative;
-  display: block;
-  margin-top: auto;
-  margin-bottom: auto;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -74,78 +58,63 @@ export const Button = styled.button`
 
 export const CartWrap = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
-  max-width: 350px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  @media screen and (min-width: 768px) {
-    max-width: 740px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 900px;
-    gap: 30px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-  }
-  @media screen and (min-width: 1440px) {
-    max-width: 1300px;
-    flex-wrap: nowrap;
-    margin-left: auto;
-    margin-right: auto;
-  }
+  gap: 10px;
 `;
 
-export const ProductCard = styled(Link)`
-  width: 100px;
+export const ProductCardLink = styled(Link)`
+  position: relative;
+  width: 140px;
+  height: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  scroll-snap-align: start;
+
   background-color: ${(p) => p.theme.colors.white};
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
-  vertical-align: top;
+
   overflow: hidden;
-  position: relative;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
     z-index: 1;
-    cursor: pointer;
   }
-  @media screen and (min-width: 768px) {
-    width: 180px;
-  }
+
   @media screen and (min-width: 1024px) {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 240px;
+    height: 240px;
   }
 `;
 
-export const ProductImage = styled.img`
-  width: 80px;
-  height: 80px;
-  @media screen and (min-width: 768px) {
-    width: 120px;
-    height: 120px;
-  }
+export const ProductImageWrap = styled.div`
+  width: 100px;
+  height: 100px;
+
   @media screen and (min-width: 1024px) {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
   }
   @media screen and (min-width: 1440px) {
     width: 180px;
     height: 180px;
   }
 `;
+export const ProductImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 export const ProductName = styled.h3`
-  margin: 10px 0;
   font-size: ${(p) => p.theme.fontSizes.xxxs + 1}px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -156,11 +125,28 @@ export const ProductName = styled.h3`
     font-size: ${(p) => p.theme.fontSizes.s}px;
     text-transform: uppercase;
   }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    text-transform: uppercase;
+  }
 `;
 
 export const ProductTags = styled.div`
   display: grid;
   justify-content: space-between;
   position: absolute;
-  bottom: 60px;
+  bottom: 40px;
+  @media screen and (min-width: 1024px) {
+    bottom: 50px;
+  }
+`;
+
+export const TitleLine = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  height: 1px;
+  background: #aa9e9e;
+  @media screen and (min-width: 768px) {
+    margin-top: 10px;
+  }
 `;

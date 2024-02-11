@@ -121,7 +121,7 @@ const ProductCard = ({ products }) => {
               />
               <ProductTags>
                 {products.new && <Sticker text="Новинка" />}
-                {products.sale && <Sticker text="Знижка" sale />}
+                {products.sale && <Sticker text="Акція" sale />}
               </ProductTags>
             </ImageWrap>
             <Content itemScope itemType="https://schema.org/Product">
