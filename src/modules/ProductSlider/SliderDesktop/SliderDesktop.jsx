@@ -2,23 +2,24 @@ import React, { useState } from "react";
 
 import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 
-import Sticker from "../../shared/components/Sticker/Sticker";
+import Sticker from "../../../shared/components/Sticker/Sticker";
 
-import { useMedia } from "../../hooks/useMedia";
+import { useMedia } from "../../../hooks/useMedia";
 
 import {
   SliderContainer,
   Button,
   CartWrap,
-  ProductCard,
   ProductImage,
   ProductTags,
   ProductName,
   TitleLine,
   TitleContainer,
   Title,
-} from "./Slider.styled";
-import { Container } from "react-bootstrap";
+  ProductCardLink,
+  ProductImageWrap,
+  Container,
+} from "./SliderDesktop.styled";
 
 export const Slider = ({ products, title }) => {
   const { isDesktopScreen } = useMedia();
@@ -52,20 +53,24 @@ export const Slider = ({ products, title }) => {
         <Button
           onClick={handlePrevSlide}
           disabled={currentSlide === 0}
-          className={currentSlide === 0 ? "icon-disabled" : ""}
+          className={currentSlide === 0 && "icon-disabled"}
         >
           <AiOutlineLeft />
         </Button>
         <CartWrap>
           {displayedProducts.map((filtered) => (
-            <ProductCard to={`/product/${filtered.id}`} key={filtered.id}>
-              <ProductImage src={filtered.images} alt={filtered.name} />
-              <ProductTags>
-                {filtered.sale && <Sticker sale text="Акція" />}
-                {filtered.new && <Sticker text="Новинка" />}
-              </ProductTags>
+            <ProductCardLink to={`/product/${filtered.id}`} key={filtered.id}>
+              <div>
+                <ProductImageWrap>
+                  <ProductImage src={filtered.images} alt={filtered.name} />
+                </ProductImageWrap>
+                <ProductTags>
+                  {filtered.sale && <Sticker sale text="Акція" />}
+                  {filtered.new && <Sticker text="Новинка" />}
+                </ProductTags>
+              </div>
               <ProductName>{filtered.name}</ProductName>
-            </ProductCard>
+            </ProductCardLink>
           ))}
         </CartWrap>
         <Button
@@ -76,9 +81,8 @@ export const Slider = ({ products, title }) => {
           }
           className={
             currentSlide ===
-            Math.max(0, Math.ceil(products.length / itemsPerSlide) - 1)
-              ? "icon-disabled"
-              : ""
+              Math.max(0, Math.ceil(products.length / itemsPerSlide) - 1) &&
+            "icon-disabled"
           }
         >
           <AiOutlineRight />

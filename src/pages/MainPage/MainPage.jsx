@@ -7,7 +7,7 @@ import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import Hero from "../../modules/Hero/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { Loader } from "../../shared/components/Loader/Loader";
-import { Slider } from "../../modules/Slider/Slider";
+import { Slider } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 
