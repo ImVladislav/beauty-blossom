@@ -402,7 +402,7 @@
     ]
   },
   { "level": 1, "to": "/news", "text": "Новинки", "children": [] },
-  { "level": 1, "to": "/discount", "text": "Знижки", "children": [] },
+  { "level": 1, "to": "/discount", "text": "Акції", "children": [] },
   {
     "level": 1,
     "to": "/wholesaleProgram",

@@ -277,7 +277,7 @@ const ProductPage = () => {
               />
               <ProductTags>
                 {product.new && <Sticker text="Новинка" />}
-                {product.sale && <Sticker text="Знижка" sale />}
+                {product.sale && <Sticker text="Акція" sale />}
               </ProductTags>
             </ImageWrap>
             <Info>

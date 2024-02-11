@@ -87,13 +87,13 @@ export const ProductSlider = ({ products }) => {
           style={{ color: showSale ? "#e93f11" : "#A03DA9" }}
           onClick={toggleSaleFilter}
         >
-          Знижка
+          Акції
         </SliderHeaderToggle>
         <SliderHeaderToggle
           style={{ color: showNew ? "#7baf35" : "#A03DA9" }}
           onClick={toggleNewFilter}
         >
-          Новинка
+          Новинки
         </SliderHeaderToggle>
       </SliderContainer>
       <SliderContainer>
@@ -117,7 +117,7 @@ export const ProductSlider = ({ products }) => {
                 alt={filtred.name}
               ></ProductImage>
               <ProductTags>
-                {filtred.sale && <Sticker sale text="Знижка" />}
+                {filtred.sale && <Sticker sale text="Акція" />}
                 {filtred.new && <Sticker text="Новинка" />}
               </ProductTags>
               <ProductName>{filtred.name}</ProductName>
