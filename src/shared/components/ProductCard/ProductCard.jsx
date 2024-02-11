@@ -113,7 +113,7 @@ const ProductCard = ({ products }) => {
         >
           <LinkStyle to={`/product/${products.id || products.productId}`}>
             <div></div>
-            <ImageWrap>
+            <ImageWrap style={{ width: "200px" }}>
               <Image
                 itemProp="image"
                 src={products.images}
