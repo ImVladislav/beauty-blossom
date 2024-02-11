@@ -7,14 +7,22 @@ export const Container = styled.div`
     margin-top: 50px;
   }
 `;
+export const BrandStyledLink = styled(Link)`
+  color: ${(p) => p.theme.colors.textColor};
 
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+`;
 export const Title = styled.h2`
   font-weight: 400;
   font-size: 20px;
   line-height: 1.02312;
   letter-spacing: 0.01em;
   text-align: center;
-  color: #000;
+
   @media screen and (min-width: 768px) {
     font-weight: 400;
     font-size: 30px;
@@ -50,7 +58,7 @@ export const CartWrap = styled.div`
   }
 `;
 
-export const ProductCard = styled(Link)`
+export const ProductCardLink = styled(Link)`
   width: 200px;
   height: 200px;
   display: flex;

@@ -3,10 +3,11 @@ import {
   Container,
   CartWrap,
   Line,
-  ProductCard,
+  BrandStyledLink,
   ProductImage,
   ProductName,
   Title,
+  ProductCardLink,
 } from "./SimilarProducts.styled";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFilterBrand } from "../../redux/filter/selectors";
@@ -25,11 +26,13 @@ export const SimilarProducts = ({ brand }) => {
   const limitedItems = items.slice(0, 3);
   return (
     <Container>
-      <Title>Інші товари цього бренду</Title>
+      <BrandStyledLink to={`/brands/${brand.toLowerCase()}`}>
+        <Title>Інші товари цього бренду</Title>
+      </BrandStyledLink>
       <Line />
       <CartWrap>
         {limitedItems.map((filtred) => (
-          <ProductCard
+          <ProductCardLink
             to={`/product/${filtred.id}`}
             onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
             key={filtred.id}
@@ -40,7 +43,7 @@ export const SimilarProducts = ({ brand }) => {
             ></ProductImage>
 
             <ProductName>{filtred.name}</ProductName>
-          </ProductCard>
+          </ProductCardLink>
         ))}
       </CartWrap>
     </Container>
