@@ -21,7 +21,7 @@ import {
   Container,
 } from "./SliderDesktop.styled";
 
-export const Slider = ({ products, title }) => {
+export const SliderDesktop = ({ products, title }) => {
   const { isDesktopScreen } = useMedia();
   const [currentSlide, setCurrentSlide] = useState(0);
   const itemsPerSlide = isDesktopScreen ? 5 : 4;
