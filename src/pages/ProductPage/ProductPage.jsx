@@ -217,7 +217,7 @@ const ProductPage = () => {
           <div>
             <UlHistoryList>
               <LiHistoryList>
-                <LinkHistoryLink to="/" onClick={() => handleLinkClick("")}>
+                <LinkHistoryLink to="/">
                   Повернутись на головну сторінку /
                 </LinkHistoryLink>
               </LiHistoryList>
