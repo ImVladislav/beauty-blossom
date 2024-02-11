@@ -1,23 +1,54 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-
 export const Wrap = styled.div`
-  text-align: start;
-`;
-export const List = styled.ul`
-  display: grid;
-  padding: 10px 0 0 20px;
+  width: 150px;
+  @media screen and (min-width: 1024px) {
+    width: 180px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 225px;
+  }
 `;
 
-export const LinkItem = styled(NavLink)`
+export const TitleWrap = styled.div`
+  margin-bottom: 5px;
+`;
+export const Title = styled.h3`
+  color: ${(p) => p.theme.colors.border};
+  font-family: "Alegreya Sans";
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
+  font-style: normal;
+  letter-spacing: 2.21px;
+  letter-spacing: 0.745px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
+`;
+
+export const ListWrap = styled.nav`
+  display: flex;
+  flex-direction: column;
+`;
+export const List = styled.ul``;
+export const Item = styled.li`
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+`;
+
+export const LinkStyled = styled(NavLink)`
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.379px;
-  position: relative;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-weight: 100;
+  line-height: 1.03312;
+  letter-spacing: -0.07em;
   display: inline-block;
 
   &:hover {
@@ -44,41 +75,10 @@ export const LinkItem = styled(NavLink)`
     color: ${(p) => p.theme.colors.accentColor};
   }
 
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
-    letter-spacing: -1.125px;
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
-`;
-
-export const ListItem = styled.li``;
-
-export const TitleWrap = styled.div``;
-export const Title = styled.h3`
-  color: ${(p) => p.theme.colors.border};
-  font-family: "Alegreya Sans";
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-weight: ${(p) => p.theme.fontWeights.subtitle};
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: 0.745px;
-  padding: 0 20px 0 20px;
-  @media screen and (min-width: 768px) {
-    padding: 0 20px 0 20px;
-    font-size: ${(p) => p.theme.fontSizes.l}px;
-    letter-spacing: 2.21px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    padding: 0 100px 0 20px;
-    font-size: ${(p) => p.theme.fontSizes.xl}px;
-  }
-`;
-
-export const Underline = styled.div`
-  height: 1px;
-  background-color: ${(p) => p.theme.colors.black};
 `;

@@ -1,8 +1,7 @@
 import Contacts from "../../Header/Contacts/Contacts";
-import { useMedia } from "../../../hooks/useMedia";
+
 import {
   TitleWrap,
-  Underline,
   ContactGroup,
   Title,
   ContactWraper,
@@ -10,13 +9,10 @@ import {
 } from "./FooterContactsStyled";
 
 export const FooterContacts = () => {
-  const { isMobileScreen } = useMedia();
-
   return (
     <Wrap>
       <TitleWrap>
         <Title>Контакти:</Title>
-        {!isMobileScreen && <Underline />}
       </TitleWrap>
       <ContactWraper>
         <ContactGroup>

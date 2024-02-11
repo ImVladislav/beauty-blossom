@@ -1,19 +1,57 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+export const Wrap = styled.div`
+  width: 150px;
+  @media screen and (min-width: 1024px) {
+    width: 180px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 225px;
+  }
+`;
 
-export const ItemTitle = styled.a`
-  cursor: pointer;
+export const TitleWrap = styled.div`
+  margin-bottom: 5px;
+`;
+export const Title = styled.h3`
+  color: ${(p) => p.theme.colors.border};
+  font-family: "Alegreya Sans";
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
+  font-style: normal;
+  letter-spacing: 2.21px;
+  letter-spacing: 0.745px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
+`;
+export const List = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+export const Item = styled.li`
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+`;
+
+export const LinkStyledSecond = styled.a`
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.379px;
-  padding: 3px 0;
-  position: relative;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-weight: 100;
+  line-height: 1.03312;
+  letter-spacing: -0.07em;
   display: inline-block;
-
+  cursor: pointer;
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
   &:after {
     content: "";
     position: absolute;
@@ -23,39 +61,35 @@ export const ItemTitle = styled.a`
     height: 1px;
     background-color: ${(p) => p.theme.colors.accentColor};
     color: ${(p) => p.theme.colors.accentColor};
-    opacity: 0; /* Початкова прозорість лінії */
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
 
   &:hover:after {
-    opacity: 1; /* Прозорість лінії при ховері */
+    opacity: 1;
   }
 
-  &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
-    letter-spacing: -1.125px;
-  }
-
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
 `;
 
-export const Item = styled(Link)`
+export const LinkStyled = styled(Link)`
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
   text-decoration: none;
   color: ${(p) => p.theme.colors.border};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.379px;
-  position: relative;
+  font-size: ${(p) => p.theme.fontSizes.s}px;
+  font-weight: 100;
+  line-height: 1.03312;
+  letter-spacing: -0.07em;
   display: inline-block;
-
+  &:hover {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
   &::after {
     content: "";
     position: absolute;
@@ -67,54 +101,14 @@ export const Item = styled(Link)`
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
-
   &:hover::after {
     opacity: 1;
   }
 
-  &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
-
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
-    letter-spacing: -1.125px;
-  }
-
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
-`;
-export const Nav = styled.nav`
-  display: grid;
-  padding: 10px 0 0 20px;
-  justify-items: start;
-`;
-
-export const TitleWrap = styled.div`
-  text-align: start;
-`;
-export const Title = styled.h3`
-  color: ${(p) => p.theme.colors.border};
-  font-family: "Alegreya Sans";
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-weight: ${(p) => p.theme.fontWeights.subtitle};
-  font-style: normal;
-  line-height: 1;
-  letter-spacing: 0.745px;
-  padding: 0px 20px 0 20px;
-  @media screen and (min-width: 768px) {
-    padding: 0 80px 0 20px;
-    font-size: ${(p) => p.theme.fontSizes.l}px;
-    letter-spacing: 2.21px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding: 0 180px 0 20px;
-    font-size: ${(p) => p.theme.fontSizes.xl}px;
-  }
-`;
-
-export const Underline = styled.div`
-  height: 1px;
-  background-color: ${(p) => p.theme.colors.black};
 `;
