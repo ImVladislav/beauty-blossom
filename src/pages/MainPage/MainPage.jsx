@@ -7,10 +7,15 @@ import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
 import Hero from "../../modules/Hero/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { Loader } from "../../shared/components/Loader/Loader";
+import { Slider } from "../../modules/Slider/Slider";
+import { selectNew, selectSale } from "../../redux/products/selectors";
+import { useSelector } from "react-redux";
 
 const MainPage = () => {
   const { isMobileScreen } = useMedia();
   const [loading, setLoading] = useState(true);
+  const newProducts = useSelector(selectNew);
+  const saleProducts = useSelector(selectSale);
 
   useEffect(() => {
     setLoading(false);
@@ -23,7 +28,15 @@ const MainPage = () => {
       ) : (
         <div>
           <Hero />
-          <ProductSlider />
+
+          {isMobileScreen ? (
+            <ProductSlider products={[...newProducts, ...saleProducts]} />
+          ) : (
+            <>
+              <Slider products={newProducts} title="Новинки" />
+              <Slider products={saleProducts} title="Акції" />
+            </>
+          )}
           <BrandsWraper />
           {!isMobileScreen && <AboutUs />}
 

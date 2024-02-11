@@ -1,8 +1,18 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const SliderContainer = styled.div`
+export const Container = styled.div`
   max-width: 1440px;
+`;
+
+export const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto 0;
+`;
+
+export const SliderContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 5px;
@@ -13,6 +23,7 @@ export const SliderContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     max-width: 768px;
+    justify-content: space-between;
   }
   @media screen and (min-width: 1024px) {
     max-width: 1024px;
@@ -21,25 +32,20 @@ export const SliderContainer = styled.div`
     margin-bottom: 30px;
   }
   @media screen and (min-width: 1440px) {
-    max-width: 1440px;
+    justify-content: center;
+    max-width: 1300px;
     gap: 30px;
     margin-top: 40px;
     margin-bottom: 40px;
   }
 `;
 
-export const SliderHeaderToggle = styled.button`
-  border: none;
-  padding: 3px;
+export const Title = styled.h2`
   color: ${(p) => p.theme.colors.accentColor};
-  background-color: transparent;
+
   font-size: ${(p) => p.theme.fontSizes.s}px;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-transform: uppercase;
-  cursor: pointer;
-  &:last-child {
-    margin-left: 20px;
-  }
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.authxl + 1}px;
@@ -76,18 +82,19 @@ export const CartWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 5px;
+  gap: 10px;
   max-width: 350px;
   margin-top: 20px;
   margin-bottom: 20px;
   @media screen and (min-width: 768px) {
     max-width: 740px;
+
+    gap: 10px;
+    flex-wrap: nowrap;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 900px;
+    max-width: 880px;
     gap: 30px;
-    margin-top: 40px;
-    margin-bottom: 40px;
   }
   @media screen and (min-width: 1440px) {
     max-width: 1300px;
@@ -119,7 +126,7 @@ export const ProductCard = styled(Link)`
     cursor: pointer;
   }
   @media screen and (min-width: 768px) {
-    width: 180px;
+    width: 150px;
   }
   @media screen and (min-width: 1024px) {
     width: 250px;
@@ -163,4 +170,14 @@ export const ProductTags = styled.div`
   justify-content: space-between;
   position: absolute;
   bottom: 60px;
+`;
+
+export const TitleLine = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  height: 1px;
+  background: #aa9e9e;
+  @media screen and (min-width: 768px) {
+    margin-top: 10px;
+  }
 `;

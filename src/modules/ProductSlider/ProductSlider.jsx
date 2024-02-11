@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ReactComponent as NextPrevButtonSvg } from "../../images/NextPrev.svg";
-import { useSelector } from "react-redux";
-import { selectGoods } from "../../redux/products/selectors";
+// import { ReactComponent as NextPrevButtonSvg } from "../../images/NextPrev.svg";
+
+import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
+
 import Sticker from "../../shared/components/Sticker/Sticker";
 
 import { useMedia } from "../../hooks/useMedia";
@@ -16,9 +17,8 @@ import {
   ProductName,
 } from "./ProductSlider.styled";
 
-export const ProductSlider = () => {
+export const ProductSlider = ({ products }) => {
   const { isDesktopScreen } = useMedia();
-  const products = useSelector(selectGoods); // всі продукти
   const [filteredProduct, setFilteredProduct] = useState(products);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showSale, setShowSale] = useState(false);
@@ -43,7 +43,9 @@ export const ProductSlider = () => {
 
   const startIdx = currentSlide;
   const endIdx = startIdx + itemsPerSlide;
-  const displayedProducts = filteredProduct.slice(startIdx, endIdx);
+  const displayedProducts = filteredProduct
+    .sort((a, b) => b.code - a.code)
+    .slice(startIdx, endIdx);
 
   const toggleSaleFilter = () => {
     setShowSale(!showSale);
@@ -100,11 +102,12 @@ export const ProductSlider = () => {
           disabled={currentSlide === 0}
           className={currentSlide === 0 ? "icon-disabled" : ""}
         >
-          <NextPrevButtonSvg
+          {/* <NextPrevButtonSvg
             style={{
               fill: currentSlide === 0 ? "#ffffff" : "#A03DA9",
             }}
-          />
+          /> */}
+          <AiOutlineLeft />
         </Button>
         <CartWrap>
           {displayedProducts.map((filtred) => (
@@ -122,7 +125,7 @@ export const ProductSlider = () => {
           ))}
         </CartWrap>
         <Button
-          style={{ transform: "rotate(180deg)" }}
+          // style={{ transform: "rotate(180deg)" }}
           onClick={handleNextSlide}
           disabled={
             currentSlide >= Math.max(0, products.length - itemsPerSlide) ||
@@ -132,14 +135,15 @@ export const ProductSlider = () => {
             currentSlide === products.length - 2 ? "icon-disabled" : ""
           }
         >
-          <NextPrevButtonSvg
+          <AiOutlineRight />
+          {/* <NextPrevButtonSvg
             style={{
               fill:
                 displayedProducts.length < itemsPerSlide
                   ? "#ffffff"
                   : "#A03DA9",
             }}
-          />
+          /> */}
         </Button>
       </SliderContainer>
     </div>
