@@ -3,27 +3,30 @@ import "modern-normalize";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const GlobalStyle = createGlobalStyle`
-
+html,
 body {
-  margin: 0;
 
+height: 100%;
   font-family: 'Noto Sans', sans-serif;
   font-size: 18px;
   font-weight: 400;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #504056;
   scroll-behavior: smooth;
 
 }
+#root{
+min-height: 100%;
+display: flex;
+flex-direction: column;
+}
 
 body.modal-open {
   overflow: hidden;
 }
 
-main {
-  min-height: 60vh;
-}
 
 
 code {

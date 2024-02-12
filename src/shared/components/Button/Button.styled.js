@@ -11,7 +11,7 @@ export const ButtonStyle = styled.button`
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-decoration: none;
   /* font-size: ${(p) => p.theme.fontSizes.xl}px; */
-  max-width: 300px;
+  max-width: 375px;
   height: 41px;
 
   color: ${(p) =>

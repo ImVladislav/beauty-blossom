@@ -32,7 +32,7 @@ const UserPage = () => {
   const isOPTuser = useSelector(optUserSelector);
 
   return (
-    <div>
+    <>
       <Header />
       <Bgd>
         <CabinetBlock>
@@ -63,7 +63,7 @@ const UserPage = () => {
         </CabinetBlock>
       </Bgd>
       <Footer />
-    </div>
+    </>
   );
 };
 export default UserPage;
