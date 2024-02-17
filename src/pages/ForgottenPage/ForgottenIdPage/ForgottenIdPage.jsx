@@ -27,8 +27,8 @@ const ForgottenIdPage = () => {
 
         return;
       }
-      console.log(forgotten);
-      console.log(password);
+      // console.log(forgotten);
+      // console.log(password);
       const response = await axios.post("/auth/restorePasswordStep2", {
         _id: forgotten,
         newPassword: password,

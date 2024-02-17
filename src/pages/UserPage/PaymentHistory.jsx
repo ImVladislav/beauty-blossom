@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 
-
-import { DetailTableThumb, PaymentHistoryTd, PaymentHistoryTh, PaymentHistoryTr, PaymentPagination, PaymentPaginationButton, ShowDetailButton, Table } from './UserPageStyled';
-
+import {
+  DetailTableThumb,
+  PaymentHistoryTd,
+  PaymentHistoryTh,
+  PaymentHistoryTr,
+  PaymentPagination,
+  PaymentPaginationButton,
+  ShowDetailButton,
+  Table,
+} from "./UserPageStyled";
 
 import axios from "axios";
 
@@ -27,7 +34,7 @@ const PaymentHistory = () => {
 
   const toggleOrderDetails = (item) => {
     setOpenedOrder((prevOrder) => (prevOrder === item ? null : item));
-    console.log(openedOrder);
+    console(openedOrder);
 
     setOpenedOrderDetails((prevDetails) =>
       prevDetails === item ? null : item.orderedItems
@@ -37,7 +44,7 @@ const PaymentHistory = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentData = paymentHistoryData.slice(startIndex, endIndex);
-console.log(currentData);
+  // console(currentData);
   // Подія для зміни сторінки
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -104,10 +111,10 @@ console.log(currentData);
                 <tr key={productIndex}>
                   <PaymentHistoryTd>{product.name}</PaymentHistoryTd>
                   <PaymentHistoryTd>{product.quantity}</PaymentHistoryTd>
-                  <PaymentHistoryTd>{product.amount / product.quantity}</PaymentHistoryTd>
                   <PaymentHistoryTd>
-                    {product.amount}
+                    {product.amount / product.quantity}
                   </PaymentHistoryTd>
+                  <PaymentHistoryTd>{product.amount}</PaymentHistoryTd>
                 </tr>
               ))}
             </tbody>
