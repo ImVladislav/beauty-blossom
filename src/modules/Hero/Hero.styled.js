@@ -280,7 +280,7 @@ export const BackgroundColor = styled.div`
   height: 300px;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  z-index: -1;
   user-select: none;
   @media screen and (min-width: 768px) {
     height: 400px;

@@ -14,6 +14,8 @@ export const WrapItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 5;
 `;
 
 export const Link = styled(NavLink)`
