@@ -50,11 +50,11 @@ const AdminDetail = ({ selectedOrder }) => {
         `https://beauty-blossom-backend.onrender.com/api/orders/${editedOrder._id}`,
         dataToUpdate
       );
-      console.log(dataToUpdate);
+      // console.log(dataToUpdate);
       // Перевіряємо відповідь сервера
       if (response.status === 200) {
-      setIsEditing(false);
-      // setEditedOrder({ ...selectedOrder }); 
+        setIsEditing(false);
+        // setEditedOrder({ ...selectedOrder });
       } else {
         // Обробка помилки, якщо потрібно
         console.error("Помилка оновлення даних на сервері");
@@ -65,15 +65,15 @@ const AdminDetail = ({ selectedOrder }) => {
   };
 
   useEffect(() => {
- setEditedOrder({ ...selectedOrder })
+    setEditedOrder({ ...selectedOrder });
   }, [selectedOrder]);
 
-const handleInputChange = (e, fieldName) => {
-  const { value } = e.target;
-  setEditedOrder((prevOrder) => ({
-    ...prevOrder,
-    [fieldName]: value,
-  }));
+  const handleInputChange = (e, fieldName) => {
+    const { value } = e.target;
+    setEditedOrder((prevOrder) => ({
+      ...prevOrder,
+      [fieldName]: value,
+    }));
   };
 
   return (
@@ -197,7 +197,10 @@ const handleInputChange = (e, fieldName) => {
                 )}
               </p>
               <p>
-                 Коментар:{" "}{editedOrder.comments !==undefined? editedOrder.comments : 'кроментар відсутній'}
+                Коментар:{" "}
+                {editedOrder.comments !== undefined
+                  ? editedOrder.comments
+                  : "кроментар відсутній"}
               </p>
             </TableItems>
           </tr>

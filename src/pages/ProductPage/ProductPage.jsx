@@ -437,7 +437,8 @@ const ProductPage = () => {
                     </div>
                   ))}
                 </ProductDescriptionWrap>
-                <SimilarProducts brand={product.brand} />
+
+                <SimilarProducts brand={product.brand} productId={product.id} />
                 {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
               </Info>
             </PageContainer>

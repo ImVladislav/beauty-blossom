@@ -18,6 +18,7 @@ const Feedback = () => {
   const handleSendFeedback = async () => {
     try {
       // Відправка POST-запиту на сервер
+      // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
         "https://beauty-blossom-backend.onrender.com/api/feedback",
         {
@@ -26,7 +27,7 @@ const Feedback = () => {
       );
 
       // Опрацювання відповіді сервера
-      console.log(response.data);
+      // console.log(response.data);
       toast.info("Ваш відгук Відправлено!");
       // Очищення textarea після успішної відправки
       setFeedbackText("");

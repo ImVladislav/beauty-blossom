@@ -16,15 +16,15 @@ const SortCategory = () => {
   const subCategoryItems = useSelector(selectFilterCategorySub);
   const subSubCategoryItems = useSelector(selectFilterCategorySubSub);
 
-  console.log(categoryItems);
+  // console.log(categoryItems);
   // const navigateToChild = () => {
   //   navigate("/child", { state: { parentPathname: window.location.pathname } });
   // };
-  console.log(window.location.pathname);
-
+  // console.log(window.location.pathname);
+  // eslint-disable-next-line no-unused-vars
   const location = useLocation();
 
-  console.log(location);
+  // console.log(location);
   let products = categoryItems;
 
   if (products.length === 0) {

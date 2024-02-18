@@ -428,7 +428,7 @@ const OrderPlacement = () => {
     const value = e.target.value;
     setSearchWarehouses(value);
 
-    console.log(warehouses);
+    // console.log(warehouses);
     if (value.length > 2) {
       setDropdownWarehouseVisible(searchWarehouses.length < 20);
     }

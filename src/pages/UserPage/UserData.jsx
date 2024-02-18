@@ -50,11 +50,12 @@ const UserData = () => {
     e.preventDefault();
 
     try {
+      // eslint-disable-next-line
       const response = await axios.post(
         `https://beauty-blossom-backend.onrender.com/api/auth/updateUserData/${id}`,
         formData
       );
-      console.log(response.data);
+      // console.log(response.data);
       toast.info("Данні зміненні успішно");
     } catch (error) {
       toast.error("Сталася помилка, спробуйте пізніше");
