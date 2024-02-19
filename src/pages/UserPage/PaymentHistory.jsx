@@ -34,7 +34,7 @@ const PaymentHistory = () => {
 
   const toggleOrderDetails = (item) => {
     setOpenedOrder((prevOrder) => (prevOrder === item ? null : item));
-    console(openedOrder);
+    console.log(openedOrder);
 
     setOpenedOrderDetails((prevDetails) =>
       prevDetails === item ? null : item.orderedItems
