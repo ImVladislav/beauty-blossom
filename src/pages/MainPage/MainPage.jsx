@@ -21,6 +21,11 @@ const MainPage = () => {
     setLoading(false);
   }, []);
 
+  const newFiltred = newProducts.filter((item) => !item.amount <= 0);
+  const saleFiltred = saleProducts.filter((item) => !item.amount <= 0);
+  // console.log(newFiltred);
+  // console.log(saleFiltred);
+
   return (
     <>
       {loading ? (
@@ -30,11 +35,11 @@ const MainPage = () => {
           <Hero />
 
           {isMobileScreen ? (
-            <ProductSlider products={[...newProducts, ...saleProducts]} />
+            <ProductSlider products={[...newFiltred, ...saleFiltred]} />
           ) : (
             <>
-              <SliderDesktop products={newProducts} title="Новинки" />
-              <SliderDesktop products={saleProducts} title="Акції" />
+              <SliderDesktop products={newFiltred} title="Новинки" />
+              <SliderDesktop products={saleFiltred} title="Акції" />
             </>
           )}
           <BrandsWraper />
