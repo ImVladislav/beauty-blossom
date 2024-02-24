@@ -1,14 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.b04bdbd5.css",
-    "main.js": "/static/js/main.786b6edf.js",
-    "static/media/masil-desktop.png": "/static/media/masil-desktop.59afdee2dd7da4c2348c.png",
-    "static/media/masil-desktop-groupe.png": "/static/media/masil-desktop-groupe.f06d3d7b72fc7abed942.png",
-    "static/media/masil-mobile-groupe_3.png": "/static/media/masil-mobile-groupe_3.e369b6b9a37ceafabb8a.png",
+    "main.js": "/static/js/main.2da076cf.js",
     "static/media/purito.png": "/static/media/purito.a9d2fe631b89ee2fe28b.png",
     "static/media/retinol.png": "/static/media/retinol.367bc42961c434fd5055.png",
-    "static/media/Banner.jpg": "/static/media/Banner.12867d0d9f67940e111a.jpg",
-    "static/media/masil-mobile.png": "/static/media/masil-mobile.080e7ea0d5b0264490ad.png",
+    "static/media/purito-new.png": "/static/media/purito-new.4ed713c3f0685de64ccc.png",
+    "static/media/sprite.svg": "/static/media/sprite.1bee98fb97071cc5008955ccd2bfc890.svg",
+    "static/media/purito-new-mobile.png": "/static/media/purito-new-mobile.be96ec442cbd23576084.png",
     "static/media/DAENG-GI-MEO-RI.svg": "/static/media/DAENG-GI-MEO-RI.d7929203094c6c8a3af7899b4587c042.svg",
     "static/media/Esthetic-House.svg": "/static/media/Esthetic-House.109e47cf57588493365999f3ea647183.svg",
     "static/media/medi_peel_logo.svg": "/static/media/medi_peel_logo.9440fec6a33b8195c856fc337deb031c.svg",
@@ -21,10 +19,10 @@
     "index.html": "/index.html",
     "static/media/newEmail.svg": "/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "main.b04bdbd5.css.map": "/static/css/main.b04bdbd5.css.map",
-    "main.786b6edf.js.map": "/static/js/main.786b6edf.js.map"
+    "main.2da076cf.js.map": "/static/js/main.2da076cf.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.786b6edf.js"
+    "static/js/main.2da076cf.js"
   ]
 }
