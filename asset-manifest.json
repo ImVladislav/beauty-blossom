@@ -1,12 +1,22 @@
 {
   "files": {
     "main.css": "/static/css/main.b04bdbd5.css",
-    "main.js": "/static/js/main.2da076cf.js",
+    "main.js": "/static/js/main.ed0ea2b0.js",
     "static/media/purito.png": "/static/media/purito.a9d2fe631b89ee2fe28b.png",
     "static/media/retinol.png": "/static/media/retinol.367bc42961c434fd5055.png",
+    "static/media/flower pink.png": "/static/media/flower pink.bdffb42818b26a577e3b.png",
     "static/media/purito-new.png": "/static/media/purito-new.4ed713c3f0685de64ccc.png",
+    "static/media/bgSky.png": "/static/media/bgSky.a6d41703606d22530551.png",
+    "static/media/flower yellow.png": "/static/media/flower yellow.758a5eeca90f33a885f8.png",
+    "static/media/flower yellow 1.png": "/static/media/flower yellow 1.005b576deaf4ce26b8de.png",
+    "static/media/cream 2.png": "/static/media/cream 2.8367d7c04bcd7d0c44d0.png",
+    "static/media/cream 4.png": "/static/media/cream 4.c38f27a98bd049eab1ff.png",
     "static/media/sprite.svg": "/static/media/sprite.1bee98fb97071cc5008955ccd2bfc890.svg",
     "static/media/purito-new-mobile.png": "/static/media/purito-new-mobile.be96ec442cbd23576084.png",
+    "static/media/cream 5.png": "/static/media/cream 5.5958cb5a884bc18fc8e3.png",
+    "static/media/Spring Holidays.png": "/static/media/Spring Holidays.d4461a85f290f2134d11.png",
+    "static/media/z 06.03 no 08.03.png": "/static/media/z 06.03 no 08.03.d48a501395009391215d.png",
+    "static/media/subsubsubmob.png": "/static/media/subsubsubmob.c175453c48873ad5dbdd.png",
     "static/media/DAENG-GI-MEO-RI.svg": "/static/media/DAENG-GI-MEO-RI.d7929203094c6c8a3af7899b4587c042.svg",
     "static/media/Esthetic-House.svg": "/static/media/Esthetic-House.109e47cf57588493365999f3ea647183.svg",
     "static/media/medi_peel_logo.svg": "/static/media/medi_peel_logo.9440fec6a33b8195c856fc337deb031c.svg",
@@ -19,10 +29,10 @@
     "index.html": "/index.html",
     "static/media/newEmail.svg": "/static/media/newEmail.2b770dd05848d7eb4be5b7c905e23696.svg",
     "main.b04bdbd5.css.map": "/static/css/main.b04bdbd5.css.map",
-    "main.2da076cf.js.map": "/static/js/main.2da076cf.js.map"
+    "main.ed0ea2b0.js.map": "/static/js/main.ed0ea2b0.js.map"
   },
   "entrypoints": [
     "static/css/main.b04bdbd5.css",
-    "static/js/main.2da076cf.js"
+    "static/js/main.ed0ea2b0.js"
   ]
 }
