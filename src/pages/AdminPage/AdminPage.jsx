@@ -14,6 +14,7 @@ import {
   Th,
 } from "./AdminPageStyled";
 import AdminFeedbackPage from "./AdminFeedbackPage";
+import { AdminEmailSenderPage } from "./AdminEmailSenderPage";
 
 const AdminPage = () => {
   const [orders, setOrders] = useState([]);
@@ -26,6 +27,7 @@ const AdminPage = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [paymentMethodFilter, setPaymentMethodFilter] = useState("");
   const [showOrders, setShowOrders] = useState(true);
+  const [subPage, setsubPage] = useState("orders");
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 20;
 
@@ -80,20 +82,26 @@ const AdminPage = () => {
         <h1>Панель адміністратора</h1>
         <NavigateBlock>
           <Button
-            onClick={() => setShowOrders(true)}
-            className={showOrders ? "selected-button" : ""}
+            onClick={() => setsubPage("orders")}
+            className={subPage === "orders" ? "selected-button" : ""}
           >
             Замовлення
           </Button>
           <Button
-            onClick={() => setShowOrders(false)}
-            className={!showOrders ? "selected-button" : ""}
+            onClick={() => setsubPage("reviews")}
+            className={subPage === "reviews" ? "selected-button" : ""}
           >
             Відгуки
           </Button>
+          <Button
+            onClick={() => setsubPage("emailSender")}
+            className={subPage === "emailSender" ? "selected-button" : ""}
+          >
+            Поштові розсилки
+          </Button>
         </NavigateBlock>
 
-        {showOrders ? (
+        {subPage === "orders" && (
           <>
             <FilterInput
               type="text"
@@ -204,9 +212,10 @@ const AdminPage = () => {
 
             {selectedOrder && <AdminDetail selectedOrder={selectedOrder} />}
           </>
-        ) : (
-          <AdminFeedbackPage />
         )}
+        {subPage === "reviews" && <AdminFeedbackPage />}
+
+        {subPage === "emailSender" && <AdminEmailSenderPage />}
       </AdminBlock>
     </Container>
   );
