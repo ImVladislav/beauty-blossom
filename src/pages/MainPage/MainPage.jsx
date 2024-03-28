@@ -4,7 +4,7 @@ import { useMedia } from "../../hooks/useMedia";
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-import Hero from "../../modules/Hero/Hero";
+import Hero from "../../modules/HeroOld/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { Loader } from "../../shared/components/Loader/Loader";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
