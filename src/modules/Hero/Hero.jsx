@@ -1,11 +1,16 @@
 import React from "react";
 import { useMedia } from "../../hooks/useMedia.js";
-import Sprite from "../../images/sprite.svg";
+
+import { useDispatch } from "react-redux";
+import { setfilter } from "../../redux/filter/slice.js";
 
 // import baner from "../../images/masil-desktop.png";
 // import products from "../../images/masil-desktop-groupe.png";
 // import banerMobile from "../../images/masil-mobile.png";
 // import productsMobile from "../../images/masil-mobile-groupe_3.png";
+
+import Sprite from "../../images/sprite.svg";
+
 import products from "../../images/purito-new.png";
 import productsMobile from "../../images/purito-new-mobile.png";
 import {
@@ -32,8 +37,7 @@ import {
   ItemBanner,
   LinkStyledBanner,
 } from "./Hero.styled.js";
-import { useDispatch } from "react-redux";
-import { setfilter } from "../../redux/filter/slice.js";
+
 const Hero = () => {
   const { isMobileScreen } = useMedia();
   const dispatch = useDispatch();
