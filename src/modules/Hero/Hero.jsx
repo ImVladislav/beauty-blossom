@@ -51,7 +51,6 @@ const Hero = () => {
           ) : (
             <Banner src={baner} alt="bannerOmh" />
           )}
-
           <HeroWrap>
             <Wraper>
               <TextWrap>
@@ -137,3 +136,40 @@ const Hero = () => {
 };
 
 export default Hero;
+// {
+//   /* <WrapBackground>
+//   <Background>
+//     {isMobileScreen ? (
+//       <Banner src={banerMobile} alt="bannerOmh" />
+//     ) : (
+//       <Banner src={baner} alt="bannerOmh" />
+//     )}
+//     <HeroWrap>
+//       <Wraper>
+//         <TextWrap>
+//           <Title>MASIL</Title>
+//           <TextSecond>
+//             Найкращий догляд для твого волосся вдома
+//           </TextSecond>
+//           <WraperLink>
+//             <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+//           </WraperLink>
+//           {isMobileScreen && (
+//             <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
+//           )}
+//         </TextWrap>
+//         <div>asd</div>
+//           {!isMobileScreen && (
+//             <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
+//           )}
+//         </div>
+//       </Wraper>
+//       {isMobileScreen ? (
+//         <Product src={productsMobile} alt="productBanner" />
+//       ) : (
+//         <Product src={products} alt="productBanner" />
+//       )}
+//     </HeroWrap>
+//   </Background>
+// </WrapBackground> */
+// }
