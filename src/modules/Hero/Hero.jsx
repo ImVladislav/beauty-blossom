@@ -66,7 +66,7 @@ const Hero = () => {
                   <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
                 )}
               </TextWrap>
-              <div>
+              <div>asd</div>
                 {!isMobileScreen && (
                   <TextConditions>*тисни, щоб дізнатись умови</TextConditions>
                 )}
