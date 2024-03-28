@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import bg from "../../images/match8/mob/bgSky.png";
+import bgDesc from "../../images/match8/desctop/bgsky.png";
 
 export const WrapBackground = styled.div`
   position: relative;
@@ -276,14 +278,18 @@ export const TextConditions = styled.p`
 
 // =================== PURITO =========================
 export const BackgroundColor = styled.div`
-  background: linear-gradient(107deg, #b4aea6 7.78%, #e1dfda 101.96%);
+  /* background: linear-gradient(107deg, #b4aea6 7.78%, #e1dfda 101.96%); */
   height: 300px;
   position: relative;
   overflow: hidden;
   z-index: 0;
   user-select: none;
+  background-image: url(${bg});
+  background-size: cover;
+  background-position: center;
   @media screen and (min-width: 768px) {
     height: 400px;
+    background-image: url(${bgDesc});
   }
   @media screen and (min-width: 1440px) {
     height: 600px;
@@ -293,10 +299,11 @@ export const ContainerBanner = styled.div`
   position: relative;
   display: flex;
   max-width: 1300px;
+  justify-content: center;
 
   margin: 0 auto;
   display: flex;
-  height: 100%;
+  /* height: 100%; */
   align-items: center;
 `;
 export const ImageBanner = styled.img`
@@ -330,21 +337,26 @@ export const ImageBanner = styled.img`
   }
 `;
 export const InnerContentBanner = styled.div`
-  margin-left: 20px;
+  margin-left: 36px;
+  margin-top: 36px;
   @media screen and (min-width: 425px) {
-    margin-left: 50px;
+    /* margin-left: 50px; */
   }
   @media screen and (min-width: 500px) {
-    margin-left: 100px;
+    /* margin-left: 100px; */
   }
   @media screen and (min-width: 768px) {
-    margin-left: 100px;
+    /* margin-left: 100px; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
   }
   @media screen and (min-width: 1024px) {
-    margin-left: 250px;
+    /* margin-left: 250px; */
   }
   @media screen and (min-width: 1440px) {
-    margin-left: 100px;
+    /* margin-left: 100px; */
   }
 `;
 
@@ -406,12 +418,25 @@ export const SloganBanner = styled.p`
   }
 `;
 export const LinkStyledBanner = styled(Link)`
-  border-radius: 30px;
-  padding: 10px 14px;
+  display: inline-flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 3.253px;
+  margin-top: 20px;
   border: none;
   font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+  /* font-weight: 600; */
+  color: #144d74;
+  color: #144d74;
   font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+
+  border-radius: 5.204px;
+  background: #fff;
+
   background: #fff;
   color: #6b4121;
   text-decoration: none;
@@ -419,11 +444,11 @@ export const LinkStyledBanner = styled(Link)`
   transition: all 150ms ease-in-out;
   &:hover,
   &:focus {
-    background: #6b4121;
-    color: #fff;
+    background: #f9ced5;
+    color: #6b4121;
     & svg {
-      stroke: #fff;
-      fill: #fff;
+      stroke: #6b4121;
+      fill: #6b4121;
     }
   }
   @media screen and (min-width: 768px) {
@@ -490,5 +515,353 @@ export const TextBanner = styled.p`
   @media screen and (min-width: 1440px) {
     font-weight: 500;
     font-size: 10px;
+  }
+`;
+
+export const FlowerPinkmMob = styled.img`
+  width: 182px;
+  height: 156px;
+  /* transform: rotate(-38.303deg); */
+  flex-shrink: 0;
+  position: absolute;
+  top: 160px;
+  left: 0px;
+`;
+
+export const Leaf = styled.img`
+  width: 51px;
+  /* height: 17px; */
+  /* transform: rotate(-33.515deg); */
+  /* flex-shrink: 0; */
+  position: absolute;
+  top: 85px;
+  left: 219px;
+`;
+export const Leaf2 = styled.img`
+  width: 37px;
+  height: 30px;
+  position: absolute;
+  top: 250px;
+  left: 108px;
+`;
+export const Leaf3 = styled.img`
+  width: 37px;
+  height: 30px;
+  position: absolute;
+  top: 93px;
+  right: 10px;
+`;
+export const FloweryellowMob1 = styled.img`
+  width: 175px;
+  /* height: 30px; */
+  position: absolute;
+  top: 218px;
+  right: 109px;
+`;
+export const FloweryellowMob = styled.img`
+  width: 141px;
+  /* height: 140px; */
+  position: absolute;
+  top: 90px;
+  right: 0px;
+`;
+export const Cream1 = styled.img`
+  width: 80px;
+  position: absolute;
+  top: 233px;
+  right: 82px;
+`;
+export const Cream2 = styled.img`
+  width: 80px;
+  position: absolute;
+  top: 175px;
+  right: 110px;
+`;
+export const Cream3 = styled.img`
+  position: absolute;
+  width: 45px;
+  top: 73px;
+  right: 100px;
+`;
+//============================================desc==================
+
+export const TitleImg = styled.img`
+  width: 360px;
+  @media screen and (min-width: 1024px) {
+    width: 450px;
+  }
+  @media screen and (min-width: 1440px) {
+    /* position: absolute; */
+    width: 750px;
+    margin-top: 50px;
+  }
+`;
+
+export const SubTitleImg = styled.img`
+  width: 220px;
+  @media screen and (min-width: 1024px) {
+    width: 300px;
+  }
+`;
+export const SubSubTitleImg = styled.img`
+  margin-top: 8px;
+  width: 470px;
+  @media screen and (min-width: 1024px) {
+    width: 570px;
+  }
+`;
+
+export const FloweryellowDesc = styled.img`
+  position: absolute;
+  width: 336px;
+  top: 112px;
+  left: -52px;
+  @media screen and (min-width: 1024px) {
+    width: 336px;
+    top: 112px;
+    left: -52px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 440px;
+    top: 190px;
+    left: -100px;
+  }
+`;
+export const FloweryellowDesc2 = styled.img`
+  position: absolute;
+  width: 304px;
+  top: 236px;
+  left: 10px;
+  @media screen and (min-width: 1024px) {
+    position: absolute;
+    width: 304px;
+    top: 236px;
+    left: 10px;
+  }
+  @media screen and (min-width: 1440px) {
+    position: absolute;
+    width: 394px;
+    top: 382px;
+    left: 0px;
+  }
+`;
+
+export const Leafdesc1 = styled.img`
+  position: absolute;
+  width: 100px;
+  top: 20px;
+  left: 35px;
+  @media screen and (min-width: 1440px) {
+    width: 158px;
+    top: 184px;
+    right: -52px;
+  }
+`;
+export const Leafdesc2 = styled.img`
+  position: absolute;
+  width: 61px;
+  top: 60px;
+  right: 156px;
+  @media screen and (min-width: 1024px) {
+    right: 200px;
+  }
+  @media screen and (min-width: 1240px) {
+    right: 300px;
+  }
+  @media screen and (min-width: 1440px) {
+    right: 200px;
+    top: 180px;
+  }
+`;
+export const Leafdesc3 = styled.img`
+  position: absolute;
+  width: 61px;
+  top: 60px;
+  left: 156px;
+  @media screen and (min-width: 1024px) {
+    left: 200px;
+  }
+  @media screen and (min-width: 1240px) {
+    left: 300px;
+  }
+  @media screen and (min-width: 1440px) {
+    left: 200px;
+    top: 180px;
+  }
+`;
+export const Leafdesc4 = styled.img`
+  position: absolute;
+  width: 58px;
+  top: 345px;
+  left: 347px;
+`;
+export const Leafdesc5 = styled.img`
+  position: absolute;
+  width: 57px;
+  top: 329px;
+  right: 167px;
+  @media screen and (min-width: 1440px) {
+    width: 77px;
+    top: 494px;
+    right: 277px;
+  }
+`;
+export const Leafdesc6 = styled.img`
+  position: absolute;
+  width: 57px;
+  top: 359px;
+  right: 167px;
+  @media screen and (min-width: 1440px) {
+    width: 72px;
+    top: 554px;
+    right: 277px;
+  }
+`;
+
+export const Leafdesc7 = styled.img`
+  position: absolute;
+  width: 77px;
+  top: 153px;
+  right: 12px;
+  transform: rotate(346deg);
+  @media screen and (min-width: 1440px) {
+    width: 158px;
+    top: 184px;
+    right: -52px;
+  }
+`;
+export const Leafdesc8 = styled.img`
+  position: absolute;
+  width: 57px;
+  top: 286px;
+  right: 629px;
+  transform: rotate(102deg);
+  @media screen and (min-width: 1310px) {
+    width: 57px;
+    top: 286px;
+    right: 679px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 69px;
+    top: 388px;
+    right: 665px;
+  }
+`;
+export const Cream1desc = styled.img`
+  position: absolute;
+  width: 81px;
+  top: 180px;
+  left: 179px;
+
+  @media screen and (min-width: 1024px) {
+    width: 87px;
+    top: 194px;
+    left: 205px;
+  }
+  @media screen and (min-width: 1240px) {
+    width: 95px;
+    top: 153px;
+    left: 220px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 120px;
+    top: 286px;
+    left: 250px;
+  }
+`;
+export const Cream2desc = styled.img`
+  position: absolute;
+  width: 110px;
+  top: 253px;
+  left: 294px;
+  @media screen and (min-width: 1024px) {
+    width: 110px;
+    top: 261px;
+    left: 340px;
+  }
+  @media screen and (min-width: 1240px) {
+    width: 120px;
+    top: 241px;
+    left: 384px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 160px;
+    top: 425px;
+    left: 453px;
+  }
+`;
+export const Cream3desc = styled.img`
+  position: absolute;
+  width: 62px;
+  top: 229px;
+  left: 440px;
+  @media screen and (min-width: 850px) {
+    left: 485px;
+  }
+  @media screen and (min-width: 960px) {
+    left: 570px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 62px;
+    top: 268px;
+    left: 505px;
+  }
+  @media screen and (min-width: 1150px) {
+    width: 62px;
+    top: 268px;
+    left: 635px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 90px;
+    top: 399px;
+    left: 681px;
+  }
+`;
+export const Cream4desc = styled.img`
+  position: absolute;
+  width: 110px;
+  top: 235px;
+  right: 130px;
+  @media screen and (min-width: 1024px) {
+    width: 110px;
+    top: 273px;
+    right: 270px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 150px;
+    top: 393px;
+    right: 279px;
+  }
+`;
+export const Cream5desc = styled.img`
+  position: absolute;
+  width: 67px;
+  top: 131px;
+  right: 25px;
+  @media screen and (min-width: 1024px) {
+    width: 67px;
+    top: 191px;
+    right: 144px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 100px;
+    top: 233px;
+    right: 102px;
+  }
+`;
+export const RedFlower = styled.img`
+  position: absolute;
+  width: 303px;
+  top: 213px;
+  right: -100px;
+
+  @media screen and (min-width: 1440px) {
+    /* position: absolute; */
+    width: 413px;
+    top: 335px;
+    right: -50px;
   }
 `;
