@@ -405,7 +405,7 @@ const ProductPage = () => {
                         <Button
                           type="submit"
                           goods
-                          text={"Обновити"}
+                          text={"Оновити"}
                           // onClick={handleChange}
                         />
                       </form>

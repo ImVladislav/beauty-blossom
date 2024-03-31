@@ -174,7 +174,7 @@ export const Info = styled.div`
 
 export const CounterBlock = styled.div`
   position: relative;
-  width: 180px;
+  /* width: 180px; */
   height: 40px;
   display: flex;
   border-radius: 20px;
@@ -191,7 +191,7 @@ export const CounterBlock = styled.div`
   @media screen and (min-width: 768px) {
     height: 38px;
     margin-bottom: 10px;
-    width: 95px;
+    min-width: 95px;
     margin-right: 20px;
   }
   @media screen and (min-width: 1024px) {

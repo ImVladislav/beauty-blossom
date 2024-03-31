@@ -1,40 +1,47 @@
 import React, { useState } from "react";
 
 export const AdminEmailSenderPage = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState();
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!selectedFile) {
       alert("Please select a file.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-
-    fetch("/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Image uploaded:", data.imageUrl);
-        // Додаткові дії після успішного завантаження фото
-      })
-      .catch((error) => {
-        console.error("Error uploading image:", error);
+    try {
+      const formData = new FormData(); // Створення об'єкта FormData
+      console.log(selectedFile);
+      formData.append("userpic", selectedFile, "chris.jpg");
+      //   formData.append("image", selectedFile); // Додавання файлу до FormData
+      console.log(formData);
+      const response = await fetch("http://localhost:3000/api/email", {
+        method: "POST",
+        body: formData, // Встановлення FormData як тіла запиту
       });
+
+      if (!response.ok) {
+        throw new Error("Error uploading image.");
+      }
+
+      const data = await response.json();
+      console.log("Image uploaded:", data.imageUrl);
+      // Додаткові дії після успішного завантаження фото
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+    }
   };
 
   return (
     <div>
-      <h1>Admin Email Sender Page</h1>
+      {/* <h1>Admin Email Sender Page</h1>
       <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload Photo</button>
+      <button onClick={handleUpload}>Upload Photo</button> */}
+      <h1>Стрінка в розробці</h1>
     </div>
   );
 };
