@@ -47,7 +47,8 @@ export const ProductTags = styled.div`
   display: grid;
   justify-content: space-between;
   position: absolute;
-  bottom: 60px;
+  right: 20px;
+  top: 10px;
 `;
 export const ProductName = styled.h2`
   margin: 0 10px 10px 0;
