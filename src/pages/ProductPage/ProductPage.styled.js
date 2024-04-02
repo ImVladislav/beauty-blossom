@@ -196,7 +196,7 @@ export const CounterBlock = styled.div`
     margin-right: 20px;
   }
   @media screen and (min-width: 1024px) {
-    width: 120px;
+    /* max-width: 120px; */
   }
   @media screen and (min-width: 1440px) {
   }

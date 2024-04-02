@@ -1,47 +1,56 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 export const AdminEmailSenderPage = () => {
-  const [selectedFile, setSelectedFile] = useState();
+  const [files, setFiles] = useState([]);
+  const [text, setText] = useState("");
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  const handleFileChange = (e) => {
+    setFiles([...files, ...e.target.files]); // Додавання нових файлів до існуючого списку файлів
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      alert("Please select a file.");
-      return;
-    }
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append("file", file); // Додавання кожного файлу до FormData
+    });
+    formData.append("text", text);
 
     try {
-      const formData = new FormData(); // Створення об'єкта FormData
-      console.log(selectedFile);
-      formData.append("userpic", selectedFile, "chris.jpg");
-      //   formData.append("image", selectedFile); // Додавання файлу до FormData
-      console.log(formData);
-      const response = await fetch("http://localhost:3000/api/email", {
-        method: "POST",
-        body: formData, // Встановлення FormData як тіла запиту
-      });
-
-      if (!response.ok) {
-        throw new Error("Error uploading image.");
-      }
-
-      const data = await response.json();
-      console.log("Image uploaded:", data.imageUrl);
-      // Додаткові дії після успішного завантаження фото
+      const response = await axios.post(
+        "http://localhost:3000/api/email/sendemail",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response.data);
     } catch (error) {
-      console.error("Error uploading image:", error.message);
+      console.error("Помилка:", error);
     }
   };
 
   return (
-    <div>
-      {/* <h1>Admin Email Sender Page</h1>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload Photo</button> */}
-      <h1>Стрінка в розробці</h1>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input type="file" onChange={handleFileChange} multiple />
+      {/* Дозволяє вибрати декілька файлів */}
+      <input
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+        placeholder="Введіть текст для листа"
+      />
+      <button type="submit">Відправити</button>
+    </form>
   );
 };
+
+export default AdminEmailSenderPage;
