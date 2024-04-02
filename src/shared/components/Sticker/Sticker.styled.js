@@ -3,15 +3,17 @@ import styled from "styled-components";
 export const ProductSticker = styled.div`
   position: relative;
   z-index: 0;
-  padding: 0 5px;
+  padding: 3px 6px;
   border-radius: 2px 2px 2px 0;
-  margin: 2px;
+  /* margin: 2px; */
   &.sale {
     color: #e93f11;
   }
+
   color: #7baf35;
   background: currentColor;
   font-size: 14px;
+
   &::before {
     content: "";
     position: absolute;
@@ -32,6 +34,9 @@ export const ProductSticker = styled.div`
     height: 8px;
     background: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%208%208%22%20width%3D%228%22%20height%3D%228%22%3E%3ClinearGradient%20id%3D%22flag2-shadow%22%20gradientUnits%3D%22userSpaceOnUse%22%20x1%3D%224%22%20y1%3D%227%22%20x2%3D%224%22%3E%3Cstop%20offset%3D%220%22%20stop-opacity%3D%220%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-opacity%3D%22.4%22%2F%3E%3C%2FlinearGradient%3E%3Cpath%20d%3D%22M0%200c.1.3.2.5.5.8l5.7%205.7c.7.7%201.8.8%201.8-.6V0H0z%22%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20fill%3D%22url%28%23flag2-shadow%29%22%2F%3E%3C%2Fsvg%3E")
       0 0 no-repeat;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 5px 10px;
   }
 `;
 
