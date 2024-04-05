@@ -6,6 +6,7 @@ import { selectSale } from "../../redux/products/selectors";
 import { Container } from "../../shared/styles/Container";
 import ProductsList from "../../shared/components/ProductsList/ProductsList";
 import { Loader } from "../../shared/components/Loader/Loader";
+import { Helmet } from "react-helmet";
 
 const DiscountPage = () => {
   const items = useSelector(selectSale);
@@ -18,6 +19,11 @@ const DiscountPage = () => {
 
   return (
     <main>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Beauty Blossom | Акції</title>
+        <meta name="description" content="Товари по зниженим цінам" />
+      </Helmet>
       <Container>
         {loading ? <Loader /> : <ProductsList items={sortedItems} />}
       </Container>

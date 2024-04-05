@@ -266,6 +266,7 @@ const ProductPage = () => {
                 <title>{product.name}</title>
 
                 <meta name="description" content={product.description} />
+                <meta name="keywords" content={product.description} />
               </Helmet>
               <h1 className="hidden">{product.name}</h1>
 

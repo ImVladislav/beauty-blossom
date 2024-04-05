@@ -7,6 +7,7 @@ import ProductsList from "../../shared/components/ProductsList/ProductsList";
 import { Loader } from "../../shared/components/Loader/Loader";
 
 import { Container } from "../../shared/styles/Container";
+import { Helmet } from "react-helmet";
 
 const NewPage = () => {
   const items = useSelector(selectNew);
@@ -20,6 +21,11 @@ const NewPage = () => {
 
   return (
     <main>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Beauty Blossom | Новинки</title>
+        <meta name="description" content="Новинки косметики" />
+      </Helmet>
       <Container>
         {loading ? <Loader /> : <ProductsList items={sortedItems} />}
       </Container>

@@ -164,7 +164,7 @@ export const AdminEmailSenderPage = () => {
               <Li key={result._id}>
                 {result.firstName} {result.lastName}, {result.email},{" "}
                 {result.number}
-                <Button
+                <DeleteButton
                   onClick={() =>
                     handleCopyContact(
                       result.firstName,
@@ -175,7 +175,7 @@ export const AdminEmailSenderPage = () => {
                   }
                 >
                   Додати
-                </Button>
+                </DeleteButton>
               </Li>
             ))}
         </Ul>

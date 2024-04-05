@@ -26,7 +26,7 @@ const AdminPage = () => {
   const [amountFilter, setAmountFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [paymentMethodFilter, setPaymentMethodFilter] = useState("");
-  const [showOrders, setShowOrders] = useState(true);
+  // const [showOrders, setShowOrders] = useState(true);
   const [subPage, setsubPage] = useState("orders");
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 20;

@@ -25,8 +25,9 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   border-radius: 15px;
-  padding: 3px 10px;
+  padding: 14px 10px;
   margin-top: 10px;
+  background-color: #ffe9fa;
 `;
 
 export const Li = styled.li`
@@ -47,5 +48,5 @@ export const Ul = styled.ul`
 
 export const DeleteButton = styled.button`
   border-radius: 15px;
-  padding: 3px 10px;
+  padding: 8px 14px;
 `;

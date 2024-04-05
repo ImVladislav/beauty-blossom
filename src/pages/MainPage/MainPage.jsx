@@ -10,6 +10,7 @@ import { Loader } from "../../shared/components/Loader/Loader";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
 const MainPage = () => {
   const { isMobileScreen } = useMedia();
@@ -32,6 +33,11 @@ const MainPage = () => {
         <Loader />
       ) : (
         <div>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>Beauty Blossom</title>
+            <meta name="description" content="Головна сторінка" />
+          </Helmet>
           <Hero />
 
           {isMobileScreen ? (
