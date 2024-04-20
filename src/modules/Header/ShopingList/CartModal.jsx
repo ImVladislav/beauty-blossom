@@ -100,18 +100,30 @@ const CartModal = ({ closeModal }) => {
       const correspondingItem = items.find(
         (item) => item.code === cartItem.code
       );
-
       if (correspondingItem.amount === 0) {
         removeItem(cartItem._id);
-
         return {
           ...correspondingItem,
         };
       }
 
+      console.log(correspondingItem);
+
       if (correspondingItem) {
         const updatedPriceOpt = correspondingItem.priceOPT;
         const updatedPrice = correspondingItem.price;
+
+        if (
+          items.some(
+            (item) =>
+              item.code === correspondingItem.code &&
+              item.amount !== correspondingItem.amount
+          )
+        ) {
+          correspondingItem.amount = items.find(
+            (item) => item.code === correspondingItem.code
+          ).amount;
+        }
 
         const updatedQuantity =
           cartItem.quantity >= correspondingItem.amount

@@ -41,6 +41,8 @@ import {
   userSelectorlastName,
 } from "../../redux/auth/selectors";
 
+import { selectGoods } from "../../redux/products/selectors";
+
 import { selectCart } from "../../redux/cart/selectors";
 
 import axios from "axios";
@@ -53,6 +55,7 @@ import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import UpdatePriceAndQuantites from "../Header/ShopingList/UpdatePriceAndQuantites";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -78,7 +81,7 @@ const OrderPlacement = () => {
   const [courier, setCourier] = useState("Доставка на відділення");
   const userEmail = useSelector(userSelectorEmail);
   const isOptUser = useSelector(optUserSelector);
-
+  const items = useSelector(selectGoods);
   const [formData, setFormData] = useState({
     email: userEmail || "",
     firstName: userFirstName || "",
@@ -96,7 +99,20 @@ const OrderPlacement = () => {
   };
 
   const cartItems = useSelector(selectCart);
+  // те що падає в замовлення
+  console.log(cartItems);
+  // актуалочка з всіма товарами
+  console.log(items);
 
+  const updateItems = cartItems.filter((card) =>
+    items.some((item) => {
+      if (item.code === card.code && item.amount === 0) {
+        return false; // Видаляємо card, якщо умова виконана
+      }
+      return item.code === card.code;
+    })
+  );
+  console.log(updateItems);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -238,11 +254,14 @@ const OrderPlacement = () => {
   }, [searchWarehouses]);
 
   const totalCost = isOptUser
-    ? cartItems.reduce(
+    ? updateItems.reduce(
         (total, item) => total + item.priceOPT * item.quantity,
         0
       )
-    : cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    : updateItems.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -309,7 +328,7 @@ const OrderPlacement = () => {
       return;
     }
 
-    const orderedItems = cartItems.map((item) => ({
+    const orderedItems = updateItems.map((item) => ({
       productId: item.id || item.productId,
       images: item.images,
       name: item.name,
@@ -317,6 +336,8 @@ const OrderPlacement = () => {
       quantity: item.quantity,
       amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
     }));
+
+    console.log(orderedItems);
 
     const dataToSendCourier = {
       ...formData,
@@ -755,7 +776,7 @@ const OrderPlacement = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {cartItems.map((item) => (
+                      {updateItems.map((item) => (
                         <OrdersItemlist key={item._id}>
                           <OrdersItem>
                             <OrdersImage src={item.images} alt="itemImage" />

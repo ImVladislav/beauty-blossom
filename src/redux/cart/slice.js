@@ -8,6 +8,7 @@ const cartSlice = createSlice({
     setCart: (state, action) => {
       state.length = 0;
       state.push(...action.payload);
+      console.log(action.payload);
     },
     addToCart: (state, action) => {
       const { _id, quantity } = action.payload;

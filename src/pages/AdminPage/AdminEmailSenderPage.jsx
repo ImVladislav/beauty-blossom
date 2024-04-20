@@ -3,12 +3,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 import {
+  AddDefaultEmailButton,
   Button,
   Container,
   DeleteButton,
+  DivFilterInputContainer,
   Form,
   Input,
   Li,
+  SearcInput,
   Textarea,
   Ul,
 } from "./AdminEmailSenderPageStyled";
@@ -26,6 +29,28 @@ export const AdminEmailSenderPage = () => {
   const handleFileChange = (e) => {
     setFiles([...files, ...e.target.files]);
   };
+  const handleClick = (e) => {
+    const newMail = filter;
+    const validateEmail = (email) => {
+      // Регулярний вираз для перевірки валідності email
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Перевірка email за допомогою регулярного виразу
+      return emailPattern.test(email);
+    };
+
+    if (validateEmail(newMail)) {
+      // Перевірка, чи пошта вже не існує у списку toEmails
+      if (!toEmails.includes(newMail)) {
+        setToEmails([...toEmails, newMail]);
+        return;
+      } else {
+        toast.error("Вже додана Досить її додавати!!!");
+        return;
+      }
+    }
+    toast.error("Пошта не валідна! Давайте уважніше!!!");
+  };
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -41,32 +66,42 @@ export const AdminEmailSenderPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append("file", file);
-    });
-    formData.append("title", title);
-    formData.append("text", text);
-    formData.append("to", JSON.stringify(toEmails));
-    formData.append("subject", subject);
-
+    console.log(toEmails);
     try {
-      const response = await axios.post(
-        // "http://localhost:3000/api/email/sendemail",
+      const requests = [];
+      for (const email of toEmails) {
+        const formData = new FormData();
+        files.forEach((file) => {
+          formData.append("file", file);
+        });
+        formData.append("title", title);
+        formData.append("text", text);
+        formData.append("to", JSON.stringify([email]));
+        formData.append("subject", subject);
 
-        "https://beauty-blossom-backend.onrender.com/api/email/sendemail",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+        requests.push(
+          axios.post(
+            "https://beauty-blossom-backend.onrender.com/api/email/sendemail",
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          )
+        );
+      }
+
+      await Promise.all(requests);
       toast.info("Пошта успішно відправлена");
-      setCopiedContacts([]);
     } catch (error) {
       console.error("Помилка:", error);
+      toast.error("Сталася помилка під час відправлення пошти");
+    } finally {
+      // Виконується незалежно від того, чи сталася помилка, чи відправлення успішне
+      setCopiedContacts([]);
+      setToEmails([]);
+      setFiles([]);
     }
   };
 
@@ -113,6 +148,7 @@ export const AdminEmailSenderPage = () => {
     setToEmails(updatedToEmails);
   };
 
+  console.log(toEmails);
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
@@ -137,18 +173,22 @@ export const AdminEmailSenderPage = () => {
           placeholder="Введіть текст для листа"
         />
         <Input type="file" onChange={handleFileChange} multiple />
-        <Button type="submit" disabled={copiedContacts.length === 0}>
+        <Button type="submit" disabled={toEmails.length === 0}>
           Відправити
         </Button>
       </Form>
+      <DivFilterInputContainer style={{ position: "relative" }}>
+        <SearcInput
+          type="text"
+          value={filter}
+          onChange={handleFilterChange}
+          placeholder="Фільтр за ім'ям, прізвищем, email, номером"
+        />
 
-      <Input
-        type="text"
-        value={filter}
-        onChange={handleFilterChange}
-        placeholder="Фільтр за ім'ям, прізвищем, email, номером"
-      />
-
+        <AddDefaultEmailButton onClick={handleClick}>
+          Додати незареєстровану пошту
+        </AddDefaultEmailButton>
+      </DivFilterInputContainer>
       {filter.trim() !== "" && (
         <Ul>
           {searchResults
@@ -181,11 +221,11 @@ export const AdminEmailSenderPage = () => {
         </Ul>
       )}
 
-      {copiedContacts.length > 0 && (
+      {toEmails.length > 0 && (
         <div>
           <h3>Список контактів до відправки:</h3>
           <Ul>
-            {copiedContacts.map((contact, index) => (
+            {toEmails.map((contact, index) => (
               <Li key={index}>
                 {contact}
                 <DeleteButton onClick={() => handleDeleteContact(index)}>

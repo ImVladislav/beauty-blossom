@@ -23,6 +23,30 @@ export const Input = styled.input`
   margin-top: 10px;
 `;
 
+export const DivFilterInputContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SearcInput = styled.input`
+  border-radius: 15px;
+  padding: 16px 175px 16px 10px;
+  margin-top: 10px;
+  width: 100%;
+  margin-right: 8px;
+`;
+export const AddDefaultEmailButton = styled.button`
+  border-radius: 15px;
+  padding: 5px 8px;
+  margin-top: 10px;
+  background-color: #ffe9fa;
+
+  right: 0;
+  width: 165px;
+  font-size: 16px;
+`;
+
 export const Button = styled.button`
   border-radius: 15px;
   padding: 14px 10px;
