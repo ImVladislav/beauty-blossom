@@ -255,6 +255,15 @@ const ProductPage = () => {
               </LiHistoryList>
 
               <LiHistoryList>
+                <LinkHistoryLink
+                  to={`/brands/${product.brand}`}
+                  onClick={() => handleLinkClick(product.subSubCategory)}
+                >
+                  {product.brand} /
+                </LinkHistoryLink>
+              </LiHistoryList>
+
+              <LiHistoryList>
                 <PHistoryName>{product.name}</PHistoryName>
               </LiHistoryList>
             </UlHistoryList>

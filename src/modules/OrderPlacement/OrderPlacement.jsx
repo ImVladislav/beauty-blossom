@@ -55,7 +55,6 @@ import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import UpdatePriceAndQuantites from "../Header/ShopingList/UpdatePriceAndQuantites";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
