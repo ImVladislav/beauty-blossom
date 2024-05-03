@@ -26,9 +26,10 @@ const AdminPage = () => {
   const [amountFilter, setAmountFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [paymentMethodFilter, setPaymentMethodFilter] = useState("");
-  // const [showOrders, setShowOrders] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
   const [subPage, setsubPage] = useState("orders");
   const [currentPage, setCurrentPage] = useState(1);
+
   const ordersPerPage = 20;
 
   const filteredOrders = orders.filter((order) => {
@@ -103,70 +104,84 @@ const AdminPage = () => {
 
         {subPage === "orders" && (
           <>
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по номеру замовлення"
-              value={orderNumberFilter}
-              onChange={(e) => setOrderNumberFilter(e.target.value)}
-            />
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по даті"
-              value={dateFilter}
-              onChange={(e) => setDateFilter(e.target.value)}
-            />
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по імені та прізвищу"
-              value={nameFilter}
-              onChange={(e) => setNameFilter(e.target.value)}
-            />
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по email"
-              value={emailFilter}
-              onChange={(e) => setEmailFilter(e.target.value)}
-            />
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по сумі"
-              value={amountFilter}
-              onChange={(e) => setAmountFilter(e.target.value)}
-            />
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="">Всі</option>
-              <option value="Новий"> Новий </option>
-              <option value="Прийняте в роботу">Прийняте в роботу</option>
-              <option value="Збирається">Збирається</option>
-              <option value="Зібрано">Зібрано</option>
-              <option value="Відправлено">Відправлено</option>
-              <option value="Відміна"> Відміна</option>
-            </select>
-            <FilterInput
-              type="text"
-              placeholder="Фільтр по методу оплати"
-              value={paymentMethodFilter}
-              onChange={(e) => setPaymentMethodFilter(e.target.value)}
-            />
-            <div>
-              {Array.from(
-                { length: Math.ceil(filteredOrders.length / ordersPerPage) },
-                (_, index) => (
-                  <Button
-                    key={index}
-                    onClick={() => paginate(index + 1)}
-                    className={
-                      currentPage === index + 1 ? "selected-button" : ""
-                    }
-                  >
-                    {index + 1}
-                  </Button>
-                )
-              )}
-            </div>
+            <NavigateBlock>
+              <Button onClick={() => setShowFilters(!showFilters)}>
+                {showFilters
+                  ? "Закрити панель навігації"
+                  : "Відкрити панель навігації"}
+              </Button>
+            </NavigateBlock>
+            {showFilters && (
+              <>
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по номеру замовлення"
+                  value={orderNumberFilter}
+                  onChange={(e) => setOrderNumberFilter(e.target.value)}
+                />
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по даті"
+                  value={dateFilter}
+                  onChange={(e) => setDateFilter(e.target.value)}
+                />
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по імені та прізвищу"
+                  value={nameFilter}
+                  onChange={(e) => setNameFilter(e.target.value)}
+                />
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по email"
+                  value={emailFilter}
+                  onChange={(e) => setEmailFilter(e.target.value)}
+                />
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по сумі"
+                  value={amountFilter}
+                  onChange={(e) => setAmountFilter(e.target.value)}
+                />
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                >
+                  <option value="">Всі</option>
+                  <option value="Новий"> Новий </option>
+                  <option value="Прийняте в роботу">Прийняте в роботу</option>
+                  <option value="Збирається">Збирається</option>
+                  <option value="Зібрано">Зібрано</option>
+                  <option value="Відправлено">Відправлено</option>
+                  <option value="Відміна"> Відміна</option>
+                </select>
+                <FilterInput
+                  type="text"
+                  placeholder="Фільтр по методу оплати"
+                  value={paymentMethodFilter}
+                  onChange={(e) => setPaymentMethodFilter(e.target.value)}
+                />
+
+                <div>
+                  {Array.from(
+                    {
+                      length: Math.ceil(filteredOrders.length / ordersPerPage),
+                    },
+                    (_, index) => (
+                      <Button
+                        key={index}
+                        onClick={() => paginate(index + 1)}
+                        className={
+                          currentPage === index + 1 ? "selected-button" : ""
+                        }
+                      >
+                        {index + 1}
+                      </Button>
+                    )
+                  )}
+                </div>
+              </>
+            )}
             <Table>
               <thead>
                 <tr>
@@ -196,9 +211,7 @@ const AdminPage = () => {
                     >
                       <Td>{order.orderNumber}</Td>
                       <Td>{order.createdAt.substr(0, 10)}</Td>
-                      <Td>
-                        {order.firstName} {order.lastName}
-                      </Td>
+                      <Td>{`${order.firstName} ${order.lastName}`}</Td>
                       <Td>
                         {order.number} {order.email}
                       </Td>

@@ -34,17 +34,18 @@ const SortCategory = () => {
   if (products.length === 0) {
     products = subSubCategoryItems;
   }
-  // const sortedItems = [...products].sort((a, b) => b.amount - a.amount);
-  const sortedItems = [...products].sort((a, b) => {
-    // Якщо товар a або товар b має властивість new або sale, то ці товари йдуть спершу
-    if ((a.new || a.sale) && !(b.new || b.sale)) {
-      return -1; // Перемістити товар a вище товару b
-    } else if (!(a.new || a.sale) && (b.new || b.sale)) {
-      return 1; // Перемістити товар b вище товару a
-    } else {
-      return b.amount - a.amount; // Сортування за кількістю, якщо немає умови
-    }
-  });
+  const sortedItems = products
+    .filter((item) => (item.new || item.sale) && item.amount !== 0)
+    .concat(
+      products.filter((item) => !(item.new || item.sale) && item.amount !== 0)
+    )
+    .concat(
+      products.filter((item) => (item.new || item.sale) && item.amount === 0)
+    )
+    .concat(
+      products.filter((item) => !(item.new || item.sale) && item.amount === 0)
+    );
+
   return (
     <main>
       <Container>

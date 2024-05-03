@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import {
+  Button,
+  ButtonCancel,
+  LilistItem,
   ProductBlock,
   ProductImage,
   TableItems,
@@ -12,6 +15,7 @@ import { useEffect } from "react";
 const AdminDetail = ({ selectedOrder }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedOrder, setEditedOrder] = useState({ ...selectedOrder });
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -40,6 +44,8 @@ const AdminDetail = ({ selectedOrder }) => {
         email: editedOrder.email,
         city: editedOrder.city,
         warehouse: editedOrder.warehouse,
+        address: editedOrder.address,
+        building: editedOrder.building,
         deliveryMethod: editedOrder.deliveryMethod,
         paymentMethod: editedOrder.paymentMethod,
         amount: editedOrder.amount,
@@ -50,13 +56,10 @@ const AdminDetail = ({ selectedOrder }) => {
         `https://beauty-blossom-backend.onrender.com/api/orders/${editedOrder._id}`,
         dataToUpdate
       );
-      // console.log(dataToUpdate);
-      // Перевіряємо відповідь сервера
+
       if (response.status === 200) {
         setIsEditing(false);
-        // setEditedOrder({ ...selectedOrder });
       } else {
-        // Обробка помилки, якщо потрібно
         console.error("Помилка оновлення даних на сервері");
       }
     } catch (error) {
@@ -78,29 +81,36 @@ const AdminDetail = ({ selectedOrder }) => {
 
   return (
     <div>
-      <h2>Детальна інформація про замовлення</h2>
+      {/* <h2>Детальна інформація про замовлення</h2> */}
+      <Button onClick={() => setShowDetails(!showDetails)}>
+        {showDetails
+          ? "Сховати детальну інформацію про замовлення"
+          : "Показати детальну інформацію про замовлення"}
+      </Button>
       <ProductBlock>
-        <Table>
-          <tbody>
-            <TableTrBlock>
-              <TableItems>Продукт</TableItems>
-              <TableItems>Ціна</TableItems>
-              <TableItems>Кількість</TableItems>
-              <TableItems>Сумма</TableItems>
-            </TableTrBlock>
-            {editedOrder.orderedItems.map((item, index) => (
-              <TableTrBlock key={index}>
-                <td style={{ display: "flex", border: "none" }}>
-                  <ProductImage src={item.images} alt="product" />
-                  <p>{item.name}</p>
-                </td>
-                <TableItems>{item.amount / item.quantity} грн</TableItems>
-                <TableItems>{item.quantity}</TableItems>
-                <TableItems>{item.amount}</TableItems>
+        {showDetails && (
+          <Table>
+            <tbody>
+              <TableTrBlock>
+                <TableItems>Продукт</TableItems>
+                <TableItems>Ціна</TableItems>
+                <TableItems>Кількість</TableItems>
+                <TableItems>Сумма</TableItems>
               </TableTrBlock>
-            ))}
-          </tbody>
-        </Table>
+              {editedOrder.orderedItems.map((item, index) => (
+                <TableTrBlock key={index}>
+                  <td style={{ display: "flex", border: "none" }}>
+                    <ProductImage src={item.images} alt="product" />
+                    <p>{item.name}</p>
+                  </td>
+                  <TableItems>{item.amount / item.quantity} грн</TableItems>
+                  <TableItems>{item.quantity}</TableItems>
+                  <TableItems>{item.amount}</TableItems>
+                </TableTrBlock>
+              ))}
+            </tbody>
+          </Table>
+        )}
       </ProductBlock>
 
       <Table>
@@ -110,98 +120,128 @@ const AdminDetail = ({ selectedOrder }) => {
           </TableTrBlock>
           <tr>
             <TableItems colSpan="3">
-              <p>Створено: {selectedOrder.createdAt.substr(0, 10)}</p>
-              <p>
-                Покупець:
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedOrder.firstName}
-                    onChange={(e) => handleInputChange(e, "firstName")}
-                  />
-                ) : (
-                  editedOrder.firstName
-                )}{" "}
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedOrder.lastName}
-                    onChange={(e) => handleInputChange(e, "lastName")}
-                  />
-                ) : (
-                  editedOrder.lastName
-                )}
-              </p>
-              <p>
-                Телефон:{" "}
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedOrder.number}
-                    onChange={(e) => handleInputChange(e, "number")}
-                  />
-                ) : (
-                  editedOrder.number
-                )}
-              </p>
-              <p>
-                Email:{" "}
-                {isEditing ? (
-                  <input
-                    type="text"
-                    value={editedOrder.email}
-                    onChange={(e) => handleInputChange(e, "email")}
-                  />
-                ) : (
-                  editedOrder.email
-                )}
-              </p>
-              <p>
-                Адреса доставки:
-                {isEditing ? (
-                  <tr>
+              <ul>
+                <LilistItem>
+                  Створено: {selectedOrder.createdAt.substr(0, 10)}
+                </LilistItem>
+                <LilistItem>
+                  Покупець:
+                  {isEditing ? (
                     <input
                       type="text"
-                      value={editedOrder.city}
-                      onChange={(e) => handleInputChange(e, "city")}
+                      value={editedOrder.firstName}
+                      onChange={(e) => handleInputChange(e, "firstName")}
                     />
+                  ) : (
+                    editedOrder.firstName
+                  )}{" "}
+                  {isEditing ? (
                     <input
                       type="text"
-                      value={editedOrder.warehouse}
-                      onChange={(e) => handleInputChange(e, "warehouse")}
+                      value={editedOrder.lastName}
+                      onChange={(e) => handleInputChange(e, "lastName")}
                     />
-                  </tr>
-                ) : (
-                  <span>
-                    {editedOrder.city}, {editedOrder.warehouse}
-                  </span>
-                )}
-              </p>
-              <p>
-                Статус товару:{" "}
-                {isEditing ? (
-                  <select
-                    name="status"
-                    value={editedOrder.status}
-                    onChange={(e) => handleInputChange(e, "status")}
-                  >
-                    <option value="Новий">Новий</option>
-                    <option value="Прийняте в роботу">Прийняте в роботу</option>
-                    <option value="Збирається">Збирається</option>
-                    <option value="Зібрано">Зібрано</option>
-                    <option value="Відправлено">Відправлено</option>
-                    <option value="Відміна">Відміна</option>
-                  </select>
-                ) : (
-                  editedOrder.status
-                )}
-              </p>
-              <p>
-                Коментар:{" "}
-                {editedOrder.comments !== undefined
-                  ? editedOrder.comments
-                  : "кроментар відсутній"}
-              </p>
+                  ) : (
+                    editedOrder.lastName
+                  )}
+                </LilistItem>
+                <LilistItem>
+                  Телефон:{" "}
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editedOrder.number}
+                      onChange={(e) => handleInputChange(e, "number")}
+                    />
+                  ) : (
+                    editedOrder.number
+                  )}
+                </LilistItem>
+                <LilistItem>
+                  Email:{" "}
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editedOrder.email}
+                      onChange={(e) => handleInputChange(e, "email")}
+                    />
+                  ) : (
+                    editedOrder.email
+                  )}
+                </LilistItem>
+                <LilistItem>
+                  Спосіб доставки:{" "}
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editedOrder.deliveryMethod}
+                      onChange={(e) => handleInputChange(e, "deliveryMethod")}
+                    />
+                  ) : (
+                    editedOrder.deliveryMethod
+                  )}
+                </LilistItem>
+
+                <LilistItem>
+                  Адреса доставки:
+                  {isEditing ? (
+                    <tr>
+                      <input
+                        type="text"
+                        value={editedOrder.city}
+                        onChange={(e) => handleInputChange(e, "city")}
+                      />
+                      <input
+                        type="text"
+                        value={editedOrder.warehouse}
+                        onChange={(e) => handleInputChange(e, "warehouse")}
+                      />
+                      <input
+                        type="text"
+                        value={editedOrder.address}
+                        onChange={(e) => handleInputChange(e, "address")}
+                      />
+                      <input
+                        type="text"
+                        value={editedOrder.building}
+                        onChange={(e) => handleInputChange(e, "building")}
+                      />
+                    </tr>
+                  ) : (
+                    <span>
+                      {editedOrder.city}, {editedOrder.warehouse},
+                      {editedOrder.address}, {editedOrder.building}
+                    </span>
+                  )}
+                </LilistItem>
+                <LilistItem>
+                  Статус товару:{" "}
+                  {isEditing ? (
+                    <select
+                      name="status"
+                      value={editedOrder.status}
+                      onChange={(e) => handleInputChange(e, "status")}
+                    >
+                      <option value="Новий">Новий</option>
+                      <option value="Прийняте в роботу">
+                        Прийняте в роботу
+                      </option>
+                      <option value="Збирається">Збирається</option>
+                      <option value="Зібрано">Зібрано</option>
+                      <option value="Відправлено">Відправлено</option>
+                      <option value="Відміна">Відміна</option>
+                    </select>
+                  ) : (
+                    editedOrder.status
+                  )}
+                </LilistItem>
+                <LilistItem>
+                  Коментар:{" "}
+                  {editedOrder.comments !== undefined
+                    ? editedOrder.comments
+                    : "кроментар відсутній"}
+                </LilistItem>
+              </ul>
             </TableItems>
           </tr>
         </tbody>
@@ -209,12 +249,12 @@ const AdminDetail = ({ selectedOrder }) => {
 
       {isEditing ? (
         <div>
-          <button onClick={handleSaveClick}>Зберегти</button>
-          <button onClick={handleCancelClick}>Відмінити</button>
+          <Button onClick={handleSaveClick}>Зберегти</Button>
+          <Button onClick={handleCancelClick}>Відмінити</Button>
         </div>
       ) : (
         <div>
-          <button onClick={handleEditClick}>Редагувати</button>
+          <ButtonCancel onClick={handleEditClick}>Редагувати</ButtonCancel>
         </div>
       )}
     </div>

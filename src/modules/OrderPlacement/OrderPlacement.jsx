@@ -336,8 +336,6 @@ const OrderPlacement = () => {
       amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
     }));
 
-    console.log(orderedItems);
-
     const dataToSendCourier = {
       ...formData,
       email: userEmail || formData.email,
@@ -366,7 +364,7 @@ const OrderPlacement = () => {
       city: searchText,
       comments: formData.comments,
       deliveryMethod: formData.deliveryMethod,
-      warehouse: searchWarehouses === "" ? "ewq" : searchWarehouses,
+      warehouse: searchWarehouses === "" ? " " : searchWarehouses,
       orderedItems: orderedItems,
       amount: totalCost,
       status: "Новий",
