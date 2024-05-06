@@ -45,7 +45,7 @@ export const CabinetLink = styled(Link)`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9;
+    background: #f4e2ff;
     opacity: 0;
     pointer-events: none;
     z-index: -1;
@@ -161,7 +161,7 @@ export const ContactInformSubButton = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9;
+    background: #f4e2ff;
     opacity: 0;
     pointer-events: none;
     z-index: -1;
@@ -202,7 +202,7 @@ export const PaymentHistoryTd = styled.td`
 
 export const PaymentHistoryTh = styled.th`
   border: 1px solid #c7c7c7;
-  background-color: #fff6e9 !important;
+  background-color: #f4e2ff !important;
   text-align: center;
   white-space: nowrap;
 
@@ -243,7 +243,7 @@ export const PaymentPaginationButton = styled.button`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9;
+    background: #f4e2ff;
     opacity: 1;
     pointer-events: none;
     z-index: -1;
@@ -251,7 +251,7 @@ export const PaymentPaginationButton = styled.button`
 
   &.current {
     font-weight: ${(p) => p.theme.fontWeights.bold};
-    background: #fff6e9;
+    background: #f4e2ff;
   }
 `;
 
@@ -343,7 +343,7 @@ export const SubmitFeedback = styled.button`
   font-size: ${(p) => p.theme.fontSizes.l}px;
   max-width: 345px;
   &:hover {
-    background: #fff6e9;
+    background: #f4e2ff;
     color: ${(p) => p.theme.colors.black};
   }
 `;

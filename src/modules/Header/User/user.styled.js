@@ -87,7 +87,7 @@ export const DropDown = styled.div`
   background: ${(p) => p.theme.colors.white};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding: 10px;
+  padding: 0 10px;
   z-index: 1;
 
   ${LogInElips}:hover & {
@@ -130,12 +130,14 @@ export const ListItem = styled.li`
 `;
 
 export const LogOut = styled.button`
-  display: block;
+  display: flex;
+  width: 100%;
   color: ${(p) => p.theme.colors.textColor};
   text-decoration: none;
   padding: 0;
   border: none;
   background: transparent;
+  padding: 4px 0;
   &:hover {
     background-color: ${(p) => p.theme.colors.accentColor};
     color: ${(p) => p.theme.colors.white};

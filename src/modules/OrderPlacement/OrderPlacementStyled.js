@@ -92,12 +92,17 @@ export const Citylist = styled.div`
   z-index: 2;
   position: absolute;
 `;
-
+export const LIstItem = styled.li`
+  padding: 2px;
+  &:hover {
+    background: ${(p) => p.theme.colors.textColor};
+    color: white;
+  }
+`;
 export const CityItem = styled.span`
   cursor: pointer;
 
   &:hover {
-    background: ${(p) => p.theme.colors.textColor};
     color: white;
   }
   @media (min-width: 1440px) {
@@ -114,19 +119,18 @@ export const CityItem = styled.span`
 export const CityitemsBlock = styled.ul`
   border: 1px solid ${(p) => p.theme.colors.textColor};
   border-radius: 12px;
-  padding: 14px;
+  padding: 8px;
   position: relative;
-  background: #fff6e9;
+  background: white;
   overflow-y: auto;
 
   max-height: 256px;
   scrollbar-width: thin; /* Товщина смуги прокрутки */
   scrollbar-color: ${(p) => p.theme.colors.textColor} transparent; /* Колір смуги прокрутки */
 
-  /* Стилізація смуги прокрутки для WebKit (Chrome, Safari) */
   &::-webkit-scrollbar {
     padding: 10px;
-    width: 8px; /* Товщина смуги прокрутки */
+    width: 8px;
   }
   &::-webkit-scrollbar-thumb {
     padding: 10px;
@@ -169,7 +173,7 @@ export const Textarea = styled.textarea`
   resize: none;
   background: transparent;
   width: 100%;
-  height: 41px; /* Початкова висота 100px */
+  height: 41px;
   padding: 14px 20px;
   overflow-y: hidden;
   margin-bottom: 20px;
@@ -239,9 +243,40 @@ export const Title = styled.h2`
   }
 `;
 
+export const DivInfoBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  border: 2.52px solid #13a03a;
+  border-radius: 378px;
+  padding: 8px 12px;
+  flex-direction: column;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+`;
+export const InfoTextP = styled.p`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.02312;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+`;
+export const InfoTextSpan = styled.span`
+  font-weight: 700;
+
+  font-size: 12px;
+  line-height: 1.02312;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000;
+`;
+
 export const OrdersThumb = styled.div`
   border: 1px solid ${(p) => p.theme.colors.textColor};
-  border-radius: 50px;
+  border-radius: 8px;
   padding: 14px;
   overflow-x: auto;
   position: relative;
@@ -254,7 +289,6 @@ export const OrdersThumb = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: #fff6e9;
     opacity: 0.5;
     pointer-events: none;
     z-index: -1;
@@ -291,7 +325,6 @@ export const OrdersHeaders = styled.thead`
 `;
 
 export const OrdersHeaderItem = styled.p`
-  background: #fff6e9;
   padding: 8px;
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
   border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
@@ -317,9 +350,7 @@ export const FirstOrdersHeaderItem = styled.p`
   border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
   border-left: 1px solid ${(p) => p.theme.colors.textColor};
   padding: 8px;
-  background: #fff6e9;
   border-collapse: collapse;
-  color: #fff6e9;
 
   @media (min-width: 1440px) {
     font-size: 14px;
@@ -343,7 +374,6 @@ export const LastOrdersHeaderItem = styled.p`
   border-bottom-right-radius: 20px;
   border-top-right-radius: 20px;
   padding: 8px;
-  background: #fff6e9;
   overflow: hidden;
   border-collapse: collapse;
   @media (min-width: 1440px) {
@@ -361,22 +391,14 @@ export const LastOrdersHeaderItem = styled.p`
     font-size: 8px;
   }
 `;
-// export const HeaderBlock = styled.th`
-//   /* border-top: 1px solid ${(p) => p.theme.colors.textColor};
-//     border-bottom: 1px solid ${(p) => p.theme.colors.textColor}; */
-// background: #FFF6E9;
-// `
+
 export const HeaderBlock = styled.th`
-  /* border-right: 1px solid ${(p) => p.theme.colors.textColor}; */
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
   border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
-  /* border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  border-end-end-radius: 20px; */
+  background-color: #ffb4d8;
   padding: 8px;
-  background: #fff6e9;
   overflow: hidden;
-  /* border-collapse: separate; */
+
   border-spacing: 2px;
   @media (min-width: 1440px) {
     font-size: 14px;
@@ -397,13 +419,10 @@ export const HeaderBlockLeft = styled.th`
   border-left: 1px solid ${(p) => p.theme.colors.textColor};
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
   border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
   padding: 8px;
-  background: #fff6e9;
   overflow: hidden;
-  /* border-collapse: separate; */
   border-spacing: 2px;
+  background-color: #ffb4d8;
   @media (min-width: 1440px) {
     font-size: 14px;
   }
@@ -423,13 +442,9 @@ export const HeaderBlocRight = styled.th`
   border-right: 1px solid ${(p) => p.theme.colors.textColor};
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
   border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
-  border-bottom-right-radius: 20px;
-  border-top-right-radius: 20px;
-  border-end-end-radius: 20px;
+  background-color: #ffb4d8;
   padding: 8px;
-  background: #fff6e9;
   overflow: hidden;
-  /* border-collapse: separate; */
   border-spacing: 2px;
   @media (min-width: 1440px) {
     font-size: 14px;
@@ -483,7 +498,7 @@ export const ItemNameItem = styled.td`
 export const OrdersImage = styled.img`
   max-width: 80px;
   padding: 0px;
-  margin: 6px;
+  margin: 6px 0;
   border: 1px solid ${(p) => p.theme.colors.textColor};
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -710,7 +725,7 @@ export const ModalStyle = styled.div`
   padding: 30px;
   border: 4px solid #504056;
   border-radius: 100px;
-  background: #fff6e9;
+  background: white;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 50%;
@@ -722,8 +737,7 @@ export const ModalStyle = styled.div`
   margin: auto;
   padding: 30px;
   border: 4px solid #504056;
-  border-radius: 100px;
-  background: #fff6e9;
+  border-radius: 30px;
   box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
   z-index: 6;
   flex-direction: column;
@@ -748,7 +762,6 @@ export const ModalStyle = styled.div`
 
   @media (max-width: 768px) {
     width: 90%;
-    border-radius: 20px;
   }
 `;
 export const Backdrop = styled.div`

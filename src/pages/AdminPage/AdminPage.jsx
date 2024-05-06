@@ -30,7 +30,7 @@ const AdminPage = () => {
   const [subPage, setsubPage] = useState("orders");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const ordersPerPage = 20;
+  const ordersPerPage = 16;
 
   const filteredOrders = orders.filter((order) => {
     return (
@@ -184,12 +184,12 @@ const AdminPage = () => {
             )}
             <Table>
               <thead>
-                <tr>
+                <tr style={{ textAlign: "center" }}>
                   <Th>Номер замовлення</Th>
                   <Th>Дата</Th>
                   <Th>Покупець</Th>
                   <Th>Контакти</Th>
-                  <Th>Загальна сума</Th>
+                  <Th>Загальна сума/грн</Th>
                   <Th>Статус</Th>
                   <Th>Фін Статус</Th>
                 </tr>
@@ -215,7 +215,7 @@ const AdminPage = () => {
                       <Td>
                         {order.number} {order.email}
                       </Td>
-                      <Td>{order.amount} грн</Td>
+                      <Td>{order.amount}</Td>
                       <TdStatus status={order.status}>{order.status}</TdStatus>
                       <Td>{order.paymentMethod}</Td>
                     </StyledTr>

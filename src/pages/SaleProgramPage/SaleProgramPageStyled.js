@@ -8,7 +8,7 @@ export const Title = styled.h2`
   margin-top: 40px;
   color: ${(p) => p.theme.colors.accentColor};
   @media screen and (min-width: 768px) {
-    font-size: 2.2em;
+    font-size: 2em;
   }
 
   @media screen and (min-width: 1440px) {
@@ -31,14 +31,15 @@ export const ConditionsTitle = styled.h4`
 `;
 export const Text = styled.p`
   padding: 0 5px;
-  font-weight: bold;
-  font-size: 10px;
+  line-height: 1.5;
+  /* font-weight: bold; */
+  font-size: 8px;
   @media screen and (min-width: 768px) {
-    font-size: 18px;
+    font-size: 16px;
   }
-
+  /* 
   @media screen and (min-width: 1440px) {
-  }
+  } */
 `;
 export const ConditionsList = styled.ul`
   display: block;
@@ -48,6 +49,7 @@ export const ConditionsList = styled.ul`
 
 export const ListItems = styled.li`
   margin-left: 5px;
+  margin-top: 4px;
   list-style-type: decimal;
   font-size: 10px;
   @media screen and (min-width: 768px) {

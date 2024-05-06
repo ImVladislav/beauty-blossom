@@ -30,6 +30,10 @@ import {
   ItemAmount,
   Amount,
   ItemNameLink,
+  DivInfoBlock,
+  InfoTextP,
+  InfoTextSpan,
+  LIstItem,
 } from "./OrderPlacementStyled";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -477,6 +481,16 @@ const OrderPlacement = () => {
       <OrderForm>
         <OrderDetails>
           <Title>Оформлення замовлення</Title>
+          <DivInfoBlock>
+            <InfoTextP>
+              Відправка замовлень відбувається протягом
+              <InfoTextSpan> 1-3 робочих днів </InfoTextSpan> з моменту
+              оформлення.
+            </InfoTextP>
+            <InfoTextP>
+              *Замовлення здійсненні на вихідних обробляються в понеділок
+            </InfoTextP>
+          </DivInfoBlock>
           {!isLogin && (
             <CostumerStatus>
               <CostumerStatusItem htmlFor="registered">
@@ -612,7 +626,7 @@ const OrderPlacement = () => {
                             </LoaderThumb>
                           ) : (
                             searchCities.map((searchCity) => (
-                              <li
+                              <LIstItem
                                 key={nanoid()}
                                 onClick={() => {
                                   handleCitySelect(
@@ -622,7 +636,7 @@ const OrderPlacement = () => {
                                 }}
                               >
                                 <CityItem>{searchCity.Present},</CityItem>
-                              </li>
+                              </LIstItem>
                             ))
                           )}
                         </CityitemsBlock>
@@ -700,7 +714,7 @@ const OrderPlacement = () => {
                                       )
                                     )
                                     .map((warehouse) => (
-                                      <li
+                                      <LIstItem
                                         key={nanoid()}
                                         onClick={() =>
                                           handleWarehouseSelect(
@@ -711,7 +725,7 @@ const OrderPlacement = () => {
                                         <CityItem>
                                           {warehouse.Description}
                                         </CityItem>
-                                      </li>
+                                      </LIstItem>
                                     ))
                                 )}
                               </CityitemsBlock>
@@ -759,7 +773,7 @@ const OrderPlacement = () => {
                   <table
                     cols="5"
                     style={{
-                      borderCollapse: "separate",
+                      width: "-webkit-fill-available",
                       borderSpacing: "unset",
                     }}
                   >
@@ -767,7 +781,7 @@ const OrderPlacement = () => {
                       <tr>
                         <HeaderBlockLeft></HeaderBlockLeft>
                         <HeaderBlock>Найменування товару</HeaderBlock>
-                        <HeaderBlock>Кількість</HeaderBlock>
+                        <HeaderBlock>Кількість </HeaderBlock>
                         <HeaderBlock>Ціна</HeaderBlock>
                         <HeaderBlocRight>Сума</HeaderBlocRight>
                       </tr>
@@ -788,14 +802,14 @@ const OrderPlacement = () => {
                           </OrdersItem>
                           <OrdersItem>
                             <ItemAmount>
-                              {isOptUser ? item.priceOPT : item.price} грн
+                              {isOptUser ? item.priceOPT : item.price} ₴
                             </ItemAmount>
                           </OrdersItem>
                           <OrdersItem>
                             <ItemAmount>
                               {(isOptUser ? item.priceOPT : item.price) *
-                                item.quantity}
-                              грн
+                                item.quantity}{" "}
+                              ₴
                             </ItemAmount>
                           </OrdersItem>
                         </OrdersItemlist>

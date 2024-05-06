@@ -21,7 +21,7 @@ export const StyledTr = styled.tr`
     font-size: 18px;
   }
   &.yellow-row {
-    background-color: #ffe9fa;
+    background-color: white;
   }
   &.selected-order {
     background-color: #f7c0eb;
@@ -71,6 +71,8 @@ export const Th = styled.th`
 export const Td = styled.td`
   border: 1px solid black;
   cursor: pointer;
+  text-align: center;
+  padding: 8px 0;
 
   @media (max-width: 767px) {
     font-size: 12px;

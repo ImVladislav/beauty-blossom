@@ -90,14 +90,17 @@ export const ButtonStyle = styled.button`
     font-size: 14px;
     padding: 10px 20px;
     @media screen and (min-width: 768px) {
-      /* font-size: 30px; */
-      padding: 16px 30px;
+      font-size: 16px;
+      padding: 22px 50px;
     }
     @media screen and (min-width: 1024px) {
-      padding: 18px 30px;
+      padding: 28px 60px;
+      font-size: 18px;
     }
 
     @media screen and (min-width: 1440px) {
+      padding: 28px 60px;
+      font-size: 18px;
     }
   }
 `;

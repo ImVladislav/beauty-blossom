@@ -92,14 +92,20 @@ const User = () => {
           <ul>
             {admin && (
               <ListItem>
-                <Link to="ordersbyclient">Замовлення(Адмін права)</Link>
+                <Link style={{ padding: "4px 0" }} to="ordersbyclient">
+                  Замовлення(Адмін права)
+                </Link>
               </ListItem>
             )}
             <ListItem>
-              <Link to="/cabinet">ОСОБИСТИЙ КАБІНЕТ</Link>
+              <Link style={{ padding: "4px 0" }} to="/cabinet">
+                ОСОБИСТИЙ КАБІНЕТ
+              </Link>
             </ListItem>
             <ListItem>
-              <Link to="/cabinet/history">ІСТОРІЯ ЗАМОВЛЕНЬ</Link>
+              <Link style={{ padding: "4px 0" }} to="/cabinet/history">
+                ІСТОРІЯ ЗАМОВЛЕНЬ
+              </Link>
             </ListItem>
             <ListItem>
               <LogOut onClick={logoutDispatch}>ВИХІД</LogOut>
