@@ -4,13 +4,14 @@ import { useMedia } from "../../hooks/useMedia";
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-import Hero from "../../modules/HeroOld/Hero";
+// import Hero from "../../modules/HeroOld/Hero";
 import Baners from "../../modules/Baners/Baners";
 import { Loader } from "../../shared/components/Loader/Loader";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
+import HeroBaner from "../../modules/HeroBaner/HeroBaner";
 
 const MainPage = () => {
   const { isMobileScreen } = useMedia();
@@ -38,7 +39,7 @@ const MainPage = () => {
             <title>Beauty Blossom</title>
             <meta name="description" content="Головна сторінка" />
           </Helmet>
-          <Hero />
+          <HeroBaner />
 
           {isMobileScreen ? (
             <ProductSlider products={[...newFiltred, ...saleFiltred]} />

@@ -1,6 +1,134 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 1440px;
+  margin: 0 auto;
+`;
+export const BackgroundFirst = styled.div`
+  flex: 1;
+  position: relative;
+  display: flex;
+  height: 300px;
+
+  background: linear-gradient(180deg, #f5fffe 0%, #ffccfd 100%);
+`;
+export const BackgroundSecond = styled.div`
+  flex: 1;
+  position: relative;
+  display: flex;
+  height: 300px;
+  background: linear-gradient(180deg, #f5fffe 0%, #b8c3ff 100%);
+`;
+export const ProductsFirstLeft = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-height: 300px;
+`;
+
+export const TitleContainer = styled.div`
+  position: absolute;
+  left: 20%;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+`;
+export const TitleFirst = styled.p`
+  font-family: "Times New Roman", sans-serif;
+  font-weight: 400;
+  font-size: 33px;
+  text-transform: capitalize;
+  color: #2a2a2a;
+`;
+export const TitleSecond = styled.p`
+  font-family: "Times New Roman", sans-serif;
+  font-weight: 400;
+  font-size: 53px;
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+  color: #2a2a2a;
+  margin-top: -5px;
+`;
+export const ProductsFirstRight = styled.img`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  max-height: 300px;
+`;
+export const ProductsSecondLeft = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  max-height: 300px;
+`;
+export const Lador = styled.img`
+  position: absolute;
+  top: 10%;
+  left: 30%;
+  width: 40%;
+  z-index: 1;
+`;
+export const ProductsSecondRight = styled.img`
+  position: absolute;
+  right: 0;
+
+  bottom: 0;
+  width: 60%;
+  max-height: 300px;
+`;
+export const LinkLeft = styled(Link)`
+  position: absolute;
+  top: 50%;
+  left: 18%;
+
+  border: 1px solid #2a2a2a;
+  border-radius: 40px;
+  padding: 5px 40px;
+  text-decoration: none;
+  background: #fff0fd;
+  z-index: 1;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.319;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  text-align: center;
+  color: #2a2a2a;
+`;
+export const LinkRight = styled(Link)`
+  position: absolute;
+  top: 60%;
+  left: 35%;
+
+  border: 1px solid #fff;
+  border-radius: 40px;
+  padding: 5px 40px;
+  text-decoration: none;
+  background: #8d9fff;
+  z-index: 1;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.319;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  text-align: center;
+  color: #fff;
+`;
+
+// ----------------------------------------
+
 export const Wrap = styled.div`
   display: flex;
   justify-content: center;
@@ -10,7 +138,6 @@ export const Wrap = styled.div`
     padding: 0 40px;
   }
 `;
-
 export const BanersWrap = styled.div`
   position: relative;
 `;
