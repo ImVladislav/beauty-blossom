@@ -16,7 +16,7 @@ export const ButtonStyle = styled.button`
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 0px 100px;
+  padding: 0px 50px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
