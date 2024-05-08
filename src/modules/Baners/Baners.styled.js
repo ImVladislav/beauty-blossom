@@ -12,9 +12,12 @@ export const BackgroundFirst = styled.div`
   flex: 1;
   position: relative;
   display: flex;
-  height: 300px;
+  height: 200px;
 
   background: linear-gradient(180deg, #f5fffe 0%, #ffccfd 100%);
+  @media screen and (min-width: 768px) {
+    height: 300px;
+  }
 `;
 export const BackgroundSecond = styled.div`
   flex: 1;
@@ -27,40 +30,68 @@ export const ProductsFirstLeft = styled.img`
   position: absolute;
   left: 0;
   top: 0;
-  max-height: 300px;
+  max-height: 200px;
+  @media screen and (min-width: 768px) {
+    max-height: 300px;
+  }
 `;
 
 export const TitleContainer = styled.div`
   position: absolute;
-  left: 20%;
-  top: 10%;
+  left: 25%;
+  top: 15%;
   display: flex;
   flex-direction: column;
 
   align-items: center;
+  @media screen and (min-width: 768px) {
+    left: 20%;
+    top: 10%;
+  }
 `;
 export const TitleFirst = styled.p`
   font-family: "Times New Roman", sans-serif;
   font-weight: 400;
-  font-size: 33px;
+  /*  */
+  font-size: ${(p) => p.theme.fontSizes.l + 5}px;
   text-transform: capitalize;
   color: #2a2a2a;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxl + 3}px;
+    /* font-size: 33px; */
+  }
 `;
 export const TitleSecond = styled.p`
   font-family: "Times New Roman", sans-serif;
   font-weight: 400;
-  font-size: 53px;
+  /* font-size: 53px; */
+  font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
   letter-spacing: 0.08em;
   text-transform: capitalize;
   color: #2a2a2a;
   margin-top: -5px;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxxl + 10}px;
+    /* font-size: 53px; */
+  }
 `;
 export const ProductsFirstRight = styled.img`
   position: absolute;
   right: 0;
   bottom: 0;
   width: 50%;
-  max-height: 300px;
+  /* width: fit-content; */
+  height: auto;
+  max-height: 200px;
+  @media screen and (min-width: 768px) {
+    max-height: 300px;
+  }
 `;
 export const ProductsSecondLeft = styled.img`
   position: absolute;
@@ -87,7 +118,7 @@ export const ProductsSecondRight = styled.img`
 export const LinkLeft = styled(Link)`
   position: absolute;
   top: 50%;
-  left: 18%;
+  left: 22%;
 
   border: 1px solid #2a2a2a;
   border-radius: 40px;
@@ -98,7 +129,8 @@ export const LinkLeft = styled(Link)`
 
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 22px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  /* font-size: 22px; */
   line-height: 1.319;
   letter-spacing: 0.03em;
   text-transform: capitalize;
@@ -109,6 +141,13 @@ export const LinkLeft = styled(Link)`
     border: 1px solid #fff;
     color: #fff;
     background: #2a2a2a;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+    left: 18%;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
 `;
 export const LinkRight = styled(Link)`

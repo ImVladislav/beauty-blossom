@@ -33,7 +33,7 @@ const MainPage = () => {
       {loading ? (
         <Loader />
       ) : (
-        <div>
+        <div style={{ marginBottom: "40px" }}>
           <Helmet>
             <meta charSet="utf-8" />
             <title>Beauty Blossom</title>

@@ -25,17 +25,17 @@ export const TitleWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 30px 0 20px;
+  margin: 10px 0 10px;
   @media screen and (min-width: 768px) {
-    margin: 50px 0 20px;
+    margin: 10px 0 10px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin: 100px 0 50px;
+    margin: 50px 0 30px;
   }
 `;
 export const TitleInner = styled.div`
-  text-align: end;
+  text-align: start;
 `;
 export const Title = styled.h2`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
@@ -66,7 +66,7 @@ export const Title = styled.h2`
   }
   @media screen and (min-width: 1440px) {
     -webkit-text-stroke-width: 1px;
-    font-size: ${(p) => p.theme.fontSizes.xxxl + 15}px;
+    font-size: ${(p) => p.theme.fontSizes.xxxl + 12}px;
   }
 `;
 
@@ -94,14 +94,15 @@ export const Subtitle = styled.p`
     font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl}px;
+    font-size: ${(p) => p.theme.fontSizes.authxl}px;
   }
 `;
 export const ImageContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  justify-content: center;
   gap: 10px;
   @media screen and (min-width: 768px) {
     gap: 50px;
@@ -109,36 +110,42 @@ export const ImageContainer = styled.div`
   @media screen and (min-width: 1024px) {
     gap: 60px;
   }
+  @media screen and (min-width: 1440px) {
+    gap: 250px;
+  }
 `;
 
 export const Product = styled.img`
-  width: 65%;
-
-  height: fit-content;
+  width: 45%;
+  height: auto;
+  /* height: fit-content; */
   left: 0;
   bottom: 0;
   @media screen and (min-width: 768px) {
-    width: 60%;
+    width: 35%;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 30%;
   }
 `;
 export const LinkWrap = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   @media screen and (min-width: 500px) {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   @media screen and (min-width: 768px) {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
   @media screen and (min-width: 1440px) {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
   }
 `;
 export const LinkBtn = styled(Link)`
   font-family: "Montserrat", sans-serif;
   font-weight: ${(p) => p.theme.fontWeights.bold + 100};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   line-height: 1.319;
   letter-spacing: 0.03em;
   text-transform: capitalize;
@@ -152,7 +159,7 @@ export const LinkBtn = styled(Link)`
   align-items: center;
   text-decoration: none;
 
-  padding: 1px 15px;
+  padding: 2px 15px;
   transition: all 250ms ease-in-out;
 
   &:hover {
@@ -196,13 +203,13 @@ export const List = styled.ul`
         font-size: ${(p) => p.theme.fontSizes.s}px;
       }
       @media screen and (min-width: 768px) {
-        font-size: ${(p) => p.theme.fontSizes.l}px;
+        font-size: ${(p) => p.theme.fontSizes.m}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.authxl}px;
+        font-size: ${(p) => p.theme.fontSizes.xl}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl + 5}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl + 5}px;
       }
     }
   }
@@ -214,13 +221,13 @@ export const List = styled.ul`
         font-size: ${(p) => p.theme.fontSizes.s + 1}px;
       }
       @media screen and (min-width: 768px) {
-        font-size: ${(p) => p.theme.fontSizes.l + 1}px;
+        font-size: ${(p) => p.theme.fontSizes.m + 1}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.authxl + 3}px;
+        font-size: ${(p) => p.theme.fontSizes.xl + 3}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl + 10}px;
       }
     }
   }
@@ -232,13 +239,13 @@ export const List = styled.ul`
         font-size: ${(p) => p.theme.fontSizes.s - 1}px;
       }
       @media screen and (min-width: 768px) {
-        font-size: ${(p) => p.theme.fontSizes.l - 1}px;
+        font-size: ${(p) => p.theme.fontSizes.m - 1}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.authxl - 3}px;
+        font-size: ${(p) => p.theme.fontSizes.xl - 3}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl}px;
       }
     }
   }
