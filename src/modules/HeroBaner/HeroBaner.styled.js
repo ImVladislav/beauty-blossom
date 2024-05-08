@@ -113,8 +113,8 @@ export const ImageContainer = styled.div`
 
 export const Product = styled.img`
   width: 65%;
-
-  height: fit-content;
+  height: auto;
+  /* height: fit-content; */
   left: 0;
   bottom: 0;
   @media screen and (min-width: 768px) {
@@ -138,7 +138,7 @@ export const LinkWrap = styled.div`
 export const LinkBtn = styled(Link)`
   font-family: "Montserrat", sans-serif;
   font-weight: ${(p) => p.theme.fontWeights.bold + 100};
-  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   line-height: 1.319;
   letter-spacing: 0.03em;
   text-transform: capitalize;
@@ -152,7 +152,7 @@ export const LinkBtn = styled(Link)`
   align-items: center;
   text-decoration: none;
 
-  padding: 1px 15px;
+  padding: 2px 15px;
   transition: all 250ms ease-in-out;
 
   &:hover {

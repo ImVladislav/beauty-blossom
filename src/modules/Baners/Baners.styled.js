@@ -32,28 +32,48 @@ export const ProductsFirstLeft = styled.img`
 
 export const TitleContainer = styled.div`
   position: absolute;
-  left: 20%;
-  top: 10%;
+  left: 25%;
+  top: 15%;
   display: flex;
   flex-direction: column;
 
   align-items: center;
+  @media screen and (min-width: 768px) {
+    left: 20%;
+    top: 10%;
+  }
 `;
 export const TitleFirst = styled.p`
   font-family: "Times New Roman", sans-serif;
   font-weight: 400;
-  font-size: 33px;
+  /*  */
+  font-size: ${(p) => p.theme.fontSizes.l + 5}px;
   text-transform: capitalize;
   color: #2a2a2a;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxl + 3}px;
+    /* font-size: 33px; */
+  }
 `;
 export const TitleSecond = styled.p`
   font-family: "Times New Roman", sans-serif;
   font-weight: 400;
-  font-size: 53px;
+  /* font-size: 53px; */
+  font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
   letter-spacing: 0.08em;
   text-transform: capitalize;
   color: #2a2a2a;
   margin-top: -5px;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.xxxl + 10}px;
+    /* font-size: 53px; */
+  }
 `;
 export const ProductsFirstRight = styled.img`
   position: absolute;
@@ -98,7 +118,8 @@ export const LinkLeft = styled(Link)`
 
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 22px;
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
+  /* font-size: 22px; */
   line-height: 1.319;
   letter-spacing: 0.03em;
   text-transform: capitalize;
@@ -109,6 +130,12 @@ export const LinkLeft = styled(Link)`
     border: 1px solid #fff;
     color: #fff;
     background: #2a2a2a;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.l}px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
 `;
 export const LinkRight = styled(Link)`
