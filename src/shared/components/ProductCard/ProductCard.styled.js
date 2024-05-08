@@ -59,7 +59,7 @@ export const Container = styled.div`
 export const ImageWrap = styled.div`
   position: relative;
   max-width: fit-content;
-  max-height: 240px;
+  height: 240px;
   margin-top: 5px;
 `;
 
@@ -68,6 +68,7 @@ export const Image = styled.img`
   max-width: 100%;
   height: auto;
   width: auto;
+
   font-size: ${(p) => p.theme.fontSizes.s}px;
 `;
 
@@ -79,13 +80,16 @@ export const Name = styled.h2`
   background-color: transparent;
   margin: 0 0 6px;
   padding-bottom: 2px;
-  font-size: ${(p) => p.theme.fontSizes.sm}px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   line-height: 1.2;
   font-weight: ${(p) => p.theme.fontWeights.body};
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 2.4em;
+  height: 3.5em;
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
 `;
 
 export const Price = styled.p`

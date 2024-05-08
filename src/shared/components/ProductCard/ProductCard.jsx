@@ -129,7 +129,7 @@ const ProductCard = ({ products }) => {
               {optUser ? (
                 <Price>{products.priceOPT} Грн</Price>
               ) : (
-                <Price itemProp="price">{products.price}Грн</Price>
+                <Price itemProp="price">{products.price} Грн</Price>
               )}
             </Content>
           </LinkStyle>
