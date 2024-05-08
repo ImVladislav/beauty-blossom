@@ -1,17 +1,30 @@
 import React from "react";
-import {
-  Wrap,
-  ProductRetinol,
-  ProductPurito,
-  LinkPurito,
-  BanersWrap,
-  LinkRetinol,
-} from "./Baners.styled";
-import retinol from "../../images/retinol.png";
-import purito from "../../images/purito.png";
 import { useDispatch } from "react-redux";
+
 import { setfilter } from "../../redux/filter/slice";
 import { useMedia } from "../../hooks/useMedia";
+
+import lador from "../../images/bannersBottom/Lador.png";
+import productsFirstLeft from "../../images/bannersBottom/ProductsBahaLeft.png";
+import productsFirstRight from "../../images/bannersBottom/ProductsBahaRight.png";
+import productsSecondLeft from "../../images/bannersBottom/ProductsLadorLeft.png";
+import productsSecondRight from "../../images/bannersBottom/ProductsLadorRight.png";
+
+import {
+  LinkLeft,
+  LinkRight,
+  ProductsFirstLeft,
+  ProductsSecondLeft,
+  ProductsFirstRight,
+  Container,
+  BackgroundFirst,
+  BackgroundSecond,
+  ProductsSecondRight,
+  Lador,
+  TitleFirst,
+  TitleContainer,
+  TitleSecond,
+} from "./Baners.styled";
 
 const Baners = () => {
   const { screenType } = useMedia();
@@ -24,7 +37,7 @@ const Baners = () => {
 
   return (
     <>
-      <Wrap>
+      {/* <Wrap>
         <BanersWrap>
           <ProductRetinol src={retinol} alt="retinol" />
           <LinkRetinol
@@ -44,7 +57,39 @@ const Baners = () => {
             </LinkPurito>
           </BanersWrap>
         )}
-      </Wrap>
+      </Wrap> */}
+      {/* ///////////////////// */}
+      <Container>
+        <BackgroundFirst>
+          <ProductsFirstLeft src={productsFirstLeft} alt="retinol" />
+          <div>
+            <TitleContainer>
+              <TitleFirst>Cos De</TitleFirst>
+              <TitleSecond>BAHA</TitleSecond>
+            </TitleContainer>
+            <LinkLeft
+              to="/brands/cos de baha"
+              name="cos de baha"
+              onClick={handleClick}
+            >
+              Придбати
+            </LinkLeft>
+          </div>
+          <ProductsFirstRight src={productsFirstRight} alt="retinol" />
+        </BackgroundFirst>
+
+        {(screenType === "lg" || screenType === "desktop") && (
+          <BackgroundSecond>
+            <ProductsSecondLeft src={productsSecondLeft} alt="purito" />
+            <Lador src={lador} alt="lador" />
+
+            <LinkRight to="/brands/lador" name="lador" onClick={handleClick}>
+              Придбати
+            </LinkRight>
+            <ProductsSecondRight src={productsSecondRight} alt="purito" />
+          </BackgroundSecond>
+        )}
+      </Container>
     </>
   );
 };

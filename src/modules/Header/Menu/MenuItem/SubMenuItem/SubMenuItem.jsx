@@ -40,6 +40,7 @@ const SubMenuItem = ({
 
   const handleClick = (e) => {
     const name = e.target.innerText;
+    console.log(name);
     dispatch(setfilter(name));
   };
 
