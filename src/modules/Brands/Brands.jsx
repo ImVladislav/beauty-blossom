@@ -32,7 +32,6 @@ const Brands = () => {
       items.filter((item) => !(item.new || item.sale) && item.amount === 0)
     );
 
-  console.log(items);
   const allItemsNmeForMetaHelmet = sortedItems.map((item) => item.name);
   return (
     <main>

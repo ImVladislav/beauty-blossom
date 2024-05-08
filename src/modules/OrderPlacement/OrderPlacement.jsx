@@ -103,9 +103,9 @@ const OrderPlacement = () => {
 
   const cartItems = useSelector(selectCart);
   // те що падає в замовлення
-  console.log(cartItems);
+  // console.log(cartItems);
   // актуалочка з всіма товарами
-  console.log(items);
+  // console.log(items);
 
   const updateItems = cartItems.filter((card) =>
     items.some((item) => {
@@ -115,7 +115,7 @@ const OrderPlacement = () => {
       return item.code === card.code;
     })
   );
-  console.log(updateItems);
+  // console.log(updateItems);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 

@@ -107,7 +107,7 @@ const CartModal = ({ closeModal }) => {
         };
       }
 
-      console.log(correspondingItem);
+      // console.log(correspondingItem);
 
       if (correspondingItem) {
         const updatedPriceOpt = correspondingItem.priceOPT;
