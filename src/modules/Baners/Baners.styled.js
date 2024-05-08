@@ -104,6 +104,12 @@ export const LinkLeft = styled(Link)`
   text-transform: capitalize;
   text-align: center;
   color: #2a2a2a;
+  &:hover,
+  &:focus {
+    border: 1px solid #fff;
+    color: #fff;
+    background: #2a2a2a;
+  }
 `;
 export const LinkRight = styled(Link)`
   position: absolute;
@@ -125,6 +131,12 @@ export const LinkRight = styled(Link)`
   text-transform: capitalize;
   text-align: center;
   color: #fff;
+  &:hover,
+  &:focus {
+    border: 1px solid #8d9fff;
+    color: #8d9fff;
+    background: #ffffff;
+  }
 `;
 
 // ----------------------------------------

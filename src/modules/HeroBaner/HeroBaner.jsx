@@ -37,8 +37,8 @@ const HeroBaner = () => {
         <Container>
           <TitleWrap>
             <TitleInner>
-              <Title>обирай свій якісний SPF крем </Title>
-              <Subtitle>надійний захист для всієї сім’ї</Subtitle>
+              <Title>обирай свій яkісний SPF kрем </Title>
+              <Subtitle>надійний заxист для всієї сім’ї</Subtitle>
             </TitleInner>
           </TitleWrap>
           <ImageContainer>

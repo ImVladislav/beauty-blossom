@@ -38,7 +38,6 @@ export const TitleInner = styled.div`
   text-align: end;
 `;
 export const Title = styled.h2`
-  font-family: "Montserrat", sans-serif;
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-weight: 900;
 
@@ -52,6 +51,9 @@ export const Title = styled.h2`
 
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #006f5b;
+  @media screen and (min-width: 500px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
 
   @media screen and (min-width: 768px) {
     -webkit-text-stroke-width: 0.5px;
@@ -60,7 +62,7 @@ export const Title = styled.h2`
 
   @media screen and (min-width: 1024px) {
     -webkit-text-stroke-width: 0.8px;
-    font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
+    font-size: ${(p) => p.theme.fontSizes.xxl + 15}px;
   }
   @media screen and (min-width: 1440px) {
     -webkit-text-stroke-width: 1px;
@@ -69,9 +71,8 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-  font-family: "Montserrat", sans-serif;
-  font-size: ${(p) => p.theme.fontSizes.xxs}px;
-  font-weight: ${(p) => p.theme.fontWeights.subtitle};
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
 
   line-height: 1.319;
   letter-spacing: 0.03em;
@@ -81,15 +82,19 @@ export const Subtitle = styled.p`
 
   -webkit-text-stroke-width: 0.1px;
   -webkit-text-stroke-color: #ecff75;
+
+  @media screen and (min-width: 500px) {
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
+  }
   @media screen and (min-width: 768px) {
     -webkit-text-stroke-width: 0.3px;
-    font-size: ${(p) => p.theme.fontSizes.l}px;
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl + 5}px;
+    font-size: ${(p) => p.theme.fontSizes.xxl}px;
   }
 `;
 export const ImageContainer = styled.div`
@@ -119,7 +124,13 @@ export const Product = styled.img`
 export const LinkWrap = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  @media screen and (min-width: 500px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
+  }
   @media screen and (min-width: 1440px) {
     margin-bottom: 50px;
   }
@@ -127,7 +138,7 @@ export const LinkWrap = styled.div`
 export const LinkBtn = styled(Link)`
   font-family: "Montserrat", sans-serif;
   font-weight: ${(p) => p.theme.fontWeights.bold + 100};
-  font-size: ${(p) => p.theme.fontSizes.xxs}px;
+  font-size: ${(p) => p.theme.fontSizes.xxxs}px;
   line-height: 1.319;
   letter-spacing: 0.03em;
   text-transform: capitalize;
@@ -141,7 +152,7 @@ export const LinkBtn = styled(Link)`
   align-items: center;
   text-decoration: none;
 
-  padding: 2px 15px;
+  padding: 1px 15px;
   transition: all 250ms ease-in-out;
 
   &:hover {
@@ -149,16 +160,22 @@ export const LinkBtn = styled(Link)`
     color: #ecff75;
     border: 1px solid #ecff75;
   }
+  @media screen and (min-width: 500px) {
+    font-size: ${(p) => p.theme.fontSizes.xs}px;
+    padding: 2px 20px;
+  }
+
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    padding: 2px 20px;
+    padding: 2px 25px;
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
-    padding: 2px 30px;
+    padding: 2px 35px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.xxl + 5}px;
+    font-size: ${(p) => p.theme.fontSizes.xxl}px;
+    padding: 2px 50px;
   }
 `;
 
@@ -168,51 +185,60 @@ export const List = styled.ul`
   gap: 5px;
   li {
     p {
-      font-family: "Montserrat", sans-serif;
+      font-family: "Montserrat Alternates", sans-serif;
       line-height: 1.319;
       letter-spacing: 0.03em;
-      font-weight: 400;
-      font-size: ${(p) => p.theme.fontSizes.xxs + 1}px;
+      font-weight: 500;
+      font-size: ${(p) => p.theme.fontSizes.xxxs + 1}px;
       text-align: center;
       color: #006f5b;
+      @media screen and (min-width: 500px) {
+        font-size: ${(p) => p.theme.fontSizes.s}px;
+      }
       @media screen and (min-width: 768px) {
         font-size: ${(p) => p.theme.fontSizes.l}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxxl}px;
+        font-size: ${(p) => p.theme.fontSizes.xxl + 5}px;
       }
     }
   }
 
   li:first-child {
     p {
-      font-size: ${(p) => p.theme.fontSizes.xs}px;
+      font-size: ${(p) => p.theme.fontSizes.xxs}px;
+      @media screen and (min-width: 500px) {
+        font-size: ${(p) => p.theme.fontSizes.s + 1}px;
+      }
       @media screen and (min-width: 768px) {
         font-size: ${(p) => p.theme.fontSizes.l + 1}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl + 3}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl + 3}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxxl + 5}px;
+        font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
       }
     }
   }
 
   li:last-child {
     p {
-      font-size: ${(p) => p.theme.fontSizes.xxs}px;
+      font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+      @media screen and (min-width: 500px) {
+        font-size: ${(p) => p.theme.fontSizes.s - 1}px;
+      }
       @media screen and (min-width: 768px) {
         font-size: ${(p) => p.theme.fontSizes.l - 1}px;
       }
       @media screen and (min-width: 1024px) {
-        font-size: ${(p) => p.theme.fontSizes.xxl - 3}px;
+        font-size: ${(p) => p.theme.fontSizes.authxl - 3}px;
       }
       @media screen and (min-width: 1440px) {
-        font-size: ${(p) => p.theme.fontSizes.xxxl - 5}px;
+        font-size: ${(p) => p.theme.fontSizes.xxl}px;
       }
     }
   }
