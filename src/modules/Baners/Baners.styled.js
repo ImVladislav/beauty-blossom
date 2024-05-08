@@ -12,9 +12,12 @@ export const BackgroundFirst = styled.div`
   flex: 1;
   position: relative;
   display: flex;
-  height: 300px;
+  height: 200px;
 
   background: linear-gradient(180deg, #f5fffe 0%, #ffccfd 100%);
+  @media screen and (min-width: 768px) {
+    height: 300px;
+  }
 `;
 export const BackgroundSecond = styled.div`
   flex: 1;
@@ -27,7 +30,10 @@ export const ProductsFirstLeft = styled.img`
   position: absolute;
   left: 0;
   top: 0;
-  max-height: 300px;
+  max-height: 200px;
+  @media screen and (min-width: 768px) {
+    max-height: 300px;
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -80,7 +86,12 @@ export const ProductsFirstRight = styled.img`
   right: 0;
   bottom: 0;
   width: 50%;
-  max-height: 300px;
+  /* width: fit-content; */
+  height: auto;
+  max-height: 200px;
+  @media screen and (min-width: 768px) {
+    max-height: 300px;
+  }
 `;
 export const ProductsSecondLeft = styled.img`
   position: absolute;
@@ -107,7 +118,7 @@ export const ProductsSecondRight = styled.img`
 export const LinkLeft = styled(Link)`
   position: absolute;
   top: 50%;
-  left: 18%;
+  left: 22%;
 
   border: 1px solid #2a2a2a;
   border-radius: 40px;
@@ -118,7 +129,7 @@ export const LinkLeft = styled(Link)`
 
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: ${(p) => p.theme.fontSizes.sm}px;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
   /* font-size: 22px; */
   line-height: 1.319;
   letter-spacing: 0.03em;
@@ -133,6 +144,7 @@ export const LinkLeft = styled(Link)`
   }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
+    left: 18%;
   }
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
