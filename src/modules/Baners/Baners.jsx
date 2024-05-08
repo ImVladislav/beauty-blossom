@@ -32,6 +32,7 @@ const Baners = () => {
 
   const handleClick = (e) => {
     const name = e.currentTarget.name;
+
     dispatch(setfilter(name));
   };
 
