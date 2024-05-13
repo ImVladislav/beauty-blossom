@@ -6,9 +6,10 @@ const cartSlice = createSlice({
   initialState: [],
   reducers: {
     setCart: (state, action) => {
+      const itemsToAdd = action.payload.filter((item) => item.amount !== 0);
+
       state.length = 0;
-      state.push(...action.payload);
-      // console.log(action.payload);
+      state.push(...itemsToAdd);
     },
     addToCart: (state, action) => {
       const { _id, quantity } = action.payload;
