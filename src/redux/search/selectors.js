@@ -3,39 +3,53 @@ import { createSelector } from "reselect";
 const selectGoods = (state) => state?.goods || {};
 const selectSearch = (state) => state?.search || "";
 
+const searchFilter = (items, searchQuery) => {
+  if (!searchQuery) {
+    return items;
+  }
+
+  const searchTerms = searchQuery.toLowerCase().trim().split(/\s+/);
+
+  return items.filter(({ name }) => {
+    const lowerCaseName = name.toLowerCase();
+    return searchTerms.every((term) => lowerCaseName.includes(term));
+  });
+};
+
 export const selectSearchQuery = createSelector(
   [selectSearch, selectGoods],
   (search, goods) => {
-    if (!search) {
-      return goods;
+    if (!goods.items) {
+      return [];
     }
-    const result = goods.items.filter(({ name }) => {
-      return name.toLowerCase().includes(search.toLowerCase().trim());
-    });
-    return result;
+    return searchFilter(goods.items, search);
   }
 );
+
+const searchFilterByCode = (items, searchQuery) => {
+  if (!searchQuery) {
+    return items;
+  }
+
+  const searchTerms = searchQuery.trim().split(/\s+/);
+
+  return items.filter(({ code, _id }) => {
+    if (code === undefined) {
+      console.error("There is no product code - id:", _id);
+      return false;
+    }
+
+    const orderCodeString = code.toString();
+    return searchTerms.every((term) => orderCodeString.includes(term));
+  });
+};
 
 export const selectSearchQueryCode = createSelector(
   [selectSearch, selectGoods],
   (search, goods) => {
-    if (!search) {
-      return goods;
+    if (!goods.items) {
+      return [];
     }
-    const searchQuery = search.trim();
-    if (!searchQuery) {
-      return goods;
-    }
-
-    const results = goods.items.filter(({ code, _id }) => {
-      if (code === undefined) {
-        console.error("There is no product code - id:", _id);
-        return false;
-      }
-
-      const orderCodeString = code.toString();
-      return orderCodeString.includes(searchQuery);
-    });
-    return results;
+    return searchFilterByCode(goods.items, search);
   }
 );
