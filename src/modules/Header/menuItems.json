@@ -317,22 +317,9 @@
       },
       {
         "level": 2,
-        "to": "/category/home",
-        "text": "Дім",
-        "children": [
-          {
-            "level": 3,
-            "to": "/category/home/armlocor",
-            "text": "Аромадифузори",
-            "children": []
-          },
-          {
-            "level": 3,
-            "to": "/category/home/aromas",
-            "text": "Аромасвічки",
-            "children": []
-          }
-        ]
+        "to": "/category/careAccessories",
+        "text": "Аксесуари для догляду",
+        "children": []
       },
       {
         "level": 2,
