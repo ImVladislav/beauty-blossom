@@ -213,7 +213,10 @@ const AdminPage = () => {
                       <Td>{order.createdAt.substr(0, 10)}</Td>
                       <Td>{`${order.firstName} ${order.lastName}`}</Td>
                       <Td>
-                        {order.number} {order.email}
+                         {!String(order.number).includes("+380")
+                          ? `+380${order.number}`
+                          : `${order.number}`}{" "}
+                        {order.email}
                       </Td>
                       <Td>{order.amount}</Td>
                       <TdStatus status={order.status}>{order.status}</TdStatus>
