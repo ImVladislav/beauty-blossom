@@ -358,3 +358,18 @@ export const ButtonThumb = styled.div`
     flex-direction: row;
   }
 `;
+
+export const AboutResetBasketText = styled.p`
+  /* text-align: end; */
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  margin: 10px;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
+`;
+
+export const RedStar = styled.span`
+  /* text-align: end; */
+  color: red;
+  font-size: ${(p) => p.theme.fontSizes.xs}px;
+  margin: 10px;
+  font-weight: ${(p) => p.theme.fontWeights.subtitle};
+`;

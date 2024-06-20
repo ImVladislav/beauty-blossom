@@ -71,6 +71,12 @@
                 "to": "/category/facial/moisturizing/toner",
                 "text": "Тонер",
                 "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/moisturizing/padu",
+                "text": "Пади для обличчя",
+                "children": []
               }
             ]
           },

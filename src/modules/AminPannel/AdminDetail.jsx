@@ -153,8 +153,10 @@ const AdminDetail = ({ selectedOrder }) => {
                       value={editedOrder.number}
                       onChange={(e) => handleInputChange(e, "number")}
                     />
-                  ) : (
+                  ) : editedOrder.number.toString().indexOf("380") === 0 ? (
                     editedOrder.number
+                  ) : (
+                    "380" + editedOrder.number
                   )}
                 </LilistItem>
                 <LilistItem>

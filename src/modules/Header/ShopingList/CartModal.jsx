@@ -41,6 +41,8 @@ import {
   ReturnIcon,
   TableWrap,
   ButtonThumb,
+  RedStar,
+  AboutResetBasketText,
 } from "./ShopingListStyled";
 import { selectGoods } from "../../../redux/products/selectors";
 
@@ -328,6 +330,10 @@ const CartModal = ({ closeModal }) => {
           </ReturnBTN>
         </ButtonContainer>
         <ButtonContainer>
+          <AboutResetBasketText>
+            <RedStar>*</RedStar>Увага! Ваша корзина автоматично анулюється через
+            5 днів.
+          </AboutResetBasketText>
           <Button
             name="Оформити замовлення"
             onClick={placeOrder}

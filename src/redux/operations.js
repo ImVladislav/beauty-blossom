@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import axios from "axios";
 
-axios.defaults.baseURL = "https://beauty-blossom-backend.onrender.com/api";
+// axios.defaults.baseURL = "https://beauty-blossom-backend.onrender.com/api";
+axios.defaults.baseURL = "localhost:3000";
 
 export const getGoods = createAsyncThunk(
   "/goods",
