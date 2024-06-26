@@ -133,6 +133,12 @@
                 "to": "/category/facial/lipCare/lipMask",
                 "text": "Маска для губ",
                 "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/lipCare/lipScrub",
+                "text": "Скраб для губ",
+                "children": []
               }
             ]
           },
