@@ -11,7 +11,7 @@ import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderD
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import HeroBaner from "../../modules/HeroBaner/HeroBaner";
+import HeroBaner from "../../modules/Hero/HeroBaner";
 
 const MainPage = () => {
   const { isMobileScreen } = useMedia();
