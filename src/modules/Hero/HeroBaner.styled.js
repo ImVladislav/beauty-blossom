@@ -21,7 +21,7 @@ export const Container = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: row-reverse;
   align-items: center;
 
@@ -35,7 +35,7 @@ export const ImageContainer = styled.div`
   }
   @media screen and (min-width: 1440px) {
     gap: 250px;
-  }
+  } */
 `;
 
 export const Product = styled.img`
@@ -62,6 +62,10 @@ export const TitleContainer = styled.div`
     top: 60px;
     left: 60%;
   }
+  @media screen and (min-width: 1700px) {
+    top: 120px;
+    left: 60%;
+  }
 `;
 
 export const Title = styled.h2`
@@ -70,6 +74,9 @@ export const Title = styled.h2`
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #022931;
+  @media screen and (min-width: 1800px) {
+    font-size: 150px;
+  }
 `;
 
 export const Desc = styled.p`
@@ -80,11 +87,14 @@ export const Desc = styled.p`
   letter-spacing: -0.02em;
   text-align: center;
   color: #022931;
+  @media screen and (min-width: 1800px) {
+    font-size: 32px;
+  }
 `;
 
 export const LinkBtn = styled(Link)`
   font-family: "Arial", sans-serif;
-  font-size: clamp(10px, 3vw, 17px);
+  font-size: clamp(10px, 3vw, 16px);
   font-weight: 600;
   letter-spacing: 0.02em;
   text-decoration: none;
@@ -100,5 +110,8 @@ export const LinkBtn = styled(Link)`
 
   @media screen and (min-width: 1440px) {
     padding: 12px 22px;
+  }
+  @media screen and (min-width: 1800px) {
+    font-size: 28px;
   }
 `;

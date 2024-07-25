@@ -13,7 +13,7 @@ import {
   Product,
   Banner,
   ImageContainer,
-  Container,
+  // Container,
   TitleContainer,
   Title,
   Desc,
@@ -34,25 +34,24 @@ const HeroBaner = () => {
     <WrapBanner>
       <Banner src={isMobileScreen ? banerMob : baner} alt="banner" />
 
-      <Container>
-        <ImageContainer>
-          <Product
-            src={isMobileScreen ? productsMobile : products}
-            alt="productBanner"
-          />
-        </ImageContainer>
-
-        <TitleContainer>
-          <Title>Torriden</Title>
-          <Desc>
-            Потужне та глибоке зволоження
-            <br /> з першого нанесення
-          </Desc>
-          <LinkBtn to="/brands/torriden" name="torriden" onClick={handleClick}>
-            ОЗНАЙОМИТИСЬ
-          </LinkBtn>
-        </TitleContainer>
-      </Container>
+      <ImageContainer>
+        <Product
+          src={isMobileScreen ? productsMobile : products}
+          alt="productBanner"
+        />
+      </ImageContainer>
+      {/* <Container> */}
+      <TitleContainer>
+        <Title>Torriden</Title>
+        <Desc>
+          Потужне та глибоке зволоження
+          <br /> з першого нанесення
+        </Desc>
+        <LinkBtn to="/brands/torriden" name="torriden" onClick={handleClick}>
+          ОЗНАЙОМИТИСЬ
+        </LinkBtn>
+      </TitleContainer>
+      {/* </Container> */}
     </WrapBanner>
   );
 };
