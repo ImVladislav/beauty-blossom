@@ -28,6 +28,11 @@
                 "to": "/category/facial/masks/nightMask",
                 "text": "Нічні маски",
                 "children": []
+              },
+              {
+                "to": "/category/facial/masks/hydroagelMasks",
+                "text": "Гідрогелеві маски",
+                "children": []
               }
             ]
           },
