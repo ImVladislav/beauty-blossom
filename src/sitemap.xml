@@ -76,31 +76,7 @@
 	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
 	<priority>1.0</priority>
 </url>
-<url>
-	<loc>http://beautyblossom.com.ua/brands/purito</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>0.8</priority>
-</url>
-<url>
-	<loc>http://beautyblossom.com.ua/userData</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>http://beautyblossom.com.ua/history</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>http://beautyblossom.com.ua/login</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>http://beautyblossom.com.ua/registration</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
+
 <url>
 	<loc>http://beautyblossom.com.ua/category</loc>
 	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
@@ -123,11 +99,6 @@
 </url>
 <url>
 	<loc>http://beautyblossom.com.ua/search</loc>
-	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
-	<priority>1.0</priority>
-</url>
-<url>
-	<loc>http://beautyblossom.com.ua/no-product</loc>
 	<lastmod>2023-11-24T18:10:09+01:00</lastmod>
 	<priority>1.0</priority>
 </url>

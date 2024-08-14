@@ -64,15 +64,18 @@ export const AdminEmailSenderPage = () => {
     setFilter(e.target.value);
   };
 
+  // const handleSubmit = async (e) => {
+  // "https://beauty-blossom-backend.onrender.com/api/email/sendemail",
+  // "http://localhost:3000/api/email/sendemail",
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(toEmails);
     try {
       const requests = [];
       for (const email of toEmails) {
         const formData = new FormData();
         files.forEach((file) => {
-          formData.append("file", file);
+          formData.append("file", file); // переконайтеся, що поле на сервері відповідає "files"
         });
         formData.append("title", title);
         formData.append("text", text);
@@ -81,7 +84,7 @@ export const AdminEmailSenderPage = () => {
 
         requests.push(
           axios.post(
-            "https://beauty-blossom-backend.onrender.com/api/email/sendemail",
+            "https://beauty-blossom-backend.onrender.com/api/email/sendemail", // або змініть на свій локальний сервер
             formData,
             {
               headers: {
@@ -102,6 +105,7 @@ export const AdminEmailSenderPage = () => {
       setCopiedContacts([]);
       setToEmails([]);
       setFiles([]);
+      setSubject("");
     }
   };
 

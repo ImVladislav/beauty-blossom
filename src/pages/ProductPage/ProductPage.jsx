@@ -45,7 +45,7 @@ import {
   DivAvableProduct,
   ProductDescriptionWrap,
 } from "./ProductPage.styled";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
@@ -65,22 +65,77 @@ const ProductPage = () => {
   const [amount, setAmount] = useState(null);
   const { id } = useParams();
   const dispatch = useDispatch();
-  const products = useSelector(selectGoods);
+  const prod = useSelector(selectGoods);
+  const [products, setProducts] = useState(prod);
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
-  useEffect(() => {
-    setLoading(false);
-  }, []);
 
+  console.log(products);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/goods`);
+        if (response.data) {
+          setProducts(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
   const product = products?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
   const productCartFind = productCart?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
+  // console.log(products);
+  useEffect(() => {
+    if (product) {
+      setAmount(product.amount);
+    }
+  }, [product]);
+
+  if (loading) {
+    return (
+      <Container>
+        <Loader />
+      </Container>
+    );
+  }
+
+  if (!product) {
+    return (
+      <Container>
+        <p>Product not found</p>
+      </Container>
+    );
+  }
+
+  const subCategories = categoryLinks[0]?.children || [];
+  const productSubSubCategory =
+    product.subSubCategory || product.subCategory || product.category;
+
+  const productPath = getProductPath(productSubSubCategory, subCategories);
+  const productSubPath = getSubProductPath(
+    productSubSubCategory,
+    subCategories
+  );
+  const producttSubSubPath = getSubSubProductPath(
+    productSubSubCategory,
+    subCategories
+  );
+  const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
+  const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
 
   const handleAddToCart = async () => {
     if (!productCartFind) {
@@ -116,9 +171,9 @@ const ProductPage = () => {
     setAmount(event.target.value);
   };
 
-  useEffect(() => {
-    setAmount(product.amount);
-  }, [product.amount]);
+  // useEffect(() => {
+  //   setAmount(product.amount || 0);
+  // }, [product.amount]);
 
   const changeProductAmount = async (productItem) => {
     try {
@@ -177,21 +232,21 @@ const ProductPage = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const subCategories = categoryLinks[0].children;
-  const productSubSubCategory =
-    product.subSubCategory || product.subCategory || product.category;
+  // const subCategories = categoryLinks[0].children;
+  // const productSubSubCategory =
+  //   product.subSubCategory || product.subCategory || product.category;
 
-  const productPath = getProductPath(productSubSubCategory, subCategories);
-  const productSubPath = getSubProductPath(
-    productSubSubCategory,
-    subCategories
-  );
-  const producttSubSubPath = getSubSubProductPath(
-    productSubSubCategory,
-    subCategories
-  );
-  const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
-  const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
+  // const productPath = getProductPath(productSubSubCategory, subCategories);
+  // const productSubPath = getSubProductPath(
+  //   productSubSubCategory,
+  //   subCategories
+  // );
+  // const producttSubSubPath = getSubSubProductPath(
+  //   productSubSubCategory,
+  //   subCategories
+  // );
+  // const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
+  // const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
 
   const handleLinkClick = (filterValue) => {
     dispatch(setfilter(filterValue));
@@ -270,13 +325,19 @@ const ProductPage = () => {
           </div>
           <section>
             <PageContainer>
-              <Helmet>
+              {/* <Helmet>
                 <meta charSet="utf-8" />
                 <title>{product.name}</title>
 
                 <meta name="description" content={product.description} />
                 <meta name="keywords" content={product.description} />
+              </Helmet> */}
+              <Helmet>
+                <meta charSet="utf-8" />
+                <title>{product.name}</title>
+                <meta name="description" content={product.description} />
               </Helmet>
+
               <h1 className="hidden">{product.name}</h1>
 
               <ImageWrap>
@@ -292,7 +353,7 @@ const ProductPage = () => {
               </ImageWrap>
               <Info>
                 <WrapName>
-                  {/* <div itemScope itemType="https://schema.org/Product"></div> */}
+                  <div itemScope itemType="https://schema.org/Product"></div>
                   <ProductName itemProp="name">{product.name}</ProductName>
                 </WrapName>
                 <DivProductDescr>
@@ -448,9 +509,14 @@ const ProductPage = () => {
                   ))}
                 </ProductDescriptionWrap>
 
-                <SimilarProducts brand={product.brand} productId={product.id} />
+                {/* <SimilarProducts brand={product.brand} productId={product.id} /> */}
                 {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
               </Info>
+              {/* <QuickOrderModal
+                isOpen={isModalOpen}
+                onRequestClose={toggleModal}
+                product={product}
+              /> */}
             </PageContainer>
           </section>
         </div>

@@ -23,6 +23,7 @@ export const SimilarProducts = ({ brand, productId }) => {
   }, [brand, dispatch]);
 
   const items = useSelector(selectFilterBrand);
+  console.log(items);
   const limitedItems = items
     .sort((a, b) => b.amount - a.amount)
     .filter((product) => product.id !== productId)
