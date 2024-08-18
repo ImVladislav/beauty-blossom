@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ButtonStyle = styled.button`
   background-color: ${(p) => (p.disabled ? "#ccc" : "transparent")};
@@ -8,15 +8,13 @@ export const ButtonStyle = styled.button`
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-weight: ${(p) => p.theme.fontWeights.body};
+  font-family: "Mulish", sans-serif;
+  font-weight: ${(p) => p.theme.fontWeights.bold};
+  font-size: 12px;
   text-decoration: none;
-  /* font-size: ${(p) => p.theme.fontSizes.xl}px; */
-  max-width: 375px;
-  height: 41px;
 
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
-  padding: 0px 50px;
 
   transition: all 250ms ease-in-out;
   cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
@@ -31,22 +29,37 @@ export const ButtonStyle = styled.button`
   &.goods {
     background-color: ${(p) =>
       p.disabled ? "#ccc" : p.theme.colors.accentColor};
+    font-size: 12px;
+    padding: 7px 30px;
 
     color: ${(p) => p.theme.colors.white};
 
-    border: ${(p) => (p.disabled ? `1px solid black` : "none")};
+    border: ${(p) => (p.disabled ? `1px solid black` : `1px solid #8a8a8a`)};
 
     &:hover {
       background-color: ${(p) =>
-        p.disabled ? "#ccc" : p.theme.colors.textColor};
+        p.disabled ? "#ccc" : p.theme.colors.hoverAccentColor};
 
-      border: ${(p) => (p.disabled ? `1px solid #ccc` : "none")};
+      /* border: ${(p) =>
+        p.disabled ? `1px solid black` : `1px solid #8a8a8a`}; */
+    }
+    ${(p) =>
+      p.slider &&
+      css`
+        font-size: 7px;
+        @media screen and (min-width: 768px) {
+          font-size: 12px;
+        }
+      `}
+    @media screen and (min-width: 1024px) {
+      font-size: ${(p) => p.theme.fontSizes.sm}px;
+      padding: 10px 30px;
     }
   }
 
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
-    height: 40px;
+    /* height: 40px; */
     padding: 0px 20px;
   }
   @media screen and (min-width: 1024px) {

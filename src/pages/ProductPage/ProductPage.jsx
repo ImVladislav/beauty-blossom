@@ -73,7 +73,7 @@ const ProductPage = () => {
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
 
-  console.log(products);
+  // console.log(products);
 
   useEffect(() => {
     const fetchProduct = async () => {

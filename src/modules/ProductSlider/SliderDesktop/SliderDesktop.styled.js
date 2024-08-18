@@ -2,34 +2,41 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 20px 20px;
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 0 5px;
+  @media screen and (min-width: 768px) {
+    max-width: 1024px;
+    padding: 0 20px;
+  }
+  @media screen and (min-width: 1024px) {
+    max-width: 1200px;
+  }
 `;
 
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px;
+  padding: 0 10px;
 `;
 
 export const Title = styled.h2`
-  color: ${(p) => p.theme.colors.accentColor};
-
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  text-transform: uppercase;
-
-  @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.authxl + 1}px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.09;
+  text-align: center;
+  color: #616161;
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
   }
 `;
 
 export const SliderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 5px;
+  gap: 2px;
   margin-top: 20px;
 `;
 
@@ -38,12 +45,17 @@ export const Button = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 0;
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 21px;
     filter: grayscale(1);
     transition: filter 0.3s;
+    @media screen and (min-width: 768px) {
+      width: 30px;
+      height: 30px;
+    }
 
     .icon-disabled {
       filter: grayscale(1);
@@ -56,10 +68,19 @@ export const Button = styled.button`
   }
 `;
 
-export const CartWrap = styled.div`
-  display: flex;
-  justify-content: center;
+export const CartWrap = styled.ul`
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
   gap: 10px;
+  text-align: center;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+  }
+  /* display: flex;
+  justify-content: center;
+  gap: 10px; */
 `;
 
 export const ProductCardLink = styled(Link)`

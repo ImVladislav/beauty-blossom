@@ -3,9 +3,7 @@ import { useMedia } from "../../hooks/useMedia";
 
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
-import { ProductSlider } from "../../modules/ProductSlider/ProductSlider";
-// import Hero from "../../modules/HeroOld/Hero";
-// import Baners from "../../modules/Baners/Baners";
+
 import { Loader } from "../../shared/components/Loader/Loader";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
 import { selectNew, selectSale } from "../../redux/products/selectors";
@@ -13,8 +11,11 @@ import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import HeroBaner from "../../modules/Hero/HeroBaner";
 
+import NewSlider from "../../modules/ProductSlider/NewSlider/NewSlider";
+
 const MainPage = () => {
-  const { isMobileScreen } = useMedia();
+  const { isDesktopScreen } = useMedia();
+
   const [loading, setLoading] = useState(true);
   const newProducts = useSelector(selectNew);
   const saleProducts = useSelector(selectSale);
@@ -25,8 +26,6 @@ const MainPage = () => {
 
   const newFiltred = newProducts.filter((item) => !item.amount <= 0);
   const saleFiltred = saleProducts.filter((item) => !item.amount <= 0);
-  // console.log(newFiltred);
-  // console.log(saleFiltred);
 
   return (
     <>
@@ -41,18 +40,29 @@ const MainPage = () => {
           </Helmet>
           <HeroBaner />
 
-          {isMobileScreen ? (
-            <ProductSlider products={[...newFiltred, ...saleFiltred]} />
+          {isDesktopScreen ? (
+            <>
+              <NewSlider
+                items={saleFiltred.slice(0, 8)}
+                title={"товари зі зниженною ціною"}
+              />
+              <NewSlider
+                items={newFiltred.slice(0, 8)}
+                title={"нове постачання"}
+              />
+            </>
           ) : (
             <>
-              <SliderDesktop products={newFiltred} title="Новинки" />
-              <SliderDesktop products={saleFiltred} title="Акції" />
+              <SliderDesktop
+                products={saleFiltred}
+                title="товари зі зниженною ціною"
+              />
+              <SliderDesktop products={newFiltred} title="нове постачання" />
             </>
           )}
           <BrandsWraper />
-          {/* {!isMobileScreen && <AboutUs />} */}
+
           <AboutUs />
-          {/* <Baners /> */}
         </div>
       )}
     </>

@@ -20,12 +20,13 @@ export const WrapListProduct = styled.div`
 
 export const ProductListContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1, minmax(150px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(1, minmax(250px, 1fr));
+  gap: 10px;
   text-align: center;
   justify-content: center;
+  justify-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 600px) {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
   @media screen and (min-width: 1024px) {
@@ -76,16 +77,18 @@ export const PageButton = styled.button`
   padding: 3px 8px;
   border: 1px solid #ddd;
   background-color: ${(p) =>
-    p.$active === "true" ? p.theme.colors.heroBtn : p.theme.colors.white};
+    p.$active === "true"
+      ? p.theme.colors.hoverAccentColor
+      : p.theme.colors.white};
   color: ${(p) =>
     p.$active === "true" ? p.theme.colors.white : p.theme.colors.textColor};
   border-color: ${(p) =>
-    p.$active === "true" ? p.theme.colors.heroBtn : "#ddd"};
+    p.$active === "true" ? p.theme.colors.hoverAccentColor : "#ddd"};
   cursor: pointer;
 
   &:hover {
     background-color: ${(p) =>
-      p.$active === "true" ? p.theme.colors.heroBtn : "#f8f9fa"};
+      p.$active === "true" ? p.theme.colors.hoverAccentColor : "#f8f9fa"};
   }
 
   @media screen and (min-width: 1024px) {
