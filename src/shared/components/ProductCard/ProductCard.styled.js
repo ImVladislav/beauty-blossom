@@ -101,14 +101,14 @@ export const Content = styled.div`
     margin-top: 20px;
   }
 `;
-export const BrandName = styled(Link)`
+export const BrandName = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 700;
   font-size: 10px;
   line-height: 1.079;
   letter-spacing: 0.1em;
   color: #000;
-  text-decoration: none;
+
   ${(p) =>
     p.slider &&
     css`

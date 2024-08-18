@@ -4,7 +4,6 @@ import { useMedia } from "../../hooks/useMedia";
 import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 
-import Baners from "../../modules/Baners/Baners";
 import { Loader } from "../../shared/components/Loader/Loader";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
 import { selectNew, selectSale } from "../../redux/products/selectors";
@@ -15,7 +14,7 @@ import HeroBaner from "../../modules/Hero/HeroBaner";
 import NewSlider from "../../modules/ProductSlider/NewSlider/NewSlider";
 
 const MainPage = () => {
-  const { isMobileScreen, isDesktopScreen } = useMedia();
+  const { isDesktopScreen } = useMedia();
 
   const [loading, setLoading] = useState(true);
   const newProducts = useSelector(selectNew);
@@ -62,9 +61,8 @@ const MainPage = () => {
             </>
           )}
           <BrandsWraper />
-          {!isMobileScreen && <AboutUs />}
 
-          <Baners />
+          <AboutUs />
         </div>
       )}
     </>

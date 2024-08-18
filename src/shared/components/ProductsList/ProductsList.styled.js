@@ -77,16 +77,18 @@ export const PageButton = styled.button`
   padding: 3px 8px;
   border: 1px solid #ddd;
   background-color: ${(p) =>
-    p.$active === "true" ? p.theme.colors.heroBtn : p.theme.colors.white};
+    p.$active === "true"
+      ? p.theme.colors.hoverAccentColor
+      : p.theme.colors.white};
   color: ${(p) =>
     p.$active === "true" ? p.theme.colors.white : p.theme.colors.textColor};
   border-color: ${(p) =>
-    p.$active === "true" ? p.theme.colors.heroBtn : "#ddd"};
+    p.$active === "true" ? p.theme.colors.hoverAccentColor : "#ddd"};
   cursor: pointer;
 
   &:hover {
     background-color: ${(p) =>
-      p.$active === "true" ? p.theme.colors.heroBtn : "#f8f9fa"};
+      p.$active === "true" ? p.theme.colors.hoverAccentColor : "#f8f9fa"};
   }
 
   @media screen and (min-width: 1024px) {

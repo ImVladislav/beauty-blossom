@@ -30,6 +30,7 @@ import {
   CartQuantityWrap,
   CartQuantitySpan,
   Line,
+  SearchIcon,
 } from "./header.styled";
 import Menu from "./Menu/Menu";
 import ShoppingCart from "./ShopingList/ShopingList";
@@ -46,6 +47,8 @@ import { selectCart } from "../../redux/cart/selectors";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const userName = useSelector(userSelectorfirstName);
   const cartItems = useSelector(selectCart);
 
@@ -56,6 +59,9 @@ export const Header = () => {
 
   const handleMenuClick = () => {
     setIsMenuOpen((state) => !state);
+  };
+  const handleSearchClick = () => {
+    setIsSearchOpen((state) => !state); // Перемикаємо видимість форми пошуку
   };
 
   return (
@@ -68,15 +74,15 @@ export const Header = () => {
               <HeaderTop>
                 <HeaderWrap>
                   <HeaderLayout>
-                    <WrapTop>
-                      <SearchForm />
-                    </WrapTop>
+                    {/* <WrapTop> */}
+                    {/* <SearchForm /> */}
+                    {/* </WrapTop> */}
                     <WrapTop>
                       <Logo />
                     </WrapTop>
                     <WrapTop>
                       <Wrap>
-                        <WrapContacts>
+                        {/* <WrapContacts>
                           <Contacts
                             title="+380500529100"
                             to="tel:+380500529100"
@@ -88,9 +94,9 @@ export const Header = () => {
                             icon="mail"
                           />
 
-                          {/* <Email /> */}
-                        </WrapContacts>
+                        </WrapContacts> */}
                         <LoginShipingThumb>
+                          <SearchIcon onClick={handleSearchClick} />
                           <div
                             style={{
                               display: "flex",
@@ -116,6 +122,7 @@ export const Header = () => {
                       </Wrap>
                     </WrapTop>
                   </HeaderLayout>
+                  <SearchForm isOpen={isSearchOpen} />
                 </HeaderWrap>
               </HeaderTop>
               <MenuBottom $pathname={pathname}>
@@ -139,38 +146,50 @@ export const Header = () => {
             />
           )}
           <TopWrap>
-            <Schedule>ПН - ПТ 9:30 - 18:00</Schedule>
-            <Contacts
+            <Schedule
+              href="https://t.me/+Eejgotzs-ktiMTIy"
+              target="_blank"
+              rel="noreferrer"
+              class="sc-gxRkJE bTaJYA"
+            >
+              Підписуйся на наш телеграм канал
+            </Schedule>
+            {/* <Contacts
               head
               title="+380500529100"
               to="tel:+380500529100"
               icon="phone"
-            />
+            /> */}
           </TopWrap>
           {/* center */}
+          <CenterWrap>
+            <Logo />
+          </CenterWrap>
           <CenterWrap>
             <ButtonMenu onClick={handleMenuClick}>
               <MenuIcon />
             </ButtonMenu>
-            <Logo />
-            <IconWrap>
-              <div>
-                {isLogin && <NameUser>{userName} </NameUser>}
-                <User />
-              </div>
+            {/* <IconWrap> */}
+            <SearchIcon onClick={handleSearchClick} />
+            <div>
+              {isLogin && <NameUser>{userName} </NameUser>}
+              <User />
+            </div>
 
-              <div style={{ position: "relative" }}>
-                <ShoppingCart />
-                {cartItems.length > 0 && (
-                  <CartQuantityWrap>
-                    <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
-                  </CartQuantityWrap>
-                )}
-              </div>
-            </IconWrap>
+            <div style={{ position: "relative" }}>
+              <ShoppingCart />
+              {cartItems.length > 0 && (
+                <CartQuantityWrap>
+                  <CartQuantitySpan>{cartItems.length}</CartQuantitySpan>
+                </CartQuantityWrap>
+              )}
+            </div>
+            {/* </IconWrap> */}
           </CenterWrap>
           {/* bottom */}
-          <SearchForm />
+          {/* {isSearchOpen && ( // Показуємо форму пошуку на основі стану */}
+          <SearchForm isOpen={isSearchOpen} />
+          {/* )} */}
         </ContainerMobile>
       )}
     </header>

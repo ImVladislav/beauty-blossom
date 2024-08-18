@@ -99,12 +99,7 @@ const ProductCard = ({ products, slider }) => {
           </ProductTags>
 
           <Content itemScope itemType="https://schema.org/Product">
-            <BrandName
-              to={`/brands/${products.brand.toLowerCase().trim()}`}
-              slider={slider}
-            >
-              {products.brand}
-            </BrandName>
+            <BrandName slider={slider}>{products.brand}</BrandName>
             <Name itemProp="name" slider={slider}>
               {products.name}
             </Name>

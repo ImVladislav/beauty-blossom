@@ -102,6 +102,14 @@ export const ButtonStyle = styled.button`
     font-weight: ${(p) => p.theme.fontWeights.title};
     font-size: 14px;
     padding: 10px 20px;
+    background-color: #ffa5d6;
+    border: 1px solid #616161;
+    opacity: 0.8;
+    color: #fff;
+    transition: all 500 ms ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
     @media screen and (min-width: 768px) {
       font-size: 16px;
       padding: 22px 50px;

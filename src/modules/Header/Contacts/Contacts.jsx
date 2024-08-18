@@ -1,11 +1,11 @@
 import React from "react";
 
 import {
-  ContactsElips,
-  IconPhone,
-  IconEmail,
-  InstagramIcon,
-  TelegramIcon,
+  // ContactsElips,
+  // IconPhone,
+  // IconEmail,
+  // InstagramIcon,
+  // TelegramIcon,
   Link,
   Wrap,
 } from "./contacts.styled";
@@ -20,7 +20,7 @@ const Contacts = ({ title, to, icon, head, burger }) => {
           rel="noreferrer"
           className={(head && "head") || (burger && "burger")}
         >
-          <TelegramIcon />
+          {/* <TelegramIcon /> */}
 
           {title}
         </Link>
@@ -35,7 +35,7 @@ const Contacts = ({ title, to, icon, head, burger }) => {
           rel="noreferrer"
           className={(head && "head") || (burger && "burger")}
         >
-          <InstagramIcon />
+          {/* <InstagramIcon /> */}
 
           {title}
         </Link>
@@ -45,9 +45,9 @@ const Contacts = ({ title, to, icon, head, burger }) => {
     return (
       <Wrap>
         <Link href={to} className={(head && "head") || (burger && "burger")}>
-          <ContactsElips className={burger && "burger"}>
+          {/* <ContactsElips className={burger && "burger"}>
             <IconPhone className={head && "head"} />
-          </ContactsElips>
+          </ContactsElips> */}
           {title}
         </Link>
       </Wrap>
@@ -56,9 +56,9 @@ const Contacts = ({ title, to, icon, head, burger }) => {
     return (
       <Wrap>
         <Link href={to} className={(head && "head") || (burger && "burger")}>
-          <ContactsElips className={burger && "burger"}>
+          {/* <ContactsElips className={burger && "burger"}>
             <IconEmail />
-          </ContactsElips>
+          </ContactsElips> */}
           {title}
         </Link>
       </Wrap>

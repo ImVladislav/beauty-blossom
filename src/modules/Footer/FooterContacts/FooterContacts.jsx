@@ -12,22 +12,31 @@ export const FooterContacts = () => {
   return (
     <Wrap>
       <TitleWrap>
-        <Title>Контакти:</Title>
+        <Title>Контакти</Title>
       </TitleWrap>
       <ContactWraper>
         <ContactGroup>
-          <Contacts title="+380500529100" to="tel:+380500529100" icon="phone" />
-        </ContactGroup>
-        <ContactGroup>
           <Contacts
-            title="beauty_blossom_opt"
-            to="https://www.instagram.com/beauty_blossom_opt"
-            icon="instagram"
+            title="+ 380 50 052 9100"
+            to="tel:+380500529100"
+            icon="phone"
+          />
+        </ContactGroup>
+        <ContactGroup style={{ marginBottom: "28px" }}>
+          <Contacts
+            title="beautyblossom@gmail.com"
+            to="mailto:beautyblossom@gmail.com"
+            // icon="instagram"
           />
           <Contacts
-            title="beauty_blossom"
+            title="instagram beauty_blossom_ua"
+            to="https://www.instagram.com/beauty_blossom_ua"
+            // icon="instagram"
+          />
+          <Contacts
+            title="telegram beauty_blossom"
             to="https://t.me/+Eejgotzs-ktiMTIy"
-            icon="telegram"
+            // icon="telegram"
           />
         </ContactGroup>
       </ContactWraper>

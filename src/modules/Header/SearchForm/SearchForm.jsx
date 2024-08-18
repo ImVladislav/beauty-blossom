@@ -12,7 +12,7 @@ import {
   SearchIcon,
 } from "./SearchForm.styled";
 
-const SearchForm = () => {
+const SearchForm = ({ isOpen }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const navigate = useNavigate();
@@ -39,11 +39,11 @@ const SearchForm = () => {
   };
 
   return (
-    <SearchFormContainer>
+    <SearchFormContainer isOpen={isOpen}>
       <form onSubmit={handleSubmit}>
         <SearchInput
           type="text"
-          placeholder="Пошук товарів..."
+          placeholder="пошук"
           value={searchTerm}
           onChange={handleInputChange}
         />

@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const Title = styled.h2`
   display: flex;
+  font-family: "Mulish", sans-serif;
   justify-content: center;
   font-size: 16px;
   font-weight: bold;
   margin-top: 40px;
-  color: ${(p) => p.theme.colors.accentColor};
+  color: #ff96cf;
   @media screen and (min-width: 768px) {
     font-size: 2em;
   }
@@ -15,12 +16,13 @@ export const Title = styled.h2`
   }
 `;
 export const ConditionsTitle = styled.h4`
+  font-family: "Mulish", sans-serif;
   display: flex;
   font-size: 12px;
   font-weight: bold;
   padding: 20px 0px;
   margin-left: 10px;
-  color: ${(p) => p.theme.colors.accentColor};
+  color: #616161;
   @media screen and (min-width: 768px) {
     font-size: 1.8em;
     margin-left: 34px;
@@ -30,6 +32,7 @@ export const ConditionsTitle = styled.h4`
   }
 `;
 export const Text = styled.p`
+  font-family: "Mulish", sans-serif;
   padding: 0 5px;
   line-height: 1.5;
   /* font-weight: bold; */
@@ -52,6 +55,7 @@ export const ListItems = styled.li`
   margin-top: 4px;
   list-style-type: decimal;
   font-size: 10px;
+  font-family: "Mulish", sans-serif;
   @media screen and (min-width: 768px) {
     font-size: 18px;
     margin-left: 10px;
@@ -103,15 +107,18 @@ export const ModalContent = styled.div`
 `;
 export const Link = styled.a`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.accentColor};
+  font-family: "Mulish", sans-serif;
+  color: #616161;
   &:hover {
     color: ${(p) => p.theme.colors.textColor};
   }
 `;
 export const SubText = styled.p`
   margin-bottom: 5px;
+  font-family: "Mulish", sans-serif;
   margin-left: 5px;
   font-size: 10px;
+  color: #616161;
   @media screen and (min-width: 768px) {
     font-size: 18px;
     margin-left: 10px;
@@ -122,6 +129,7 @@ export const SubText = styled.p`
 `;
 
 export const Red = styled.span`
+  font-family: "Mulish", sans-serif;
   color: red;
   font-size: 10px;
   @media screen and (min-width: 768px) {
