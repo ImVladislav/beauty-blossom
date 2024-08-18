@@ -1,66 +1,87 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
 import { Link } from "react-router-dom";
 
 export const ItemStyle = styled.li`
-  width: 320px;
-
+  position: relative;
+  min-width: 140px;
+  max-width: 220px;
+  padding: 10px;
+  border: 1px solid ${(p) => p.theme.colors.borderCard};
+  transition: all 250ms linear;
+  list-style: none;
+  &:hover,
+  &:focus {
+    box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
+  }
   &.unavailable {
     opacity: 0.5;
   }
+
+  @media screen and (min-width: 768px) {
+    max-width: 320px;
+  }
   @media screen and (min-width: 1024px) {
-    width: 320px;
+    max-width: 320px;
   }
   @media screen and (min-width: 1440px) {
-    width: 350px;
+    max-width: 350px;
   }
+`;
+// export const Container = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: space-around;
+//   transition: transform 0.2s;
+//   position: relative;
+//   height: 100%;
+//   border-radius: 0;
+//   /* border: 1px solid ${(p) => p.theme.colors.borderCard}; */
+//   background: ${(p) => p.theme.colors.white};
+//   &:hover {
+//     transform: translateY(-4px);
+
+//     .buy-button {
+//       visibility: visible;
+//     }
+//   }
+// `;
+
+export const LinkStyle = styled(Link)`
+  text-decoration: none;
+  color: ${(p) => p.theme.colors.textColor};
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 `;
 
 export const ProductTags = styled.div`
   display: grid;
   justify-content: space-between;
   position: absolute;
-  bottom: 3px;
-`;
-export const LinkStyle = styled(Link)`
-  text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  &:hover,
-  &:focus {
-    color: ${(p) => p.theme.colors.accentColor};
-  }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  transition: transform 0.2s;
-  position: relative;
-  height: 100%;
-  border-radius: 0;
-  border: 1px solid ${(p) => p.theme.colors.borderCard};
-  background: ${(p) => p.theme.colors.white};
-  &:hover {
-    transform: translateY(-4px);
-    background-color: ${(p) => p.theme.colors.white};
-    border: 1px solid ${(p) => p.theme.colors.menuBg};
-    box-shadow: 0 7px 15px rgba(59, 55, 43, 0.25);
-
-    .buy-button {
-      visibility: visible;
-    }
-  }
+  top: 10px;
+  right: 15px;
 `;
 
 export const ImageWrap = styled.div`
   position: relative;
-  max-width: fit-content;
-  height: 240px;
-  margin-top: 5px;
+  width: fit-content;
+  height: 220px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  ${(p) =>
+    p.slider === true &&
+    css`
+      height: 130px;
+    `}
+  @media screen and (min-width: 768px) {
+    height: 250px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 280px;
+  }
 `;
 
 export const Image = styled.img`
@@ -68,50 +89,141 @@ export const Image = styled.img`
   max-width: 100%;
   height: auto;
   width: auto;
-
-  font-size: ${(p) => p.theme.fontSizes.s}px;
 `;
 
 export const Content = styled.div`
-  padding: 20px 24px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  @media screen and (min-width: 1024px) {
+    margin-top: 20px;
+  }
+`;
+export const BrandName = styled(Link)`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #000;
+  text-decoration: none;
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 6px;
+      @media screen and (min-width: 768px) {
+        font-size: 10px;
+      }
+    `}
+
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
 `;
 
-export const Name = styled.h2`
-  background-color: transparent;
-  margin: 0 0 6px;
-  padding-bottom: 2px;
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  line-height: 1.2;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 3.5em;
-  @media screen and (min-width: 768px) {
+export const Name = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+  text-align: start;
+
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 6px;
+      @media screen and (min-width: 768px) {
+        font-size: 10px;
+      }
+    `}
+
+  @media screen and (min-width: 600px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 4.5em;
+  }
+  @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.s}px;
   }
 `;
 
-export const Price = styled.p`
-  align-self: center;
-  color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.m}px;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: 1.2;
-  text-align: center;
+export const PriceWrap = styled.div`
   display: flex;
-  align-items: center;
-  margin-top: 9px;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  align-items: start;
+`;
+
+export const PriceName = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  text-align: start;
+  color: #616161;
+
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 6px;
+      @media screen and (min-width: 768px) {
+        font-size: 10px;
+      }
+    `}
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
+`;
+
+export const Available = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.09;
+  text-align: start;
+  color: #008205;
+  margin-top: 3px;
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 6px;
+      @media screen and (min-width: 768px) {
+        font-size: 10px;
+      }
+    `}
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
+`;
+
+export const Price = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 900;
+  font-size: ${(p) => p.theme.fontSizes.m}px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 11px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+    `}
+  @media screen and (min-width: 1024px) {
+    font-size: ${(p) => p.theme.fontSizes.xl}px;
+  }
 `;
 
 export const ButtonWrap = styled.div`
-  position: absolute;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
+  margin: 10px auto 0;
 `;
 export const ButtonIncDec = styled.span`
   position: relative;

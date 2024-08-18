@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toast } from "react-toastify";
 import axios from "axios";
 
 import { addToCart } from "../../../redux/cart/slice";
@@ -11,13 +10,11 @@ import {
   optUserSelector,
 } from "../../../redux/auth/selectors";
 
-import Sticker from "../Sticker/Sticker";
 import Button from "../Button/Button";
 
 import {
   ItemStyle,
   LinkStyle,
-  Container,
   ImageWrap,
   Image,
   Content,
@@ -25,17 +22,20 @@ import {
   Price,
   ButtonWrap,
   ProductTags,
-  CounterBlock,
-  ButtonIncDec,
-  InputIncDec,
+  BrandName,
+  PriceWrap,
+  PriceName,
+  Available,
 } from "./ProductCard.styled";
+import NewSticker from "../Sticker/NewSticker";
 
-const ProductCard = ({ products }) => {
+const ProductCard = ({ products, slider }) => {
+  // eslint-disable-next-line
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
-  const [quantity, setQuantity] = useState(1);
+  const quantity = 1;
   const loggedIn = useSelector(loggedInSelector);
 
   const handleAddToCart = async (event) => {
@@ -80,95 +80,80 @@ const ProductCard = ({ products }) => {
 
   const isProductUnavailable = products.amount <= 0;
 
-  const handleQuantityChange = (event) => {
-    const newQuantity = parseInt(event.currentTarget.value, 10);
-    if (
-      !isNaN(newQuantity) &&
-      newQuantity >= 1 &&
-      newQuantity <= products.amount
-    ) {
-      setQuantity(newQuantity);
-    }
-  };
-  const incrementQuantity = () => {
-    if (products.amount > quantity) {
-      setQuantity(quantity + 1);
-    } else {
-      toast.error("Обмежена кількість товару на складі!");
-    }
-  };
-
-  const decrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   return (
     <>
-      <ItemStyle className={isProductUnavailable ? "unavailable" : ""}>
-        <Container
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <LinkStyle to={`/product/${products.id || products.productId}`}>
-            <div></div>
-            <ImageWrap style={{ width: "200px" }}>
-              <Image
-                itemProp="image"
-                src={products.images}
-                alt={products.name}
+      <ItemStyle
+        className={isProductUnavailable ? "unavailable" : ""}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        slider={slider}
+      >
+        <LinkStyle to={`/product/${products.id || products.productId}`}>
+          <ImageWrap slider={slider}>
+            <Image itemProp="image" src={products.images} alt={products.name} />
+          </ImageWrap>
+
+          <ProductTags>
+            {products.sale && <NewSticker text="Sale" sale slider={slider} />}
+            {products.new && <NewSticker text="New" slider={slider} />}
+          </ProductTags>
+
+          <Content itemScope itemType="https://schema.org/Product">
+            <BrandName
+              to={`/brands/${products.brand.toLowerCase().trim()}`}
+              slider={slider}
+            >
+              {products.brand}
+            </BrandName>
+            <Name itemProp="name" slider={slider}>
+              {products.name}
+            </Name>
+
+            {optUser ? (
+              <PriceWrap>
+                <div>
+                  <PriceName slider={slider}>оптова ціна</PriceName>
+                  {products.amount > 0 && (
+                    <Available slider={slider}>в наявності</Available>
+                  )}
+                </div>
+                <Price slider={slider}>{products.priceOPT} грн</Price>
+              </PriceWrap>
+            ) : (
+              <PriceWrap>
+                <div>
+                  <PriceName slider={slider}>роздрібна ціна</PriceName>
+                  {products.amount > 0 && (
+                    <Available slider={slider}>в наявності</Available>
+                  )}
+                </div>
+                <Price itemProp="price" slider={slider}>
+                  {products.price} грн
+                </Price>
+              </PriceWrap>
+            )}
+          </Content>
+
+          <>
+            <ButtonWrap>
+              <Button
+                goods
+                className="buy-button"
+                type="button"
+                slider={slider}
+                text={
+                  products.amount <= 0
+                    ? "Немає в наявності"
+                    : isProductInCart
+                    ? "У кошику"
+                    : "додати до кошика"
+                }
+                onClick={handleAddToCart}
+                disabled={isProductInCart || products.amount <= 0}
               />
-              <ProductTags>
-                {products.new && <Sticker text="Новинка" />}
-                {products.sale && <Sticker text="Акція" sale />}
-              </ProductTags>
-            </ImageWrap>
-            <Content itemScope itemType="https://schema.org/Product">
-              <Name itemProp="name">{products.name}</Name>
-              {optUser ? (
-                <Price>{products.priceOPT} Грн</Price>
-              ) : (
-                <Price itemProp="price">{products.price} Грн</Price>
-              )}
-            </Content>
-          </LinkStyle>
-          {/* <div style={{ display: "flex" }}> */}
-          {products.amount <= 0 || (
-            <CounterBlock>
-              <ButtonIncDec onClick={decrementQuantity}>–</ButtonIncDec>
-              <InputIncDec
-                type="number"
-                min="1"
-                max={products.amount}
-                value={quantity}
-                onChange={handleQuantityChange}
-                // readOnly={true}
-              />
-              <ButtonIncDec onClick={incrementQuantity}>+</ButtonIncDec>
-            </CounterBlock>
-          )}
-          {isHovered && (
-            <>
-              <ButtonWrap>
-                <Button
-                  goods
-                  className="buy-button"
-                  text={
-                    products.amount <= 0
-                      ? "Немає в наявності"
-                      : isProductInCart
-                      ? "У кошику"
-                      : "Купити"
-                  }
-                  onClick={handleAddToCart}
-                  disabled={isProductInCart || products.amount <= 0}
-                />
-              </ButtonWrap>
-            </>
-          )}
-          {/* </div> */}
-        </Container>
+            </ButtonWrap>
+          </>
+        </LinkStyle>
       </ItemStyle>
     </>
   );

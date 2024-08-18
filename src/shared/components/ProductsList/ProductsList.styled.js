@@ -20,12 +20,13 @@ export const WrapListProduct = styled.div`
 
 export const ProductListContainer = styled.ul`
   display: grid;
-  grid-template-columns: repeat(1, minmax(150px, 1fr));
-  gap: 6px;
+  grid-template-columns: repeat(1, minmax(250px, 1fr));
+  gap: 10px;
   text-align: center;
   justify-content: center;
+  justify-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 600px) {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
   @media screen and (min-width: 1024px) {
