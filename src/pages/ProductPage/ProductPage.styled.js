@@ -51,13 +51,14 @@ export const ProductTags = styled.div`
   top: 10px;
 `;
 export const ProductName = styled.h2`
-  margin: 0 10px 10px 0;
+  margin: 10px 0;
 
-  font-size: ${(p) => p.theme.fontSizes.sm}px;
-  text-align: justify;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  line-height: normal;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.02312;
+  text-align: center;
+  color: #424242;
   @media screen and (min-width: 768px) {
     font-size: 28px;
   }
@@ -130,37 +131,58 @@ export const ProductName = styled.h2`
 // `;
 
 export const ProductPrice = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.xxl}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.bold};
-  line-height: normal;
-  margin: 10px 0 10px 0;
-  color: ${(p) => p.theme.colors.textColor};
+  font-family: "Mulish", sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #424242;
+  margin: 10px 0;
+
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.authxl}px;
   }
 `;
 
+export const PriceName = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+`;
+
 export const ProductTitleDescription = styled.p`
-  font-size: ${(p) => p.theme.fontSizes.m}px;
-  margin: 5px 0;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.2px;
-  color: black;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+
+  margin-top: 20px;
   border-bottom: 1px solid #aa9e9e;
+  text-align: center;
+  padding-bottom: 10px;
   @media screen and (min-width: 768px) {
     font-size: 30px;
   }
 `;
 export const ProductDescriptionWrap = styled.div`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.01;
+  text-transform: capitalize;
   text-align: justify;
-  font-size: ${(p) => p.theme.fontSizes.xs}px;
-  font-style: normal;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: normal;
+  color: #616161;
+
   margin: 5px 0;
+  & > p {
+    text-indent: 5px;
+    margin-bottom: 5px;
+  }
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
@@ -175,14 +197,15 @@ export const Info = styled.div`
 
 export const CounterBlock = styled.div`
   position: relative;
-  /* width: 180px; */
-  height: 40px;
+  width: 180px;
+  min-height: 27px;
+
   display: flex;
   border-radius: 20px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
   align-items: center;
   margin-bottom: 20px;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-right: auto;
   margin-left: auto;
   cursor: pointer;
@@ -206,11 +229,17 @@ export const ButtonIncDec = styled.span`
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
-  color: ${(p) => p.theme.colors.textColor};
+
   border: 0;
   padding: 0;
   background: transparent;
-  font-size: ${(p) => p.theme.fontSizes.xxl}px;
+
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.02312;
+  text-transform: capitalize;
+  color: #616161;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
@@ -220,14 +249,21 @@ export const ButtonIncDec = styled.span`
 `;
 
 export const InputIncDec = styled.input`
+  width: 80px;
   text-align: center;
-  font-family: monospace;
+
   outline: none;
-  color: ${(p) => p.theme.colors.textColor};
+
   border: 0;
   padding: 0;
   background-color: transparent;
-  font-size: ${(p) => p.theme.fontSizes.xxl}px;
+
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.02312;
+  text-transform: capitalize;
+  color: #616161;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -252,28 +288,43 @@ export const UlHistoryList = styled.ul`
 `;
 
 export const LiHistoryList = styled.li`
-  margin: 0px;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
 `;
 
 export const LinkHistoryLink = styled(Link)`
-  color: #833989;
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
   font-size: 12px;
-  font-weight: 400;
+  line-height: 1.02312;
+  color: #616161;
   text-decoration: none;
   margin: 0px 2px;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.textColor};
+  }
 `;
 
 export const PHistoryName = styled.p`
-  color: #833989;
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
   font-size: 12px;
-  font-weight: 400;
+  line-height: 1.02312;
+  color: #616161;
   text-decoration: none;
-  margin: 6px 2px;
-  cursor: pointer;
+  margin: 0 2px;
+
+  /* cursor: pointer; */
 `;
 
 export const DivProductDescr = styled.div`
   /* display: flex; */
+  width: 250px;
+  display: grid;
+  margin: 0 auto;
+
   @media screen and (min-width: 768px) {
     display: flex;
   }
@@ -287,11 +338,21 @@ export const DivAboutProduct = styled.div`
     margin-left: auto;
   }
 `;
+export const AboutProductText = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.02312;
+
+  color: #616161;
+  margin-top: 5px;
+`;
 
 export const DivAboutProductMobile = styled.div`
   display: flex;
   justify-content: center;
   margin: 15px 0px;
+  gap: 50px;
 
   @media screen and (min-width: 768px) {
     display: none;

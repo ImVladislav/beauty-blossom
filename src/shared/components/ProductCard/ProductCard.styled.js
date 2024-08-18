@@ -136,6 +136,9 @@ export const Name = styled.p`
     p.slider &&
     css`
       font-size: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 4.5em;
       @media screen and (min-width: 768px) {
         font-size: 10px;
       }

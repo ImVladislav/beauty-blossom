@@ -44,6 +44,8 @@ import {
   DivAboutProductMobile,
   DivAvableProduct,
   ProductDescriptionWrap,
+  PriceName,
+  AboutProductText,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet";
 
@@ -58,6 +60,7 @@ import {
   getCategoryUrl,
   getCategoryUrl2,
 } from "./ProductUtils";
+import NewSticker from "../../shared/components/Sticker/NewSticker";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -277,9 +280,7 @@ const ProductPage = () => {
           <div>
             <UlHistoryList>
               <LiHistoryList>
-                <LinkHistoryLink to="/">
-                  Повернутись на головну сторінку /
-                </LinkHistoryLink>
+                <LinkHistoryLink to="/">головна сторінка /</LinkHistoryLink>
               </LiHistoryList>
               <LiHistoryList>
                 <LinkHistoryLink
@@ -352,8 +353,8 @@ const ProductPage = () => {
                   alt={product.name}
                 />
                 <ProductTags>
-                  {product.new && <Sticker text="Новинка" />}
-                  {product.sale && <Sticker text="Акція" sale />}
+                  {product.new && <NewSticker text="New" />}
+                  {product.sale && <NewSticker text="Sale" sale />}
                 </ProductTags>
               </ImageWrap>
               <Info>
@@ -363,69 +364,39 @@ const ProductPage = () => {
                 </WrapName>
                 <DivProductDescr>
                   <DivPriceCounterProduct>
-                    <DivAvableProduct>
-                      {product.amount <= 0 ? (
-                        <>
-                          <AiOutlineClose
-                            style={{
-                              fill: "#FF0000",
-                              width: "30px",
-                              height: "30px",
-                            }}
-                          />
-                          <span
-                            style={{
-                              color: "#FF0000",
-                              fontSize: "18px",
-                              fontWeight: "700",
-                            }}
-                          >
-                            Немає в наявності
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <AiOutlineCheck
-                            style={{
-                              fill: "#379200",
-                              width: "30px",
-                              height: "30px",
-                            }}
-                          />
-                          <span
-                            style={{
-                              color: "#379200",
-                              fontSize: "18px",
-                              fontWeight: "700",
-                            }}
-                          >
-                            в наявності
-                          </span>
-                        </>
-                      )}
-                    </DivAvableProduct>
                     {optUser ? (
                       <>
-                        <p style={{ fontSize: "22px", fontWeight: "500" }}>
-                          Оптова ціна
-                        </p>
-                        <ProductPrice>{product.priceOPT} Грн</ProductPrice>
+                        <PriceName>оптова ціна</PriceName>
+                        <ProductPrice>{product.priceOPT} грн</ProductPrice>
                       </>
                     ) : (
-                      <ProductPrice>{product.price} Грн</ProductPrice>
+                      <>
+                        <PriceName>роздрібна ціна</PriceName>
+                        <ProductPrice>{product.price} грн</ProductPrice>
+                      </>
                     )}
                     <DivAboutProductMobile>
                       <div>
-                        <p>Бренд</p>
-                        <p>Країна виробник</p>
-                        <p>Штрихкод </p>
-                        <p>Артикул</p>
+                        <AboutProductText>Бренд :</AboutProductText>
+                        <AboutProductText>Країна :</AboutProductText>
+                        <AboutProductText>Штрихкод :</AboutProductText>
+                        <AboutProductText>Артикул :</AboutProductText>
+                        <AboutProductText>Наявність :</AboutProductText>
                       </div>
-                      <div style={{ marginLeft: "20px" }}>
-                        <p> {product.brand}</p>
-                        <p> {product.country}</p>
-                        <p>{product.code}</p>
-                        <p>{product.article}</p>
+                      <div>
+                        <AboutProductText> {product.brand}</AboutProductText>
+                        <AboutProductText> {product.country}</AboutProductText>
+                        <AboutProductText>{product.code}</AboutProductText>
+                        <AboutProductText>{product.article}</AboutProductText>
+                        {product.amount > 0 ? (
+                          <AboutProductText style={{ color: "#008205" }}>
+                            в наявності
+                          </AboutProductText>
+                        ) : (
+                          <AboutProductText style={{ color: "#f00" }}>
+                            немає в наявності
+                          </AboutProductText>
+                        )}
                       </div>
                     </DivAboutProductMobile>
                     <DivProductDescr>
@@ -453,10 +424,10 @@ const ProductPage = () => {
                         goods
                         text={
                           product.amount <= 0
-                            ? "Купити"
+                            ? "немає в наявності"
                             : productCartFind
-                            ? "У кошику"
-                            : "Купити"
+                            ? "у кошику"
+                            : "додати до кошика"
                         }
                         onClick={handleAddToCart}
                         disabled={productCartFind || product.amount <= 0}
@@ -489,28 +460,38 @@ const ProductPage = () => {
                   </DivPriceCounterProduct>
                   <DivAboutProduct>
                     <div>
-                      <p>Бренд</p>
-                      <p>Країна виробник</p>
-                      <p>Штрихкод </p>
-                      <p>Артикул</p>
+                      <AboutProductText>Бренд</AboutProductText>
+                      <AboutProductText>Країна виробник</AboutProductText>
+                      <AboutProductText>Штрихкод </AboutProductText>
+                      <AboutProductText>Артикул</AboutProductText>
+                      <AboutProductText>Наявність :</AboutProductText>
                     </div>
                     <div style={{ marginLeft: "20px" }}>
-                      <p> {product.brand}</p>
-                      <p> {product.country}</p>
-                      <p>{product.code}</p>
-                      <p>{product.article}</p>
+                      <AboutProductText> {product.brand}</AboutProductText>
+                      <AboutProductText> {product.country}</AboutProductText>
+                      <AboutProductText>{product.code}</AboutProductText>
+                      <AboutProductText>{product.article}</AboutProductText>
+                      {product.amount > 0 ? (
+                        <AboutProductText style={{ color: "#008205" }}>
+                          в наявності
+                        </AboutProductText>
+                      ) : (
+                        <AboutProductText style={{ color: "#f00" }}>
+                          немає в наявності
+                        </AboutProductText>
+                      )}
                     </div>
                   </DivAboutProduct>
                 </DivProductDescr>
 
-                <ProductTitleDescription>Опис</ProductTitleDescription>
+                <ProductTitleDescription>опис товару</ProductTitleDescription>
                 <ProductDescriptionWrap itemProp="description">
                   {paragraphs.map((paragraph, index) => (
-                    <div key={index}>
+                    <React.Fragment key={index}>
                       {paragraph.map((p, i) => (
                         <React.Fragment key={i}>{p}</React.Fragment>
                       ))}
-                    </div>
+                    </React.Fragment>
                   ))}
                 </ProductDescriptionWrap>
 
