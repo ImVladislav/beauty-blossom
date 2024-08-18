@@ -5,9 +5,9 @@ import { ReactComponent as corzinaIcon } from "../../../images/newCorzina.svg";
 export const UserIcon = styled(userIcon)`
   width: 28px;
   height: 28px;
-  fill: ${(p) => p.theme.colors.textColor};
+  fill: #616161;
   &:hover {
-    fill: ${(p) => p.theme.colors.accentColor};
+    fill: #ff96cf;
   }
 `;
 export const CorzinaIcon = styled(corzinaIcon)`

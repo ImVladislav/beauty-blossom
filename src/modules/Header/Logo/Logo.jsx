@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LinkLogo, TextLogo } from "./logo.styled";
+import { LinkLogo, TextLogo, TextLogoSecondWord } from "./logo.styled";
 
 const Logo = () => {
   const scrollToTop = () => {
@@ -12,9 +12,8 @@ const Logo = () => {
   return (
     <>
       <LinkLogo to="/" onClick={scrollToTop}>
-        <TextLogo>
-          Beauty <br /> Blossom
-        </TextLogo>
+        <TextLogo>Beauty</TextLogo>
+        <TextLogoSecondWord>Blossom</TextLogoSecondWord>
       </LinkLogo>
     </>
   );

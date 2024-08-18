@@ -49,7 +49,7 @@ import { Helmet } from "react-helmet";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
-import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
+// import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
 
 import {
   getProductPath,
@@ -265,6 +265,11 @@ const ProductPage = () => {
 
   return (
     <Container>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{product.name}</title>
+        <meta name="description" content={product.description} />
+      </Helmet>
       {loading ? (
         <Loader />
       ) : (

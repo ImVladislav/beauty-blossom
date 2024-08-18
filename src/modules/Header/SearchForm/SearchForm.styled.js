@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
 
 export const SearchFormContainer = styled.div`
-  text-align: center;
-  position: relative;
-  margin: 5px 10px 5px 30px;
-  transition: all 0.15s ease 0s;
+  overflow: hidden;
+  max-height: ${({ isOpen }) =>
+    isOpen ? "200px" : "0"}; // Висота форми, коли вона відкрита
+  opacity: ${({ isOpen }) => (isOpen ? "1" : "0")}; // Прозорість
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out; // Анімація
+  background: #8a8a8a;
   &:hover,
   &:focus {
     & svg {
@@ -14,6 +16,7 @@ export const SearchFormContainer = styled.div`
   }
   @media screen and (min-width: 768px) {
     margin-left: auto;
+    background: #fff;
   }
   @media screen and (min-width: 1024px) {
     width: 300px;
@@ -34,8 +37,12 @@ export const SearchInput = styled.input`
   border-radius: 25px;
   border: 0.574px solid ${(p) => p.theme.colors.textColor};
   box-sizing: border-box;
-  width: 100%;
-  padding: 5px 20px 5px 35px;
+  width: -webkit-fill-available;
+  margin: 6px 15px;
+
+  /* padding: 5px 20px 5px 35px; */
+
+  padding: 5px 20px;
   color: ${(p) => p.theme.colors.textColor};
   background: ${(p) => p.theme.colors.white};
   transition: all 0.15s ease 0s;
@@ -45,14 +52,14 @@ export const SearchInput = styled.input`
   }
   @media screen and (min-width: 768px) {
     border-radius: 50px;
-    width: 275px;
+    /* width: 275px; */
     height: 35px;
     padding: 0px 16px 0px 42px;
     font-size: ${(p) => p.theme.fontSizes.s}px;
     border: 1px solid ${(p) => p.theme.colors.border};
   }
   @media screen and (min-width: 1024px) {
-    width: 350px;
+    /* width: 350px; */
     height: 50px;
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
@@ -66,19 +73,26 @@ export const SearchButton = styled.button`
   cursor: pointer;
   position: absolute;
   top: 0px;
-  left: 15px;
+  left: 20px;
   bottom: 0px;
   padding: 0px;
   background-color: transparent;
+  display: none;
   @media screen and (min-width: 768px) {
-    left: 20px;
+    display: block;
+    left: 45px;
   }
+  /* @media screen and (min-width: 768px) {
+    display: block;
+
+  } */
 `;
 
 export const SearchIcon = styled(BsSearch)`
-  width: 10px;
-  height: 10px;
-  color: ${(p) => p.theme.colors.textColor};
+  width: 18px;
+  height: 18px;
+  /* color: ${(p) => p.theme.colors.textColor}; */
+  color: #ff96cf;
   @media screen and (min-width: 768px) {
     width: 20px;
     height: 20px;

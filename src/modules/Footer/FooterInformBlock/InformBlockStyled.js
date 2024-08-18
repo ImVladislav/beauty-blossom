@@ -14,14 +14,20 @@ export const TitleWrap = styled.div`
   margin-bottom: 5px;
 `;
 export const Title = styled.h3`
-  color: ${(p) => p.theme.colors.border};
-  font-family: "Alegreya Sans";
-  font-size: ${(p) => p.theme.fontSizes.m}px;
-  font-weight: ${(p) => p.theme.fontWeights.subtitle};
-  font-style: normal;
-  letter-spacing: 2.21px;
-  letter-spacing: 0.745px;
-
+  font-family: "Mulish", sans-serif;
+  color: #616161;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.03;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  /* font-weight: ${(p) => p.theme.fontWeights.subtitle}; */
+  /* font-style: normal; */
+  /* letter-spacing: 2.21px;
+  letter-spacing: 0.745px; */
+  @media screen and (min-width: 768px) {
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+  }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
   }
@@ -36,23 +42,33 @@ export const List = styled.ul`
 `;
 export const Item = styled.li`
   font-size: ${(p) => p.theme.fontSizes.xxxs}px;
+  margin-bottom: 8px;
 `;
 
 export const LinkStyledSecond = styled.a`
-  position: relative;
-  font-family: "Noto Sans", sans-serif;
+  display: flex;
   text-decoration: none;
-  color: ${(p) => p.theme.colors.border};
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: 100;
-  line-height: 1.03312;
-  letter-spacing: -0.07em;
+  /* color: ${(p) => p.theme.colors.textColor};
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
+  align-items: center;
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: 1; */
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.03;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
   display: inline-block;
+
   cursor: pointer;
   &:hover {
-    color: ${(p) => p.theme.colors.accentColor};
+    /* color: ${(p) => p.theme.colors.accentColor}; */
+    color: #ffa5d6;
   }
-  &:after {
+  /* &:after {
     content: "";
     position: absolute;
     left: 0;
@@ -67,7 +83,7 @@ export const LinkStyledSecond = styled.a`
 
   &:hover:after {
     opacity: 1;
-  }
+  } */
 
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
@@ -78,14 +94,21 @@ export const LinkStyledSecond = styled.a`
 `;
 
 export const LinkStyled = styled(Link)`
-  position: relative;
-  font-family: "Noto Sans", sans-serif;
+  display: flex;
   text-decoration: none;
-  color: ${(p) => p.theme.colors.border};
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: 100;
-  line-height: 1.03312;
-  letter-spacing: -0.07em;
+  /* color: ${(p) => p.theme.colors.textColor};
+  font-size: ${(p) => p.theme.fontSizes.xl}px;
+  align-items: center;
+  font-style: normal;
+  font-weight: ${(p) => p.theme.fontWeights.body};
+  line-height: 1; */
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.03;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
   display: inline-block;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};

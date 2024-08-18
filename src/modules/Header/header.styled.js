@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { BsSearch } from "react-icons/bs";
 import { HiMenu } from "react-icons/hi";
 
 export const ContainerHeader = styled.div`
@@ -33,7 +33,8 @@ export const HeaderLayout = styled.div`
   margin: 10px 0;
   position: relative;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
 `;
 export const WrapTop = styled.div`
@@ -60,17 +61,22 @@ export const WrapContacts = styled.div`
 `;
 
 export const LoginShipingThumb = styled.div`
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  position: absolute;
+  justify-content: space-between;
+  width: 150px;
+  right: 0;
   display: flex;
   align-items: flex-end;
   @media screen and (min-width: 768px) {
-    margin-left: 20px;
+    /* margin-left: 20px; */
   }
   @media screen and (min-width: 1024px) {
-    margin-left: 20px;
+    /* margin-left: 20px; */
+    width: 195px;
   }
   @media screen and (min-width: 1440px) {
-    margin-left: 30px;
+    /* margin-left: 30px; */
   }
 `;
 
@@ -110,7 +116,8 @@ export const MenuBottom = styled.div`
   color: ${(p) => p.theme.colors.textColor};
 `;
 export const MenuWrap = styled.div`
-  max-width: 1440px;
+  max-width: 1100px;
+  /* max-width: 1440px; */
   padding: 0 20px;
   margin: 0 auto;
 `;
@@ -125,10 +132,10 @@ export const Line = styled.div`
 
 export const TopWrap = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 3px 28px;
-  background: ${(p) => p.theme.colors.topLine};
+  /* background: ${(p) => p.theme.colors.topLine}; */
 `;
 
 export const ButtonMenu = styled.button`
@@ -140,7 +147,7 @@ export const ButtonMenu = styled.button`
   cursor: pointer;
   padding: 0;
   margin: 0;
-  margin-right: 30px;
+  /* margin-right: 30px; */
   color: ${(p) => p.theme.colors.textColor};
   transition: all 0.15s ease 0s;
   &:hover,
@@ -153,20 +160,33 @@ export const MenuIcon = styled(HiMenu)`
   width: 35px;
   height: 35px;
 `;
-export const Schedule = styled.p`
-  color: ${(p) => p.theme.colors.textColor};
+export const Schedule = styled.a`
+  /* color: ${(p) => p.theme.colors.textColor}; */
   text-align: center;
-  font-size: ${(p) => p.theme.fontSizes.xxs}px;
-  font-style: normal;
+  /* font-size: ${(p) => p.theme.fontSizes.xxs}px; */
+  /* font-style: normal; */
   font-weight: ${(p) => p.theme.fontWeights.body};
   line-height: 1.2;
-  letter-spacing: -0.135px;
+  /* letter-spacing: -0.135px; */
+
+  font-family: "Mulish", sans-serif;
+  /* font-weight: 400; */
+  font-size: 12px;
+  /* line-height: 1.079; */
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-align: justify;
+  color: #616161;
+  /* display: flex;
+  justify-content: center; */
 `;
 export const CenterWrap = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 3px 5px 3px 30px;
+  justify-content: space-evenly;
+  padding: 3px 5px 3px 3px;
+  /* padding: 3px 5px 3px 30px; */
+  align-items: flex-end;
   @media screen and (min-width: 1024px) {
     padding: 3px 23px 3px 30px;
   }
@@ -187,5 +207,21 @@ export const NameUser = styled.p`
   }
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
+  }
+`;
+export const SearchIcon = styled(BsSearch)`
+  width: 24px;
+  height: 24px;
+  /* color: ${(p) => p.theme.colors.textColor}; */
+  color: #616161;
+  /* @media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+  } */
+  margin: 3px;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: #ff96cf;
   }
 `;

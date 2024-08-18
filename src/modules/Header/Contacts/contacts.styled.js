@@ -86,12 +86,19 @@ export const TelegramIcon = styled(RiTelegramLine)`
 export const Link = styled.a`
   display: flex;
   text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
+  /* color: ${(p) => p.theme.colors.textColor};
   font-size: ${(p) => p.theme.fontSizes.xl}px;
   align-items: center;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.body};
-  line-height: 1;
+  line-height: 1; */
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.03;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
   &.head {
     font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
@@ -136,13 +143,17 @@ export const Link = styled.a`
 export const Wrap = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 8px;
+  /* @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  } */
 
   &:hover,
   &:focus {
-    color: ${(p) => p.theme.colors.accentColor};
+    color: #ff96cf;
 
     & ${Link}, & ${ContactsElips} {
-      color: ${(p) => p.theme.colors.accentColor};
+      color: #ff96cf;
     }
 
     & ${IconPhone} {
