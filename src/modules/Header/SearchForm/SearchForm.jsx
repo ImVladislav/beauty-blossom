@@ -47,9 +47,9 @@ const SearchForm = ({ isOpen }) => {
           value={searchTerm}
           onChange={handleInputChange}
         />
-        <SearchButton type="submit">
+        {/* <SearchButton type="submit">
           <SearchIcon />
-        </SearchButton>
+        </SearchButton> */}
       </form>
     </SearchFormContainer>
   );

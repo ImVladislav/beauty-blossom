@@ -11,7 +11,7 @@ export const ProductOfTheWeek = () => {
           Підписуйся на наш телеграм канал, щоб дізнатись першим про новинки та
           поповнення асортименту
         </Link>
-        <Underline />
+        {/* <Underline /> */}
       </Text>
     </Background>
   );
