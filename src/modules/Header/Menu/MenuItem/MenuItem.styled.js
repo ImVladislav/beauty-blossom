@@ -17,9 +17,9 @@ export const Item = styled.li`
   align-items: center;
 
   &:hover {
-    background: ${(p) => p.theme.colors.menuHover};
+    /* background: ${(p) => p.theme.colors.menuHover};
     box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-    border-radius: 49px;
+    border-radius: 49px; */
   }
 `;
 
