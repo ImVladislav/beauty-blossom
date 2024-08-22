@@ -1,48 +1,112 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PageContainer = styled.div`
-  margin: 20px 10px;
+// breadcrumbs
+export const Breadcrumbs = styled.div`
+  margin-top: 20px;
+  padding: 0 20px;
+  @media screen and (min-width: 1024px) {
+    margin-top: 36px;
+    padding: 0 60px;
+  }
+`;
+
+export const UlHistoryList = styled.ul`
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 0 2px;
+  & span {
+    font-family: "Mulish", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.02312;
+    color: #616161;
+    text-decoration: none;
+    @media screen and (min-width: 1024px) {
+      font-size: 15px;
+    }
+  }
+`;
+
+export const LiHistoryItem = styled.li`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  display: flex;
+  gap: 2px;
+  @media screen and (min-width: 1024px) {
+    font-size: 15px;
+  }
+`;
+
+export const LinkHistoryLink = styled(Link)`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.02312;
+  color: #616161;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.hoverAccentColor};
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 15px;
+  }
+`;
+
+export const PHistoryName = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.02312;
+  color: #616161;
+  text-decoration: none;
+  @media screen and (min-width: 1024px) {
+    font-size: 15px;
+  }
+`;
+
+export const ProductContainer = styled.div`
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   @media screen and (min-width: 768px) {
-    margin: 40px 5px;
+    padding: 0 20px;
+    margin: 32px 0;
     flex-direction: row;
     align-items: flex-start;
+    gap: 20px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 0 60px;
   }
 `;
 
-export const ImageWrap = styled.div`
+// image
+export const ImageContainer = styled.div`
   position: relative;
   display: inline-block;
   max-width: fit-content;
   max-height: auto;
+  padding: 0 20px;
   @media screen and (min-width: 768px) {
     max-width: inherit;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: inherit;
-    /* max-height: 500px; */
-  }
-  @media screen and (min-width: 1440px) {
+    flex: 1;
+    padding: 0;
   }
 `;
 
-export const ProductImage = styled.img`
+export const Image = styled.img`
   max-width: 100%;
   max-height: 100%;
   width: auto;
   height: auto;
 `;
 
-export const WrapName = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  border-bottom: 1px solid #aa9e9e;
-  margin-bottom: 20px;
-`;
 export const ProductTags = styled.div`
   display: grid;
   justify-content: space-between;
@@ -50,6 +114,25 @@ export const ProductTags = styled.div`
   right: 20px;
   top: 10px;
 `;
+// info
+export const InfoContainer = styled.div`
+  @media screen and (min-width: 768px) {
+    flex: 2;
+  }
+`;
+
+export const ProductNameWrapper = styled.div`
+  display: flex;
+  border-bottom: 1px solid #aa9e9e;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  @media screen and (min-width: 768px) {
+    padding: 0 0 5px;
+    margin: 0;
+  }
+`;
+
+// title
 export const ProductName = styled.h2`
   margin: 10px 0;
 
@@ -60,75 +143,64 @@ export const ProductName = styled.h2`
   text-align: center;
   color: #424242;
   @media screen and (min-width: 768px) {
-    font-size: 28px;
+    margin: 0;
+    text-align: start;
   }
-  @media screen and (max-width: 767px) {
-    display: flex;
-    text-align: center;
+  @media screen and (min-width: 1024px) {
+    font-size: 35px;
   }
 `;
 
-// export const ProductArticle = styled.div`
-//   position: absolute;
-//   right: 5px;
-//   top: 10px;
-//   text-align: center;
-//   padding: 7px 14px;
-//   margin: 0 0 -15px 0;
-//   font-size: ${(p) => p.theme.fontSizes.xs}px;
-//   font-style: normal;
-//   font-weight: ${(p) => p.theme.fontWeights.body};
-//   background: ${(p) => p.theme.colors.topHeaderLine};
-//   border-radius: ${(p) => p.theme.radii.none};
-//   color: ${(p) => p.theme.colors.textColor};
-//   @media screen and (min-width: 768px) {
-//     font-size: ${(p) => p.theme.fontSizes.s}px;
-//     position: relative;
-//   }
-// `;
+export const ProductFeaturesWrapper = styled.div`
+  /* display: flex; */
 
-// export const ProductArticleSpan = styled.span`
-//   display: block;
-//   margin: 3px;
-//   text-align: center;
-//   font-size: ${(p) => p.theme.fontSizes.xxs}px;
-//   color: ${(p) => p.theme.colors.textColor};
-//   font-weight: ${(p) => p.theme.fontWeights.bold};
-//   @media screen and (min-width: 768px) {
-//     font-size: ${(p) => p.theme.fontSizes.xs}px;
-//   }
-// `;
+  display: grid;
+  margin: 0 auto;
+  gap: 10px;
+  padding: 0 20px;
 
-// export const ProductCode = styled.p`
-//   font-size: ${(p) => p.theme.fontSizes.xs}px;
-//   font-style: normal;
-//   font-weight: ${(p) => p.theme.fontWeights.body};
-//   line-height: normal;
-//   margin: 5px 0;
-//   @media screen and (min-width: 768px) {
-//     font-size: ${(p) => p.theme.fontSizes.sm}px;
-//   }
-// `;
-// export const ProductCountry = styled.p`
-//   font-size: ${(p) => p.theme.fontSizes.xs}px;
-//   font-style: normal;
-//   font-weight: ${(p) => p.theme.fontWeights.bold};
-//   line-height: normal;
-//   margin: 5px 0;
-//   @media screen and (min-width: 768px) {
-//     font-size: ${(p) => p.theme.fontSizes.sm}px;
-//   }
-// `;
-// export const ProductBrand = styled.p`
-//   font-size: ${(p) => p.theme.fontSizes.s}px;
-//   font-style: normal;
-//   font-weight: ${(p) => p.theme.fontWeights.bold};
-//   line-height: normal;
-//   margin: 5px 0;
-//   @media screen and (min-width: 768px) {
-//     font-size: ${(p) => p.theme.fontSizes.m}px;
-//   }
-// `;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0;
+    gap: 0;
+    margin: 20px 0 0;
+  }
+`;
+
+export const ProductInner = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+`;
+
+// price
+export const ProductPriceWrapper = styled.div`
+  @media screen and (min-width: 768px) {
+    padding-left: 10px;
+  }
+`;
+
+export const ProductPriceName = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+  text-align: center;
+  @media screen and (min-width: 768px) {
+    text-align: start;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
+`;
 
 export const ProductPrice = styled.p`
   font-family: "Mulish", sans-serif;
@@ -138,92 +210,90 @@ export const ProductPrice = styled.p`
   letter-spacing: 0.1em;
   color: #424242;
   margin: 10px 0;
-
   @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.authxl}px;
+    margin: 10px 0 25px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 44px;
   }
 `;
 
-export const PriceName = styled.p`
-  font-family: "Mulish", sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.079;
-  letter-spacing: 0.1em;
-  color: #616161;
-`;
+export const AboutProductWrapper = styled.div`
+  display: none;
 
-export const ProductTitleDescription = styled.p`
-  font-family: "Mulish", sans-serif;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 1.079;
-  letter-spacing: 0.1em;
-  color: #616161;
-
-  margin-top: 20px;
-  border-bottom: 1px solid #aa9e9e;
-  text-align: center;
-  padding-bottom: 10px;
   @media screen and (min-width: 768px) {
-    font-size: 30px;
+    justify-content: flex-start;
+    display: flex;
+    gap: 50px;
+    border-bottom: 1px solid #aa9e9e;
+
+    padding: 0 0 20px 10px;
   }
 `;
-export const ProductDescriptionWrap = styled.div`
+export const AboutProductWrapperMobile = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 15px 0px;
+  gap: 50px;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const AboutProductText = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 300;
-  font-size: 12px;
-  line-height: 1.01;
-  text-transform: capitalize;
-  text-align: justify;
-  color: #616161;
+  font-size: 14px;
+  line-height: 1.02312;
 
-  margin: 5px 0;
-  & > p {
-    text-indent: 5px;
-    margin-bottom: 5px;
-  }
-  @media screen and (min-width: 768px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+  color: #616161;
+  &:not(:first-child) {
+    margin-top: 5px;
   }
 `;
 
-export const Info = styled.div`
+export const ProductBuyWrapper = styled.div`
+  display: grid;
+  margin: 0 auto;
+  gap: 10px;
+  padding: 0 20px;
+
   @media screen and (min-width: 768px) {
-    padding-left: 20px;
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
   }
 `;
 
 export const CounterBlock = styled.div`
   position: relative;
-  width: 180px;
+  width: 140px;
   min-height: 27px;
 
   display: flex;
   border-radius: 20px;
   border: 1px solid ${(p) => p.theme.colors.textColor};
   align-items: center;
-  margin-bottom: 20px;
+
   justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
-  cursor: pointer;
+  margin: 0 auto;
+
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
-    height: 38px;
-    margin-bottom: 10px;
-    min-width: 95px;
-    margin-right: 20px;
+    margin: 0;
   }
   @media screen and (min-width: 1024px) {
-    /* max-width: 120px; */
-  }
-  @media screen and (min-width: 1440px) {
+    min-height: 37px;
+    max-height: 40px;
+    width: 180px;
   }
 `;
+
 export const ButtonIncDec = styled.span`
   position: relative;
   display: inline-block;
@@ -249,7 +319,7 @@ export const ButtonIncDec = styled.span`
 `;
 
 export const InputIncDec = styled.input`
-  width: 80px;
+  width: 60px;
   text-align: center;
 
   outline: none;
@@ -281,93 +351,87 @@ export const InputIncDec = styled.input`
   }
 `;
 
-export const UlHistoryList = styled.ul`
+export const ProductAdminForm = styled.form`
   display: flex;
-  margin-left: 3%;
-  flex-wrap: wrap;
-`;
-
-export const LiHistoryList = styled.li`
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-`;
-
-export const LinkHistoryLink = styled(Link)`
-  font-family: "Mulish", sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.02312;
-  color: #616161;
-  text-decoration: none;
-  margin: 0px 2px;
-  &:hover,
-  &:focus {
-    color: ${(p) => p.theme.colors.textColor};
+  flex-direction: row;
+  margin-top: 20px;
+  gap: 10px;
+  & div {
+    margin: 0;
   }
-`;
-
-export const PHistoryName = styled.p`
-  font-family: "Mulish", sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 1.02312;
-  color: #616161;
-  text-decoration: none;
-  margin: 0 2px;
-
-  /* cursor: pointer; */
-`;
-
-export const DivProductDescr = styled.div`
-  /* display: flex; */
-  width: 250px;
-  display: grid;
-  margin: 0 auto;
-
   @media screen and (min-width: 768px) {
-    display: flex;
+    gap: 20px;
+    margin-top: 30px;
   }
 `;
-export const DivAboutProduct = styled.div`
-  display: none;
 
-  @media screen and (min-width: 768px) {
-    justify-content: flex-start;
-    display: flex;
-    margin-left: auto;
-  }
-`;
-export const AboutProductText = styled.p`
-  font-family: "Mulish", sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.02312;
-
-  color: #616161;
-  margin-top: 5px;
-`;
-
-export const DivAboutProductMobile = styled.div`
+// _______________description_________________
+export const ProductDescriptionWrap = styled.div`
   display: flex;
   justify-content: center;
-  margin: 15px 0px;
   gap: 50px;
+  padding: 0 20px;
 
   @media screen and (min-width: 768px) {
-    display: none;
+    padding: 20px 0 0;
+    border-bottom: 1px solid #616161;
+  }
+`;
+export const ProductDescriptionTitle = styled.h3`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #616161;
+  padding: 40px 0 20px;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    font-family: "Mulish", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.02312;
+    text-transform: lowercase;
+    color: #616161;
+
+    padding: 0 30px 10px;
+    border-bottom: 2px solid #616161;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 0 100px 10px;
   }
 `;
 
-export const DivPriceCounterProduct = styled.div`
+export const ProductDescriptionList = styled.ul`
+  padding: 0 20px;
   display: flex;
-  align-items: center;
-  flex-direction: column;
-
+  flex-wrap: wrap;
+  gap: 3px;
   @media screen and (min-width: 768px) {
-    align-items: flex-start;
+    margin-top: 30px;
   }
 `;
+export const ProductDescriptionItem = styled.li`
+  & p {
+    text-indent: 10px;
+
+    font-family: "Mulish", sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 1.01;
+    text-transform: capitalize;
+    text-align: justify;
+    color: #616161;
+    @media screen and (min-width: 768px) {
+      font-size: ${(p) => p.theme.fontSizes.sm}px;
+    }
+  }
+`;
+// wtf
 
 export const DivAvableProduct = styled.div`
   margin-left: auto;

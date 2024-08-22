@@ -1,7 +1,7 @@
 import ProductCard from "../../../shared/components/ProductCard/ProductCard";
-import { Container } from "../../../shared/styles/Container";
+// import { Container } from "../../../shared/styles/Container";
 
-import { List, Title, TitleLine } from "./NewSlider.styled";
+import { Container, List, Title, TitleLine } from "./NewSlider.styled";
 
 const NewSlider = ({ items, title }) => {
   return (

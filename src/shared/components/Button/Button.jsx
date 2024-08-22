@@ -9,12 +9,16 @@ const Button = ({
   goods,
   userMenu,
   opt,
+  list,
   slider,
 }) => {
   return (
     <ButtonStyle
       className={
-        (goods && "goods") || (userMenu && "user-menu") || (opt && "opt")
+        (goods && "goods") ||
+        (userMenu && "user-menu") ||
+        (opt && "opt") ||
+        (list && "list")
       }
       slider={slider}
       type={type}

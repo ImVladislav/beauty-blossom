@@ -30,15 +30,51 @@ export const ButtonStyle = styled.button`
     background-color: ${(p) =>
       p.disabled ? "#ccc" : p.theme.colors.accentColor};
     font-size: 12px;
-    padding: 7px 30px;
+    padding: 7px 20px;
+    width: 220px;
 
     color: ${(p) => p.theme.colors.white};
-
-    border: ${(p) => (p.disabled ? `1px solid black` : `1px solid #8a8a8a`)};
+    border: ${(p) => (p.disabled ? `1px solid #8A8A8A` : `1px solid #8a8a8a`)};
 
     &:hover {
       background-color: ${(p) =>
         p.disabled ? "#ccc" : p.theme.colors.hoverAccentColor};
+
+      color: ${(p) => p.theme.colors.white};
+
+      /* border: ${(p) =>
+        p.disabled ? `1px solid black` : `1px solid #8a8a8a`}; */
+    }
+    ${(p) =>
+      p.slider &&
+      css`
+        font-size: 7px;
+        @media screen and (min-width: 768px) {
+          font-size: 12px;
+        }
+      `}
+
+    @media screen and (min-width: 1024px) {
+      font-size: ${(p) => p.theme.fontSizes.sm}px;
+      font-size: 16px;
+      width: 300px;
+      padding: 10px 20px;
+    }
+  }
+
+  &.list {
+    background-color: ${(p) => (p.disabled ? "#ccc" : "transparent")};
+    font-size: 12px;
+    padding: 7px 20px;
+
+    color: ${(p) => (p.disabled ? p.theme.colors.white : "#616161")};
+    border: ${(p) => (p.disabled ? `1px solid #8A8A8A` : `1px solid #8a8a8a`)};
+
+    &:hover {
+      background-color: ${(p) =>
+        p.disabled ? "#ccc" : p.theme.colors.hoverAccentColor};
+
+      color: ${(p) => p.theme.colors.white};
 
       /* border: ${(p) =>
         p.disabled ? `1px solid black` : `1px solid #8a8a8a`}; */
