@@ -23,18 +23,18 @@ export const SimilarProducts = ({ brand, productId }) => {
   }, [brand, dispatch]);
 
   const items = useSelector(selectFilterBrand);
-  console.log(items);
-  const limitedItems = items
+
+  const limitedItems = [...items]
     .sort((a, b) => b.amount - a.amount)
     .filter((product) => product.id !== productId)
     .slice(0, 3);
 
   return (
     <>
-      {limitedItems.length > 1 && (
+      {!limitedItems.length <= 1 && (
         <Container>
           <BrandStyledLink to={`/brands/${brand.toLowerCase()}`}>
-            <Title>Інші товари цього бренду</Title>
+            <Title>iнші товари цього бренду</Title>
           </BrandStyledLink>
           <Line />
           <CartWrap>

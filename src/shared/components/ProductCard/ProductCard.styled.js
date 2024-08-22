@@ -6,7 +6,7 @@ export const ItemStyle = styled.li`
   position: relative;
   min-width: 140px;
   max-width: 220px;
-  padding: 10px;
+  padding: 5px 15px 15px;
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   transition: all 250ms linear;
   list-style: none;
@@ -19,15 +19,18 @@ export const ItemStyle = styled.li`
   }
 
   @media screen and (min-width: 768px) {
-    max-width: 320px;
+    padding: 5px 15px 15px;
   }
   @media screen and (min-width: 1024px) {
-    max-width: 320px;
+    max-width: 300px;
   }
+
   @media screen and (min-width: 1440px) {
-    max-width: 350px;
+    max-width: 320px;
+    padding: 5px 25px 25px;
   }
 `;
+
 // export const Container = styled.div`
 //   display: flex;
 //   flex-direction: column;
@@ -97,6 +100,9 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 10px;
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
   @media screen and (min-width: 1024px) {
     margin-top: 20px;
   }
@@ -136,6 +142,9 @@ export const Name = styled.p`
     p.slider &&
     css`
       font-size: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 4.5em;
       @media screen and (min-width: 768px) {
         font-size: 10px;
       }
@@ -176,7 +185,7 @@ export const PriceName = styled.p`
       }
     `}
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
   }
 `;
 
@@ -197,14 +206,15 @@ export const Available = styled.p`
       }
     `}
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    font-size: ${(p) => p.theme.fontSizes.s}px;
+    margin-top: 8px;
   }
 `;
 
 export const Price = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 900;
-  font-size: ${(p) => p.theme.fontSizes.m}px;
+  font-size: ${(p) => p.theme.fontSizes.sm}px;
   line-height: 1.079;
   letter-spacing: 0.1em;
   color: #616161;
@@ -214,7 +224,7 @@ export const Price = styled.p`
     css`
       font-size: 11px;
       @media screen and (min-width: 768px) {
-        font-size: 18px;
+        font-size: 16px;
       }
     `}
   @media screen and (min-width: 1024px) {
@@ -224,6 +234,9 @@ export const Price = styled.p`
 
 export const ButtonWrap = styled.div`
   margin: 10px auto 0;
+  @media screen and (min-width: 1024px) {
+    margin: 20px auto 0;
+  }
 `;
 export const ButtonIncDec = styled.span`
   position: relative;

@@ -38,13 +38,17 @@ export const SliderContainer = styled.div`
   justify-content: space-between;
   gap: 2px;
   margin-top: 20px;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    gap: 5px;
+  }
 `;
 
 export const Button = styled.button`
   position: relative;
   background-color: transparent;
   border: none;
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? "not-allowed" : "pointer")};
   padding: 0;
 
   svg {
@@ -52,6 +56,7 @@ export const Button = styled.button`
     height: 21px;
     filter: grayscale(1);
     transition: filter 0.3s;
+
     @media screen and (min-width: 768px) {
       width: 30px;
       height: 30px;
@@ -64,6 +69,8 @@ export const Button = styled.button`
 
     &:hover {
       filter: grayscale(0);
+      fill: ${(p) =>
+        p.disabled ? "#1010104d" : p.theme.colors.hoverAccentColor};
     }
   }
 `;
@@ -75,9 +82,13 @@ export const CartWrap = styled.ul`
   gap: 10px;
   text-align: center;
   justify-content: center;
+  @media screen and (min-width: 460px) {
+    gap: 25px;
+  }
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, minmax(140px, 1fr));
   }
+
   /* display: flex;
   justify-content: center;
   gap: 10px; */

@@ -21,7 +21,7 @@ export const WrapListProduct = styled.div`
 export const ProductListContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(1, minmax(250px, 1fr));
-  gap: 10px;
+  gap: 20px;
   text-align: center;
   justify-content: center;
   justify-items: center;
@@ -29,7 +29,11 @@ export const ProductListContainer = styled.ul`
   @media screen and (min-width: 600px) {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
   @media screen and (min-width: 1024px) {
+    gap: 25px;
     grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
 
@@ -51,7 +55,7 @@ export const FilterWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const FilterSelect = styled.select`

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AiOutlineCheck } from "react-icons/ai";
-import { AiOutlineClose } from "react-icons/ai";
+// import { AiOutlineCheck } from "react-icons/ai";
+// import { AiOutlineClose } from "react-icons/ai";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -17,39 +17,45 @@ import { selectCart } from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
-import Sticker from "../../shared/components/Sticker/Sticker";
 import { Container } from "../../shared/styles/Container";
 import { Loader } from "../../shared/components/Loader/Loader";
 
 import {
-  PageContainer,
-  ImageWrap,
-  ProductImage,
-  WrapName,
+  ProductContainer,
+  ImageContainer,
+  Image,
+  ProductNameWrapper,
   ProductName,
   ProductPrice,
-  ProductTitleDescription,
-  Info,
+  InfoContainer,
   ButtonIncDec,
   CounterBlock,
   InputIncDec,
   ProductTags,
   UlHistoryList,
   LinkHistoryLink,
-  LiHistoryList,
-  DivProductDescr,
-  DivAboutProduct,
+  LiHistoryItem,
+  ProductFeaturesWrapper,
+  AboutProductWrapper,
   PHistoryName,
-  DivPriceCounterProduct,
-  DivAboutProductMobile,
-  DivAvableProduct,
+  ProductInner,
+  AboutProductWrapperMobile,
+  ProductDescriptionList,
+  ProductPriceName,
+  AboutProductText,
+  ProductAdminForm,
+  Breadcrumbs,
+  ProductBuyWrapper,
+  ProductDescriptionItem,
+  ProductPriceWrapper,
   ProductDescriptionWrap,
+  ProductDescriptionTitle,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
 import { setfilter } from "../../redux/filter/slice";
-// import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
+import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
 
 import {
   getProductPath,
@@ -58,6 +64,7 @@ import {
   getCategoryUrl,
   getCategoryUrl2,
 } from "./ProductUtils";
+import NewSticker from "../../shared/components/Sticker/NewSticker";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -274,161 +281,138 @@ const ProductPage = () => {
         <Loader />
       ) : (
         <div>
-          <div>
-            <UlHistoryList>
-              <LiHistoryList>
-                <LinkHistoryLink to="/">
-                  Повернутись на головну сторінку /
-                </LinkHistoryLink>
-              </LiHistoryList>
-              <LiHistoryList>
-                <LinkHistoryLink
-                  to={
-                    productPath ||
-                    (categoryUrl2 === "/category" ? categoryUrl : categoryUrl2)
-                  }
-                  onClick={() => handleLinkClick(product.category)}
-                >
-                  {product.category} /
-                </LinkHistoryLink>
-              </LiHistoryList>
-
-              <LiHistoryList>
-                {product.subSubCategory && (
+          <section>
+            <Breadcrumbs>
+              <UlHistoryList>
+                <LiHistoryItem>
+                  <LinkHistoryLink to="/">головна сторінка</LinkHistoryLink>
+                  <span>/</span>
+                </LiHistoryItem>
+                <LiHistoryItem>
                   <LinkHistoryLink
-                    to={productSubPath || categoryUrl}
-                    onClick={() => handleLinkClick(product.subCategory)}
+                    to={
+                      productPath ||
+                      (categoryUrl2 === "/category"
+                        ? categoryUrl
+                        : categoryUrl2)
+                    }
+                    onClick={() => handleLinkClick(product.category)}
                   >
-                    {product.subCategory} /
+                    {product.category}
                   </LinkHistoryLink>
-                )}
-              </LiHistoryList>
-              <LiHistoryList>
-                {product.subSubCategory && (
+                  <span>/</span>
+                </LiHistoryItem>
+
+                <LiHistoryItem>
+                  {product.subSubCategory && (
+                    <>
+                      <LinkHistoryLink
+                        to={productSubPath || categoryUrl}
+                        onClick={() => handleLinkClick(product.subCategory)}
+                      >
+                        {product.subCategory}
+                      </LinkHistoryLink>
+                      <span>/</span>
+                    </>
+                  )}
+                </LiHistoryItem>
+                <LiHistoryItem>
+                  {product.subSubCategory && (
+                    <>
+                      <LinkHistoryLink
+                        to={producttSubSubPath}
+                        onClick={() => handleLinkClick(product.subSubCategory)}
+                      >
+                        {product.subSubCategory}
+                      </LinkHistoryLink>
+                      <span>/</span>
+                    </>
+                  )}
+                </LiHistoryItem>
+
+                <LiHistoryItem>
                   <LinkHistoryLink
-                    to={producttSubSubPath}
+                    to={`/brands/${product.brand}`}
                     onClick={() => handleLinkClick(product.subSubCategory)}
                   >
-                    {product.subSubCategory} /
+                    {product.brand}
                   </LinkHistoryLink>
-                )}
-              </LiHistoryList>
+                  <span>/</span>
+                </LiHistoryItem>
 
-              <LiHistoryList>
-                <LinkHistoryLink
-                  to={`/brands/${product.brand}`}
-                  onClick={() => handleLinkClick(product.subSubCategory)}
-                >
-                  {product.brand} /
-                </LinkHistoryLink>
-              </LiHistoryList>
-
-              <LiHistoryList>
-                <PHistoryName>{product.name}</PHistoryName>
-              </LiHistoryList>
-            </UlHistoryList>
-          </div>
-          <section>
-            <PageContainer>
-              {/* <Helmet>
+                <LiHistoryItem>
+                  <PHistoryName>{product.name}</PHistoryName>
+                </LiHistoryItem>
+              </UlHistoryList>
+            </Breadcrumbs>
+            {/* <Helmet>
                 <meta charSet="utf-8" />
                 <title>{product.name}</title>
 
                 <meta name="description" content={product.description} />
                 <meta name="keywords" content={product.description} />
               </Helmet> */}
-              <Helmet>
-                <meta charSet="utf-8" />
-                <title>{product.name}</title>
-                <meta name="description" content={product.description} />
-              </Helmet>
-
-              <h1 className="hidden">{product.name}</h1>
-
-              <ImageWrap>
-                <ProductImage
+            <Helmet>
+              <meta charSet="utf-8" />
+              <title>{product.name}</title>
+              <meta name="description" content={product.description} />
+            </Helmet>
+            <h1 className="hidden">{product.name}</h1>
+            <ProductContainer>
+              {/* image */}
+              <ImageContainer>
+                <Image
                   itemProp="image"
                   src={product.images}
                   alt={product.name}
                 />
                 <ProductTags>
-                  {product.new && <Sticker text="Новинка" />}
-                  {product.sale && <Sticker text="Акція" sale />}
+                  {product.new && <NewSticker text="New" />}
+                  {product.sale && <NewSticker text="Sale" sale />}
                 </ProductTags>
-              </ImageWrap>
-              <Info>
-                <WrapName>
+              </ImageContainer>
+              {/* info */}
+              <InfoContainer>
+                <ProductNameWrapper>
                   <div itemScope itemType="https://schema.org/Product"></div>
                   <ProductName itemProp="name">{product.name}</ProductName>
-                </WrapName>
-                <DivProductDescr>
-                  <DivPriceCounterProduct>
-                    <DivAvableProduct>
-                      {product.amount <= 0 ? (
-                        <>
-                          <AiOutlineClose
-                            style={{
-                              fill: "#FF0000",
-                              width: "30px",
-                              height: "30px",
-                            }}
-                          />
-                          <span
-                            style={{
-                              color: "#FF0000",
-                              fontSize: "18px",
-                              fontWeight: "700",
-                            }}
-                          >
-                            Немає в наявності
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <AiOutlineCheck
-                            style={{
-                              fill: "#379200",
-                              width: "30px",
-                              height: "30px",
-                            }}
-                          />
-                          <span
-                            style={{
-                              color: "#379200",
-                              fontSize: "18px",
-                              fontWeight: "700",
-                            }}
-                          >
-                            в наявності
-                          </span>
-                        </>
-                      )}
-                    </DivAvableProduct>
+                </ProductNameWrapper>
+                <ProductFeaturesWrapper>
+                  <ProductInner className="inner">
                     {optUser ? (
-                      <>
-                        <p style={{ fontSize: "22px", fontWeight: "500" }}>
-                          Оптова ціна
-                        </p>
-                        <ProductPrice>{product.priceOPT} Грн</ProductPrice>
-                      </>
+                      <ProductPriceWrapper>
+                        <ProductPriceName>оптова ціна</ProductPriceName>
+                        <ProductPrice>{product.priceOPT} грн</ProductPrice>
+                      </ProductPriceWrapper>
                     ) : (
-                      <ProductPrice>{product.price} Грн</ProductPrice>
+                      <ProductPriceWrapper>
+                        <ProductPriceName>роздрібна ціна</ProductPriceName>
+                        <ProductPrice>{product.price} грн</ProductPrice>
+                      </ProductPriceWrapper>
                     )}
-                    <DivAboutProductMobile>
+                    <AboutProductWrapperMobile>
                       <div>
-                        <p>Бренд</p>
-                        <p>Країна виробник</p>
-                        <p>Штрихкод </p>
-                        <p>Артикул</p>
+                        <AboutProductText>Бренд :</AboutProductText>
+                        <AboutProductText>Країна :</AboutProductText>
+                        <AboutProductText>Штрихкод :</AboutProductText>
+                        <AboutProductText>Артикул :</AboutProductText>
+                        <AboutProductText>Наявність :</AboutProductText>
                       </div>
-                      <div style={{ marginLeft: "20px" }}>
-                        <p> {product.brand}</p>
-                        <p> {product.country}</p>
-                        <p>{product.code}</p>
-                        <p>{product.article}</p>
+                      <div>
+                        <AboutProductText> {product.brand}</AboutProductText>
+                        <AboutProductText> {product.country}</AboutProductText>
+                        <AboutProductText>{product.code}</AboutProductText>
+                        <AboutProductText>{product.article}</AboutProductText>
+                        {product.amount > 0 ? (
+                          <AboutProductText style={{ color: "#008205" }}>
+                            в наявності
+                          </AboutProductText>
+                        ) : (
+                          <AboutProductText>немає в наявності</AboutProductText>
+                        )}
                       </div>
-                    </DivAboutProductMobile>
-                    <DivProductDescr>
+                    </AboutProductWrapperMobile>
+                    <ProductBuyWrapper>
                       {product.amount <= 0 ||
                         (!productCartFind && (
                           <CounterBlock>
@@ -453,24 +437,17 @@ const ProductPage = () => {
                         goods
                         text={
                           product.amount <= 0
-                            ? "Купити"
+                            ? "немає в наявності"
                             : productCartFind
-                            ? "У кошику"
-                            : "Купити"
+                            ? "у кошику"
+                            : "додати до кошика"
                         }
                         onClick={handleAddToCart}
                         disabled={productCartFind || product.amount <= 0}
                       />
-                    </DivProductDescr>
+                    </ProductBuyWrapper>
                     {isAdmin && (
-                      <form
-                        style={{
-                          display: "flex",
-                          margin: "5px 0",
-                          flexDirection: "column",
-                        }}
-                        onSubmit={handleChange}
-                      >
+                      <ProductAdminForm onSubmit={handleChange}>
                         <CounterBlock>
                           <InputIncDec
                             type="number"
@@ -480,49 +457,68 @@ const ProductPage = () => {
                         </CounterBlock>
                         <Button
                           type="submit"
-                          goods
-                          text={"Оновити"}
+                          list
+                          text={"оновити"}
                           // onClick={handleChange}
                         />
-                      </form>
+                      </ProductAdminForm>
                     )}
-                  </DivPriceCounterProduct>
-                  <DivAboutProduct>
+                  </ProductInner>
+                  <AboutProductWrapper>
                     <div>
-                      <p>Бренд</p>
-                      <p>Країна виробник</p>
-                      <p>Штрихкод </p>
-                      <p>Артикул</p>
+                      <AboutProductText>Бренд :</AboutProductText>
+                      <AboutProductText>Країна :</AboutProductText>
+                      <AboutProductText>Штрихкод :</AboutProductText>
+                      <AboutProductText>Артикул :</AboutProductText>
+                      <AboutProductText>Наявність :</AboutProductText>
                     </div>
                     <div style={{ marginLeft: "20px" }}>
-                      <p> {product.brand}</p>
-                      <p> {product.country}</p>
-                      <p>{product.code}</p>
-                      <p>{product.article}</p>
+                      <AboutProductText> {product.brand}</AboutProductText>
+                      <AboutProductText> {product.country}</AboutProductText>
+                      <AboutProductText>{product.code}</AboutProductText>
+                      <AboutProductText>{product.article}</AboutProductText>
+                      {product.amount > 0 ? (
+                        <AboutProductText style={{ color: "#008205" }}>
+                          в наявності
+                        </AboutProductText>
+                      ) : (
+                        <AboutProductText style={{ color: "#f00" }}>
+                          немає в наявності
+                        </AboutProductText>
+                      )}
                     </div>
-                  </DivAboutProduct>
-                </DivProductDescr>
-
-                <ProductTitleDescription>Опис</ProductTitleDescription>
-                <ProductDescriptionWrap itemProp="description">
-                  {paragraphs.map((paragraph, index) => (
-                    <div key={index}>
-                      {paragraph.map((p, i) => (
-                        <React.Fragment key={i}>{p}</React.Fragment>
-                      ))}
-                    </div>
-                  ))}
+                  </AboutProductWrapper>
+                </ProductFeaturesWrapper>
+                <ProductDescriptionWrap>
+                  <ProductDescriptionTitle>опис товару</ProductDescriptionTitle>
                 </ProductDescriptionWrap>
 
-                {/* <SimilarProducts brand={product.brand} productId={product.id} /> */}
+                <ProductDescriptionList itemProp="description">
+                  {paragraphs.map((paragraph, index) => (
+                    <React.Fragment key={index}>
+                      {paragraph.map((p, i) => (
+                        <ProductDescriptionItem key={i}>
+                          {p}
+                        </ProductDescriptionItem>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </ProductDescriptionList>
+
+                {product && (
+                  <SimilarProducts
+                    brand={product.brand}
+                    productId={product.id}
+                  />
+                )}
                 {isModalOpen && <QuickOrderModal onClose={toggleModal} />}
-              </Info>
+              </InfoContainer>
               {/* <QuickOrderModal
                 isOpen={isModalOpen}
                 onRequestClose={toggleModal}
                 product={product}
               /> */}
-            </PageContainer>
+            </ProductContainer>
           </section>
         </div>
       )}

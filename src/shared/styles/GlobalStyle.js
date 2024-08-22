@@ -63,6 +63,9 @@ img {
   height: auto;
   
 }
+button{
+  cursor: pointer;
+}
 
 a,
 button,

@@ -132,8 +132,8 @@ const ProductCard = ({ products, slider }) => {
           <>
             <ButtonWrap>
               <Button
-                goods
-                className="buy-button"
+                list
+                // className="buy-button"
                 type="button"
                 slider={slider}
                 text={
