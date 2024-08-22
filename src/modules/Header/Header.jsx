@@ -122,7 +122,6 @@ export const Header = () => {
                       </Wrap>
                     </WrapTop>
                   </HeaderLayout>
-                  <SearchForm isOpen={isSearchOpen} />
                 </HeaderWrap>
               </HeaderTop>
               <MenuBottom $pathname={pathname}>
@@ -130,6 +129,7 @@ export const Header = () => {
                   <Menu items={menuItems} />
                 </MenuWrap>
                 <Line />
+                <SearchForm isOpen={isSearchOpen} />
               </MenuBottom>
             </Container>
           </ContainerHeader>

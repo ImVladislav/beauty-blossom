@@ -64,8 +64,10 @@ export const DeliveryInfoBlock = styled.div`
 `;
 
 export const CostumerStatusinput = styled.input`
-  border-radius: 50px;
-  border: 1px solid black;
+  border: 1.91px solid #9a9a9a;
+  border-radius: 3px;
+  width: 290px;
+  height: 30px;
   padding: 5px 10px;
   background: transparent;
   margin: 10px 0px;
@@ -144,7 +146,11 @@ export const CityitemsBlock = styled.ul`
 `;
 
 export const Select = styled.select`
-  border-radius: 50px;
+  border: 1.91px solid #9a9a9a;
+  border-radius: 3px;
+  /* width: 290px;
+  height: 30px; */
+
   width: 100%;
   padding: 5px 25px 5px 10px;
   font-size: 14px;
@@ -169,11 +175,12 @@ export const Select = styled.select`
 `;
 
 export const Textarea = styled.textarea`
-  border-radius: 50px;
+  border: 1.91px solid #9a9a9a;
+  border-radius: 3px;
   resize: none;
   background: transparent;
   width: 100%;
-  height: 41px;
+  height: 51px;
   padding: 14px 20px;
   overflow-y: hidden;
   margin-bottom: 20px;
@@ -203,24 +210,41 @@ export const Titles = styled.h3`
   margin-bottom: 12px;
   margin-top: 12px;
   width: 100%;
-  font-weight: bold;
-  font-size: 22px;
+  /* font-weight: bold; */
+  /* font-size: 22px; */
+
+  font-family: "Century Gothic", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+
   @media (min-width: 1024px) and (max-width: 1439px) {
     font-size: 20px;
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 16px;
+    font-size: 22px;
   }
 `;
 export const Title = styled.h2`
   display: flex;
   justify-content: center;
-  font-size: 32px;
+  /* font-size: 32px; */
   border-bottom: 1px solid #c7c7c7;
   margin: 20px 320px 20px 320px;
   white-space: nowrap;
-  font-weight: bold;
+  /* font-weight: bold; */
+
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.02312;
+  text-transform: uppercase;
+  text-align: center;
+  color: #616161;
 
   @media (min-width: 1240px) and (max-width: 1439px) {
     font-size: 28px;
@@ -253,26 +277,33 @@ export const DivInfoBlock = styled.div`
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+  background-color: #31aa53;
 `;
 export const InfoTextP = styled.p`
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.02312;
-  letter-spacing: 0.01em;
-  text-transform: uppercase;
-  text-align: center;
-  color: #000;
-`;
-export const InfoTextSpan = styled.span`
+  font-family: "Mulish", sans-serif;
   font-weight: 700;
-
-  font-size: 12px;
-  line-height: 1.02312;
-  letter-spacing: 0.01em;
+  font-size: 10px;
+  line-height: 1.5;
   text-transform: uppercase;
   text-align: center;
-  color: #000;
+  color: #fff;
+
+  @media (min-width: 1024px) {
+    /* margin-left: 20px; */
+  }
 `;
+// export const InfoTextSpan = styled.span`
+//   font-family: "Mulish", sans-serif;
+//   font-weight: 700;
+//   font-size: 10px;
+//   line-height: 1.02312;
+//   text-transform: uppercase;
+//   text-align: center;
+//   color: #fff;
+//   @media (min-width: 1024px) {
+//     /* margin-left: 20px; */
+//   }
+// `;
 
 export const OrdersThumb = styled.div`
   border: 1px solid ${(p) => p.theme.colors.textColor};
@@ -555,9 +586,11 @@ export const SelectOpton = styled.option`
 `;
 
 export const SubmitButton = styled.button`
+  border: 1.91px solid #9a9a9a;
+  border-radius: 3px;
   background: transparent;
-  border: 3px solid ${(p) => p.theme.colors.textColor};
-  border-radius: 50px;
+  /* border: 3px solid ${(p) => p.theme.colors.textColor}; */
+  /* border-radius: 50px; */
   display: flex;
   text-align: center;
   justify-content: center;
@@ -646,33 +679,42 @@ export const LinkThumb = styled.div`
 export const LinkButton = styled(Link)`
   cursor: pointer;
   background: #fff0da;
-  color: ${(p) => p.theme.colors.textColor};
+  /* color: ${(p) => p.theme.colors.textColor}; */
   border-radius: 46px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   text-decoration: none;
-  padding: 6px 40px;
+  padding: 6px 20px;
   margin: 20px 5px 0px 5px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #ff96cf;
+  background: #fff;
   &:hover {
-    background: #ffe9c9;
+    scale: 1.05;
+    transition: 0.5s;
   }
-
-  @media (min-width: 1240px) {
-    padding: 6px 40px;
-    font-size: 20px;
-  }
-
-  @media (min-width: 1024px) and (max-width: 1239px) {
-    font-size: 16px;
-    padding: 6px 30px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 16px;
-    padding: 6px 20px;
-  }
-  @media (max-width: 768px) {
-    font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 18px;
     padding: 6px 14px;
+
+    @media (min-width: 1240px) {
+      /* padding: 6px 40px; */
+      /* font-size: 12px; */
+    }
+
+    @media (min-width: 1024px) and (max-width: 1239px) {
+      font-size: 14px;
+      padding: 6px 30px;
+    }
+    /* 
+    @media (min-width: 768px) and (max-width: 1023px) {
+      font-size: 16px;
+      padding: 6px 20px;
+    } */
   }
 `;
 
@@ -718,27 +760,16 @@ export const ModalStyle = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 800px;
-  max-height: 500px;
+  width: 370px;
+  height: 370px;
+  /* max-width: 800px; */
+  /* max-height: 500px; */
   margin: auto;
   padding: 30px;
-  border: 4px solid #504056;
-  border-radius: 100px;
-  background: white;
-  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  max-width: 800px;
-  max-height: 500px;
-  margin: auto;
-  padding: 30px;
-  border: 4px solid #504056;
-  border-radius: 30px;
-  box-shadow: 0 5px 35px rgba(0, 0, 0, 0.75);
+  border: 1px solid #504056;
+
+  background: #ffa5d6;
+
   z-index: 6;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -746,9 +777,22 @@ export const ModalStyle = styled.div`
   align-items: center;
   justify-content: center;
   display: ${(props) => (props.$isOpen ? "flex" : "none")};
-  z-index: 6;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #ff96cf;
+  border-radius: 100%;
+  stroke-width: 0.61px;
+  stroke: #616161;
 
-  @media (min-width: 1240px) {
+  @media (min-width: 540px) {
+    width: 460px;
+    height: 460px;
+  }
+  /* @media (min-width: 1240px) {
     width: 80%;
   }
 
@@ -758,11 +802,7 @@ export const ModalStyle = styled.div`
 
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 70%;
-  }
-
-  @media (max-width: 768px) {
-    width: 90%;
-  }
+  } */
 `;
 export const Backdrop = styled.div`
   position: fixed;
@@ -770,7 +810,7 @@ export const Backdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 5; /* Ensure the backdrop is behind the modal but above other content */
   display: ${(props) => (props.$isOpen ? "block" : "none")};
 `;

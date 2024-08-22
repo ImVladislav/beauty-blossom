@@ -332,7 +332,7 @@ const CartModal = ({ closeModal }) => {
         <ButtonContainer>
           <AboutResetBasketText>
             <RedStar>*</RedStar>Увага! Ваша корзина автоматично анулюється через
-            5 днів.
+            10 днів.
           </AboutResetBasketText>
           <Button
             name="Оформити замовлення"

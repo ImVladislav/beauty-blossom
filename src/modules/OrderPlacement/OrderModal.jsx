@@ -22,7 +22,7 @@ export const OrderModalWindow = ({ isOpen, orderNumber }) => {
     };
   }, [isOpen]);
 
-  const isLogin = useSelector(loggedInSelector)
+  const isLogin = useSelector(loggedInSelector);
 
   return (
     <>
@@ -37,10 +37,8 @@ export const OrderModalWindow = ({ isOpen, orderNumber }) => {
         <ModalText>Очікуйте на зворотній зв’язок з менеджером.</ModalText>
 
         <LinkThumb>
-          <LinkButton to="/">Головна сторінка</LinkButton>
-          {isLogin &&
-            <LinkButton to="/cabinet">Особистий кабінет</LinkButton>
-          }
+          <LinkButton to="/">повернутись на головну сторінку</LinkButton>
+          {/* {isLogin && <LinkButton to="/cabinet">Особистий кабінет</LinkButton>} */}
         </LinkThumb>
       </ModalStyle>
     </>

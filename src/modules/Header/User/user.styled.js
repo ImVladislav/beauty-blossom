@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as userIcon } from "../../../images/newUser.svg";
-
+// import { ReactComponent as userIcon } from "../../../images/newUser.svg";
+import { IoPersonOutline } from "react-icons/io5";
 export const LinkBtn = styled.button`
   padding: 3px;
   border: none;
@@ -70,7 +70,7 @@ export const LogInElips = styled.div`
   }
 `;
 
-export const LogInIcon = styled(userIcon)`
+export const LogInIcon = styled(IoPersonOutline)`
   width: 28px;
   height: 28px;
   fill: ${(p) => p.theme.colors.textColor};

@@ -483,8 +483,8 @@ const OrderPlacement = () => {
           <Title>Оформлення замовлення</Title>
           <DivInfoBlock>
             <InfoTextP>
-              Відправка замовлень відбувається протягом
-              <InfoTextSpan> 1-3 робочих днів </InfoTextSpan> з моменту
+              Відправка замовлень відбувається протягом 1-3 робочих днів
+              {/* <InfoTextSpan> 1-3 робочих днів </InfoTextSpan> */} з моменту
               оформлення.
             </InfoTextP>
             <InfoTextP>

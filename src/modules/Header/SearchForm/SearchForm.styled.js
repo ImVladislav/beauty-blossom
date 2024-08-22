@@ -16,14 +16,14 @@ export const SearchFormContainer = styled.div`
   }
   @media screen and (min-width: 768px) {
     margin-left: auto;
-    background: #fff;
+    /* background: #fff; */
   }
   @media screen and (min-width: 1024px) {
-    width: 300px;
+    /* width: 300px; */
   }
 
   @media screen and (min-width: 1440px) {
-    width: 410px;
+    /* width: 410px; */
   }
 `;
 
@@ -64,7 +64,7 @@ export const SearchInput = styled.input`
     font-size: ${(p) => p.theme.fontSizes.m}px;
   }
   @media screen and (min-width: 1440px) {
-    width: 100%;
+    /* width: 100%; */
   }
 `;
 

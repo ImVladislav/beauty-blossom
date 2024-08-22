@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BsSearch } from "react-icons/bs";
-import { HiMenu } from "react-icons/hi";
-
+// import { HiMenu } from "react-icons/hi";
+import { IoMenuOutline } from "react-icons/io5";
 export const ContainerHeader = styled.div`
   position: relative;
   z-index: 1;
@@ -156,7 +156,7 @@ export const ButtonMenu = styled.button`
   }
 `;
 
-export const MenuIcon = styled(HiMenu)`
+export const MenuIcon = styled(IoMenuOutline)`
   width: 35px;
   height: 35px;
 `;
