@@ -49,21 +49,23 @@ const AllBrands = () => {
           {sortedBrands.map((letter, index) => (
             <BrandItem key={index}>
               <Title>{letter}</Title>
-              {brand.map((item, itemIndex) => {
-                if (item.charAt(0).toUpperCase() === letter) {
-                  return (
-                    <BrandCard key={itemIndex}>
-                      <BrandName
-                        to={`/brands/${item.toLowerCase().trim()}`}
-                        onClick={handleClick}
-                      >
-                        {item}
-                      </BrandName>
-                    </BrandCard>
-                  );
-                }
-                return null;
-              })}
+              <BrandCard>
+                {brand.map((item, itemIndex) => {
+                  if (item.charAt(0).toUpperCase() === letter) {
+                    return (
+                      <div key={itemIndex}>
+                        <BrandName
+                          to={`/brands/${item.toLowerCase().trim()}`}
+                          onClick={handleClick}
+                        >
+                          {item}
+                        </BrandName>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </BrandCard>
             </BrandItem>
           ))}
         </BrandPageContainer>

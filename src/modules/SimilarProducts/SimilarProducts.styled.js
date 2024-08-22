@@ -111,7 +111,7 @@ export const ProductName = styled.h3`
 
   overflow: hidden;
   text-overflow: ellipsis;
-  height: 4.5em;
+  height: 5em;
 
   /* text-transform: uppercase; */
 
