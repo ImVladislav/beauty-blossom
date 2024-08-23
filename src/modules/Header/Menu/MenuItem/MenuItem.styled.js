@@ -2,55 +2,107 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineRight, AiOutlineDown } from "react-icons/ai";
 
+// _____________first_______________
 export const Item = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative;
+
   list-style: none;
   margin: 0;
-  padding: 5px;
-  position: relative;
-  padding: 0 20px;
-  transition: 556ms;
+
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  &:hover {
-    /* background: ${(p) => p.theme.colors.menuHover};
-    box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-    border-radius: 49px; */
-  }
 `;
 
-export const Link = styled(NavLink)`
+export const LinkStyle = styled(NavLink)`
   text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
 
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: ${(p) => p.theme.fontWeights.body};
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  padding: 10px 20px;
+
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  gap: 3px;
 
+  transition: all 250ms linear;
   &.active {
-    color: ${(p) => p.theme.colors.accentColor};
+    color: #ff63b8;
   }
   &:hover,
   &:focus {
-    color: ${(p) => p.theme.colors.accentColor};
+    color: #ff63b8;
   }
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 26px;
   }
 `;
 
-export const SubMenuWrap = styled.div`
-  min-height: 380px;
+export const DownIcon = styled(AiOutlineDown)`
+  width: 12px;
+  height: 12px;
+
+  @media screen and (min-width: 1024px) {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const RightIcon = styled(AiOutlineRight)`
+  width: 12px;
+  height: 12px;
+  @media screen and (min-width: 1024px) {
+    width: 18px;
+    height: 18px;
+  }
+`;
+
+export const ContactLink = styled.a`
+  text-decoration: none;
+
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+
+  &:hover,
+  &:focus {
+    color: #ff63b8;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 22px;
+  }
+  @media screen and (min-width: 1440px) {
+    font-size: 26px;
+  }
+`;
+
+// _____________second_______________
+export const MenuWrap = styled.div`
+  min-height: 350px;
   width: auto;
-  top: 105%;
+  top: 100%;
   left: 0;
   right: auto;
-  border-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+
   position: absolute;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
@@ -59,90 +111,140 @@ export const SubMenuWrap = styled.div`
   }
 `;
 
-export const RightIcon = styled(AiOutlineRight)`
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-`;
-
-export const DownIcon = styled(AiOutlineDown)`
-  width: 25px;
-  height: 25px;
-  padding: 5px;
-`;
-
 export const ListSub = styled.ul`
-  min-width: 250px;
+  min-width: 230px;
   display: flex;
   flex-direction: column;
+  @media screen and (min-width: 1024px) {
+    min-width: 260px;
+  }
+  @media screen and (min-width: 1440px) {
+    min-width: 300px;
+  }
 `;
-
-export const SubMenuWrapBrand = styled.ul`
-  padding: 5px;
-  min-height: 425px;
-  width: 550px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
-  top: 105%;
-  left: 0;
-  right: auto;
-  border-radius: 10px;
+// _____________list-brands_______________
+export const MenuBrandList = styled.ul`
   position: absolute;
+  top: 100%;
+  left: -110%;
+  right: auto;
+
+  width: 650px;
+  min-height: 425px;
+  padding: 0 20px 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background: ${(p) => p.theme.colors.white};
   box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
 
   @media screen and (min-width: 1024px) {
-    width: 700px;
+    left: -150%;
+    width: 900px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(4, 1fr);
+    left: -200%;
+    width: 1200px;
   }
 `;
 
-export const ListSubBrand = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const ItemSubBrand = styled.li`
-  display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
-`;
-export const LinkBrand = styled(NavLink)`
-  text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: ${(p) => p.theme.fontWeights.body};
+// ______________item-brands_______________
+export const ItemBrands = styled.li`
+  position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 5px 20px;
-  &.active {
-    color: ${(p) => p.theme.colors.accentColor};
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+
+  &:nth-child(3n)::after {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    content: "";
+    display: block;
+    width: 220%;
+    height: 1px;
+    background-color: #9a9a9a;
   }
-  &:hover,
-  &:focus {
-    color: ${(p) => p.theme.colors.accentColor};
-    background: ${(p) => p.theme.colors.menuHover};
-    box-shadow: ${(p) => p.theme.colors.menuHoverShadow};
-    border-radius: 49px;
+  &:last-child:after {
+    display: none;
   }
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
+    gap: 20px;
+    padding: 15px 0;
+  }
+
+  @media screen and (min-width: 1440px) {
+    gap: 30px;
+    &:nth-child(3n)::after {
+      display: none;
+    }
+    &:nth-child(4n)::after {
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      content: "";
+      display: block;
+      width: 310%;
+      height: 1px;
+      background-color: #9a9a9a;
+    }
+    &:last-child:after {
+      display: none;
+    }
   }
 `;
 export const BrandLetter = styled.h3`
-  color: ${(p) => p.theme.colors.textColor};
-  font-size: ${(p) => p.theme.fontSizes.s}px;
-  font-weight: ${(p) => p.theme.fontWeights.title};
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.02312;
+  text-transform: uppercase;
+  text-align: center;
+  color: #ff63b8;
+  min-width: 20px;
+
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.m}px;
+    min-width: 35px;
+    font-size: 40px;
   }
 `;
+export const ListBrand = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
 
-export const BrandCard = styled.li`
-  border-radius: 8px;
-  max-width: 155px;
+// ______________brand_______________
+export const LinkBrand = styled(NavLink)`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.02312;
+  text-transform: uppercase;
+  text-align: center;
+  color: #616161;
+  text-decoration: none;
+
+  margin: 0;
+  display: flex;
+  text-align: start;
+  text-decoration: none;
+  padding: 4px 0;
+
+  &.active {
+    color: #ff63b8;
+  }
+  &:hover,
+  &:focus {
+    color: #ff63b8;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 15px;
+    padding: 6px 0;
+  }
 `;

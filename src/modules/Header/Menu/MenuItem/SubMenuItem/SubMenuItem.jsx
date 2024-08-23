@@ -6,12 +6,11 @@ import { setfilter } from "../../../../../redux/filter/slice";
 import { SubSubMenuItem } from "./SubSubMenuItem/SubSubMenuItem";
 
 import {
-  Link,
+  LinkStyle,
   ListSub,
-  ItemSub,
   RightIcon,
   DownIcon,
-  WrapItem,
+  ItemInner,
 } from "./SubMenuItem.styled";
 
 const SubMenuItem = ({
@@ -45,19 +44,19 @@ const SubMenuItem = ({
   };
 
   return (
-    <ItemSub
+    <li
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={activeSubMenu === item.to ? "active" : ""}
     >
-      <WrapItem>
-        <Link to={item.to} onClick={handleClick}>
+      <ItemInner>
+        <LinkStyle to={item.to} onClick={handleClick}>
           {item.text}
-        </Link>
+        </LinkStyle>
         {item.children.length > 0 && (
           <div>{expanded ? <DownIcon /> : <RightIcon />}</div>
         )}
-      </WrapItem>
+      </ItemInner>
       {expanded && item.children.length > 0 && (
         <ListSub>
           {item.children.map((childItem) => (
@@ -70,7 +69,7 @@ const SubMenuItem = ({
           ))}
         </ListSub>
       )}
-    </ItemSub>
+    </li>
   );
 };
 

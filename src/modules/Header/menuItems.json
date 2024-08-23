@@ -412,5 +412,11 @@
     "to": "/wholesaleProgram",
     "text": "ОПТ клієнтам",
     "children": []
+  },
+  {
+    "level": 1,
+    "to": "#contacts",
+    "text": "контакти",
+    "children": []
   }
 ]

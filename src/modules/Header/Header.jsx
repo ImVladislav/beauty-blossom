@@ -128,7 +128,7 @@ export const Header = () => {
                 <MenuWrap>
                   <Menu items={menuItems} />
                 </MenuWrap>
-                <Line />
+                {/* <Line /> */}
                 <SearchForm isOpen={isSearchOpen} />
               </MenuBottom>
             </Container>
