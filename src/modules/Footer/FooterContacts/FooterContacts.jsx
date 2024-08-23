@@ -10,7 +10,7 @@ import {
 
 export const FooterContacts = () => {
   return (
-    <Wrap>
+    <Wrap id="contacts">
       <TitleWrap>
         <Title>Контакти</Title>
       </TitleWrap>

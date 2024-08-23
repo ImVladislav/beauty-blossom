@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import { setfilter } from "../../../../../../redux/filter/slice";
 
 import {
-  Link,
+  LinkStyle,
   Item,
   ListSub,
-  ItemSub,
+  ItemInner,
   RightIcon,
   DownIcon,
-  WrapItem,
 } from "./SubSubMenuItem.styled";
 
 export const SubSubMenuItem = ({ item, activeSubMenu, setActiveSubMenu }) => {
@@ -38,30 +37,30 @@ export const SubSubMenuItem = ({ item, activeSubMenu, setActiveSubMenu }) => {
   };
 
   return (
-    <ItemSub
+    <li
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={activeSubMenu === item.to ? "active" : ""}
     >
-      <WrapItem>
-        <Link to={item.to} onClick={handleClick}>
+      <ItemInner>
+        <LinkStyle to={item.to} onClick={handleClick}>
           {item.text}
-        </Link>
+        </LinkStyle>
         {item.children.length > 0 && (
           <div>{expanded ? <DownIcon /> : <RightIcon />}</div>
         )}
-      </WrapItem>
+      </ItemInner>
       {expanded && item.children.length > 0 && (
         <ListSub>
           {item.children.map((childItem) => (
-            <Item key={childItem.to}>
-              <Link to={childItem.to} onClick={handleClick}>
+            <li key={childItem.to}>
+              <LinkStyle to={childItem.to} onClick={handleClick}>
                 {childItem.text}
-              </Link>
-            </Item>
+              </LinkStyle>
+            </li>
           ))}
         </ListSub>
       )}
-    </ItemSub>
+    </li>
   );
 };

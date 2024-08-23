@@ -7,18 +7,18 @@ import { selectGoods } from "../../../../redux/products/selectors";
 import { setfilter } from "../../../../redux/filter/slice";
 
 import {
-  Link,
+  LinkStyle,
   Item,
   ListSub,
-  SubMenuWrap,
+  MenuWrap,
   RightIcon,
   DownIcon,
-  ItemSubBrand,
+  ItemBrands,
   LinkBrand,
-  ListSubBrand,
-  BrandCard,
-  SubMenuWrapBrand,
+  ListBrand,
+  MenuBrandList,
   BrandLetter,
+  ContactLink,
 } from "./MenuItem.styled";
 
 const MenuItem = ({ item }) => {
@@ -65,12 +65,18 @@ const MenuItem = ({ item }) => {
 
   return (
     <Item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-      <Link to={item.to}>
-        {item.text}
-        {item.children.length > 0 && (expanded ? <DownIcon /> : <RightIcon />)}
-      </Link>
+      {(item.to === "#contacts" && (
+        <ContactLink href={item.to}>{item.text}</ContactLink>
+      )) || (
+        <LinkStyle to={item.to}>
+          {item.text}
+          {item.children.length > 0 &&
+            (expanded ? <DownIcon /> : <RightIcon />)}
+        </LinkStyle>
+      )}
+
       {expanded && item.children.length > 0 && item.to !== "/brands" && (
-        <SubMenuWrap>
+        <MenuWrap>
           <ListSub>
             {item.children.map((childItem) => (
               <SubMenuItem
@@ -82,34 +88,34 @@ const MenuItem = ({ item }) => {
               />
             ))}
           </ListSub>
-        </SubMenuWrap>
+        </MenuWrap>
       )}
 
       {expanded && item.to === "/brands" && (
-        <SubMenuWrapBrand>
+        <MenuBrandList>
           {sortedBrands.map((letter, index) => (
-            <ItemSubBrand key={index}>
+            <ItemBrands key={index}>
               <BrandLetter>{letter}</BrandLetter>
-              <ListSubBrand>
+              <ListBrand>
                 {brand.map((item, itemIndex) => {
                   if (item.charAt(0).toUpperCase() === letter) {
                     return (
-                      <BrandCard key={itemIndex}>
+                      <li key={itemIndex}>
                         <LinkBrand
                           to={`/brands/${item.toLowerCase().trim()}`}
                           onClick={handleClick}
                         >
                           {item}
                         </LinkBrand>
-                      </BrandCard>
+                      </li>
                     );
                   }
                   return null;
                 })}
-              </ListSubBrand>
-            </ItemSubBrand>
+              </ListBrand>
+            </ItemBrands>
           ))}
-        </SubMenuWrapBrand>
+        </MenuBrandList>
       )}
     </Item>
   );
