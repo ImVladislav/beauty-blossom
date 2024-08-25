@@ -233,38 +233,39 @@ export const Title = styled.h2`
   display: flex;
   justify-content: center;
   /* font-size: 32px; */
-  border-bottom: 1px solid #c7c7c7;
-  margin: 20px 320px 20px 320px;
+  /* border-bottom: 1px solid #c7c7c7; */
+  /* margin: 20px 320px 20px 320px; */
   white-space: nowrap;
   /* font-weight: bold; */
 
   font-family: "Mulish", sans-serif;
   font-weight: 400;
-  font-size: 17px;
+  /* font-size: 17px; */
   line-height: 1.02312;
   text-transform: uppercase;
   text-align: center;
   color: #616161;
+  margin: 16px auto;
+  font-size: 22px;
 
-  @media (min-width: 1240px) and (max-width: 1439px) {
-    font-size: 28px;
-    margin: 20px 400px 20px 400px;
-  }
-
-  @media (min-width: 1024px) and (max-width: 1239px) {
-    font-size: 22px;
-    margin: 16px 280px 16px 280px;
-  }
-
-  @media (min-width: 768px) and (max-width: 1023px) {
+  /* @media (min-width: 768px) {
     font-size: 20px;
     margin: 16px 28px 16px 28px;
+  } */
+  @media (min-width: 768px) {
+    font-size: 28px;
+    /* margin: 16px auto; */
   }
 
-  @media (max-width: 767px) {
+  @media (min-width: 1240px) and (max-width: 1439px) {
+    font-size: 32px;
+    /* margin: 20px 400px 20px 400px; */
+  }
+
+  /* @media (max-width: 768px) {
     font-size: 20px;
     margin: 16px 5px 16px 5px;
-  }
+  } */
 `;
 
 export const DivInfoBlock = styled.div`
@@ -272,7 +273,7 @@ export const DivInfoBlock = styled.div`
   justify-content: center;
   border: 2.52px solid #13a03a;
   border-radius: 378px;
-  padding: 8px 12px;
+  padding: 8px 48px;
   flex-direction: column;
   width: fit-content;
   margin-left: auto;

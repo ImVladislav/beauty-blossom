@@ -23,6 +23,7 @@ export const LinkStyle = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  /* padding: 10px; */
   &.active {
     color: #ff63b8;
   }

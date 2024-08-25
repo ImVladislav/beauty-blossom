@@ -3,7 +3,7 @@ import { Hearts } from "react-loader-spinner";
 export const Loader = ({
   size = "100",
   pageHeight = "65vh",
-  outcolor = "#833989",
+  outcolor = "#ff63b8",
 }) => {
   return (
     <>

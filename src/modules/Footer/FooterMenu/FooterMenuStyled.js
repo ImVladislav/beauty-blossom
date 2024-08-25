@@ -52,7 +52,7 @@ export const LinkStyled = styled(NavLink)`
   /* font-family: "Noto Sans", sans-serif; */
   text-decoration: none;
   font-family: "Mulish", sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.03;
   text-transform: lowercase;
@@ -83,7 +83,8 @@ export const LinkStyled = styled(NavLink)`
   } */
 
   @media screen and (min-width: 1024px) {
-    font-size: ${(p) => p.theme.fontSizes.sm}px;
+    /* font-size: ${(p) => p.theme.fontSizes.sm}px; */
+    font-size: 14px;
   }
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;

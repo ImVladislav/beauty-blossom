@@ -24,9 +24,10 @@ export const LinkStyle = styled(NavLink)`
   text-transform: lowercase;
   text-align: center;
   color: #616161;
-  padding: 10px 20px;
+  padding: 10px;
 
   display: flex;
+  align-items: center;
   /* align-items: center; */
   gap: 3px;
 
@@ -75,8 +76,8 @@ export const ContactLink = styled.a`
   text-transform: lowercase;
   text-align: center;
   color: #616161;
-  padding: 10px 20px;
-
+  /* padding: 10px 20px; */
+  padding: 10px;
   display: flex;
   align-items: center;
 

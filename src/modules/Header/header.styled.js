@@ -73,7 +73,7 @@ export const LoginShipingThumb = styled.div`
   }
   @media screen and (min-width: 1024px) {
     /* margin-left: 20px; */
-    width: 195px;
+    /* width: 195px; */
   }
   @media screen and (min-width: 1440px) {
     /* margin-left: 30px; */

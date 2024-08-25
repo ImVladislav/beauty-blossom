@@ -13,7 +13,7 @@ export const Text = styled.h2`
   /* color: ${(p) => p.theme.colors.accentColor}; */
   font-weight: 500;
 
-  font-size: 14px;
+  font-size: 12px;
   padding: 6px;
 
   font-family: "Mulish", sans-serif;
@@ -26,10 +26,10 @@ export const Text = styled.h2`
   color: #616161;
 
   @media screen and (min-width: 1024px) {
-    font-size: 16px;
+    font-size: 12px;
   }
   @media screen and (min-width: 1280px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 export const Link = styled.a`

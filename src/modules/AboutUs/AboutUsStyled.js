@@ -17,10 +17,10 @@ export const Title = styled.h2`
   line-height: 1.079;
   text-transform: lowercase;
   text-align: center;
-  color: #ff96cf;
-  -webkit-text-stroke: 1px #616161; /* Обведення тексту */
+  color: #616161;
+  /* -webkit-text-stroke: 1px #616161; Обведення тексту */
   opacity: 0.61;
-  margin-bottom: 26px;
+  margin-bottom: 32px;
   @media (min-width: 767px) {
   }
   @media (min-width: 1024px) {
