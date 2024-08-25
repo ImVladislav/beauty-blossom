@@ -32,7 +32,7 @@ import {
   ItemNameLink,
   DivInfoBlock,
   InfoTextP,
-  InfoTextSpan,
+  // InfoTextSpan,
   LIstItem,
 } from "./OrderPlacementStyled";
 import { useDispatch, useSelector } from "react-redux";

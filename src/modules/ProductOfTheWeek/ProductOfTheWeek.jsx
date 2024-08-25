@@ -1,4 +1,4 @@
-import { Background, Text, Link, Underline } from "./ProductOfTheWeekStyled";
+import { Background, Text, Link } from "./ProductOfTheWeekStyled";
 export const ProductOfTheWeek = () => {
   return (
     <Background>
