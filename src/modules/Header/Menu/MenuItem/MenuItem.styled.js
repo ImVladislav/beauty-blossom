@@ -24,7 +24,7 @@ export const LinkStyle = styled(NavLink)`
   text-transform: lowercase;
   text-align: center;
   color: #616161;
-  padding: 10px;
+  padding: 12px;
 
   display: flex;
   align-items: center;
@@ -40,10 +40,10 @@ export const LinkStyle = styled(NavLink)`
     color: #ff63b8;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 22px;
+    font-size: 18px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 26px;
+    font-size: 22px;
   }
 `;
 
@@ -87,10 +87,12 @@ export const ContactLink = styled.a`
   }
 
   @media screen and (min-width: 1024px) {
-    font-size: 22px;
+    font-size: 18px;
+    padding: 14px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 26px;
+    font-size: 22px;
+    padding: 18px;
   }
 `;
 

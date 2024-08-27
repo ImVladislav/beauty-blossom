@@ -19,7 +19,7 @@ export const Title = styled.h2`
   text-align: center;
   color: #616161;
   /* -webkit-text-stroke: 1px #616161; Обведення тексту */
-  opacity: 0.61;
+  /* opacity: 0.61; */
   margin-bottom: 32px;
   @media (min-width: 767px) {
   }

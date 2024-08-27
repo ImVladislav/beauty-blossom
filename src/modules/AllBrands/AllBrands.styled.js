@@ -137,6 +137,6 @@ export const BrandName = styled(NavLink)`
     color: #ff63b8;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 20px;
+    font-size: 14px;
   }
 `;

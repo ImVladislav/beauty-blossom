@@ -30,7 +30,7 @@ export const HeaderWrap = styled.div`
   }
 `;
 export const HeaderLayout = styled.div`
-  margin: 10px 0;
+  margin: 15px 0;
   position: relative;
   display: flex;
   /* justify-content: space-between; */

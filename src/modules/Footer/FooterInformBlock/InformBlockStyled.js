@@ -133,6 +133,6 @@ export const LinkStyled = styled(Link)`
     font-size: ${(p) => p.theme.fontSizes.sm}px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: ${(p) => p.theme.fontSizes.l}px;
+    /* font-size: ${(p) => p.theme.fontSizes.l}px; */
   }
 `;
