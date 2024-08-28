@@ -367,8 +367,8 @@ const ProductPage = () => {
                   alt={product.name}
                 />
                 <ProductTags>
-                  {product.new && <NewSticker text="New" />}
-                  {product.sale && <NewSticker text="Sale" sale />}
+                  {product.new && <NewSticker text="New" product />}
+                  {product.sale && <NewSticker text="Sale" sale product />}
                 </ProductTags>
               </ImageContainer>
               {/* info */}
@@ -382,12 +382,18 @@ const ProductPage = () => {
                     {optUser ? (
                       <ProductPriceWrapper>
                         <ProductPriceName>оптова ціна</ProductPriceName>
-                        <ProductPrice>{product.priceOPT} грн</ProductPrice>
+                        <ProductPrice>
+                          {product.priceOPT}
+                          <span>грн</span>
+                        </ProductPrice>
                       </ProductPriceWrapper>
                     ) : (
                       <ProductPriceWrapper>
                         <ProductPriceName>роздрібна ціна</ProductPriceName>
-                        <ProductPrice>{product.price} грн</ProductPrice>
+                        <ProductPrice>
+                          {product.price}
+                          <span>грн</span>
+                        </ProductPrice>
                       </ProductPriceWrapper>
                     )}
                     <AboutProductWrapperMobile>

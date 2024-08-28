@@ -5,9 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export const GlobalStyle = createGlobalStyle`
 html,
 body {
-
 height: 100%;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Mulish', sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1;

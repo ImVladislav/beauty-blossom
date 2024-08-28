@@ -79,7 +79,7 @@ export const ProductContainer = styled.div`
     margin: 32px 0;
     flex-direction: row;
     align-items: flex-start;
-    gap: 20px;
+    /* gap: 40px; */
   }
   @media screen and (min-width: 1440px) {
     padding: 0 60px;
@@ -118,6 +118,7 @@ export const ProductTags = styled.div`
 export const InfoContainer = styled.div`
   @media screen and (min-width: 768px) {
     flex: 2;
+    margin-left: 90px;
   }
 `;
 
@@ -207,11 +208,17 @@ export const ProductPrice = styled.p`
   font-weight: 900;
   font-size: 36px;
   line-height: 1.079;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: #424242;
   margin: 10px 0;
+  & span {
+    margin-left: 5px;
+  }
   @media screen and (min-width: 768px) {
     margin: 10px 0 25px;
+    & span {
+      margin-left: 7px;
+    }
   }
   @media screen and (min-width: 1024px) {
     font-size: 44px;
@@ -225,7 +232,7 @@ export const AboutProductWrapper = styled.div`
     justify-content: flex-start;
     display: flex;
     gap: 50px;
-    border-bottom: 1px solid #aa9e9e;
+    /* border-bottom: 1px solid #aa9e9e; */
 
     padding: 0 0 20px 10px;
   }
