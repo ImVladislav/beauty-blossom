@@ -172,7 +172,7 @@ export const PriceName = styled.p`
   font-weight: 700;
   font-size: 10px;
   line-height: 1.079;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   text-align: start;
   color: #616161;
 
@@ -216,9 +216,11 @@ export const Price = styled.p`
   font-weight: 900;
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   line-height: 1.079;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: #616161;
-
+  & span {
+    margin-left: 3px;
+  }
   ${(p) =>
     p.slider &&
     css`
@@ -227,8 +229,12 @@ export const Price = styled.p`
         font-size: 16px;
       }
     `}
+
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
+    & span {
+      margin-left: 5px;
+    }
   }
 `;
 

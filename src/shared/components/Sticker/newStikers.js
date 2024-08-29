@@ -19,6 +19,16 @@ export const Elips = styled.div`
         height: 59px;
       }
     `}
+  ${(p) =>
+    p.product &&
+    css`
+      width: 70px;
+      height: 70px;
+      @media screen and (min-width: 450px) and (max-width: 768px) {
+        width: 100px;
+        height: 100px;
+      }
+    `}
   @media screen and (min-width: 1440px) {
     width: 80px;
     height: 80px;
@@ -45,6 +55,14 @@ export const TitleSale = styled.p`
         font-size: 17px;
       }
     `}
+  ${(p) =>
+    p.product &&
+    css`
+      font-size: 22px;
+      @media screen and (min-width: 450px) and (max-width: 768px) {
+        font-size: 30px;
+      }
+    `}
   @media screen and (min-width: 1440px) {
     font-size: 24px;
     -webkit-text-stroke-width: 1px;
@@ -66,6 +84,14 @@ export const TitleNew = styled.p`
       font-size: 11px;
       @media screen and (min-width: 768px) {
         font-size: 17px;
+      }
+    `}
+  ${(p) =>
+    p.product &&
+    css`
+      font-size: 22px;
+      @media screen and (min-width: 450px) and (max-width: 768px) {
+        font-size: 30px;
       }
     `}
   @media screen and (min-width: 1440px) {

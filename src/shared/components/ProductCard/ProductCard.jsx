@@ -112,7 +112,10 @@ const ProductCard = ({ products, slider }) => {
                     <Available slider={slider}>в наявності</Available>
                   )}
                 </div>
-                <Price slider={slider}>{products.priceOPT} грн</Price>
+                <Price slider={slider}>
+                  {products.priceOPT}
+                  <span>грн</span>
+                </Price>
               </PriceWrap>
             ) : (
               <PriceWrap>
@@ -123,7 +126,7 @@ const ProductCard = ({ products, slider }) => {
                   )}
                 </div>
                 <Price itemProp="price" slider={slider}>
-                  {products.price} грн
+                  {products.price} <span>грн</span>
                 </Price>
               </PriceWrap>
             )}

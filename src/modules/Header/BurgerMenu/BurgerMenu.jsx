@@ -5,11 +5,9 @@ import BurgerMenuItem from "./BurgerMenuItem/BurgerMenuItem";
 
 import {
   MobileMenuContainer,
-  MobileMenuItem,
-  InfoWrap,
   InfoLink,
-  InfoStylesLink,
-  InfoButton,
+  AuthenticatedLink,
+  ContactBtn,
 } from "./BurgerMenu.styled";
 import { useSelector } from "react-redux";
 import { loggedInSelector } from "../../../redux/auth/selectors";
@@ -36,33 +34,35 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
       left
       width={270}
     >
-      {items.map((item, index) => (
-        <MobileMenuItem key={index}>
-          <BurgerMenuItem
-            key={index}
-            item={item}
-            level={1}
-            closeMenu={handleClick}
-          />
-        </MobileMenuItem>
-      ))}
-      <InfoWrap
+      {items.map(
+        (item, index) =>
+          item.to !== "#contacts" && (
+            <BurgerMenuItem
+              key={index}
+              item={item}
+              level={1}
+              closeMenu={handleClick}
+            />
+          )
+      )}
+
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "3px",
+          alignItems: "center",
+          marginTop: "45px",
         }}
       >
         {isLogin && (
           <>
-            <InfoStylesLink to="/cabinet/userData">
+            <AuthenticatedLink to="/cabinet/userData">
               Особистий кабінет
-            </InfoStylesLink>
+            </AuthenticatedLink>
 
-            <InfoStylesLink onClick={closeMenu} to="/cabinet/history">
+            <AuthenticatedLink onClick={closeMenu} to="/cabinet/history">
               Історія замовлень
-            </InfoStylesLink>
+            </AuthenticatedLink>
           </>
         )}
         <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">
@@ -74,12 +74,12 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
         <InfoLink onClick={closeMenu} href="/wholesaleProgram/#about">
           Про нас
         </InfoLink>
-        <InfoButton onClick={handleContactTogle}>Контакти</InfoButton>
+        <ContactBtn onClick={handleContactTogle}>Контакти</ContactBtn>
         {contacts && (
           <>
             <Contacts
               burger
-              title="+380500529100"
+              title="+ 380 50 052 9100"
               to="tel:+380500529100"
               icon="phone"
             />
@@ -103,7 +103,7 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
             />
           </>
         )}
-      </InfoWrap>
+      </div>
     </MobileMenuContainer>
   );
 };

@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 
 export const MobileMenuContainer = styled(Menu)`
   background: ${(p) => p.theme.colors.white}; // Колір фону меню
-  width: 297px; // Ширина меню
   position: fixed;
   top: 0;
   left: 0;
-  padding: 0 10px;
+  padding: 50px 10px;
+  box-shadow: 6px -2px 9px 0 rgba(0, 0, 0, 0.25);
 
   & div {
     overflow: auto;
@@ -33,78 +33,72 @@ export const MobileMenuContainer = styled(Menu)`
   }
 `;
 
-export const MobileMenuItem = styled.div`
-  a {
-    font-size: ${(p) => p.theme.fontSizes.l}px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 1.18;
-    letter-spacing: -0.3px;
-    text-decoration: none;
-    color: ${(p) => p.theme.colors.textColor};
+// export const MobileMenuItem = styled.div`
+//   /* a {
+//     font-family: "Mulish", sans-serif;
+//     font-weight: 300;
+//     font-size: 14px;
+//     line-height: 1.57;
+//     text-transform: lowercase;
+//     text-align: center;
+//     color: #616161;
+//     text-decoration: none;
+//     &:hover,
+//     &:focus {
+//       color: #ff63b8;
+//     }
+//   } */
+// `;
+
+export const AuthenticatedLink = styled(Link)`
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  text-decoration: none;
+  padding: 8px 0;
+
+  &:hover,
+  &:focus {
+    color: #ff96cf;
   }
 `;
 
-export const InfoWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  padding: 4px 0;
-`;
 export const InfoLink = styled.a`
-  text-decoration: none;
-
-  font-size: ${(p) => p.theme.fontSizes.x}px;
-
-  font-style: normal;
+  font-family: "Mulish", sans-serif;
   font-weight: 300;
-  line-height: 1.18;
-  letter-spacing: -0.3px;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
   text-decoration: none;
-  color: ${(p) => p.theme.colors.textColor};
 
-  padding: 3px 10px;
+  padding: 8px 0;
   &:hover,
   &:focus {
-    border-radius: 27px;
-    background: ${(p) => p.theme.colors.hoverBurger};
-    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
+    color: #ff96cf;
   }
 `;
-export const InfoStylesLink = styled(Link)`
-  text-decoration: none;
-  font-size: ${(p) => p.theme.fontSizes.x}px;
-  font-style: normal;
+export const ContactBtn = styled.button`
+  font-family: "Mulish", sans-serif;
   font-weight: 300;
-  line-height: 1.18;
-  letter-spacing: -0.3px;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
   text-decoration: none;
-  font-weight: ${(p) => p.theme.fontWeights.body};
-  color: ${(p) => p.theme.colors.textColor};
-  padding: 3px 10px;
-  &:hover,
-  &:focus {
-    border-radius: 27px;
-    background: ${(p) => p.theme.colors.hoverBurger};
-    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
-  }
-`;
-export const InfoButton = styled.button`
-  text-decoration: none;
-  font-size: ${(p) => p.theme.fontSizes.x}px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 1.18;
-  letter-spacing: -0.3px;
   background: transparent;
   border: none;
-  color: ${(p) => p.theme.colors.textColor};
-  padding: 3px 10px;
+
+  padding: 8px 0;
   text-align: left;
   &:hover,
   &:focus {
-    border-radius: 27px;
-    background: ${(p) => p.theme.colors.hoverBurger};
-    box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
+    color: #ff96cf;
   }
 `;
