@@ -20,6 +20,7 @@ export const ModalBackground = styled.section`
 export const OpenModal = styled.button`
   border: none;
   background: transparent;
+  padding: 0;
   cursor: pointer;
   & svg {
     &:hover,

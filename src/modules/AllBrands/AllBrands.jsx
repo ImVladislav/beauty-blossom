@@ -24,13 +24,14 @@ const AllBrands = () => {
   };
 
   const brand = items
-    ?.map((item) => item.brand)
+    ?.map((item) => item.brand.toUpperCase())
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);
       }
       return accumulator;
-    }, []);
+    }, [])
+    .sort();
 
   const sortedBrands = brand
     .map((item) => item.charAt(0).toUpperCase())

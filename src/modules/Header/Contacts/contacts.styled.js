@@ -103,23 +103,20 @@ export const Link = styled.a`
     font-size: ${(p) => p.theme.fontSizes.xs}px;
   }
   &.burger {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.03;
+    text-transform: lowercase;
+    text-align: center;
+    color: #616161;
+
     text-decoration: none;
 
-    font-size: ${(p) => p.theme.fontSizes.s}px;
+    padding: 3px 0;
 
-    font-style: normal;
-    font-weight: 300;
-    line-height: 1.18;
-    letter-spacing: -0.3px;
-    text-decoration: none;
-    color: ${(p) => p.theme.colors.textColor};
-    padding: 3px 10px;
-    margin: 3px 0;
     &:hover,
     &:focus {
-      border-radius: 27px;
-      background: ${(p) => p.theme.colors.hoverBurger};
-      box-shadow: 0px 2.16058px 2.16058px 0px rgba(0, 0, 0, 0.25);
+      color: #ff96cf;
     }
   }
   @media screen and (min-width: 768px) {

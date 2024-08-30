@@ -405,12 +405,25 @@
       { "level": 2, "to": "/brands/masil", "text": "Masil", "children": [] }
     ]
   },
-  { "level": 1, "to": "/news", "text": "Новинки", "children": [] },
-  { "level": 1, "to": "/discount", "text": "Акції", "children": [] },
+  {
+    "level": 1,
+    "to": "/news",
+    "text": "Новинки",
+    "textMobile": "нове постачання",
+    "children": []
+  },
+  {
+    "level": 1,
+    "to": "/discount",
+    "text": "Акції",
+    "textMobile": "товари зі зниженою ціною",
+    "children": []
+  },
   {
     "level": 1,
     "to": "/wholesaleProgram",
     "text": "ОПТ клієнтам",
+    "textMobile": "Оптова програма",
     "children": []
   },
   {

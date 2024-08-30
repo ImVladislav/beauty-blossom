@@ -1,13 +1,17 @@
 import React from "react";
 import { Elips, TitleNew, TitleSale } from "./newStikers";
 
-const NewSticker = ({ text, sale, slider }) => {
+const NewSticker = ({ text, sale, slider, product }) => {
   return (
-    <Elips slider={slider}>
+    <Elips slider={slider} product={product}>
       {sale ? (
-        <TitleSale slider={slider}>{text}</TitleSale>
+        <TitleSale slider={slider} product={product}>
+          {text}
+        </TitleSale>
       ) : (
-        <TitleNew slider={slider}>{text}</TitleNew>
+        <TitleNew slider={slider} product={product}>
+          {text}
+        </TitleNew>
       )}
     </Elips>
   );

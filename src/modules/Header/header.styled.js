@@ -145,11 +145,11 @@ export const ButtonMenu = styled.button`
   border: ${(p) => p.theme.borders.none};
   background-color: transparent;
   cursor: pointer;
-  padding: 0;
   margin: 0;
   /* margin-right: 30px; */
-  color: ${(p) => p.theme.colors.textColor};
+  color:#616161;
   transition: all 0.15s ease 0s;
+  padding: 0;
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
@@ -157,8 +157,9 @@ export const ButtonMenu = styled.button`
 `;
 
 export const MenuIcon = styled(IoMenuOutline)`
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
+  padding: 0px;
 `;
 export const Schedule = styled.a`
   /* color: ${(p) => p.theme.colors.textColor}; */
@@ -186,7 +187,7 @@ export const CenterWrap = styled.div`
   justify-content: space-evenly;
   padding: 12px 5px 6px 3px;
   /* padding: 3px 5px 3px 30px; */
-  align-items: flex-end;
+  align-items: center;
   @media screen and (min-width: 1024px) {
     padding: 3px 23px 3px 30px;
   }
@@ -210,8 +211,8 @@ export const NameUser = styled.p`
   }
 `;
 export const SearchIcon = styled(BsSearch)`
-  width: 24px;
-  height: 24px;
+  width: 21px;
+  height: 21px;
   /* color: ${(p) => p.theme.colors.textColor}; */
   color: #616161;
   /* @media screen and (min-width: 768px) {

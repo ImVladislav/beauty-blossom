@@ -9,8 +9,8 @@ export const ContactsElips = styled.div`
 `;
 
 export const ContactsIcon = styled(EmailIcon)`
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   fill: ${(p) => p.theme.colors.textColor};
 `;
 

@@ -8,9 +8,10 @@ import { selectGoods } from "../../../../redux/products/selectors";
 import {
   MenuLevel,
   LinkWrap,
-  Link,
   RightIcon,
   DownIcon,
+  StyleLink,
+  BrandStyleLink,
 } from "./BurgerMenuItem.styled";
 
 const BurgerMenuItem = ({ item, level, closeMenu }) => {
@@ -40,28 +41,28 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
 
   return (
     <MenuLevel className={`menu-level-${level}`}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <LinkWrap className={pathname === item.to ? "active" : ""}>
-          <Link
-            to={item.to}
-            onClick={(e) => {
-              toggleSubMenu();
-              closeMenu();
-              handleClick(e);
-            }}
-          >
-            {item.text}
-          </Link>
-        </LinkWrap>
+      <LinkWrap>
+        <StyleLink
+          className={pathname === item.to ? "active" : ""}
+          to={item.to}
+          onClick={(e) => {
+            toggleSubMenu();
+            closeMenu();
+            handleClick(e);
+          }}
+        >
+          {item.textMobile ? item.textMobile : item.text}
+        </StyleLink>
 
         {(item.children.length === 0 && item.to !== "/brands") ||
           (isSubMenuOpen ? (
+            <RightIcon
+              onClick={(e) => {
+                toggleSubMenu();
+                e.preventDefault();
+              }}
+            />
+          ) : (
             <DownIcon
               onClick={(e) => {
                 toggleSubMenu();
@@ -69,16 +70,8 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
                 e.preventDefault();
               }}
             />
-          ) : (
-            <RightIcon
-              onClick={(e) => {
-                toggleSubMenu();
-
-                e.preventDefault();
-              }}
-            />
           ))}
-      </div>
+      </LinkWrap>
 
       {item.to !== "/brands" && item.children && isSubMenuOpen && (
         <div className="submenu">
@@ -97,7 +90,8 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
           {brand.map((child, index) => (
             <MenuLevel className={`menu-level-${level + 1}`}>
               <LinkWrap key={index}>
-                <Link
+                <BrandStyleLink
+                  key={index}
                   to={`/brands/${child.toLowerCase().trim()}`}
                   onClick={(e) => {
                     closeMenu();
@@ -105,7 +99,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
                   }}
                 >
                   {child}
-                </Link>
+                </BrandStyleLink>
               </LinkWrap>
             </MenuLevel>
           ))}
