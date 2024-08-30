@@ -82,7 +82,7 @@ export const Text = styled.p`
   font-weight: 300;
   font-size: 15px;
   line-height: 1.079;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   text-align: center;
   color: #616161;
   margin-bottom: 35px;

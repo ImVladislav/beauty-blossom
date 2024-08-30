@@ -13,8 +13,8 @@ export const UserIcon = styled(IoPersonOutline)`
   }
 `;
 export const CorzinaIcon = styled(IoCartOutline)`
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   /* fill: ${(p) => p.theme.colors.textColor}; */
   color: #616161;
   /* fill: #616161; */

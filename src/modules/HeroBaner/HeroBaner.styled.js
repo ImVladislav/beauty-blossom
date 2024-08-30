@@ -148,7 +148,7 @@ export const LinkBtn = styled(Link)`
   font-size: ${(p) => p.theme.fontSizes.xs}px;
   line-height: 1.319;
   letter-spacing: 0.03em;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   background: #ecff75;
   color: #006f5b;
   border: 1px solid #006f5b;
