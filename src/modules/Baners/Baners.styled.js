@@ -54,7 +54,7 @@ export const TitleFirst = styled.p`
   font-weight: 400;
   /*  */
   font-size: ${(p) => p.theme.fontSizes.l + 5}px;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   color: #2a2a2a;
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.xl}px;
@@ -70,7 +70,7 @@ export const TitleSecond = styled.p`
   /* font-size: 53px; */
   font-size: ${(p) => p.theme.fontSizes.xxl + 10}px;
   letter-spacing: 0.08em;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   color: #2a2a2a;
   margin-top: -5px;
   @media screen and (min-width: 768px) {
@@ -133,7 +133,7 @@ export const LinkLeft = styled(Link)`
   /* font-size: 22px; */
   line-height: 1.319;
   letter-spacing: 0.03em;
-  text-transform: capitalize;
+ 
   text-align: center;
   color: #2a2a2a;
   &:hover,
@@ -167,7 +167,7 @@ export const LinkRight = styled(Link)`
   font-size: 22px;
   line-height: 1.319;
   letter-spacing: 0.03em;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   text-align: center;
   color: #fff;
   &:hover,

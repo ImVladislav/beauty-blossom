@@ -7,7 +7,7 @@ export const LinkBtn = styled.button`
   background: transparent;
   cursor: pointer;
   text-align: center;
-  color: ${(p) => p.theme.colors.textColor};
+  color: #616161;
   font-size: ${(p) => p.theme.fontSizes.s + 1}px;
   font-style: normal;
   font-weight: ${(p) => p.theme.fontWeights.bold};
@@ -71,8 +71,8 @@ export const LogInElips = styled.div`
 `;
 
 export const LogInIcon = styled(IoPersonOutline)`
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
   fill: ${(p) => p.theme.colors.textColor};
   &:hover {
     fill: ${(p) => p.theme.colors.accentColor};
