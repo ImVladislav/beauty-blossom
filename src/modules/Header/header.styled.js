@@ -184,7 +184,7 @@ export const CenterWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding: 3px 5px 3px 3px;
+  padding: 12px 5px 6px 3px;
   /* padding: 3px 5px 3px 30px; */
   align-items: flex-end;
   @media screen and (min-width: 1024px) {
