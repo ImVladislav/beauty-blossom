@@ -93,7 +93,7 @@ const User = () => {
             {admin && (
               <ListItem>
                 <Link style={{ padding: "4px 0" }} to="ordersbyclient">
-                  Замовлення(Адмін права)
+                  замовлення(адмін права)
                 </Link>
               </ListItem>
             )}

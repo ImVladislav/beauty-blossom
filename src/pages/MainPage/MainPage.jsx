@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import HeroBaner from "../../modules/Hero/HeroBaner";
 
 import NewSlider from "../../modules/ProductSlider/NewSlider/NewSlider";
+import CategoryList from "../../modules/MainCategotyList/CategoryList";
 
 const MainPage = () => {
   const { isDesktopScreen } = useMedia();
@@ -60,7 +61,8 @@ const MainPage = () => {
               <SliderDesktop products={newFiltred} title="нове постачання" />
             </>
           )}
-          <BrandsWraper />
+          <CategoryList />
+          {/* <BrandsWraper /> */}
 
           <AboutUs />
         </div>

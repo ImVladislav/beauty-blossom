@@ -95,7 +95,7 @@ export const ImageContainer = styled.div`
   padding: 0 20px;
   @media screen and (min-width: 768px) {
     max-width: inherit;
-    flex: 1;
+    flex: 1.3;
     padding: 0;
   }
 `;
@@ -315,7 +315,7 @@ export const ButtonIncDec = styled.span`
   font-weight: 400;
   font-size: 15px;
   line-height: 1.02312;
-  // text-transform: capitalize;
+
   color: #616161;
   &:hover {
     color: ${(p) => p.theme.colors.accentColor};
@@ -339,7 +339,7 @@ export const InputIncDec = styled.input`
   font-weight: 400;
   font-size: 15px;
   line-height: 1.02312;
- 
+
   color: #616161;
 
   &::-webkit-outer-spin-button,
@@ -430,7 +430,7 @@ export const ProductDescriptionItem = styled.li`
     font-weight: 300;
     font-size: 12px;
     line-height: 1.01;
-    // text-transform: capitalize;
+
     text-align: justify;
     color: #616161;
     @media screen and (min-width: 768px) {
