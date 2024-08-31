@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const ItemStyle = styled.li`
   position: relative;
   min-width: 140px;
-  max-width: 220px;
+  max-width: 260px;
   padding: 5px 15px 15px;
   border: 1px solid ${(p) => p.theme.colors.borderCard};
   transition: all 250ms linear;
@@ -19,6 +19,7 @@ export const ItemStyle = styled.li`
   }
 
   @media screen and (min-width: 768px) {
+    max-width: 220px;
     padding: 5px 15px 15px;
   }
   @media screen and (min-width: 1024px) {
