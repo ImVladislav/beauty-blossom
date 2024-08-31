@@ -19,6 +19,7 @@ import Register from "../../modules/Register/Register";
 import { toast } from "react-toastify";
 import Button from "../../shared/components/Button/Button";
 import { Helmet } from "react-helmet";
+import { OpenOptRegisterWindow } from "../../modules/AboutUs/AboutUsStyled";
 
 const SaleProgramPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -173,13 +174,17 @@ const SaleProgramPage = () => {
             менеджеру в телеграмі
           </Text>
 
+          {/* // <Button
+            //   opt
+            //   text={"Стати оптовим покупцем"}
+            //   type="submit"
+            //   onClick={openModal}
+            реєстрація оптового покупця
+            // /> */}
           <ButtonWrapper>
-            <Button
-              opt
-              text={"Стати оптовим покупцем"}
-              type="submit"
-              onClick={openModal}
-            />
+            <OpenOptRegisterWindow onClick={openModal}>
+              реєстрація оптового покупця
+            </OpenOptRegisterWindow>
           </ButtonWrapper>
         </section>
       </div>

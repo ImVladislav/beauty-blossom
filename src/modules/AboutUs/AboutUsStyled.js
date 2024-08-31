@@ -82,7 +82,7 @@ export const Text = styled.p`
   font-weight: 300;
   font-size: 15px;
   line-height: 1.079;
-  text-transform: capitalize;
+  // text-transform: capitalize;
   text-align: center;
   color: #616161;
   margin-bottom: 35px;
@@ -134,7 +134,7 @@ export const Link = styled.a`
 export const LinkToSaleProgram = styled.a`
   font-family: "Mulish", sans-serif;
   font-weight: 700;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.09;
   text-align: center;
   color: #fff;
@@ -148,8 +148,8 @@ export const LinkToSaleProgram = styled.a`
 
   border: 0.32px solid #616161;
   border-radius: 30px;
-  width: 178px;
-  height: 37px;
+  width: 228px;
+  height: 47px;
   margin-bottom: 49px;
   &:hover {
     opacity: 1;
@@ -178,8 +178,8 @@ export const OpenOptRegisterWindow = styled.button`
 
   border: 0.32px solid #616161;
   border-radius: 50%;
-  width: 149px;
-  height: 149px;
+  width: 175px;
+  height: 175px;
   transition: all 500ms ease-in-out;
   &:hover {
     opacity: 1;
