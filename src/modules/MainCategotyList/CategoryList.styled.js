@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   padding: 0 20px;
-  margin: 20px 0;
+
+  max-width: 1440px;
+  margin: 20px auto;
 `;
 
 export const Title = styled.h3`
