@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectFilterBrand } from "../../redux/filter/selectors";
 import { setfilter } from "../../redux/filter/slice";
 
-export const SimilarProducts = ({ brand, productId }) => {
+export const SimilarProducts = ({ brand, productId, setQuantity }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,13 @@ export const SimilarProducts = ({ brand, productId }) => {
     .sort((a, b) => b.amount - a.amount)
     .filter((product) => product.id !== productId)
     .slice(0, 3);
-
+  const handleLinkClick = () => {
+    setQuantity(1);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       {!limitedItems.length <= 1 && (
@@ -41,7 +47,7 @@ export const SimilarProducts = ({ brand, productId }) => {
             {limitedItems.map((filtred) => (
               <ProductCardLink
                 to={`/product/${filtred.id}`}
-                onClick={window.scrollTo({ top: 0, behavior: "smooth" })}
+                onClick={handleLinkClick}
                 key={filtred.id}
               >
                 <ProductImage

@@ -79,7 +79,12 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
-
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   // console.log(products);
 
   useEffect(() => {
@@ -167,6 +172,7 @@ const ProductPage = () => {
             subSubCategory: product.subSubCategory,
             productId: product.id,
           });
+          scrollToTop();
         } catch (error) {
           console.error("Помилка додавання товару в кошик:", error);
         }
@@ -513,6 +519,7 @@ const ProductPage = () => {
 
                 {product && (
                   <SimilarProducts
+                    setQuantity={setQuantity}
                     brand={product.brand}
                     productId={product.id}
                   />

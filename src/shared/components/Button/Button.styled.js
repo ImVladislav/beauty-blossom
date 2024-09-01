@@ -12,7 +12,7 @@ export const ButtonStyle = styled.button`
   font-weight: ${(p) => p.theme.fontWeights.bold};
   font-size: 12px;
   text-decoration: none;
-
+  padding: 7px 20px;
   color: ${(p) =>
     p.disabled ? p.theme.colors.white : p.theme.colors.accentColor};
 
