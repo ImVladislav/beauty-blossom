@@ -147,7 +147,7 @@ export const ButtonMenu = styled.button`
   cursor: pointer;
   margin: 0;
   /* margin-right: 30px; */
-  color:#616161;
+  color: #616161;
   transition: all 0.15s ease 0s;
   padding: 0;
   &:hover,
@@ -183,11 +183,9 @@ export const Schedule = styled.a`
 `;
 export const CenterWrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-evenly;
   padding: 12px 5px 6px 3px;
-  /* padding: 3px 5px 3px 30px; */
-  align-items: center;
   @media screen and (min-width: 1024px) {
     padding: 3px 23px 3px 30px;
   }
