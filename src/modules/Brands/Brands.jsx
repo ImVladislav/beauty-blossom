@@ -76,7 +76,7 @@ const Brands = () => {
       </Helmet>
 
       <Container>
-        {infoBrand && (
+        {/* {infoBrand && (
           <BrandInfo>
             <BrandInfoWrap>
               <Image src={infoBrand.logo} alt={infoBrand.name} width={70} />
@@ -86,7 +86,7 @@ const Brands = () => {
               </TextInner>
             </BrandInfoWrap>
           </BrandInfo>
-        )}
+        )} */}
 
         <ProductsList items={sortedItems} />
       </Container>
