@@ -96,12 +96,12 @@ export const ButtonStyle = styled.button`
   @media screen and (min-width: 768px) {
     font-size: ${(p) => p.theme.fontSizes.sm}px;
     /* height: 40px; */
-    padding: 0px 20px;
+    /* padding: 0px 20px; */
   }
   @media screen and (min-width: 1024px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
     display: flex;
-    padding: 0px 60px;
+    padding: 10px 60px;
     align-items: center;
     justify-content: center;
   }
@@ -109,7 +109,7 @@ export const ButtonStyle = styled.button`
   @media screen and (min-width: 1440px) {
     font-size: ${(p) => p.theme.fontSizes.l}px;
     display: flex;
-    padding: 0px 60px;
+    /* padding: 0px 60px; */
     align-items: center;
     justify-content: center;
   }
