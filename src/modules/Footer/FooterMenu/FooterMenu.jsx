@@ -16,11 +16,16 @@ export const FooterMenu = ({ menuItems }) => {
       behavior: "smooth",
     });
   };
-
-  const element = menuItems.map(({ to, text }) => (
+  const filteredMenuItems = menuItems.filter(
+    (item) =>
+      item.text !== "контакти" &&
+      item.text !== "Новинки" &&
+      item.text !== "Акції"
+  );
+  const element = filteredMenuItems.map(({ to, text }) => (
     <Item key={to}>
       <LinkStyled onClick={scrollToTop} to={to}>
-        {text}
+        {text === ("контакти" && "") ? null : text}
       </LinkStyled>
     </Item>
   ));
