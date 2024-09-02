@@ -624,7 +624,8 @@ export const SubmitButton = styled.button`
 
   &:hover {
     color: white;
-    background: ${(p) => p.theme.colors.textColor};
+    /* background: ${(p) => p.theme.colors.textColor}; */
+    background: #ff96cf;
   }
 `;
 export const Text = styled.p`
