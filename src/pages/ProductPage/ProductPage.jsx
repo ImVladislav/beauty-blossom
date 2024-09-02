@@ -343,11 +343,11 @@ const ProductPage = () => {
                   >
                     {product.brand}
                   </LinkHistoryLink>
-                  <span>/</span>
+                  {/* <span>/</span> */}
                 </LiHistoryItem>
 
                 <LiHistoryItem>
-                  <PHistoryName>{product.name}</PHistoryName>
+                  {/* <PHistoryName>{product.name}</PHistoryName> */}
                 </LiHistoryItem>
               </UlHistoryList>
             </Breadcrumbs>

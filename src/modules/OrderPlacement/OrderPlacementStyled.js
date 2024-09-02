@@ -273,23 +273,27 @@ export const DivInfoBlock = styled.div`
   justify-content: center;
   border: 2.52px solid #13a03a;
   border-radius: 378px;
-  padding: 8px 48px;
+  padding: 8px 20px;
   flex-direction: column;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
   background-color: #31aa53;
+  @media (min-width: 1024px) {
+    padding: 13px 40px;
+  }
 `;
 export const InfoTextP = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1.5;
   text-transform: uppercase;
   text-align: center;
   color: #fff;
 
   @media (min-width: 1024px) {
+    font-size: 14px;
     /* margin-left: 20px; */
   }
 `;
