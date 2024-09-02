@@ -5,13 +5,15 @@ import AboutUs from "../../modules/AboutUs/AboutUs";
 import { BrandsWraper } from "../../modules/BrandsImagesMain/BrandsWraper";
 
 import { Loader } from "../../shared/components/Loader/Loader";
+
+import { NewSlider } from "../../modules/ProductSlider/NewSlider/NewSlider";
 import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderDesktop";
+
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 import HeroBaner from "../../modules/Hero/HeroBaner";
 
-import NewSlider from "../../modules/ProductSlider/NewSlider/NewSlider";
 import CategoryList from "../../modules/MainCategotyList/CategoryList";
 
 const MainPage = () => {
@@ -43,22 +45,22 @@ const MainPage = () => {
 
           {isDesktopScreen ? (
             <>
-              <NewSlider
+              <SliderDesktop
                 items={saleFiltred.slice(0, 8)}
-                title={"товари зі зниженною ціною"}
+                title="товари зі зниженною ціною"
               />
-              <NewSlider
+              <SliderDesktop
                 items={newFiltred.slice(0, 8)}
-                title={"нове постачання"}
+                title="нове постачання"
               />
             </>
           ) : (
             <>
-              <SliderDesktop
-                products={saleFiltred}
-                title="товари зі зниженною ціною"
+              <NewSlider
+                items={saleFiltred}
+                title={"товари зі зниженною ціною"}
               />
-              <SliderDesktop products={newFiltred} title="нове постачання" />
+              <NewSlider items={newFiltred} title={"нове постачання"} />
             </>
           )}
           <CategoryList />

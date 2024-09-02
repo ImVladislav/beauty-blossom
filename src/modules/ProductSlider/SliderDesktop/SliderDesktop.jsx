@@ -1,74 +1,17 @@
-import React, { useState } from "react";
-
-import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-
-import { useMedia } from "../../../hooks/useMedia";
-
-import {
-  SliderContainer,
-  Button,
-  CartWrap,
-  TitleContainer,
-  Title,
-  Container,
-} from "./SliderDesktop.styled";
 import ProductCard from "../../../shared/components/ProductCard/ProductCard";
 
-export const SliderDesktop = ({ products, title }) => {
-  const { isMobileScreen } = useMedia();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const itemsPerSlide = !isMobileScreen ? 3 : 2;
+import { Container, List, Title, TitleLine } from "./SliderDesktop.styled";
 
-  const handlePrevSlide = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
-  const handleNextSlide = () => {
-    const maxSlide = Math.ceil(products.length - itemsPerSlide);
-    if (currentSlide < maxSlide) {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const startIdx = currentSlide * itemsPerSlide;
-  const endIdx = startIdx + itemsPerSlide;
-  const displayedProducts = products.slice(startIdx, endIdx);
-
+export const SliderDesktop = ({ items, title }) => {
   return (
     <Container>
-      <TitleContainer>
-        <Title>{title}</Title>
-      </TitleContainer>
-      <SliderContainer>
-        <Button
-          onClick={handlePrevSlide}
-          disabled={currentSlide === 0}
-          className={currentSlide === 0 && "icon-disabled"}
-        >
-          <AiOutlineLeft />
-        </Button>
-        <CartWrap>
-          {displayedProducts.map((filtered) => (
-            <ProductCard products={filtered} key={filtered.id} slider />
-          ))}
-        </CartWrap>
-        <Button
-          onClick={handleNextSlide}
-          disabled={
-            currentSlide >=
-            Math.max(0, Math.ceil(products.length / itemsPerSlide) - 1)
-          }
-          className={
-            currentSlide ===
-              Math.max(0, Math.ceil(products.length / itemsPerSlide) - 1) &&
-            "icon-disabled"
-          }
-        >
-          <AiOutlineRight />
-        </Button>
-      </SliderContainer>
+      <TitleLine />
+      <Title>{title}</Title>
+      <List>
+        {items?.map((item) => (
+          <ProductCard key={item.id} products={item} />
+        ))}
+      </List>
     </Container>
   );
 };
