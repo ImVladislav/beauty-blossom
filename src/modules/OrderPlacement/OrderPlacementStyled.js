@@ -279,6 +279,10 @@ export const DivInfoBlock = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-color: #31aa53;
+  @media (min-width: 768px) {
+    padding: 8px 30px;
+    /* margin-left: 20px; */
+  }
   @media (min-width: 1024px) {
     padding: 13px 40px;
   }
@@ -286,12 +290,15 @@ export const DivInfoBlock = styled.div`
 export const InfoTextP = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 700;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
   text-transform: uppercase;
   text-align: center;
   color: #fff;
-
+  @media (min-width: 768px) {
+    font-size: 12px;
+    /* margin-left: 20px; */
+  }
   @media (min-width: 1024px) {
     font-size: 14px;
     /* margin-left: 20px; */
@@ -618,7 +625,7 @@ export const SubmitButton = styled.button`
 
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 12px;
-    border: 2px solid ${(p) => p.theme.colors.textColor};
+    border: 1px solid ${(p) => p.theme.colors.textColor};
     padding: 4px 12px;
   }
 
