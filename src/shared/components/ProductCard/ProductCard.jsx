@@ -38,6 +38,13 @@ const ProductCard = ({ products, slider }) => {
   const quantity = 1;
   const loggedIn = useSelector(loggedInSelector);
 
+  const handleClickLink = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleAddToCart = async (event) => {
     event.preventDefault();
 
@@ -88,7 +95,10 @@ const ProductCard = ({ products, slider }) => {
         onMouseLeave={() => setIsHovered(false)}
         slider={slider}
       >
-        <LinkStyle to={`/product/${products.id || products.productId}`}>
+        <LinkStyle
+          to={`/product/${products.id || products.productId}`}
+          onClick={handleClickLink}
+        >
           <ImageWrap slider={slider}>
             <Image itemProp="image" src={products.images} alt={products.name} />
           </ImageWrap>
