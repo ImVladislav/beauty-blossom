@@ -23,7 +23,7 @@ import {
 const data = [
   {
     id: "1",
-    name: "Догляд для волосся",
+    name: "догляд для волосся",
     text: "догляд для волосся",
     srcImage: hairCareImage,
     to: "/category/hairCare",
@@ -31,21 +31,21 @@ const data = [
   {
     id: "2",
     name: "сироватки",
-    text: "Сироватка",
+    text: "сироватка",
     srcImage: serumImage,
     to: "/category/facial/moisturizing/serum",
   },
   {
     id: "3",
-    name: "Крема",
-    text: "Крем для обличчя",
+    name: "крема",
+    text: "крем для обличчя",
     srcImage: creamImage,
     to: "/category/facial/moisturizing/cream",
   },
   {
     id: "4",
     name: "зволоження",
-    text: "Зволоження",
+    text: "зволоження",
     srcImage: moisturizingImage,
     to: "/category/facial/moisturizing",
   },
@@ -59,20 +59,21 @@ const data = [
   {
     id: "6",
     name: "крем для очей",
-    text: "Крем під очі",
+    text: "крем під очі",
     srcImage: eyeCreamImage,
     to: "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
   },
   {
     id: "7",
     name: "маски для обличчя",
+    text: "маски для обличчя",
     srcImage: faceMasksImage,
     to: "/category/facial/masks",
   },
   {
     id: "8",
     name: "крем для рук",
-    text: "Крем для рук",
+    text: "крем для рук",
     srcImage: handCreamImage,
     to: "/category/bodyCare/handCosmetics/handCream",
   },
@@ -83,6 +84,10 @@ const CategoryList = () => {
 
   const handleClick = (name) => {
     dispatch(setfilter(name));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <Container>
