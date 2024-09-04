@@ -10,14 +10,7 @@ import ProductsList from "../../shared/components/ProductsList/ProductsList";
 import { Container } from "../../shared/styles/Container";
 import { Helmet } from "react-helmet";
 
-import {
-  BrandInfo,
-  BrandInfoWrap,
-  Desc,
-  Image,
-  TextInner,
-  Title,
-} from "./Brands.styled";
+import { BrandInfo, BrandInfoWrap, Desc, Image } from "./Brands.styled";
 
 const Brands = () => {
   const { brands } = useParams();
@@ -76,17 +69,17 @@ const Brands = () => {
       </Helmet>
 
       <Container>
-        {/* {infoBrand && (
+        {infoBrand && (
           <BrandInfo>
             <BrandInfoWrap>
               <Image src={infoBrand.logo} alt={infoBrand.name} width={70} />
-              <TextInner>
-                <Title>{infoBrand.title}</Title>
-                <Desc>{infoBrand.description}</Desc>
-              </TextInner>
+              <Desc>
+                <span>{infoBrand.name}</span>
+                {infoBrand.description}
+              </Desc>
             </BrandInfoWrap>
           </BrandInfo>
-        )} */}
+        )}
 
         <ProductsList items={sortedItems} />
       </Container>

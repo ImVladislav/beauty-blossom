@@ -15,6 +15,9 @@ export const BrandInfoWrap = styled.div`
   align-items: center;
   gap: 10px;
   padding: 15px;
+  @media screen and (min-width: 768px) {
+    gap: 20px;
+  }
   @media screen and (min-width: 1024px) {
     gap: 30px;
     max-width: 1200px;
@@ -30,25 +33,6 @@ export const Image = styled.img`
   }
 `;
 
-export const TextInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  @media screen and (min-width: 1024px) {
-    gap: 20px;
-  }
-`;
-export const Title = styled.h3`
-  font-family: "Mulish", sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.09;
-
-  color: #1e1e1e;
-  @media screen and (min-width: 1024px) {
-    font-size: 20px;
-  }
-`;
 export const Desc = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 300;
@@ -56,6 +40,18 @@ export const Desc = styled.p`
   line-height: 1.09;
 
   color: #1e1e1e;
+
+  & span {
+    font-family: "Mulish", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.09;
+
+    color: #1e1e1e;
+    @media screen and (min-width: 1024px) {
+      font-size: 20px;
+    }
+  }
   @media screen and (min-width: 1024px) {
     font-size: 18px;
   }
