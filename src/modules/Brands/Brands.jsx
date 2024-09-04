@@ -25,6 +25,10 @@ const Brands = () => {
     }
   }, [brands, dispatch]);
 
+  useEffect(() => {
+    console.log("Зміни в infoBrand:", infoBrand);
+  }, [infoBrand]);
+
   // info brand
   const getBrand = async () => {
     try {
@@ -36,6 +40,7 @@ const Brands = () => {
       );
 
       if (foundBrand) {
+        console.log(foundBrand.logo);
         setInfoBrand(foundBrand);
       } else {
         setInfoBrand(null);
@@ -59,6 +64,7 @@ const Brands = () => {
     );
 
   const allItemsNmeForMetaHelmet = sortedItems.map((item) => item.name);
+
   return (
     <main>
       <Helmet>
@@ -72,7 +78,19 @@ const Brands = () => {
         {infoBrand && (
           <BrandInfo>
             <BrandInfoWrap>
-              <Image src={infoBrand.logo} alt={infoBrand.name} width={70} />
+              {/* <Image src={infoBrand.logo} alt={infoBrand.name} width={70} /> */}
+              {/* <Image
+                src={decodeURI(infoBrand.logo)}
+                alt={infoBrand.name}
+                width={70}
+
+              /> */}
+              <Image
+                src={infoBrand?.logo}
+                alt={infoBrand?.name || "Brand Logo"}
+                width={70}
+              />
+
               <Desc>
                 <span>{infoBrand.name}</span>
                 {infoBrand.description}
