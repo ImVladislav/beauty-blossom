@@ -25,10 +25,6 @@ const Brands = () => {
     }
   }, [brands, dispatch]);
 
-  useEffect(() => {
-    console.log("Зміни в infoBrand:", infoBrand);
-  }, [infoBrand]);
-
   // info brand
   const getBrand = async () => {
     try {
@@ -36,11 +32,10 @@ const Brands = () => {
       const { data } = await axios.get(`/brands`);
 
       const foundBrand = data.find(
-        (item) => item.name.toLowerCase() === brands.toLowerCase()
+        (item) => item.name.toLowerCase().trim() === brands.toLowerCase().trim()
       );
 
       if (foundBrand) {
-        console.log(foundBrand.logo);
         setInfoBrand(foundBrand);
       } else {
         setInfoBrand(null);
@@ -78,23 +73,17 @@ const Brands = () => {
         {infoBrand && (
           <BrandInfo>
             <BrandInfoWrap>
-              {/* <Image src={infoBrand.logo} alt={infoBrand.name} width={70} /> */}
-              {/* <Image
-                src={decodeURI(infoBrand.logo)}
-                alt={infoBrand.name}
-                width={70}
-
-              /> */}
               <Image
                 src={infoBrand?.logo}
                 alt={infoBrand?.name || "Brand Logo"}
                 width={70}
               />
-
-              <Desc>
-                <span>{infoBrand.name}</span>
-                {infoBrand.description}
-              </Desc>
+              {infoBrand.name && infoBrand.description && (
+                <Desc>
+                  <span>{infoBrand.name}</span>
+                  {infoBrand.description}
+                </Desc>
+              )}
             </BrandInfoWrap>
           </BrandInfo>
         )}
