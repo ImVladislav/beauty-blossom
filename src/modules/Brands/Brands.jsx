@@ -10,14 +10,7 @@ import ProductsList from "../../shared/components/ProductsList/ProductsList";
 import { Container } from "../../shared/styles/Container";
 import { Helmet } from "react-helmet";
 
-import {
-  BrandInfo,
-  BrandInfoWrap,
-  Desc,
-  Image,
-  TextInner,
-  Title,
-} from "./Brands.styled";
+import { BrandInfo, BrandInfoWrap, Desc, Image } from "./Brands.styled";
 
 const Brands = () => {
   const { brands } = useParams();
@@ -39,7 +32,7 @@ const Brands = () => {
       const { data } = await axios.get(`/brands`);
 
       const foundBrand = data.find(
-        (item) => item.name.toLowerCase() === brands.toLowerCase()
+        (item) => item.name.toLowerCase().trim() === brands.toLowerCase().trim()
       );
 
       if (foundBrand) {
@@ -66,6 +59,7 @@ const Brands = () => {
     );
 
   const allItemsNmeForMetaHelmet = sortedItems.map((item) => item.name);
+
   return (
     <main>
       <Helmet>
@@ -76,17 +70,23 @@ const Brands = () => {
       </Helmet>
 
       <Container>
-        {/* {infoBrand && (
+        {infoBrand && (
           <BrandInfo>
             <BrandInfoWrap>
-              <Image src={infoBrand.logo} alt={infoBrand.name} width={70} />
-              <TextInner>
-                <Title>{infoBrand.title}</Title>
-                <Desc>{infoBrand.description}</Desc>
-              </TextInner>
+              <Image
+                src={infoBrand?.logo}
+                alt={infoBrand?.name || "Brand Logo"}
+                width={70}
+              />
+              {infoBrand.name && infoBrand.description && (
+                <Desc>
+                  <span>{infoBrand.name}</span>
+                  {infoBrand.description}
+                </Desc>
+              )}
             </BrandInfoWrap>
           </BrandInfo>
-        )} */}
+        )}
 
         <ProductsList items={sortedItems} />
       </Container>
