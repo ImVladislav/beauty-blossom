@@ -28,6 +28,7 @@ export const BrandInfoWrap = styled.div`
 export const Image = styled.img`
   width: 70px;
   /* height: fit-content; */
+
   @media screen and (min-width: 1024px) {
     width: 140px;
   }
