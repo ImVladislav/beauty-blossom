@@ -12,7 +12,8 @@ import { SliderDesktop } from "../../modules/ProductSlider/SliderDesktop/SliderD
 import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import HeroBaner from "../../modules/Hero/HeroBaner";
+// import HeroBaner from "../../modules/Hero/HeroBaner";
+import Hero from "../../modules/HeroTrimay/Hero";
 
 import CategoryList from "../../modules/MainCategotyList/CategoryList";
 
@@ -41,7 +42,7 @@ const MainPage = () => {
             <title>Beauty Blossom</title>
             <meta name="description" content="Головна сторінка" />
           </Helmet>
-          <HeroBaner />
+          <Hero />
 
           {isDesktopScreen ? (
             <>
