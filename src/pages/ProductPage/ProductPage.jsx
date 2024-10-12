@@ -65,6 +65,7 @@ import {
   getCategoryUrl2,
 } from "./ProductUtils";
 import NewSticker from "../../shared/components/Sticker/NewSticker";
+import { trackAddToCart } from "../../facebookInt/FacebookPixelEvent";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -153,6 +154,7 @@ const ProductPage = () => {
     if (!productCartFind) {
       dispatch(addToCart({ ...product, quantity }));
       if (loggedIn) {
+        trackAddToCart(product.id)
         try {
           await axios.post(`/basket`, {
             name: product.name,
