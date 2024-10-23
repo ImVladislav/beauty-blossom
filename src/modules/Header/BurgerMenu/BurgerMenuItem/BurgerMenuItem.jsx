@@ -37,6 +37,10 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
     const name = e.target.innerText;
 
     dispatch(setfilter(name));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
