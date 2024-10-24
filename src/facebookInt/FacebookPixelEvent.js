@@ -88,17 +88,17 @@ export const trackLeadSubmitted = () => {
     }
 
   
-  export const trackPurchase = (orderId, value, currency) => {
+  export const trackPurchase = (messaging_channel, orderId, value,) => {
    
       fbq('track', 'Purchase', {
         event_time: new Date().toISOString(),
         event_name: 'Purchase',
         order_id: orderId,
         value: value,
-        currency: currency,
+        currency: "UAH",
         event_source_url: window.location.href,
-        messaging_channel: 'email',
-        page_id: '12345',
+        messaging_channel: messaging_channel || 'email',
+        page_id: 'https://www.beautyblossom.com.ua/order',
         client_user_agent: navigator.userAgent, // Do Not Hash
       });
     }

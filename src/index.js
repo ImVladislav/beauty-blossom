@@ -1,3 +1,5 @@
+/* global fbq */
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -9,6 +11,19 @@ import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { PersistGate } from "redux-persist/integration/react";
 import { HelmetProvider } from "react-helmet-async";
+import axios from "axios"; // Імпорт axios, якщо його ще немає
+
+// Ініціалізація пікселя Meta
+const pixelId = '789745059892711'; // Ваш Pixel ID
+window.fbq = function() {
+  window.fbq.callMethod ?
+    window.fbq.callMethod.apply(window.fbq, arguments) : window.fbq.queue.push(arguments);
+};
+window.fbq.push = window.fbq;
+window.fbq.version = '2.0';
+window.fbq.queue = [];
+fbq('init', pixelId); // Ініціалізація пікселя
+fbq('track', 'PageView'); // Трекінг PageView
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

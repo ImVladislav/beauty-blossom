@@ -1,3 +1,4 @@
+
 import { Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { SharedLayout } from "./modules/SharedLayout/SharedLayout";
@@ -35,15 +36,58 @@ import { useMedia } from "./hooks/useMedia";
 import ForgottenPage from "./pages/ForgottenPage/ForgottenPage";
 import ForgottenIdPage from "./pages/ForgottenPage/ForgottenIdPage/ForgottenIdPage";
 import { HelmetProvider } from "react-helmet-async";
+import axios from "axios";
+import CryptoJS from 'crypto-js';
 
 function App() {
   const { isMobileScreen } = useMedia();
 
   const isRefreshing = useSelector(refreshSelector);
+//======================Facebook Pixel======================
+  
+  const sendConversion = async () => {
+    const accessToken = 'EAA04OeuiMK8BO9ibuOGZCCgfOhpEMUhdsoiKK1VlNgWVUA7LB43A9bwpJqdAQyRzYuJxpAx7Ad63pDU2ZClOmerZAXTZBAQB6S2oyMgD08vRCJrsZAIa3cQapueQGRZBSGUUwKMuKX6xW9AvJq38ERWpyRnZAnpv67HFaJY3qHzLxr62ZCJ7CZBjjfsKX0WCPvlBEaQZDZD';
+    const pixelId = '789745059892711';
+    
+    const userData = {
+      email: 'example@example.com', // Email для хешування
+      phone: '1234567890', // Телефон для хешування
+      country: 'Країна', // Країна
+      zip: '12345' // Поштовий індекс
+    };
+  
+    const eventData = {
+      data: [
+        {
+          event_name: 'PageView',
+          event_time: Math.floor(Date.now() / 1000), // Текущий час
+          event_id: 'uniqueEventId1234',
+          event_source_url: 'https://www.beautyblossom.com.ua/', // URL сторінки
+          user_data: {
+            email: CryptoJS.SHA256(userData.email).toString(), // Хешуйте email
+            phone: CryptoJS.SHA256(userData.phone).toString(), // Хешуйте телефон
+            country: CryptoJS.SHA256(userData.country).toString(), // Хешуйте країну
+            zip: CryptoJS.SHA256(userData.zip).toString() // Хешуйте поштовий індекс
+            // Виключаємо state
+          }
+        }
+      ],
+      access_token: accessToken
+    };
+  
+    try {
+      const response = await axios.post(`https://graph.facebook.com/v13.0/${pixelId}/events`, eventData);
+      console.log('Event sent successfully:', response.data);
+    } catch (error) {
+      console.error('Error sending event:', error.response.data);
+    }
+  };
+  //==============================================================================
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGoods());
+    sendConversion()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

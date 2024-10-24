@@ -59,6 +59,7 @@ import { OrderModalWindow } from "./OrderModal";
 import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import { trackPurchase } from "../../facebookInt/FacebookPixelEvent";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -383,13 +384,14 @@ const OrderPlacement = () => {
       }
     };
     const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
-
+    
     axios
       .post(
         ordersUrl,
         courier === "no" ? dataToSendCourier : dataToSendWarehouse
       )
       .then((response) => {
+        trackPurchase(userEmail || "", orderNumber, orderedItems === "сталась якась фігня" )
         if (isLogin) {
           removeCartItem();
         }
