@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 // import { AiOutlineCheck } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
 
+
 import axios from "axios";
 import { toast } from "react-toastify";
 import { addToCart } from "../../redux/cart/slice";
@@ -154,7 +155,6 @@ const ProductPage = () => {
     if (!productCartFind) {
       dispatch(addToCart({ ...product, quantity }));
       if (loggedIn) {
-        trackAddToCart(product.id)
         try {
           await axios.post(`/basket`, {
             name: product.name,
