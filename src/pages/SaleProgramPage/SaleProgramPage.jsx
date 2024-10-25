@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "../../shared/styles/Container";
 import {
-  Title,
-  ConditionsTitle,
+  SectionTitle,
+  InfoTitle,
   Text,
   ConditionsList,
-  ListItems,
+  ConditionsItem,
   ButtonWrapper,
   ModalBackground,
   ModalContent,
-  Link,
-  SubText,
-  Red,
+  Wrap,
+  TextPink,
+  ImportantList,
+  ImportantItem,
+  InfoWrap,
 } from "./SaleProgramPageStyled";
 import { CloseButton } from "../../shared/components/ReusebleCompoments/ModalCloseBTN/CloseButton";
 
@@ -50,160 +52,181 @@ const SaleProgramPage = () => {
     toast.info("Ви успішно зареєструвалися як оптовий клієнт, авторизуйтеся");
   };
   return (
-    <Container>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Корейська косметика оптом в Україні</title>
-        <meta
-          name="description"
-          content="Компанія Beauty Blossom запрошує до співпраці великі та малі гуртові
+    <main>
+      <Container>
+        <Helmet>
+          <meta charSet="utf-8" />
+          <title>Корейська косметика в роздріб та опт в Україні</title>
+          <meta
+            name="description"
+            content="Компанія Beauty Blossom запрошує до співпраці великі та малі гуртові
             магазини, салони краси та інстаграм сторінки. З нами ви отримуєте
             найвигідніші умови для співпраці:"
-        />
-      </Helmet>
-      <div>
-        <section id="about">
-          <Title>Корейська косметика оптом в Україні</Title>
-        </section>
+          />
+        </Helmet>
+        <Wrap>
+          <section id="about">
+            <SectionTitle>
+              Корейська косметика в роздріб та опт в Україні
+            </SectionTitle>
 
-        <section>
-          <ConditionsTitle>
-          Умови співпраці
-          </ConditionsTitle>
-          <Text style={{ fontWeight: "bold" }}>
-          для роздрібних клієнтів : 
-          </Text>
-          <ol>
-            <ListItems>мінімальної суми замовлення немає</ListItems>
-            <ListItems>оплата накладним платежем здійснюється по передоплаті 100 грн ( випадку не забору товару з пошти , передоплата не повертається )</ListItems>
-            <ListItems>безкоштовна доставка від 2000 грн </ListItems>
-            <ListItems>відправка 1-3 дні з моменту оплати замовлення на ФОП, якщо оплата накладним платежем , відправка здійснюється протягом 1-2 днів з моменту оформлення замовлення.</ListItems>
-          </ol>
-          <Text style={{ fontWeight: "bold" }}>
-          для роздрібних клієнтів : 
-          </Text>
-          <ConditionsList>
-            <ListItems>Мінімальна сума замовлення 2500 грн</ListItems>
-            <ListItems>
-              Відправка замовлень відбувається протягом 1-3 робочих днів з
-              моменту оформлення.
-              <p style={{ marginTop: "4px" }}>
-                *Замовлення здійсненні на вихідних обробляються в понеділок
-              </p>
-            </ListItems>
-            <ListItems>
-              Готівкова або безготівкова (ФОП) форма оплати. Все офіційно!
-            </ListItems>
-            <ListItems>
-              Часте оновлення товарів: Daeng Gi Meo Ri, Medi-peel, Lador та інші
-            </ListItems>
-          </ConditionsList>
-        </section>
+            <InfoWrap>
+              <InfoTitle id="payment">Умови співпраці</InfoTitle>
+              <Text>для роздрібних клієнтів:</Text>
+              <ConditionsList>
+                <ConditionsItem>
+                  <Text>мінімальної суми замовлення немає</Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    оплата накладним платежем здійснюється по передоплаті 100
+                    грн ( випадку не забору товару з пошти , передоплата не
+                    повертається )
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>безкоштовна доставка від 2000 грн</Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    відправка 1-3 дні з моменту оплати замовлення на ФОП, якщо
+                    оплата накладним платежем , відправка здійснюється протягом
+                    1-2 днів з моменту оформлення замовлення.
+                  </Text>
+                </ConditionsItem>
+              </ConditionsList>
+              <Text>як оформити замовлення?</Text>
+              <ConditionsList>
+                <ConditionsItem>
+                  <Text>
+                    обираєте потрібний товар , додаєте в корзину потрібну
+                    кількість
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    оформлюєте замовлення , вказуючи ваші дані для відправки та
+                    спосіб оплати
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>очікуєте на зворотній зв’язок нашого менеджера</Text>
+                </ConditionsItem>
+              </ConditionsList>
+              <TextPink>
+                ● переходьте в Instagram на нашу сторінку та дізнавайся, як
+                отримати знижку на перше замовлення по промокоду
+              </TextPink>
+            </InfoWrap>
 
-        <section id="payment">
-          <ConditionsTitle>Відправка</ConditionsTitle>
-          <Text>
-            Відправка здійснюється Новою поштою в будні дні з пн-пт (в суботу за
-            вимогою)
-          </Text>
-        </section>
+            <InfoWrap>
+              <Text>для оптових клієнтів:</Text>
+              <ConditionsList>
+                <ConditionsItem>
+                  <Text>мінімальна сума замовлення 2500 грн</Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>оплата накладним платежем або за реквізитами ФОП</Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    відправка протягом 1-3 днів з моменту оплати замовлення,
+                    якщо спосіб оплати накладний платіж, відправка відбувається
+                    протягом 1-2 днів з моменту оформлення замовлення
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>доставка за рахунок покупця</Text>
+                </ConditionsItem>
+              </ConditionsList>
+              <Text>як оформити замовлення?</Text>
+              <ConditionsList>
+                <ConditionsItem>
+                  <Text>
+                    щоб мати доступ до оптових цін, вам потрібно зареєструватись
+                    на сайті. Для цього, перейдіть вниз сторінки та натисніть на
+                    велику рожеву кнопку “реєстрація оптового покупця”
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    після реєстрації оновіть сторінку та по потребі увійдіть за
+                    вашими даними
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    обираєте потрібний товар , додаючи в корзину потрібну
+                    кількість
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>
+                    оформлюєте замовлення, вказуючи ваші дані для відправки та
+                    спосіб оплати
+                  </Text>
+                </ConditionsItem>
+                <ConditionsItem>
+                  <Text>очікуєте на зворотній зв’язок нашого менеджера</Text>
+                </ConditionsItem>
+              </ConditionsList>
+              <TextPink>
+                ● напишіть нашому менеджеру та дізнавайся, як отримати знижку на
+                перше замовлення по промокоду
+              </TextPink>
+            </InfoWrap>
 
-        <section>
-          <ConditionsTitle>Оплата</ConditionsTitle>
-          <Text>
-            Накладний платіж без передоплати або повна оплата на ФОП. При
-            потребі, надаємо всі потрібні документи в друкованому або
-            електронному вигляді.
-          </Text>
-        </section>
+            <InfoTitle>Важлива інформація </InfoTitle>
 
-        <section id="return">
-          <ConditionsTitle>Обмін та повернення</ConditionsTitle>
-          <Text>
-            Протягом 14-ти днів з моменту отримання замовлення ви можете
-            повернути або обміняти товар на інший, при умові якщо товар в
-            належному вигляді та не був у використанні. Рекомендуємо вам уважно
-            перевіряти замовлення перед оформленням для запобігання
-            непорозуміння. Якщо ви отримали товар в неналежному вигляді або не в
-            повному складі – обов’язково зв’яжіться з нашим менеджером для
-            найшвидшого вирішення ситуації.
-          </Text>
-        </section>
+            <ImportantList>
+              <ImportantItem>
+                <TextPink>
+                  промокоди та знижки не сумуються з іншими акційними
+                  пропозиціями на сайті , тобто на товари з позначками SALE
+                </TextPink>
+              </ImportantItem>
+              <ImportantItem>
+                <TextPink id="return">
+                  Протягом 14-ти днів з моменту отримання замовлення ви можете
+                  повернути або обміняти товар на інший, при умові якщо товар в
+                  належному вигляді та не був у використанні. Рекомендуємо вам
+                  уважно перевіряти замовлення перед оформленням для запобігання
+                  непорозуміння. Якщо ви отримали товар в неналежному вигляді
+                  або не в повному складі – обов’язково зв’яжіться з нашим
+                  менеджером для найшвидшого вирішення ситуації.
+                </TextPink>
+              </ImportantItem>
+              <ImportantItem>
+                <TextPink>
+                  на електронну пошту , яку вказували при реєстрації , вам
+                  прийшов лист з логіном та паролем. Рекомендуємо його зберегти
+                  , аби в майбутньому завжди мати змогу увійти за своїми даними
+                  на сайт
+                </TextPink>
+              </ImportantItem>
+            </ImportantList>
+            <Text style={{ marginTop: "4px", fontStyle: "italic" }}>
+              * якщо виникли труднощі з входом на сайт - напишіть нашому
+              менеджеру в телеграмі
+            </Text>
 
-        <section>
-          <ConditionsTitle>Контакти</ConditionsTitle>
-          <Text>З усіх питань ви можете зв’язатись з нами:</Text>
-          <ConditionsList>
-            <ListItems style={{ listStyle: "none" }}>
-              Телефон:
-              <Link href="tel:+380500529100">+38 (050) 052 91 00</Link>
-            </ListItems>
-            <ListItems style={{ listStyle: "none" }}>
-              Електронна пошта:{" "}
-              <Link href="mailto:beautyblossom.opt@gmail.com">
-                beautyblossom.opt@gmail.com
-              </Link>
-            </ListItems>
-          </ConditionsList>
-        </section>
-
-        <section>
-          <ConditionsTitle>Графік роботи</ConditionsTitle>
-          <Text>Понеділок — п'ятниця з 9:30 по 18:00</Text>
-          <Text>Субота, неділя — вихідні </Text>
-        </section>
-
-        <section>
-          <ConditionsTitle>Бажаєте стати оптовим покупцем?</ConditionsTitle>
-          <Text>
-            Щоб стати оптовим покупцем, вам потрібно виконати наступні кроки:
-          </Text>
-          <ConditionsList>
-            <ListItems>
-              Реєструйтесь по кнопці "Стати оптовим покупцем"
-            </ListItems>
-            <ListItems>
-              Поверніться на верх сторінки та увійдіть в свій акаунт, вказавши
-              свій логін та пароль
-            </ListItems>
-          </ConditionsList>
-          <SubText>
-            <Red>*</Red>важливо : на електронну пошту , яку вказували при
-            реєстрації , вам прийшов лист з логіном та паролем. Рекомендуємо
-            його зберегти , аби в майбутньому завжди мати змогу увійти за своїми
-            даними на сайт
-          </SubText>
-          <SubText>
-            Готово! Ви стали оптовим покупцем та можете бачити оптові ціни.
-          </SubText>
-          <Text>
-            <Red>*</Red>якщо виникли труднощі з входом на сайт - напишіть нашому
-            менеджеру в телеграмі
-          </Text>
-
-          {/* // <Button
-            //   opt
-            //   text={"Стати оптовим покупцем"}
-            //   type="submit"
-            //   onClick={openModal}
-            реєстрація оптового покупця
-            // /> */}
-          <ButtonWrapper>
-            <OpenOptRegisterWindow onClick={openModal}>
-              реєстрація оптового покупця
-            </OpenOptRegisterWindow>
-          </ButtonWrapper>
-        </section>
-      </div>
-      {isModalOpen && (
-        <ModalBackground onClick={handelDropClose}>
-          <ModalContent>
-            <CloseButton close={() => setIsModalOpen(false)} />
-            <Register onRegisterSuccess={onRegisterSuccess} opt />
-          </ModalContent>
-        </ModalBackground>
-      )}
-    </Container>
+            <ButtonWrapper>
+              <OpenOptRegisterWindow onClick={openModal}>
+                реєстрація оптового покупця
+              </OpenOptRegisterWindow>
+            </ButtonWrapper>
+          </section>
+        </Wrap>
+        {isModalOpen && (
+          <ModalBackground onClick={handelDropClose}>
+            <ModalContent>
+              <CloseButton close={() => setIsModalOpen(false)} />
+              <Register onRegisterSuccess={onRegisterSuccess} opt />
+            </ModalContent>
+          </ModalBackground>
+        )}
+      </Container>
+    </main>
   );
 };
 

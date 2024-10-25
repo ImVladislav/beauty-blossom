@@ -1,67 +1,103 @@
 import styled from "styled-components";
 
-export const Title = styled.h2`
-  display: flex;
+export const Wrap = styled.div`
+  padding: 0 20px;
+`;
+export const SectionTitle = styled.h2`
   font-family: "Mulish", sans-serif;
-  justify-content: center;
+
   font-size: 16px;
   font-weight: bold;
   margin-top: 40px;
   color: #ff96cf;
+  text-align: center;
   @media screen and (min-width: 768px) {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
-  @media screen and (min-width: 1440px) {
-  }
+  /* @media screen and (min-width: 1440px) {
+  } */
 `;
-export const ConditionsTitle = styled.h4`
+
+export const InfoTitle = styled.h3`
   font-family: "Mulish", sans-serif;
-  display: flex;
+
   font-size: 12px;
   font-weight: bold;
-  padding: 20px 0px;
-  margin-left: 10px;
-  color: #616161;
-  @media screen and (min-width: 768px) {
-    font-size: 1.8em;
-    margin-left: 34px;
-  }
+  padding: 0 0 20px 0px;
 
-  @media screen and (min-width: 1440px) {
+  text-align: center;
+  color: #616161;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 0 30px 0px;
+    font-size: 1.4em;
+  }
+`;
+export const InfoWrap = styled.div`
+  margin: 20px 0;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 50px;
+    margin-top: 50px;
   }
 `;
 export const Text = styled.p`
   font-family: "Mulish", sans-serif;
-  padding: 0 5px;
-  line-height: 1.5;
-  /* font-weight: bold; */
+  font-weight: 700;
   font-size: 8px;
+  line-height: 1.1;
+  color: #616161;
+
   @media screen and (min-width: 768px) {
-    font-size: 16px;
+    font-size: 20px;
   }
-  /* 
-  @media screen and (min-width: 1440px) {
-  } */
+`;
+
+export const TextPink = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 8px;
+  line-height: 1.1;
+  font-style: italic;
+  color: #ff96cf;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
 `;
 export const ConditionsList = styled.ul`
   display: block;
 
-  margin: 15px 0px 15px 25px;
+  margin: 15px 0px 15px 5px;
 `;
 
-export const ListItems = styled.li`
-  margin-left: 5px;
-  margin-top: 4px;
+export const ConditionsItem = styled.li`
   list-style-type: decimal;
-  font-size: 10px;
+  font-size: 8px;
   font-family: "Mulish", sans-serif;
+  font-weight: 700;
   @media screen and (min-width: 768px) {
     font-size: 18px;
-    margin-left: 10px;
+    margin-left: 35px;
   }
+`;
+export const ImportantList = styled.ul`
+  margin-bottom: 30px;
 
-  @media screen and (min-width: 1440px) {
+  & li::before {
+    content: "●";
+    color: #ff96cf;
+    margin-right: 8px;
+  }
+`;
+export const ImportantItem = styled.li`
+  margin-bottom: 30px;
+  display: flex;
+  font-size: 8px;
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  color: #ff96cf;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
   }
 `;
 
