@@ -9,10 +9,10 @@ export const BackgroundColor = styled.div`
   z-index: 0;
   user-select: none;
   @media screen and (min-width: 768px) {
-    height: 400px;
+    height: 350px;
   }
   @media screen and (min-width: 1440px) {
-    height: 600px;
+    height: 520px;
   }
 `;
 export const ContainerBanner = styled.div`
