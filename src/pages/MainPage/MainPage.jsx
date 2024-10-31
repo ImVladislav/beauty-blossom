@@ -13,7 +13,7 @@ import { selectNew, selectSale } from "../../redux/products/selectors";
 import { useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
 // import HeroBaner from "../../modules/Hero/HeroBaner";
-import Hero from "../../modules/HeroTrimay/Hero";
+import Hero from "../../modules/HeroHelloween/Hero";
 
 import CategoryList from "../../modules/MainCategotyList/CategoryList";
 
