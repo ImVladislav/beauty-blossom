@@ -33,6 +33,11 @@
                 "to": "/category/facial/masks/hydroagelMasks",
                 "text": "Гідрогелеві маски",
                 "children": []
+              },
+              {
+                "to": "/category/facial/masks/mask-fyilm",
+                "text": "Маска-плівка",
+                "children": []
               }
             ]
           },
