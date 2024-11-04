@@ -393,7 +393,14 @@ export const ProductDescriptionTitle = styled.h3`
   color: #616161;
   padding: 40px 0 20px;
   text-align: center;
-
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
+  &.active {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
   @media screen and (min-width: 768px) {
     font-family: "Mulish", sans-serif;
     font-weight: 400;
@@ -404,6 +411,15 @@ export const ProductDescriptionTitle = styled.h3`
 
     padding: 0 30px 10px;
     border-bottom: 2px solid #616161;
+    transition: all 250ms linear;
+
+    &.active {
+      border-bottom: 2px solid ${(p) => p.theme.colors.accentColor};
+    }
+    &:hover,
+    &:focus {
+      border-bottom: 2px solid ${(p) => p.theme.colors.accentColor};
+    }
   }
   @media screen and (min-width: 1024px) {
     font-size: 30px;

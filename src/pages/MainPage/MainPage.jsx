@@ -64,7 +64,9 @@ const MainPage = () => {
               <NewSlider items={newFiltred} title={"нове постачання"} />
             </>
           )}
-          <CategoryList />
+          <div id="category">
+            <CategoryList />
+          </div>
           {/* <BrandsWraper /> */}
 
           <AboutUs />

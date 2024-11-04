@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 // import { AiOutlineCheck } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
 
-
 import axios from "axios";
 import { toast } from "react-toastify";
 import { addToCart } from "../../redux/cart/slice";
@@ -81,6 +80,8 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
+  const [isDescription, setiIsDescription] = useState(true);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -278,6 +279,7 @@ const ProductPage = () => {
   }
   const paragraphs = addParagraphTags(product.description);
 
+  console.log(product);
   return (
     <Container>
       <Helmet>
@@ -503,21 +505,57 @@ const ProductPage = () => {
                     </div>
                   </AboutProductWrapper>
                 </ProductFeaturesWrapper>
-                <ProductDescriptionWrap>
-                  <ProductDescriptionTitle>опис товару</ProductDescriptionTitle>
-                </ProductDescriptionWrap>
+                {console.log(product.compound)}
+                {product.compound ? (
+                  <ProductDescriptionWrap>
+                    <ProductDescriptionTitle
+                      className={isDescription && "active"}
+                      onClick={() => {
+                        setiIsDescription(true);
+                      }}
+                    >
+                      опис товару
+                    </ProductDescriptionTitle>
+                    <ProductDescriptionTitle
+                      className={!isDescription && "active"}
+                      onClick={() => {
+                        setiIsDescription(false);
+                      }}
+                    >
+                      склад
+                    </ProductDescriptionTitle>
+                  </ProductDescriptionWrap>
+                ) : (
+                  <ProductDescriptionWrap>
+                    <ProductDescriptionTitle
+                      onClick={() => {
+                        setiIsDescription(true);
+                      }}
+                    >
+                      опис товару
+                    </ProductDescriptionTitle>
+                  </ProductDescriptionWrap>
+                )}
 
-                <ProductDescriptionList itemProp="description">
-                  {paragraphs.map((paragraph, index) => (
-                    <React.Fragment key={index}>
-                      {paragraph.map((p, i) => (
-                        <ProductDescriptionItem key={i}>
-                          {p}
-                        </ProductDescriptionItem>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </ProductDescriptionList>
+                {isDescription ? (
+                  <ProductDescriptionList itemProp="description">
+                    {paragraphs.map((paragraph, index) => (
+                      <React.Fragment key={index}>
+                        {paragraph.map((p, i) => (
+                          <ProductDescriptionItem key={i}>
+                            {p}
+                          </ProductDescriptionItem>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </ProductDescriptionList>
+                ) : (
+                  <ProductDescriptionList itemProp="compound">
+                    <ProductDescriptionItem>
+                      <p>{product.compound}</p>
+                    </ProductDescriptionItem>
+                  </ProductDescriptionList>
+                )}
 
                 {product && (
                   <SimilarProducts

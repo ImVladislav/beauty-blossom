@@ -20,6 +20,7 @@ import {
   BrandLetter,
   ContactLink,
 } from "./MenuItem.styled";
+import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
@@ -28,6 +29,7 @@ const MenuItem = ({ item }) => {
   const [activeSubSubMenu, setActiveSubSubMenu] = useState(null);
   const items = useSelector(selectGoods);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const brand = items
     ?.map((item) => item.brand.toUpperCase())
@@ -63,17 +65,35 @@ const MenuItem = ({ item }) => {
     dispatch(setfilter(name));
   };
 
+  const handleClickCategory = () => {
+    navigate("/");
+
+    setTimeout(() => {
+      const categoryElement = document.getElementById("category");
+      if (categoryElement) {
+        categoryElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 10);
+  };
+
   return (
     <Item onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {(item.to === "#contacts" && (
         <ContactLink href={item.to}>{item.text}</ContactLink>
-      )) || (
-        <LinkStyle to={item.to}>
-          {item.text}
-          {item.children.length > 0 &&
-            (expanded ? <DownIcon /> : <RightIcon />)}
-        </LinkStyle>
-      )}
+      )) ||
+        (item.to === "#category" && (
+          <ContactLink href={item.to} onClick={handleClickCategory}>
+            {item.text}
+            {item.children.length > 0 &&
+              (expanded ? <DownIcon /> : <RightIcon />)}
+          </ContactLink>
+        )) || (
+          <LinkStyle to={item.to}>
+            {item.text}
+            {item.children.length > 0 &&
+              (expanded ? <DownIcon /> : <RightIcon />)}
+          </LinkStyle>
+        )}
 
       {expanded && item.children.length > 0 && item.to !== "/brands" && (
         <MenuWrap>
