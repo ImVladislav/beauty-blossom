@@ -80,6 +80,8 @@ const ProductPage = () => {
   const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
+  const [isDescription, setiIsDescription] = useState(true);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -277,6 +279,7 @@ const ProductPage = () => {
   }
   const paragraphs = addParagraphTags(product.description);
 
+  console.log(product);
   return (
     <Container>
       <Helmet>
@@ -503,21 +506,42 @@ const ProductPage = () => {
                   </AboutProductWrapper>
                 </ProductFeaturesWrapper>
                 <ProductDescriptionWrap>
-                  <ProductDescriptionTitle>опис товару</ProductDescriptionTitle>
-                  <ProductDescriptionTitle>склад</ProductDescriptionTitle>
+                  <ProductDescriptionTitle
+                    className={isDescription && "active"}
+                    onClick={() => {
+                      setiIsDescription(true);
+                    }}
+                  >
+                    опис товару
+                  </ProductDescriptionTitle>
+                  <ProductDescriptionTitle
+                    className={!isDescription && "active"}
+                    onClick={() => {
+                      setiIsDescription(false);
+                    }}
+                  >
+                    склад
+                  </ProductDescriptionTitle>
                 </ProductDescriptionWrap>
-
-                <ProductDescriptionList itemProp="description">
-                  {paragraphs.map((paragraph, index) => (
-                    <React.Fragment key={index}>
-                      {paragraph.map((p, i) => (
-                        <ProductDescriptionItem key={i}>
-                          {p}
-                        </ProductDescriptionItem>
-                      ))}
-                    </React.Fragment>
-                  ))}
-                </ProductDescriptionList>
+                {isDescription ? (
+                  <ProductDescriptionList itemProp="description">
+                    {paragraphs.map((paragraph, index) => (
+                      <React.Fragment key={index}>
+                        {paragraph.map((p, i) => (
+                          <ProductDescriptionItem key={i}>
+                            {p}
+                          </ProductDescriptionItem>
+                        ))}
+                      </React.Fragment>
+                    ))}
+                  </ProductDescriptionList>
+                ) : (
+                  <ProductDescriptionList itemProp="compound">
+                    <ProductDescriptionItem>
+                      <p>{product.compound}</p>
+                    </ProductDescriptionItem>
+                  </ProductDescriptionList>
+                )}
 
                 {product && (
                   <SimilarProducts
