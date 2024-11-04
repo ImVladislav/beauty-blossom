@@ -505,24 +505,38 @@ const ProductPage = () => {
                     </div>
                   </AboutProductWrapper>
                 </ProductFeaturesWrapper>
-                <ProductDescriptionWrap>
-                  <ProductDescriptionTitle
-                    className={isDescription && "active"}
-                    onClick={() => {
-                      setiIsDescription(true);
-                    }}
-                  >
-                    опис товару
-                  </ProductDescriptionTitle>
-                  <ProductDescriptionTitle
-                    className={!isDescription && "active"}
-                    onClick={() => {
-                      setiIsDescription(false);
-                    }}
-                  >
-                    склад
-                  </ProductDescriptionTitle>
-                </ProductDescriptionWrap>
+                {console.log(product.compound)}
+                {product.compound ? (
+                  <ProductDescriptionWrap>
+                    <ProductDescriptionTitle
+                      className={isDescription && "active"}
+                      onClick={() => {
+                        setiIsDescription(true);
+                      }}
+                    >
+                      опис товару
+                    </ProductDescriptionTitle>
+                    <ProductDescriptionTitle
+                      className={!isDescription && "active"}
+                      onClick={() => {
+                        setiIsDescription(false);
+                      }}
+                    >
+                      склад
+                    </ProductDescriptionTitle>
+                  </ProductDescriptionWrap>
+                ) : (
+                  <ProductDescriptionWrap>
+                    <ProductDescriptionTitle
+                      onClick={() => {
+                        setiIsDescription(true);
+                      }}
+                    >
+                      опис товару
+                    </ProductDescriptionTitle>
+                  </ProductDescriptionWrap>
+                )}
+
                 {isDescription ? (
                   <ProductDescriptionList itemProp="description">
                     {paragraphs.map((paragraph, index) => (

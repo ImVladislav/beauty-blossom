@@ -55,7 +55,7 @@
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/balm",
-                "text": "Бальзам",
+                "text": "Бальзам для очищення",
                 "children": []
               },
               {
@@ -359,6 +359,12 @@
         "level": 2,
         "to": "/category/sunProtection",
         "text": "Захист від сонця",
+        "children": []
+      },
+      {
+        "level": 2,
+        "to": "/category/hydrophilicOil",
+        "text": "Гідрофільна олія",
         "children": []
       },
       {
