@@ -393,6 +393,7 @@ export const ProductDescriptionTitle = styled.h3`
   color: #616161;
   padding: 40px 0 20px;
   text-align: center;
+  /* cursor: pointer; */
 
   @media screen and (min-width: 768px) {
     font-family: "Mulish", sans-serif;

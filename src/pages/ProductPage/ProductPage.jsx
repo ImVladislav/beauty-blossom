@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 // import { AiOutlineCheck } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
 
-
 import axios from "axios";
 import { toast } from "react-toastify";
 import { addToCart } from "../../redux/cart/slice";
@@ -505,6 +504,7 @@ const ProductPage = () => {
                 </ProductFeaturesWrapper>
                 <ProductDescriptionWrap>
                   <ProductDescriptionTitle>опис товару</ProductDescriptionTitle>
+                  <ProductDescriptionTitle>склад</ProductDescriptionTitle>
                 </ProductDescriptionWrap>
 
                 <ProductDescriptionList itemProp="description">

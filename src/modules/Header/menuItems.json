@@ -1,7 +1,7 @@
 [
   {
     "level": 1,
-    "to": "/category",
+    "to": "#category",
     "text": "Категорії",
     "children": [
       {
