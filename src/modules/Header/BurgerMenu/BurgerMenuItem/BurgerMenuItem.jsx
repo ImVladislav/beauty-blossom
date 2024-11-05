@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setfilter } from "../../../../redux/filter/slice";
@@ -12,6 +12,7 @@ import {
   DownIcon,
   StyleLink,
   BrandStyleLink,
+  LinkHref,
 } from "./BurgerMenuItem.styled";
 
 const BurgerMenuItem = ({ item, level, closeMenu }) => {
@@ -19,6 +20,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
   const items = useSelector(selectGoods);
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const brand = items
     ?.map((item) => item.brand.toUpperCase())
@@ -35,28 +37,54 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
 
   const handleClick = (e) => {
     const name = e.target.innerText;
-
-    dispatch(setfilter(name));
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (name === "категорії") {
+      navigate("/");
+      setTimeout(() => {
+        const categoryElement = document.getElementById("category");
+        if (categoryElement) {
+          categoryElement.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 10);
+    } else {
+      dispatch(setfilter(name));
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <MenuLevel className={`menu-level-${level}`}>
       <LinkWrap>
-        <StyleLink
-          className={pathname === item.to ? "active" : ""}
-          to={item.to}
-          onClick={(e) => {
-            toggleSubMenu();
-            closeMenu();
-            handleClick(e);
-          }}
-        >
-          {item.textMobile ? item.textMobile : item.text}
-        </StyleLink>
+        {(item.to === "#category" && (
+          <LinkHref
+            className={pathname.includes("category") ? "active" : ""}
+            href={item.to}
+            onClick={(e) => {
+              toggleSubMenu();
+              closeMenu();
+              handleClick(e);
+            }}
+          >
+            {item.textMobile ? item.textMobile : item.text}
+          </LinkHref>
+        )) || (
+          <StyleLink
+            className={pathname === item.to ? "active" : ""}
+            to={item.to}
+            onClick={(e) => {
+              toggleSubMenu();
+              closeMenu();
+              handleClick(e);
+            }}
+          >
+            {item.textMobile ? item.textMobile : item.text}
+          </StyleLink>
+        )}
 
         {(item.children.length === 0 && item.to !== "/brands") ||
           (isSubMenuOpen ? (
@@ -81,7 +109,7 @@ const BurgerMenuItem = ({ item, level, closeMenu }) => {
         <div className="submenu">
           {item.children.map((child, index) => (
             <BurgerMenuItem
-              key={child.to}
+              key={index}
               item={child}
               level={level + 1}
               closeMenu={closeMenu}

@@ -88,7 +88,6 @@ const ProductPage = () => {
       behavior: "smooth",
     });
   };
-  // console.log(products);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -113,7 +112,7 @@ const ProductPage = () => {
   const productCartFind = productCart?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
-  // console.log(products);
+
   useEffect(() => {
     if (product) {
       setAmount(product.amount);
@@ -279,7 +278,6 @@ const ProductPage = () => {
   }
   const paragraphs = addParagraphTags(product.description);
 
-  console.log(product);
   return (
     <Container>
       <Helmet>
@@ -505,7 +503,6 @@ const ProductPage = () => {
                     </div>
                   </AboutProductWrapper>
                 </ProductFeaturesWrapper>
-                {console.log(product.compound)}
                 {product.compound ? (
                   <ProductDescriptionWrap>
                     <ProductDescriptionTitle
