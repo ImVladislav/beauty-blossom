@@ -32,6 +32,28 @@ export const StyleLink = styled(NavLink)`
   }
 `;
 
+export const LinkHref = styled.a`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+
+  text-decoration: none;
+
+  padding: 7px 0;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: #ff96cf;
+  }
+  &.active {
+    color: #ff96cf;
+  }
+`;
+
 export const RightIcon = styled(AiOutlineRight)`
   width: 22px;
   height: 22px;

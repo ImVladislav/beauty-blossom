@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import SubMenuItem from "./SubMenuItem/SubMenuItem";
 
@@ -20,7 +21,6 @@ import {
   BrandLetter,
   ContactLink,
 } from "./MenuItem.styled";
-import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
