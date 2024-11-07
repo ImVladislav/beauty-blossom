@@ -381,7 +381,7 @@ export const ProductDescriptionWrap = styled.div`
 
   @media screen and (min-width: 768px) {
     padding: 20px 0 0;
-    border-bottom: 1px solid #616161;
+    /* border-bottom: 1px solid #616161; */
   }
 `;
 export const ProductDescriptionTitle = styled.h3`
