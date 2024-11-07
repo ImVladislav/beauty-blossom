@@ -385,11 +385,11 @@ export const ProductDescriptionWrap = styled.div`
   }
 `;
 export const ProductDescriptionTitle = styled.h3`
-  font-family: "Mulish", sans-serif;
-  font-weight: 700;
+  font-family: "Monserrat", sans-serif;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.079;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   color: #616161;
   padding: 40px 0 20px;
   text-align: center;
@@ -402,7 +402,7 @@ export const ProductDescriptionTitle = styled.h3`
     color: ${(p) => p.theme.colors.accentColor};
   }
   @media screen and (min-width: 768px) {
-    font-family: "Mulish", sans-serif;
+    font-family: "Monserrat", sans-serif;
     font-weight: 400;
     font-size: 20px;
     line-height: 1.02312;
@@ -425,7 +425,7 @@ export const ProductDescriptionTitle = styled.h3`
     font-size: 30px;
   }
   @media screen and (min-width: 1440px) {
-    padding: 0 100px 10px;
+    padding: 0 70px 10px;
   }
 `;
 

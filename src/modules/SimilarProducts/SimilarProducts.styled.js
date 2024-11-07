@@ -23,11 +23,11 @@ export const BrandStyledLink = styled(Link)`
   }
 `;
 export const Title = styled.h2`
-  font-family: "Mulish", sans-serif;
-  font-weight: 700;
+  font-family: "Monserrat", sans-serif;
+  font-weight: 400;
   font-size: 12px;
   line-height: 1.079;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 
   text-align: center;
   @media screen and (min-width: 768px) {
