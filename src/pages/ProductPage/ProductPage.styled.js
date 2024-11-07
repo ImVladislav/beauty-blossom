@@ -422,7 +422,7 @@ export const ProductDescriptionTitle = styled.h3`
     }
   }
   @media screen and (min-width: 1024px) {
-    font-size: 30px;
+    font-size: 26px;
   }
   @media screen and (min-width: 1440px) {
     padding: 0 70px 10px;
