@@ -351,12 +351,6 @@
       },
       {
         "level": 2,
-        "to": "/category/demacia",
-        "text": "Демакіяж",
-        "children": []
-      },
-      {
-        "level": 2,
         "to": "/category/sunProtection",
         "text": "Захист від сонця",
         "children": []
