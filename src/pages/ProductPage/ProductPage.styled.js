@@ -404,7 +404,7 @@ export const ProductDescriptionTitle = styled.h3`
   @media screen and (min-width: 768px) {
     font-family: "Monserrat", sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 14px;
     line-height: 1.02312;
     text-transform: lowercase;
     color: #616161;
@@ -422,7 +422,7 @@ export const ProductDescriptionTitle = styled.h3`
     }
   }
   @media screen and (min-width: 1024px) {
-    font-size: 26px;
+    font-size: 20px;
   }
   @media screen and (min-width: 1440px) {
     padding: 0 70px 10px;
