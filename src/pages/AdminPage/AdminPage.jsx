@@ -188,7 +188,7 @@ const AdminPage = () => {
                   <Th>Номер замовлення</Th>
                   <Th>Дата</Th>
                   <Th>Покупець</Th>
-                  <Th>Контакти</Th>
+                  {/* <Th>Контакти</Th> */}
                   <Th>Загальна сума/грн</Th>
                   <Th>Статус</Th>
                   <Th>Фін Статус</Th>
@@ -212,12 +212,12 @@ const AdminPage = () => {
                       <Td>{order.orderNumber}</Td>
                       <Td>{order.createdAt.substr(0, 10)}</Td>
                       <Td>{`${order.firstName} ${order.lastName}`}</Td>
-                      <Td>
+                      {/* <Td>
                         {!String(order.number).includes("+380")
                           ? `380${order.number}`
                           : `${order.number}`}{" "}
                         {order.email}
-                      </Td>
+                      </Td> */}
                       <Td>{order.amount}</Td>
                       <TdStatus status={order.status}>{order.status}</TdStatus>
                       <Td>{order.paymentMethod}</Td>
