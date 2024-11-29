@@ -182,8 +182,12 @@ export const ProductInner = styled.div`
 
 // price
 export const ProductPriceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   @media screen and (min-width: 768px) {
     padding-left: 10px;
+    margin-bottom: 25px;
   }
 `;
 
@@ -193,7 +197,7 @@ export const ProductPriceName = styled.p`
   font-size: 12px;
   line-height: 1.079;
   letter-spacing: 0.1em;
-  color: #616161;
+  color: #424242;
   text-align: center;
   @media screen and (min-width: 768px) {
     text-align: start;
@@ -210,18 +214,34 @@ export const ProductPrice = styled.p`
   line-height: 1.079;
   letter-spacing: 0.05em;
   color: #424242;
-  margin: 10px 0;
+  /* margin: 10px 0; */
   & span {
     margin-left: 5px;
   }
   @media screen and (min-width: 768px) {
-    margin: 10px 0 25px;
+    /* margin: 10px 0 25px; */
     & span {
       margin-left: 7px;
     }
   }
   @media screen and (min-width: 1024px) {
     font-size: 44px;
+  }
+`;
+export const ProductPriceSale = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #b2b2b2;
+  text-align: center;
+  text-decoration: line-through;
+  @media screen and (min-width: 768px) {
+    text-align: start;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 26px;
   }
 `;
 

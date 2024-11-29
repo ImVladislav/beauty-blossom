@@ -176,6 +176,7 @@ export const PriceName = styled.p`
   letter-spacing: 0.05em;
   text-align: start;
   color: #616161;
+  /* margin-top: 8px; */
 
   ${(p) =>
     p.slider &&
@@ -236,6 +237,33 @@ export const Price = styled.p`
     & span {
       margin-left: 5px;
     }
+  }
+`;
+export const PriceSale = styled.p`
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 1.079;
+  letter-spacing: 0.1em;
+  color: #b2b2b2;
+
+  text-decoration: line-through;
+  text-decoration-color: #7f7f7f;
+  text-align: end;
+
+  ${(p) =>
+    p.slider &&
+    css`
+      font-size: 8px;
+      @media screen and (min-width: 768px) {
+        font-size: 12px;
+      }
+    `}
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 19px;
   }
 `;
 
