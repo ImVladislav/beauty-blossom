@@ -38,6 +38,7 @@ export const CostumerStatusItem = styled.label`
 
 export const Form = styled.form`
   display: flex;
+  justify-content: center;
 
   @media (max-width: 768px) {
     display: flex;
@@ -58,19 +59,19 @@ export const DeliveryInfoBlock = styled.div`
   @media (min-width: 768px) and (max-width: 1023px) {
     min-width: 250px;
   }
-  @media (max-width: 768px) {
-    min-width: 200px;
+  @media (max-width: 767px) {
+    min-width: 320px;
   }
 `;
 
 export const CostumerStatusinput = styled.input`
-  border: 1.91px solid #9a9a9a;
-  border-radius: 3px;
+  border: 1px solid #616161;
+  border-radius: 5px;
   width: 290px;
   height: 30px;
   padding: 5px 10px;
   background: transparent;
-  margin: 10px 0px;
+  margin-bottom: 13px;
   width: 100%;
 
   &:focus {
@@ -146,8 +147,8 @@ export const CityitemsBlock = styled.ul`
 `;
 
 export const Select = styled.select`
-  border: 1.91px solid #9a9a9a;
-  border-radius: 3px;
+  border: 1px solid #616161;
+  border-radius: 5px;
   /* width: 290px;
   height: 30px; */
 
@@ -175,12 +176,12 @@ export const Select = styled.select`
 `;
 
 export const Textarea = styled.textarea`
-  border: 1.91px solid #9a9a9a;
-  border-radius: 3px;
+  border: 1px solid #616161;
+  border-radius: 5px;
   resize: none;
   background: transparent;
   width: 100%;
-  height: 51px;
+  height: 60px;
   padding: 14px 20px;
   overflow-y: hidden;
   margin-bottom: 20px;
@@ -189,17 +190,17 @@ export const Textarea = styled.textarea`
     visibility: hidden;
     white-space: pre-wrap;
   }
-
-  @media (min-width: 1440px) {
-    padding: 5px 10px;
-    font-size: 14px;
-    height: 31px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 12px;
   }
   @media (min-width: 1024px) and (max-width: 1439px) {
     font-size: 12px;
+    height: 100px;
   }
-  @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 12px;
+  @media (min-width: 1440px) {
+    padding: 5px 10px;
+    font-size: 14px;
+    height: 100px;
   }
 `;
 
@@ -210,23 +211,22 @@ export const Titles = styled.h3`
   margin-bottom: 12px;
   margin-top: 12px;
   width: 100%;
-  /* font-weight: bold; */
-  /* font-size: 22px; */
 
-  font-family: "Century Gothic", sans-serif;
-  font-weight: 700;
+  font-family: "Mulish", sans-serif;
+  font-weight: 500;
   font-size: 18px;
   line-height: 1.02312;
   text-transform: lowercase;
   text-align: center;
   color: #616161;
-
-  @media (min-width: 1024px) and (max-width: 1439px) {
-    font-size: 20px;
-  }
+  /* font-weight: bold; */
+  /* font-size: 22px; */
 
   @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 22px;
+    font-size: 20px;
+  }
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    font-size: 25px;
   }
 `;
 export const Title = styled.h2`
@@ -239,14 +239,15 @@ export const Title = styled.h2`
   /* font-weight: bold; */
 
   font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  /* font-size: 17px; */
+  font-weight: 800;
+  font-size: 17px;
   line-height: 1.02312;
+  letter-spacing: 0.04em;
+
   text-transform: uppercase;
   text-align: center;
   color: #616161;
-  margin: 16px auto;
-  font-size: 22px;
+  margin: 32px auto 11px;
 
   /* @media (min-width: 768px) {
     font-size: 20px;
@@ -254,11 +255,11 @@ export const Title = styled.h2`
   } */
   @media (min-width: 768px) {
     font-size: 28px;
-    /* margin: 16px auto; */
+    margin: 16px auto;
   }
 
   @media (min-width: 1240px) and (max-width: 1439px) {
-    font-size: 32px;
+    font-size: 38px;
     /* margin: 20px 400px 20px 400px; */
   }
 
@@ -271,36 +272,41 @@ export const Title = styled.h2`
 export const DivInfoBlock = styled.div`
   display: flex;
   justify-content: center;
-  border: 2.52px solid #13a03a;
+  border: 2px solid #31aa53;
+
   border-radius: 378px;
   padding: 8px 20px;
   flex-direction: column;
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  background-color: #31aa53;
+  /* background-color: #31aa53; */
   @media (min-width: 768px) {
     padding: 8px 30px;
     /* margin-left: 20px; */
   }
   @media (min-width: 1024px) {
-    padding: 13px 40px;
+    border: 4px solid #31aa53;
+    padding: 13px 50px;
   }
 `;
 export const InfoTextP = styled.p`
   font-family: "Mulish", sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: 7px;
+
+  line-height: 1.02312;
   text-transform: uppercase;
   text-align: center;
-  color: #fff;
+  color: #616161;
+
   @media (min-width: 768px) {
     font-size: 12px;
+    font-weight: 400;
     /* margin-left: 20px; */
   }
   @media (min-width: 1024px) {
-    font-size: 14px;
+    font-size: 16px;
     /* margin-left: 20px; */
   }
 `;
@@ -318,8 +324,8 @@ export const InfoTextP = styled.p`
 // `;
 
 export const OrdersThumb = styled.div`
-  border: 1px solid ${(p) => p.theme.colors.textColor};
-  border-radius: 8px;
+  border: 1px solid #616161;
+  border-radius: 5px;
   padding: 14px;
   overflow-x: auto;
   position: relative;
@@ -436,8 +442,8 @@ export const LastOrdersHeaderItem = styled.p`
 `;
 
 export const HeaderBlock = styled.th`
-  border-top: 1px solid ${(p) => p.theme.colors.textColor};
-  border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
+  /* border-top: 1px solid ${(p) => p.theme.colors.textColor};
+  border-bottom: 1px solid ${(p) => p.theme.colors.textColor}; */
   background-color: #ffb4d8;
   padding: 8px;
   overflow: hidden;
@@ -459,9 +465,9 @@ export const HeaderBlock = styled.th`
   }
 `;
 export const HeaderBlockLeft = styled.th`
-  border-left: 1px solid ${(p) => p.theme.colors.textColor};
+  /* border-left: 1px solid ${(p) => p.theme.colors.textColor};
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
-  border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
+  border-bottom: 1px solid ${(p) => p.theme.colors.textColor}; */
   padding: 8px;
   overflow: hidden;
   border-spacing: 2px;
@@ -482,9 +488,9 @@ export const HeaderBlockLeft = styled.th`
   }
 `;
 export const HeaderBlocRight = styled.th`
-  border-right: 1px solid ${(p) => p.theme.colors.textColor};
+  /* border-right: 1px solid ${(p) => p.theme.colors.textColor};
   border-top: 1px solid ${(p) => p.theme.colors.textColor};
-  border-bottom: 1px solid ${(p) => p.theme.colors.textColor};
+  border-bottom: 1px solid ${(p) => p.theme.colors.textColor}; */
   background-color: #ffb4d8;
   padding: 8px;
   overflow: hidden;
@@ -542,7 +548,7 @@ export const OrdersImage = styled.img`
   max-width: 80px;
   padding: 0px;
   margin: 6px 0;
-  border: 1px solid ${(p) => p.theme.colors.textColor};
+  /* border: 1px solid ${(p) => p.theme.colors.textColor}; */
 
   @media (min-width: 768px) and (max-width: 1023px) {
     width: 50px;
@@ -596,18 +602,34 @@ export const SelectOpton = styled.option`
     font-size: 12px;
   }
 `;
+export const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 24px 19px 24px 0;
+`;
 
 export const SubmitButton = styled.button`
-  border: 1.91px solid #9a9a9a;
-  border-radius: 3px;
-  background: transparent;
+  border: 4px solid #8a8a8a;
+  border-radius: 82px;
+  /* width: 325px;
+  height: 58px; */
+  background: #ff96cf;
+
+  font-family: "Mulish", sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 1.02312;
+  text-transform: lowercase;
+  text-align: center;
+  color: #fff;
+
   /* border: 3px solid ${(p) => p.theme.colors.textColor}; */
   /* border-radius: 50px; */
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
-  font-weight: 400;
+
   text-decoration: none;
 
   padding: 7px 30px;

@@ -34,6 +34,7 @@ import {
   InfoTextP,
   // InfoTextSpan,
   LIstItem,
+  ButtonWrap,
 } from "./OrderPlacementStyled";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -60,6 +61,7 @@ import { deleteAll } from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import { trackPurchase } from "../../facebookInt/FacebookPixelEvent";
+import Button from "../../shared/components/Button/Button";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -384,14 +386,18 @@ const OrderPlacement = () => {
       }
     };
     const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
-    
+
     axios
       .post(
         ordersUrl,
         courier === "no" ? dataToSendCourier : dataToSendWarehouse
       )
       .then((response) => {
-        trackPurchase(userEmail || "", orderNumber, orderedItems === "сталась якась фігня" )
+        trackPurchase(
+          userEmail || "",
+          orderNumber,
+          orderedItems === "сталась якась фігня"
+        );
         if (isLogin) {
           removeCartItem();
         }
@@ -578,7 +584,7 @@ const OrderPlacement = () => {
                   value={formData.email || ""}
                   onChange={handleInputChange}
                 />
-                <Titles>ДАННІ ДОСТАВКИ</Titles>
+                <Titles>Доставка</Titles>
                 <Select
                   id="deliveryMethod"
                   name="deliveryMethod"
@@ -770,7 +776,7 @@ const OrderPlacement = () => {
               </DeliveryInfoBlock>
 
               <TableThumb>
-                <Titles>Замовлення</Titles>
+                <Titles>ваше замовлення</Titles>
                 <OrdersThumb>
                   <table
                     cols="5"
@@ -829,11 +835,24 @@ const OrderPlacement = () => {
                   </Description>
                 </OrdersThumb>
 
-                <SubmitButton type="submit" disabled={isSubmitting}>
+                <ButtonWrap>
+                  <Button
+                    goods
+                    type="submit"
+                    text={
+                      isSubmitting
+                        ? "Замовлення в обробці..."
+                        : "Оформити замовлення"
+                    }
+                    // onClick={handleAddToCart}
+                    disabled={isSubmitting}
+                  />
+                </ButtonWrap>
+                {/* <SubmitButton type="submit" disabled={isSubmitting}>
                   {isSubmitting
                     ? "Замовлення в обробці..."
                     : "Оформити замовлення"}
-                </SubmitButton>
+                </SubmitButton> */}
               </TableThumb>
             </Form>
           ) : null}
