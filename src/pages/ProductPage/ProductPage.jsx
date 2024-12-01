@@ -37,7 +37,6 @@ import {
   LiHistoryItem,
   ProductFeaturesWrapper,
   AboutProductWrapper,
-  PHistoryName,
   ProductInner,
   AboutProductWrapperMobile,
   ProductDescriptionList,
@@ -50,6 +49,7 @@ import {
   ProductPriceWrapper,
   ProductDescriptionWrap,
   ProductDescriptionTitle,
+  ProductPriceSale,
 } from "./ProductPage.styled";
 import { Helmet } from "react-helmet";
 
@@ -390,18 +390,33 @@ const ProductPage = () => {
                     {optUser ? (
                       <ProductPriceWrapper>
                         <ProductPriceName>оптова ціна</ProductPriceName>
-                        <ProductPrice>
-                          {product.priceOPT}
-                          <span>грн</span>
-                        </ProductPrice>
+                        <div>
+                          {product.priceOldOPT && (
+                            <ProductPriceSale>
+                              {product.priceOldOPT} грн
+                            </ProductPriceSale>
+                          )}
+                          <ProductPrice>
+                            {product.priceOPT}
+                            <span>грн</span>
+                          </ProductPrice>
+                        </div>
                       </ProductPriceWrapper>
                     ) : (
                       <ProductPriceWrapper>
                         <ProductPriceName>роздрібна ціна</ProductPriceName>
-                        <ProductPrice>
-                          {product.price}
-                          <span>грн</span>
-                        </ProductPrice>
+                        <div>
+                          {product.priceOld && (
+                            <ProductPriceSale>
+                              {product.priceOld} грн
+                            </ProductPriceSale>
+                          )}
+
+                          <ProductPrice>
+                            {product.price}
+                            <span>грн</span>
+                          </ProductPrice>
+                        </div>
                       </ProductPriceWrapper>
                     )}
                     <AboutProductWrapperMobile>

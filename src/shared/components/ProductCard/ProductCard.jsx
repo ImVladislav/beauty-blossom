@@ -26,6 +26,7 @@ import {
   PriceWrap,
   PriceName,
   Available,
+  PriceSale,
 } from "./ProductCard.styled";
 import NewSticker from "../Sticker/NewSticker";
 
@@ -122,10 +123,17 @@ const ProductCard = ({ products, slider }) => {
                     <Available slider={slider}>в наявності</Available>
                   )}
                 </div>
-                <Price slider={slider}>
-                  {products.priceOPT}
-                  <span>грн</span>
-                </Price>
+                <div>
+                  {products.priceOldOPT && (
+                    <PriceSale slider={slider}>
+                      {products.priceOldOPT} грн
+                    </PriceSale>
+                  )}
+                  <Price slider={slider}>
+                    {products.priceOPT}
+                    <span>грн</span>
+                  </Price>
+                </div>
               </PriceWrap>
             ) : (
               <PriceWrap>
@@ -135,9 +143,16 @@ const ProductCard = ({ products, slider }) => {
                     <Available slider={slider}>в наявності</Available>
                   )}
                 </div>
-                <Price itemProp="price" slider={slider}>
-                  {products.price} <span>грн</span>
-                </Price>
+                <div>
+                  {products.priceOld && (
+                    <PriceSale itemProp="price" slider={slider}>
+                      {products.priceOld} грн
+                    </PriceSale>
+                  )}
+                  <Price itemProp="price" slider={slider}>
+                    {products.price} <span>грн</span>
+                  </Price>
+                </div>
               </PriceWrap>
             )}
           </Content>
