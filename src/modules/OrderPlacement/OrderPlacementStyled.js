@@ -77,7 +77,7 @@ export const CostumerStatusinput = styled.input`
   &:focus {
     outline: none;
   }
-  @media (max-width: 1440px) {
+  @media (min-width: 1440px) {
     font-size: 14px;
   }
   @media (min-width: 1024px) and (max-width: 1439px) {
