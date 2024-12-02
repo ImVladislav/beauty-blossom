@@ -391,7 +391,7 @@ const ProductPage = () => {
                       <ProductPriceWrapper>
                         <ProductPriceName>оптова ціна</ProductPriceName>
                         <div>
-                          {product.priceOldOPT && (
+                          {product.priceOldOPT && product.sale === true && (
                             <ProductPriceSale>
                               {product.priceOldOPT} грн
                             </ProductPriceSale>
@@ -406,7 +406,7 @@ const ProductPage = () => {
                       <ProductPriceWrapper>
                         <ProductPriceName>роздрібна ціна</ProductPriceName>
                         <div>
-                          {product.priceOld && (
+                        {product.priceOldOPT && product.sale === true && (
                             <ProductPriceSale>
                               {product.priceOld} грн
                             </ProductPriceSale>
