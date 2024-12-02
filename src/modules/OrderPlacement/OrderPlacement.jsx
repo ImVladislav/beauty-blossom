@@ -547,7 +547,7 @@ const OrderPlacement = () => {
           {customerType === "without-registered" || isLogin ? (
             <Form onSubmit={handleFormSubmit}>
               <DeliveryInfoBlock>
-                <Titles>КОНТАКТНІ ДАННІ</Titles>
+                <Titles>контактні дані</Titles>
                 <label htmlFor="firstName"></label>
                 <CostumerStatusinput
                   type="text"
