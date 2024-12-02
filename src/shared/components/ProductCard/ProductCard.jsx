@@ -124,7 +124,8 @@ const ProductCard = ({ products, slider }) => {
                   )}
                 </div>
                 <div>
-                  {products.priceOldOPT && (
+                  
+                {products.priceOldOPT && products.sale === true && (
                     <PriceSale slider={slider}>
                       {products.priceOldOPT} грн
                     </PriceSale>
@@ -144,7 +145,7 @@ const ProductCard = ({ products, slider }) => {
                   )}
                 </div>
                 <div>
-                  {products.priceOld && (
+                {products.priceOldOPT && products.sale === true && (
                     <PriceSale itemProp="price" slider={slider}>
                       {products.priceOld} грн
                     </PriceSale>
