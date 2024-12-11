@@ -32,6 +32,8 @@ const ProductList = ({ items }) => {
   // Функція для фільтрації продуктів
   const handleFilterChange = (e) => {
     const { value } = e.target;
+    console.log(value);
+    
     setFilter(value);
     setCurrentPage(1);
 

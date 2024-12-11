@@ -24,6 +24,7 @@ export const selectFilterCategory = createSelector(
       return goods;
     }
 
+
     return goods.filter(({ category }) =>
       category.toLowerCase().includes(filter.toLowerCase())
     );
@@ -49,6 +50,8 @@ export const selectFilterCategorySubSub = createSelector(
     if (!filter) {
       return goods;
     }
+    console.log(filter);
+    
 
     return goods.filter(({ subSubCategory }) =>
       subSubCategory?.toLowerCase().includes(filter.toLowerCase())
