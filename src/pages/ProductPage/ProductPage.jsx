@@ -251,24 +251,26 @@ const ProductPage = () => {
 
  
   const handleLinkClick = (filterValue) => {
-    console.log("handleLinkClick triggered with:", filterValue);
     dispatch(setfilter(filterValue));
   };
 
   // Обробка події "Назад" у браузері
 
-    const handlePopState = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const filterValue = urlParams.get("category") || ""; // Отримати категорію з URL
-      handleLinkClick(filterValue); // Завжди викликаємо функцію, навіть якщо filterValue порожнє
-    };
+  const handlePopState =(filterValue) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    // const filterValue = urlParams.get("category") || ""; // Отримати категорію з URL
+    filterValue = product.subSubCategory || product.subCategory || product.category;
   
-    // Додаємо слухач для popstate
+    dispatch(setfilter(filterValue)); // Оновлюємо фільтр у Redux
+    handleLinkClick(filterValue); // Викликаємо функцію з оновленим значенням
+  };
+  
+
     window.addEventListener("popstate", handlePopState);
   
     // Прибираємо слухач при розмонтуванні компонента
     // return () => {
-    //   window.removeEventListener("popstate", handlePopState);
+      // window.removeEventListener("popstate", handlePopState);
     // };
 
 
