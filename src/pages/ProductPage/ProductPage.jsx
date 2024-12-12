@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-// import { AiOutlineCheck } from "react-icons/ai";
-// import { AiOutlineClose } from "react-icons/ai";
+
+import { useParams, useLocation } from "react-router-dom";
+import { setfilter } from "../../redux/filter/slice";
 
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -54,7 +54,6 @@ import {
 import { Helmet } from "react-helmet";
 
 import categoryLinks from "../../modules/Header/menuItems.json";
-import { setfilter } from "../../redux/filter/slice";
 import { SimilarProducts } from "../../modules/SimilarProducts/SimilarProducts";
 
 import {
@@ -81,6 +80,9 @@ const ProductPage = () => {
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
   const [isDescription, setiIsDescription] = useState(true);
+
+  const location = useLocation();
+
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -247,25 +249,32 @@ const ProductPage = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  // const subCategories = categoryLinks[0].children;
-  // const productSubSubCategory =
-  //   product.subSubCategory || product.subCategory || product.category;
-
-  // const productPath = getProductPath(productSubSubCategory, subCategories);
-  // const productSubPath = getSubProductPath(
-  //   productSubSubCategory,
-  //   subCategories
-  // );
-  // const producttSubSubPath = getSubSubProductPath(
-  //   productSubSubCategory,
-  //   subCategories
-  // );
-  // const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
-  // const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
-
+ 
   const handleLinkClick = (filterValue) => {
     dispatch(setfilter(filterValue));
   };
+
+  // Обробка події "Назад" у браузері
+
+  const handlePopState =(filterValue) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    // const filterValue = urlParams.get("category") || ""; // Отримати категорію з URL
+    filterValue = product.subSubCategory || product.subCategory || product.category;
+  
+    dispatch(setfilter(filterValue)); // Оновлюємо фільтр у Redux
+    handleLinkClick(filterValue); // Викликаємо функцію з оновленим значенням
+  };
+  
+
+    window.addEventListener("popstate", handlePopState);
+  
+    // Прибираємо слухач при розмонтуванні компонента
+    // return () => {
+      // window.removeEventListener("popstate", handlePopState);
+    // };
+
+
+
   function addParagraphTags(textWithoutParagraphs) {
     const lines = textWithoutParagraphs.split("\n");
     const paragraphs = lines.map((line) => {

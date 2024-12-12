@@ -46,6 +46,9 @@ const SortCategory = () => {
       products.filter((item) => !(item.new || item.sale) && item.amount === 0)
     );
 
+    
+
+
   return (
     <main>
       <Container>

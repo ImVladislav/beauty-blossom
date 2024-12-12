@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = localStorage.getItem("filter") || "";
+console.log(initialState);
 
 const filterSlice = createSlice({
   name: "filter",
@@ -8,6 +9,8 @@ const filterSlice = createSlice({
   reducers: {
     setfilter: (_, { payload }) => {
       localStorage.setItem("filter", payload);
+      console.log(payload);
+      
       return payload;
     },
   },
