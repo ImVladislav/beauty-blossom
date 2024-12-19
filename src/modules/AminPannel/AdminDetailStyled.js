@@ -49,6 +49,7 @@ export const Table = styled.table`
 
 export const TableItems = styled.td`
   border: 1px solid grey;
+  
   @media (max-width: 767px) {
     font-size: 12px;
   }

@@ -95,19 +95,27 @@ const AdminDetail = ({ selectedOrder }) => {
                 <TableItems>Продукт</TableItems>
                 <TableItems>Ціна</TableItems>
                 <TableItems>Кількість</TableItems>
-                <TableItems>Сумма</TableItems>
+                <TableItems >Сумма</TableItems>
               </TableTrBlock>
-              {editedOrder.orderedItems.map((item, index) => (
-                <TableTrBlock key={index}>
-                  <td style={{ display: "flex", border: "none" }}>
-                    <ProductImage src={item.images} alt="product" />
-                    <p>{item.name}</p>
-                  </td>
-                  <TableItems>{item.amount / item.quantity} грн</TableItems>
-                  <TableItems>{item.quantity}</TableItems>
-                  <TableItems>{item.amount}</TableItems>
-                </TableTrBlock>
-              ))}
+              {editedOrder.orderedItems.map((item, index) => {
+  console.log("Item:", item); // Логування кожного item
+
+  return (
+    <TableTrBlock key={index}>
+      <td style={{ display: "flex", border: "none" }}>
+        <ProductImage src={item.images} alt="product" />
+        <p>
+          {item.name}
+        </p>
+      </td>
+      <TableItems           style={{
+            backgroundColor: item.sale ? "pink" : "transparent", // Умова для кольору
+          }}>{item.amount / item.quantity} грн</TableItems>
+      <TableItems>{item.quantity}</TableItems>
+      <TableItems>{item.amount}</TableItems>
+    </TableTrBlock>
+  );
+})}
             </tbody>
           </Table>
         )}

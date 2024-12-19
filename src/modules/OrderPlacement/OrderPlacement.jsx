@@ -338,6 +338,7 @@ const OrderPlacement = () => {
       productId: item.id || item.productId,
       images: item.images,
       name: item.name,
+      sale: item.sale,
       code: item.code.toString(),
       quantity: item.quantity,
       amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
