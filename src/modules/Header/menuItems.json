@@ -207,6 +207,11 @@
                 "to": "/category/makeup/forFace/killed",
                 "text": "Кушон",
                 "children": []
+              },
+              {
+                "to": "/category/makeup/forFace/rouge",
+                "text": "Рум'яна",
+                "children": []
               }
             ]
           },
