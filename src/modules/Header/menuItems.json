@@ -149,6 +149,12 @@
                 "to": "/category/facial/lipCare/lipScrub",
                 "text": "Скраб для губ",
                 "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/lipCare/lipOil",
+                "text": "Олія для губ",
+                "children": []
               }
             ]
           },
