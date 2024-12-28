@@ -38,6 +38,11 @@
                 "to": "/category/facial/masks/mask-fyilm",
                 "text": "Маска-плівка",
                 "children": []
+              },
+              {
+                "to": "/category/facial/masks/clayMasks",
+                "text": "Глиняні маски",
+                "children": []
               }
             ]
           },
