@@ -76,13 +76,12 @@ const ProductPage = () => {
   const [products, setProducts] = useState(prod);
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
   const [isDescription, setiIsDescription] = useState(true);
 
   const location = useLocation();
-
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -93,7 +92,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      setLoading(true);
+      // setLoading(true);
       try {
         const response = await axios.get(`/goods`);
         if (response.data) {
@@ -249,31 +248,28 @@ const ProductPage = () => {
     setIsModalOpen(!isModalOpen);
   };
 
- 
   const handleLinkClick = (filterValue) => {
     dispatch(setfilter(filterValue));
   };
 
   // Обробка події "Назад" у браузері
 
-  const handlePopState =(filterValue) => {
+  const handlePopState = (filterValue) => {
     const urlParams = new URLSearchParams(window.location.search);
     // const filterValue = urlParams.get("category") || ""; // Отримати категорію з URL
-    filterValue = product.subSubCategory || product.subCategory || product.category;
-  
+    filterValue =
+      product.subSubCategory || product.subCategory || product.category;
+
     dispatch(setfilter(filterValue)); // Оновлюємо фільтр у Redux
     handleLinkClick(filterValue); // Викликаємо функцію з оновленим значенням
   };
-  
 
-    window.addEventListener("popstate", handlePopState);
-  
-    // Прибираємо слухач при розмонтуванні компонента
-    // return () => {
-      // window.removeEventListener("popstate", handlePopState);
-    // };
+  window.addEventListener("popstate", handlePopState);
 
-
+  // Прибираємо слухач при розмонтуванні компонента
+  // return () => {
+  // window.removeEventListener("popstate", handlePopState);
+  // };
 
   function addParagraphTags(textWithoutParagraphs) {
     const lines = textWithoutParagraphs.split("\n");
@@ -415,7 +411,7 @@ const ProductPage = () => {
                       <ProductPriceWrapper>
                         <ProductPriceName>роздрібна ціна</ProductPriceName>
                         <div>
-                        {product.priceOldOPT && product.sale === true && (
+                          {product.priceOldOPT && product.sale === true && (
                             <ProductPriceSale>
                               {product.priceOld} грн
                             </ProductPriceSale>
