@@ -76,7 +76,7 @@ const ProductPage = () => {
   const [products, setProducts] = useState(prod);
   const productCart = useSelector(selectCart);
   const optUser = useSelector(optUserSelector);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const loggedIn = useSelector(loggedInSelector);
   const isAdmin = useSelector(isAdminSelector);
   const [isDescription, setiIsDescription] = useState(true);
@@ -92,7 +92,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      // setLoading(true);
+      setLoading(true);
       try {
         const response = await axios.get(`/goods`);
         if (response.data) {
