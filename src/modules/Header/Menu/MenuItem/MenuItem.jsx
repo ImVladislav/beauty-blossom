@@ -32,7 +32,7 @@ const MenuItem = ({ item }) => {
   const navigate = useNavigate();
 
   const brand = items
-    ?.map((item) => item.brand.toUpperCase())
+    ?.map((item) => item.brand.toUpperCase().trim())
     .reduce((accumulator, current) => {
       if (!accumulator.includes(current)) {
         accumulator.push(current);

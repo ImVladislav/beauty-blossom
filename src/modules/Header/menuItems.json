@@ -355,12 +355,6 @@
       },
       {
         "level": 2,
-        "to": "/category/toothpaste",
-        "text": "Зубні пасти",
-        "children": []
-      },
-      {
-        "level": 2,
         "to": "/category/careAccessories",
         "text": "Аксесуари для догляду",
         "children": []
