@@ -2,12 +2,12 @@
   {
     "level": 1,
     "to": "#category",
-    "text": "Категорії",
+    "text": "категорії",
     "children": [
       {
         "level": 2,
         "to": "/category/facial",
-        "text": "Догляд для обличчя",
+        "text": "догляд для обличчя",
         "children": [
           {
             "level": 3,
@@ -49,48 +49,48 @@
           {
             "level": 3,
             "to": "/category/facial/moisturizing",
-            "text": "Зволоження",
+            "text": "зволоження",
             "children": [
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/cream",
-                "text": "Крем для обличчя",
+                "text": "крем для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/balm",
-                "text": "Бальзам для очищення",
+                "text": "бальзам для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/geel",
-                "text": "Гель для обличчя",
+                "text": "гель для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/bridge",
-                "text": "Міст для обличчя",
+                "text": "міст для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/serum",
-                "text": "Сироватка для обличчя",
+                "text": "сироватка для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/toner",
-                "text": "Тонер",
+                "text": "тонер",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/moisturizing/padu",
-                "text": "Пади для обличчя",
+                "text": "пади для обличчя",
                 "children": []
               }
             ]
@@ -98,36 +98,42 @@
           {
             "level": 3,
             "to": "/category/facial/cleaning",
-            "text": "Очищення",
+            "text": "очищення",
             "children": [
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/enzymePowder",
-                "text": "Ензимна пудра",
+                "text": "ензимна пудра",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/washingFoam",
-                "text": "Пінка для вмивання",
+                "text": "пінка для вмивання",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/scrub",
-                "text": "Скраб для обличчя",
+                "text": "скраб для обличчя",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/peelingGel",
-                "text": "Пілінг гель",
+                "text": "пілінг гель",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/cleaning/cleansingBalm",
-                "text": "Бальзам для очищення",
+                "text": "бальзам для очищення",
+                "children": []
+              },
+              {
+                "level": 4,
+                "to": "/category/facial/cleaning/demaciaj",
+                "text": "демакіяж",
                 "children": []
               }
             ]
@@ -135,30 +141,30 @@
           {
             "level": 3,
             "to": "/category/facial/lipCare",
-            "text": "Догляд за губами",
+            "text": "догляд за губами",
             "children": [
               {
                 "level": 4,
                 "to": "/category/facial/lipCare/lipBalm",
-                "text": "Бальзам для губ",
+                "text": "бальзам для губ",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/lipCare/lipMask",
-                "text": "Маска для губ",
+                "text": "маска для губ",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/lipCare/lipScrub",
-                "text": "Скраб для губ",
+                "text": "скраб для губ",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/lipCare/lipOil",
-                "text": "Олія для губ",
+                "text": "олія для губ",
                 "children": []
               }
             ]
@@ -166,24 +172,24 @@
           {
             "level": 3,
             "to": "/category/facial/forSkinUnderTheEyes",
-            "text": "Для шкіри під очима",
+            "text": "для шкіри під очима",
             "children": [
               {
                 "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
-                "text": "Крем під очі",
+                "text": "крем під очі",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/serumUnderTheEyes",
-                "text": "Сироватка під очі",
+                "text": "сироватка під очі",
                 "children": []
               },
               {
                 "level": 4,
                 "to": "/category/facial/forSkinUnderTheEyes/patches",
-                "text": "Патчі",
+                "text": "патчі",
                 "children": []
               }
             ]
@@ -193,15 +199,20 @@
       {
         "level": 2,
         "to": "/category/makeup",
-        "text": "Макіяж",
+        "text": "макіяж",
         "children": [
           {
             "to": "/category/makeup/forFace",
-            "text": "Для лиця",
+            "text": "для лиця",
             "children": [
               {
                 "to": "/category/makeup/forFace/bbCream",
                 "text": "ББ крем",
+                "children": []
+              },
+              {
+                "to": "/category/makeup/forFace/ssCream",
+                "text": "СС крем",
                 "children": []
               },
               {
@@ -228,27 +239,32 @@
           },
           {
             "to": "/category/makeup/forEyes",
-            "text": "Для очей",
+            "text": "для очей",
             "children": [
               {
                 "to": "/category/makeup/forEyes/inadvertently",
-                "text": "Туш",
+                "text": "туш",
                 "children": []
               },
               {
-                "to": "/category/makeup/forEyes/Concealer",
-                "text": "Консилер",
+                "to": "/category/makeup/forEyes/eyeliner",
+                "text": "підводка для очей",
+                "children": []
+              },
+              {
+                "to": "/category/makeup/forEyes/concealer",
+                "text": "консилер",
                 "children": []
               }
             ]
           },
           {
             "to": "/category/makeup/forLips",
-            "text": "Для губ",
+            "text": "для губ",
             "children": [
               {
                 "to": "/category/makeup/forLips/lipTint",
-                "text": "Тінт для губ",
+                "text": "тінт для губ",
                 "children": []
               }
             ]
@@ -258,7 +274,7 @@
       {
         "level": 2,
         "to": "/category/hairCare",
-        "text": "Догляд для волосся",
+        "text": "догляд для волосся",
         "children": [
           {
             "to": "/category/hairCare/shampoos",
@@ -323,7 +339,7 @@
       {
         "level": 2,
         "to": "/category/bodyCare",
-        "text": "Догляд для тіла",
+        "text": "догляд для тіла",
         "children": [
           {
             "to": "/category/bodyCare/handCosmetics",
@@ -342,6 +358,11 @@
             "children": []
           },
           {
+            "to": "/category/bodyCare/bodyLotion",
+            "text": "Лосьйон для тіла",
+            "children": []
+          },
+          {
             "to": "/category/bodyCare/soulGel",
             "text": "Гель для душу",
             "children": []
@@ -356,31 +377,25 @@
       {
         "level": 2,
         "to": "/category/careAccessories",
-        "text": "Аксесуари для догляду",
+        "text": "аксесуари для догляду",
         "children": []
       },
       {
         "level": 2,
         "to": "/category/sunProtection",
-        "text": "Захист від сонця",
-        "children": []
-      },
-      {
-        "level": 2,
-        "to": "/category/hydrophilicOil",
-        "text": "Гідрофільна олія",
+        "text": "захист від сонця",
         "children": []
       },
       {
         "level": 2,
         "to": "/category/samples",
-        "text": "Пробники",
+        "text": "пробники",
         "children": []
       },
       {
         "level": 2,
         "to": "/category/folds",
-        "text": "Набори",
+        "text": "набори",
         "children": []
       }
     ]
@@ -388,7 +403,7 @@
   {
     "level": 1,
     "to": "/brands",
-    "text": "Бренди",
+    "text": "бренди",
     "children": [
       {
         "level": 2,
@@ -429,14 +444,14 @@
   {
     "level": 1,
     "to": "/news",
-    "text": "Новинки",
+    "text": "новинки",
     "textMobile": "нове постачання",
     "children": []
   },
   {
     "level": 1,
     "to": "/discount",
-    "text": "Акції",
+    "text": "акції",
     "textMobile": "товари зі зниженою ціною",
     "children": []
   },
