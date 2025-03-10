@@ -359,6 +359,11 @@
             ]
           },
           {
+            "to": "/category/bodyCare/bodyCream",
+            "text": "Крем для тіла",
+            "children": []
+          },
+          {
             "to": "/category/bodyCare/bodyFoam",
             "text": "Пінка для тіла",
             "children": []
