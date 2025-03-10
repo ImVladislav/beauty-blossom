@@ -114,6 +114,12 @@
               },
               {
                 "level": 4,
+                "to": "/category/facial/cleaning/hydrophilicOil",
+                "text": "гідрофільна олія",
+                "children": []
+              },
+              {
+                "level": 4,
                 "to": "/category/facial/cleaning/scrub",
                 "text": "скраб для обличчя",
                 "children": []
