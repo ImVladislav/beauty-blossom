@@ -170,10 +170,10 @@ const SaleProgramPage = () => {
                   <Text>очікуєте на зворотній зв’язок нашого менеджера</Text>
                 </ConditionsItem>
               </ConditionsList>
-              <TextPink>
+              {/* <TextPink>
                 ● напишіть нашому менеджеру та дізнавайся, як отримати знижку на
                 перше замовлення по промокоду
-              </TextPink>
+              </TextPink> */}
             </InfoWrap>
 
             <InfoTitle>Важлива інформація </InfoTitle>
