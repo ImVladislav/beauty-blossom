@@ -359,6 +359,11 @@
             ]
           },
           {
+            "to": "/category/bodyCare/handAndFeetMasks",
+            "text": "Маски для рук і ніг",
+            "children": []
+          },
+          {
             "to": "/category/bodyCare/bodyCream",
             "text": "Крем для тіла",
             "children": []
