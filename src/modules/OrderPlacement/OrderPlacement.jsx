@@ -22,7 +22,7 @@ import {
   OrdersThumb,
   Select,
   SelectOpton,
-  SubmitButton,
+  // SubmitButton,
   TableThumb,
   Textarea,
   Title,
@@ -127,6 +127,7 @@ const OrderPlacement = () => {
 
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
+  // Генерація номера замовлення
   function logCurrentTime12HourFormat() {
     const currentTime = new Date();
     let hours = currentTime.getHours();
@@ -386,49 +387,98 @@ const OrderPlacement = () => {
         console.error("Помилка видалення товарів з кошика:", error);
       }
     };
+
     const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
 
-    axios
-      .post(
+    try {
+      const response = await axios.post(
         ordersUrl,
         courier === "no" ? dataToSendCourier : dataToSendWarehouse
-      )
-      .then((response) => {
-        trackPurchase(
-          userEmail || "",
-          orderNumber,
-          orderedItems === "сталась якась фігня"
+      );
+
+      console.log(response);
+
+      // Якщо сервер повертає помилку, не продовжуємо обробку
+      if (!response.status === 201) {
+        throw new Error(
+          response.data.message || "Помилка створення замовлення"
         );
-        if (isLogin) {
-          removeCartItem();
-        }
-
-        dispatch(deleteAll());
-        showOrderPlacedModal();
-
-        setFormData({
-          email: userEmail || "",
-          firstName: userFirstName || "",
-          lastName: userLastName || "",
-          number: userNumber || null,
-          city: "",
-          orderNumber: orderNumber,
-          paymentMethod: "",
-          deliveryMethod: "",
-          comments: "",
-          address: "",
-          building: "",
-          apartment: "",
-          isOptUser: isOptUser,
-        });
-      })
-      .then(setIsModalOpen(true))
-      .catch((error) => {
-        console.error("Сталася помилка:", error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
+      }
+      // Якщо все пройшло успішно, обробляємо відповідь
+      trackPurchase(
+        userEmail || "",
+        orderNumber,
+        orderedItems === "сталась якась фігня"
+      );
+      if (isLogin) {
+        removeCartItem();
+      }
+      dispatch(deleteAll());
+      showOrderPlacedModal();
+      setFormData({
+        email: userEmail || "",
+        firstName: userFirstName || "",
+        lastName: userLastName || "",
+        number: userNumber || null,
+        city: "",
+        orderNumber: orderNumber,
+        paymentMethod: "",
+        deliveryMethod: "",
+        comments: "",
+        address: "",
+        building: "",
+        apartment: "",
+        isOptUser: isOptUser,
       });
+
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error("Помилка створення замовлення:", error);
+      toast.error(`Помилка створення замовлення: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
+    // axios
+    //   .post(
+    //     ordersUrl,
+    //     courier === "no" ? dataToSendCourier : dataToSendWarehouse
+    //   )
+    //   .then((response) => {
+    //     trackPurchase(
+    //       userEmail || "",
+    //       orderNumber,
+    //       orderedItems === "сталась якась фігня"
+    //     );
+    //     if (isLogin) {
+    //       removeCartItem();
+    //     }
+
+    //     dispatch(deleteAll());
+    //     showOrderPlacedModal();
+
+    //     setFormData({
+    //       email: userEmail || "",
+    //       firstName: userFirstName || "",
+    //       lastName: userLastName || "",
+    //       number: userNumber || null,
+    //       city: "",
+    //       orderNumber: orderNumber,
+    //       paymentMethod: "",
+    //       deliveryMethod: "",
+    //       comments: "",
+    //       address: "",
+    //       building: "",
+    //       apartment: "",
+    //       isOptUser: isOptUser,
+    //     });
+    //   })
+    //   .then(setIsModalOpen(true))
+    //   .catch((error) => {
+    //     console.error("Сталася помилка:", error);
+    //   })
+    //   .finally(() => {
+    //     setIsSubmitting(false);
+    //   });
   };
 
   function throttle(func, delay) {
