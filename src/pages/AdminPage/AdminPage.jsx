@@ -30,7 +30,7 @@ const AdminPage = () => {
   const [subPage, setsubPage] = useState("orders");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const ordersPerPage = 16;
+  const ordersPerPage = 24;
 
   const filteredOrders = orders.filter((order) => {
     return (
@@ -195,35 +195,35 @@ const AdminPage = () => {
                 </tr>
               </thead>
               <tbody>
-  {filteredOrders
-    .slice()
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Сортуємо за датою
-    .slice(indexOfFirstOrder, indexOfLastOrder) // Пагінація
-    .map((order) => (
-      <StyledTr
-        key={order._id}
-        onClick={() => handleOrderClick(order)}
-        className={`order-row ${
-          selectedOrder && selectedOrder._id === order._id
-            ? "selected-order"
-            : ""
-        } ${order.isOptUser ? "yellow-row" : ""}`}
-      >
-        <Td>{order.orderNumber}</Td>
-        <Td>{order.createdAt.substr(0, 10)}</Td>
-        <Td>{`${order.firstName} ${order.lastName}`}</Td>
-        {/* <Td>
+                {filteredOrders
+                  .slice()
+                  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Сортуємо за датою
+                  .slice(indexOfFirstOrder, indexOfLastOrder) // Пагінація
+                  .map((order) => (
+                    <StyledTr
+                      key={order._id}
+                      onClick={() => handleOrderClick(order)}
+                      className={`order-row ${
+                        selectedOrder && selectedOrder._id === order._id
+                          ? "selected-order"
+                          : ""
+                      } ${order.isOptUser ? "yellow-row" : ""}`}
+                    >
+                      <Td>{order.orderNumber}</Td>
+                      <Td>{order.createdAt.substr(0, 10)}</Td>
+                      <Td>{`${order.firstName} ${order.lastName}`}</Td>
+                      {/* <Td>
           {!String(order.number).includes("+380")
             ? `380${order.number}`
             : `${order.number}`}{" "}
           {order.email}
         </Td> */}
-        <Td>{order.amount}</Td>
-        <TdStatus status={order.status}>{order.status}</TdStatus>
-        <Td>{order.paymentMethod}</Td>
-      </StyledTr>
-    ))}
-</tbody>
+                      <Td>{order.amount}</Td>
+                      <TdStatus status={order.status}>{order.status}</TdStatus>
+                      <Td>{order.paymentMethod}</Td>
+                    </StyledTr>
+                  ))}
+              </tbody>
             </Table>
 
             {selectedOrder && <AdminDetail selectedOrder={selectedOrder} />}
