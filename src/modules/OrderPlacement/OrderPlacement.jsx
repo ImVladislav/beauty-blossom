@@ -744,7 +744,7 @@ const OrderPlacement = () => {
                           name="warehouse"
                           value={searchWarehouses}
                           onChange={handleSearchTextChangeWarehose}
-                          placeholder="Введіть адресу відділення"
+                          placeholder="Введіть номер відділення"
                           onClick={() => {
                             setDropdownWarehouseVisible(
                               searchCities.length <= 20
