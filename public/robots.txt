@@ -1,4 +1,15 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# Дозволяємо Googlebot
+User-agent: Googlebot
+Disallow:
+
+# Дозволяємо Googlebot-Image
+User-agent: Googlebot-Image
+Disallow:
+
+# Загальні правила для всіх інших ботів
 User-agent: *
 Disallow: /private/
 Disallow: /admin/
+Allow: /
