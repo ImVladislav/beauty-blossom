@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
 import NoProducts from "../../../pages/NoProducts/NoProducts";
 import { optUserSelector } from "../../../redux/auth/selectors";
-
+import { Loader } from "../Loader/Loader";
 import {
   WrapListProduct,
   ProductListContainer,
@@ -32,7 +32,7 @@ const ProductList = ({ items }) => {
   // Функція для фільтрації продуктів
   const handleFilterChange = (e) => {
     const { value } = e.target;
-    console.log(value);
+  
     
     setFilter(value);
     setCurrentPage(1);
@@ -51,8 +51,17 @@ const ProductList = ({ items }) => {
   };
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const searchQuery = searchParams.get("query")?.toLowerCase();
+  
     let filtered = [...items];
-
+  
+    if (searchQuery) {
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery)
+      );
+    }
+  
     if (filter === "nameABC") {
       filtered = filtered.sort((a, b) =>
         a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
@@ -76,9 +85,9 @@ const ProductList = ({ items }) => {
     } else if (filter === "inStock") {
       filtered = filtered.filter((item) => item.amount >= 1);
     }
-
+  
     setFilteredProducts(filtered);
-  }, [filter, items, optUser]);
+  }, [filter, items, optUser, location.search]);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -177,8 +186,16 @@ const ProductList = ({ items }) => {
   //   }
   // }, [currentPage]);
 
+  const isLoading = !items || items.length === 0;
+
+  if (isLoading) {
+
+    return <Loader/>; 
+  }
+
   return (
     <>
+
       {currentProducts.length > 0 ? (
         <div>
           <FilterContainer>

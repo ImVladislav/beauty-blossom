@@ -11,7 +11,6 @@ import { BrowserRouter } from "react-router-dom";
 import { GlobalStyle } from "./shared/styles/GlobalStyle";
 import { PersistGate } from "redux-persist/integration/react";
 import { HelmetProvider } from "react-helmet-async";
-import axios from "axios"; // Імпорт axios, якщо його ще немає
 
 // Ініціалізація пікселя Meta
 const pixelId = '789745059892711'; // Ваш Pixel ID

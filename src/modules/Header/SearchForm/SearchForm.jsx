@@ -8,8 +8,6 @@ import { setSearch } from "../../../redux/search/slice";
 import {
   SearchFormContainer,
   SearchInput,
-  SearchButton,
-  SearchIcon,
 } from "./SearchForm.styled";
 
 const SearchForm = ({ isOpen }) => {
@@ -47,9 +45,6 @@ const SearchForm = ({ isOpen }) => {
           value={searchTerm}
           onChange={handleInputChange}
         />
-        {/* <SearchButton type="submit">
-          <SearchIcon />
-        </SearchButton> */}
       </form>
     </SearchFormContainer>
   );

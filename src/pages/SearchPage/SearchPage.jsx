@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -14,34 +14,31 @@ import { Loader } from "../../shared/components/Loader/Loader.jsx";
 const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery);
   const searchQueryCode = useSelector(selectSearchQueryCode);
-  const [loading, setLoading] = useState(true);
+
+  // Вираховуємо кінцевий масив товарів
+  const search = useMemo(() => {
+    if (searchQuery.length > 0) {
+      return [...searchQuery].sort((a, b) => b.amount - a.amount);
+    } else if (searchQueryCode.length > 0) {
+      return [...searchQueryCode].sort((a, b) => b.amount - a.amount);
+    }
+    return [];
+  }, [searchQuery, searchQueryCode]);
+
+  const isLoading =
+    searchQuery.length === 0 &&
+    searchQueryCode.length === 0;
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
-  const searchQuerySorted = [...searchQuery].sort(
-    (a, b) => b.amount - a.amount
-  );
-  const searchQueryCodeSorted = [...searchQueryCode].sort(
-    (a, b) => b.amount - a.amount
-  );
-
-  let search = [...searchQuerySorted];
-
-  if (searchQuery.length === 0) {
-    search = [...searchQueryCodeSorted];
-  } else {
-    search = [...searchQuerySorted];
-  }
-
-  if (search.length === 0) {
-    toast.error("Нічого не знайдено за вашим запитом!");
-  }
+    if (!isLoading && search.length === 0) {
+      toast.error("Нічого не знайдено за вашим запитом!");
+    }
+  }, [isLoading, search]);
 
   return (
     <main>
       <Container>
-        {loading ? <Loader /> : <ProductsList items={search} />}
+        {isLoading ? <Loader /> : <ProductsList items={search} />}
       </Container>
     </main>
   );
