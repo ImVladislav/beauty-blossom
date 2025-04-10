@@ -9,13 +9,11 @@ import {
 
 import ProductsList from "../../shared/components/ProductsList/ProductsList.jsx";
 import { Container } from "../../shared/styles/Container";
-import { Loader } from "../../shared/components/Loader/Loader.jsx";
 
 const SearchPage = () => {
-  const searchQuery = useSelector(selectSearchQuery);
-  const searchQueryCode = useSelector(selectSearchQueryCode);
+  const searchQuery = useSelector(selectSearchQuery) || [];
+  const searchQueryCode = useSelector(selectSearchQueryCode) || [];
 
-  // Вираховуємо кінцевий масив товарів
   const search = useMemo(() => {
     if (searchQuery.length > 0) {
       return [...searchQuery].sort((a, b) => b.amount - a.amount);
@@ -25,20 +23,19 @@ const SearchPage = () => {
     return [];
   }, [searchQuery, searchQueryCode]);
 
-  const isLoading =
-    searchQuery.length === 0 &&
-    searchQueryCode.length === 0;
+  const noResults =
+    searchQuery.length === 0 && searchQueryCode.length === 0;
 
   useEffect(() => {
-    if (!isLoading && search.length === 0) {
+    if (noResults) {
       toast.error("Нічого не знайдено за вашим запитом!");
     }
-  }, [isLoading, search]);
+  }, [noResults]);
 
   return (
     <main>
       <Container>
-        {isLoading ? <Loader /> : <ProductsList items={search} />}
+        <ProductsList items={search} />
       </Container>
     </main>
   );

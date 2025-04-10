@@ -6,6 +6,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import NoProducts from "../../../pages/NoProducts/NoProducts";
 import { optUserSelector } from "../../../redux/auth/selectors";
 import { Loader } from "../Loader/Loader";
+
 import {
   WrapListProduct,
   ProductListContainer,
@@ -22,12 +23,24 @@ const ProductList = ({ items }) => {
   const [filteredProducts, setFilteredProducts] = useState(items);
   const [filter, setFilter] = useState("none");
   const [currentPage, setCurrentPage] = useState(1);
+  const [showLoader, setShowLoader] = useState(true);
 
   const itemsPerPage = 32;
   const navigate = useNavigate();
   const location = useLocation();
 
   const optUser = useSelector(optUserSelector);
+
+  // Loader: показати на 3 секунди
+  useEffect(() => {
+    if (!items || items.length === 0) {
+      const timer = setTimeout(() => setShowLoader(false), 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowLoader(false);
+    }
+  }, [items]);
+
 
   // Функція для фільтрації продуктів
   const handleFilterChange = (e) => {
@@ -186,11 +199,8 @@ const ProductList = ({ items }) => {
   //   }
   // }, [currentPage]);
 
-  const isLoading = !items || items.length === 0;
-
-  if (isLoading) {
-
-    return <Loader/>; 
+  if (showLoader) {
+    return <Loader />;
   }
 
   return (
