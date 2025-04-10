@@ -41,12 +41,10 @@ const ProductList = ({ items }) => {
     }
   }, [items]);
 
-
   // Функція для фільтрації продуктів
   const handleFilterChange = (e) => {
     const { value } = e.target;
-  
-    
+
     setFilter(value);
     setCurrentPage(1);
 
@@ -65,16 +63,26 @@ const ProductList = ({ items }) => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const searchQuery = searchParams.get("query")?.toLowerCase();
-  
+    const searchQuery = searchParams.get("query");
+
     let filtered = [...items];
-  
+
+    
+    const normalize = (str) =>
+      decodeURIComponent(str) // ← важливо!
+    .toLowerCase()
+    .replace(/\+/g, " ") // замінюємо "+" на пробіл
+    .replace(/\s+/g, " ") // множинні пробіли — в 1
+    .replace(/[^a-zа-яіїєґ0-9\s]/gi, "") // прибираємо все зайве
+    .trim();
+    
     if (searchQuery) {
+      const normQuery = normalize(searchQuery);
       filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(searchQuery)
+        normalize(item.name).includes(normQuery)
       );
     }
-  
+
     if (filter === "nameABC") {
       filtered = filtered.sort((a, b) =>
         a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
@@ -98,7 +106,7 @@ const ProductList = ({ items }) => {
     } else if (filter === "inStock") {
       filtered = filtered.filter((item) => item.amount >= 1);
     }
-  
+
     setFilteredProducts(filtered);
   }, [filter, items, optUser, location.search]);
 
@@ -205,7 +213,6 @@ const ProductList = ({ items }) => {
 
   return (
     <>
-
       {currentProducts.length > 0 ? (
         <div>
           <FilterContainer>
