@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -14,6 +14,9 @@ const SearchPage = () => {
   const searchQuery = useSelector(selectSearchQuery) || [];
   const searchQueryCode = useSelector(selectSearchQueryCode) || [];
 
+  const [hasChecked, setHasChecked] = useState(false);
+  const [toastShown, setToastShown] = useState(false);
+
   const search = useMemo(() => {
     if (searchQuery.length > 0) {
       return [...searchQuery].sort((a, b) => b.amount - a.amount);
@@ -27,10 +30,16 @@ const SearchPage = () => {
     searchQuery.length === 0 && searchQueryCode.length === 0;
 
   useEffect(() => {
-    if (noResults) {
-      toast.error("Нічого не знайдено за вашим запитом!");
+    // Чекаємо перше оновлення, щоб не стріляло на initial render
+    if (!hasChecked && (searchQuery.length > 0 || searchQueryCode.length > 0)) {
+      setHasChecked(true);
     }
-  }, [noResults]);
+
+    if (hasChecked && noResults && !toastShown) {
+      toast.error("Нічого не знайдено за вашим запитом!");
+      setToastShown(true);
+    }
+  }, [hasChecked, noResults, searchQuery, searchQueryCode, toastShown]);
 
   return (
     <main>
