@@ -187,9 +187,7 @@ const ProductPage = () => {
     setAmount(event.target.value);
   };
 
-  // useEffect(() => {
-  //   setAmount(product.amount || 0);
-  // }, [product.amount]);
+
 
   const changeProductAmount = async (productItem) => {
     try {
@@ -266,10 +264,7 @@ const ProductPage = () => {
 
   window.addEventListener("popstate", handlePopState);
 
-  // Прибираємо слухач при розмонтуванні компонента
-  // return () => {
-  // window.removeEventListener("popstate", handlePopState);
-  // };
+
 
   function addParagraphTags(textWithoutParagraphs) {
     const lines = textWithoutParagraphs.split("\n");

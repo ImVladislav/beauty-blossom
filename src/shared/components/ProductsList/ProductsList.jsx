@@ -190,7 +190,6 @@ const ProductList = ({ items }) => {
   if (showLoader) return <Loader />;
 
 
-console.log("items",items);
 
 
   return (
