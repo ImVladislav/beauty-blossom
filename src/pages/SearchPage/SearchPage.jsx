@@ -16,7 +16,8 @@ const SearchPage = () => {
 
   const [hasChecked, setHasChecked] = useState(false);
   const [toastShown, setToastShown] = useState(false);
-
+  
+  
   const search = useMemo(() => {
     if (searchQuery.length > 0) {
       return [...searchQuery].sort((a, b) => b.amount - a.amount);
@@ -25,7 +26,7 @@ const SearchPage = () => {
     }
     return [];
   }, [searchQuery, searchQueryCode]);
-
+  
   const noResults =
     searchQuery.length === 0 && searchQueryCode.length === 0;
 

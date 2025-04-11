@@ -41,6 +41,7 @@ const ProductList = ({ items }) => {
     }
   }, [items]);
 
+
   // Обробка фільтра
   const handleFilterChange = (e) => {
     const { value } = e.target;
@@ -78,10 +79,11 @@ const ProductList = ({ items }) => {
         .toLowerCase()
         .replace(/\+/g, " ")
         .replace(/\s+/g, " ")
-        .replace(/[^a-zа-яіїєґ0-9\s]/gi, "")
+        .replace(/[^a-zа-яіїєґ\s]/gi, "")
         .trim();
 
     let filtered = [...items];
+
 
     if (searchQuery) {
       const normQuery = normalize(searchQuery);
@@ -186,6 +188,10 @@ const ProductList = ({ items }) => {
   };
 
   if (showLoader) return <Loader />;
+
+
+console.log("items",items);
+
 
   return (
     <>
