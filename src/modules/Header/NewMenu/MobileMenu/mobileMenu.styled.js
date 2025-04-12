@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineDown } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const BurgerWrapper = styled.div`
   position: relative;
@@ -11,7 +11,11 @@ export const BurgerIcon = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: #333;
+  color: #616161;
+  &:hover,
+  &:focus {
+    color: ${(p) => p.theme.colors.accentColor};
+  }
 `;
 export const MobileMenuWrapper = styled.div`
   position: fixed;
@@ -38,6 +42,9 @@ export const MobileNav = styled.ul`
 `;
 export const NavItem = styled.li`
   padding: 7px 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 `;
 export const NavLinkStyled = styled(NavLink)`
   font-family: "Mulish", sans-serif;
@@ -45,7 +52,7 @@ export const NavLinkStyled = styled(NavLink)`
   font-size: 14px;
   line-height: 1.57;
   text-transform: lowercase;
-  text-align: center;
+  /* text-align: center; */
   color: #616161;
 
   text-decoration: none;
@@ -63,7 +70,7 @@ export const LinkStyled = styled.a`
   font-size: 14px;
   line-height: 1.57;
   text-transform: lowercase;
-  text-align: center;
+  /* text-align: center; */
   color: #616161;
 
   text-decoration: none;
@@ -80,7 +87,7 @@ export const AnchorStyled = styled.a`
   font-size: 14px;
   line-height: 1.57;
   text-transform: lowercase;
-  text-align: center;
+  /* text-align: center; */
   color: #616161;
 
   text-decoration: none;
@@ -106,6 +113,7 @@ export const SubMenu = styled.ul`
   list-style: none;
   padding-left: 15px;
   padding-top: 8px;
+  /* text-align: center; */
 `;
 export const BrandStyleLink = styled(NavLink)`
   font-family: "Mulish", sans-serif;
@@ -113,7 +121,7 @@ export const BrandStyleLink = styled(NavLink)`
   font-size: 14px;
   line-height: 1.57;
   text-transform: uppercase;
-  text-align: center;
+  /* text-align: center; */
   color: #616161;
 
   text-decoration: none;
@@ -133,6 +141,59 @@ export const DownIcon = styled(AiOutlineDown)`
   padding: 5px;
   margin-left: 5px;
   cursor: pointer;
+  &:hover,
+  &:focus {
+    color: #ff96cf;
+  }
+`;
+
+export const AuthenticatedLink = styled(Link)`
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  text-decoration: none;
+  padding: 8px 0;
+
+  &:hover,
+  &:focus {
+    color: #ff96cf;
+  }
+`;
+
+export const InfoLink = styled.a`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  text-decoration: none;
+
+  padding: 8px 0;
+  &:hover,
+  &:focus {
+    color: #ff96cf;
+  }
+`;
+export const ContactBtn = styled.button`
+  font-family: "Mulish", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.57;
+  text-transform: lowercase;
+  text-align: center;
+  color: #616161;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+
+  padding: 8px 0;
+  text-align: left;
   &:hover,
   &:focus {
     color: #ff96cf;

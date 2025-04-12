@@ -234,7 +234,7 @@ const CartModal = ({ closeModal }) => {
     }
   };
   const backToCatalog = () => {
-    navigate("/category");
+    navigate("/katehorii");
     closeModal();
   };
 

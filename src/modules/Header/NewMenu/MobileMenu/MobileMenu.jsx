@@ -1,26 +1,25 @@
-import React, { useEffect, useState } from "react";
-
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { useLocation, useNavigate } from "react-router-dom";
-import { menuData } from "../Menu"; // масив з mobileText
-import categoryData from "../menuItems.json"; // лише для "#category"
-import {
-  selectBrandsItems,
-  selectedBrand,
-} from "../../../redux/brands/selectors";
+import React, { useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setFilter } from "../../../redux/filter/slice";
-import { transliterate } from "../../transliterate";
-import { fetchBrands } from "../../../redux/brands/operation";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+
+import { setfilter } from "../../../../redux/filter/slice";
+import { selectGoods } from "../../../../redux/products/selectors";
+import { loggedInSelector } from "../../../../redux/auth/selectors";
+
+import { transliterate } from "../../../../shared/components/transliterate";
+import Contacts from "../../Contacts/Contacts";
 
 import {
-  AnchorStyled,
+  AuthenticatedLink,
   BrandStyleLink,
   BurgerIcon,
   BurgerWrapper,
   CloseBtn,
+  ContactBtn,
   DownIcon,
   ExpandButton,
+  InfoLink,
   LinkStyled,
   MobileMenuWrapper,
   MobileNav,
@@ -29,13 +28,33 @@ import {
   SubMenu,
 } from "./mobileMenu.styled";
 
-// ==== Рекурсивне меню категорій ====
+const menuData = [
+  {
+    href: "#category",
+    mobileTo: "#category",
+    text: "категорії",
+    mobileText: "категорії",
+  },
+  {
+    to: "/brands",
+    text: "бренди",
+    mobileText: "бренди",
+  },
+];
+
 const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  const handleClick = (text) => {
+    dispatch(setfilter(text.toLowerCase().trim()));
+    navigate("/katehorii");
+    toggleMenu();
   };
 
   return (
@@ -49,13 +68,13 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
             <div style={{ display: "flex", alignItems: "center" }}>
               <NavLinkStyled
                 to={`/katehorii${currentPath}`}
-                onClick={() => toggleMenu()}
+                onClick={() => handleClick(item.text)}
               >
                 {item.text}
               </NavLinkStyled>
               {hasChildren && (
                 <ExpandButton onClick={() => toggleExpand(index)}>
-                  {hasChildren && expandedIndex === index ? (
+                  {expandedIndex === index ? (
                     <DownIcon
                       style={{ transform: "rotate(-90deg)", color: "#ff63b8" }}
                     />
@@ -65,10 +84,12 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
                 </ExpandButton>
               )}
             </div>
+
             {hasChildren && expandedIndex === index && (
               <RecursiveMobileMenu
                 items={item.children}
                 parentPath={currentPath}
+                toggleMenu={toggleMenu}
               />
             )}
           </NavItem>
@@ -82,8 +103,9 @@ const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
   const [showBrands, setShowBrands] = useState(false);
-  const [expandedIndex, setExpandedIndex] = useState(null);
+  const [contacts, setContacts] = useState(false);
 
+  const isLogin = useSelector(loggedInSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,46 +113,73 @@ const MobileMenu = () => {
   const isBrandActive = location.pathname.startsWith("/brands/");
   const isCategoryActive = location.pathname.startsWith("/katehorii/");
 
-  useEffect(() => {
-    dispatch(fetchBrands());
-  }, [dispatch]);
   const toggleMenu = () => {
     setIsOpen((prev) => {
       const newState = !prev;
-
       if (!newState) {
-        // коли закривається меню
         setShowCategory(false);
         setShowBrands(false);
       }
-
       return newState;
     });
   };
 
-  const brands = useSelector(selectedBrand);
+  const allItems = useSelector(selectGoods);
 
-  const handleClickBrand = (e) => {
+  const allCategory = useMemo(() => {
+    const result = [];
+    allItems.forEach(({ category, subCategory, subSubCategory }) => {
+      if (!category) return;
+      const cat = category.toLowerCase().trim();
+      const sub = subCategory?.toLowerCase().trim();
+      const subsub = subSubCategory?.toLowerCase().trim();
+
+      let catObj = result.find((c) => c.category === cat);
+      if (!catObj) {
+        catObj = { category: cat, children: [] };
+        result.push(catObj);
+      }
+      if (!sub) return;
+      let subObj = catObj.children.find((s) => s.subCategory === sub);
+      if (!subObj) {
+        subObj = { subCategory: sub, children: [] };
+        catObj.children.push(subObj);
+      }
+      if (!subsub) return;
+      const exists = subObj.children.find((ss) => ss.subSubCategory === subsub);
+      if (!exists) {
+        subObj.children.push({ subSubCategory: subsub });
+      }
+    });
+    return result;
+  }, [allItems]);
+
+  const brands = useMemo(() => {
+    return [
+      ...new Set(allItems.map((item) => item.brand.toUpperCase().trim())),
+    ].sort();
+  }, [allItems]);
+
+  const handleClick = (e) => {
     const name = e.target.innerText;
-    console.log("name", name);
-    dispatch(setFilter(name.toLowerCase().trim()));
-    // setIsOpen(false);
+    dispatch(setfilter(name.toLowerCase().trim()));
   };
-  const handleAnchorClick = (href) => {
-    setIsOpen(false);
-    // setShowCategory(false);
-    // setShowBrands(false);
-    if (href.startsWith("/")) {
-      navigate(href);
-    } else {
-      navigate("/");
-      setExpandedIndex(null);
-      setTimeout(() => {
-        const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 300);
-    }
+
+  const handleContactToggle = () => {
+    setContacts((prev) => !prev);
   };
+
+  const recursiveCategoryItems = useMemo(() => {
+    return allCategory.map((cat) => ({
+      text: cat.category,
+      children: cat.children.map((sub) => ({
+        text: sub.subCategory,
+        children: sub.children.map((subSub) => ({
+          text: subSub.subSubCategory,
+        })),
+      })),
+    }));
+  }, [allCategory]);
 
   return (
     <BurgerWrapper>
@@ -144,163 +193,142 @@ const MobileMenu = () => {
         </CloseBtn>
 
         <MobileNav>
-          {menuData.map((item, index) => {
-            const key = item.to || item.href || item.mobileTo;
+          {/* Меню категорій */}
+          <NavItem>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <LinkStyled
+                className={isCategoryActive ? "active" : ""}
+                href="#category"
+                onClick={() => {
+                  toggleMenu();
+                  navigate("/");
+                  setTimeout(() => {
+                    document
+                      .getElementById("category")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }, 300);
+                }}
+              >
+                категорії
+              </LinkStyled>
+              <ExpandButton onClick={() => setShowCategory((prev) => !prev)}>
+                {showCategory ? (
+                  <DownIcon
+                    style={{ transform: "rotate(-90deg)", color: "#ff63b8" }}
+                  />
+                ) : (
+                  <DownIcon />
+                )}
+              </ExpandButton>
+            </div>
+            {showCategory && (
+              <RecursiveMobileMenu
+                toggleMenu={toggleMenu}
+                items={recursiveCategoryItems}
+              />
+            )}
+          </NavItem>
 
-            // === Категорії ===
-            if (item.mobileTo === "#category") {
-              return (
-                <NavItem key={key}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <LinkStyled
-                      className={isCategoryActive ? "active" : ""}
-                      href="#category"
-                      onClick={() => {
-                        //   setShowCategory((prev) => !prev);
+          {/* Меню брендів */}
+          <NavItem>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <NavLinkStyled
+                to="/brands"
+                className={isBrandActive ? "active" : ""}
+                onClick={() => {
+                  toggleMenu();
+                  navigate("/brands");
+                }}
+              >
+                бренди
+              </NavLinkStyled>
+              <ExpandButton onClick={() => setShowBrands((prev) => !prev)}>
+                {showBrands ? (
+                  <DownIcon
+                    style={{ transform: "rotate(-90deg)", color: "#ff63b8" }}
+                  />
+                ) : (
+                  <DownIcon />
+                )}
+              </ExpandButton>
+            </div>
+            {showBrands && brands.length > 0 && (
+              <SubMenu>
+                {brands.map((name) => (
+                  <NavItem key={name}>
+                    <BrandStyleLink
+                      to={`/brands/${name.toLowerCase().trim()}`}
+                      onClick={(e) => {
+                        handleClick(e);
                         toggleMenu();
-                        navigate("/");
-                        setTimeout(() => {
-                          const categoryElement =
-                            document.getElementById("category");
-                          if (categoryElement) {
-                            categoryElement.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                          }
-                        });
                       }}
                     >
-                      {item.mobileText}
-                    </LinkStyled>
-                    <ExpandButton
-                      onClick={() => {
-                        setShowCategory((prev) => !prev);
-                      }}
-                    >
-                      {showCategory ? (
-                        <DownIcon
-                          style={{
-                            transform: "rotate(-90deg)",
-                            color: "#ff63b8",
-                          }}
-                        />
-                      ) : (
-                        <DownIcon />
-                      )}
-                    </ExpandButton>
-                  </div>
+                      {name}
+                    </BrandStyleLink>
+                  </NavItem>
+                ))}
+              </SubMenu>
+            )}
+          </NavItem>
 
-                  {showCategory && (
-                    <RecursiveMobileMenu
-                      items={categoryData[0].children}
-                      toggleMenu={toggleMenu}
-                    />
-                  )}
-                </NavItem>
-              );
-            }
-
-            // === Бренди ===
-            if (item.to === "/brands") {
-              return (
-                <NavItem key={key}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <NavLinkStyled
-                      to={item.to}
-                      className={isBrandActive ? "active" : ""}
-                      onClick={() => {
-                        toggleMenu();
-                        navigate("/brands");
-                      }}
-                    >
-                      {item.mobileText}
-                    </NavLinkStyled>
-                    <ExpandButton
-                      onClick={() => {
-                        setShowBrands((prev) => !prev);
-                      }}
-                    >
-                      {showBrands ? (
-                        <DownIcon
-                          style={{
-                            transform: "rotate(-90deg)",
-                            color: "#ff63b8",
-                          }}
-                        />
-                      ) : (
-                        <DownIcon />
-                      )}
-                    </ExpandButton>
-                  </div>
-
-                  {showBrands &&
-                    Array.isArray(brands.items) &&
-                    brands.items.length > 0 && (
-                      <SubMenu>
-                        {brands.items
-                          .flatMap(({ brandsName }) => brandsName)
-                          .map((name) => (
-                            <NavItem key={name}>
-                              <BrandStyleLink
-                                to={`/brands/${name.toLowerCase().trim()}`}
-                                onClick={(e) => {
-                                  handleClickBrand(e);
-                                  toggleMenu();
-                                }}
-                              >
-                                {name}
-                              </BrandStyleLink>
-                            </NavItem>
-                          ))}
-                      </SubMenu>
-                    )}
-                </NavItem>
-              );
-            }
-
-            // === Якорі або прості посилання ===
-            if (item.href || item.mobileTo) {
-              return (
-                <NavItem key={key}>
-                  <AnchorStyled
-                    href={item.href || item.mobileTo}
-                    onClick={() =>
-                      handleAnchorClick(item.href || item.mobileTo)
-                    }
-                  >
-                    {item.mobileText}
-                  </AnchorStyled>
-                </NavItem>
-              );
-            }
-
-            // === Стандартне NavLink ===
-            return (
-              <NavItem key={key}>
-                <NavLinkStyled
-                  to={item.to}
-                  onClick={() => {
-                    toggleMenu();
-                  }}
-                >
-                  {item.mobileText}
-                </NavLinkStyled>
-              </NavItem>
-            );
-          })}
+          {/* Авторизація + інформаційний блок */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              marginTop: "45px",
+            }}
+          >
+            {isLogin && (
+              <>
+                <AuthenticatedLink to="/cabinet/userData">
+                  Особистий кабінет
+                </AuthenticatedLink>
+                <AuthenticatedLink onClick={toggleMenu} to="/cabinet/history">
+                  Історія замовлень
+                </AuthenticatedLink>
+              </>
+            )}
+            <InfoLink onClick={toggleMenu} href="/kliientam/#return">
+              Повернення та обмін
+            </InfoLink>
+            <InfoLink onClick={toggleMenu} href="/kliientam/#payment">
+              Оплата і доставка
+            </InfoLink>
+            <InfoLink onClick={toggleMenu} href="/kliientam/#about">
+              Про нас
+            </InfoLink>
+            <ContactBtn onClick={handleContactToggle}>Контакти</ContactBtn>
+            {contacts && (
+              <>
+                <Contacts
+                  burger
+                  title="+ 380 50 052 9100"
+                  to="tel:+380500529100"
+                  icon="phone"
+                />
+                <Contacts
+                  burger
+                  title="beautyblossom.opt@gmail.com"
+                  to="mailto:beautyblossom.opt@gmail.com"
+                  icon="mail"
+                />
+                <Contacts
+                  burger
+                  title="beauty_blossom_opt"
+                  to="https://www.instagram.com/beauty_blossom_opt"
+                  icon="instagram"
+                />
+                <Contacts
+                  burger
+                  title="beauty_blossom"
+                  to="https://t.me/+Eejgotzs-ktiMTIy"
+                  icon="telegram"
+                />
+              </>
+            )}
+          </div>
         </MobileNav>
       </MobileMenuWrapper>
     </BurgerWrapper>

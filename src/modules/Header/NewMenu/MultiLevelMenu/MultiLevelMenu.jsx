@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-
+import React, { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
 
-// import { selectedBrand } from "../../../redux/brands/selectors";
 import { setfilter } from "../../../../redux/filter/slice";
-
 import { transliterate } from "../../../../shared/components/transliterate";
-
-import menuItems from "../../menuItems.json";
+import { selectGoods } from "../../../../redux/products/selectors";
 
 import {
   BrandLetter,
@@ -26,7 +21,15 @@ import {
   RightIcon,
   SubMenu,
 } from "./multiLevelMenu.styled";
-import { selectGoods } from "../../../../redux/products/selectors";
+
+export const menuData = [
+  { href: "#category", text: "категорії" },
+  { to: "/brands", text: "бренди" },
+  { to: "/novynky", text: "новинки" },
+  { to: "/aktsii", text: "акції" },
+  { to: "/kliientam", text: "клієнтам" },
+  { href: "#contacts", text: "контакти" },
+];
 
 // === Якірний скрол ===
 const handleAnchorScroll = (anchorId) => {
@@ -37,46 +40,35 @@ const handleAnchorScroll = (anchorId) => {
 };
 
 // === Рекурсивне меню ===
-const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
+const RecursiveMenu = ({
+  items,
+  level = 1,
+  parentPath = "",
+  expandedItem,
+  setExpandedItem,
+  allCategory,
+  brands,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [expandedItem, setExpandedItem] = useState(null);
 
-  const allItems = useSelector(selectGoods);
+  const sortedBrands = useMemo(() => {
+    return [...new Set(brands.map((b) => b.charAt(0).toUpperCase()))].sort();
+  }, [brands]);
 
-  const brands = allItems
-    ?.map((item) => item.brand.toUpperCase().trim())
-    .reduce((accumulator, current) => {
-      if (!accumulator.includes(current)) {
-        accumulator.push(current);
-      }
-      return accumulator;
-    }, [])
-    .sort();
-
-  const sortedBrands = brands
-    .map((item) => item.charAt(0).toUpperCase()) // Виділяємо першу букву та переводимо її в верхній регістр
-    .reduce((accumulator, current) => {
-      if (!accumulator.includes(current)) {
-        accumulator.push(current);
-      }
-      return accumulator;
-    }, [])
-    .sort();
-  // const brands = useSelector(selectedBrand);
-  // console.log("brands", brands);
-  // console.log(sortedBrands);
-  const handleClickBrand = (e) => {
+  const handleClick = (e) => {
     const name = e.target.innerText;
-    console.log("name", name);
     dispatch(setfilter(name.toLowerCase().trim()));
+    setExpandedItem(null);
   };
+
   const handleClickCategory = () => {
     navigate("/");
     setTimeout(() => {
       handleAnchorScroll("#category");
     }, 700);
   };
+
   const handleMouseEnter = (id) => {
     setExpandedItem(id);
   };
@@ -92,21 +84,18 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
     if (item.to === "/brands") {
       return (
         <Item
-          key={item.to} // ✅
+          key={item.to}
           onMouseEnter={() => handleMouseEnter("brands")}
           onMouseLeave={handleMouseLeave}
         >
           <LinkStyle to={item.to}>
             {item.text}
             {expandedItem === "brands" ? (
-              <DownIcon
-                style={{
-                  transform: "rotate(-90deg)",
-                  color: "#ff63b8",
-                }}
+              <RightIcon
+                style={{ transform: "rotate(90deg)", color: "#ff63b8" }}
               />
             ) : (
-              <DownIcon />
+              <RightIcon />
             )}
           </LinkStyle>
           {expandedItem === "brands" && brands.length > 0 && (
@@ -116,14 +105,14 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
                   <BrandLetter>{letter}</BrandLetter>
                   <ListBrand>
                     {brands
-                      .filter((item) => item.charAt(0).toUpperCase() === letter)
-                      .map((item) => (
-                        <li key={item}>
+                      .filter((b) => b.charAt(0).toUpperCase() === letter)
+                      .map((b) => (
+                        <li key={b}>
                           <LinkBrand
-                            to={`/brands/${item.toLowerCase().trim()}`}
-                            onClick={handleClickBrand}
+                            to={`/brands/${b.toLowerCase().trim()}`}
+                            onClick={handleClick}
                           >
-                            {item}
+                            {b}
                           </LinkBrand>
                         </li>
                       ))}
@@ -135,38 +124,49 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
         </Item>
       );
     }
-    if (item.to === "#category") {
+
+    if (item.href === "#category") {
       return (
         <MenuItem
-          key={index}
-          onMouseEnter={() => handleMouseEnter(`${item.text}`)}
+          key={item.text}
+          onMouseEnter={() => handleMouseEnter(item.text)}
           onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
         >
           <MenuLink as="a" href="#category" onClick={handleClickCategory}>
             {item.text}
-            {expandedItem === `${item.text}` ? (
-              <DownIcon
-                style={{
-                  transform: "rotate(-90deg)",
-                  color: "#ff63b8",
-                }}
-              />
-            ) : (
-              <DownIcon />
-            )}
+            {allCategory.length > 0 &&
+              (level === 1 ? (
+                <RightIcon
+                  style={
+                    expandedItem === item.text
+                      ? { transform: "rotate(90deg)", color: "#ff63b8" }
+                      : undefined
+                  }
+                />
+              ) : (
+                <RightIcon />
+              ))}
           </MenuLink>
 
-          {hasChildren && (
-            <SubMenu
-              level={level}
-              onMouseEnter={() => handleMouseEnter(`${item.text}`)}
-              onMouseLeave={handleMouseLeave}
-              onClick={handleClickBrand}
-            >
+          {expandedItem === item.text && (
+            <SubMenu level={level}>
               <RecursiveMenu
-                items={item.children}
+                items={allCategory.map((cat) => ({
+                  text: cat.category,
+                  children: cat.children.map((sub) => ({
+                    text: sub.subCategory,
+                    children: sub.children.map((subSub) => ({
+                      text: subSub.subSubCategory,
+                    })),
+                  })),
+                }))}
                 level={level + 1}
                 parentPath={currentPath}
+                expandedItem={expandedItem}
+                setExpandedItem={setExpandedItem}
+                allCategory={allCategory}
+                brands={brands}
               />
             </SubMenu>
           )}
@@ -174,34 +174,23 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
       );
     }
 
-    if (item.to === "#contacts") {
+    if (item.href === "#contacts") {
       return (
-        <MenuItem key={index}>
+        <MenuItem key={item.text}>
           <MenuLink
             as="a"
             onClick={() => handleAnchorScroll("#contacts")}
             href="#contacts"
           >
             {item.text}
-            {expandedItem === "category" ? <DownIcon /> : <RightIcon />}
           </MenuLink>
-
-          {hasChildren && (
-            <SubMenu level={level}>
-              <RecursiveMenu
-                items={item.children}
-                level={level + 1}
-                parentPath={currentPath}
-              />
-            </SubMenu>
-          )}
         </MenuItem>
       );
     }
 
     return (
-      <MenuItem key={index}>
-        <MenuLink to={`${currentPath}`}>
+      <MenuItem key={item.text}>
+        <MenuLink to={currentPath}>
           {item.text}
           {hasChildren && (level === 1 ? <DownIcon /> : <RightIcon />)}
         </MenuLink>
@@ -212,6 +201,10 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
               items={item.children}
               level={level + 1}
               parentPath={currentPath}
+              expandedItem={expandedItem}
+              setExpandedItem={setExpandedItem}
+              allCategory={allCategory}
+              brands={brands}
             />
           </SubMenu>
         )}
@@ -220,10 +213,66 @@ const RecursiveMenu = ({ items, level = 1, parentPath = "" }) => {
   });
 };
 
-const MultiLevelMenu = () => (
-  <MenuContainer>
-    <RecursiveMenu items={menuItems} />
-  </MenuContainer>
-);
+const MultiLevelMenu = () => {
+  const [expandedItem, setExpandedItem] = useState(null);
+  const allItems = useSelector(selectGoods);
+
+  // === Категорії ===
+  const allCategory = useMemo(() => {
+    const result = [];
+
+    allItems.forEach(({ category, subCategory, subSubCategory }) => {
+      if (!category) return;
+
+      const cat = category.toLowerCase().trim();
+      const sub = subCategory?.toLowerCase().trim();
+      const subsub = subSubCategory?.toLowerCase().trim();
+
+      let catObj = result.find((c) => c.category === cat);
+      if (!catObj) {
+        catObj = { category: cat, children: [] };
+        result.push(catObj);
+      }
+
+      if (!sub) return;
+
+      let subObj = catObj.children.find((s) => s.subCategory === sub);
+      if (!subObj) {
+        subObj = { subCategory: sub, children: [] };
+        catObj.children.push(subObj);
+      }
+
+      if (!subsub) return;
+
+      const subsubExists = subObj.children.find(
+        (ss) => ss.subSubCategory === subsub
+      );
+      if (!subsubExists) {
+        subObj.children.push({ subSubCategory: subsub });
+      }
+    });
+
+    return result;
+  }, [allItems]);
+
+  // === Бренди ===
+  const brands = useMemo(() => {
+    return [
+      ...new Set(allItems.map((item) => item.brand.toUpperCase().trim())),
+    ].sort();
+  }, [allItems]);
+
+  return (
+    <MenuContainer>
+      <RecursiveMenu
+        items={menuData}
+        expandedItem={expandedItem}
+        setExpandedItem={setExpandedItem}
+        allCategory={allCategory}
+        brands={brands}
+      />
+    </MenuContainer>
+  );
+};
 
 export default MultiLevelMenu;
