@@ -18,7 +18,7 @@ const CategoryPage = () => {
     <>
       {loading ? (
         <Loader />
-      ) : pathname !== "/category" ? (
+      ) : pathname !== "/katehorii" ? (
         <SortCategory />
       ) : (
         <Category />

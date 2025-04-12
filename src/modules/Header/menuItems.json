@@ -459,21 +459,21 @@
   },
   {
     "level": 1,
-    "to": "/news",
+    "to": "/novynky",
     "text": "новинки",
     "textMobile": "нове постачання",
     "children": []
   },
   {
     "level": 1,
-    "to": "/discount",
+    "to": "/aktsii",
     "text": "акції",
     "textMobile": "товари зі зниженою ціною",
     "children": []
   },
   {
     "level": 1,
-    "to": "/wholesaleProgram",
+    "to": "/kliientam",
     "text": "клієнтам",
     "textMobile": "клієнтам",
     "children": []

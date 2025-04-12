@@ -32,7 +32,7 @@ import {
   Line,
   SearchIcon,
 } from "./header.styled";
-import Menu from "./Menu/Menu";
+import Menu from "./NewMenu/NewMenu";
 import ShoppingCart from "./ShopingList/ShopingList";
 import { useLocation } from "react-router-dom";
 import { useMedia } from "../../hooks/useMedia";
