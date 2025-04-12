@@ -65,6 +65,7 @@ import {
 } from "./ProductUtils";
 import NewSticker from "../../shared/components/Sticker/NewSticker";
 import { trackAddToCart } from "../../facebookInt/FacebookPixelEvent";
+import { transliterate } from "../../shared/components/transliterate";
 
 const ProductPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // стейт для модалки - швидке замовлення
@@ -187,8 +188,6 @@ const ProductPage = () => {
     setAmount(event.target.value);
   };
 
-
-
   const changeProductAmount = async (productItem) => {
     try {
       await axios.put(`/goods/${productItem._id}`, {
@@ -264,8 +263,6 @@ const ProductPage = () => {
 
   window.addEventListener("popstate", handlePopState);
 
-
-
   function addParagraphTags(textWithoutParagraphs) {
     const lines = textWithoutParagraphs.split("\n");
     const paragraphs = lines.map((line) => {
@@ -277,6 +274,7 @@ const ProductPage = () => {
     return paragraphs;
   }
   const paragraphs = addParagraphTags(product.description);
+  // transliterate(product.name);
 
   return (
     <Container>
@@ -298,12 +296,7 @@ const ProductPage = () => {
                 </LiHistoryItem>
                 <LiHistoryItem>
                   <LinkHistoryLink
-                    to={
-                      productPath ||
-                      (categoryUrl2 === "/category"
-                        ? categoryUrl
-                        : categoryUrl2)
-                    }
+                    to={`/katehoriji/${transliterate(product.category)}`}
                     onClick={() => handleLinkClick(product.category)}
                   >
                     {product.category}
@@ -315,7 +308,9 @@ const ProductPage = () => {
                   {product.subSubCategory && (
                     <>
                       <LinkHistoryLink
-                        to={productSubPath || categoryUrl}
+                        to={`/katehoriji/${transliterate(
+                          product.category
+                        )}/${transliterate(product.subCategory)}`}
                         onClick={() => handleLinkClick(product.subCategory)}
                       >
                         {product.subCategory}
@@ -328,7 +323,11 @@ const ProductPage = () => {
                   {product.subSubCategory && (
                     <>
                       <LinkHistoryLink
-                        to={producttSubSubPath}
+                        to={`/katehoriji/${transliterate(
+                          product.category
+                        )}/${transliterate(
+                          product.subCategory
+                        )}/${transliterate(product.subSubCategory)}`}
                         onClick={() => handleLinkClick(product.subSubCategory)}
                       >
                         {product.subSubCategory}
@@ -340,10 +339,10 @@ const ProductPage = () => {
 
                 <LiHistoryItem>
                   <LinkHistoryLink
-                    to={`/brands/${product.brand}`}
-                    onClick={() => handleLinkClick(product.subSubCategory)}
+                    to={`/brands/${product.brand.toLowerCase().trim()}`}
+                    onClick={() => handleLinkClick(product.brand)}
                   >
-                    {product.brand}
+                    {product.brand.toLowerCase().trim()}
                   </LinkHistoryLink>
                   {/* <span>/</span> */}
                 </LiHistoryItem>

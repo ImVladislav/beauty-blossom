@@ -53,7 +53,7 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
 
   const handleClick = (text) => {
     dispatch(setfilter(text.toLowerCase().trim()));
-    navigate("/katehorii");
+    navigate("/katehoriji");
     toggleMenu();
   };
 
@@ -67,7 +67,7 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
           <NavItem key={index}>
             <div style={{ display: "flex", alignItems: "center" }}>
               <NavLinkStyled
-                to={`/katehorii${currentPath}`}
+                to={`/katehoriji${currentPath}`}
                 onClick={() => handleClick(item.text)}
               >
                 {item.text}
@@ -111,7 +111,7 @@ const MobileMenu = () => {
   const location = useLocation();
 
   const isBrandActive = location.pathname.startsWith("/brands/");
-  const isCategoryActive = location.pathname.startsWith("/katehorii/");
+  const isCategoryActive = location.pathname.startsWith("/katehoriji/");
 
   const toggleMenu = () => {
     setIsOpen((prev) => {

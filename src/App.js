@@ -125,7 +125,7 @@ function App() {
 
             {/* <Route path="registration" element={<p>Registration Page</p>} /> */}
             <Route
-              path="katehorii"
+              path="katehoriji"
               element={
                 <Suspense fallback={<Loader />}>
                   <CategoryPage />
@@ -133,7 +133,7 @@ function App() {
               }
             />
             <Route
-              path="katehorii/:category"
+              path="katehoriji/:category"
               element={
                 <Suspense fallback={<Loader />}>
                   <SortCategory />
@@ -141,7 +141,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="katehorii/:category/:category"
+              path="katehoriji/:category/:subCategory"
               element={
                 <Suspense fallback={<Loader />}>
                   <SortCategory />
@@ -149,7 +149,7 @@ function App() {
               }
             />
             <Route
-              path="katehorii/:category/:category/:category"
+              path="katehoriji/:category/:subCategory/:subSubCategory"
               element={
                 <Suspense fallback={<Loader />}>
                   <SortCategory />
