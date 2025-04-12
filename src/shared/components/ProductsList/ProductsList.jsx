@@ -31,7 +31,7 @@ const ProductList = ({ items }) => {
 
   const optUser = useSelector(optUserSelector);
 
-  // Loader: показати на 3 секунди
+  // Loader на 1 секунду при пустому items
   useEffect(() => {
     if (!items || items.length === 0) {
       const timer = setTimeout(() => setShowLoader(false), 1000);
@@ -41,10 +41,10 @@ const ProductList = ({ items }) => {
     }
   }, [items]);
 
-  // Функція для фільтрації продуктів
+
+  // Обробка фільтра
   const handleFilterChange = (e) => {
     const { value } = e.target;
-
     setFilter(value);
     setCurrentPage(1);
 
@@ -65,17 +65,26 @@ const ProductList = ({ items }) => {
     const searchParams = new URLSearchParams(location.search);
     const searchQuery = searchParams.get("query");
 
+    const safeDecode = (str) => {
+      try {
+        return decodeURIComponent(str);
+      } catch (err) {
+        console.warn("🚨 decodeURIComponent failed for:", str);
+        return str;
+      }
+    };
+
+    const normalize = (str) =>
+      safeDecode(str || "")
+        .toLowerCase()
+        .replace(/\+/g, " ")
+        .replace(/\s+/g, " ")
+        .replace(/[^a-zа-яіїєґ\s]/gi, "")
+        .trim();
+
     let filtered = [...items];
 
-    
-    const normalize = (str) =>
-      decodeURIComponent(str) // ← важливо!
-    .toLowerCase()
-    .replace(/\+/g, " ") // замінюємо "+" на пробіл
-    .replace(/\s+/g, " ") // множинні пробіли — в 1
-    .replace(/[^a-zа-яіїєґ0-9\s]/gi, "") // прибираємо все зайве
-    .trim();
-    
+
     if (searchQuery) {
       const normQuery = normalize(searchQuery);
       filtered = filtered.filter((item) =>
@@ -92,17 +101,13 @@ const ProductList = ({ items }) => {
         b.name.localeCompare(a.name, undefined, { sensitivity: "base" })
       );
     } else if (filter === "priceMin") {
-      if (!optUser) {
-        filtered = filtered.sort((a, b) => a.price - b.price);
-      } else {
-        filtered = filtered.sort((a, b) => a.priceOPT - b.priceOPT);
-      }
+      filtered = optUser
+        ? filtered.sort((a, b) => a.priceOPT - b.priceOPT)
+        : filtered.sort((a, b) => a.price - b.price);
     } else if (filter === "priceMax") {
-      if (!optUser) {
-        filtered = filtered.sort((a, b) => b.price - a.price);
-      } else {
-        filtered = filtered.sort((a, b) => b.priceOPT - a.priceOPT);
-      }
+      filtered = optUser
+        ? filtered.sort((a, b) => b.priceOPT - a.priceOPT)
+        : filtered.sort((a, b) => b.price - a.price);
     } else if (filter === "inStock") {
       filtered = filtered.filter((item) => item.amount >= 1);
     }
@@ -115,17 +120,12 @@ const ProductList = ({ items }) => {
     const filterParam = searchParams.get("filter");
     const pageParam = searchParams.get("page");
 
-    if (filterParam) {
-      setFilter(filterParam);
-    }
-    if (pageParam) {
-      setCurrentPage(parseInt(pageParam));
-    } else {
-      setCurrentPage(1);
-    }
+    if (filterParam) setFilter(filterParam);
+    if (pageParam) setCurrentPage(parseInt(pageParam));
+    else setCurrentPage(1);
   }, [location.search]);
 
-  // Логіка для пагінації
+  // Пагінація
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentProducts = filteredProducts.slice(
@@ -136,7 +136,6 @@ const ProductList = ({ items }) => {
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const paginate = (pageNumber) => {
-    // Підняття сторінки вгору
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     const searchParams = new URLSearchParams(location.search);
@@ -154,7 +153,7 @@ const ProductList = ({ items }) => {
 
   const getPageNumbers = () => {
     const pageNumbers = [];
-    const maxPageBlocks = 5; // максимальна кількість блоків
+    const maxPageBlocks = 5;
     let startPage, endPage;
 
     if (totalPages <= maxPageBlocks) {
@@ -175,41 +174,23 @@ const ProductList = ({ items }) => {
 
     if (startPage !== 1) {
       pageNumbers.push(1);
-      if (startPage !== 2) {
-        pageNumbers.push("...");
-      }
+      if (startPage !== 2) pageNumbers.push("...");
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(i);
-    }
+    for (let i = startPage; i <= endPage; i++) pageNumbers.push(i);
 
     if (endPage !== totalPages) {
-      if (endPage !== totalPages - 1) {
-        pageNumbers.push("...");
-      }
+      if (endPage !== totalPages - 1) pageNumbers.push("...");
       pageNumbers.push(totalPages);
     }
 
     return pageNumbers;
   };
 
-  // анімація підняття сторінки вгору
-  // useEffect(() => {
-  //   const wrapListProduct = document.querySelector(".WrapListProduct");
-  //   if (wrapListProduct) {
-  //     wrapListProduct.classList.add("active");
+  if (showLoader) return <Loader />;
 
-  //     // Відстрочення анімації
-  //     setTimeout(() => {
-  //       wrapListProduct.classList.remove("active");
-  //     }, 500);
-  //   }
-  // }, [currentPage]);
 
-  if (showLoader) {
-    return <Loader />;
-  }
+
 
   return (
     <>
@@ -217,7 +198,6 @@ const ProductList = ({ items }) => {
         <div>
           <FilterContainer>
             <FilterWrap>
-              {/* Фільтр */}
               <FilterSelect value={filter} onChange={handleFilterChange}>
                 <option value="none">Без фільтра</option>
                 <option value="nameABC">Назва (А - Я)</option>
@@ -230,14 +210,11 @@ const ProductList = ({ items }) => {
           </FilterContainer>
           <WrapListProduct>
             <ProductListContainer>
-              {/* Відображення списку товарів */}
               {currentProducts.map((item) => (
                 <ProductCard key={item.id || item.productId} products={item} />
               ))}
             </ProductListContainer>
           </WrapListProduct>
-
-          {/* Пагінація */}
           {getPageNumbers().length > 1 && (
             <Pagination>
               {currentPage !== 1 && (

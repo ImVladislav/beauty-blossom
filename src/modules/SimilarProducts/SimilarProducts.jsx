@@ -16,9 +16,10 @@ import { setfilter } from "../../redux/filter/slice";
 export const SimilarProducts = ({ brand, productId, setQuantity }) => {
   const dispatch = useDispatch();
 
+  // Очищення пробілів у бренді перед передачею у фільтр
   useEffect(() => {
     if (brand) {
-      dispatch(setfilter(brand));
+      dispatch(setfilter(brand.trim()));
     }
   }, [brand, dispatch]);
 
@@ -28,6 +29,7 @@ export const SimilarProducts = ({ brand, productId, setQuantity }) => {
     .sort((a, b) => b.amount - a.amount)
     .filter((product) => product.id !== productId)
     .slice(0, 3);
+
   const handleLinkClick = () => {
     setQuantity(1);
     window.scrollTo({
@@ -35,27 +37,24 @@ export const SimilarProducts = ({ brand, productId, setQuantity }) => {
       behavior: "smooth",
     });
   };
+
   return (
     <>
-      {!limitedItems.length <= 1 && (
+      {limitedItems.length > 0 && (
         <Container>
-          <BrandStyledLink to={`/brands/${brand.toLowerCase()}`}>
+          <BrandStyledLink to={`/brands/${brand.trim().toLowerCase()}`}>
             <Title>iнші товари цього бренду</Title>
           </BrandStyledLink>
           <Line />
           <CartWrap>
-            {limitedItems.map((filtred) => (
+            {limitedItems.map((product) => (
               <ProductCardLink
-                to={`/product/${filtred.id}`}
+                to={`/product/${product.id}`}
                 onClick={handleLinkClick}
-                key={filtred.id}
+                key={product.id}
               >
-                <ProductImage
-                  src={filtred.images}
-                  alt={filtred.name}
-                ></ProductImage>
-
-                <ProductName>{filtred.name}</ProductName>
+                <ProductImage src={product.images} alt={product.name} />
+                <ProductName>{product.name}</ProductName>
               </ProductCardLink>
             ))}
           </CartWrap>

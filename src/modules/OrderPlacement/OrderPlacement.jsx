@@ -22,7 +22,6 @@ import {
   OrdersThumb,
   Select,
   SelectOpton,
-  // SubmitButton,
   TableThumb,
   Textarea,
   Title,
@@ -32,7 +31,6 @@ import {
   ItemNameLink,
   DivInfoBlock,
   InfoTextP,
-  // InfoTextSpan,
   LIstItem,
   ButtonWrap,
 } from "./OrderPlacementStyled";
@@ -105,10 +103,6 @@ const OrderPlacement = () => {
   };
 
   const cartItems = useSelector(selectCart);
-  // те що падає в замовлення
-  // console.log(cartItems);
-  // актуалочка з всіма товарами
-  // console.log(items);
 
   const updateItems = cartItems.filter((card) =>
     items.some((item) => {
@@ -207,7 +201,7 @@ const OrderPlacement = () => {
         calledMethod: "getWarehouses",
         methodProperties: {
           CityRef: warehouseSearch,
-          Limit: "4200",
+          Limit: "4000",
         },
       };
 
@@ -232,9 +226,11 @@ const OrderPlacement = () => {
       }
 
       const data = await response.json();
-
       if (data.success) {
+         
         setWarehouses(data.data);
+        console.log("всі відділення", warehouses)
+        console.log("",searchCities);
       }
     } catch (error) {
       console.error(
@@ -438,47 +434,6 @@ const OrderPlacement = () => {
     } finally {
       setIsSubmitting(false);
     }
-    // axios
-    //   .post(
-    //     ordersUrl,
-    //     courier === "no" ? dataToSendCourier : dataToSendWarehouse
-    //   )
-    //   .then((response) => {
-    //     trackPurchase(
-    //       userEmail || "",
-    //       orderNumber,
-    //       orderedItems === "сталась якась фігня"
-    //     );
-    //     if (isLogin) {
-    //       removeCartItem();
-    //     }
-
-    //     dispatch(deleteAll());
-    //     showOrderPlacedModal();
-
-    //     setFormData({
-    //       email: userEmail || "",
-    //       firstName: userFirstName || "",
-    //       lastName: userLastName || "",
-    //       number: userNumber || null,
-    //       city: "",
-    //       orderNumber: orderNumber,
-    //       paymentMethod: "",
-    //       deliveryMethod: "",
-    //       comments: "",
-    //       address: "",
-    //       building: "",
-    //       apartment: "",
-    //       isOptUser: isOptUser,
-    //     });
-    //   })
-    //   .then(setIsModalOpen(true))
-    //   .catch((error) => {
-    //     console.error("Сталася помилка:", error);
-    //   })
-    //   .finally(() => {
-    //     setIsSubmitting(false);
-    //   });
   };
 
   function throttle(func, delay) {
@@ -509,7 +464,7 @@ const OrderPlacement = () => {
     const value = e.target.value;
     setSearchWarehouses(value);
 
-    // console.log(warehouses);
+
     if (value.length > 2) {
       setDropdownWarehouseVisible(searchWarehouses.length < 20);
     }
@@ -899,11 +854,7 @@ const OrderPlacement = () => {
                     disabled={isSubmitting}
                   />
                 </ButtonWrap>
-                {/* <SubmitButton type="submit" disabled={isSubmitting}>
-                  {isSubmitting
-                    ? "Замовлення в обробці..."
-                    : "Оформити замовлення"}
-                </SubmitButton> */}
+
               </TableThumb>
             </Form>
           ) : null}
@@ -916,7 +867,4 @@ const OrderPlacement = () => {
 
 export default OrderPlacement;
 
-//411
-//430
-//619
-//792
+//917
