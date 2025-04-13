@@ -96,8 +96,10 @@ const ProductPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(`/goods`);
+        console.log(response);
+        
         if (response.data) {
-          setProducts(response.data);
+          setProducts(response.data.goods);
         }
       } catch (error) {
         console.error("Error fetching product:", error);
