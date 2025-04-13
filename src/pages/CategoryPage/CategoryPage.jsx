@@ -10,6 +10,8 @@ const CategoryPage = () => {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
 
+  console.log(pathname);
+
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -18,7 +20,7 @@ const CategoryPage = () => {
     <>
       {loading ? (
         <Loader />
-      ) : pathname !== "/category" ? (
+      ) : pathname !== "/katehoriji" ? (
         <SortCategory />
       ) : (
         <Category />

@@ -92,7 +92,7 @@ const User = () => {
           <ul>
             {admin && (
               <ListItem>
-                <Link style={{ padding: "4px 0" }} to="ordersbyclient">
+                <Link style={{ padding: "4px 0" }} to="/ordersbyclient">
                   замовлення(адмін права)
                 </Link>
               </ListItem>

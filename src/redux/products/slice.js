@@ -11,7 +11,8 @@ export const goodsSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(getGoods.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload.goods;
+        
         state.isRefreshing = false;
       })
       .addCase(getGoods.rejected, (state, action) => {

@@ -38,7 +38,7 @@ const Hero = () => {
               <Title>Лови знижки!</Title>
               <TextWrap>
                 <Subtitle>Сезонний розпродаж до - 20%</Subtitle>
-                <StyleLink to="/discount">Товари зі знижкою тут!</StyleLink>
+                <StyleLink to="/aktsii">Товари зі знижкою тут!</StyleLink>
                 <Text>Ціни на товари вказані вже з урахуванням знижки*</Text>
                 <Text>Акція діє до 30.11.2024</Text>
               </TextWrap>

@@ -45,7 +45,7 @@ const HeroBaner = () => {
             <div>
               <LinkWrap>
                 <LinkBtn
-                  to="/category/sunProtection"
+                  to="/katehoriji/sunProtection"
                   name="захист від сонця"
                   onClick={handleClick}
                 >

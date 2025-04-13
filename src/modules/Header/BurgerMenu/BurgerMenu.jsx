@@ -65,13 +65,13 @@ const BurgerMenu = ({ items, handleClick, setIsMenuOpen, isMenuOpen }) => {
             </AuthenticatedLink>
           </>
         )}
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#return">
+        <InfoLink onClick={closeMenu} href="/kliientam/#return">
           Повернення та обмін
         </InfoLink>
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#payment">
+        <InfoLink onClick={closeMenu} href="/kliientam/#payment">
           Оплата і доставка
         </InfoLink>
-        <InfoLink onClick={closeMenu} href="/wholesaleProgram/#about">
+        <InfoLink onClick={closeMenu} href="/kliientam/#about">
           Про нас
         </InfoLink>
         <ContactBtn onClick={handleContactTogle}>Контакти</ContactBtn>

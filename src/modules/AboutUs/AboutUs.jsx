@@ -118,7 +118,7 @@ const AboutUs = () => {
         , щоб завжди залишатись в курсі новин та поповнення асортименту.
       </TextLink> */}
       <Benefits />
-      <LinkToSaleProgram href="https://beautyblossom.com.ua/wholesaleProgram">
+      <LinkToSaleProgram href="https://beautyblossom.com.ua/kliientam">
         дізнатися більше про умови для оптових покупців
       </LinkToSaleProgram>
       <OpenOptRegisterWindow onClick={openModal}>

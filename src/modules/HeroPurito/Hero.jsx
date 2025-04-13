@@ -60,7 +60,7 @@ const Hero = () => {
                   Найкращий догляд для твого волосся вдома
                 </TextSecond>
                 <WraperLink>
-                  <LinkBtn to="/wholesaleProgram">*Оптова Програма</LinkBtn>
+                  <LinkBtn to="/kliientam">*Оптова Програма</LinkBtn>
                 </WraperLink>
                 {isMobileScreen && (
                   <TextConditions>*тисни, щоб дізнатись умови</TextConditions>

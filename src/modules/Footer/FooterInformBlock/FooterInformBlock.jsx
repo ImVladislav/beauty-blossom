@@ -22,12 +22,12 @@ export const FooterInformBlock = () => {
       </TitleWrap>
       <List>
         <Item>
-          <LinkStyledSecond href="/wholesaleProgram#return">
+          <LinkStyledSecond href="/kliientam#return">
             Контактна інформація
           </LinkStyledSecond>
         </Item>
         {/* <Item>
-          <LinkStyledSecond href="/wholesaleProgram#about">
+          <LinkStyledSecond href="/kliientam#about">
           Про нас
           </LinkStyledSecond>
           </Item> */}

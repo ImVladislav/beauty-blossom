@@ -32,7 +32,7 @@ import {
   Line,
   SearchIcon,
 } from "./header.styled";
-import Menu from "./Menu/Menu";
+import Menu from "./NewMenu/NewMenu";
 import ShoppingCart from "./ShopingList/ShopingList";
 import { useLocation } from "react-router-dom";
 import { useMedia } from "../../hooks/useMedia";
@@ -44,6 +44,7 @@ import {
 } from "../../redux/auth/selectors";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../redux/cart/selectors";
+import MobileMenu from "./NewMenu/MobileMenu/MobileMenu";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -137,14 +138,15 @@ export const Header = () => {
       ) : (
         <ContainerMobile>
           {/* top */}
-          {isMenuOpen && isMobileScreen && (
-            <BurgerMenu
-              handleClick={handleMenuClick}
-              isMenuOpen={isMenuOpen}
-              setIsMenuOpen={setIsMenuOpen}
-              items={menuItems}
-            />
-          )}
+          {/* {isMenuOpen && isMobileScreen && (
+            // <BurgerMenu
+            //   handleClick={handleMenuClick}
+            //   isMenuOpen={isMenuOpen}
+            //   setIsMenuOpen={setIsMenuOpen}
+            //   items={menuItems}
+            // />
+            <MobileMenu />
+          )} */}
           <TopWrap>
             <Schedule
               href="https://t.me/+Eejgotzs-ktiMTIy"
@@ -167,7 +169,8 @@ export const Header = () => {
           </CenterWrap>
           <CenterWrap>
             <ButtonMenu onClick={handleMenuClick}>
-              <MenuIcon />
+              <MobileMenu />
+              {/* <MenuIcon /> */}
             </ButtonMenu>
             {/* <IconWrap> */}
             <SearchIcon onClick={handleSearchClick} />
