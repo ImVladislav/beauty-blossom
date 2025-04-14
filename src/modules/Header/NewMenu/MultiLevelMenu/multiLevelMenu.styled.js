@@ -29,7 +29,7 @@ export const MenuLink = styled(NavLink)`
   text-transform: lowercase;
   /* text-align: center; */
   color: #616161;
-  padding: 12px;
+  padding: 10px 12px;
 
   display: flex;
   align-items: center;
