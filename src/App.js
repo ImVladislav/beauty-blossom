@@ -181,7 +181,7 @@ function App() {
               }
             />
             <Route
-              path="aktsii"
+              path="aktsiji"
               element={
                 <Suspense fallback={<Loader />}>
                   <DiscountPage />
