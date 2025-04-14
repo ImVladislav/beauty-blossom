@@ -108,7 +108,7 @@ export const ExpandButton = styled.button`
   border: none;
   font-size: 16px;
   color: #555;
-  margin-left: 8px;
+  /* margin-left: 8px; */
   cursor: pointer;
   &:hover {
     color: #ff63b8;
@@ -144,7 +144,7 @@ export const DownIcon = styled(AiOutlineDown)`
   width: 22px;
   height: 22px;
   padding: 5px;
-  margin-left: 5px;
+  /* margin-left: 5px; */
   cursor: pointer;
   &:hover,
   &:focus {
