@@ -61,7 +61,7 @@ export const SubMenu = styled.ul`
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px 0;
+  /* padding: 10px 0; */
   min-width: 230px;
   /* min-width: 200px; */
   list-style: none;

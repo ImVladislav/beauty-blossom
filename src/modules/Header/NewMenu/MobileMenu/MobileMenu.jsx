@@ -40,6 +40,21 @@ const menuData = [
     text: "бренди",
     mobileText: "бренди",
   },
+  {
+    to: "/novynky",
+    text: "новинки",
+    mobileText: "нове постачання",
+  },
+  {
+    to: "/aktsii",
+    text: "акції",
+    mobileText: "товари зі зниженою ціною",
+  },
+  {
+    to: "/kliientam",
+    text: "клієнтам",
+    mobileText: "оптова програма",
+  },
 ];
 
 const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
@@ -151,6 +166,32 @@ const MobileMenu = () => {
         subObj.children.push({ subSubCategory: subsub });
       }
     });
+
+    // Додаємо сортування
+    const sortByChildrenAndName = (a, b, key) => {
+      const aHasChildren = a.children && a.children.length > 0;
+      const bHasChildren = b.children && b.children.length > 0;
+
+      if (aHasChildren && !bHasChildren) return -1;
+      if (!aHasChildren && bHasChildren) return 1;
+
+      return a[key].localeCompare(b[key]);
+    };
+
+    // Сортування категорій
+    result.sort((a, b) => sortByChildrenAndName(a, b, "category"));
+
+    // Сортування підкатегорій та під-підкатегорій
+    result.forEach((cat) => {
+      cat.children.sort((a, b) => sortByChildrenAndName(a, b, "subCategory"));
+
+      cat.children.forEach((sub) => {
+        sub.children.sort((a, b) =>
+          a.subSubCategory.localeCompare(b.subSubCategory)
+        );
+      });
+    });
+
     return result;
   }, [allItems]);
 
@@ -193,90 +234,121 @@ const MobileMenu = () => {
         </CloseBtn>
 
         <MobileNav>
-          {/* Меню категорій */}
-          <NavItem>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <LinkStyled
-                className={isCategoryActive ? "active" : ""}
-                href="#category"
-                onClick={() => {
-                  toggleMenu();
-                  navigate("/");
-                  setTimeout(() => {
-                    document
-                      .getElementById("category")
-                      ?.scrollIntoView({ behavior: "smooth" });
-                  }, 300);
-                }}
-              >
-                категорії
-              </LinkStyled>
-              <ExpandButton onClick={() => setShowCategory((prev) => !prev)}>
-                {showCategory ? (
-                  <DownIcon
-                    style={{ transform: "rotate(-90deg)", color: "#ff63b8" }}
-                  />
-                ) : (
-                  <DownIcon />
-                )}
-              </ExpandButton>
-            </div>
-            {showCategory && (
-              <RecursiveMobileMenu
-                toggleMenu={toggleMenu}
-                items={recursiveCategoryItems}
-              />
-            )}
-          </NavItem>
-
-          {/* Меню брендів */}
-          <NavItem>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <NavLinkStyled
-                to="/brands"
-                className={isBrandActive ? "active" : ""}
-                onClick={() => {
-                  toggleMenu();
-                  navigate("/brands");
-                }}
-              >
-                бренди
-              </NavLinkStyled>
-              <ExpandButton onClick={() => setShowBrands((prev) => !prev)}>
-                {showBrands ? (
-                  <DownIcon
-                    style={{ transform: "rotate(-90deg)", color: "#ff63b8" }}
-                  />
-                ) : (
-                  <DownIcon />
-                )}
-              </ExpandButton>
-            </div>
-            {showBrands && brands.length > 0 && (
-              <SubMenu>
-                {brands.map((name) => (
-                  <NavItem key={name}>
-                    <BrandStyleLink
-                      to={`/brands/${name.toLowerCase().trim()}`}
-                      onClick={(e) => {
-                        handleClick(e);
+          {menuData.map((item) => {
+            if (item.mobileTo === "#category") {
+              return (
+                <NavItem key={item.text}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <LinkStyled
+                      className={isCategoryActive ? "active" : ""}
+                      href="#category"
+                      onClick={() => {
                         toggleMenu();
+                        navigate("/");
+                        setTimeout(() => {
+                          document
+                            .getElementById("category")
+                            ?.scrollIntoView({ behavior: "smooth" });
+                        }, 300);
                       }}
                     >
-                      {name}
-                    </BrandStyleLink>
-                  </NavItem>
-                ))}
-              </SubMenu>
-            )}
-          </NavItem>
+                      {item.mobileText}
+                    </LinkStyled>
+                    <ExpandButton
+                      onClick={() => setShowCategory((prev) => !prev)}
+                    >
+                      {showCategory ? (
+                        <DownIcon
+                          style={{
+                            transform: "rotate(-90deg)",
+                            color: "#ff63b8",
+                          }}
+                        />
+                      ) : (
+                        <DownIcon />
+                      )}
+                    </ExpandButton>
+                  </div>
+                  {showCategory && (
+                    <RecursiveMobileMenu
+                      toggleMenu={toggleMenu}
+                      items={recursiveCategoryItems}
+                    />
+                  )}
+                </NavItem>
+              );
+            }
 
-          {/* Авторизація + інформаційний блок */}
+            if (item.to === "/brands") {
+              return (
+                <NavItem key={item.text}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
+                    <NavLinkStyled
+                      to={item.to}
+                      className={isBrandActive ? "active" : ""}
+                      onClick={() => {
+                        toggleMenu();
+                        navigate("/brands");
+                      }}
+                    >
+                      {item.mobileText}
+                    </NavLinkStyled>
+                    <ExpandButton
+                      onClick={() => setShowBrands((prev) => !prev)}
+                    >
+                      {showBrands ? (
+                        <DownIcon
+                          style={{
+                            transform: "rotate(-90deg)",
+                            color: "#ff63b8",
+                          }}
+                        />
+                      ) : (
+                        <DownIcon />
+                      )}
+                    </ExpandButton>
+                  </div>
+                  {showBrands && brands.length > 0 && (
+                    <SubMenu>
+                      {brands.map((name) => (
+                        <NavItem key={name}>
+                          <BrandStyleLink
+                            to={`/brands/${name.toLowerCase().trim()}`}
+                            onClick={(e) => {
+                              toggleMenu();
+                              handleClick(e);
+                            }}
+                          >
+                            {name}
+                          </BrandStyleLink>
+                        </NavItem>
+                      ))}
+                    </SubMenu>
+                  )}
+                </NavItem>
+              );
+            }
+
+            return (
+              <NavItem key={item.text}>
+                <NavLinkStyled
+                  to={item.to}
+                  onClick={() => {
+                    toggleMenu();
+                    navigate(item.to);
+                  }}
+                >
+                  {item.mobileText}
+                </NavLinkStyled>
+              </NavItem>
+            );
+          })}
+
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              alignItems: "flex-start",
+              alignItems: "center",
               marginTop: "45px",
             }}
           >
