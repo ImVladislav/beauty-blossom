@@ -204,3 +204,13 @@ export const ContactBtn = styled.button`
     color: #ff96cf;
   }
 `;
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999; // нижче ніж меню
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); // напівпрозорий
+  backdrop-filter: blur(2px);
+`;

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
@@ -24,6 +24,7 @@ import {
   MobileMenuWrapper,
   MobileNav,
   NavItem,
+  Backdrop,
   NavLinkStyled,
   SubMenu,
 } from "./mobileMenu.styled";
@@ -71,6 +72,9 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
     navigate("/katehoriji");
     toggleMenu();
   };
+
+
+
 
   return (
     <SubMenu>
@@ -222,13 +226,28 @@ const MobileMenu = () => {
     }));
   }, [allCategory]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+
+
   return (
     <BurgerWrapper>
       <BurgerIcon onClick={toggleMenu}>
         <AiOutlineMenu />
       </BurgerIcon>
-
+      {isOpen && <Backdrop onClick={toggleMenu} />}
       <MobileMenuWrapper isOpen={isOpen}>
+
         <CloseBtn onClick={toggleMenu}>
           <AiOutlineClose />
         </CloseBtn>
