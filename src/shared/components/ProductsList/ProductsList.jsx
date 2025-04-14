@@ -41,7 +41,6 @@ const ProductList = ({ items }) => {
     }
   }, [items]);
 
-
   // Обробка фільтра
   const handleFilterChange = (e) => {
     const { value } = e.target;
@@ -83,7 +82,6 @@ const ProductList = ({ items }) => {
         .trim();
 
     let filtered = [...items];
-
 
     if (searchQuery) {
       const normQuery = normalize(searchQuery);
@@ -136,7 +134,9 @@ const ProductList = ({ items }) => {
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const paginate = (pageNumber) => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 100);
 
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("filter", filter);
@@ -188,9 +188,6 @@ const ProductList = ({ items }) => {
   };
 
   if (showLoader) return <Loader />;
-
-
-
 
   return (
     <>
