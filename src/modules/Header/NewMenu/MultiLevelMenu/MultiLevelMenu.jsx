@@ -220,67 +220,67 @@ const MultiLevelMenu = () => {
   const allItems = useSelector(selectGoods);
 
   // === Категорії ===
-  const allCategory = useMemo(() => {
-    const result = [];
-
-    allItems.forEach(({ category, subCategory, subSubCategory }) => {
-      if (!category) return;
-
-      const cat = category.toLowerCase().trim();
-      const sub = subCategory?.toLowerCase().trim();
-      const subsub = subSubCategory?.toLowerCase().trim();
-
-      let catObj = result.find((c) => c.category === cat);
-      if (!catObj) {
-        catObj = { category: cat, children: [] };
-        result.push(catObj);
-      }
-
-      if (!sub) return;
-
-      let subObj = catObj.children.find((s) => s.subCategory === sub);
-      if (!subObj) {
-        subObj = { subCategory: sub, children: [] };
-        catObj.children.push(subObj);
-      }
-
-      if (!subsub) return;
-
-      const subsubExists = subObj.children.find(
-        (ss) => ss.subSubCategory === subsub
-      );
-      if (!subsubExists) {
-        subObj.children.push({ subSubCategory: subsub });
-      }
-    });
-
-    // Додаємо сортування
-    const sortByChildrenAndName = (a, b, key) => {
-      const aHasChildren = a.children && a.children.length > 0;
-      const bHasChildren = b.children && b.children.length > 0;
-
-      if (aHasChildren && !bHasChildren) return -1;
-      if (!aHasChildren && bHasChildren) return 1;
-
-      return a[key].localeCompare(b[key]);
-    };
-
-    // Сортування категорій
-    result.sort((a, b) => sortByChildrenAndName(a, b, "category"));
-
-    // Сортування підкатегорій та під-підкатегорій
-    result.forEach((cat) => {
-      cat.children.sort((a, b) => sortByChildrenAndName(a, b, "subCategory"));
-
-      cat.children.forEach((sub) => {
-        sub.children.sort((a, b) =>
-          a.subSubCategory.localeCompare(b.subSubCategory)
-        );
+  const CATEGORY_ORDER = [
+      "догляд для обличчя",
+      "макіяж",
+      "догляд для волосся",
+      "догляд для тіла",
+      "аксесуари для догляду",
+      "захист від сонця",
+      "пробники",
+      "набори",
+    ];
+    
+    const allCategory = useMemo(() => {
+      const result = [];
+      allItems.forEach(({ category, subCategory, subSubCategory }) => {
+        if (!category) return;
+        const cat = category.toLowerCase().trim();
+        const sub = subCategory?.toLowerCase().trim();
+        const subsub = subSubCategory?.toLowerCase().trim();
+    
+        let catObj = result.find((c) => c.category === cat);
+        if (!catObj) {
+          catObj = { category: cat, children: [] };
+          result.push(catObj);
+        }
+        if (!sub) return;
+        let subObj = catObj.children.find((s) => s.subCategory === sub);
+        if (!subObj) {
+          subObj = { subCategory: sub, children: [] };
+          catObj.children.push(subObj);
+        }
+        if (!subsub) return;
+        const exists = subObj.children.find((ss) => ss.subSubCategory === subsub);
+        if (!exists) {
+          subObj.children.push({ subSubCategory: subsub });
+        }
       });
-    });
-
-    return result;
-  }, [allItems]);
+    
+      const sortByPredefinedOrder = (list, key, order) => {
+        return [...list].sort((a, b) => {
+          const aIndex = order.indexOf(a[key]);
+          const bIndex = order.indexOf(b[key]);
+    
+          if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+          if (aIndex !== -1) return -1;
+          if (bIndex !== -1) return 1;
+          return a[key].localeCompare(b[key]);
+        });
+      };
+    
+      const sortedResult = sortByPredefinedOrder(result, "category", CATEGORY_ORDER);
+    
+      sortedResult.forEach((cat) => {
+        cat.children = sortByPredefinedOrder(cat.children, "subCategory", CATEGORY_ORDER);
+        cat.children.forEach((sub) => {
+          sub.children.sort((a, b) => a.subSubCategory.localeCompare(b.subSubCategory));
+        });
+      });
+    
+      return sortedResult;
+    }, [allItems]);
+  
 
   // === Бренди ===
   const brands = useMemo(() => {

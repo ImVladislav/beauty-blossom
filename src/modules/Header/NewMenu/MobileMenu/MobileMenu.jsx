@@ -145,6 +145,17 @@ const MobileMenu = () => {
 
   const allItems = useSelector(selectGoods);
 
+  const CATEGORY_ORDER = [
+    "догляд для обличчя",
+    "макіяж",
+    "догляд для волосся",
+    "догляд для тіла",
+    "аксесуари для догляду",
+    "захист від сонця",
+    "пробники",
+    "набори",
+  ];
+  
   const allCategory = useMemo(() => {
     const result = [];
     allItems.forEach(({ category, subCategory, subSubCategory }) => {
@@ -152,7 +163,7 @@ const MobileMenu = () => {
       const cat = category.toLowerCase().trim();
       const sub = subCategory?.toLowerCase().trim();
       const subsub = subSubCategory?.toLowerCase().trim();
-
+  
       let catObj = result.find((c) => c.category === cat);
       if (!catObj) {
         catObj = { category: cat, children: [] };
@@ -170,33 +181,29 @@ const MobileMenu = () => {
         subObj.children.push({ subSubCategory: subsub });
       }
     });
-
-    // Додаємо сортування
-    const sortByChildrenAndName = (a, b, key) => {
-      const aHasChildren = a.children && a.children.length > 0;
-      const bHasChildren = b.children && b.children.length > 0;
-
-      if (aHasChildren && !bHasChildren) return -1;
-      if (!aHasChildren && bHasChildren) return 1;
-
-      return a[key].localeCompare(b[key]);
+  
+    const sortByPredefinedOrder = (list, key, order) => {
+      return [...list].sort((a, b) => {
+        const aIndex = order.indexOf(a[key]);
+        const bIndex = order.indexOf(b[key]);
+  
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+        return a[key].localeCompare(b[key]);
+      });
     };
-
-    // Сортування категорій
-    result.sort((a, b) => sortByChildrenAndName(a, b, "category"));
-
-    // Сортування підкатегорій та під-підкатегорій
-    result.forEach((cat) => {
-      cat.children.sort((a, b) => sortByChildrenAndName(a, b, "subCategory"));
-
+  
+    const sortedResult = sortByPredefinedOrder(result, "category", CATEGORY_ORDER);
+  
+    sortedResult.forEach((cat) => {
+      cat.children = sortByPredefinedOrder(cat.children, "subCategory", CATEGORY_ORDER);
       cat.children.forEach((sub) => {
-        sub.children.sort((a, b) =>
-          a.subSubCategory.localeCompare(b.subSubCategory)
-        );
+        sub.children.sort((a, b) => a.subSubCategory.localeCompare(b.subSubCategory));
       });
     });
-
-    return result;
+  
+    return sortedResult;
   }, [allItems]);
 
   const brands = useMemo(() => {
