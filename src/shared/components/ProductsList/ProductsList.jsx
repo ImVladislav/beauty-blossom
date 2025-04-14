@@ -134,9 +134,9 @@ const ProductList = ({ items }) => {
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const paginate = (pageNumber) => {
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
+    // setTimeout(() => {
+    //   window.scrollTo({ top: 0, behavior: "smooth" });
+    // }, 100);
 
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("filter", filter);
@@ -186,6 +186,10 @@ const ProductList = ({ items }) => {
 
     return pageNumbers;
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.search]);
 
   if (showLoader) return <Loader />;
 
