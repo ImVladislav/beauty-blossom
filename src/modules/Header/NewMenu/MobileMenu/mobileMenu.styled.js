@@ -12,6 +12,8 @@ export const BurgerIcon = styled.button`
   border: none;
   cursor: pointer;
   color: #616161;
+  margin: 0;
+  padding: 0;
   &:hover,
   &:focus {
     color: ${(p) => p.theme.colors.accentColor};
@@ -21,7 +23,7 @@ export const MobileMenuWrapper = styled.div`
   position: fixed;
   top: 0;
   left: ${({ isOpen }) => (isOpen ? "0" : "-100%")};
-  width: 100%;
+  width: 80%;
   height: 100vh;
   background: #fff;
   padding: 20px;
@@ -30,6 +32,9 @@ export const MobileMenuWrapper = styled.div`
   overflow-y: auto;
 `;
 export const CloseBtn = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 20px;
   font-size: 28px;
   background: none;
   border: none;
@@ -43,7 +48,7 @@ export const MobileNav = styled.ul`
 export const NavItem = styled.li`
   padding: 7px 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
 `;
 export const NavLinkStyled = styled(NavLink)`
@@ -111,7 +116,7 @@ export const ExpandButton = styled.button`
 `;
 export const SubMenu = styled.ul`
   list-style: none;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   padding-top: 8px;
   /* text-align: center; */
 `;
@@ -126,7 +131,7 @@ export const BrandStyleLink = styled(NavLink)`
 
   text-decoration: none;
 
-  padding: 7px 0;
+  /* padding: 7px 0; */
   &:hover,
   &:focus {
     color: #ff96cf;

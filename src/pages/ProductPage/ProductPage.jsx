@@ -110,6 +110,7 @@ const ProductPage = () => {
 
     fetchProduct();
   }, [id]);
+  console.log("products", products);
   const product = products?.find(
     (item) => +item.id === +id || +item.productId === +id
   );

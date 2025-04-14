@@ -58,8 +58,10 @@ const RecursiveMenu = ({
 
   const handleClick = (e) => {
     const name = e.target.innerText;
-    dispatch(setfilter(name.toLowerCase().trim()));
-    setExpandedItem(null);
+    if (name) {
+      dispatch(setfilter(name.toLowerCase().trim()));
+      setExpandedItem(null);
+    }
   };
 
   const handleClickCategory = () => {
@@ -250,6 +252,31 @@ const MultiLevelMenu = () => {
       if (!subsubExists) {
         subObj.children.push({ subSubCategory: subsub });
       }
+    });
+
+    // Додаємо сортування
+    const sortByChildrenAndName = (a, b, key) => {
+      const aHasChildren = a.children && a.children.length > 0;
+      const bHasChildren = b.children && b.children.length > 0;
+
+      if (aHasChildren && !bHasChildren) return -1;
+      if (!aHasChildren && bHasChildren) return 1;
+
+      return a[key].localeCompare(b[key]);
+    };
+
+    // Сортування категорій
+    result.sort((a, b) => sortByChildrenAndName(a, b, "category"));
+
+    // Сортування підкатегорій та під-підкатегорій
+    result.forEach((cat) => {
+      cat.children.sort((a, b) => sortByChildrenAndName(a, b, "subCategory"));
+
+      cat.children.forEach((sub) => {
+        sub.children.sort((a, b) =>
+          a.subSubCategory.localeCompare(b.subSubCategory)
+        );
+      });
     });
 
     return result;
