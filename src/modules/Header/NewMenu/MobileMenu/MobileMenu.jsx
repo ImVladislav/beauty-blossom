@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { IoMenuOutline } from "react-icons/io5";
 
 import { setfilter } from "../../../../redux/filter/slice";
 import { selectGoods } from "../../../../redux/products/selectors";
@@ -72,9 +73,6 @@ const RecursiveMobileMenu = ({ items, parentPath = "", toggleMenu }) => {
     navigate("/katehoriji");
     toggleMenu();
   };
-
-
-
 
   return (
     <SubMenu>
@@ -155,7 +153,7 @@ const MobileMenu = () => {
     "пробники",
     "набори",
   ];
-  
+
   const allCategory = useMemo(() => {
     const result = [];
     allItems.forEach(({ category, subCategory, subSubCategory }) => {
@@ -163,7 +161,7 @@ const MobileMenu = () => {
       const cat = category.toLowerCase().trim();
       const sub = subCategory?.toLowerCase().trim();
       const subsub = subSubCategory?.toLowerCase().trim();
-  
+
       let catObj = result.find((c) => c.category === cat);
       if (!catObj) {
         catObj = { category: cat, children: [] };
@@ -181,28 +179,38 @@ const MobileMenu = () => {
         subObj.children.push({ subSubCategory: subsub });
       }
     });
-  
+
     const sortByPredefinedOrder = (list, key, order) => {
       return [...list].sort((a, b) => {
         const aIndex = order.indexOf(a[key]);
         const bIndex = order.indexOf(b[key]);
-  
+
         if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
         if (aIndex !== -1) return -1;
         if (bIndex !== -1) return 1;
         return a[key].localeCompare(b[key]);
       });
     };
-  
-    const sortedResult = sortByPredefinedOrder(result, "category", CATEGORY_ORDER);
-  
+
+    const sortedResult = sortByPredefinedOrder(
+      result,
+      "category",
+      CATEGORY_ORDER
+    );
+
     sortedResult.forEach((cat) => {
-      cat.children = sortByPredefinedOrder(cat.children, "subCategory", CATEGORY_ORDER);
+      cat.children = sortByPredefinedOrder(
+        cat.children,
+        "subCategory",
+        CATEGORY_ORDER
+      );
       cat.children.forEach((sub) => {
-        sub.children.sort((a, b) => a.subSubCategory.localeCompare(b.subSubCategory));
+        sub.children.sort((a, b) =>
+          a.subSubCategory.localeCompare(b.subSubCategory)
+        );
       });
     });
-  
+
     return sortedResult;
   }, [allItems]);
 
@@ -239,22 +247,20 @@ const MobileMenu = () => {
     } else {
       document.body.style.overflow = "";
     }
-  
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-
-
   return (
     <BurgerWrapper>
       <BurgerIcon onClick={toggleMenu}>
         <AiOutlineMenu />
+        {/* <IoMenuOutline /> */}
       </BurgerIcon>
       {isOpen && <Backdrop onClick={toggleMenu} />}
       <MobileMenuWrapper isOpen={isOpen}>
-
         <CloseBtn onClick={toggleMenu}>
           <AiOutlineClose />
         </CloseBtn>

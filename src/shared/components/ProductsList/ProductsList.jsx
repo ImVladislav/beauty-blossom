@@ -188,7 +188,18 @@ const ProductList = ({ items }) => {
   };
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const scrollToTop = () => {
+      // В Safari це більш стабільно
+      const scrollTarget = document.documentElement || document.body;
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          scrollTarget.scrollTo({ top: 0, behavior: "smooth" });
+        }, 100);
+      });
+    };
+
+    scrollToTop();
   }, [location.search]);
 
   if (showLoader) return <Loader />;
