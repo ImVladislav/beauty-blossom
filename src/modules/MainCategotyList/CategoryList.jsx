@@ -54,7 +54,7 @@ const data = [
     name: "туш для вій",
     text: "туш",
     srcImage: mascaraForEyelashesImage,
-    to: "/katehoriji/makiiazh/dlia%20ochei/tush",
+    to: "/katehoriji/makiiazh/dlia%20ochej/tush",
   },
   {
     id: "6",
