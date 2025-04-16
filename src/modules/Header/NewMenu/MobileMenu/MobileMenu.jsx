@@ -55,7 +55,7 @@ const menuData = [
   {
     to: "/kliientam",
     text: "клієнтам",
-    mobileText: "оптова програма",
+    mobileText: "клієнтам",
   },
 ];
 
