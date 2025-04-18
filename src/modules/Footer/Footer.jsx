@@ -1,5 +1,5 @@
 import { useMedia } from "../../hooks/useMedia";
-import menuItems from "../Header/menuItems.json";
+// import menuItems from "../Header/menuItems.json";
 import { FooterInformBlock } from "./FooterInformBlock/FooterInformBlock";
 import { FooterMenu } from "./FooterMenu/FooterMenu";
 import { FooterContacts } from "./FooterContacts/FooterContacts";
@@ -25,7 +25,7 @@ export const Footer = () => {
           {!isMobileScreen && (
             <InfoWrap>
               <FooterInformBlock />
-              <FooterMenu menuItems={menuItems} />
+              <FooterMenu />
               <FooterContacts />
             </InfoWrap>
           )}

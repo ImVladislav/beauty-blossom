@@ -7,26 +7,50 @@ import {
   Wrap,
   TitleWrap,
   ListWrap,
+  CategoryLink,
 } from "./FooterMenuStyled";
+import { useNavigate } from "react-router-dom";
 
-export const FooterMenu = ({ menuItems }) => {
+const menuItems = [
+  { href: "#category", text: "категорії" },
+  { to: "/brands", text: "бренди" },
+  { to: "/novynky", text: "новинки" },
+  { to: "/aktsiji", text: "акції" },
+  { to: "/kliientam", text: "клієнтам" },
+];
+export const FooterMenu = () => {
+  const navigate = useNavigate();
+
+  const handleAnchorScroll = (anchorId) => {
+    const target = document.querySelector(anchorId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const handleClickCategory = () => {
+    navigate("/");
+    setTimeout(() => {
+      handleAnchorScroll("#category");
+    }, 700);
+  };
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
-  const filteredMenuItems = menuItems.filter(
-    (item) =>
-      item.text !== "контакти" &&
-      item.text !== "Новинки" &&
-      item.text !== "Акції"
-  );
-  const element = filteredMenuItems.map(({ to, text }) => (
-    <Item key={to}>
-      <LinkStyled onClick={scrollToTop} to={to}>
-        {text === ("контакти" && "") ? null : text}
-      </LinkStyled>
+
+  const element = menuItems.map((item) => (
+    <Item key={item.text}>
+      {item.href ? (
+        <CategoryLink onClick={handleClickCategory} href={item.href}>
+          {item.text}
+        </CategoryLink>
+      ) : (
+        <LinkStyled onClick={scrollToTop} to={item.to}>
+          {item.text}
+        </LinkStyled>
+      )}
     </Item>
   ));
   return (

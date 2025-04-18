@@ -10,7 +10,7 @@ import Menu from "./NewMenu/NewMenu";
 import MobileMenu from "./NewMenu/MobileMenu/MobileMenu";
 import ShoppingCart from "./ShopingList/ShopingList";
 
-import menuItems from "./menuItems.json";
+// import menuItems from "./menuItems.json";
 import { useMedia } from "../../hooks/useMedia";
 import { ProductOfTheWeek } from "../ProductOfTheWeek/ProductOfTheWeek";
 import {
@@ -95,7 +95,7 @@ export const Header = () => {
             </HeaderTop>
             <MenuBottom $pathname={pathname}>
               <MenuWrap>
-                <Menu items={menuItems} />
+                <Menu />
               </MenuWrap>
               <SearchForm isOpen={isSearchOpen} />
             </MenuBottom>

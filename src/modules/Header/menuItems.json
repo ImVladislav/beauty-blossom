@@ -6,41 +6,41 @@
     "children": [
       {
         "level": 2,
-        "to": "/category/facial",
+        "to": "/katehoriji/dohliad dlia oblychchia",
         "text": "догляд для обличчя",
         "children": [
           {
             "level": 3,
-            "to": "/category/facial/masks",
+            "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia",
             "text": "Маски для обличчя",
             "children": [
               {
-                "to": "/category/facial/masks/alginateMasks",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/alginateMasks",
                 "text": "Альгінатні маски",
                 "children": []
               },
               {
-                "to": "/category/facial/masks/fabricMask",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/fabricMask",
                 "text": "Тканинні маски",
                 "children": []
               },
               {
-                "to": "/category/facial/masks/nightMask",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/nightMask",
                 "text": "Нічні маски",
                 "children": []
               },
               {
-                "to": "/category/facial/masks/hydroagelMasks",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/hydroagelMasks",
                 "text": "Гідрогелеві маски",
                 "children": []
               },
               {
-                "to": "/category/facial/masks/mask-fyilm",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/mask-fyilm",
                 "text": "Маска-плівка",
                 "children": []
               },
               {
-                "to": "/category/facial/masks/clayMasks",
+                "to": "/katehoriji/dohliad dlia oblychchi/masky dlia oblychchia/clayMasks",
                 "text": "Глиняні маски",
                 "children": []
               }
@@ -48,48 +48,48 @@
           },
           {
             "level": 3,
-            "to": "/category/facial/moisturizing",
+            "to": "/katehoriji/dohliad dlia oblychchi/moisturizing",
             "text": "зволоження",
             "children": [
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/cream",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/cream",
                 "text": "крем для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/balm",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/balm",
                 "text": "бальзам для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/geel",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/geel",
                 "text": "гель для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/bridge",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/bridge",
                 "text": "міст для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/serum",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/serum",
                 "text": "сироватка для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/toner",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/toner",
                 "text": "тонер",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/moisturizing/padu",
+                "to": "/katehoriji/dohliad dlia oblychchi/moisturizing/padu",
                 "text": "пади для обличчя",
                 "children": []
               }
@@ -97,48 +97,48 @@
           },
           {
             "level": 3,
-            "to": "/category/facial/cleaning",
+            "to": "/katehoriji/dohliad dlia oblychchi/cleaning",
             "text": "очищення",
             "children": [
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/enzymePowder",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/enzymePowder",
                 "text": "ензимна пудра",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/washingFoam",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/washingFoam",
                 "text": "пінка для вмивання",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/hydrophilicOil",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/hydrophilicOil",
                 "text": "гідрофільна олія",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/scrub",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/scrub",
                 "text": "скраб для обличчя",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/peelingGel",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/peelingGel",
                 "text": "пілінг гель",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/cleansingBalm",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/cleansingBalm",
                 "text": "бальзам для очищення",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/cleaning/demaciaj",
+                "to": "/katehoriji/dohliad dlia oblychchi/cleaning/demaciaj",
                 "text": "демакіяж",
                 "children": []
               }
@@ -146,30 +146,30 @@
           },
           {
             "level": 3,
-            "to": "/category/facial/lipCare",
+            "to": "/katehoriji/dohliad dlia oblychchi/lipCare",
             "text": "догляд за губами",
             "children": [
               {
                 "level": 4,
-                "to": "/category/facial/lipCare/lipBalm",
+                "to": "/katehoriji/dohliad dlia oblychchi/lipCare/lipBalm",
                 "text": "бальзам для губ",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/lipCare/lipMask",
+                "to": "/katehoriji/dohliad dlia oblychchi/lipCare/lipMask",
                 "text": "маска для губ",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/lipCare/lipScrub",
+                "to": "/katehoriji/dohliad dlia oblychchi/lipCare/lipScrub",
                 "text": "скраб для губ",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/lipCare/lipOil",
+                "to": "/katehoriji/dohliad dlia oblychchi/lipCare/lipOil",
                 "text": "олія для губ",
                 "children": []
               }
@@ -177,24 +177,24 @@
           },
           {
             "level": 3,
-            "to": "/category/facial/forSkinUnderTheEyes",
+            "to": "/katehoriji/dohliad dlia oblychchi/forSkinUnderTheEyes",
             "text": "для шкіри під очима",
             "children": [
               {
                 "level": 4,
-                "to": "/category/facial/forSkinUnderTheEyes/creamUnderTheEyes",
+                "to": "/katehoriji/dohliad dlia oblychchi/forSkinUnderTheEyes/creamUnderTheEyes",
                 "text": "крем під очі",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/forSkinUnderTheEyes/serumUnderTheEyes",
+                "to": "/katehoriji/dohliad dlia oblychchi/forSkinUnderTheEyes/serumUnderTheEyes",
                 "text": "сироватка під очі",
                 "children": []
               },
               {
                 "level": 4,
-                "to": "/category/facial/forSkinUnderTheEyes/patches",
+                "to": "/katehoriji/dohliad dlia oblychchi/forSkinUnderTheEyes/patches",
                 "text": "патчі",
                 "children": []
               }
@@ -204,72 +204,72 @@
       },
       {
         "level": 2,
-        "to": "/category/makeup",
+        "to": "/katehoriji/makeup",
         "text": "макіяж",
         "children": [
           {
-            "to": "/category/makeup/forFace",
+            "to": "/katehoriji/makeup/forFace",
             "text": "для лиця",
             "children": [
               {
-                "to": "/category/makeup/forFace/bbCream",
+                "to": "/katehoriji/makeup/forFace/bbCream",
                 "text": "ББ крем",
                 "children": []
               },
               {
-                "to": "/category/makeup/forFace/ssCream",
+                "to": "/katehoriji/makeup/forFace/ssCream",
                 "text": "СС крем",
                 "children": []
               },
               {
-                "to": "/category/makeup/forFace/tint",
+                "to": "/katehoriji/makeup/forFace/tint",
                 "text": "Тональний крем",
                 "children": []
               },
               {
-                "to": "/category/makeup/forFace/powder",
+                "to": "/katehoriji/makeup/forFace/powder",
                 "text": "Пудра",
                 "children": []
               },
               {
-                "to": "/category/makeup/forFace/killed",
+                "to": "/katehoriji/makeup/forFace/killed",
                 "text": "Кушон",
                 "children": []
               },
               {
-                "to": "/category/makeup/forFace/rouge",
+                "to": "/katehoriji/makeup/forFace/rouge",
                 "text": "Рум'яна",
                 "children": []
               }
             ]
           },
           {
-            "to": "/category/makeup/forEyes",
+            "to": "/katehoriji/makeup/forEyes",
             "text": "для очей",
             "children": [
               {
-                "to": "/category/makeup/forEyes/inadvertently",
+                "to": "/katehoriji/makeup/forEyes/inadvertently",
                 "text": "туш",
                 "children": []
               },
               {
-                "to": "/category/makeup/forEyes/eyeliner",
+                "to": "/katehoriji/makeup/forEyes/eyeliner",
                 "text": "підводка для очей",
                 "children": []
               },
               {
-                "to": "/category/makeup/forEyes/concealer",
+                "to": "/katehoriji/makeup/forEyes/concealer",
                 "text": "консилер",
                 "children": []
               }
             ]
           },
           {
-            "to": "/category/makeup/forLips",
+            "to": "/katehoriji/makeup/forLips",
             "text": "для губ",
             "children": [
               {
-                "to": "/category/makeup/forLips/lipTint",
+                "to": "/katehoriji/makeup/forLips/lipTint",
                 "text": "тінт для губ",
                 "children": []
               }
@@ -279,62 +279,62 @@
       },
       {
         "level": 2,
-        "to": "/category/hairCare",
+        "to": "/katehoriji/hairCare",
         "text": "догляд для волосся",
         "children": [
           {
-            "to": "/category/hairCare/shampoos",
+            "to": "/katehoriji/hairCare/shampoos",
             "text": "Шампуні",
             "children": [
               {
-                "to": "/category/hairCare/shampoos/dryShampoo",
+                "to": "/katehoriji/hairCare/shampoos/dryShampoo",
                 "text": "Сухий шампунь",
                 "children": []
               }
             ]
           },
           {
-            "to": "/category/hairCare/airConditioners",
+            "to": "/katehoriji/hairCare/airConditioners",
             "text": "Кондиціонери",
             "children": []
           },
 
           {
-            "to": "/category/hairCare/forTheScalp",
+            "to": "/katehoriji/hairCare/forTheScalp",
             "text": "Для шкіри голови",
             "children": []
           },
           {
-            "to": "/category/hairCare/additionalCare",
+            "to": "/katehoriji/hairCare/additionalCare",
             "text": "Додатковий догляд",
             "children": [
               {
-                "to": "/category/hairCare/additionalCare/hairMasks",
+                "to": "/katehoriji/hairCare/additionalCare/hairMasks",
                 "text": "Маски для волосся",
                 "children": []
               },
               {
-                "to": "/category/hairCare/additionalCare/hairEmulsions",
+                "to": "/katehoriji/hairCare/additionalCare/hairEmulsions",
                 "text": "Емульсії для волосся",
                 "children": []
               },
               {
-                "to": "/category/hairCare/additionalCare/hairFillers",
+                "to": "/katehoriji/hairCare/additionalCare/hairFillers",
                 "text": "Філери для волосся",
                 "children": []
               },
               {
-                "to": "/category/hairCare/additionalCare/hairOil",
+                "to": "/katehoriji/hairCare/additionalCare/hairOil",
                 "text": "Олія для волосся",
                 "children": []
               },
               {
-                "to": "/category/hairCare/additionalCare/hairSpray",
+                "to": "/katehoriji/hairCare/additionalCare/hairSpray",
                 "text": "Спрей для волосся",
                 "children": []
               },
               {
-                "to": "/category/hairCare/additionalCare/hairSerum",
+                "to": "/katehoriji/hairCare/additionalCare/hairSerum",
                 "text": "Сироватки для волосся",
                 "children": []
               }
@@ -344,47 +344,47 @@
       },
       {
         "level": 2,
-        "to": "/category/bodyCare",
+        "to": "/katehoriji/bodyCare",
         "text": "догляд для тіла",
         "children": [
           {
-            "to": "/category/bodyCare/handCosmetics",
+            "to": "/katehoriji/bodyCare/handCosmetics",
             "text": "Косметика для рук",
             "children": [
               {
-                "to": "/category/bodyCare/handCosmetics/handCream",
+                "to": "/katehoriji/bodyCare/handCosmetics/handCream",
                 "text": "Крем для рук",
                 "children": []
               }
             ]
           },
           {
-            "to": "/category/bodyCare/handAndFeetMasks",
+            "to": "/katehoriji/bodyCare/handAndFeetMasks",
             "text": "Маски для рук і ніг",
             "children": []
           },
           {
-            "to": "/category/bodyCare/bodyCream",
+            "to": "/katehoriji/bodyCare/bodyCream",
             "text": "Крем для тіла",
             "children": []
           },
           {
-            "to": "/category/bodyCare/bodyFoam",
+            "to": "/katehoriji/bodyCare/bodyFoam",
             "text": "Пінка для тіла",
             "children": []
           },
           {
-            "to": "/category/bodyCare/bodyLotion",
+            "to": "/katehoriji/bodyCare/bodyLotion",
             "text": "Лосьйон для тіла",
             "children": []
           },
           {
-            "to": "/category/bodyCare/soulGel",
+            "to": "/katehoriji/bodyCare/soulGel",
             "text": "Гель для душу",
             "children": []
           },
           {
-            "to": "/category/bodyCare/deodorant",
+            "to": "/katehoriji/bodyCare/deodorant",
             "text": "Дезодорант",
             "children": []
           }
@@ -392,25 +392,25 @@
       },
       {
         "level": 2,
-        "to": "/category/careAccessories",
+        "to": "/katehoriji/careAccessories",
         "text": "аксесуари для догляду",
         "children": []
       },
       {
         "level": 2,
-        "to": "/category/sunProtection",
+        "to": "/katehoriji/sunProtection",
         "text": "захист від сонця",
         "children": []
       },
       {
         "level": 2,
-        "to": "/category/samples",
+        "to": "/katehoriji/samples",
         "text": "пробники",
         "children": []
       },
       {
         "level": 2,
-        "to": "/category/folds",
+        "to": "/katehoriji/folds",
         "text": "набори",
         "children": []
       }
@@ -466,7 +466,7 @@
   },
   {
     "level": 1,
-    "to": "/aktsii",
+    "to": "/aktsiji",
     "text": "акції",
     "textMobile": "товари зі зниженою ціною",
     "children": []

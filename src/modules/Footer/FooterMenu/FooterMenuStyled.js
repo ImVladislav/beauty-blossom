@@ -91,3 +91,48 @@ export const LinkStyled = styled(NavLink)`
     font-size: 14px;
   }
 `;
+
+export const CategoryLink = styled.a`
+  position: relative;
+  /* font-family: "Noto Sans", sans-serif; */
+  text-decoration: none;
+  font-family: "Mulish", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.03;
+  text-transform: lowercase;
+  color: #616161;
+
+  &:hover {
+    color: #ffa5d6;
+  }
+
+  /* &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: ${(p) => p.theme.colors.accentColor};
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  } */
+
+  /* &:active {
+    color: ${(p) => p.theme.colors.accentColor};
+  } */
+
+  @media screen and (min-width: 1024px) {
+    /* font-size: ${(p) => p.theme.fontSizes.sm}px; */
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1440px) {
+    /* font-size: ${(p) => p.theme.fontSizes.l}px; */
+    font-size: 14px;
+  }
+`;

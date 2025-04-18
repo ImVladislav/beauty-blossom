@@ -48,7 +48,7 @@ const menuData = [
     mobileText: "нове постачання",
   },
   {
-    to: "/aktsii",
+    to: "/aktsiji",
     text: "акції",
     mobileText: "товари зі зниженою ціною",
   },

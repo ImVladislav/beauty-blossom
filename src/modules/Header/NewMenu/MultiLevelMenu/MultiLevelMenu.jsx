@@ -26,7 +26,7 @@ export const menuData = [
   { href: "#category", text: "категорії" },
   { to: "/brands", text: "бренди" },
   { to: "/novynky", text: "новинки" },
-  { to: "/aktsii", text: "акції" },
+  { to: "/aktsiji", text: "акції" },
   { to: "/kliientam", text: "клієнтам" },
   { href: "#contacts", text: "контакти" },
 ];
@@ -221,66 +221,75 @@ const MultiLevelMenu = () => {
 
   // === Категорії ===
   const CATEGORY_ORDER = [
-      "догляд для обличчя",
-      "макіяж",
-      "догляд для волосся",
-      "догляд для тіла",
-      "аксесуари для догляду",
-      "захист від сонця",
-      "пробники",
-      "набори",
-    ];
-    
-    const allCategory = useMemo(() => {
-      const result = [];
-      allItems.forEach(({ category, subCategory, subSubCategory }) => {
-        if (!category) return;
-        const cat = category.toLowerCase().trim();
-        const sub = subCategory?.toLowerCase().trim();
-        const subsub = subSubCategory?.toLowerCase().trim();
-    
-        let catObj = result.find((c) => c.category === cat);
-        if (!catObj) {
-          catObj = { category: cat, children: [] };
-          result.push(catObj);
-        }
-        if (!sub) return;
-        let subObj = catObj.children.find((s) => s.subCategory === sub);
-        if (!subObj) {
-          subObj = { subCategory: sub, children: [] };
-          catObj.children.push(subObj);
-        }
-        if (!subsub) return;
-        const exists = subObj.children.find((ss) => ss.subSubCategory === subsub);
-        if (!exists) {
-          subObj.children.push({ subSubCategory: subsub });
-        }
+    "догляд для обличчя",
+    "макіяж",
+    "догляд для волосся",
+    "догляд для тіла",
+    "аксесуари для догляду",
+    "захист від сонця",
+    "пробники",
+    "набори",
+  ];
+
+  const allCategory = useMemo(() => {
+    const result = [];
+    allItems.forEach(({ category, subCategory, subSubCategory }) => {
+      if (!category) return;
+      const cat = category.toLowerCase().trim();
+      const sub = subCategory?.toLowerCase().trim();
+      const subsub = subSubCategory?.toLowerCase().trim();
+
+      let catObj = result.find((c) => c.category === cat);
+      if (!catObj) {
+        catObj = { category: cat, children: [] };
+        result.push(catObj);
+      }
+      if (!sub) return;
+      let subObj = catObj.children.find((s) => s.subCategory === sub);
+      if (!subObj) {
+        subObj = { subCategory: sub, children: [] };
+        catObj.children.push(subObj);
+      }
+      if (!subsub) return;
+      const exists = subObj.children.find((ss) => ss.subSubCategory === subsub);
+      if (!exists) {
+        subObj.children.push({ subSubCategory: subsub });
+      }
+    });
+
+    const sortByPredefinedOrder = (list, key, order) => {
+      return [...list].sort((a, b) => {
+        const aIndex = order.indexOf(a[key]);
+        const bIndex = order.indexOf(b[key]);
+
+        if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+        return a[key].localeCompare(b[key]);
       });
-    
-      const sortByPredefinedOrder = (list, key, order) => {
-        return [...list].sort((a, b) => {
-          const aIndex = order.indexOf(a[key]);
-          const bIndex = order.indexOf(b[key]);
-    
-          if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-          if (aIndex !== -1) return -1;
-          if (bIndex !== -1) return 1;
-          return a[key].localeCompare(b[key]);
-        });
-      };
-    
-      const sortedResult = sortByPredefinedOrder(result, "category", CATEGORY_ORDER);
-    
-      sortedResult.forEach((cat) => {
-        cat.children = sortByPredefinedOrder(cat.children, "subCategory", CATEGORY_ORDER);
-        cat.children.forEach((sub) => {
-          sub.children.sort((a, b) => a.subSubCategory.localeCompare(b.subSubCategory));
-        });
+    };
+
+    const sortedResult = sortByPredefinedOrder(
+      result,
+      "category",
+      CATEGORY_ORDER
+    );
+
+    sortedResult.forEach((cat) => {
+      cat.children = sortByPredefinedOrder(
+        cat.children,
+        "subCategory",
+        CATEGORY_ORDER
+      );
+      cat.children.forEach((sub) => {
+        sub.children.sort((a, b) =>
+          a.subSubCategory.localeCompare(b.subSubCategory)
+        );
       });
-    
-      return sortedResult;
-    }, [allItems]);
-  
+    });
+
+    return sortedResult;
+  }, [allItems]);
 
   // === Бренди ===
   const brands = useMemo(() => {

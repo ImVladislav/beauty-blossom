@@ -28,6 +28,21 @@ const MainPage = () => {
     setLoading(false);
   }, []);
 
+  // 👉 Скрол до категорій після переходу
+  useEffect(() => {
+    const shouldScroll = sessionStorage.getItem("scrollToCategory");
+    if (shouldScroll === "true") {
+      sessionStorage.removeItem("scrollToCategory");
+      const element = document.getElementById("category");
+
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100); // невелика затримка, щоб DOM точно встиг намалюватись
+      }
+    }
+  }, []);
+
   const newFiltred = newProducts.filter((item) => !item.amount <= 0);
   const saleFiltred = saleProducts.filter((item) => !item.amount <= 0);
 
