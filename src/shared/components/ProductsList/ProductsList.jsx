@@ -34,7 +34,7 @@ const ProductList = ({ items }) => {
   // Loader на 1 секунду при пустому items
   useEffect(() => {
     if (!items || items.length === 0) {
-      const timer = setTimeout(() => setShowLoader(false), 1000);
+      const timer = setTimeout(() => setShowLoader(false), 3000);
       return () => clearTimeout(timer);
     } else {
       setShowLoader(false);
