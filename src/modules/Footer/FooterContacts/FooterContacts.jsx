@@ -24,8 +24,8 @@ export const FooterContacts = () => {
         </ContactGroup>
         <ContactGroup style={{ marginBottom: "28px" }}>
           <Contacts
-            title="beautyblossom@gmail.com"
-            to="mailto:beautyblossom@gmail.com"
+            title="beautyblossom.opt@gmail.com"
+            to="mailto:beautyblossom.opt@gmail.com"
             // icon="instagram"
           />
           <Contacts
