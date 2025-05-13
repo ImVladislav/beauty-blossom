@@ -11,8 +11,9 @@ export const selectFilterBrand = createSelector(
       return goods;
     }
 
-    return goods.filter(({ brand }) =>
-      brand.toLowerCase().includes(filter.toLowerCase())
+    return goods.filter(
+      ({ brand }) =>
+        brand?.toLowerCase().trim() === filter?.toLowerCase().trim()
     );
   }
 );

@@ -31,6 +31,7 @@ const Brands = () => {
       // const { data } = await axios.get(`brands/name`, { brand: brands });
       const { data } = await axios.get(`/brands`);
 
+
       const foundBrand = data.find(
         (item) => item.name.toLowerCase().trim() === brands.toLowerCase().trim()
       );
@@ -46,6 +47,10 @@ const Brands = () => {
   };
 
   const items = useSelector(selectFilterBrand);
+
+
+  
+  
   const sortedItems = items
     .filter((item) => (item.new || item.sale) && item.amount !== 0)
     .concat(
@@ -59,6 +64,7 @@ const Brands = () => {
     );
 
   const allItemsNmeForMetaHelmet = sortedItems.map((item) => item.name);
+console.log(sortedItems);
 
   return (
     <main>
