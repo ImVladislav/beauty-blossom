@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +54,6 @@ const CartModal = ({ closeModal }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Використання useMemo для обчислення itemQuantities
   const itemQuantities = useMemo(() => {
     return cartItems.reduce((quantities, item) => {
       quantities[item._id] = item.quantity !== undefined ? item.quantity : 0;
@@ -62,27 +61,41 @@ const CartModal = ({ closeModal }) => {
     }, {});
   }, [cartItems]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      fetchUserCart();
-    }
-    if (!isLoggedIn) {
-      updateCartPricesAndQuantities(cartItems);
-    }
-    // eslint-disable-next-line
-  }, [isLoggedIn, dispatch]);
+  const updateCartPricesAndQuantities = useCallback(
+    (data) => {
+      const updatedCartItems = data
+        .map((cartItem) => {
+          const correspondingItem = items.find(
+            (item) => item.code === cartItem.code
+          );
 
-  useEffect(() => {
-    const newQuantities = { ...itemQuantities };
+          if (!correspondingItem) return null;
 
-    items.forEach((item) => {
-      if (newQuantities[item._id] > item.amount) {
-        newQuantities[item._id] = item.amount;
-      }
-    });
-  }, [items, itemQuantities]);
+          if (correspondingItem.amount === 0) {
+            return null;
+          }
 
-  const fetchUserCart = async () => {
+          const updatedQuantity = Math.min(
+            cartItem.quantity,
+            correspondingItem.amount
+          );
+
+          return {
+            ...cartItem,
+            priceOPT: correspondingItem.priceOPT,
+            price: correspondingItem.price,
+            quantity: updatedQuantity,
+            amount: correspondingItem.amount,
+          };
+        })
+        .filter(Boolean);
+
+      dispatch(setCart(updatedCartItems));
+    },
+    [items, dispatch]
+  );
+
+  const fetchUserCart = useCallback(async () => {
     try {
       const response = await axios.get(`/basket`);
       const data = response.data;
@@ -90,67 +103,42 @@ const CartModal = ({ closeModal }) => {
       if (data.length !== 0) {
         updateCartPricesAndQuantities(data);
       } else {
-        dispatch(setCart(data));
+        dispatch(setCart([]));
       }
     } catch (error) {
       console.error("Помилка отримання корзини користувача:", error);
+      toast.error("Помилка отримання кошика");
     }
-  };
+  }, [dispatch, updateCartPricesAndQuantities]);
 
-  const updateCartPricesAndQuantities = (data) => {
-    const updatedCartItems = data.map((cartItem) => {
-      const correspondingItem = items.find(
-        (item) => item.code === cartItem.code
-      );
-      if (correspondingItem.amount === 0) {
-        removeItem(cartItem._id);
-        return {
-          ...correspondingItem,
-        };
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchUserCart();
+    }
+  }, [isLoggedIn, fetchUserCart]);
+
+  useEffect(() => {
+    if (!isLoggedIn && cartItems.length > 0) {
+      const updatedItems = cartItems
+        .map((item) => {
+          const correspondingItem = items.find((i) => i.code === item.code);
+          if (!correspondingItem) return null;
+          return {
+            ...item,
+            amount: correspondingItem.amount,
+            price: correspondingItem.price,
+            priceOPT: correspondingItem.priceOPT,
+          };
+        })
+        .filter(Boolean);
+
+      if (JSON.stringify(updatedItems) !== JSON.stringify(cartItems)) {
+        dispatch(setCart(updatedItems));
       }
+    }
+  }, [isLoggedIn, items, cartItems, dispatch]);
 
-      // console.log(correspondingItem);
-
-      if (correspondingItem) {
-        const updatedPriceOpt = correspondingItem.priceOPT;
-        const updatedPrice = correspondingItem.price;
-
-        if (
-          items.some(
-            (item) =>
-              item.code === correspondingItem.code &&
-              item.amount !== correspondingItem.amount
-          )
-        ) {
-          correspondingItem.amount = items.find(
-            (item) => item.code === correspondingItem.code
-          ).amount;
-        }
-
-        const updatedQuantity =
-          cartItem.quantity >= correspondingItem.amount
-            ? correspondingItem.amount
-            : cartItem.quantity;
-        if (updatedQuantity !== cartItem.quantity && isLoggedIn) {
-          updateCartItem(cartItem._id, updatedQuantity);
-        }
-
-        return {
-          ...cartItem,
-          priceOPT: updatedPriceOpt,
-          price: updatedPrice,
-          quantity: updatedQuantity,
-          amount: correspondingItem.amount,
-        };
-      }
-
-      return cartItem;
-    });
-
-    dispatch(setCart(updatedCartItems));
-  };
-
-  const increaseQuantity = (item) => {
+  const increaseQuantity = async (item) => {
     const { _id, amount } = item;
     const newQuantity = itemQuantities[_id] + 1;
 
@@ -159,55 +147,70 @@ const CartModal = ({ closeModal }) => {
       return;
     }
 
-    if (isLoggedIn) {
-      updateCartItem(_id, newQuantity);
-    } else {
-      dispatch(addToCart({ _id, quantity: newQuantity }));
+    try {
+      if (isLoggedIn) {
+        await updateCartItem(_id, newQuantity);
+        await fetchUserCart();
+      } else {
+        dispatch(addToCart({ _id, quantity: newQuantity }));
+      }
+    } catch (error) {
+      toast.error("Помилка оновлення кількості");
     }
   };
 
-  const decreaseQuantity = (itemId) => {
+  const decreaseQuantity = async (itemId) => {
     const newQuantity = itemQuantities[itemId] - 1;
 
-    if (newQuantity > 0) {
-      if (isLoggedIn) {
-        updateCartItem(itemId, newQuantity);
+    try {
+      if (newQuantity > 0) {
+        if (isLoggedIn) {
+          await updateCartItem(itemId, newQuantity);
+          await fetchUserCart();
+        } else {
+          dispatch(
+            removeQuantityCart({
+              _id: itemId,
+              quantity: newQuantity,
+            })
+          );
+        }
       } else {
-        dispatch(
-          removeQuantityCart({
-            _id: itemId,
-            quantity: newQuantity,
-          })
-        );
+        await removeItem(itemId);
       }
-    } else {
-      removeItem(itemId);
+    } catch (error) {
+      toast.error("Помилка оновлення кількості");
     }
   };
 
-  const removeItem = (itemId) => {
-    if (isLoggedIn) {
-      removeCartItem(itemId);
-    } else {
-      dispatch(removeCart({ itemId }));
+  const removeItem = async (itemId) => {
+    try {
+      if (isLoggedIn) {
+        await removeCartItem(itemId);
+        await fetchUserCart();
+      } else {
+        dispatch(removeCart({ itemId }));
+      }
+    } catch (error) {
+      toast.error("Помилка видалення товару");
     }
   };
 
   const updateCartItem = async (itemId, quantity) => {
     try {
       await axios.put(`/basket/${itemId}`, { quantity });
-      fetchUserCart();
     } catch (error) {
       console.error("Помилка оновлення кількості товару в кошику:", error);
+      throw error;
     }
   };
 
   const removeCartItem = async (itemId) => {
     try {
       await axios.delete(`/basket/${itemId}`);
-      fetchUserCart();
     } catch (error) {
       console.error("Помилка видалення товару з кошика:", error);
+      throw error;
     }
   };
 
