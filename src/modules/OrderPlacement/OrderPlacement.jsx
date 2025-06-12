@@ -191,6 +191,7 @@ const OrderPlacement = () => {
       }
     } catch (error) {
       console.error(error);
+      toast.error("Помилка при пошуку міста: Будь ласка, спробуйте пізніше");
     }
   };
   const handleWarehousesChange = async () => {
@@ -227,15 +228,17 @@ const OrderPlacement = () => {
 
       const data = await response.json();
       if (data.success) {
-         
         setWarehouses(data.data);
-        console.log("всі відділення", warehouses)
-        console.log("",searchCities);
+        console.log("всі відділення", warehouses);
+        console.log("", searchCities);
       }
     } catch (error) {
       console.error(
         "Помилка запиту до API Нової Пошти для населених пунктів",
         error
+      );
+      toast.error(
+        "Помилка при отриманні списку відділень: Будь ласка, спробуйте пізніше"
       );
     }
   };
@@ -286,7 +289,6 @@ const OrderPlacement = () => {
       if (!searchText || (!searchWarehouses && courierDelivery)) {
         toast.error("Будь ласка, виберіть місто та відділення");
         setIsSubmitting(false);
-
         return;
       }
     }
@@ -430,7 +432,24 @@ const OrderPlacement = () => {
       setIsModalOpen(true);
     } catch (error) {
       console.error("Помилка створення замовлення:", error);
-      toast.error(`Помилка створення замовлення: ${error.message}`);
+
+      // Виводимо різні повідомлення в залежності від типу помилки
+      if (error.response) {
+        // Помилка від сервера з відповіддю
+        toast.error(
+          `Помилка сервера: ${
+            error.response.data.message || "Щось пішло не так на сервері"
+          }`
+        );
+      } else if (error.request) {
+        // Помилка мережі (немає відповіді)
+        toast.error("Помилка мережі: Не вдалося з'єднатися з сервером");
+      } else {
+        // Непередбачувана помилка
+        toast.error(
+          `Непередбачувана помилка: ${error.message || "Щось пішло не так"}`
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -463,7 +482,6 @@ const OrderPlacement = () => {
   const handleSearchTextChangeWarehose = throttle((e) => {
     const value = e.target.value;
     setSearchWarehouses(value);
-
 
     if (value.length > 2) {
       setDropdownWarehouseVisible(searchWarehouses.length < 20);
@@ -854,7 +872,6 @@ const OrderPlacement = () => {
                     disabled={isSubmitting}
                   />
                 </ButtonWrap>
-
               </TableThumb>
             </Form>
           ) : null}
