@@ -15,7 +15,7 @@ const menuItems = [
   { href: "#category", text: "категорії" },
   { to: "/brands", text: "бренди" },
   { to: "/novynky", text: "новинки" },
-  { to: "/aktsiji", text: "акції" },
+  { to: "/aktsiji", text: "акціі" },
   { to: "/kliientam", text: "клієнтам" },
 ];
 export const FooterMenu = () => {
