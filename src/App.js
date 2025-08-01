@@ -76,6 +76,7 @@ function App() {
     };
 
     try {
+	    console.log('Test');
       const response = await axios.post(
         `https://graph.facebook.com/v13.0/${pixelId}/events`,
         eventData
