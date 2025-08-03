@@ -1,21 +1,13 @@
-import React, { useEffect, useMemo, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useMemo, useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 import axios from "axios";
-import { toast } from "react-toastify";
+import {toast} from "react-toastify";
 
-import {
-  addToCart,
-  removeQuantityCart,
-  removeCart,
-  setCart,
-} from "../../../redux/cart/slice";
-import { selectCart } from "../../../redux/cart/selectors";
-import {
-  loggedInSelector,
-  optUserSelector,
-} from "../../../redux/auth/selectors";
+import {addToCart, removeQuantityCart, removeCart, setCart} from "../../../redux/cart/slice";
+import {selectCart} from "../../../redux/cart/selectors";
+import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
 
 import Button from "../../../shared/components/Button/Button";
 
@@ -45,7 +37,9 @@ import {
   AboutResetBasketText,
 } from "./ShopingListStyled";
 import { selectGoods } from "../../../redux/products/selectors";
+import CryptoJS from "crypto-js";
 
+import {trackInitiateCheckout} from "../../../facebookInt/FacebookPixelEvent";
 const CartModal = ({ closeModal }) => {
   const cartItems = useSelector(selectCart);
   const items = useSelector(selectGoods);
@@ -224,18 +218,31 @@ const CartModal = ({ closeModal }) => {
         0
       );
 
-  const placeOrder = async () => {
-    if (optUser && totalCost < 2500) {
-      toast.error("Мінімальна сума замовлення 2500 грн!");
-    } else {
-      try {
-        navigate("/order");
-        closeModal();
-      } catch (error) {
-        console.error("Помилка розміщення замовлення:", error);
-      }
-    }
-  };
+	const placeOrder = async () => {
+		if (optUser && totalCost < 2500) {
+			toast.error("Мінімальна сума замовлення 2500 грн!");
+		} else {
+			try {
+				navigate("/order");
+				closeModal();
+
+				const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
+				      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
+				      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
+				      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '',
+				      userData      = {
+					      em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
+					      ph: CryptoJS.SHA256(safePhone.trim()).toString(),
+					      fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
+					      ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+				      };
+
+				await trackInitiateCheckout(totalCost, cartItems.map(p => p.id ?? p.productId), userData);
+			} catch (error) {
+				console.error("Помилка розміщення замовлення:", error);
+			}
+		}
+	};
   const backToCatalog = () => {
     navigate("/katehoriji");
     closeModal();

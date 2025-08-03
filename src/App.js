@@ -1,7 +1,7 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-import { SharedLayout } from "./modules/SharedLayout/SharedLayout";
-import { theme } from "./shared/styles/theme";
+import {Navigate, Route, Routes} from "react-router-dom";
+import {ThemeProvider} from "styled-components";
+import {SharedLayout} from "./modules/SharedLayout/SharedLayout";
+import {theme} from "./shared/styles/theme";
 import MainPage from "./pages/MainPage/MainPage";
 import SaleProgramPage from "./pages/SaleProgramPage/SaleProgramPage";
 import NewPage from "./pages/NewPage/NewPage";
@@ -9,90 +9,72 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import BrandsPage from "./pages/BrandsPage/BrandsPage";
-import React, { useEffect, Suspense } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getGoods } from "./redux/operations";
+import React, {useEffect, Suspense} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getGoods} from "./redux/operations";
 import DiscountPage from "./pages/DiscountPage/DiscountPage";
 import UserData from "./pages/UserPage/UserData";
 import PaymentHistory from "./pages/UserPage/PaymentHistory";
 import SortCategory from "./modules/SortCategory/SortCategory";
-import { refreshCurrentUser } from "./redux/auth/operation";
-import { refreshSelector } from "./redux/auth/selectors";
+import {refreshCurrentUser} from "./redux/auth/operation";
+import {loggedInSelector, refreshSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "./redux/auth/selectors";
 import {
-  PrivateAdminRoute,
-  PrivateRoute,
+	PrivateAdminRoute,
+	PrivateRoute,
 } from "./modules/PrivateRoutes/PrivateRoutse";
 import OrderPlacement from "./modules/OrderPlacement/OrderPlacement";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import UserPage from "./pages/UserPage/UserPage";
 import ChangePassword from "./pages/UserPage/ChangePassword";
-import { Loader } from "./shared/components/Loader/Loader";
+import {Loader} from "./shared/components/Loader/Loader";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import NoProducts from "./pages/NoProducts/NoProducts";
 import Feedback from "./pages/UserPage/Feedback";
 import ScrollToTopMobile from "./shared/components/ScrollToTopMobile/ScrollToTopMobile";
-import { useMedia } from "./hooks/useMedia";
+import {useMedia} from "./hooks/useMedia";
 import ForgottenPage from "./pages/ForgottenPage/ForgottenPage";
 import ForgottenIdPage from "./pages/ForgottenPage/ForgottenIdPage/ForgottenIdPage";
-import { HelmetProvider } from "react-helmet-async";
-import axios from "axios";
+import {HelmetProvider} from "react-helmet-async";
+import {useLocation} from 'react-router-dom';
 import CryptoJS from "crypto-js";
+import {trackPageView} from "./facebookInt/FacebookPixelEvent";
+const loggedIn = loggedInSelector;
 
 function App() {
-  const { isMobileScreen } = useMedia();
+	const location = useLocation();
+
+	useEffect(() => {
+		const run = async () => {
+			let userData = {};
+
+			if (loggedIn) {
+				const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
+				      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
+				      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim().toLowerCase() : '',
+				      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim().toLowerCase() : '';
+
+				userData = {
+					em: CryptoJS.SHA256(safeEmail).toString(),
+					ph: CryptoJS.SHA256(safePhone).toString(),
+					fn: CryptoJS.SHA256(safeFirstName).toString(),
+					ln: CryptoJS.SHA256(safeLastName).toString(),
+				};
+			}
+
+			await trackPageView(userData);
+		};
+
+		run();
+	}, [location]);
+
+
+	const { isMobileScreen } = useMedia();
 
   const isRefreshing = useSelector(refreshSelector);
-  //======================Facebook Pixel======================
-
-  const sendConversion = async () => {
-    const accessToken =
-      "EAA04OeuiMK8BO9ibuOGZCCgfOhpEMUhdsoiKK1VlNgWVUA7LB43A9bwpJqdAQyRzYuJxpAx7Ad63pDU2ZClOmerZAXTZBAQB6S2oyMgD08vRCJrsZAIa3cQapueQGRZBSGUUwKMuKX6xW9AvJq38ERWpyRnZAnpv67HFaJY3qHzLxr62ZCJ7CZBjjfsKX0WCPvlBEaQZDZD";
-    const pixelId = "789745059892711";
-
-    const userData = {
-      email: "example@example.com", // Email для хешування
-      phone: "1234567890", // Телефон для хешування
-      country: "Країна", // Країна
-      zip: "12345", // Поштовий індекс
-    };
-
-    const eventData = {
-      data: [
-        {
-          event_name: "PageView",
-          event_time: Math.floor(Date.now() / 1000), // Текущий час
-          event_id: "uniqueEventId1234",
-          event_source_url: "https://www.beautyblossom.com.ua/", // URL сторінки
-          user_data: {
-            email: CryptoJS.SHA256(userData.email).toString(), // Хешуйте email
-            phone: CryptoJS.SHA256(userData.phone).toString(), // Хешуйте телефон
-            country: CryptoJS.SHA256(userData.country).toString(), // Хешуйте країну
-            zip: CryptoJS.SHA256(userData.zip).toString(), // Хешуйте поштовий індекс
-            // Виключаємо state
-          },
-        },
-      ],
-      access_token: accessToken,
-    };
-
-    try {
-	    console.log('Test');
-      const response = await axios.post(
-        `https://graph.facebook.com/v13.0/${pixelId}/events`,
-        eventData
-      );
-      console.log("Event sent successfully:", response.data);
-    } catch (error) {
-      console.error("Error sending event:", error.response.data);
-    }
-  };
-  //==============================================================================
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getGoods());
-    sendConversion();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

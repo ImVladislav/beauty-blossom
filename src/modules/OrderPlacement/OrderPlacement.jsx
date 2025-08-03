@@ -44,22 +44,23 @@ import {
   userSelectorlastName,
 } from "../../redux/auth/selectors";
 
-import { selectGoods } from "../../redux/products/selectors";
+import {selectGoods} from "../../redux/products/selectors";
 
-import { selectCart } from "../../redux/cart/selectors";
+import {selectCart} from "../../redux/cart/selectors";
 
 import axios from "axios";
-import { nanoid } from "@reduxjs/toolkit";
+import {nanoid} from "@reduxjs/toolkit";
 
-import { toast } from "react-toastify";
-import { Container } from "../../shared/styles/Container";
-import { Loader } from "../../shared/components/Loader/Loader";
-import { OrderModalWindow } from "./OrderModal";
-import { deleteAll } from "../../redux/cart/slice";
+import {toast} from "react-toastify";
+import {Container} from "../../shared/styles/Container";
+import {Loader} from "../../shared/components/Loader/Loader";
+import {OrderModalWindow} from "./OrderModal";
+import {deleteAll} from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import { trackPurchase } from "../../facebookInt/FacebookPixelEvent";
+import {trackPurchase} from "../../facebookInt/FacebookPixelEvent";
 import Button from "../../shared/components/Button/Button";
+import CryptoJS from "crypto-js";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ const OrderPlacement = () => {
       return item.code === card.code;
     })
   );
-  // console.log(updateItems);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
@@ -227,10 +228,8 @@ const OrderPlacement = () => {
 
       const data = await response.json();
       if (data.success) {
-         
+
         setWarehouses(data.data);
-        console.log("всі відділення", warehouses)
-        console.log("",searchCities);
       }
     } catch (error) {
       console.error(
@@ -392,21 +391,23 @@ const OrderPlacement = () => {
         courier === "no" ? dataToSendCourier : dataToSendWarehouse
       );
 
-      console.log(response);
-
       // Якщо сервер повертає помилку, не продовжуємо обробку
       if (!response.status === 201) {
         throw new Error(
           response.data.message || "Помилка створення замовлення"
         );
       }
-      // Якщо все пройшло успішно, обробляємо відповідь
-      trackPurchase(
-        userEmail || "",
-        orderNumber,
-        orderedItems === "сталась якась фігня"
-      );
-      if (isLogin) {
+	    // Якщо все пройшло успішно, обробляємо відповідь
+	    const stringNumber = userNumber.toString(),
+	          userData     = {
+		          em: CryptoJS.SHA256(userEmail.trim().toLowerCase()).toString(),
+		          ph: CryptoJS.SHA256(stringNumber.trim()).toString(),
+		          fn: CryptoJS.SHA256(userFirstName.trim().toLowerCase()).toString(),
+		          ln: CryptoJS.SHA256(userLastName.trim().toLowerCase()).toString(),
+	          };
+
+	    await trackPurchase(totalCost, orderedItems.map(p => p.productId), userData);
+	  if (isLogin) {
         removeCartItem();
       }
       dispatch(deleteAll());

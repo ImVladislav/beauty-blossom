@@ -1,104 +1,121 @@
-/* global fbq */
+import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 
-export const trackLeadSubmitted = () => {
-   
-      fbq('track', 'LeadSubmitted', {
-        event_time: new Date().toISOString(),
-        event_name: 'LeadSubmitted',
-        event_source: 'website_form',
-        messaging_channel: 'email',
-        page_id: '12345',
-        event_source_url: window.location.href,
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+const sendConversionAPI = async (eventName, eventId, userData = null, customData = null) => {
+	const payload = {
+		event_name:       eventName,
+		event_time:       Math.floor(Date.now() / 1000),
+		event_id:         eventId,
+		event_source_url: window.location.href,
+	};
 
-  
-  export const trackCheckoutStart = () => {
-   
-      fbq('track', 'InitiateCheckout', {
-        event_time: new Date().toISOString(),
-        event_name: 'InitiateCheckout',
-        event_source_url: window.location.href,
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+	if (userData != null) {
+		payload.user_data = userData;
+	}
+	if (customData != null) {
+		payload.custom_data = customData;
+	}
 
-  
-  export const trackAddToCart = (contentId) => {
-   
-      fbq('track', 'AddToCart', {
-        event_time: new Date().toISOString(),
-        event_name: 'AddToCart',
-        event_source_url: window.location.href,
-        content_type: 'product',
-        content_ids: [contentId], // ID товару
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+	await axios.post('/conversion', payload);
+};
 
-  
-  export const trackContentView = (contentId) => {
-   
-      fbq('track', 'ViewContent', {
-        event_time: new Date().toISOString(),
-        event_name: 'ViewContent',
-        event_source_url: window.location.href,
-        content_type: 'product',
-        content_ids: [contentId],
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+export const trackPageView = async (userData = {}) => {
+	try {
+		const eventId = uuidv4();
 
-  
-  export const trackSearch = (searchQuery) => {
-   
-      fbq('track', 'Search', {
-        event_time: new Date().toISOString(),
-        event_name: 'Search',
-        event_source_url: window.location.href,
-        search_query: searchQuery,
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+		if (window.fbq) {
+			window.fbq('track', 'PageView', {userData: userData}, {eventID: eventId});
+		} else {
+			console.log('Warning: fbq is not defined');
+		}
 
-  
-  export const trackPageView = () => {
-   
-      fbq('track', 'PageView', {
-        event_time: new Date().toISOString(),
-        event_name: 'PageView',
-        event_source_url: window.location.href,
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+		await sendConversionAPI('PageView', eventId, userData);
 
-  
-  export const trackAddPaymentInfo = (email, name, phoneNumber) => {
-   
-      fbq('track', 'AddPaymentInfo', {
-        event_time: new Date().toISOString(),
-        event_name: 'AddPaymentInfo',
-        event_source_url: window.location.href,
-        email: email, // Do Not Hash
-        name: name,   // Do Not Hash
-        phone_number: phoneNumber, // Do Not Hash
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+	} catch (e) {
+		console.log('Error: ', e);
+	}
+}
 
-  
-  export const trackPurchase = (messaging_channel, orderId, value,) => {
-   
-      fbq('track', 'Purchase', {
-        event_time: new Date().toISOString(),
-        event_name: 'Purchase',
-        order_id: orderId,
-        value: value,
-        currency: "UAH",
-        event_source_url: window.location.href,
-        messaging_channel: messaging_channel || 'email',
-        page_id: 'https://www.beautyblossom.com.ua/order',
-        client_user_agent: navigator.userAgent, // Do Not Hash
-      });
-    }
+export const trackAddToCart = async (product, userData) => {
+	try {
+		const eventId    = uuidv4(),
+		      customData = {
+			      content_ids:  [product.id],
+			      content_type: 'product',
+			      value:        product.price,
+			      currency:     'UAH',
+		      };
+
+		if (window.fbq) {
+			window.fbq('track', 'AddToCart', {
+				content_ids:  [product.id],
+				content_type: 'product',
+				value:        product.price,
+				currency:     'UAH',
+				user_data:    userData,
+			}, {eventID: eventId});
+		} else {
+			console.log('Warning: fbq is not defined');
+		}
+
+		await sendConversionAPI("AddToCart", eventId, userData, customData);
+	} catch (e) {
+		console.log('Error: ', e);
+	}
+}
+
+export const trackInitiateCheckout = async (totalCost, items, userData = {}) => {
+	try {
+		const eventId    = uuidv4(),
+		      customData = {
+			      value:        totalCost,
+			      currency:     'UAH',
+			      content_ids:  items,
+			      content_type: 'product',
+		      };
+
+		if (window.fbq) {
+			window.fbq('track', 'InitiateCheckout', {
+				value:        totalCost,
+				currency:     'UAH',
+				content_ids:  items,
+				content_type: 'product',
+				user_data:    userData,
+			}, {eventID: eventId});
+		} else {
+			console.log('Warning: fbq is not defined');
+		}
+
+		await sendConversionAPI('InitiateCheckout', eventId, userData, customData);
+	} catch (e) {
+		console.log('Error: ', e);
+	}
+}
+
+export const trackPurchase = async (totalCost, items, userData = {}) => {
+	try {
+		const eventId    = uuidv4(),
+		      customData = {
+			      value:        totalCost,
+			      currency:     'UAH',
+			      content_ids:  items,
+			      content_type: 'product',
+		      };
+
+		if (window.fbq) {
+			window.fbq('track', 'Purchase', {
+				value:        totalCost,
+				currency:     'UAH',
+				content_ids:  items,
+				content_type: 'product',
+				user_data:    userData,
+			}, {eventID: eventId});
+		} else {
+			console.log('Warning: fbq is not defined');
+		}
+
+		await sendConversionAPI('Purchase', eventId, userData, customData);
+	} catch (e) {
+		console.log('Error: ', e);
+	}
+}

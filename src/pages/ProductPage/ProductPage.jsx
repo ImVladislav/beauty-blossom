@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
-import { useParams, useLocation } from "react-router-dom";
-import { setfilter } from "../../redux/filter/slice";
+import {useParams, useLocation} from "react-router-dom";
+import {setfilter} from "../../redux/filter/slice";
 
 import axios from "axios";
-import { toast } from "react-toastify";
-import { addToCart } from "../../redux/cart/slice";
-import { selectGoods } from "../../redux/products/selectors";
+import CryptoJS from "crypto-js";
+import {toast} from "react-toastify";
+import {addToCart} from "../../redux/cart/slice";
+import {selectGoods} from "../../redux/products/selectors";
 import {
-  isAdminSelector,
-  loggedInSelector,
-  optUserSelector,
+	isAdminSelector,
+	loggedInSelector,
+	optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber,
 } from "../../redux/auth/selectors";
-import { selectCart } from "../../redux/cart/selectors";
+import {selectCart} from "../../redux/cart/selectors";
 
 import Button from "../../shared/components/Button/Button";
 import QuickOrderModal from "../../modules/QuickOrderModal/QuickOrderModal";
-import { Container } from "../../shared/styles/Container";
-import { Loader } from "../../shared/components/Loader/Loader";
+import {Container} from "../../shared/styles/Container";
+import {Loader} from "../../shared/components/Loader/Loader";
 
 import {
   ProductContainer,
@@ -64,7 +65,7 @@ import {
   getCategoryUrl2,
 } from "./ProductUtils";
 import NewSticker from "../../shared/components/Sticker/NewSticker";
-import { trackAddToCart } from "../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart} from "../../facebookInt/FacebookPixelEvent";
 import { transliterate } from "../../shared/components/transliterate";
 
 const ProductPage = () => {
@@ -96,8 +97,7 @@ const ProductPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(`/goods`);
-        console.log(response);
-        
+
         if (response.data) {
           setProducts(response.data.goods);
         }
@@ -110,7 +110,7 @@ const ProductPage = () => {
 
     fetchProduct();
   }, [id]);
-  console.log("products", products);
+
   const product = products?.find(
     (item) => +item.id === +id || +item.productId === +id
   );
@@ -156,36 +156,50 @@ const ProductPage = () => {
   const categoryUrl2 = getCategoryUrl2(productSubSubCategory, categoryLinks);
   const categoryUrl = getCategoryUrl(productSubSubCategory, categoryLinks);
 
-  const handleAddToCart = async () => {
-    if (!productCartFind) {
-      dispatch(addToCart({ ...product, quantity }));
-      if (loggedIn) {
-        try {
-          await axios.post(`/basket`, {
-            name: product.name,
-            article: product.article,
-            code: product.code,
-            amount: product.amount,
-            description: product.description,
-            priceOPT: product.priceOPT,
-            quantity: quantity,
-            price: product.price,
-            brand: product.brand,
-            images: product.images,
-            new: product.new,
-            sale: product.sale,
-            category: product.category,
-            subCategory: product.subCategory,
-            subSubCategory: product.subSubCategory,
-            productId: product.id,
-          });
-          scrollToTop();
-        } catch (error) {
-          console.error("Помилка додавання товару в кошик:", error);
-        }
-      }
-    }
-  };
+	const handleAddToCart = async () => {
+		if (!productCartFind) {
+			dispatch(addToCart({...product, quantity}));
+
+			try {
+				let userData = {};
+				if (loggedIn) {
+					await axios.post(`/basket`, {
+						name:           product.name,
+						article:        product.article,
+						code:           product.code,
+						amount:         product.amount,
+						description:    product.description,
+						priceOPT:       product.priceOPT,
+						quantity:       quantity,
+						price:          product.price,
+						brand:          product.brand,
+						images:         product.images,
+						new:            product.new,
+						sale:           product.sale,
+						category:       product.category,
+						subCategory:    product.subCategory,
+						subSubCategory: product.subSubCategory,
+						productId:      product.id,
+					});
+
+					const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
+					      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
+					      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
+					      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '';
+					userData = {
+						em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
+						ph: CryptoJS.SHA256(safePhone.trim()).toString(),
+						fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
+						ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+					}
+					scrollToTop();
+				}
+				await trackAddToCart(product, userData);
+			} catch (e) {
+				console.log(e);
+			}
+		}
+	};
 
   const changeAmount = (event) => {
     setAmount(event.target.value);

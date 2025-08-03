@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 import axios from "axios";
+import CryptoJS from "crypto-js";
 
-import { addToCart } from "../../../redux/cart/slice";
-import { selectCart } from "../../../redux/cart/selectors";
-import {
-  loggedInSelector,
-  optUserSelector,
-} from "../../../redux/auth/selectors";
+import {addToCart} from "../../../redux/cart/slice";
+import {selectCart} from "../../../redux/cart/selectors";
+import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
+import {trackAddToCart} from "../../../facebookInt/FacebookPixelEvent";
 
 import Button from "../Button/Button";
 
@@ -46,41 +45,52 @@ const ProductCard = ({ products, slider }) => {
     });
   };
 
-  const handleAddToCart = async (event) => {
-    event.preventDefault();
+	const handleAddToCart = async (event) => {
+		event.preventDefault();
 
-    const productCartFind = productCart?.find(
-      (item) => +item.id === +products.id
-    );
-    if (!productCartFind) {
-      dispatch(addToCart({ ...products, quantity }));
-      if (loggedIn) {
-        try {
-          await axios.post(`/basket`, {
-            name: products.name,
-            article: products.article,
-            code: products.code,
-            amount: products.amount,
-            description: products.description,
-            priceOPT: products.priceOPT,
-            quantity: quantity,
-            price: products.price,
-            brand: products.brand,
-            images: products.images,
-            new: products.new,
-            sale: products.sale,
-            category: products.category,
-            subCategory: products.subCategory,
-            subSubCategory: products.subSubCategory,
-            productId: products.id,
-          });
-        } catch (error) {
-          console.error("Помилка додавання товару в кошик:", error);
-        }
-      }
-    }
-    return;
-  };
+		const productCartFind = productCart?.find(
+			(item) => +item.id === +products.id
+		);
+		if (!productCartFind) {
+			dispatch(addToCart({...products, quantity}));
+			try {
+				let userData = {};
+				if (loggedIn) {
+					await axios.post(`/basket`, {
+						name:           products.name,
+						article:        products.article,
+						code:           products.code,
+						amount:         products.amount,
+						description:    products.description,
+						priceOPT:       products.priceOPT,
+						quantity:       quantity,
+						price:          products.price,
+						brand:          products.brand,
+						images:         products.images,
+						new:            products.new,
+						sale:           products.sale,
+						category:       products.category,
+						subCategory:    products.subCategory,
+						subSubCategory: products.subSubCategory,
+						productId:      products.id,
+					});
+					const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
+					      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
+					      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
+					      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '';
+					userData = {
+						em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
+						ph: CryptoJS.SHA256(safePhone.trim()).toString(),
+						fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
+						ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+					}
+				}
+				await trackAddToCart(products, userData);
+			} catch (error) {
+				console.error("Помилка додавання товару в кошик:", error);
+			}
+		}
+	};
 
   const isProductInCart = productCart?.some(
     (item) => +item.code === +products.code
@@ -124,7 +134,7 @@ const ProductCard = ({ products, slider }) => {
                   )}
                 </div>
                 <div>
-                  
+
                 {products.priceOldOPT && products.sale === true && (
                     <PriceSale slider={slider}>
                       {products.priceOldOPT} грн
