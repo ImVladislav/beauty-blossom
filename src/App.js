@@ -41,23 +41,22 @@ import {trackPageView} from "./facebookInt/FacebookPixelEvent";
 const loggedIn = loggedInSelector;
 
 function App() {
-	const location = useLocation();
+	const location  = useLocation(),
+	      email     = useSelector(userSelectorEmail),
+	      phone     = useSelector(userSelectorNumber),
+	      firstName = useSelector(userSelectorfirstName),
+	      lastName  = useSelector(userSelectorlastName);
 
 	useEffect(() => {
 		const run = async () => {
 			let userData = {};
 
 			if (loggedIn) {
-				const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
-				      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
-				      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim().toLowerCase() : '',
-				      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim().toLowerCase() : '';
-
 				userData = {
-					em: CryptoJS.SHA256(safeEmail).toString(),
-					ph: CryptoJS.SHA256(safePhone).toString(),
-					fn: CryptoJS.SHA256(safeFirstName).toString(),
-					ln: CryptoJS.SHA256(safeLastName).toString(),
+					em: CryptoJS.SHA256(email).toString(),
+					ph: CryptoJS.SHA256(phone).toString(),
+					fn: CryptoJS.SHA256(firstName).toString(),
+					ln: CryptoJS.SHA256(lastName).toString(),
 				};
 			}
 

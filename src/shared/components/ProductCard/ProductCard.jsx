@@ -31,12 +31,16 @@ import NewSticker from "../Sticker/NewSticker";
 
 const ProductCard = ({ products, slider }) => {
   // eslint-disable-next-line
-  const [isHovered, setIsHovered] = useState(false);
-  const dispatch = useDispatch();
-  const productCart = useSelector(selectCart);
-  const optUser = useSelector(optUserSelector);
-  const quantity = 1;
-  const loggedIn = useSelector(loggedInSelector);
+	const [isHovered, setIsHovered] = useState(false);
+	const dispatch = useDispatch();
+	const productCart = useSelector(selectCart);
+	const optUser = useSelector(optUserSelector);
+	const quantity = 1;
+	const loggedIn  = useSelector(loggedInSelector),
+	      email     = useSelector(userSelectorEmail),
+	      phone     = useSelector(userSelectorNumber),
+	      firstName = useSelector(userSelectorfirstName),
+	      lastName  = useSelector(userSelectorlastName);
 
   const handleClickLink = () => {
     window.scrollTo({
@@ -74,15 +78,11 @@ const ProductCard = ({ products, slider }) => {
 						subSubCategory: products.subSubCategory,
 						productId:      products.id,
 					});
-					const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
-					      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
-					      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
-					      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '';
 					userData = {
-						em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
-						ph: CryptoJS.SHA256(safePhone.trim()).toString(),
-						fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
-						ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+						em: CryptoJS.SHA256(email).toString(),
+						ph: CryptoJS.SHA256(phone).toString(),
+						fn: CryptoJS.SHA256(firstName).toString(),
+						ln: CryptoJS.SHA256(lastName).toString(),
 					}
 				}
 				await trackAddToCart(products, userData);

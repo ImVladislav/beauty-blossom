@@ -331,6 +331,16 @@ const OrderPlacement = () => {
     }
 
 	  const orderedItems = updateItems.map((item) => ({
+		  productId: item.id || item.productId,
+		  images:    item.images,
+		  name:      item.name,
+		  sale:      item.sale,
+		  code:      item.code.toString(),
+		  quantity:  item.quantity,
+		  amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
+	  }));
+
+	  const orderedItemsSecond = updateItems.map((item) => ({
 		  _id:       item._id,
 		  productId: item.id || item.productId,
 		  images:    item.images,
@@ -400,18 +410,14 @@ const OrderPlacement = () => {
       }
 	    // Якщо все пройшло успішно, обробляємо відповідь
 	    try {
-		    const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
-		          safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
-		          safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
-		          safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '',
-		          userData      = {
-			          em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
-			          ph: CryptoJS.SHA256(safePhone.trim()).toString(),
-			          fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
-			          ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
-		          };
+		    const userData = {
+			    em: CryptoJS.SHA256(userEmail).toString(),
+			    ph: CryptoJS.SHA256(userNumber).toString(),
+			    fn: CryptoJS.SHA256(userFirstName).toString(),
+			    ln: CryptoJS.SHA256(userLastName).toString(),
+		    };
 
-		    await trackPurchase(totalCost, orderedItems.map(p => p._id), userData);
+		    await trackPurchase(totalCost, orderedItemsSecond.map(p => p._id), userData);
 	    } catch (error) {
 		    console.error("Помилка розміщення замовлення:", error);
 	    }

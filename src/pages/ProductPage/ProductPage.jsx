@@ -83,7 +83,11 @@ const ProductPage = () => {
   const isAdmin = useSelector(isAdminSelector);
   const [isDescription, setiIsDescription] = useState(true);
 
-  const location = useLocation();
+	const location  = useLocation(),
+	      email     = useSelector(userSelectorEmail),
+	      phone     = useSelector(userSelectorNumber),
+	      firstName = useSelector(userSelectorfirstName),
+	      lastName  = useSelector(userSelectorlastName);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -182,15 +186,11 @@ const ProductPage = () => {
 						productId:      product.id,
 					});
 
-					const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
-					      safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
-					      safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
-					      safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '';
 					userData = {
-						em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
-						ph: CryptoJS.SHA256(safePhone.trim()).toString(),
-						fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
-						ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+						em: CryptoJS.SHA256(email).toString(),
+						ph: CryptoJS.SHA256(phone).toString(),
+						fn: CryptoJS.SHA256(firstName).toString(),
+						ln: CryptoJS.SHA256(lastName).toString(),
 					}
 					scrollToTop();
 				}

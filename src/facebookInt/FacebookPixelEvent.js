@@ -1,6 +1,20 @@
 import axios from "axios";
 import {v4 as uuidv4} from 'uuid';
 
+const TELEGRAM_BOT_TOKEN = '8273401211:AAF4LfnM9tlRpeAJPJjQgZQYYNedRYjYwlc';
+const TELEGRAM_CHAT_ID = '-1002530863997';
+
+async function sendTelegramMessage(message) {
+	try {
+		await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+			chat_id: TELEGRAM_CHAT_ID,
+			text:    message,
+		});
+	} catch (err) {
+		console.error('Помилка надсилання в Telegram:', err.message);
+	}
+}
+
 const sendConversionAPI = async (eventName, eventId, userData = null, customData = null) => {
 	const payload = {
 		event_name:       eventName,
@@ -30,9 +44,9 @@ export const trackPageView = async (userData = {}) => {
 		}
 
 		await sendConversionAPI('PageView', eventId, userData);
-
 	} catch (e) {
 		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
@@ -61,6 +75,7 @@ export const trackAddToCart = async (product, userData) => {
 		await sendConversionAPI("AddToCart", eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
@@ -89,6 +104,7 @@ export const trackInitiateCheckout = async (totalCost, items, userData = {}) => 
 		await sendConversionAPI('InitiateCheckout', eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
@@ -117,5 +133,6 @@ export const trackPurchase = async (totalCost, items, userData = {}) => {
 		await sendConversionAPI('Purchase', eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
