@@ -330,15 +330,16 @@ const OrderPlacement = () => {
       return;
     }
 
-    const orderedItems = updateItems.map((item) => ({
-      productId: item.id || item.productId,
-      images: item.images,
-      name: item.name,
-      sale: item.sale,
-      code: item.code.toString(),
-      quantity: item.quantity,
-      amount: (isOptUser ? item.priceOPT : item.price) * item.quantity,
-    }));
+	  const orderedItems = updateItems.map((item) => ({
+		  _id:       item._id,
+		  productId: item.id || item.productId,
+		  images:    item.images,
+		  name:      item.name,
+		  sale:      item.sale,
+		  code:      item.code.toString(),
+		  quantity:  item.quantity,
+		  amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
+	  }));
 
     const dataToSendCourier = {
       ...formData,
@@ -398,15 +399,22 @@ const OrderPlacement = () => {
         );
       }
 	    // Якщо все пройшло успішно, обробляємо відповідь
-	    const stringNumber = userNumber.toString(),
-	          userData     = {
-		          em: CryptoJS.SHA256(userEmail.trim().toLowerCase()).toString(),
-		          ph: CryptoJS.SHA256(stringNumber.trim()).toString(),
-		          fn: CryptoJS.SHA256(userFirstName.trim().toLowerCase()).toString(),
-		          ln: CryptoJS.SHA256(userLastName.trim().toLowerCase()).toString(),
-	          };
+	    try {
+		    const safeEmail     = typeof userSelectorEmail === 'string' ? userSelectorEmail.trim().toLowerCase() : '',
+		          safePhone     = typeof userSelectorNumber === 'string' ? userSelectorNumber.trim() : '',
+		          safeFirstName = typeof userSelectorfirstName === 'string' ? userSelectorfirstName.trim() : '',
+		          safeLastName  = typeof userSelectorlastName === 'string' ? userSelectorlastName.trim() : '',
+		          userData      = {
+			          em: CryptoJS.SHA256(safeEmail.trim().toLowerCase()).toString(),
+			          ph: CryptoJS.SHA256(safePhone.trim()).toString(),
+			          fn: CryptoJS.SHA256(safeFirstName.trim().toLowerCase()).toString(),
+			          ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
+		          };
 
-	    await trackPurchase(totalCost, orderedItems.map(p => p.productId), userData);
+		    await trackPurchase(totalCost, orderedItems.map(p => p._id), userData);
+	    } catch (error) {
+		    console.error("Помилка розміщення замовлення:", error);
+	    }
 	  if (isLogin) {
         removeCartItem();
       }

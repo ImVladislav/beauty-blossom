@@ -1,5 +1,5 @@
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 const sendConversionAPI = async (eventName, eventId, userData = null, customData = null) => {
 	const payload = {
@@ -40,7 +40,7 @@ export const trackAddToCart = async (product, userData) => {
 	try {
 		const eventId    = uuidv4(),
 		      customData = {
-			      content_ids:  [product.id],
+			      content_ids:  [product._id],
 			      content_type: 'product',
 			      value:        product.price,
 			      currency:     'UAH',
@@ -48,7 +48,7 @@ export const trackAddToCart = async (product, userData) => {
 
 		if (window.fbq) {
 			window.fbq('track', 'AddToCart', {
-				content_ids:  [product.id],
+				content_ids:  [product._id],
 				content_type: 'product',
 				value:        product.price,
 				currency:     'UAH',

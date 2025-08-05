@@ -237,7 +237,7 @@ const CartModal = ({ closeModal }) => {
 					      ln: CryptoJS.SHA256(safeLastName.trim().toLowerCase()).toString(),
 				      };
 
-				await trackInitiateCheckout(totalCost, cartItems.map(p => p.id ?? p.productId), userData);
+				await trackInitiateCheckout(totalCost, cartItems.map(p => p._id), userData);
 			} catch (error) {
 				console.error("Помилка розміщення замовлення:", error);
 			}
