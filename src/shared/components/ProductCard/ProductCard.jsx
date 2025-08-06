@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import axios from "axios";
-import CryptoJS from "crypto-js";
 
 import {addToCart} from "../../../redux/cart/slice";
 import {selectCart} from "../../../redux/cart/selectors";
@@ -41,19 +40,14 @@ const ProductCard = ({ products, slider }) => {
 	      phone     = useSelector(userSelectorNumber),
 	      firstName = useSelector(userSelectorfirstName),
 	      lastName  = useSelector(userSelectorlastName),
-	      userData  = {
-		      em: CryptoJS.SHA256(email).toString(),
-		      ph: CryptoJS.SHA256(phone).toString(),
-		      fn: CryptoJS.SHA256(firstName).toString(),
-		      ln: CryptoJS.SHA256(lastName).toString(),
-	      };
+	      userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
 
 	const handleClickLink = async () => {
 		window.scrollTo({
 			top:      0,
 			behavior: "smooth",
 		});
-		await trackViewContent(products, userData);
+		await trackViewContent(products, userDataSelectors);
 	};
 
 	const handleAddToCart = async (event) => {
@@ -85,7 +79,7 @@ const ProductCard = ({ products, slider }) => {
 						productId:      products.id,
 					});
 				}
-				await trackAddToCart(products, userData);
+				await trackAddToCart(products, userDataSelectors);
 			} catch (error) {
 				console.error("Помилка додавання товару в кошик:", error);
 			}

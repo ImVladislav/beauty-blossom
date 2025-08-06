@@ -17,7 +17,7 @@ import UserData from "./pages/UserPage/UserData";
 import PaymentHistory from "./pages/UserPage/PaymentHistory";
 import SortCategory from "./modules/SortCategory/SortCategory";
 import {refreshCurrentUser} from "./redux/auth/operation";
-import {loggedInSelector, refreshSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "./redux/auth/selectors";
+import {refreshSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "./redux/auth/selectors";
 import {
 	PrivateAdminRoute,
 	PrivateRoute,
@@ -36,9 +36,7 @@ import ForgottenPage from "./pages/ForgottenPage/ForgottenPage";
 import ForgottenIdPage from "./pages/ForgottenPage/ForgottenIdPage/ForgottenIdPage";
 import {HelmetProvider} from "react-helmet-async";
 import {useLocation} from 'react-router-dom';
-import CryptoJS from "crypto-js";
 import {trackPageView} from "./facebookInt/FacebookPixelEvent";
-const loggedIn = loggedInSelector;
 
 function App() {
 	const location  = useLocation(),
@@ -49,18 +47,8 @@ function App() {
 
 	useEffect(() => {
 		const run = async () => {
-			let userData = {};
-
-			if (loggedIn) {
-				userData = {
-					em: CryptoJS.SHA256(email).toString(),
-					ph: CryptoJS.SHA256(phone).toString(),
-					fn: CryptoJS.SHA256(firstName).toString(),
-					ln: CryptoJS.SHA256(lastName).toString(),
-				};
-			}
-
-			await trackPageView(userData);
+			const userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
+			await trackPageView(userDataSelectors);
 		};
 
 		run();

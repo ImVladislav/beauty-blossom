@@ -37,7 +37,6 @@ import {
   AboutResetBasketText,
 } from "./ShopingListStyled";
 import { selectGoods } from "../../../redux/products/selectors";
-import CryptoJS from "crypto-js";
 
 import {trackInitiateCheckout} from "../../../facebookInt/FacebookPixelEvent";
 const CartModal = ({ closeModal }) => {
@@ -229,15 +228,8 @@ const CartModal = ({ closeModal }) => {
 			try {
 				navigate("/order");
 				closeModal();
-
-				const userData = {
-					em: CryptoJS.SHA256(email).toString(),
-					ph: CryptoJS.SHA256(phone).toString(),
-					fn: CryptoJS.SHA256(firstName).toString(),
-					ln: CryptoJS.SHA256(lastName).toString(),
-				};
-
-				await trackInitiateCheckout(totalCost, cartItems.map(p => p._id), userData);
+				const userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
+				await trackInitiateCheckout(totalCost, cartItems.map(p => p._id), userDataSelectors);
 			} catch (error) {
 				console.error("Помилка розміщення замовлення:", error);
 			}

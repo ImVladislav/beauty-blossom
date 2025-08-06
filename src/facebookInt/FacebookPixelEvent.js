@@ -1,40 +1,13 @@
 import axios from "axios";
 import {v4 as uuidv4} from 'uuid';
+import CryptoJS from "crypto-js";
 
 const TELEGRAM_BOT_TOKEN = '8273401211:AAF4LfnM9tlRpeAJPJjQgZQYYNedRYjYwlc';
 const TELEGRAM_CHAT_ID = '-1002530863997';
 
-async function sendTelegramMessage(message) {
-	try {
-		await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-			chat_id: TELEGRAM_CHAT_ID,
-			text:    message,
-		});
-	} catch (err) {
-		console.error('Помилка надсилання в Telegram:', err.message);
-	}
-}
-
-const sendConversionAPI = async (eventName, eventId, userData = null, customData = null) => {
-	const payload = {
-		event_name:       eventName,
-		event_time:       Math.floor(Date.now() / 1000),
-		event_id:         eventId,
-		event_source_url: window.location.href,
-	};
-
-	if (userData != null) {
-		payload.user_data = userData;
-	}
-	if (customData != null) {
-		payload.custom_data = customData;
-	}
-
-	await axios.post('/conversion', payload);
-};
-
-export const trackPageView = async (userData = {}) => {
-	const eventId = uuidv4();
+export const trackPageView = async (userSelectors = {}) => {
+	const eventId  = uuidv4(),
+	      userData = getHashedUserData(userSelectors);
 
 	if (window.fbq) {
 		try {
@@ -54,8 +27,9 @@ export const trackPageView = async (userData = {}) => {
 	}
 }
 
-export const trackAddToCart = async (product, userData) => {
+export const trackAddToCart = async (product, userSelectors) => {
 	const eventId    = uuidv4(),
+	      userData   = getHashedUserData(userSelectors),
 	      customData = {
 		      content_ids:  [product._id],
 		      content_type: 'product',
@@ -87,8 +61,9 @@ export const trackAddToCart = async (product, userData) => {
 	}
 }
 
-export const trackViewContent = async (product, userData) => {
+export const trackViewContent = async (product, userSelectors) => {
 	const eventId    = uuidv4(),
+	      userData   = getHashedUserData(userSelectors),
 	      customData = {
 		      content_ids:  [product._id],
 		      content_type: 'product',
@@ -120,8 +95,9 @@ export const trackViewContent = async (product, userData) => {
 	}
 }
 
-export const trackInitiateCheckout = async (totalCost, items, userData = {}) => {
+export const trackInitiateCheckout = async (totalCost, items, userSelectors = {}) => {
 	const eventId    = uuidv4(),
+	      userData   = getHashedUserData(userSelectors),
 	      customData = {
 		      value:        totalCost,
 		      currency:     'UAH',
@@ -153,8 +129,9 @@ export const trackInitiateCheckout = async (totalCost, items, userData = {}) => 
 	}
 }
 
-export const trackPurchase = async (totalCost, items, userData = {}) => {
+export const trackPurchase = async (totalCost, items, userSelectors = {}) => {
 	const eventId    = uuidv4(),
+	      userData   = getHashedUserData(userSelectors),
 	      customData = {
 		      value:        totalCost,
 		      currency:     'UAH',
@@ -184,4 +161,56 @@ export const trackPurchase = async (totalCost, items, userData = {}) => {
 		console.log('Error: ', e);
 		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackPurchase): ${e.message}\n\nStack:\n${e.stack}`);
 	}
+}
+
+async function sendTelegramMessage(message) {
+	try {
+		await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+			chat_id: TELEGRAM_CHAT_ID,
+			text:    message,
+		});
+	} catch (err) {
+		console.error('Помилка надсилання в Telegram:', err.message);
+	}
+}
+
+const sendConversionAPI = async (eventName, eventId, userData = null, customData = null) => {
+	const payload = {
+		event_name:       eventName,
+		event_time:       Math.floor(Date.now() / 1000),
+		event_id:         eventId,
+		event_source_url: window.location.href,
+	};
+
+	if (userData != null) {
+		payload.user_data = userData;
+	}
+	if (customData != null) {
+		payload.custom_data = customData;
+	}
+
+	await axios.post('/conversion', payload);
+};
+
+function getHashedUserData(userSelectors) {
+	const hashedUserData = {};
+
+	if (userSelectors.em) {
+		const em = userSelectors.em;
+		hashedUserData.em = CryptoJS.SHA256(em.trim().toLowerCase()).toString();
+	}
+	if (userSelectors.ph) {
+		const ph = userSelectors.ph;
+		hashedUserData.ph = CryptoJS.SHA256(ph).toString();
+	}
+	if (userSelectors.fn) {
+		const fn = userSelectors.fn;
+		hashedUserData.fn = CryptoJS.SHA256(fn.trim()).toString();
+	}
+	if (userSelectors.ln) {
+		const ln = userSelectors.ln;
+		hashedUserData.ln = CryptoJS.SHA256(ln.trim()).toString();
+	}
+
+	return hashedUserData;
 }

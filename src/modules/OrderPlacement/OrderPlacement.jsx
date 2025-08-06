@@ -60,7 +60,6 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import {trackPurchase} from "../../facebookInt/FacebookPixelEvent";
 import Button from "../../shared/components/Button/Button";
-import CryptoJS from "crypto-js";
 
 const OrderPlacement = () => {
   const dispatch = useDispatch();
@@ -410,14 +409,8 @@ const OrderPlacement = () => {
       }
 	    // Якщо все пройшло успішно, обробляємо відповідь
 	    try {
-		    const userData = {
-			    em: CryptoJS.SHA256(userEmail).toString(),
-			    ph: CryptoJS.SHA256(userNumber).toString(),
-			    fn: CryptoJS.SHA256(userFirstName).toString(),
-			    ln: CryptoJS.SHA256(userLastName).toString(),
-		    };
-
-		    await trackPurchase(totalCost, orderedItemsSecond.map(p => p._id), userData);
+		    const userDataSelectors = {em: userEmail, ph: userNumber, fn: userFirstName, ln: userLastName};
+		    await trackPurchase(totalCost, orderedItemsSecond.map(p => p._id), userDataSelectors);
 	    } catch (error) {
 		    console.error("Помилка розміщення замовлення:", error);
 	    }

@@ -5,7 +5,6 @@ import {useParams, useLocation} from "react-router-dom";
 import {setfilter} from "../../redux/filter/slice";
 
 import axios from "axios";
-import CryptoJS from "crypto-js";
 import {toast} from "react-toastify";
 import {addToCart} from "../../redux/cart/slice";
 import {selectGoods} from "../../redux/products/selectors";
@@ -165,7 +164,6 @@ const ProductPage = () => {
 			dispatch(addToCart({...product, quantity}));
 
 			try {
-				let userData = {};
 				if (loggedIn) {
 					await axios.post(`/basket`, {
 						name:           product.name,
@@ -185,16 +183,10 @@ const ProductPage = () => {
 						subSubCategory: product.subSubCategory,
 						productId:      product.id,
 					});
-
-					userData = {
-						em: CryptoJS.SHA256(email).toString(),
-						ph: CryptoJS.SHA256(phone).toString(),
-						fn: CryptoJS.SHA256(firstName).toString(),
-						ln: CryptoJS.SHA256(lastName).toString(),
-					}
 					scrollToTop();
 				}
-				await trackAddToCart(product, userData);
+				const userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
+				await trackAddToCart(product, userDataSelectors);
 			} catch (e) {
 				console.log(e);
 			}
