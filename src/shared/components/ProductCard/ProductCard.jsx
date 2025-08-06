@@ -7,7 +7,7 @@ import CryptoJS from "crypto-js";
 import {addToCart} from "../../../redux/cart/slice";
 import {selectCart} from "../../../redux/cart/selectors";
 import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
-import {trackAddToCart} from "../../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart, trackViewContent} from "../../../facebookInt/FacebookPixelEvent";
 
 import Button from "../Button/Button";
 
@@ -30,7 +30,7 @@ import {
 import NewSticker from "../Sticker/NewSticker";
 
 const ProductCard = ({ products, slider }) => {
-  // eslint-disable-next-line
+	// eslint-disable-next-line
 	const [isHovered, setIsHovered] = useState(false);
 	const dispatch = useDispatch();
 	const productCart = useSelector(selectCart);
@@ -40,14 +40,21 @@ const ProductCard = ({ products, slider }) => {
 	      email     = useSelector(userSelectorEmail),
 	      phone     = useSelector(userSelectorNumber),
 	      firstName = useSelector(userSelectorfirstName),
-	      lastName  = useSelector(userSelectorlastName);
+	      lastName  = useSelector(userSelectorlastName),
+	      userData  = {
+		      em: CryptoJS.SHA256(email).toString(),
+		      ph: CryptoJS.SHA256(phone).toString(),
+		      fn: CryptoJS.SHA256(firstName).toString(),
+		      ln: CryptoJS.SHA256(lastName).toString(),
+	      };
 
-  const handleClickLink = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+	const handleClickLink = async () => {
+		window.scrollTo({
+			top:      0,
+			behavior: "smooth",
+		});
+		await trackViewContent(products, userData);
+	};
 
 	const handleAddToCart = async (event) => {
 		event.preventDefault();
@@ -58,7 +65,6 @@ const ProductCard = ({ products, slider }) => {
 		if (!productCartFind) {
 			dispatch(addToCart({...products, quantity}));
 			try {
-				let userData = {};
 				if (loggedIn) {
 					await axios.post(`/basket`, {
 						name:           products.name,
@@ -78,12 +84,6 @@ const ProductCard = ({ products, slider }) => {
 						subSubCategory: products.subSubCategory,
 						productId:      products.id,
 					});
-					userData = {
-						em: CryptoJS.SHA256(email).toString(),
-						ph: CryptoJS.SHA256(phone).toString(),
-						fn: CryptoJS.SHA256(firstName).toString(),
-						ln: CryptoJS.SHA256(lastName).toString(),
-					}
 				}
 				await trackAddToCart(products, userData);
 			} catch (error) {

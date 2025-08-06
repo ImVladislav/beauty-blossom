@@ -34,33 +34,37 @@ const sendConversionAPI = async (eventName, eventId, userData = null, customData
 };
 
 export const trackPageView = async (userData = {}) => {
-	try {
-		const eventId = uuidv4();
+	const eventId = uuidv4();
 
-		if (window.fbq) {
+	if (window.fbq) {
+		try {
 			window.fbq('track', 'PageView', {userData: userData}, {eventID: eventId});
-		} else {
-			console.log('Warning: fbq is not defined');
+		} catch (e) {
+			console.error('❌ Помилка відправки Pixel PageView події:', e);
 		}
+	} else {
+		console.log('Warning: fbq is not defined');
+	}
 
+	try {
 		await sendConversionAPI('PageView', eventId, userData);
 	} catch (e) {
 		console.log('Error: ', e);
-		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
+		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackPageView): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
 export const trackAddToCart = async (product, userData) => {
-	try {
-		const eventId    = uuidv4(),
-		      customData = {
-			      content_ids:  [product._id],
-			      content_type: 'product',
-			      value:        product.price,
-			      currency:     'UAH',
-		      };
+	const eventId    = uuidv4(),
+	      customData = {
+		      content_ids:  [product._id],
+		      content_type: 'product',
+		      value:        product.price,
+		      currency:     'UAH',
+	      };
 
-		if (window.fbq) {
+	if (window.fbq) {
+		try {
 			window.fbq('track', 'AddToCart', {
 				content_ids:  [product._id],
 				content_type: 'product',
@@ -68,28 +72,65 @@ export const trackAddToCart = async (product, userData) => {
 				currency:     'UAH',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} else {
-			console.log('Warning: fbq is not defined');
+		} catch (e) {
+			console.error('❌ Помилка відправки Pixel AddToCart події:', e);
 		}
+	} else {
+		console.log('Warning: fbq is not defined');
+	}
 
+	try {
 		await sendConversionAPI("AddToCart", eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
-		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
+		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackAddToCart): ${e.message}\n\nStack:\n${e.stack}`);
+	}
+}
+
+export const trackViewContent = async (product, userData) => {
+	const eventId    = uuidv4(),
+	      customData = {
+		      content_ids:  [product._id],
+		      content_type: 'product',
+		      value:        product.price,
+		      currency:     'UAH',
+	      };
+
+	if (window.fbq) {
+		try {
+			window.fbq('track', 'ViewContent', {
+				content_ids:  [product._id],
+				content_type: 'product',
+				value:        product.price,
+				currency:     'UAH',
+				user_data:    userData,
+			}, {eventID: eventId});
+		} catch (e) {
+			console.error('❌ Помилка відправки Pixel ViewContent події:', e);
+		}
+	} else {
+		console.log('Warning: fbq is not defined');
+	}
+
+	try {
+		await sendConversionAPI("ViewContent", eventId, userData, customData);
+	} catch (e) {
+		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackViewContent): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
 export const trackInitiateCheckout = async (totalCost, items, userData = {}) => {
-	try {
-		const eventId    = uuidv4(),
-		      customData = {
-			      value:        totalCost,
-			      currency:     'UAH',
-			      content_ids:  items,
-			      content_type: 'product',
-		      };
+	const eventId    = uuidv4(),
+	      customData = {
+		      value:        totalCost,
+		      currency:     'UAH',
+		      content_ids:  items,
+		      content_type: 'product',
+	      };
 
-		if (window.fbq) {
+	if (window.fbq) {
+		try {
 			window.fbq('track', 'InitiateCheckout', {
 				value:        totalCost,
 				currency:     'UAH',
@@ -97,28 +138,32 @@ export const trackInitiateCheckout = async (totalCost, items, userData = {}) => 
 				content_type: 'product',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} else {
-			console.log('Warning: fbq is not defined');
+		} catch (e) {
+			console.error('❌ Помилка відправки Pixel InitiateCheckout події:', e);
 		}
+	} else {
+		console.log('Warning: fbq is not defined');
+	}
 
+	try {
 		await sendConversionAPI('InitiateCheckout', eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
-		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
+		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackInitiateCheckout): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
 export const trackPurchase = async (totalCost, items, userData = {}) => {
-	try {
-		const eventId    = uuidv4(),
-		      customData = {
-			      value:        totalCost,
-			      currency:     'UAH',
-			      content_ids:  items,
-			      content_type: 'product',
-		      };
+	const eventId    = uuidv4(),
+	      customData = {
+		      value:        totalCost,
+		      currency:     'UAH',
+		      content_ids:  items,
+		      content_type: 'product',
+	      };
 
-		if (window.fbq) {
+	if (window.fbq) {
+		try {
 			window.fbq('track', 'Purchase', {
 				value:        totalCost,
 				currency:     'UAH',
@@ -126,13 +171,17 @@ export const trackPurchase = async (totalCost, items, userData = {}) => {
 				content_type: 'product',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} else {
-			console.log('Warning: fbq is not defined');
+		} catch (e) {
+			console.error('❌ Помилка відправки Pixel Purchase події:', e);
 		}
+	} else {
+		console.log('Warning: fbq is not defined');
+	}
 
+	try {
 		await sendConversionAPI('Purchase', eventId, userData, customData);
 	} catch (e) {
 		console.log('Error: ', e);
-		await sendTelegramMessage(`❌ Помилка: ${e.message}\n\nStack:\n${e.stack}`);
+		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackPurchase): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
