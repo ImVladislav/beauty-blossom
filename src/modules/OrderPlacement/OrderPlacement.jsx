@@ -113,11 +113,28 @@ const OrderPlacement = () => {
     })
   );
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+	const isEventSent = useRef(false);
 
-    setFormData({ ...formData, [name]: value });
-  };
+	const handleInputChange = async (e) => {
+		if (!isEventSent.current) {
+			isEventSent.current = true;
+			const userDataSelectors = {
+				em: userEmail,
+				ph: userNumber,
+				fn: userFirstName,
+				ln: userLastName
+			};
+
+			await trackInitiateCheckout(
+				totalCost,
+				cartItems.map(p => p._id),
+				userDataSelectors
+			);
+		}
+		const {name, value} = e.target;
+
+		setFormData({...formData, [name]: value});
+	};
 
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
@@ -479,57 +496,24 @@ const OrderPlacement = () => {
     setDropdownWarehouseVisible(value.length >= 1);
   }, 300);
 
-  const handleCitySelect = (city, DeliveryCity) => {
-    const selectedCityWithArea = `${city}`;
-    setSearchText(selectedCityWithArea);
-    setDropdownCityVisible(false);
-    setSearchWarehouses("");
-    handleWarehousesChange();
-    setWarehouseSearch(DeliveryCity);
-  };
+	const handleCitySelect = (city, DeliveryCity) => {
+		const selectedCityWithArea = `${city}`;
+		setSearchText(selectedCityWithArea);
+		setDropdownCityVisible(false);
+		setSearchWarehouses("");
+		handleWarehousesChange();
+		setWarehouseSearch(DeliveryCity);
+	};
 
-  const handleWarehouseSelect = (warehouse) => {
-    const selectedWarehouse = `${warehouse}`;
-    setSearchWarehouses(selectedWarehouse);
-    setDropdownWarehouseVisible(false);
-  };
-  const onRegisterSuccess = () => {
-    setCustomerType("registered"); // Зміна на true при успішній реєстрації
-    toast.info("Ви успішно зареєструвалися, авторизуйтеся");
-  };
-
-	useEffect(() => {
-		const now = Date.now();
-		const lastEventTime = sessionStorage.getItem('lastInitiateCheckoutTime');
-
-		if (lastEventTime) {
-			const diff = now - parseInt(lastEventTime, 10);
-			if (diff > 3000) {
-				return;
-			}
-		}
-
-		const handleSendEvent = async () => {
-			const userDataSelectors = {
-				em: userEmail,
-				ph: userNumber,
-				fn: userFirstName,
-				ln: userLastName
-			};
-
-			await trackInitiateCheckout(
-				totalCost,
-				cartItems.map(p => p._id),
-				userDataSelectors
-			);
-
-			sessionStorage.setItem('lastInitiateCheckoutTime', now.toString());
-		};
-
-		handleSendEvent();
-
-	}, [cartItems, totalCost, userEmail, userNumber, userFirstName, userLastName]);
-
+	const handleWarehouseSelect = (warehouse) => {
+		const selectedWarehouse = `${warehouse}`;
+		setSearchWarehouses(selectedWarehouse);
+		setDropdownWarehouseVisible(false);
+	};
+	const onRegisterSuccess = () => {
+		setCustomerType("registered"); // Зміна на true при успішній реєстрації
+		toast.info("Ви успішно зареєструвалися, авторизуйтеся");
+	};
 
 	return (
     <Container>
