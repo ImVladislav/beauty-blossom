@@ -1,47 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
-  CityItem,
-  CityitemsBlock,
-  Citylist,
-  CostumerStatus,
-  CostumerStatusItem,
-  CostumerStatusinput,
-  DeliveryInfoBlock,
-  Description,
-  Form,
-  HeaderBlocRight,
-  HeaderBlock,
-  HeaderBlockLeft,
-  ItemNameItem,
-  LoaderThumb,
-  OrderDetails,
-  OrderForm,
-  OrdersImage,
-  OrdersItem,
-  OrdersItemlist,
-  OrdersThumb,
-  Select,
-  SelectOpton,
-  TableThumb,
-  Textarea,
-  Title,
-  Titles,
-  ItemAmount,
-  Amount,
-  ItemNameLink,
-  DivInfoBlock,
-  InfoTextP,
-  LIstItem,
-  ButtonWrap,
+	CityItem,
+	CityitemsBlock,
+	Citylist,
+	CostumerStatus,
+	CostumerStatusItem,
+	CostumerStatusinput,
+	DeliveryInfoBlock,
+	Description,
+	Form,
+	HeaderBlocRight,
+	HeaderBlock,
+	HeaderBlockLeft,
+	ItemNameItem,
+	LoaderThumb,
+	OrderDetails,
+	OrderForm,
+	OrdersImage,
+	OrdersItem,
+	OrdersItemlist,
+	OrdersThumb,
+	Select,
+	SelectOpton,
+	TableThumb,
+	Textarea,
+	Title,
+	Titles,
+	ItemAmount,
+	Amount,
+	ItemNameLink,
+	DivInfoBlock,
+	InfoTextP,
+	LIstItem,
+	ButtonWrap,
 } from "./OrderPlacementStyled";
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
-  loggedInSelector,
-  optUserSelector,
-  userSelectorEmail,
-  userSelectorNumber,
-  userSelectorfirstName,
-  userSelectorlastName,
+	loggedInSelector,
+	optUserSelector,
+	userSelectorEmail,
+	userSelectorNumber,
+	userSelectorfirstName,
+	userSelectorlastName,
 } from "../../redux/auth/selectors";
 
 import {selectGoods} from "../../redux/products/selectors";
@@ -58,45 +58,45 @@ import {OrderModalWindow} from "./OrderModal";
 import {deleteAll} from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import {trackPurchase} from "../../facebookInt/FacebookPixelEvent";
+import {trackInitiateCheckout, trackPurchase} from "../../facebookInt/FacebookPixelEvent";
 import Button from "../../shared/components/Button/Button";
 
 const OrderPlacement = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const isLogin = useSelector(loggedInSelector);
-  const [customerType, setCustomerType] = useState("without-registered");
-  const [warehouses, setWarehouses] = useState([]); // Список відділень
-  const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
-  const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
-  const [searchWarehouses, setSearchWarehouses] = useState("");
-  const [isDropdownCityVisible, setDropdownCityVisible] = useState(false);
-  const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
-    useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [courierDelivery, setCourierDelivery] = useState(false);
-  const [warehouseSearch, setWarehouseSearch] = useState(false);
+	const isLogin = useSelector(loggedInSelector);
+	const [customerType, setCustomerType] = useState("without-registered");
+	const [warehouses, setWarehouses] = useState([]); // Список відділень
+	const [searchCities, setSearchCities] = useState([]); // Список населених пунктів (складів) для обраного міста
+	const [searchText, setSearchText] = useState(""); // Текст для пошуку міст
+	const [searchWarehouses, setSearchWarehouses] = useState("");
+	const [isDropdownCityVisible, setDropdownCityVisible] = useState(false);
+	const [isDropdownWarehouseVisible, setDropdownWarehouseVisible] =
+		      useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [courierDelivery, setCourierDelivery] = useState(false);
+	const [warehouseSearch, setWarehouseSearch] = useState(false);
 
-  const [orderNumber, setOrderNumber] = useState("");
-  const userFirstName = useSelector(userSelectorfirstName);
-  const userLastName = useSelector(userSelectorlastName);
-  const userNumber = useSelector(userSelectorNumber);
-  const [courier, setCourier] = useState("Доставка на відділення");
-  const userEmail = useSelector(userSelectorEmail);
-  const isOptUser = useSelector(optUserSelector);
-  const items = useSelector(selectGoods);
-  const [formData, setFormData] = useState({
-    email: userEmail || "",
-    firstName: userFirstName || "",
-    lastName: userLastName || "",
-    number: userNumber || "+380",
-    city: "",
-    paymentMethod: "Оплата за реквізитами",
-    deliveryMethod: courier,
-    orderNumber: orderNumber,
-    isOptUser: isOptUser,
-  });
+	const [orderNumber, setOrderNumber] = useState("");
+	const userFirstName = useSelector(userSelectorfirstName);
+	const userLastName = useSelector(userSelectorlastName);
+	const userNumber = useSelector(userSelectorNumber);
+	const [courier, setCourier] = useState("Доставка на відділення");
+	const userEmail = useSelector(userSelectorEmail);
+	const isOptUser = useSelector(optUserSelector);
+	const items = useSelector(selectGoods);
+	const [formData, setFormData] = useState({
+		email:          userEmail || "",
+		firstName:      userFirstName || "",
+		lastName:       userLastName || "",
+		number:         userNumber || "+380",
+		city:           "",
+		paymentMethod:  "Оплата за реквізитами",
+		deliveryMethod: courier,
+		orderNumber:    orderNumber,
+		isOptUser:      isOptUser,
+	});
 
   const showOrderPlacedModal = () => {
     setIsModalOpen(true);
@@ -498,7 +498,40 @@ const OrderPlacement = () => {
     toast.info("Ви успішно зареєструвалися, авторизуйтеся");
   };
 
-  return (
+	useEffect(() => {
+		const now = Date.now();
+		const lastEventTime = sessionStorage.getItem('lastInitiateCheckoutTime');
+
+		if (lastEventTime) {
+			const diff = now - parseInt(lastEventTime, 10);
+			if (diff > 3000) {
+				return;
+			}
+		}
+
+		const handleSendEvent = async () => {
+			const userDataSelectors = {
+				em: userEmail,
+				ph: userNumber,
+				fn: userFirstName,
+				ln: userLastName
+			};
+
+			await trackInitiateCheckout(
+				totalCost,
+				cartItems.map(p => p._id),
+				userDataSelectors
+			);
+
+			sessionStorage.setItem('lastInitiateCheckoutTime', now.toString());
+		};
+
+		handleSendEvent();
+
+	}, [cartItems, totalCost, userEmail, userNumber, userFirstName, userLastName]);
+
+
+	return (
     <Container>
       <OrderForm>
         <OrderDetails>

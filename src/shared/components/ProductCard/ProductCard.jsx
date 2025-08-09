@@ -6,7 +6,7 @@ import axios from "axios";
 import {addToCart} from "../../../redux/cart/slice";
 import {selectCart} from "../../../redux/cart/selectors";
 import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
-import {trackAddToCart, trackViewContent} from "../../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart} from "../../../facebookInt/FacebookPixelEvent";
 
 import Button from "../Button/Button";
 
@@ -47,7 +47,6 @@ const ProductCard = ({ products, slider }) => {
 			top:      0,
 			behavior: "smooth",
 		});
-		await trackViewContent(products, userDataSelectors);
 	};
 
 	const handleAddToCart = async (event) => {

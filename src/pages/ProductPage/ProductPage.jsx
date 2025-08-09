@@ -64,7 +64,7 @@ import {
   getCategoryUrl2,
 } from "./ProductUtils";
 import NewSticker from "../../shared/components/Sticker/NewSticker";
-import {trackAddToCart} from "../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart, trackInitiateCheckout, trackViewContent} from "../../facebookInt/FacebookPixelEvent";
 import { transliterate } from "../../shared/components/transliterate";
 
 const ProductPage = () => {
@@ -86,8 +86,8 @@ const ProductPage = () => {
 	      email     = useSelector(userSelectorEmail),
 	      phone     = useSelector(userSelectorNumber),
 	      firstName = useSelector(userSelectorfirstName),
-	      lastName  = useSelector(userSelectorlastName);
-
+	      lastName  = useSelector(userSelectorlastName),
+	      userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -121,13 +121,28 @@ const ProductPage = () => {
     (item) => +item.id === +id || +item.productId === +id
   );
 
-  useEffect(() => {
-    if (product) {
-      setAmount(product.amount);
-    }
-  }, [product]);
+	useEffect(() => {
+		const now = Date.now();
+		const lastEventTime = sessionStorage.getItem('lastViewContentEventTime');
 
-  if (loading) {
+		const diff = now - parseInt(lastEventTime, 10);
+		if (lastEventTime && (diff < 3000)) {
+			return;
+		}
+
+		const handleTrackViewContent = async () => {
+			if (product) {
+				setAmount(product.amount);
+				await trackViewContent(product, userDataSelectors);
+				sessionStorage.setItem('lastViewContentEventTime', now.toString());
+			}
+		};
+
+		handleTrackViewContent();
+	}, [product]);
+
+
+	if (loading) {
     return (
       <Container>
         <Loader />

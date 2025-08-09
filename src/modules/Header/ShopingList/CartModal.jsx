@@ -7,7 +7,7 @@ import {toast} from "react-toastify";
 
 import {addToCart, removeQuantityCart, removeCart, setCart} from "../../../redux/cart/slice";
 import {selectCart} from "../../../redux/cart/selectors";
-import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
+import {loggedInSelector, optUserSelector} from "../../../redux/auth/selectors";
 
 import Button from "../../../shared/components/Button/Button";
 
@@ -38,18 +38,13 @@ import {
 } from "./ShopingListStyled";
 import { selectGoods } from "../../../redux/products/selectors";
 
-import {trackInitiateCheckout} from "../../../facebookInt/FacebookPixelEvent";
-const CartModal = ({ closeModal }) => {
+const CartModal = ({closeModal}) => {
 	const cartItems  = useSelector(selectCart),
 	      items      = useSelector(selectGoods),
 	      optUser    = useSelector(optUserSelector),
 	      isLoggedIn = useSelector(loggedInSelector),
 	      navigate   = useNavigate(),
-	      dispatch   = useDispatch(),
-	      email      = useSelector(userSelectorEmail),
-	      phone      = useSelector(userSelectorNumber),
-	      firstName  = useSelector(userSelectorfirstName),
-	      lastName   = useSelector(userSelectorlastName);
+	      dispatch   = useDispatch();
 
   const itemQuantities = useMemo(() => {
     return cartItems.reduce((quantities, item) => {
@@ -228,8 +223,6 @@ const CartModal = ({ closeModal }) => {
 			try {
 				navigate("/order");
 				closeModal();
-				const userDataSelectors = {em: email, ph: phone, fn: firstName, ln: lastName};
-				await trackInitiateCheckout(totalCost, cartItems.map(p => p._id), userDataSelectors);
 			} catch (error) {
 				console.error("Помилка розміщення замовлення:", error);
 			}
