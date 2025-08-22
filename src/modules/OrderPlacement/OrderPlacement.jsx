@@ -113,27 +113,10 @@ const OrderPlacement = () => {
     })
   );
 
-	const isEventSent = useRef(false);
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
 
-	const handleInputChange = async (e) => {
-		if (!isEventSent.current) {
-			isEventSent.current = true;
-			const userDataSelectors = {
-				em: userEmail,
-				ph: userNumber,
-				fn: userFirstName,
-				ln: userLastName
-			};
-
-			await trackInitiateCheckout(
-				totalCost,
-				cartItems.map(p => p._id),
-				userDataSelectors
-			);
-		}
-		const {name, value} = e.target;
-
-		setFormData({...formData, [name]: value});
+		setFormData({ ...formData, [name]: value });
 	};
 
   const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
@@ -514,6 +497,41 @@ const OrderPlacement = () => {
 		setCustomerType("registered"); // Зміна на true при успішній реєстрації
 		toast.info("Ви успішно зареєструвалися, авторизуйтеся");
 	};
+
+	useEffect(() => {
+		const now = Date.now();
+		const lastEventTime = sessionStorage.getItem('lastInitiateCheckoutTime');
+
+		if(totalCost === 0) {
+			return;
+		}
+		if (lastEventTime) {
+			const diff = now - parseInt(lastEventTime, 10);
+			if (diff < 3000) {
+				return;
+			}
+		}
+
+		const handleSendEvent = async () => {
+			const userDataSelectors = {
+				em: userEmail,
+				ph: userNumber,
+				fn: userFirstName,
+				ln: userLastName
+			};
+
+			await trackInitiateCheckout(
+				totalCost,
+				cartItems.map(p => p._id),
+				userDataSelectors
+			);
+
+			sessionStorage.setItem('lastInitiateCheckoutTime', now.toString());
+		};
+
+		handleSendEvent();
+
+	}, [cartItems, totalCost, userEmail, userNumber, userFirstName, userLastName]);
 
 	return (
     <Container>

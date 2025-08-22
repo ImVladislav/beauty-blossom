@@ -108,6 +108,7 @@ export const trackInitiateCheckout = async (totalCost, items, userSelectors = {}
 	if (window.fbq) {
 		try {
 			window.fbq('track', 'InitiateCheckout', {
+				source:       'manual',
 				value:        totalCost,
 				currency:     'UAH',
 				content_ids:  items,
