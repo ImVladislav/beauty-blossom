@@ -217,8 +217,8 @@ const CartModal = ({closeModal}) => {
       );
 
 	const placeOrder = async () => {
-		if (optUser && totalCost < 2500) {
-			toast.error("Мінімальна сума замовлення 2500 грн!");
+		if (optUser && totalCost < 3000) {
+			toast.error("Мінімальна сума замовлення 3000 грн!");
 		} else {
 			try {
 				navigate("/order");

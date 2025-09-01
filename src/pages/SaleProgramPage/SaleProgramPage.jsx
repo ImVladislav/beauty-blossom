@@ -123,7 +123,7 @@ const SaleProgramPage = () => {
               <Text>для оптових клієнтів:</Text>
               <ConditionsList>
                 <ConditionsItem>
-                  <Text>мінімальна сума замовлення 2500 грн</Text>
+                  <Text>мінімальна сума замовлення 3000 грн</Text>
                 </ConditionsItem>
                 <ConditionsItem>
                   <Text>оплата накладним платежем або за реквізитами ФОП</Text>

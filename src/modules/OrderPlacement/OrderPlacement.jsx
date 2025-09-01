@@ -272,8 +272,8 @@ const OrderPlacement = () => {
       setIsSubmitting(false);
       return;
     }
-    if (isOptUser && totalCost < 2500) {
-      toast.error("Мінімальна сума замовлення 2500 грн!");
+    if (isOptUser && totalCost < 3000) {
+      toast.error("Мінімальна сума замовлення 3000 грн!");
       setIsSubmitting(false);
       return;
     } else {
