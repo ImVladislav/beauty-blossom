@@ -1,18 +1,15 @@
 import React from "react";
-import {useMedia} from "../../hooks/useMedia";
 
 import retinol from '../../images/banner/bestKorean/retinol.png';
 import seoul from '../../images/banner/bestKorean/seoul.png';
 import axis from '../../images/banner/bestKorean/axis.png';
 import retinolMobile from '../../images/banner/bestKorean/retinol_mobile.png';
-import seoulMobile from '../../images/banner/bestKorean/seoulmobile.png';
 import axisMobile from '../../images/banner/bestKorean/axis_mobile.png';
 
 import Button from "../../components/Button";
 import {useNavigate} from "react-router-dom";
 
 const BestKoreanProducts = () => {
-	const {screenType} = useMedia();
 	const navigate = useNavigate();
 
 	return (
@@ -49,7 +46,7 @@ const BestKoreanProducts = () => {
 
 				<img className="z-0 absolute w-[240px] h-[240px] -bottom-[10px] right-[0px]" src={retinolMobile} alt="retinol"/>
 				<img className="z-0 absolute w-[230px] h-[230px] -bottom-[20px] -right-[60px]" src={axisMobile} alt="axis"/>
-				<img className="z-0 absolute w-[160px] h-[160px] -bottom-[15px] right-[10px]" src={seoulMobile} alt="seoulm"/>
+				<img className="z-0 absolute w-[155px] h-[155px] bottom-[3px] right-[13px]" src={seoul} alt="seoulm" style={{transform: "rotate(-4deg)"}}/>
 			</div>
 			<div
 				className="hidden xs:flex flex-col text-[#000E67] relative gap-[clamp(50px,8vw,113px)] z-0"
