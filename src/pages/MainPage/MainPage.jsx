@@ -16,6 +16,7 @@ import { Helmet } from "react-helmet";
 import Hero from "../../modules/HeroTrimay/Hero";
 
 import CategoryList from "../../modules/MainCategotyList/CategoryList";
+import BestKoreanProducts from "../../modules/Baners/BestKoreanProducts";
 
 const MainPage = () => {
   const { isDesktopScreen } = useMedia();
@@ -57,7 +58,7 @@ const MainPage = () => {
             <title>Beauty Blossom</title>
             <meta name="description" content="Головна сторінка" />
           </Helmet>
-          <Hero />
+          <BestKoreanProducts />
 
           {isDesktopScreen ? (
             <>
