@@ -66,8 +66,8 @@ const BestKoreanProducts = () => {
 					<Button
 						type="primary"
 						text="детальніше"
-						classes="!h-[clamp(29px,7vw,76px)] !w-[clamp(180px,35vw,458px)] bg-[#000E67] rounded-full"
-						textClasses="text-[clamp(16px,3.5vw,36px)]"
+						classes="!h-[clamp(29px,7vw,65px)] !w-[clamp(180px,35vw,380px)] bg-[#000E67] rounded-full"
+						textClasses="text-[clamp(16px,3.5vw,30px)]"
 						onClick={() => navigate('/novynky')}
 					/>
 				</div>
