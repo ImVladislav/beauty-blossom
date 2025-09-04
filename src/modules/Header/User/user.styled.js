@@ -71,12 +71,13 @@ export const LogInElips = styled.div`
 `;
 
 export const LogInIcon = styled(IoPersonOutline)`
-  width: 25px;
-  height: 25px;
-  fill: ${(p) => p.theme.colors.textColor};
-  &:hover {
-    fill: ${(p) => p.theme.colors.accentColor};
-  }
+	margin: auto;
+	width:  25px;
+	height: 25px;
+	fill:   ${(p) => p.theme.colors.textColor};
+	&:hover {
+		fill: ${(p) => p.theme.colors.accentColor};
+	}
 `;
 
 export const DropDown = styled.div`
