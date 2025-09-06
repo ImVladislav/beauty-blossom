@@ -90,7 +90,7 @@ const RecursiveMenu = ({
           onMouseEnter={() => handleMouseEnter("brands")}
           onMouseLeave={handleMouseLeave}
         >
-          <LinkStyle to={item.to}>
+          <LinkStyle className="max-h-[42.5px]" to={item.to}>
             {item.text}
             {expandedItem === "brands" ? (
               <RightIcon
