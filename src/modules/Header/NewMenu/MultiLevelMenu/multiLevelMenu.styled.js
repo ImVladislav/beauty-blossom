@@ -209,21 +209,20 @@ export const LinkBrand = styled(NavLink)`
 `;
 
 export const LinkStyle = styled(NavLink)`
-  text-decoration: none;
-
-  font-family: "Mulish", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.02312;
-  text-transform: lowercase;
-  text-align: center;
-  color: #616161;
-  padding: 12px;
-
-  display: flex;
-  align-items: center;
-  /* align-items: center; */
-  gap: 3px;
+	text-decoration: none;
+	
+	font-family:    "Mulish", sans-serif;
+	font-weight:    400;
+	font-size:      16px;
+	line-height:    1.02312;
+	text-transform: lowercase;
+	text-align:     center;
+	color:          #616161;
+	padding:        10px 12px;
+	display:        flex;
+	align-items:    center;
+	/* align-items: center; */
+	gap:            3px;
 
   transition: all 250ms linear;
   &.active {
