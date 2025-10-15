@@ -59,6 +59,17 @@ export const trackAddToCart = async (product, userSelectors) => {
 		console.log('Error: ', e);
 		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackAddToCart): ${e.message}\n\nStack:\n${e.stack}`);
 	}
+
+	try {
+		window.gtag('event', 'conversion', {
+			'send_to':  'AW-16897946922/BDTiCKvd_a0bEKrqyPk-',
+			'value':    product.price,
+			'currency': 'UAH',
+		});
+
+	} catch (e) {
+		console.log(e)
+	}
 }
 
 export const trackViewContent = async (product, userSelectors) => {
