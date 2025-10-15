@@ -64,7 +64,7 @@ import {
   getCategoryUrl2,
 } from "./ProductUtils";
 import NewSticker from "../../shared/components/Sticker/NewSticker";
-import {trackAddToCart, trackInitiateCheckout, trackViewContent} from "../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart, trackInitiateCheckout, trackViewContent} from "../../ads/AdEvents";
 import { transliterate } from "../../shared/components/transliterate";
 
 const ProductPage = () => {

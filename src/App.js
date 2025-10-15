@@ -36,7 +36,7 @@ import ForgottenPage from "./pages/ForgottenPage/ForgottenPage";
 import ForgottenIdPage from "./pages/ForgottenPage/ForgottenIdPage/ForgottenIdPage";
 import {HelmetProvider} from "react-helmet-async";
 import {useLocation} from 'react-router-dom';
-import {trackPageView} from "./facebookInt/FacebookPixelEvent";
+import {trackPageView} from "./ads/AdEvents";
 
 function App() {
 	const location  = useLocation(),

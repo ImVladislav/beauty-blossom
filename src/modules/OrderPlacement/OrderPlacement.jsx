@@ -58,7 +58,7 @@ import {OrderModalWindow} from "./OrderModal";
 import {deleteAll} from "../../redux/cart/slice";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-import {trackInitiateCheckout, trackPurchase} from "../../facebookInt/FacebookPixelEvent";
+import {trackInitiateCheckout, trackPurchase} from "../../ads/AdEvents";
 import Button from "../../shared/components/Button/Button";
 
 const OrderPlacement = () => {

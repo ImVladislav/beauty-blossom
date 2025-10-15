@@ -6,7 +6,7 @@ import axios from "axios";
 import {addToCart} from "../../../redux/cart/slice";
 import {selectCart} from "../../../redux/cart/selectors";
 import {loggedInSelector, optUserSelector, userSelectorEmail, userSelectorfirstName, userSelectorlastName, userSelectorNumber} from "../../../redux/auth/selectors";
-import {trackAddToCart} from "../../../facebookInt/FacebookPixelEvent";
+import {trackAddToCart} from "../../../ads/AdEvents";
 
 import Button from "../Button/Button";
 

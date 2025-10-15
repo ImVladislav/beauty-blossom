@@ -9,14 +9,14 @@ export const trackPageView = async (userSelectors = {}) => {
 	const eventId  = uuidv4(),
 	      userData = getHashedUserData(userSelectors);
 
-	if (window.fbq) {
-		try {
+	try {
+		if (window.fbq) {
 			window.fbq('track', 'PageView', {userData: userData}, {eventID: eventId});
-		} catch (e) {
-			console.error('❌ Помилка відправки Pixel PageView події:', e);
+		} else {
+			console.log('Warning: fbq is not defined');
 		}
-	} else {
-		console.log('Warning: fbq is not defined');
+	} catch (e) {
+		console.error('❌ Помилка відправки Pixel PageView події:', e);
 	}
 
 	try {
@@ -37,8 +37,8 @@ export const trackAddToCart = async (product, userSelectors) => {
 		      currency:     'UAH',
 	      };
 
-	if (window.fbq) {
-		try {
+	try {
+		if (window.fbq) {
 			window.fbq('track', 'AddToCart', {
 				content_ids:  [product._id],
 				content_type: 'product',
@@ -46,11 +46,11 @@ export const trackAddToCart = async (product, userSelectors) => {
 				currency:     'UAH',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} catch (e) {
-			console.error('❌ Помилка відправки Pixel AddToCart події:', e);
+		} else {
+			console.log('Warning: fbq is not defined');
 		}
-	} else {
-		console.log('Warning: fbq is not defined');
+	} catch (e) {
+		console.error('❌ Помилка відправки Pixel AddToCart події:', e);
 	}
 
 	try {
@@ -61,14 +61,18 @@ export const trackAddToCart = async (product, userSelectors) => {
 	}
 
 	try {
-		window.gtag('event', 'conversion', {
-			'send_to':  'AW-16897946922/BDTiCKvd_a0bEKrqyPk-',
-			'value':    product.price,
-			'currency': 'UAH',
-		});
-
+		if (window.gtag) {
+			window.gtag('event', 'conversion', {
+				'send_to':  'AW-16897946922/BDTiCKvd_a0bEKrqyPk-',
+				'value':    product.price,
+				'currency': 'UAH',
+			});
+		} else {
+			console.log('Warning: gtag is not defined');
+		}
 	} catch (e) {
-		console.log(e)
+		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка (Google Ads::trackAddToCart): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
@@ -82,8 +86,8 @@ export const trackViewContent = async (product, userSelectors) => {
 		      currency:     'UAH',
 	      };
 
-	if (window.fbq) {
-		try {
+	try {
+		if (window.fbq) {
 			window.fbq('track', 'ViewContent', {
 				content_ids:  [product._id],
 				content_type: 'product',
@@ -91,11 +95,11 @@ export const trackViewContent = async (product, userSelectors) => {
 				currency:     'UAH',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} catch (e) {
-			console.error('❌ Помилка відправки Pixel ViewContent події:', e);
+		} else {
+			console.log('Warning: fbq is not defined');
 		}
-	} else {
-		console.log('Warning: fbq is not defined');
+	} catch (e) {
+		console.error('❌ Помилка відправки Pixel ViewContent події:', e);
 	}
 
 	try {
@@ -116,8 +120,8 @@ export const trackInitiateCheckout = async (totalCost, items, userSelectors = {}
 		      content_type: 'product',
 	      };
 
-	if (window.fbq) {
-		try {
+	try {
+		if (window.fbq) {
 			window.fbq('track', 'InitiateCheckout', {
 				source:       'manual',
 				value:        totalCost,
@@ -126,11 +130,11 @@ export const trackInitiateCheckout = async (totalCost, items, userSelectors = {}
 				content_type: 'product',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} catch (e) {
-			console.error('❌ Помилка відправки Pixel InitiateCheckout події:', e);
+		} else {
+			console.log('Warning: fbq is not defined');
 		}
-	} else {
-		console.log('Warning: fbq is not defined');
+	} catch (e) {
+		console.error('❌ Помилка відправки Pixel InitiateCheckout події:', e);
 	}
 
 	try {
@@ -138,6 +142,21 @@ export const trackInitiateCheckout = async (totalCost, items, userSelectors = {}
 	} catch (e) {
 		console.log('Error: ', e);
 		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackInitiateCheckout): ${e.message}\n\nStack:\n${e.stack}`);
+	}
+
+	try {
+		if (window.gtag) {
+			window.gtag('event', 'conversion', {
+				'send_to':  'AW-16897946922/NdmWCP-Q9K0bEKrqyPk-',
+				'value':    totalCost,
+				'currency': 'UAH'
+			});
+		} else {
+			console.log('Warning: gtag is not defined');
+		}
+	} catch (e) {
+		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка (Google Ads::trackInitiateCheckout): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
@@ -151,8 +170,8 @@ export const trackPurchase = async (totalCost, items, userSelectors = {}) => {
 		      content_type: 'product',
 	      };
 
-	if (window.fbq) {
-		try {
+	try {
+		if (window.fbq) {
 			window.fbq('track', 'Purchase', {
 				value:        totalCost,
 				currency:     'UAH',
@@ -160,11 +179,11 @@ export const trackPurchase = async (totalCost, items, userSelectors = {}) => {
 				content_type: 'product',
 				user_data:    userData,
 			}, {eventID: eventId});
-		} catch (e) {
-			console.error('❌ Помилка відправки Pixel Purchase події:', e);
+		} else {
+			console.log('Warning: fbq is not defined');
 		}
-	} else {
-		console.log('Warning: fbq is not defined');
+	} catch (e) {
+		console.error('❌ Помилка відправки Pixel Purchase події:', e);
 	}
 
 	try {
@@ -172,6 +191,22 @@ export const trackPurchase = async (totalCost, items, userSelectors = {}) => {
 	} catch (e) {
 		console.log('Error: ', e);
 		await sendTelegramMessage(`❌ Помилка (FacebookPixelEvent::trackPurchase): ${e.message}\n\nStack:\n${e.stack}`);
+	}
+
+	try {
+		if (window.gtag) {
+			window.gtag('event', 'conversion', {
+				'send_to':        'AW-16897946922/a7FtCIKR9K0bEKrqyPk-',
+				'value':          totalCost,
+				'currency':       'UAH',
+				'transaction_id': eventId
+			});
+		} else {
+			console.log('Warning: gtag is not defined');
+		}
+	} catch (e) {
+		console.log('Error: ', e);
+		await sendTelegramMessage(`❌ Помилка (Google Ads::trackPurchase): ${e.message}\n\nStack:\n${e.stack}`);
 	}
 }
 
