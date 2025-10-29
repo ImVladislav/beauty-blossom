@@ -28,6 +28,8 @@ import {
 } from "./ProductCard.styled";
 import NewSticker from "../Sticker/NewSticker";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const ProductCard = ({ products, slider }) => {
 	// eslint-disable-next-line
 	const [isHovered, setIsHovered] = useState(false);
