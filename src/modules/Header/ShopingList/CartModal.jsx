@@ -87,27 +87,27 @@ const CartModal = ({closeModal}) => {
     [items, dispatch]
   );
 
-  const fetchUserCart = useCallback(async () => {
-    try {
-      const response = await axios.get(`/basket`);
-      const data = response.data;
-
-      if (data.length !== 0) {
-        updateCartPricesAndQuantities(data);
-      } else {
-        dispatch(setCart([]));
-      }
-    } catch (error) {
-      console.error("Помилка отримання корзини користувача:", error);
-      toast.error("Помилка отримання кошика");
-    }
-  }, [dispatch, updateCartPricesAndQuantities]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      //fetchUserCart();
-    }
-  }, [isLoggedIn, fetchUserCart]);
+  //const fetchUserCart = useCallback(async () => {
+  //  try {
+  //    const response = await axios.get(`/basket`);
+  //    const data = response.data;
+  //
+  //    if (data.length !== 0) {
+  //      updateCartPricesAndQuantities(data);
+  //    } else {
+  //      dispatch(setCart([]));
+  //    }
+  //  } catch (error) {
+  //    console.error("Помилка отримання корзини користувача:", error);
+  //    toast.error("Помилка отримання кошика");
+  //  }
+  //}, [dispatch, updateCartPricesAndQuantities]);
+  //
+  //useEffect(() => {
+  //  if (isLoggedIn) {
+  //    //fetchUserCart();
+  //  }
+  //}, [isLoggedIn, fetchUserCart]);
 
   useEffect(() => {
     if (cartItems.length > 0) {
