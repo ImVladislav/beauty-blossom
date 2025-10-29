@@ -105,12 +105,12 @@ const CartModal = ({closeModal}) => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      fetchUserCart();
+      //fetchUserCart();
     }
   }, [isLoggedIn, fetchUserCart]);
 
   useEffect(() => {
-    if (!isLoggedIn && cartItems.length > 0) {
+    if (cartItems.length > 0) {
       const updatedItems = cartItems
         .map((item) => {
           const correspondingItem = items.find((i) => i.code === item.code);
@@ -140,12 +140,7 @@ const CartModal = ({closeModal}) => {
     }
 
     try {
-      if (isLoggedIn) {
-        await updateCartItem(_id, newQuantity);
-        await fetchUserCart();
-      } else {
         dispatch(addToCart({ _id, quantity: newQuantity }));
-      }
     } catch (error) {
       toast.error("Помилка оновлення кількості");
     }
@@ -156,17 +151,12 @@ const CartModal = ({closeModal}) => {
 
     try {
       if (newQuantity > 0) {
-        if (isLoggedIn) {
-          await updateCartItem(itemId, newQuantity);
-          await fetchUserCart();
-        } else {
           dispatch(
             removeQuantityCart({
               _id: itemId,
               quantity: newQuantity,
             })
           );
-        }
       } else {
         await removeItem(itemId);
       }
@@ -177,12 +167,7 @@ const CartModal = ({closeModal}) => {
 
   const removeItem = async (itemId) => {
     try {
-      if (isLoggedIn) {
-        await removeCartItem(itemId);
-        await fetchUserCart();
-      } else {
         dispatch(removeCart({ itemId }));
-      }
     } catch (error) {
       toast.error("Помилка видалення товару");
     }
@@ -253,16 +238,12 @@ const CartModal = ({closeModal}) => {
             <GoodsBlock>
               {cartItems
                 .filter((item) => {
-                  if (!isLoggedIn) {
                     if (itemQuantities[item._id] === 0) {
                       removeItem(item._id);
                       return false;
                     }
 
                     return true;
-                  } else {
-                    return true;
-                  }
                 })
                 .map(
                   (item) =>
