@@ -55,6 +55,9 @@ const CartModal = ({closeModal}) => {
 
 	const updateCartPricesAndQuantities = useCallback(
 		(data) => {
+			if (items.length === 0) {
+				return;
+			}
 			const updatedCartItems = data
 				.map((cartItem) => {
 					const correspondingItem = items.find(
@@ -89,30 +92,33 @@ const CartModal = ({closeModal}) => {
 		[items, dispatch]
 	);
 
-	//const fetchUserCart = useCallback(async () => {
-	//  try {
-	//    const response = await axios.get(`/basket`);
-	//    const data = response.data;
-	//
-	//    if (data.length !== 0) {
-	//      updateCartPricesAndQuantities(data);
-	//    } else {
-	//      dispatch(setCart([]));
-	//    }
-	//  } catch (error) {
-	//    console.error("Помилка отримання корзини користувача:", error);
-	//    toast.error("Помилка отримання кошика");
-	//  }
-	//}, [dispatch, updateCartPricesAndQuantities]);
-	//
-	//useEffect(() => {
-	//  if (isLoggedIn) {
-	//    //fetchUserCart();
-	//  }
-	//}, [isLoggedIn, fetchUserCart]);
+	const fetchUserCart = useCallback(async () => {
+		try {
+			const response = await axios.get(`/basket`);
+			const data = response.data;
+
+			if (data.length !== 0) {
+				updateCartPricesAndQuantities(data);
+			} else {
+				dispatch(setCart([]));
+			}
+		} catch (error) {
+			console.error("Помилка отримання корзини користувача:", error);
+			toast.error("Помилка отримання кошика");
+		}
+	}, [dispatch, updateCartPricesAndQuantities]);
 
 	useEffect(() => {
-		if (cartItems.length > 0) {
+		if (isLoggedIn) {
+			fetchUserCart();
+		}
+	}, [isLoggedIn, fetchUserCart]);
+
+	useEffect(() => {
+		if (items.length === 0) {
+			return;
+		}
+		if (!isLoggedIn && cartItems.length > 0) {
 			const updatedItems = cartItems
 				.map((item) => {
 					const correspondingItem = items.find((i) => i.code === item.code);
@@ -144,7 +150,12 @@ const CartModal = ({closeModal}) => {
 		}
 
 		try {
-			dispatch(addToCart({_id, quantity: newQuantity}));
+			if (isLoggedIn) {
+				await updateCartItem(_id, newQuantity);
+				await fetchUserCart();
+			} else {
+				dispatch(addToCart({_id, quantity: newQuantity}));
+			}
 		} catch (error) {
 			toast.error("Помилка оновлення кількості");
 		}
@@ -155,12 +166,17 @@ const CartModal = ({closeModal}) => {
 
 		try {
 			if (newQuantity > 0) {
-				dispatch(
-					removeQuantityCart({
-						_id:      itemId,
-						quantity: newQuantity,
-					})
-				);
+				if (isLoggedIn) {
+					await updateCartItem(itemId, newQuantity);
+					await fetchUserCart();
+				} else {
+					dispatch(
+						removeQuantityCart({
+							_id:      itemId,
+							quantity: newQuantity,
+						})
+					);
+				}
 			} else {
 				await removeItem(itemId);
 			}
@@ -171,7 +187,12 @@ const CartModal = ({closeModal}) => {
 
 	const removeItem = async (itemId) => {
 		try {
-			dispatch(removeCart({itemId}));
+			if (isLoggedIn) {
+				await removeCartItem(itemId);
+				await fetchUserCart();
+			} else {
+				dispatch(removeCart({itemId}));
+			}
 		} catch (error) {
 			toast.error("Помилка видалення товару");
 		}
@@ -242,12 +263,16 @@ const CartModal = ({closeModal}) => {
 						<GoodsBlock>
 							{cartItems
 								.filter((item) => {
-									if (itemQuantities[item._id] === 0) {
-										removeItem(item._id);
-										return false;
-									}
+									if (!isLoggedIn) {
+										if (itemQuantities[item._id] === 0) {
+											removeItem(item._id);
+											return false;
+										}
 
-									return true;
+										return true;
+									} else {
+										return true;
+									}
 								})
 								.map(
 									(item) =>
