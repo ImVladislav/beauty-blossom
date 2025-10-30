@@ -75,8 +75,8 @@ const ProductCard = ({ products, slider }) => {
 						new:            products.new,
 						sale:           products.sale,
 						category:       products.category,
-						subCategory:    products.subCategory,
-						subSubCategory: products.subSubCategory,
+						subCategory:    products.subCategory || '-',
+						subSubCategory: products.subSubCategory || '-',
 						productId:      products.id,
 					});
 				}
