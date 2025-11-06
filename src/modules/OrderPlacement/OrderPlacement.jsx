@@ -98,386 +98,386 @@ const OrderPlacement = () => {
 		isOptUser:      isOptUser,
 	});
 
-  const showOrderPlacedModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const cartItems = useSelector(selectCart);
-
-  const updateItems = cartItems.filter((card) =>
-    items.some((item) => {
-      if (item.code === card.code && item.amount === 0) {
-        return false; // Видаляємо card, якщо умова виконана
-      }
-      return item.code === card.code;
-    })
-  );
-
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-
-		setFormData({ ...formData, [name]: value });
+	const showOrderPlacedModal = () => {
+		setIsModalOpen(true);
 	};
 
-  const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
+	const cartItems = useSelector(selectCart);
 
-  // Генерація номера замовлення
-  function logCurrentTime12HourFormat() {
-    const currentTime = new Date();
-    let hours = currentTime.getHours();
-    const minutes = currentTime.getMinutes();
-    const seconds = currentTime.getSeconds();
-    const milliseconds = currentTime.getMilliseconds();
+	const updateItems = cartItems.filter((card) =>
+		items.some((item) => {
+			if (item.code === card.code && item.amount === 0) {
+				return false; // Видаляємо card, якщо умова виконана
+			}
+			return item.code === card.code;
+		})
+	);
 
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    const formattedMilliseconds =
-      milliseconds < 10
-        ? `00${milliseconds}`
-        : milliseconds < 100
-        ? `0${milliseconds}`
-        : milliseconds;
+	const handleInputChange = (e) => {
+		const {name, value} = e.target;
 
-    setOrderNumber(
-      `${hours}${formattedMinutes}${formattedSeconds}${formattedMilliseconds}`
-    );
-  }
+		setFormData({...formData, [name]: value});
+	};
 
-  useEffect(() => {
-    logCurrentTime12HourFormat();
-  }, []);
+	const apiKey = "c9cfd468abe7e624f872ca0e59a29184";
 
-  useEffect(() => {
-    if (formData.deliveryMethod === "Доставка на відділення") {
-      setCourierDelivery("1");
-    }
+	// Генерація номера замовлення
+	function logCurrentTime12HourFormat() {
+		const currentTime = new Date();
+		let hours = currentTime.getHours();
+		const minutes = currentTime.getMinutes();
+		const seconds = currentTime.getSeconds();
+		const milliseconds = currentTime.getMilliseconds();
 
-    if (formData.deliveryMethod === "Доставка кур'єром") {
-      setCourierDelivery("2");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [handleInputChange]);
+		const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+		const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+		const formattedMilliseconds =
+			      milliseconds < 10
+				      ? `00${milliseconds}`
+				      : milliseconds < 100
+					      ? `0${milliseconds}`
+					      : milliseconds;
 
-  const handleCityChange = async () => {
-    try {
-      const requestData = {
-        apiKey: apiKey,
-        modelName: "Address",
-        calledMethod: "searchSettlements",
-        methodProperties: {
-          Page: "1",
-          CityName: searchText,
-          Limit: "50",
-        },
-      };
+		setOrderNumber(
+			`${hours}${formattedMinutes}${formattedSeconds}${formattedMilliseconds}`
+		);
+	}
 
-      const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestData),
-      });
+	useEffect(() => {
+		logCurrentTime12HourFormat();
+	}, []);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      const data = await response.json();
-      const addresses = data.data[0].Addresses;
+	useEffect(() => {
+		if (formData.deliveryMethod === "Доставка на відділення") {
+			setCourierDelivery("1");
+		}
 
-      if (data.success) {
-        setSearchCities(addresses);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const handleWarehousesChange = async () => {
-    try {
-      const requestData = {
-        apiKey: apiKey,
-        modelName: "Address",
-        calledMethod: "getWarehouses",
-        methodProperties: {
-          CityRef: warehouseSearch,
-          Limit: "4000",
-        },
-      };
+		if (formData.deliveryMethod === "Доставка кур'єром") {
+			setCourierDelivery("2");
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [handleInputChange]);
 
-      if (searchWarehouses) {
-        requestData.methodProperties.WarehouseRef = searchWarehouses;
-      }
+	const handleCityChange = async () => {
+		try {
+			const requestData = {
+				apiKey:           apiKey,
+				modelName:        "Address",
+				calledMethod:     "searchSettlements",
+				methodProperties: {
+					Page:     "1",
+					CityName: searchText,
+					Limit:    "50",
+				},
+			};
 
-      const response = await fetch(
-        "https://api.novaposhta.ua/v2.0/json/Address",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        }
-      );
+			const response = await fetch("https://api.novaposhta.ua/v2.0/json/", {
+				method:  "POST",
+				headers: {
+					Accept:         "application/json, text/plain, */*",
+					"Content-Type": "application/json",
+				},
+				body:    JSON.stringify(requestData),
+			});
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+			const data = await response.json();
+			const addresses = data.data[0].Addresses;
 
-      const data = await response.json();
-      if (data.success) {
+			if (data.success) {
+				setSearchCities(addresses);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	const handleWarehousesChange = async () => {
+		try {
+			const requestData = {
+				apiKey:           apiKey,
+				modelName:        "Address",
+				calledMethod:     "getWarehouses",
+				methodProperties: {
+					CityRef: warehouseSearch,
+					Limit:   "4000",
+				},
+			};
 
-        setWarehouses(data.data);
-      }
-    } catch (error) {
-      console.error(
-        "Помилка запиту до API Нової Пошти для населених пунктів",
-        error
-      );
-    }
-  };
+			if (searchWarehouses) {
+				requestData.methodProperties.WarehouseRef = searchWarehouses;
+			}
 
-  useEffect(() => {
-    if (searchText) {
-      handleCityChange();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchText]);
+			const response = await fetch(
+				"https://api.novaposhta.ua/v2.0/json/Address",
+				{
+					method:  "POST",
+					headers: {
+						Accept:         "application/json, text/plain, */*",
+						"Content-Type": "application/json",
+					},
+					body:    JSON.stringify(requestData),
+				}
+			);
 
-  useEffect(() => {
-    if (warehouseSearch) {
-      handleCityChange();
-    }
-    handleWarehousesChange();
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchWarehouses]);
+			const data = await response.json();
+			if (data.success) {
 
-  const totalCost = isOptUser
-    ? updateItems.reduce(
-        (total, item) => total + item.priceOPT * item.quantity,
-        0
-      )
-    : updateItems.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0
-      );
+				setWarehouses(data.data);
+			}
+		} catch (error) {
+			console.error(
+				"Помилка запиту до API Нової Пошти для населених пунктів",
+				error
+			);
+		}
+	};
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+	useEffect(() => {
+		if (searchText) {
+			handleCityChange();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchText]);
 
-    if (totalCost === 0) {
-      toast.error("Для замовлення потрібно щось обрати!");
-      setIsSubmitting(false);
-      return;
-    }
-    if (isOptUser && totalCost < 3000) {
-      toast.error("Мінімальна сума замовлення 3000 грн!");
-      setIsSubmitting(false);
-      return;
-    } else {
-      setIsSubmitting(true);
-    }
+	useEffect(() => {
+		if (warehouseSearch) {
+			handleCityChange();
+		}
+		handleWarehousesChange();
 
-    if (courierDelivery === "1") {
-      if (!searchText || (!searchWarehouses && courierDelivery)) {
-        toast.error("Будь ласка, виберіть місто та відділення");
-        setIsSubmitting(false);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [searchWarehouses]);
 
-        return;
-      }
-    }
-    if (orderNumber === "") {
-      toast.error(
-        "Щось пішло не так, спробуйте ще раз, або зверніться до адміністратора"
-      );
-      setIsSubmitting(false);
-      return;
-    }
-    if (!formData.firstName) {
-      toast.error("Введіть ім'я отримувача.");
-      setIsSubmitting(false);
-      return;
-    }
-    if (!formData.lastName) {
-      toast.error("Введіть прізвище отримувача.");
-      setIsSubmitting(false);
-      return;
-    }
+	const totalCost = isOptUser
+		? updateItems.reduce(
+			(total, item) => total + item.priceOPT * item.quantity,
+			0
+		)
+		: updateItems.reduce(
+			(total, item) => total + item.price * item.quantity,
+			0
+		);
 
-    const phonePattern = /^\+380\d{9}$/;
-    const trimedVlaue = formData.number;
+	const handleFormSubmit = async (e) => {
+		e.preventDefault();
 
-    const isPhoneValid = phonePattern.test(trimedVlaue);
+		if (totalCost === 0) {
+			toast.error("Для замовлення потрібно щось обрати!");
+			setIsSubmitting(false);
+			return;
+		}
+		if (isOptUser && totalCost < 3000) {
+			toast.error("Мінімальна сума замовлення 3000 грн!");
+			setIsSubmitting(false);
+			return;
+		} else {
+			setIsSubmitting(true);
+		}
 
-    if (!isPhoneValid) {
-      toast.error("Введіть коректний номер телефону з 12 цифр, включаючи +380");
-      setIsSubmitting(false);
-      return;
-    }
-    if (!formData.number) {
-      toast.error("Введіть номер телефону отримувача.");
-      setIsSubmitting(false);
-      return;
-    }
-    if (!formData.email) {
-      toast.error("Введіть адресу вашої пошти.", {
-        className: "custom-toast",
-      });
-      setIsSubmitting(false);
-      return;
-    }
+		if (courierDelivery === "1") {
+			if (!searchText || (!searchWarehouses && courierDelivery)) {
+				toast.error("Будь ласка, виберіть місто та відділення");
+				setIsSubmitting(false);
 
-	  const orderedItems = updateItems.map((item) => ({
-		  productId: item.id || item.productId,
-		  images:    item.images,
-		  name:      item.name,
-		  sale:      item.sale,
-		  code:      item.code.toString(),
-		  quantity:  item.quantity,
-		  amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
-	  }));
+				return;
+			}
+		}
+		if (orderNumber === "") {
+			toast.error(
+				"Щось пішло не так, спробуйте ще раз, або зверніться до адміністратора"
+			);
+			setIsSubmitting(false);
+			return;
+		}
+		if (!formData.firstName) {
+			toast.error("Введіть ім'я отримувача.");
+			setIsSubmitting(false);
+			return;
+		}
+		if (!formData.lastName) {
+			toast.error("Введіть прізвище отримувача.");
+			setIsSubmitting(false);
+			return;
+		}
 
-	  const orderedItemsSecond = updateItems.map((item) => ({
-		  _id:       item._id,
-		  productId: item.id || item.productId,
-		  images:    item.images,
-		  name:      item.name,
-		  sale:      item.sale,
-		  code:      item.code.toString(),
-		  quantity:  item.quantity,
-		  amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
-	  }));
+		const phonePattern = /^\+380\d{9}$/;
+		const trimedVlaue = formData.number;
 
-    const dataToSendCourier = {
-      ...formData,
-      email: userEmail || formData.email,
-      firstName: userFirstName || formData.firstName,
-      lastName: userLastName || formData.lastName,
-      number: userNumber || formData.number,
-      city: searchText,
-      deliveryMethod: formData.deliveryMethod,
-      comments: formData.comments,
-      orderedItems: orderedItems,
-      amount: totalCost,
-      status: "Новий",
-      address: formData.address,
-      building: formData.house,
-      apartment: formData.apartment,
-      orderNumber: orderNumber,
-      isOptUser: isOptUser,
-    };
+		const isPhoneValid = phonePattern.test(trimedVlaue);
 
-    const dataToSendWarehouse = {
-      ...formData,
-      email: userEmail || formData.email,
-      firstName: userFirstName || formData.firstName,
-      lastName: userLastName || formData.lastName,
-      number: userNumber || formData.number,
-      city: searchText,
-      comments: formData.comments,
-      deliveryMethod: formData.deliveryMethod,
-      warehouse: searchWarehouses === "" ? " " : searchWarehouses,
-      orderedItems: orderedItems,
-      amount: totalCost,
-      status: "Новий",
-      orderNumber: orderNumber,
-      isOptUser: isOptUser,
-    };
-    const removeCartItem = async () => {
-      try {
-        await axios.delete(`/basket/`);
-      } catch (error) {
-        console.error("Помилка видалення товарів з кошика:", error);
-      }
-    };
+		if (!isPhoneValid) {
+			toast.error("Введіть коректний номер телефону з 12 цифр, включаючи +380");
+			setIsSubmitting(false);
+			return;
+		}
+		if (!formData.number) {
+			toast.error("Введіть номер телефону отримувача.");
+			setIsSubmitting(false);
+			return;
+		}
+		if (!formData.email) {
+			toast.error("Введіть адресу вашої пошти.", {
+				className: "custom-toast",
+			});
+			setIsSubmitting(false);
+			return;
+		}
 
-    const ordersUrl = "https://beauty-blossom-backend.onrender.com/api/orders";
+		const orderedItems = updateItems.map((item) => ({
+			productId: item.id || item.productId,
+			images:    item.images,
+			name:      item.name,
+			sale:      item.sale,
+			code:      item.code.toString(),
+			quantity:  item.quantity,
+			amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
+		}));
 
-    try {
-      const response = await axios.post(
-        ordersUrl,
-        courier === "no" ? dataToSendCourier : dataToSendWarehouse
-      );
+		const orderedItemsSecond = updateItems.map((item) => ({
+			_id:       item._id,
+			productId: item.id || item.productId,
+			images:    item.images,
+			name:      item.name,
+			sale:      item.sale,
+			code:      item.code.toString(),
+			quantity:  item.quantity,
+			amount:    (isOptUser ? item.priceOPT : item.price) * item.quantity,
+		}));
 
-      // Якщо сервер повертає помилку, не продовжуємо обробку
-      if (!response.status === 201) {
-        throw new Error(
-          response.data.message || "Помилка створення замовлення"
-        );
-      }
-	    // Якщо все пройшло успішно, обробляємо відповідь
-	    try {
-		    const userDataSelectors = {em: userEmail, ph: userNumber, fn: userFirstName, ln: userLastName};
-		    await trackPurchase(totalCost, orderedItemsSecond.map(p => p._id), userDataSelectors);
-	    } catch (error) {
-		    console.error("Помилка розміщення замовлення:", error);
-	    }
-	  if (isLogin) {
-        removeCartItem();
-      }
-      dispatch(deleteAll());
-      showOrderPlacedModal();
-      setFormData({
-        email: userEmail || "",
-        firstName: userFirstName || "",
-        lastName: userLastName || "",
-        number: userNumber || null,
-        city: "",
-        orderNumber: orderNumber,
-        paymentMethod: "",
-        deliveryMethod: "",
-        comments: "",
-        address: "",
-        building: "",
-        apartment: "",
-        isOptUser: isOptUser,
-      });
+		const dataToSendCourier = {
+			...formData,
+			email:          userEmail || formData.email,
+			firstName:      userFirstName || formData.firstName,
+			lastName:       userLastName || formData.lastName,
+			number:         userNumber || formData.number,
+			city:           searchText,
+			deliveryMethod: formData.deliveryMethod,
+			comments:       formData.comments,
+			orderedItems:   orderedItems,
+			amount:         totalCost,
+			status:         "Новий",
+			address:        formData.address,
+			building:       formData.house,
+			apartment:      formData.apartment,
+			orderNumber:    orderNumber,
+			isOptUser:      isOptUser,
+		};
 
-      setIsModalOpen(true);
-    } catch (error) {
-      console.error("Помилка створення замовлення:", error);
-      toast.error(`Помилка створення замовлення: ${error.message}`);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+		const dataToSendWarehouse = {
+			...formData,
+			email:          userEmail || formData.email,
+			firstName:      userFirstName || formData.firstName,
+			lastName:       userLastName || formData.lastName,
+			number:         userNumber || formData.number,
+			city:           searchText,
+			comments:       formData.comments,
+			deliveryMethod: formData.deliveryMethod,
+			warehouse:      searchWarehouses === "" ? " " : searchWarehouses,
+			orderedItems:   orderedItems,
+			amount:         totalCost,
+			status:         "Новий",
+			orderNumber:    orderNumber,
+			isOptUser:      isOptUser,
+		};
+		const removeCartItem = async () => {
+			try {
+				await axios.delete(`/basket/`);
+			} catch (error) {
+				console.error("Помилка видалення товарів з кошика:", error);
+			}
+		};
 
-  function throttle(func, delay) {
-    let inThrottle;
-    return function () {
-      const args = arguments;
-      const context = this;
+		const ordersUrl = "https://beautyblossom-backend-production.onrender.com/api/orders";
 
-      if (!inThrottle) {
-        func.apply(context, args);
-        inThrottle = true;
-        setTimeout(() => (inThrottle = false), delay);
-      }
-    };
-  }
+		try {
+			const response = await axios.post(
+				ordersUrl,
+				courier === "no" ? dataToSendCourier : dataToSendWarehouse
+			);
 
-  const handleSearchTextChange = throttle((e) => {
-    const value = e.target.value;
-    setSearchText(value);
-    if (value.length > 2) {
-      setDropdownCityVisible(searchCities.length < 40);
-    }
+			// Якщо сервер повертає помилку, не продовжуємо обробку
+			if (!response.status === 201) {
+				throw new Error(
+					response.data.message || "Помилка створення замовлення"
+				);
+			}
+			// Якщо все пройшло успішно, обробляємо відповідь
+			try {
+				const userDataSelectors = {em: userEmail, ph: userNumber, fn: userFirstName, ln: userLastName};
+				await trackPurchase(totalCost, orderedItemsSecond.map(p => p._id), userDataSelectors);
+			} catch (error) {
+				console.error("Помилка розміщення замовлення:", error);
+			}
+			if (isLogin) {
+				removeCartItem();
+			}
+			dispatch(deleteAll());
+			showOrderPlacedModal();
+			setFormData({
+				email:          userEmail || "",
+				firstName:      userFirstName || "",
+				lastName:       userLastName || "",
+				number:         userNumber || null,
+				city:           "",
+				orderNumber:    orderNumber,
+				paymentMethod:  "",
+				deliveryMethod: "",
+				comments:       "",
+				address:        "",
+				building:       "",
+				apartment:      "",
+				isOptUser:      isOptUser,
+			});
 
-    setDropdownCityVisible(value.length > 2);
-  }, 300);
+			setIsModalOpen(true);
+		} catch (error) {
+			console.error("Помилка створення замовлення:", error);
+			toast.error(`Помилка створення замовлення: ${error.message}`);
+		} finally {
+			setIsSubmitting(false);
+		}
+	};
 
-  const handleSearchTextChangeWarehose = throttle((e) => {
-    const value = e.target.value;
-    setSearchWarehouses(value);
+	function throttle(func, delay) {
+		let inThrottle;
+		return function () {
+			const args = arguments;
+			const context = this;
+
+			if (!inThrottle) {
+				func.apply(context, args);
+				inThrottle = true;
+				setTimeout(() => (inThrottle = false), delay);
+			}
+		};
+	}
+
+	const handleSearchTextChange = throttle((e) => {
+		const value = e.target.value;
+		setSearchText(value);
+		if (value.length > 2) {
+			setDropdownCityVisible(searchCities.length < 40);
+		}
+
+		setDropdownCityVisible(value.length > 2);
+	}, 300);
+
+	const handleSearchTextChangeWarehose = throttle((e) => {
+		const value = e.target.value;
+		setSearchWarehouses(value);
 
 
-    if (value.length > 2) {
-      setDropdownWarehouseVisible(searchWarehouses.length < 20);
-    }
-    setDropdownWarehouseVisible(value.length >= 1);
-  }, 300);
+		if (value.length > 2) {
+			setDropdownWarehouseVisible(searchWarehouses.length < 20);
+		}
+		setDropdownWarehouseVisible(value.length >= 1);
+	}, 300);
 
 	const handleCitySelect = (city, DeliveryCity) => {
 		const selectedCityWithArea = `${city}`;
@@ -502,7 +502,7 @@ const OrderPlacement = () => {
 		const now = Date.now();
 		const lastEventTime = sessionStorage.getItem('lastInitiateCheckoutTime');
 
-		if(totalCost === 0) {
+		if (totalCost === 0) {
 			return;
 		}
 		if (lastEventTime) {
@@ -534,378 +534,378 @@ const OrderPlacement = () => {
 	}, [cartItems, totalCost, userEmail, userNumber, userFirstName, userLastName]);
 
 	return (
-    <Container>
-      <OrderForm>
-        <OrderDetails>
-          <Title>Оформлення замовлення</Title>
-          <DivInfoBlock>
-            <InfoTextP>
-              Відправка замовлень відбувається протягом 1-3 робочих днів
-              {/* <InfoTextSpan> 1-3 робочих днів </InfoTextSpan> */} з моменту
-              оформлення.
-            </InfoTextP>
-            <InfoTextP>
-              *Замовлення здійсненні на вихідних обробляються в понеділок
-            </InfoTextP>
-          </DivInfoBlock>
-          {!isLogin && (
-            <CostumerStatus>
-              <CostumerStatusItem htmlFor="registered">
-                <input
-                  style={{ marginRight: "3px" }}
-                  type="radio"
-                  id="registered"
-                  name="customer"
-                  value="registered"
-                  checked={customerType === "registered"}
-                  onChange={() => setCustomerType("registered")}
-                />
-                Я зареєстрований
-              </CostumerStatusItem>
+		<Container>
+			<OrderForm>
+				<OrderDetails>
+					<Title>Оформлення замовлення</Title>
+					<DivInfoBlock>
+						<InfoTextP>
+							Відправка замовлень відбувається протягом 1-3 робочих днів
+							{/* <InfoTextSpan> 1-3 робочих днів </InfoTextSpan> */} з моменту
+							оформлення.
+						</InfoTextP>
+						<InfoTextP>
+							*Замовлення здійсненні на вихідних обробляються в понеділок
+						</InfoTextP>
+					</DivInfoBlock>
+					{!isLogin && (
+						<CostumerStatus>
+							<CostumerStatusItem htmlFor="registered">
+								<input
+									style={{marginRight: "3px"}}
+									type="radio"
+									id="registered"
+									name="customer"
+									value="registered"
+									checked={customerType === "registered"}
+									onChange={() => setCustomerType("registered")}
+								/>
+								Я зареєстрований
+							</CostumerStatusItem>
 
-              <CostumerStatusItem htmlFor="not-registered">
-                <input
-                  style={{ marginRight: "3px" }}
-                  type="radio"
-                  id="not-registered"
-                  name="customer"
-                  value="not-registered"
-                  checked={customerType === "not-registered"}
-                  onChange={() => setCustomerType("not-registered")}
-                />
-                Зареєструватись?
-              </CostumerStatusItem>
-              <CostumerStatusItem htmlFor="without-registered">
-                <input
-                  style={{ marginRight: "3px" }}
-                  type="radio"
-                  id="without-registered"
-                  name="customer"
-                  value="without-registered"
-                  checked={customerType === "without-registered"}
-                  onChange={() => setCustomerType("without-registered")}
-                />
-                Продовжити без реєстрації
-              </CostumerStatusItem>
-            </CostumerStatus>
-          )}
-          {customerType === "registered" && !isLogin && <Login />}
-          {customerType === "not-registered" && !isLogin && (
-            <Register onRegisterSuccess={onRegisterSuccess} />
-          )}
-          {customerType === "without-registered" || isLogin ? (
-            <Form onSubmit={handleFormSubmit}>
-              <DeliveryInfoBlock>
-                <Titles>контактні дані</Titles>
-                <label htmlFor="firstName"></label>
-                <CostumerStatusinput
-                  type="text"
-                  id="firstName"
-                  name="firstName"
-                  placeholder="Введіть імя отримувача*"
-                  value={formData.firstName || ""}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="lastName"></label>
-                <CostumerStatusinput
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Введіть прізвище отримувача*"
-                  value={formData.lastName || ""}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="number"></label>
-                <CostumerStatusinput
-                  type="text"
-                  id="number"
-                  name="number"
-                  placeholder="Введіть номер телефону починаючи з +380 *"
-                  value={formData.number || ""}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="email"></label>
-                <CostumerStatusinput
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Введіть адресу вашої пошти*"
-                  value={formData.email || ""}
-                  onChange={handleInputChange}
-                />
-                <Titles>Доставка</Titles>
-                <Select
-                  id="deliveryMethod"
-                  name="deliveryMethod"
-                  value={formData.deliveryMethod}
-                  onChange={(e) => {
-                    handleInputChange(e);
-                    if (e.target.value === "Доставка на відділення") {
-                      setCourier("Доставка на відділення");
-                    } else if (e.target.value === "Доставка кур'єром") {
-                      setCourier("Доставка кур'єром");
-                    }
-                  }}
-                >
-                  <option value="Доставка на відділення">
-                    Доставка на відділення
-                  </option>
-                  <option value="Доставка кур'єром">Доставка кур'єром</option>
-                </Select>
+							<CostumerStatusItem htmlFor="not-registered">
+								<input
+									style={{marginRight: "3px"}}
+									type="radio"
+									id="not-registered"
+									name="customer"
+									value="not-registered"
+									checked={customerType === "not-registered"}
+									onChange={() => setCustomerType("not-registered")}
+								/>
+								Зареєструватись?
+							</CostumerStatusItem>
+							<CostumerStatusItem htmlFor="without-registered">
+								<input
+									style={{marginRight: "3px"}}
+									type="radio"
+									id="without-registered"
+									name="customer"
+									value="without-registered"
+									checked={customerType === "without-registered"}
+									onChange={() => setCustomerType("without-registered")}
+								/>
+								Продовжити без реєстрації
+							</CostumerStatusItem>
+						</CostumerStatus>
+					)}
+					{customerType === "registered" && !isLogin && <Login/>}
+					{customerType === "not-registered" && !isLogin && (
+						<Register onRegisterSuccess={onRegisterSuccess}/>
+					)}
+					{customerType === "without-registered" || isLogin ? (
+						<Form onSubmit={handleFormSubmit}>
+							<DeliveryInfoBlock>
+								<Titles>контактні дані</Titles>
+								<label htmlFor="firstName"></label>
+								<CostumerStatusinput
+									type="text"
+									id="firstName"
+									name="firstName"
+									placeholder="Введіть імя отримувача*"
+									value={formData.firstName || ""}
+									onChange={handleInputChange}
+								/>
+								<label htmlFor="lastName"></label>
+								<CostumerStatusinput
+									type="text"
+									id="lastName"
+									name="lastName"
+									placeholder="Введіть прізвище отримувача*"
+									value={formData.lastName || ""}
+									onChange={handleInputChange}
+								/>
+								<label htmlFor="number"></label>
+								<CostumerStatusinput
+									type="text"
+									id="number"
+									name="number"
+									placeholder="Введіть номер телефону починаючи з +380 *"
+									value={formData.number || ""}
+									onChange={handleInputChange}
+								/>
+								<label htmlFor="email"></label>
+								<CostumerStatusinput
+									type="email"
+									id="email"
+									name="email"
+									placeholder="Введіть адресу вашої пошти*"
+									value={formData.email || ""}
+									onChange={handleInputChange}
+								/>
+								<Titles>Доставка</Titles>
+								<Select
+									id="deliveryMethod"
+									name="deliveryMethod"
+									value={formData.deliveryMethod}
+									onChange={(e) => {
+										handleInputChange(e);
+										if (e.target.value === "Доставка на відділення") {
+											setCourier("Доставка на відділення");
+										} else if (e.target.value === "Доставка кур'єром") {
+											setCourier("Доставка кур'єром");
+										}
+									}}
+								>
+									<option value="Доставка на відділення">
+										Доставка на відділення
+									</option>
+									<option value="Доставка кур'єром">Доставка кур'єром</option>
+								</Select>
 
-                <div>
-                  <div style={{ position: "relative" }}>
-                    <CostumerStatusinput
-                      autoComplete="none"
-                      type="text"
-                      id="city"
-                      name="city"
-                      value={searchText}
-                      onClick={() => {
-                        setDropdownCityVisible(searchCities.length <= 40);
-                        setDropdownWarehouseVisible(false);
-                        setDropdownCityVisible(searchCities.length !== 0);
-                      }}
-                      onChange={handleSearchTextChange}
-                      placeholder="Введіть назву міста"
-                      onBlur={() => {
-                        setTimeout(() => {
-                          setDropdownCityVisible(false);
-                        }, 500);
-                      }}
-                    />
-                    {isDropdownCityVisible && (
-                      <Citylist>
-                        <CityitemsBlock>
-                          {searchCities.length === 0 ? (
-                            <LoaderThumb>
-                              <Loader size="60px" pageHeight="60px" />
-                            </LoaderThumb>
-                          ) : (
-                            searchCities.map((searchCity) => (
-                              <LIstItem
-                                key={nanoid()}
-                                onClick={() => {
-                                  handleCitySelect(
-                                    searchCity.Present,
-                                    searchCity.DeliveryCity
-                                  );
-                                }}
-                              >
-                                <CityItem>{searchCity.Present},</CityItem>
-                              </LIstItem>
-                            ))
-                          )}
-                        </CityitemsBlock>
-                      </Citylist>
-                    )}
-                  </div>
-                </div>
-                {courierDelivery === "2" ? (
-                  <OrderDetails>
-                    <label htmlFor="address"></label>
-                    <CostumerStatusinput
-                      type="text"
-                      id="address"
-                      name="address"
-                      placeholder="Адреса*"
-                      value={formData.address}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="building"></label>
-                    <CostumerStatusinput
-                      type="text"
-                      id="building"
-                      name="building"
-                      placeholder="Будинок*"
-                      value={formData.building}
-                      onChange={handleInputChange}
-                    />
-                    <label htmlFor="apartment"></label>
-                    <CostumerStatusinput
-                      type="text"
-                      id="apartment"
-                      name="apartment"
-                      placeholder="Квартира*"
-                      value={formData.apartment}
-                      onChange={handleInputChange}
-                    />
-                  </OrderDetails>
-                ) : (
-                  <OrderDetails>
-                    <div>
-                      <div style={{ position: "relative" }}>
-                        <CostumerStatusinput
-                          autoComplete="none"
-                          type="text"
-                          id="warehouse"
-                          name="warehouse"
-                          value={searchWarehouses}
-                          onChange={handleSearchTextChangeWarehose}
-                          placeholder="Введіть номер відділення"
-                          onClick={() => {
-                            setDropdownWarehouseVisible(
-                              searchCities.length <= 20
-                            );
-                            handleWarehousesChange();
-                          }}
-                          onBlur={() => {
-                            setTimeout(() => {
-                              setDropdownWarehouseVisible(false);
-                            }, 500);
-                          }}
-                        />
-                        {warehouses.length < 4199 &&
-                          isDropdownWarehouseVisible && (
-                            <Citylist>
-                              <CityitemsBlock>
-                                {warehouses.length === 0 ? (
-                                  <LoaderThumb>
-                                    <Loader size="60px" pageHeight="60px" />
-                                  </LoaderThumb>
-                                ) : (
-                                  warehouses
-                                    .filter((warehouse) =>
-                                      warehouse.Description.toLowerCase().includes(
-                                        searchWarehouses.toLowerCase()
-                                      )
-                                    )
-                                    .map((warehouse) => (
-                                      <LIstItem
-                                        key={nanoid()}
-                                        onClick={() =>
-                                          handleWarehouseSelect(
-                                            warehouse.Description
-                                          )
-                                        }
-                                      >
-                                        <CityItem>
-                                          {warehouse.Description}
-                                        </CityItem>
-                                      </LIstItem>
-                                    ))
-                                )}
-                              </CityitemsBlock>
-                            </Citylist>
-                          )}
-                      </div>
-                    </div>
-                  </OrderDetails>
-                )}
-                <DeliveryInfoBlock>
-                  <Titles>СПОСІБ ОПЛАТИ</Titles>
-                  <Select
-                    id="paymentMethod"
-                    name="paymentMethod"
-                    onChange={handleInputChange}
-                  >
-                    <SelectOpton value="Оплата за реквізитами">
-                      Оплата за реквізитами
-                    </SelectOpton>
+								<div>
+									<div style={{position: "relative"}}>
+										<CostumerStatusinput
+											autoComplete="none"
+											type="text"
+											id="city"
+											name="city"
+											value={searchText}
+											onClick={() => {
+												setDropdownCityVisible(searchCities.length <= 40);
+												setDropdownWarehouseVisible(false);
+												setDropdownCityVisible(searchCities.length !== 0);
+											}}
+											onChange={handleSearchTextChange}
+											placeholder="Введіть назву міста"
+											onBlur={() => {
+												setTimeout(() => {
+													setDropdownCityVisible(false);
+												}, 500);
+											}}
+										/>
+										{isDropdownCityVisible && (
+											<Citylist>
+												<CityitemsBlock>
+													{searchCities.length === 0 ? (
+														<LoaderThumb>
+															<Loader size="60px" pageHeight="60px"/>
+														</LoaderThumb>
+													) : (
+														searchCities.map((searchCity) => (
+															<LIstItem
+																key={nanoid()}
+																onClick={() => {
+																	handleCitySelect(
+																		searchCity.Present,
+																		searchCity.DeliveryCity
+																	);
+																}}
+															>
+																<CityItem>{searchCity.Present},</CityItem>
+															</LIstItem>
+														))
+													)}
+												</CityitemsBlock>
+											</Citylist>
+										)}
+									</div>
+								</div>
+								{courierDelivery === "2" ? (
+									<OrderDetails>
+										<label htmlFor="address"></label>
+										<CostumerStatusinput
+											type="text"
+											id="address"
+											name="address"
+											placeholder="Адреса*"
+											value={formData.address}
+											onChange={handleInputChange}
+										/>
+										<label htmlFor="building"></label>
+										<CostumerStatusinput
+											type="text"
+											id="building"
+											name="building"
+											placeholder="Будинок*"
+											value={formData.building}
+											onChange={handleInputChange}
+										/>
+										<label htmlFor="apartment"></label>
+										<CostumerStatusinput
+											type="text"
+											id="apartment"
+											name="apartment"
+											placeholder="Квартира*"
+											value={formData.apartment}
+											onChange={handleInputChange}
+										/>
+									</OrderDetails>
+								) : (
+									<OrderDetails>
+										<div>
+											<div style={{position: "relative"}}>
+												<CostumerStatusinput
+													autoComplete="none"
+													type="text"
+													id="warehouse"
+													name="warehouse"
+													value={searchWarehouses}
+													onChange={handleSearchTextChangeWarehose}
+													placeholder="Введіть номер відділення"
+													onClick={() => {
+														setDropdownWarehouseVisible(
+															searchCities.length <= 20
+														);
+														handleWarehousesChange();
+													}}
+													onBlur={() => {
+														setTimeout(() => {
+															setDropdownWarehouseVisible(false);
+														}, 500);
+													}}
+												/>
+												{warehouses.length < 4199 &&
+													isDropdownWarehouseVisible && (
+														<Citylist>
+															<CityitemsBlock>
+																{warehouses.length === 0 ? (
+																	<LoaderThumb>
+																		<Loader size="60px" pageHeight="60px"/>
+																	</LoaderThumb>
+																) : (
+																	warehouses
+																		.filter((warehouse) =>
+																			warehouse.Description.toLowerCase().includes(
+																				searchWarehouses.toLowerCase()
+																			)
+																		)
+																		.map((warehouse) => (
+																			<LIstItem
+																				key={nanoid()}
+																				onClick={() =>
+																					handleWarehouseSelect(
+																						warehouse.Description
+																					)
+																				}
+																			>
+																				<CityItem>
+																					{warehouse.Description}
+																				</CityItem>
+																			</LIstItem>
+																		))
+																)}
+															</CityitemsBlock>
+														</Citylist>
+													)}
+											</div>
+										</div>
+									</OrderDetails>
+								)}
+								<DeliveryInfoBlock>
+									<Titles>СПОСІБ ОПЛАТИ</Titles>
+									<Select
+										id="paymentMethod"
+										name="paymentMethod"
+										onChange={handleInputChange}
+									>
+										<SelectOpton value="Оплата за реквізитами">
+											Оплата за реквізитами
+										</SelectOpton>
 
-                    <SelectOpton value="Післяплата">Післяплата</SelectOpton>
-                  </Select>
-                  <Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
-                  <label htmlFor="comments"></label>
-                  <Textarea
-                    id="comments"
-                    name="comments"
-                    rows="4"
-                    value={formData.comments} // Встановлюємо значення з formData
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        comments: e.target.value, // Оновлюємо лише поле "comments"
-                      });
-                    }}
-                  ></Textarea>
-                </DeliveryInfoBlock>
+										<SelectOpton value="Післяплата">Післяплата</SelectOpton>
+									</Select>
+									<Titles>КОМЕНТАР ДО ЗАМОВЛЕННЯ</Titles>
+									<label htmlFor="comments"></label>
+									<Textarea
+										id="comments"
+										name="comments"
+										rows="4"
+										value={formData.comments} // Встановлюємо значення з formData
+										onChange={(e) => {
+											setFormData({
+												...formData,
+												comments: e.target.value, // Оновлюємо лише поле "comments"
+											});
+										}}
+									></Textarea>
+								</DeliveryInfoBlock>
 
-                <label htmlFor="deliveryMethod"> </label>
-              </DeliveryInfoBlock>
+								<label htmlFor="deliveryMethod"> </label>
+							</DeliveryInfoBlock>
 
-              <TableThumb>
-                <Titles>ваше замовлення</Titles>
-                <OrdersThumb>
-                  <table
-                    cols="5"
-                    style={{
-                      width: "-webkit-fill-available",
-                      borderSpacing: "unset",
-                    }}
-                  >
-                    <thead style={{ bordeRadius: "25px" }}>
-                      <tr>
-                        <HeaderBlockLeft></HeaderBlockLeft>
-                        <HeaderBlock>Найменування товару</HeaderBlock>
-                        <HeaderBlock>Кількість </HeaderBlock>
-                        <HeaderBlock>Ціна</HeaderBlock>
-                        <HeaderBlocRight>Сума</HeaderBlocRight>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {updateItems.map((item) => (
-                        <OrdersItemlist key={item._id}>
-                          <OrdersItem>
-                            <OrdersImage src={item.images} alt="itemImage" />
-                          </OrdersItem>
-                          <ItemNameItem>
-                            <ItemNameLink>
-                              {item.name} <br /> Код товару: {item.code}
-                            </ItemNameLink>
-                          </ItemNameItem>
-                          <OrdersItem>
-                            <ItemAmount>{item.quantity}</ItemAmount>
-                          </OrdersItem>
-                          <OrdersItem>
-                            <ItemAmount>
-                              {isOptUser ? item.priceOPT : item.price} ₴
-                            </ItemAmount>
-                          </OrdersItem>
-                          <OrdersItem>
-                            <ItemAmount>
-                              {(isOptUser ? item.priceOPT : item.price) *
-                                item.quantity}{" "}
-                              ₴
-                            </ItemAmount>
-                          </OrdersItem>
-                        </OrdersItemlist>
-                      ))}
-                    </tbody>
-                  </table>
-                  <Amount style={{ fontWeight: "bold" }}>
-                    Загальна сума: {totalCost} грн
-                  </Amount>
-                  <Description>
-                    *Вартість доставки здійснюється за рахунок покупця
-                  </Description>
-                  <Description>
-                    *Щоб змінити кількість товарів, поверніться назад до корзини
-                  </Description>
-                </OrdersThumb>
+							<TableThumb>
+								<Titles>ваше замовлення</Titles>
+								<OrdersThumb>
+									<table
+										cols="5"
+										style={{
+											width:         "-webkit-fill-available",
+											borderSpacing: "unset",
+										}}
+									>
+										<thead style={{bordeRadius: "25px"}}>
+										<tr>
+											<HeaderBlockLeft></HeaderBlockLeft>
+											<HeaderBlock>Найменування товару</HeaderBlock>
+											<HeaderBlock>Кількість </HeaderBlock>
+											<HeaderBlock>Ціна</HeaderBlock>
+											<HeaderBlocRight>Сума</HeaderBlocRight>
+										</tr>
+										</thead>
+										<tbody>
+										{updateItems.map((item) => (
+											<OrdersItemlist key={item._id}>
+												<OrdersItem>
+													<OrdersImage src={item.images} alt="itemImage"/>
+												</OrdersItem>
+												<ItemNameItem>
+													<ItemNameLink>
+														{item.name} <br/> Код товару: {item.code}
+													</ItemNameLink>
+												</ItemNameItem>
+												<OrdersItem>
+													<ItemAmount>{item.quantity}</ItemAmount>
+												</OrdersItem>
+												<OrdersItem>
+													<ItemAmount>
+														{isOptUser ? item.priceOPT : item.price} ₴
+													</ItemAmount>
+												</OrdersItem>
+												<OrdersItem>
+													<ItemAmount>
+														{(isOptUser ? item.priceOPT : item.price) *
+															item.quantity}{" "}
+														₴
+													</ItemAmount>
+												</OrdersItem>
+											</OrdersItemlist>
+										))}
+										</tbody>
+									</table>
+									<Amount style={{fontWeight: "bold"}}>
+										Загальна сума: {totalCost} грн
+									</Amount>
+									<Description>
+										*Вартість доставки здійснюється за рахунок покупця
+									</Description>
+									<Description>
+										*Щоб змінити кількість товарів, поверніться назад до корзини
+									</Description>
+								</OrdersThumb>
 
-                <ButtonWrap>
-                  <Button
-                    goods
-                    type="submit"
-                    text={
-                      isSubmitting
-                        ? "Замовлення в обробці..."
-                        : "Оформити замовлення"
-                    }
-                    // onClick={handleAddToCart}
-                    disabled={isSubmitting}
-                  />
-                </ButtonWrap>
+								<ButtonWrap>
+									<Button
+										goods
+										type="submit"
+										text={
+											isSubmitting
+												? "Замовлення в обробці..."
+												: "Оформити замовлення"
+										}
+										// onClick={handleAddToCart}
+										disabled={isSubmitting}
+									/>
+								</ButtonWrap>
 
-              </TableThumb>
-            </Form>
-          ) : null}
-        </OrderDetails>
-      </OrderForm>
-      <OrderModalWindow orderNumber={orderNumber} isOpen={isModalOpen} />
-    </Container>
-  );
+							</TableThumb>
+						</Form>
+					) : null}
+				</OrderDetails>
+			</OrderForm>
+			<OrderModalWindow orderNumber={orderNumber} isOpen={isModalOpen}/>
+		</Container>
+	);
 };
 
 export default OrderPlacement;
