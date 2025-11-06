@@ -1,6 +1,8 @@
 import React from "react";
 
-import {LinkLogo, TextLogo, TextLogoSecondWord} from "./logo.styled";
+import {LinkLogo} from "./logo.styled";
+
+const logo = require('../../../images/logo/pink_simple_grateful_quote.png');
 
 const Logo = () => {
 	const scrollToTop = () => {
@@ -12,7 +14,7 @@ const Logo = () => {
 	return (
 		<>
 			<LinkLogo to="/" onClick={scrollToTop}>
-				<img src={"../../../images/logo.png"} alt="logo"/>
+				<img className={"max-w-[210px]"} src={logo} alt="logo"/>
 			</LinkLogo>
 		</>
 	);

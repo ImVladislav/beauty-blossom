@@ -19,18 +19,18 @@ export const HeaderTop = styled.div`
   color: ${(p) => p.theme.colors.textColor};
 `;
 export const HeaderWrap = styled.div`
-  max-width: 767px;
-  padding: 0 20px;
-  margin: 0 auto;
-  @media screen and (min-width: 768px) {
-    max-width: 1023px;
-  }
-  @media screen and (min-width: 1024px) {
-    max-width: 1440px;
-  }
+	max-width: 767px;
+	padding:   0 20px;
+	margin:    0 auto;
+	@media screen and (min-width: 768px) {
+		max-width: 1023px;
+	}
+	@media screen and (min-width: 1024px) {
+		max-width: 1440px;
+	}
 `;
 export const HeaderLayout = styled.div`
-  margin: 15px 0;
+  margin: 0 0 10px 0;
   position: relative;
   display: flex;
   /* justify-content: space-between; */
